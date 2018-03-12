@@ -1,3 +1,7 @@
+# Misc
+.*.swp
+*.DS_STORE
+
 # Prerequisites
 *.d
 
