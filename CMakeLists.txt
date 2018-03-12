@@ -1,8 +1,16 @@
-project(xmscore)
-cmake_minimum_required(VERSION 3.0)
+set (CMAKE_CXX_STANDARD 11)
+cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
+
+project(xmscore)
+
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+
 include_directories(${CMAKE_CURRENT_LIST_DIR})
+include_directories(${CONAN_INCLUDE_DIRS})
+
 
 
 set(xmscore_sources
@@ -59,6 +67,7 @@ target_include_directories(${PROJECT_NAME}
     $<INSTALL_INTERFACE:include/>
     ${Boost_INCLUDE_DIR})
 find_package(Threads REQUIRED)
+target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
   ${CMAKE_THREAD_LIBS_INIT}
