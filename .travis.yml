@@ -11,15 +11,8 @@ addons:
       - gcc-6
       - g++-6
       - cmake
-      - python3-setuptools
-      - python3.4
-
-script:
-  - ls -hal
-  # Install pip for python3
-  - easy_install3 pip
+install:
   # Install conan
-  - sudo pip --version
   - yes | sudo pip install conan
   # Link g++ and gcc to their standard commands
   - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
@@ -28,8 +21,18 @@ script:
   - export CC=/usr/bin/gcc-6
   - export CXX=/usr/bin/g++-6
   # Check versions of gcc, g++ and cmake
-  - gcc -v && g++ -v && cmake --version
+  - gcc -v; g++ -v
+  # Cmake version for debugging
+  - cmake --version
+  # Python version
+  - which python; python --version
+  # Pip version
+  - which pip; pip --version
+script:
   - cd build
+  # Install dependencies from conan
   - conan install ..
+  # Build make file
   - cmake ..
+  # Build
   - make
