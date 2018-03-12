@@ -11,12 +11,15 @@ addons:
       - gcc-6
       - g++-6
       - cmake
+      - python3-setuptools
       - python3.4
 
-install: 
-  # Install conana
-  - pip --version
-  - pip install -y conan
+install:
+  # Install pip for python3
+  - easy_install3 pip
+  # Install conan
+  - pip3 --version
+  - pip3 install -y conan
   # Automatic detection of your arch, compiler, etc.
   - conan user
   
