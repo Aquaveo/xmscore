@@ -69,7 +69,6 @@ target_include_directories(${PROJECT_NAME}
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
 target_link_libraries(${PROJECT_NAME}
-  PUBLIC
   ${CMAKE_THREAD_LIBS_INIT}
 )
 
