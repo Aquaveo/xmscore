@@ -13,6 +13,10 @@ addons:
       - cmake
 
 install: 
+  # Install conana
+  - pip install conan
+  
+script:
   # Link g++ and gcc to their standard commands
   - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - ln -s /usr/bin/g++-6 /usr/local/bin/g++
@@ -21,10 +25,6 @@ install:
   - export CXX=/usr/bin/g++-6
   # Check versions of gcc, g++ and cmake
   - gcc -v && g++ -v && cmake --version
-  # Install conana
-  - pip install conan
-  
-script:
   - cd build
   - conan install ..
   - cmake ..
