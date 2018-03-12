@@ -1,4 +1,5 @@
 project(xmscore)
+cmake_minimum_required(VERSION 3.0)
 
 set(xmscore_sources
   src/math/math.cpp
@@ -13,11 +14,9 @@ set(xmscore_sources
 
 set(xmscore_headers
   src/math/math.h
-  src/misc/ObjectCallback.h
   src/misc/Singleton.h
   src/misc/StringUtil.h
   src/misc/XmError.h
-  src/misc/XmInt.h
   src/misc/XmLog.h
   src/misc/boost_defines.h
   src/misc/environment.h
@@ -29,7 +28,6 @@ set(xmscore_headers
   src/stl/list.h
   src/stl/map.h
   src/stl/set.h
-  src/stl/string.h
   src/stl/utility.h
   src/stl/vector.h
 )
@@ -64,7 +62,6 @@ target_link_libraries(${PROJECT_NAME}
 
 install(
   TARGETS ${PROJECT_NAME}
-  EXPORT  Filigree-targets
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
