@@ -1,49 +1,53 @@
 project(xmscore)
 cmake_minimum_required(VERSION 3.0)
+cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
+set(CMAKE_DEBUG_POSTFIX _d)
+include_directories(${CMAKE_CURRENT_LIST_DIR})
+
 
 set(xmscore_sources
-  src/math/math.cpp
-  src/misc/Singleton.cpp
-  src/misc/StringUtil.cpp
-  src/misc/XmError.cpp
-  src/misc/XmLog.cpp
-  src/points/functors.cpp
-  src/points/pt.cpp
-  src/stl/vector.cpp
+  xmscore/math/math.cpp
+  xmscore/misc/Singleton.cpp
+  xmscore/misc/StringUtil.cpp
+  xmscore/misc/XmError.cpp
+  xmscore/misc/XmLog.cpp
+  xmscore/points/functors.cpp
+  xmscore/points/pt.cpp
+  xmscore/stl/vector.cpp
 )
 
 set(xmscore_headers
-  src/math/math.h
-  src/misc/Singleton.h
-  src/misc/StringUtil.h
-  src/misc/XmError.h
-  src/misc/XmLog.h
-  src/misc/boost_defines.h
-  src/misc/environment.h
-  src/points/functors.h
-  src/points/pt.h
-  src/points/ptsfwd.h
-  src/stl/deque.h
-  src/stl/hash.h
-  src/stl/list.h
-  src/stl/map.h
-  src/stl/set.h
-  src/stl/utility.h
-  src/stl/vector.h
+  xmscore/math/math.h
+  xmscore/misc/Singleton.h
+  xmscore/misc/StringUtil.h
+  xmscore/misc/XmError.h
+  xmscore/misc/XmLog.h
+  xmscore/misc/boost_defines.h
+  xmscore/misc/environment.h
+  xmscore/points/functors.h
+  xmscore/points/pt.h
+  xmscore/points/ptsfwd.h
+  xmscore/stl/deque.h
+  xmscore/stl/hash.h
+  xmscore/stl/list.h
+  xmscore/stl/map.h
+  xmscore/stl/set.h
+  xmscore/stl/utility.h
+  xmscore/stl/vector.h
 )
 
 if (BUILD_TESTING)
   add_definitions(-DCXX_TEST -DCXXTEST4)
 
   list(APPEND xmscore_sources
-    src/math/math.t.h
-    src/misc/StringUtil.t.h
-    src/misc/XmError.t.h
-    src/misc/XmLog.t.h
-    src/points/functors.t.h
-    src/points/pt.t.h
-    src/testing/TestTools.cpp
-    src/testing/TestTools.h
+    xmscore/math/math.t.h
+    xmscore/misc/StringUtil.t.h
+    xmscore/misc/XmError.t.h
+    xmscore/misc/XmLog.t.h
+    xmscore/points/functors.t.h
+    xmscore/points/pt.t.h
+    xmscore/testing/TestTools.cpp
+    xmscore/testing/TestTools.h
   )
 endif ()
 
