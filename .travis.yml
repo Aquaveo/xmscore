@@ -14,16 +14,14 @@ addons:
       - python3-setuptools
       - python3.4
 
-install:
+script:
   # Install pip for python3
   - easy_install3 pip
   # Install conan
   - pip3 --version
-  - pip3 install -y conan
+  - yes | pip3 install conan
   # Automatic detection of your arch, compiler, etc.
   - conan user
-  
-script:
   # Link g++ and gcc to their standard commands
   - ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
   - ln -s /usr/bin/g++-6 /usr/local/bin/g++
