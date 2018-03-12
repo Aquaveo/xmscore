@@ -11,7 +11,12 @@ addons:
       - gcc-6
       - g++-6
       - cmake
+
 install:
+  # Python version
+  - which python; python --version
+  # Pip version
+  - which pip; pip --version
   # Install conan
   - yes | sudo pip install conan
   # Link g++ and gcc to their standard commands
@@ -20,14 +25,11 @@ install:
   # Export CC and CXX to tell cmake which compiler to use
   - export CC=/usr/bin/gcc-6
   - export CXX=/usr/bin/g++-6
-  # Check versions of gcc, g++ and cmake
+  # Check versions of gcc and g++
   - gcc -v; g++ -v
-  # Cmake version for debugging
+  # Check cmake version
   - cmake --version
-  # Python version
-  - which python; python --version
-  # Pip version
-  - which pip; pip --version
+
 script:
   - cd build
   # Install dependencies from conan
