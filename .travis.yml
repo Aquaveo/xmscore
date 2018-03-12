@@ -15,7 +15,8 @@ addons:
 
 install: 
   # Install conana
-  - pip3 install -y conan
+  - pip --version
+  - pip install -y conan
   # Automatic detection of your arch, compiler, etc.
   - conan user
   
