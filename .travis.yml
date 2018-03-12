@@ -11,10 +11,13 @@ addons:
       - gcc-6
       - g++-6
       - cmake
+      - python3.4
 
 install: 
   # Install conana
-  - pip install conan
+  - pip3 install -y conan
+  # Automatic detection of your arch, compiler, etc.
+  - conan user
   
 script:
   # Link g++ and gcc to their standard commands
