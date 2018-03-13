@@ -32,10 +32,11 @@ install:
 
 script:
   # Install dependencies from conan
-  - conan install .
+  - cd build
+  - conan install ..
   # Build Conan Package
   - conan remote add aquaveo_conan https://conan.aquaveo.com
   - conan user -p $CONAN_PASSWORD $CONAN_USER -r aquaveo_conan
-  - conan create . aquaveo/stable
+  - conan create .. aquaveo/stable
   # Push Conan Package
   - conan upload xmscore/1.0.0@aquaveo/stable --all -r=aquaveo_conan
