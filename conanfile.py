@@ -1,14 +1,10 @@
 from conans import ConanFile, CMake
 
 
-with open("LICENSE") as l:
-    license_text = l.read()
-
-
 class XmscoreConan(ConanFile):
     name = "xmscore"
     version = "1.0.0"
-    license = license_text
+    license = "XMSNG Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
@@ -31,6 +27,7 @@ class XmscoreConan(ConanFile):
         self.copy("*.dylib*", dst="lib", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
         self.copy("*.a", dst="lib", keep_path=False)
+        self.copy("*license*", dst="licenses", ignore_case=True, keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs = ["xmscore"]

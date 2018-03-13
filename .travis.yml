@@ -1,43 +1,58 @@
-dist: trusty
-sudo: require
-language: cpp
-compiler: g++
 
-addons:
-  apt:
-    sources:
-      - sourceline: 'ppa:ubuntu-toolchain-r/test'
-    packages:
-      - gcc-6
-      - g++-6
-      - cmake
+env:
+   global:
+     - CONAN_REFERENCE: "xmscore/1.0.0"
+     - CONAN_USERNAME: "aquaveo"
+     - CONAN_LOGIN_USERNAME: "aquaveo"
+     - CONAN_CHANNEL: "stable"
+     
+linux: &linux
+   os: linux
+   sudo: required
+   language: python
+   python: "3.6"
+   services:
+     - docker
+osx: &osx
+   os: osx
+   language: generic
+matrix:
+   include:
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6
+
+      - <<: *linux
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
+
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=3.9 CONAN_DOCKER_IMAGE=lasote/conanclang39
+
+      - <<: *linux
+        env: CONAN_CLANG_VERSIONS=4.0 CONAN_DOCKER_IMAGE=lasote/conanclang40
+
+      - <<: *osx
+        osx_image: xcode7.3
+        env: CONAN_APPLE_CLANG_VERSIONS=7.3
+
+      - <<: *osx
+        osx_image: xcode8.3
+        env: CONAN_APPLE_CLANG_VERSIONS=8.1
+
+      - <<: *osx
+        osx_image: xcode9.2
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0
 
 install:
-  # Python version
-  - which python; python --version
-  # Pip version
-  - which pip; pip --version
-  # Install conan
-  - yes | sudo pip install conan
-  # Link g++ and gcc to their standard commands
-  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
-  # Export CC and CXX to tell cmake which compiler to use
-  - export CC=/usr/bin/gcc-6
-  - export CXX=/usr/bin/g++-6
-  # Check versions of gcc and g++
-  - gcc -v; g++ -v
-  # Check cmake version
-  - cmake --version
+  - chmod +x .travis/install.sh
+  - ./.travis/install.sh
 
 script:
-  # Add Conan Remotes
-  - conan remote add aquaveo https://conan.aquaveo.com
-  - sudo conan user -p $CONAN_PASSWORD  -r aquaveo $CONAN_USER
-  # Install dependencies from conan
-  - cd build
-  - conan install ..
-  # Build Conan Package
-  - conan create .. aquaveo/stable
-  # Push Conan Package
-  - conan upload xmscore/1.0.0@aquaveo/stable --all -r=aquaveo
+  - chmod +x .travis/run.sh
+  - ./.travis/run.sh

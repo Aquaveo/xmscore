@@ -2,6 +2,7 @@
 .*.swp
 *.DS_STORE
 *~
+*.pyc
 build/
 test_package/build/
 
