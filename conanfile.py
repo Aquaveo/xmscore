@@ -15,6 +15,7 @@ class XmscoreConan(ConanFile):
     options = {"shared": [True, False]}
     default_options = "shared=False"
     generators = "cmake"
+    requires = "boost/1.66.0@conan/stable"
     exports = "CMakeLists.txt", "LICENSE"
     exports_sources = "xmscore/*"
 
