@@ -33,7 +33,7 @@ install:
 script:
   # Add Conan Remotes
   - conan remote add aquaveo https://conan.aquaveo.com
-  - conan user -p $CONAN_PASSWORD  -r aquaveo $CONAN_USER
+  - sudo conan user -p $CONAN_PASSWORD  -r aquaveo $CONAN_USER
   # Install dependencies from conan
   - cd build
   - conan install ..
