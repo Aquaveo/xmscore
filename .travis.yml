@@ -31,9 +31,8 @@ install:
   - cmake --version
 
 script:
-  - cd build
   # Install dependencies from conan
-  - conan install ..
+  - conan install .
   # Build Conan Package
   - conan remote add aquaveo_conan https://conan.aquaveo.com
   - conan user -p $CONAN_PASSWORD $CONAN_USER -r aquaveo_conan
