@@ -3,6 +3,7 @@
 *.DS_STORE
 *~
 build/
+test_package/build/
 
 # Prerequisites
 *.d
