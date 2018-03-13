@@ -22,6 +22,7 @@
 #include <xmscore/misc/XmLog.h>
 
 // 3. Standard library headers
+#include <fstream>
 #include <sstream>
 
 // 4. External library headers
