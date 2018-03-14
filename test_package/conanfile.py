@@ -5,10 +5,12 @@ import os
 class XmscoreTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
+    requires = "xmscore/1.0.0@aquaveo/stable"
 
     def build(self):
         cmake = CMake(self)
         # Current dir is "test_package/build/<build_id>" and CMakeLists.txt is in "test_package"
+        print('TEST PACKAGE CURRENT WORKING DIRECTORY: {}'.format(os.getcwd()))
         cmake.configure()
         cmake.build()
 

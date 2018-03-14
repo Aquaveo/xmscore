@@ -11,4 +11,3 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
 fi
 
 python build.py
-conan search

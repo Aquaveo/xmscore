@@ -42,3 +42,7 @@ install:
 script:
   - chmod +x .travis/run.sh
   - ./.travis/run.sh
+  - conan search
+  - echo "CONAN DATA DIRECTORY:"
+  - chmod +x .travis/listdir.sh
+  - ./.travis/listdir.sh /home/conan/.conan/data/xmscore
