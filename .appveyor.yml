@@ -1,5 +1,5 @@
 build: false
-version: 1.0.0-{build}
+version: $APPVEYOR_REPO_TAG_NAME
 skip_non_tags: true
 
 environment:
