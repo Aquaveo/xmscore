@@ -1,10 +1,11 @@
+import os
 from conans import ConanFile, CMake
 from conans.errors import ConanException
 
 
 class XmscoreConan(ConanFile):
     name = "xmscore"
-    version = "1.0.0"
+    version = os.environ.get('XMSCORE_VERSION', 'dev')
     license = "XMSNG Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
