@@ -60,10 +60,10 @@ jobs:
         <<: *linux
         env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
 
-      - stage: test
-        <<: *osx
-        osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0
+#      - stage: test
+#        <<: *osx
+#        osx_image: xcode9.2
+#        env: CONAN_APPLE_CLANG_VERSIONS=9.0
 
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
       - stage: deploy
