@@ -20,7 +20,7 @@ osx: &osx
 stages:
     - test
     - name: deploy
-      if: tag =~ ^v\d\.\d\.\d$
+      if: tag =~ ^v\d+\.\d+\.\d+$
 
 # Global Lifecycle Steps
 # See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
