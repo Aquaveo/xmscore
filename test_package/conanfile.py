@@ -22,3 +22,7 @@ class XmscoreTestConan(ConanFile):
         if not tools.cross_building(self.settings):
             os.chdir("bin")
             self.run(".%sexample" % os.sep)
+        else:
+            print("Cross Building: Skipping tests.")
+            print(self.settings.arch.value)
+            print(self.settings.build_type.value)
