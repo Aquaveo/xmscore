@@ -40,15 +40,13 @@ install:
   - ./.travis/install.sh
 
 script:
+  - echo "THIS DIR"
+  - ls -lah
   - chmod +x .travis/run.sh
   - ./.travis/run.sh
   - conan search
   - echo "CONAN DATA DIRECTORY:"
-  - ls -lah
-  - ls -lah /home/conan
-  - ls -lah /home/conan/.conan/data
   - ls -lah ~/.conan/data
+  - echo "CONAN XMSCORE DIR"
   - chmod +x .travis/listdir.sh
-  - ./.travis/listdir.sh /home/conan/.conan/data
-  - ./.travis/listdir.sh ~/.conan/data
   - ./.travis/listdir.sh ~/.conan/data/xmscore
