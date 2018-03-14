@@ -37,8 +37,7 @@ script:
 
 # After Success
 after_success:
-  - chmod +x .travis/test.sh
-  - ./.travis/test.sh
+  - python test.py
 
 # Jobs/Build Matrix
 # Note: Lifecycle Steps specified in stages will override Global Lifecycle Steps
