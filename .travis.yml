@@ -4,7 +4,7 @@ env:
      - CONAN_USERNAME: "aquaveo"
      - CONAN_LOGIN_USERNAME: "aquaveo"
      - CONAN_CHANNEL: "stable"
-     - AQUAVEO_CONAN: "https://conan.aquaveo.com"
+     - AQUAVEO_CONAN: "https://conan.aquaveo.com:80"
      
 linux: &linux
    os: linux
