@@ -1,13 +1,13 @@
 skip_non_tags: true
 build: false
-version: $APPVEYOR_REPO_TAG_NAME
+version: ${APPVEYOR_REPO_TAG_NAME}
 
 environment:
     PYTHON: "C:\\Python27"
     PYTHON_VERSION: "2.7.8"
     PYTHON_ARCH: "32"
 
-    XMSCORE_VERSION: $APPVEYOR_REPO_TAG_NAME
+    XMSCORE_VERSION: ${APPVEYOR_REPO_TAG_NAME}
     CONAN_REFERENCE: "xmscore/${XMSCORE_VERSION}"
     CONAN_USERNAME: "aquaveo"
     CONAN_LOGIN_USERNAME: "aquaveo"
