@@ -1,6 +1,6 @@
+skip_non_tags: true
 build: false
 version: $APPVEYOR_REPO_TAG_NAME
-skip_non_tags: true
 
 environment:
     PYTHON: "C:\\Python27"
