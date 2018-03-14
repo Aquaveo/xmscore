@@ -5,7 +5,7 @@ from conans.errors import ConanException
 
 class XmscoreConan(ConanFile):
     name = "xmscore"
-    version = os.environ.get('XMSCORE_VERSION', 'dev')
+    version = os.environ.get('XMSCORE_VERSION', 'master')
     license = "XMSNG Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
