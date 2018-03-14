@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Aquaveo/xmscore.svg?branch=master)](https://travis-ci.org/Aquaveo/xmscore)
+[![Build status](https://ci.appveyor.com/api/projects/status/tkgmhrs31cc4l3ph?svg=true)](https://ci.appveyor.com/project/swainn/xmscore)
+
 XMSCore
 ========
 Support library for XMS products

@@ -1,4 +1,5 @@
 from conans import ConanFile, CMake
+from conans.errors import ConanException
 
 
 class XmscoreConan(ConanFile):
@@ -15,6 +16,17 @@ class XmscoreConan(ConanFile):
     exports = "CMakeLists.txt", "LICENSE"
     exports_sources = "xmscore/*"
 
+    def configure(self):
+        s_os = self.settings.os
+        s_compiler = self.settings.compiler
+        s_compiler_version = self.settings.compiler.version
+
+        if s_compiler == "clang" and s_os == 'Linux':
+            raise ConanException("Clang on Linux is not supported.")
+
+        if s_compiler == "clang" and s_os == 'Darwin' and s_compiler_version < "9.0":
+            raise ConanException("Clang > 9.0 is required for Mac.")
+
     def build(self):
         cmake = CMake(self)
         cmake.configure(source_folder=".")
@@ -27,10 +39,10 @@ class XmscoreConan(ConanFile):
         self.copy("*.dylib*", dst="lib", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
         self.copy("*.a", dst="lib", keep_path=False)
-        self.copy("*license*", dst="licenses", ignore_case=True, keep_path=False)
+        self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
 
     def package_info(self):
-        if self.settings.build_type.value.lower() == 'debug':
+        if self.settings.build_type == 'Debug':
             self.cpp_info.libs = ["xmscore_d"]
         else:
             self.cpp_info.libs = ["xmscore"]
