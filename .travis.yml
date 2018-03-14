@@ -4,6 +4,7 @@ env:
      - CONAN_USERNAME: "aquaveo"
      - CONAN_LOGIN_USERNAME: "aquaveo"
      - CONAN_CHANNEL: "stable"
+     - AQUAVEO_CONAN: "https://conan.aquaveo.com"
      
 linux: &linux
    os: linux
@@ -30,7 +31,7 @@ jobs:
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
-        script: echo "testing"
+        after_success: echo "testing"
 
       - stage: test
         <<: *linux
@@ -38,7 +39,7 @@ jobs:
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
-        script: echo "testing"
+        after_success: echo "testing"
 
       - stage: test
         <<: *linux
@@ -46,7 +47,7 @@ jobs:
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
-        script: echo "testing"
+        after_success: echo "testing"
 
       - stage: test
         <<: *linux
@@ -54,7 +55,7 @@ jobs:
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
-        script: echo "testing"
+        after_success: echo "testing"
 
       - stage: test
         <<: *osx
@@ -63,12 +64,12 @@ jobs:
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
-        script: echo "testing"
+        after_success: echo "testing"
 
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
       - stage: deploy
         <<: *linux
-        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
+        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49 CONAN_UPLOAD=$AQUAVEO_CONAN
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
@@ -78,7 +79,7 @@ jobs:
 
       - stage: deploy
         <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 CONAN_UPLOAD=$AQUAVEO_CONAN
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
@@ -88,7 +89,7 @@ jobs:
 
       - stage: deploy
         <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 CONAN_UPLOAD=$AQUAVEO_CONAN
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
@@ -98,7 +99,7 @@ jobs:
 
       - stage: deploy
         <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 CONAN_UPLOAD=$AQUAVEO_CONAN
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh
@@ -109,7 +110,7 @@ jobs:
       - stage: deploy
         <<: *osx
         osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_UPLOAD=$AQUAVEO_CONAN
 #        install:
 #          - chmod +x .travis/install.sh
 #          - ./.travis/install.sh

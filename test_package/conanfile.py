@@ -19,6 +19,7 @@ class XmscoreTestConan(ConanFile):
         self.copy('*.so*', dst='bin', src='lib')
 
     def test(self):
+        # Run tests only for x86_64 builds
         if not tools.cross_building(self.settings):
             os.chdir("bin")
             self.run(".%sexample" % os.sep)
