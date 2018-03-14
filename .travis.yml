@@ -15,6 +15,12 @@ linux: &linux
 osx: &osx
    os: osx
    language: generic
+
+stages:
+    - test
+    - name: deploy
+      if: tag =~ ^v\d\.\d\.\d$
+
 matrix:
    include:
 
@@ -34,10 +40,19 @@ matrix:
         osx_image: xcode9.2
         env: CONAN_APPLE_CLANG_VERSIONS=9.0
 
+jobs:
+    include:
+        - stage: test
+          script: echo "testing"
+        - stage: deploy
+          script:
+            - chmod +x .travis/run.sh
+            - ./.travis/run.sh
+
 install:
   - chmod +x .travis/install.sh
   - ./.travis/install.sh
 
-script:
-  - chmod +x .travis/run.sh
-  - ./.travis/run.sh
+#script:
+#  - chmod +x .travis/run.sh
+#  - ./.travis/run.sh
