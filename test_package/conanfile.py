@@ -5,7 +5,6 @@ import os
 class XmscoreTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake"
-    requires = "xmscore/1.0.0@aquaveo/stable"
 
     def build(self):
         cmake = CMake(self)
