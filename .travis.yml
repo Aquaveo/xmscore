@@ -44,5 +44,11 @@ script:
   - ./.travis/run.sh
   - conan search
   - echo "CONAN DATA DIRECTORY:"
+  - ls -lah
+  - ls -lah /home/conan
+  - ls -lah /home/conan/.conan/data
+  - ls -lah ~/.conan/data
   - chmod +x .travis/listdir.sh
-  - ./.travis/listdir.sh /home/conan/.conan/data/xmscore
+  - ./.travis/listdir.sh /home/conan/.conan/data
+  - ./.travis/listdir.sh ~/.conan/data
+  - ./.travis/listdir.sh ~/.conan/data/xmscore
