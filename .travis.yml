@@ -1,6 +1,6 @@
 env:
    global:
-     - CONAN_REFERENCE: "xmscore/1.0.0"
+     - CONAN_REFERENCE: "xmscore/${TRAVIS_BRANCH}"
      - CONAN_USERNAME: "aquaveo"
      - CONAN_PASSWORD: $CONAN_PASSWORD_SECRET
      - CONAN_LOGIN_USERNAME: $CONAN_USER_SECRET
