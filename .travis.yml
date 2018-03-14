@@ -22,106 +22,73 @@ stages:
     - name: deploy
       if: tag =~ ^v\d\.\d\.\d$
 
+# Global Lifecycle Steps
+# See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
+
+# Install Step
+install:
+  - chmod +x .travis/install.sh
+  - ./.travis/install.sh
+
+# Build Step
+script:
+  - chmod +x .travis/run.sh
+  - ./.travis/run.sh
+
+# After Success
+after_success:
+  - chmod +x .travis/test.sh
+  - ./.travis/test.sh
+
+# Jobs/Build Matrix
+# Note: Lifecycle Steps specified in stages will override Global Lifecycle Steps
 jobs:
    include:
       # --- TEST STAGE ------------------------------------------------------------------------------------------------
       - stage: test
         <<: *linux
         env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-        after_success: echo "testing"
 
       - stage: test
         <<: *linux
         env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-        after_success: echo "testing"
 
       - stage: test
         <<: *linux
         env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-        after_success: echo "testing"
 
       - stage: test
         <<: *linux
         env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-        after_success: echo "testing"
 
       - stage: test
         <<: *osx
         osx_image: xcode9.2
         env: CONAN_APPLE_CLANG_VERSIONS=9.0
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-        after_success: echo "testing"
 
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
       - stage: deploy
         <<: *linux
         env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49 CONAN_UPLOAD=$AQUAVEO_CONAN
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-#        script:
-#            - chmod +x .travis/run.sh
-#            - ./.travis/run.sh
+        after_success: true
 
       - stage: deploy
         <<: *linux
         env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 CONAN_UPLOAD=$AQUAVEO_CONAN
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-#        script:
-#            - chmod +x .travis/run.sh
-#            - ./.travis/run.sh
+        after_success: true
 
       - stage: deploy
         <<: *linux
         env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 CONAN_UPLOAD=$AQUAVEO_CONAN
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-#        script:
-#            - chmod +x .travis/run.sh
-#            - ./.travis/run.sh
+        after_success: true
 
       - stage: deploy
         <<: *linux
         env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 CONAN_UPLOAD=$AQUAVEO_CONAN
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-#        script:
-#            - chmod +x .travis/run.sh
-#            - ./.travis/run.sh
+        after_success: true
 
       - stage: deploy
         <<: *osx
         osx_image: xcode9.2
         env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_UPLOAD=$AQUAVEO_CONAN
-#        install:
-#          - chmod +x .travis/install.sh
-#          - ./.travis/install.sh
-#        script:
-#            - chmod +x .travis/run.sh
-#            - ./.travis/run.sh
-
-install:
-  - chmod +x .travis/install.sh
-  - ./.travis/install.sh
-
-script:
-  - chmod +x .travis/run.sh
-  - ./.travis/run.sh
+        after_success: true
