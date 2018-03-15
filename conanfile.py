@@ -1,11 +1,10 @@
-import os
 from conans import ConanFile, CMake
 from conans.errors import ConanException
 
 
 class XmscoreConan(ConanFile):
     name = "xmscore"
-    version = os.environ.get('XMSCORE_VERSION', 'master')
+    version = None
     license = "XMSNG Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
@@ -18,6 +17,9 @@ class XmscoreConan(ConanFile):
     exports_sources = "xmscore/*"
 
     def configure(self):
+        self.version = self.env.get('XMSCORE_VERSION', 'master')
+
+        # Raise ConanExceptions for Unsupported Versions
         s_os = self.settings.os
         s_compiler = self.settings.compiler
         s_compiler_version = self.settings.compiler.version
@@ -29,6 +31,7 @@ class XmscoreConan(ConanFile):
             raise ConanException("Clang > 9.0 is required for Mac.")
 
     def build(self):
+        print('build')
         cmake = CMake(self)
         cmake.configure(source_folder=".")
         cmake.build()
