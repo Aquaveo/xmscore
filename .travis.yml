@@ -35,7 +35,7 @@ install:
 # Build Step
 script:
   - chmod +x .travis/run.sh
-  - export XMSCORE_VERSION='${TRAVIS_BRANCH}' && ./.travis/run.sh
+  - echo "OUTSIDE SCRIPT" echo $XMSCORE_VERSION && echo $TRAVIS_BRANCH && ./.travis/run.sh
 
 # After Success
 after_success:

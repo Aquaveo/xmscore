@@ -1,5 +1,18 @@
 #!/bin/bash
 
+echo "IN SCRIPT"
+echo "BEFORE"
+echo $XMSCORE_VERSION
+echo ${XMSCORE_VERSION}
+echo $TRAVIS_BRANCH
+echo ${TRAVIS_BRANCH}
+XMSCORE_VERSION=$TRAVIS_BRANCH
+echo "AFTER"
+echo $XMSCORE_VERSION
+echo ${XMSCORE_VERSION}
+echo $TRAVIS_BRANCH
+echo ${TRAVIS_BRANCH}
+
 set -e
 set -x
 
