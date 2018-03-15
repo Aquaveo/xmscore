@@ -3,7 +3,7 @@ from conan.packager import ConanMultiPackager
 
 
 if __name__ == "__main__":
-        # ConanPackageTools
+    # ConanPackageTools
     # See: https://github.com/conan-io/conan-package-tools/blob/develop/README.md
     builder = ConanMultiPackager()
     builder.add_common_builds()
@@ -13,6 +13,12 @@ if __name__ == "__main__":
     conan_upload = os.environ.get('CONAN_UPLOAD', None)
     print("CONAN UPLOAD")
     print(conan_upload)
+    print(os.environ.get('CONAN_LOGIN_USERNAME', None))
+    print(os.environ.get('CONAN_PASSWORD', None))
+    print(os.environ.get('CONAN_REFERENCE', None))
+    print(os.environ.get('CONAN_USERNAME', None))
+    print(os.environ.get('CONAN_CHANNEL', None))
+
     for settings, options, env_vars, build_requires, reference in builder.items:
         env_vars.update({'XMSCORE_VERSION': xmscore_version})
         env_vars.update({'CONAN_UPLOAD': conan_upload})
