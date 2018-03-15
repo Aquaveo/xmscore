@@ -17,6 +17,7 @@ class XmscoreConan(ConanFile):
     exports_sources = "xmscore/*"
 
     def configure(self):
+        # Set verion dynamically using XMSCORE_VERSION env variable.
         self.version = self.env.get('XMSCORE_VERSION', 'master')
 
         # Raise ConanExceptions for Unsupported Versions
