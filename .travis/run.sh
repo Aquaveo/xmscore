@@ -1,10 +1,5 @@
 #!/bin/bash
 
-echo "RUN SCRIPT"
-export XMSCORE_VERSION=$TRAVIS_BRANCH
-echo $XMSCORE_VERSION
-echo $TRAVIS_BRANCH
-
 set -e
 set -x
 

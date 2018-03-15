@@ -1,5 +1,6 @@
 env:
    global:
+     # TRAVIS_BRANCH is tag name if tag provided else branch name
      - XMSCORE_VERSION: $TRAVIS_BRANCH
      - CONAN_REFERENCE: "xmscore/${XMSCORE_VERSION}"
      - CONAN_USERNAME: "aquaveo"

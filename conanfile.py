@@ -2,15 +2,10 @@ import os
 from conans import ConanFile, CMake
 from conans.errors import ConanException
 
-xmscore_version = os.environ.get('XMSCORE_VERSION', 'master')
-travis_branch = os.environ.get('TRAVIS_BRANCH', 'master')
-print('XMSCORE_VERSION in conanfile.py: {}'.format(xmscore_version))
-print('TRAVIS_BRANCH in conanfile.py: {}'.format(travis_branch))
-
 
 class XmscoreConan(ConanFile):
     name = "xmscore"
-    version = xmscore_version
+    version = os.environ.get('XMSCORE_VERSION', 'master')
     license = "XMSNG Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
