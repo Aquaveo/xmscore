@@ -31,7 +31,6 @@ class XmscoreConan(ConanFile):
             raise ConanException("Clang > 9.0 is required for Mac.")
 
     def build(self):
-        print('build')
         cmake = CMake(self)
         cmake.configure(source_folder=".")
         cmake.build()

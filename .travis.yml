@@ -4,10 +4,9 @@ env:
      - XMSCORE_VERSION: $TRAVIS_BRANCH
      - CONAN_REFERENCE: "xmscore/${XMSCORE_VERSION}"
      - CONAN_USERNAME: "aquaveo"
-     - CONAN_PASSWORD: $CONAN_PASSWORD_SECRET
-     - CONAN_LOGIN_USERNAME: $CONAN_USER_SECRET
      - CONAN_CHANNEL: "stable"
-     - AQUAVEO_CONAN: "https://conan.aquaveo.com:80"
+     - CONAN_LOGIN_USERNAME: $CONAN_USER_SECRET
+     - CONAN_PASSWORD: $CONAN_PASSWORD_SECRET
      
 linux: &linux
    os: linux
