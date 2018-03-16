@@ -1,6 +1,6 @@
 #include <iostream>
 #include <sstream>
-#include <misc/XmConst.h>
+#include <xmscore/misc/XmConst.h>
 
 int main() {
   std::stringstream ss;

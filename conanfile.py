@@ -9,8 +9,8 @@ class XmscoreConan(ConanFile):
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
-    default_options = "shared=False"
+    # options = {"shared": [True, False]}
+    # default_options = "shared=False"
     generators = "cmake"
     requires = "boost/1.66.0@conan/stable"
     exports = "CMakeLists.txt", "LICENSE"
@@ -37,7 +37,7 @@ class XmscoreConan(ConanFile):
         cmake.build()
 
     def package(self):
-        self.copy("*.h", dst="include", src="xmscore")
+        self.copy("*.h", dst="include/xmscore", src="xmscore")
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.dylib*", dst="lib", keep_path=False)
