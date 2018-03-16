@@ -10,18 +10,9 @@ if __name__ == "__main__":
     updated_builds = []
     # Add environment variables to build definitions
     xmscore_version = os.environ.get('XMSCORE_VERSION', None)
-    conan_upload = os.environ.get('CONAN_UPLOAD', None)
-    print("CONAN UPLOAD")
-    print(conan_upload)
-    print(os.environ.get('CONAN_LOGIN_USERNAME', None))
-    print(os.environ.get('CONAN_PASSWORD', None))
-    print(os.environ.get('CONAN_REFERENCE', None))
-    print(os.environ.get('CONAN_USERNAME', None))
-    print(os.environ.get('CONAN_CHANNEL', None))
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         env_vars.update({'XMSCORE_VERSION': xmscore_version})
-        env_vars.update({'CONAN_UPLOAD': conan_upload})
         updated_builds.append([settings, options, env_vars, build_requires])
     builder.builds = updated_builds
 
