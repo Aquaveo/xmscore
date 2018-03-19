@@ -12,7 +12,7 @@ xmscore is a support library for xms libraries and products.
 
 <table align="center" border="0">
   <tr>
-    <td>![](./html/images/Aquaveo_Logo.png)</td>
+    <td>![](./images/Aquaveo_Logo.png)</td>
   </tr>
 </table>
 
