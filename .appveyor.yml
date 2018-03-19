@@ -1,4 +1,4 @@
-skip_non_tags: true  # Only build on tagged commits
+# skip_non_tags: true  # Only build on tagged commits
 build: false
 version: 1.0.0-{build}  # This version is somewhat arbitrary. Does not affect the version of the package.
 
@@ -15,6 +15,8 @@ environment:
     CONAN_CHANNEL: "stable"
     CONAN_LOGIN_USERNAME: ${CONAN_USER_SECRET}
     CONAN_PASSWORD: ${CONAN_PASSWORD_SECRET}
+    CONAN_STABLE_BRANCH_PATTERN: "master/\d+\.\d+\.\d+$"
+    CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
     
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
