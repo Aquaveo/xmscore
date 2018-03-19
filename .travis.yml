@@ -51,6 +51,22 @@ jobs:
    include:
       # --- TEST STAGE ------------------------------------------------------------------------------------------------
       - stage: test
+        addons:
+          apt:
+            packages:
+              - doxygen
+              - doxygen-doc
+              - doxygen-latex
+              - doxygen-gui
+              - graphviz
+        <<: *linux
+        env: TASK_NAME="DOXYGEN Generation"
+        script: 
+          - cd $TRAVIS_BUILD_DIR
+          - chmod +x generateDocumentationAndDeploy.sh
+          - ./generateDocumentationAndDeploy.sh
+
+      - stage: test
         <<: *linux
         env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
 
@@ -70,14 +86,7 @@ jobs:
         <<: *osx
         osx_image: xcode9.2
         env: CONAN_APPLE_CLANG_VERSIONS=9.0
-        
-      - stage: test
-        <<: *linux
-        script: 
-          - cd $TRAVIS_BUILD_DIR
-          - chmod +x generateDocumentationAndDeploy.sh
-          - ./generateDocumentationAndDeploy.sh
-
+ 
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
       - stage: deploy
         <<: *linux
