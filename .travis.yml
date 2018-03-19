@@ -20,7 +20,8 @@ osx: &osx
    language: generic
 
 stages:
-    - test
+    - name: test
+      if: NOT tag IS present
     - name: deploy
       if: tag =~ ^\d+\.\d+\.\d+$
 
