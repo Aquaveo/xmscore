@@ -7,6 +7,9 @@ env:
      - CONAN_CHANNEL: "stable"
      - CONAN_LOGIN_USERNAME: $CONAN_USER_SECRET
      - CONAN_PASSWORD: $CONAN_PASSWORD_SECRET
+     - GH_REPO_NAME: xmscore
+     - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen
+     - GH_REPO_REF: github.com/Aquaveo/xmscore.git
      
 linux: &linux
    os: linux
@@ -67,6 +70,13 @@ jobs:
         <<: *osx
         osx_image: xcode9.2
         env: CONAN_APPLE_CLANG_VERSIONS=9.0
+        
+      - stage: test
+        <<: *linux
+        script: 
+          - cd $TRAVIS_BUILD_DIR
+          - chmod +x generateDocumentationAndDeploy.sh
+          - ./generateDocumentationAndDeploy.sh
 
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
       - stage: deploy
