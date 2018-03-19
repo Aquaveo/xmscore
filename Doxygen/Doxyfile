@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = xmsng
+PROJECT_NAME           = xmscore
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -769,8 +769,7 @@ WARN_LOGFILE           = doxy_warn.log
 # Note: If this tag is empty the current directory is searched.
 
 INPUT                  = ./ \
-                         ../xmsng/ \
-                         ../../xmscore/xmscore/
+                         ../xmscore/
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -867,10 +866,7 @@ EXCLUDE_SYMBOLS        =
 # that contain example code fragments that are included (see the \include
 # command).
 
-EXAMPLE_PATH           = ../xmsng \
-                         ../../xmsinterp/xmsinterp \
-                         ../../XmsMesh/xmsmesh \
-                         ../../xmscore/xmscore
+EXAMPLE_PATH           = ../xmscore
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp and
@@ -938,7 +934,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE = xmsng/DoxygenMainpage.md
+USE_MDFILE_AS_MAINPAGE = DoxygenMainpage.md
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing
