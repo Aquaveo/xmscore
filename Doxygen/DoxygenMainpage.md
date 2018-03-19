@@ -24,7 +24,7 @@ The code is distributed under the xmsng Software License, Version 1.0. (See acco
 Testing {#Testing}
 -------
 
-The code has numerous unit tests which use the [CxxTest](http://cxxtest.com/) framework. A good way to see how to use the code is to look at the unit tests. Unit tests are located at the bottom of .cpp files within a "#if CXX_TEST" code block. Header files that are named with ".t.h" contain the test suite class definitions. Files used in testing are found in the [test_files] (https://public.git.erdc.dren.mil/computational-analysis-and-mechanics/Filigree/tree/aquaveo/test_files) folder.
+The code has numerous unit tests which use the [CxxTest](http://cxxtest.com/) framework. A good way to see how to use the code is to look at the unit tests. Unit tests are located at the bottom of .cpp files within a "#if CXX_TEST" code block. Header files that are named with ".t.h" contain the test suite class definitions.
 
 The Code {#TheCode}
 --------
