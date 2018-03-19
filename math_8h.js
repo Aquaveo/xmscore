@@ -1,0 +1,28 @@
+var math_8h =
+[
+    [ "XMSCORE_MATH_H", "math_8h.html#a8fae5186e869b63836cbe3c07426ee35", null ],
+    [ "Clamp", "math_8h.html#a2fd4ced1304195c63c72c132a2318891", null ],
+    [ "EQ_EPS", "math_8h.html#aae3e3dee54b4e049573f92c74a38f79f", null ],
+    [ "EQ_TOL", "math_8h.html#ad2b764be90f289082998491db1b52711", null ],
+    [ "GT_EPS", "math_8h.html#a661b4e1380df8833eb664d864a0868e0", null ],
+    [ "GT_TOL", "math_8h.html#ab8190cb81d709d785efaa01409c342c2", null ],
+    [ "GTEQ_EPS", "math_8h.html#a4c0dd874e2af06c9ea53bee53a0f8809", null ],
+    [ "GTEQ_TOL", "math_8h.html#ae0787a6aa8fbfb21f298cea14409af25", null ],
+    [ "LT_EPS", "math_8h.html#aaff8b48b5ad5f026e35bc38f1aab1ca7", null ],
+    [ "LT_TOL", "math_8h.html#a4cfdbe3e6a4d961c82a96926619f5a9f", null ],
+    [ "LTEQ_EPS", "math_8h.html#a68b550210e6ca81a802f5ba2fc88c2e7", null ],
+    [ "LTEQ_TOL", "math_8h.html#a6e651752f23c660cebe5561ae9e9b374", null ],
+    [ "Mag", "math_8h.html#adfc065e9706d90143ae53420a9cf1b2c", null ],
+    [ "MagSquared", "math_8h.html#a5fbdecf465138bd8c97d71bb82fa7681", null ],
+    [ "Mdist", "math_8h.html#a98aa9ce14bd15da1a7bf8967c9fe7859", null ],
+    [ "Mdist", "math_8h.html#aadbee364d0afc6d54374e612e2c48ab4", null ],
+    [ "MdistSq", "math_8h.html#af8a2d48751fbb04d767cc893412654b1", null ],
+    [ "Mfabs", "math_8h.html#a05c138381112b821d1b787e9a00ec7bf", null ],
+    [ "Miabs", "math_8h.html#a84070d6a77796325193e66c78ca154aa", null ],
+    [ "Mmax", "math_8h.html#a1ebfb4727e5e32fd9c5ff54bbe1eb00d", null ],
+    [ "Mmax3", "math_8h.html#a704792bfcc46cdf8985064c2aa682cbf", null ],
+    [ "Mmin", "math_8h.html#a49767d69c41924570a9ba7618a1ab347", null ],
+    [ "Mmin3", "math_8h.html#aff5b55ba164ee1413aa3642672016f88", null ],
+    [ "Round", "math_8h.html#adfc1700dbd9064558f9fc863ebf041eb", null ],
+    [ "sqr", "math_8h.html#aa101a2a7d9f16080d4ff39ef821e36cf", null ]
+];
