@@ -51,7 +51,7 @@ typedef std::set<std::string> SetStr; ///< short rename
 template <class _T>
 std::ostream& operator<<(std::ostream& a_output, const std::set<_T>& a_value)
 {
-  a_output << ",size=" << a_value.size();
+  a_output << std::string(",size=") << a_value.size();
   // add loop here like vector
   return a_output;
 }
