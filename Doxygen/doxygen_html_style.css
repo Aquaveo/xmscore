@@ -1,0 +1,21 @@
+div.image img[src="Aquaveo_Logo.png"]{ 
+    height:50px; 
+}
+div.image img[src="ERDC_Logo.jpg"]{ 
+    height:50px; 
+}
+div.image img[src="idw_const.png"]{ 
+    width:500px; 
+}
+div.image img[src="tut_liStHelensSmall.png"]{ 
+    width:500px; 
+}
+div.image img[src="tut_liStHelensSmallGrid13x9.png"]{ 
+    width:500px; 
+}
+div.image img[src="tut_liStHelensTin.png"]{ 
+    width:500px; 
+}
+pre.fragment {
+  font-size: 80%;
+}
