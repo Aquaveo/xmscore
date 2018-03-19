@@ -15,7 +15,7 @@ environment:
     CONAN_CHANNEL: "stable"
     CONAN_LOGIN_USERNAME: ${CONAN_USER_SECRET}
     CONAN_PASSWORD: ${CONAN_PASSWORD_SECRET}
-    CONAN_STABLE_BRANCH_PATTERN: "master/\d+\.\d+\.\d+$"
+    CONAN_STABLE_BRANCH_PATTERN: ^\d+\.\d+\.\d+$
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
     
     matrix:
