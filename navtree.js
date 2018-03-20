@@ -2,11 +2,11 @@ var NAVTREE =
 [
   [ "xmscore", "index.html", [
     [ "xmscore ", "index.html#xmscore", [
-      [ "Introduction ", "index.html#Introduction", null ],
-      [ "License ", "index.html#License", null ],
-      [ "Testing ", "index.html#Testing", null ],
-      [ "The Code ", "index.html#TheCode", [
-        [ "Namespaces", "index.html#Namespaces", null ]
+      [ "Introduction ", "index.html#XmscoreIntroduction", null ],
+      [ "License ", "index.html#XmscoreLicense", null ],
+      [ "Testing ", "index.html#XmscoreTesting", null ],
+      [ "The Code ", "index.html#XmscoreTheCode", [
+        [ "Namespaces", "index.html#XmscoreNamespaces", null ]
       ] ],
       [ "\"xmscore\" Name ", "index.html#xmscoreName", null ]
     ] ],
