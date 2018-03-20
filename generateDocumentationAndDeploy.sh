@@ -82,6 +82,7 @@ doxygen $DOXYFILE 2>&1 | tee doxygen.log
 #if [ -d "html" ] && [ -f "html/index.html" ]; then
 if [ -d "html" ] && [ -f "html/index.html" ]; then
 
+    mv *.tag "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
     mv html/* "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
     cd $TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME
     echo 'Uploading documentation to the gh-pages branch...'
