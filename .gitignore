@@ -6,6 +6,10 @@
 build/
 test_package/build/
 
+# Doxygen
+Doxygen/doxy_warn.log
+Doxygen/xmscore.tag
+
 # Prerequisites
 *.d
 
