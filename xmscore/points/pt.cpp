@@ -26,10 +26,10 @@ namespace // unnamed namespace
 /// EQ_EPS isn't in shared1 so I defined this here until it is
 #define iEQ_EPS(A, B, epsilon) (fabs((A) - (B)) <= fabs(((A) + (B)) * (epsilon)))
 
-//----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /// \brief gmEqualPointsXYZ isn't in shared1 so can't use
 ///        TS_ASSERT_DELTA_PT3D
-//----------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 bool iTS_ASSERT_DELTA_PT3D(const xms::Pt3d& a_pt1, const xms::Pt3d& a_pt2, double a_eps)
 {
   if (iEQ_EPS(a_pt1.x, a_pt2.x, a_eps) && iEQ_EPS(a_pt1.y, a_pt2.y, a_eps) &&

@@ -329,10 +329,10 @@ void ttClearSkippingMessages()
   ttTestMessagingState().SetSkipping(false);
   ttTestMessagingState().ClearDefault();
 } // ttClearSkippingMessages
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 /// \brief Get the batch mode singleton
 /// \return Reference to ETestMessagingState
-//--------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 ETestMessagingState& ttTestMessagingState()
 {
   static ETestMessagingState m_;
