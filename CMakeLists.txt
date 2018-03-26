@@ -10,11 +10,15 @@ conan_basic_setup(TARGETS)
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${CONAN_INCLUDE_DIRS})
+link_directories(${CONAN_LIB_DIRS})
 
 
 
 set(xmscore_sources
   xmscore/math/math.cpp
+  xmscore/misc/DynBitset.cpp
+  xmscore/misc/Observer.cpp
+  xmscore/misc/Progress.cpp
   xmscore/misc/Singleton.cpp
   xmscore/misc/StringUtil.cpp
   xmscore/misc/XmError.cpp
@@ -26,12 +30,20 @@ set(xmscore_sources
 
 set(xmscore_headers
   xmscore/math/math.h
+  xmscore/misc/base_macros.h
+  xmscore/misc/boost_defines.h
+  xmscore/misc/carray.h
+  xmscore/misc/color_defines.h
+  xmscore/misc/DynBitset.h
+  xmscore/misc/environment.h
+  xmscore/misc/Observer.h
+  xmscore/misc/Progress.h
   xmscore/misc/Singleton.h
   xmscore/misc/StringUtil.h
+  xmscore/misc/XmConst.h
   xmscore/misc/XmError.h
   xmscore/misc/XmLog.h
-  xmscore/misc/boost_defines.h
-  xmscore/misc/environment.h
+  xmscore/misc/xmstype.h
   xmscore/points/functors.h
   xmscore/points/pt.h
   xmscore/points/ptsfwd.h
@@ -47,16 +59,28 @@ set(xmscore_headers
 if (BUILD_TESTING)
   add_definitions(-DCXX_TEST -DCXXTEST4)
 
-  list(APPEND xmscore_sources
+  list(APPEND xmscore_headers
     xmscore/math/math.t.h
+    xmscore/misc/Observer.t.h
+    xmscore/misc/Progress.t.h
     xmscore/misc/StringUtil.t.h
     xmscore/misc/XmError.t.h
     xmscore/misc/XmLog.t.h
     xmscore/points/functors.t.h
     xmscore/points/pt.t.h
-    xmscore/testing/TestTools.cpp
     xmscore/testing/TestTools.h
   )
+
+  list(APPEND xmscore_sources
+    xmscore/testing/TestTools.cpp
+  )
+
+  add_custom_command(
+    OUTPUT runner.cpp
+    COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ../xmscore/**/*.t.h
+  )
+  add_executable(runner runner.cpp)
+  target_link_libraries(runner ${PROJECT_NAME})
 endif ()
 
 add_library(${PROJECT_NAME} STATIC
@@ -67,6 +91,7 @@ target_include_directories(${PROJECT_NAME}
     $<INSTALL_INTERFACE:include/>
     ${Boost_INCLUDE_DIR})
 find_package(Threads REQUIRED)
+
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
 target_link_libraries(${PROJECT_NAME}
   ${CMAKE_THREAD_LIBS_INIT}
