@@ -7,6 +7,7 @@ env:
      - CONAN_CHANNEL: "stable"
      - CONAN_LOGIN_USERNAME: $CONAN_USER_SECRET
      - CONAN_PASSWORD: $CONAN_PASSWORD_SECRET
+     - CONAN_REMOTES: $AQUAVEO_CONAN
      - GH_REPO_NAME: xmscore
      - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen/Doxyfile
      - GH_REPO_REF: github.com/Aquaveo/xmscore.git
