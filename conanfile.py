@@ -27,7 +27,6 @@ class XmscoreConan(ConanFile):
         if s_compiler == "clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
 
-        import pdb; pdb.set_trace()
         if s_compiler == "gcc" and float(s_compiler_version.value) < 5.0:
             raise ConanException("GCC < 5.0 is not supported.")
 
