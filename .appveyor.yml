@@ -18,6 +18,7 @@ environment:
     CONAN_REMOTES: ${AQUAVEO_CONAN}
     CONAN_STABLE_BRANCH_PATTERN: ^\d+\.\d+\.\d+$
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
+    XMSCORE_RUN_TESTS: 1
     
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013

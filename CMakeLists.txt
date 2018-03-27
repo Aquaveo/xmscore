@@ -54,34 +54,33 @@ set(xmscore_headers
   xmscore/stl/vector.h
 )
 
-add_definitions(-DCXX_TEST -DCXXTEST4)
 
-list(APPEND xmscore_headers
-    xmscore/math/math.t.h
-    xmscore/misc/Observer.t.h
-    xmscore/misc/Progress.t.h
-    xmscore/misc/StringUtil.t.h
-    xmscore/misc/XmError.t.h
-    xmscore/misc/XmLog.t.h
-    xmscore/points/functors.t.h
-    xmscore/points/pt.t.h
-    xmscore/testing/TestTools.h
-)
+if(BUILD_TESTING)
+    add_definitions(-DCXX_TEST -DCXXTEST4)
 
-list(APPEND xmscore_sources
-    xmscore/testing/TestTools.cpp
-)
+    list(APPEND xmscore_headers
+        xmscore/math/math.t.h
+        xmscore/misc/Observer.t.h
+        xmscore/misc/Progress.t.h
+        xmscore/misc/StringUtil.t.h
+        xmscore/misc/XmError.t.h
+        xmscore/misc/XmLog.t.h
+        xmscore/points/functors.t.h
+        xmscore/points/pt.t.h
+        xmscore/testing/TestTools.h
+    )
 
-add_custom_command(
-    OUTPUT runner.cpp
-    COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ../xmscore/**/*.t.h
-)
-add_executable(runner runner.cpp)
-target_link_libraries(runner ${PROJECT_NAME})
+    list(APPEND xmscore_sources
+        xmscore/testing/TestTools.cpp
+    )
 
-enable_testing()
-add_test(unit_tests bin/runner)
-
+    add_custom_command(
+        OUTPUT runner.cpp
+        COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ../xmscore/**/*.t.h
+    )
+    add_executable(runner runner.cpp)
+    target_link_libraries(runner ${PROJECT_NAME})
+endif()
 
 add_library(${PROJECT_NAME} STATIC
   ${xmscore_sources} ${xmscore_headers})

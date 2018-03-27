@@ -69,20 +69,20 @@ jobs:
 
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 XMSCORE_RUN_TESTS=1
 
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 XMSCORE_RUN_TESTS=1
 
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 XMSCORE_RUN_TESTS=1
 
       - stage: test
         <<: *osx
         osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0 XMSCORE_RUN_TESTS=1
  
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
       - stage: deploy

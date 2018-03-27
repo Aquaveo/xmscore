@@ -40,9 +40,12 @@ class XmscoreConan(ConanFile):
         cmake.definitions["BUILD_TESTING"] = 1
         cmake.configure(source_folder=".")
         cmake.build()
-        rc = subprocess.call(['./bin/runner'])
-        if rc != 0:
-            raise AssertionError("Tests Did Not Pass...")
+
+        run_tests = self.env.get('XMSCORE_RUN_TESTS', None)
+        if run_tests is not None:
+            rc = subprocess.call(['./bin/runner'])
+            if rc != 0:
+                raise AssertionError("Tests Did Not Pass...")
 
     def package(self):
         self.copy("*.h", dst="include/xmscore", src="xmscore")
