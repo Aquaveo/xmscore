@@ -1,5 +1,6 @@
 from conans import ConanFile, CMake
 from conans.errors import ConanException
+import os
 
 
 class XmscoreConan(ConanFile):
@@ -26,16 +27,20 @@ class XmscoreConan(ConanFile):
         if s_compiler == "clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
 
-        # if s_compiler == "gcc" and s_compiler_version < "5":
-        #     raise ConanException("GCC less than 5 is not supported.")
+        import pdb; pdb.set_trace()
+        if s_compiler == "gcc" and float(s_compiler_version.value) < 5.0:
+            raise ConanException("GCC < 5.0 is not supported.")
 
-        if s_compiler == "clang" and s_os == 'Darwin' and s_compiler_version < "9.0":
+        if s_compiler == "clang" and s_os == 'Darwin' and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
 
     def build(self):
         cmake = CMake(self)
         cmake.definitions["BUILD_TESTING"] = 1
         cmake.configure(source_folder=".")
+        print("+++++++++++", os.listdir('.'))
+        with open('conanbuildinfo.cmake', 'r+') as f:
+            print("+++++++++++", f.read())
         cmake.build()
 
     def package(self):

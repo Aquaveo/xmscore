@@ -12,8 +12,6 @@ include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${CONAN_INCLUDE_DIRS})
 link_directories(${CONAN_LIB_DIRS})
 
-
-
 set(xmscore_sources
   xmscore/math/math.cpp
   xmscore/misc/DynBitset.cpp
