@@ -26,8 +26,8 @@ class XmscoreConan(ConanFile):
         if s_compiler == "clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
 
-        if s_compiler == "gcc" and s_compiler_version < "5":
-            raise ConanException("GCC less than 5 is not supported.")
+        # if s_compiler == "gcc" and s_compiler_version < "5":
+        #     raise ConanException("GCC less than 5 is not supported.")
 
         if s_compiler == "clang" and s_os == 'Darwin' and s_compiler_version < "9.0":
             raise ConanException("Clang > 9.0 is required for Mac.")
