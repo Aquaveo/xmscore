@@ -43,9 +43,11 @@ class XmscoreConan(ConanFile):
 
         run_tests = self.env.get('XMSCORE_RUN_TESTS', None)
         if run_tests is not None:
+            print("***********(0.0)*************")
             rc = subprocess.call(['./bin/runner'])
             if rc != 0:
                 raise AssertionError("Tests Did Not Pass...")
+            print("***********(0.0)*************")
 
     def package(self):
         self.copy("*.h", dst="include/xmscore", src="xmscore")

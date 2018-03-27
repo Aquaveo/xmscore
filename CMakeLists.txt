@@ -76,8 +76,11 @@ if(BUILD_TESTING)
 
     add_custom_command(
         OUTPUT runner.cpp
-        COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ../xmscore/**/*.t.h
+        COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ./xmscore/**/*.t.h
     )
+
+    message(STATUS ${CMAKE_CURRENT_LIST_DIR})
+
     add_executable(runner runner.cpp)
     target_link_libraries(runner ${PROJECT_NAME})
 endif()
