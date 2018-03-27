@@ -11,7 +11,8 @@ class XmscoreConan(ConanFile):
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake", "txt", "virtualenv"
-    requires = "boost/1.66.0@conan/stable", "cxxtest/4.4@aquaveo/stable"
+    build_requires = "cxxtest/4.4@aquaveo/stable"
+    requires = "boost/1.66.0@conan/stable"
     exports = "CMakeLists.txt", "LICENSE"
     exports_sources = "xmscore/*"
 
