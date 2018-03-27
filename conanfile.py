@@ -38,9 +38,6 @@ class XmscoreConan(ConanFile):
         cmake = CMake(self)
         cmake.definitions["BUILD_TESTING"] = 1
         cmake.configure(source_folder=".")
-        print("+++++++++++", os.listdir('.'))
-        with open('conanbuildinfo.cmake', 'r+') as f:
-            print("+++++++++++", f.read())
         cmake.build()
 
     def package(self):
