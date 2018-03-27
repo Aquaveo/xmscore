@@ -79,6 +79,10 @@ add_custom_command(
 add_executable(runner runner.cpp)
 target_link_libraries(runner ${PROJECT_NAME})
 
+enable_testing()
+add_test(unit_tests bin/runner)
+
+
 add_library(${PROJECT_NAME} STATIC
   ${xmscore_sources} ${xmscore_headers})
 target_include_directories(${PROJECT_NAME}
@@ -106,3 +110,4 @@ foreach (header IN LISTS xmscore_headers)
     DESTINATION "include/xmscore/${subdir}"
   )
 endforeach ()
+

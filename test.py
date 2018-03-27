@@ -4,5 +4,3 @@ import subprocess
 
 if __name__ == '__main__':
     print('Running all the tests...')
-    rc = subprocess.call(['./bin/runner'])
-    exit(rc)

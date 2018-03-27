@@ -1,6 +1,7 @@
 from conans import ConanFile, CMake
 from conans.errors import ConanException
 import os
+import subprocess
 
 
 class XmscoreConan(ConanFile):
@@ -39,6 +40,9 @@ class XmscoreConan(ConanFile):
         cmake.definitions["BUILD_TESTING"] = 1
         cmake.configure(source_folder=".")
         cmake.build()
+        rc = subprocess.call(['./bin/runner'])
+        if rc != 0:
+            raise AssertionError("Tests Did Not Pass...")
 
     def package(self):
         self.copy("*.h", dst="include/xmscore", src="xmscore")
