@@ -69,10 +69,6 @@ jobs:
 
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49
-
-      - stage: test
-        <<: *linux
         env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5
 
       - stage: test
@@ -89,11 +85,6 @@ jobs:
         env: CONAN_APPLE_CLANG_VERSIONS=9.0
  
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
-      - stage: deploy
-        <<: *linux
-        env: CONAN_GCC_VERSIONS=4.9 CONAN_DOCKER_IMAGE=lasote/conangcc49 CONAN_UPLOAD=$AQUAVEO_CONAN
-        after_success: true
-
       - stage: deploy
         <<: *linux
         env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 CONAN_UPLOAD=$AQUAVEO_CONAN
