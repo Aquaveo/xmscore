@@ -14,7 +14,6 @@ if __name__ == "__main__":
     for settings, options, env_vars, build_requires, reference in builder.items:
         env_vars.update({'XMSCORE_VERSION': xmscore_version})
         settings['compiler.libcxx'] = 'libstdc++11'
-        import pdb; pdb.set_trace()
         updated_builds.append([settings, options, env_vars, build_requires])
     builder.builds = updated_builds
 
