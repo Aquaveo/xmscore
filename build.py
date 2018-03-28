@@ -10,13 +10,13 @@ if __name__ == "__main__":
     updated_builds = []
 
     # Add environment variables to build definitions
-    xmscore_version = os.environ.get('XMSCORE_VERSION', None)
-    xmscore_run_tests = os.environ.get('XMSCORE_RUN_TESTS', None)
+    xms_version = os.environ.get('XMS_VERSION', None)
+    xms_run_tests = os.environ.get('XMS_RUN_TESTS', None)
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         env_vars.update({
-            'XMSCORE_VERSION': xmscore_version,
-            "XMSCORE_RUN_TESTS": xmscore_run_tests,
+            'XMS_VERSION': xms_version,
+            "XMS_RUN_TESTS": xms_run_tests,
         })
 
         # Require c++11 compatibility

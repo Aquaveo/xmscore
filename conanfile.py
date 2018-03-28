@@ -17,8 +17,8 @@ class XmscoreConan(ConanFile):
     exports_sources = "xmscore/*"
 
     def configure(self):
-        # Set version dynamically using XMSCORE_VERSION env variable.
-        self.version = self.env.get('XMSCORE_VERSION', 'master')
+        # Set version dynamically using XMS_VERSION env variable.
+        self.version = self.env.get('XMS_VERSION', 'master')
 
         # Raise ConanExceptions for Unsupported Versions
         s_os = self.settings.os
@@ -40,7 +40,7 @@ class XmscoreConan(ConanFile):
         cmake.configure(source_folder=".")
         cmake.build()
 
-        run_tests = self.env.get('XMSCORE_RUN_TESTS', None)
+        run_tests = self.env.get('XMS_RUN_TESTS', None)
         if run_tests is not None:
             print("***********(0.0)*************")
             try:
