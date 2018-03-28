@@ -39,7 +39,7 @@ install:
   - echo %APPVEYOR_REPO_TAG%
   - echo %APPVEYOR_REPO_TAG_NAME%
   - echo %XMSCORE_VERSION%
-  - IF NOT %APPVEYOR_REPO_TAG% set XMSCORE_VERSION=%APPVEYOR_REPO_BRANCH%
+  - IF %APPVEYOR_REPO_TAG%==false set XMSCORE_VERSION=%APPVEYOR_REPO_BRANCH%
 
 build_script:
   - python build.py
