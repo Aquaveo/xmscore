@@ -24,7 +24,9 @@ if __name__ == "__main__":
                 'compiler.libcxx': 'libstdc++11'
             })
 
-        updated_builds.append([settings, options, env_vars, build_requires])
+        if 'compiler.runtime' not in settings or 'MT' not in settings['compiler.runtime']:
+            updated_builds.append([settings, options, env_vars, build_requires])
+
     builder.builds = updated_builds
 
     builder.run()
