@@ -51,7 +51,8 @@ class XmscoreConan(ConanFile):
                 if os.path.isfile("TEST-cxxtest.xml"):
                     with open("TEST-cxxtest.xml", "r") as f:
                         for line in f.readlines():
-                            print(line)
+                            no_newline = line.strip('\n')
+                            print(no_newline)
                 print("***********(0.0)*************")
 
     def package(self):
