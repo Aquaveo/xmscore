@@ -1,7 +1,6 @@
 from conans import ConanFile, CMake
 from conans.errors import ConanException
 import os
-import subprocess
 
 
 class XmscoreConan(ConanFile):
@@ -44,10 +43,16 @@ class XmscoreConan(ConanFile):
         run_tests = self.env.get('XMSCORE_RUN_TESTS', None)
         if run_tests is not None:
             print("***********(0.0)*************")
-            rc = subprocess.call(['./bin/runner'])
-            if rc != 0:
-                raise AssertionError("Tests Did Not Pass...")
-            print("***********(0.0)*************")
+            try:
+                cmake.test()
+            except ConanException:
+                raise
+            finally:
+                if os.path.isfile("TEST-cxxtest.xml"):
+                    with open("TEST-cxxtest.xml", "r") as f:
+                        for line in f.readlines():
+                            print(line)
+                print("***********(0.0)*************")
 
     def package(self):
         self.copy("*.h", dst="include/xmscore", src="xmscore")

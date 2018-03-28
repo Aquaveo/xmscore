@@ -79,6 +79,7 @@ if(BUILD_TESTING)
       include_directories(${CXXTEST_INCLUDE_DIR})
       enable_testing()
 
+      set(CXXTEST_TESTGEN_ARGS --xunit-printer)
       file(GLOB_RECURSE test_headers ${CMAKE_CURRENT_LIST_DIR}/xmscore/*.t.h)
       CXXTEST_ADD_TEST(
         runner runner.cpp ${test_headers}
