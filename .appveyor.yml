@@ -36,13 +36,9 @@ install:
   - pip.exe install conan --upgrade
   - pip.exe install conan_package_tools
   - conan user # It creates the conan data directory
-  - echo %APPVEYOR_REPO_TAG%
-  - echo %APPVEYOR_REPO_TAG_NAME%
-  - echo %XMSCORE_VERSION%
-  - IF %APPVEYOR_REPO_TAG%==false set XMSCORE_VERSION=%APPVEYOR_REPO_BRANCH%
 
 build_script:
-  - python build.py
+  - IF %APPVEYOR_REPO_TAG%==false set XMSCORE_VERSION=%APPVEYOR_REPO_BRANCH% && python build.py
 
 test_script:
   - python test.py
