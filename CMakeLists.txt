@@ -86,15 +86,6 @@ if(BUILD_TESTING)
       )
       target_link_libraries(runner ${PROJECT_NAME})
     endif()
-
-    # This Works but we want to use built in CXXTEST
-    #add_custom_command(
-    #    OUTPUT runner.cpp
-    #    COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ${CMAKE_CURRENT_LIST_DIR}/xmscore/**/*.t.h
-    #)
-    #add_executable(runner runner.cpp)
-    #target_link_libraries(runner ${PROJECT_NAME})
-
 endif()
 
 add_library(${PROJECT_NAME} STATIC

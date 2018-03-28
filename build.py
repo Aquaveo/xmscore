@@ -8,6 +8,7 @@ if __name__ == "__main__":
     builder = ConanMultiPackager()
     builder.add_common_builds()
     updated_builds = []
+
     # Add environment variables to build definitions
     xmscore_version = os.environ.get('XMSCORE_VERSION', None)
     xmscore_run_tests = os.environ.get('XMSCORE_RUN_TESTS', None)
@@ -24,8 +25,7 @@ if __name__ == "__main__":
                 'compiler.libcxx': 'libstdc++11'
             })
 
-        if 'compiler.runtime' not in settings or 'MT' not in settings['compiler.runtime']:
-            updated_builds.append([settings, options, env_vars, build_requires])
+        updated_builds.append([settings, options, env_vars, build_requires])
 
     builder.builds = updated_builds
 
