@@ -74,15 +74,26 @@ if(BUILD_TESTING)
         xmscore/testing/TestTools.cpp
     )
 
-    add_custom_command(
-        OUTPUT runner.cpp
-        COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ./xmscore/**/*.t.h
-    )
+    find_package(CxxTest)
+    if(CXXTEST_FOUND)
+      include_directories(${CXXTEST_INCLUDE_DIR})
+      enable_testing()
 
-    message(STATUS ${CMAKE_CURRENT_LIST_DIR})
+      file(GLOB_RECURSE test_headers ${CMAKE_CURRENT_LIST_DIR}/xmscore/*.t.h)
+      CXXTEST_ADD_TEST(
+        runner runner.cpp ${test_headers}
+      )
+      target_link_libraries(runner ${PROJECT_NAME})
+    endif()
 
-    add_executable(runner runner.cpp)
-    target_link_libraries(runner ${PROJECT_NAME})
+    # This Works but we want to use built in CXXTEST
+    #add_custom_command(
+    #    OUTPUT runner.cpp
+    #    COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ${CMAKE_CURRENT_LIST_DIR}/xmscore/**/*.t.h
+    #)
+    #add_executable(runner runner.cpp)
+    #target_link_libraries(runner ${PROJECT_NAME})
+
 endif()
 
 add_library(${PROJECT_NAME} STATIC
