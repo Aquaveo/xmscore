@@ -387,68 +387,70 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;  boost::this_thread::sleep(boost::posix_time::millisec(100));</div>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;  o.<a class="code" href="classxms_1_1_observer.html#ac53cde5a326843717b57e49767ff5be4">ProgressStatus</a>(.2);</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;  <span class="keywordtype">double</span> remaining = (o.<a class="code" href="class_mock_observer.html#afc3ef4e691059d420277e39e669866c9">m_elapsedSeconds</a> * .8) / .2;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  TS_ASSERT_EQUALS(remaining, o.<a class="code" href="class_mock_observer.html#aae5ef68dd0fb8afc8c298328a79ec4ae">m_remainingSeconds</a>);</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;} <span class="comment">// ObserverIntermediateTests::testTimeRemaining</span></div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00346"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">  346</a></span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a>()</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;{</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;  <span class="comment">// create an object derived off of Observer</span></div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;  BSHP&lt;MockObserver&gt; p(<span class="keyword">new</span> <a class="code" href="class_mock_observer.html">MockObserver</a>());</div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  <span class="comment">// create a mock meshing class</span></div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <a class="code" href="class_mock_mesher.html">MockMesher</a> m;</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="comment">// set the observer on the mesher</span></div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  m.<a class="code" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">SetObserver</a>(p);</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  <span class="comment">// execute the mesher</span></div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  m.<a class="code" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">PretendMeshing</a>();</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  <span class="comment">// capture the output from the observer class and verify it</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  std::string outStr(p-&gt;m_info.str());</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  std::string baseStr =</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating mesh points.\n&quot;</span></div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="stringliteral">&quot;Percent complete: 25%.\n&quot;</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="stringliteral">&quot;Percent complete: 50%.\n&quot;</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="stringliteral">&quot;Percent complete: 75%.\n&quot;</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="stringliteral">&quot;Begin operation: Triangulating.\n&quot;</span></div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="stringliteral">&quot;Percent complete: 20%.\n&quot;</span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.4.\n&quot;</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="stringliteral">&quot;Percent complete: 40%.\n&quot;</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="stringliteral">&quot;Percent complete: 60%.\n&quot;</span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="stringliteral">&quot;Percent complete: 80%.\n&quot;</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.5.\n&quot;</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating unstructured grid.\n&quot;</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="stringliteral">&quot;Percent complete: 33%.\n&quot;</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="stringliteral">&quot;Percent complete: 67%.\n&quot;</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span>;</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;  TS_ASSERT_EQUALS(baseStr, outStr);</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;} <span class="comment">// ObserverIntermediateTests::testMockObserver</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span> DELTA = 1e-5;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  <span class="comment">// TS_ASSERT_DELTA(remaining, o.m_remainingSeconds, DELTA);</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  TS_ASSERT_EQUALS(remaining, o.<a class="code" href="class_mock_observer.html#aae5ef68dd0fb8afc8c298328a79ec4ae">m_remainingSeconds</a>);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;} <span class="comment">// ObserverIntermediateTests::testTimeRemaining</span></div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">  348</a></span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a>()</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;{</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  <span class="comment">// create an object derived off of Observer</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  BSHP&lt;MockObserver&gt; p(<span class="keyword">new</span> <a class="code" href="class_mock_observer.html">MockObserver</a>());</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <span class="comment">// create a mock meshing class</span></div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  <a class="code" href="class_mock_mesher.html">MockMesher</a> m;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  <span class="comment">// set the observer on the mesher</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  m.<a class="code" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">SetObserver</a>(p);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  <span class="comment">// execute the mesher</span></div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  m.<a class="code" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">PretendMeshing</a>();</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  <span class="comment">// capture the output from the observer class and verify it</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  std::string outStr(p-&gt;m_info.str());</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;  std::string baseStr =</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating mesh points.\n&quot;</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="stringliteral">&quot;Percent complete: 25%.\n&quot;</span></div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="stringliteral">&quot;Percent complete: 50%.\n&quot;</span></div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="stringliteral">&quot;Percent complete: 75%.\n&quot;</span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="stringliteral">&quot;Begin operation: Triangulating.\n&quot;</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="stringliteral">&quot;Percent complete: 20%.\n&quot;</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.4.\n&quot;</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="stringliteral">&quot;Percent complete: 40%.\n&quot;</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="stringliteral">&quot;Percent complete: 60%.\n&quot;</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="stringliteral">&quot;Percent complete: 80%.\n&quot;</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.5.\n&quot;</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating unstructured grid.\n&quot;</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="stringliteral">&quot;Percent complete: 33%.\n&quot;</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="stringliteral">&quot;Percent complete: 67%.\n&quot;</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span>;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  TS_ASSERT_EQUALS(baseStr, outStr);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;} <span class="comment">// ObserverIntermediateTests::testMockObserver</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="math_8h_html"><div class="ttname"><a href="math_8h.html">math.h</a></div></div>
 <div class="ttc" id="class_observer_intermediate_tests_html_a5634b85a70a491b549cfb7fbd56b2f43"><div class="ttname"><a href="class_observer_intermediate_tests.html#a5634b85a70a491b549cfb7fbd56b2f43">ObserverIntermediateTests::testTimeRemaining</a></div><div class="ttdeci">void testTimeRemaining()</div><div class="ttdoc">tests the estimated time remaining </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00333">Observer.cpp:333</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_1_1impl_html_ad1716972789e4a3599f18bf96cc464ea"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#ad1716972789e4a3599f18bf96cc464ea">xms::Observer::impl::m_percentComplete</a></div><div class="ttdeci">double m_percentComplete</div><div class="ttdoc">percent complete </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00058">Observer.cpp:58</a></div></div>
@@ -460,7 +462,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="ttc" id="class_mock_mesher_html_aa79c8ee5f4c3546c0c8fadd89ab85044"><div class="ttname"><a href="class_mock_mesher.html#aa79c8ee5f4c3546c0c8fadd89ab85044">MockMesher::WaitForNextTenthSecond</a></div><div class="ttdeci">void WaitForNextTenthSecond(boost::timer::cpu_timer &amp;a_timer, int &amp;a_count)</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00273">Observer.cpp:273</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_1_1impl_html_a4eaed90dc0e25cf1119fc449aea1fcf6"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#a4eaed90dc0e25cf1119fc449aea1fcf6">xms::Observer::impl::EstimatedTimeRemainingInSec</a></div><div class="ttdeci">double EstimatedTimeRemainingInSec(double a_percentComplete, double a_elapsedTime)</div><div class="ttdoc">Returns the elapsed time for the operation being observed. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00197">Observer.cpp:197</a></div></div>
 <div class="ttc" id="class_mock_observer_html_a508a232c3577cabe9add637c7e735408"><div class="ttname"><a href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">MockObserver::OnProgressStatus</a></div><div class="ttdeci">virtual void OnProgressStatus(double a_percentComplete) override</div><div class="ttdoc">captures the progress of an operation </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00230">Observer.cpp:230</a></div></div>
-<div class="ttc" id="class_observer_intermediate_tests_html_aaef4873118a7f6cf08c7c9e0ae8aa184"><div class="ttname"><a href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a></div><div class="ttdeci">void testMockObserver()</div><div class="ttdoc">tests an example observer implementation </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00346">Observer.cpp:346</a></div></div>
+<div class="ttc" id="class_observer_intermediate_tests_html_aaef4873118a7f6cf08c7c9e0ae8aa184"><div class="ttname"><a href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a></div><div class="ttdeci">void testMockObserver()</div><div class="ttdoc">tests an example observer implementation </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00348">Observer.cpp:348</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_afb06a8401e959a1edc51a4b4f9f4107b"><div class="ttname"><a href="classxms_1_1_observer.html#afb06a8401e959a1edc51a4b4f9f4107b">xms::Observer::UpdateMessage</a></div><div class="ttdeci">void UpdateMessage(const std::string &amp;a_message)</div><div class="ttdoc">Updates the message but not the percent complete. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00136">Observer.cpp:136</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_a50c33f8ac41895e228157fa0d4a04588"><div class="ttname"><a href="classxms_1_1_observer.html#a50c33f8ac41895e228157fa0d4a04588">xms::Observer::OnEndOperation</a></div><div class="ttdeci">virtual void OnEndOperation()</div><div class="ttdoc">Virtual function for derived class to get end operation event. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00152">Observer.cpp:152</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_a70a1cf0b6f4ab3bb533dda17767abf3f"><div class="ttname"><a href="classxms_1_1_observer.html#a70a1cf0b6f4ab3bb533dda17767abf3f">xms::Observer::BeginOperationString</a></div><div class="ttdeci">void BeginOperationString(const std::string &amp;a_operation)</div><div class="ttdoc">Publishes the name of the operation and starts the timing of the operation. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00117">Observer.cpp:117</a></div></div>
@@ -494,7 +496,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="_observer_8cpp.html">Observer.cpp</a></li>
-    <li class="footer">Generated on Tue Mar 27 2018 21:59:06 for xmscore by
+    <li class="footer">Generated on Wed Mar 28 2018 15:22:13 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
