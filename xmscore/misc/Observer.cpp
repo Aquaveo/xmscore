@@ -337,7 +337,8 @@ void ObserverIntermediateTests::testTimeRemaining()
   boost::this_thread::sleep(boost::posix_time::millisec(100));
   o.ProgressStatus(.2);
   double remaining = (o.m_elapsedSeconds * .8) / .2;
-  TS_ASSERT_EQUALS(remaining, o.m_remainingSeconds);
+  const double DELTA = 1e-5;
+  TS_ASSERT_DELTA(remaining, o.m_remainingSeconds, DELTA);
 } // ObserverIntermediateTests::testTimeRemaining
 //------------------------------------------------------------------------------
 /// \brief tests an example observer implementation
