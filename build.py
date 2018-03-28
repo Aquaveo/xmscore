@@ -17,7 +17,13 @@ if __name__ == "__main__":
             'XMSCORE_VERSION': xmscore_version,
             "XMSCORE_RUN_TESTS": xmscore_run_tests,
         })
-        settings['compiler.libcxx'] = 'libstdc++11'
+
+        # Require c++11 compatibility
+        if settings['compiler'] == 'gcc':
+            settings.update({
+                'compiler.libcxx': 'libstdc++11'
+            })
+
         updated_builds.append([settings, options, env_vars, build_requires])
     builder.builds = updated_builds
 
