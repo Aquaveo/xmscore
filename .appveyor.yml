@@ -38,7 +38,7 @@ install:
   - conan user # It creates the conan data directory
 
 build_script:
-  - IF %APPVEYOR_REPO_TAG%==false set XMSCORE_VERSION=%APPVEYOR_REPO_BRANCH% && python build.py
+  - python build.py
 
 test_script:
   - python test.py
