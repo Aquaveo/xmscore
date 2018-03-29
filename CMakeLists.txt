@@ -3,6 +3,12 @@ cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
+if (WIN32)
+    add_definitions(-DBOOST_ALL_NO_LIB)
+endif()
+
+set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
+
 project(xmscore)
 
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
