@@ -10,7 +10,7 @@ class XmscoreConan(ConanFile):
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake", "txt", "virtualenv"
+    generators = "cmake", "txt"
     build_requires = "cxxtest/4.4@aquaveo/stable"
     requires = "boost/1.66.0@conan/stable"
     exports = "CMakeLists.txt", "LICENSE"
