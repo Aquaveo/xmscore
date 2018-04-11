@@ -12,7 +12,7 @@ class XmscoreConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     generators = "cmake", "txt", "virtualenv"
     build_requires = "cxxtest/4.4@aquaveo/stable"
-    requires = "boost/1.66.0@conan/stable"
+    requires = "boost/1.60.0@aquaveo/testing"
     exports = "CMakeLists.txt", "LICENSE"
     exports_sources = "xmscore/*"
 
