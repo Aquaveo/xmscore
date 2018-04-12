@@ -5,14 +5,15 @@ import os
 
 class XmscoreConan(ConanFile):
     name = "xmscore"
-    version = None
+    version = "1.0.8"
     license = "XMSNG Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
+    options = {"xms": [True, False]}
+    default_options = "xms=False"
     generators = "cmake", "txt", "virtualenv"
     build_requires = "cxxtest/4.4@aquaveo/stable"
-    requires = "boost/1.60.0@aquaveo/testing"
     exports = "CMakeLists.txt", "LICENSE"
     exports_sources = "xmscore/*"
 
@@ -33,6 +34,12 @@ class XmscoreConan(ConanFile):
 
         if s_compiler == "clang" and s_os == 'Darwin' and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
+
+    def requirements(self):
+        if self.options.xms:
+            self.requires("boost/1.60.0@aquaveo/testing")
+        else:
+            self.requires("boost/1.66.0@conan/stable")
 
     def build(self):
         cmake = CMake(self)

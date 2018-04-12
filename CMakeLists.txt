@@ -5,6 +5,13 @@ set(CMAKE_DEBUG_POSTFIX _d)
 
 project(xmscore)
 
+if (WIN32)
+    add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
+    add_definitions(/Zc:wchar_t-)  # Treate wchar_t as built-in type
+endif()
+
+set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
+
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
