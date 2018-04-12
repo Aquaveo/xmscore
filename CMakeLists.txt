@@ -3,10 +3,6 @@ cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
-if (WIN32)
-    add_definitions(-DBOOST_ALL_NO_LIB)
-endif()
-
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 
 project(xmscore)
@@ -14,8 +10,8 @@ project(xmscore)
 if(WIN32)
     if(XMS_BUILD)
         add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
-        add_definitions(/Zc:wchar_t-)  # Treate wchar_t as built-in type
-    else()
+        add_definitions(/Zc:wchar_t-)  # Treat wchar_t as built-in type
+    else(NOT XMS_BUILD)
         add_definitions(/D BOOST_ALL_NO_LIB)
     endif()
 endif()
