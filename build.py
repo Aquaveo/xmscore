@@ -24,6 +24,12 @@ if __name__ == "__main__":
                 'compiler.libcxx': 'libstdc++11'
             })
 
+        # Add additional configurations for xms options
+        if settings['compiler'] == 'Visual Studio' and 'MD' in settings['compiler.runtime']:
+            xms_options = dict(options)
+            xms_options.update({'xmscore:xms': True})
+            updated_builds.append([settings, xms_options, env_vars, build_requires])
+
         updated_builds.append([settings, options, env_vars, build_requires])
     builder.builds = updated_builds
 

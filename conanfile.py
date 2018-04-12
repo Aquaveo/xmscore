@@ -43,6 +43,8 @@ class XmscoreConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
+        if self.settings.compiler == 'Visual Studio':
+            cmake.definitions["XMS_BUILD"] = self.options.xms
         cmake.definitions["BUILD_TESTING"] = 1
         cmake.configure(source_folder=".")
         cmake.build()
