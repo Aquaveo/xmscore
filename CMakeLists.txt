@@ -3,6 +3,12 @@ cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
+if (WIN32)
+    add_definitions(-DBOOST_ALL_NO_LIB)
+endif()
+
+set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
+
 project(xmscore)
 
 if (XMS_BUILD)
@@ -97,15 +103,6 @@ if(BUILD_TESTING)
       )
       target_link_libraries(runner ${PROJECT_NAME})
     endif()
-
-    # This Works but we want to use built in CXXTEST
-    #add_custom_command(
-    #    OUTPUT runner.cpp
-    #    COMMAND ${CONAN_BIN_DIRS_CXXTEST}/cxxtestgen --error-printer --root -o runner.cpp ${CMAKE_CURRENT_LIST_DIR}/xmscore/**/*.t.h
-    #)
-    #add_executable(runner runner.cpp)
-    #target_link_libraries(runner ${PROJECT_NAME})
-
 endif()
 
 add_library(${PROJECT_NAME} STATIC

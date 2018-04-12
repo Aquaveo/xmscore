@@ -1,4 +1,4 @@
-# skip_non_tags: true  # Only build on tagged commits
+skip_non_tags: true  # Only build on tagged commits
 build: false
 version: 1.0.0-{build}  # This version is somewhat arbitrary. Does not affect the version of the package.
 
@@ -9,8 +9,8 @@ environment:
 
     # Assume we are only building on tagged commits.
     # Will not work on untagged commits.
-    XMSCORE_VERSION: ${APPVEYOR_REPO_TAG_NAME}
-    CONAN_REFERENCE: "xmscore/${XMSCORE_VERSION}"
+    XMS_VERSION: ${APPVEYOR_REPO_TAG_NAME}
+    CONAN_REFERENCE: "xmscore/${XMS_VERSION}"
     CONAN_USERNAME: "aquaveo"
     CONAN_CHANNEL: "stable"
     CONAN_LOGIN_USERNAME: ${CONAN_USER_SECRET}
@@ -18,7 +18,7 @@ environment:
     CONAN_REMOTES: ${AQUAVEO_CONAN}
     CONAN_STABLE_BRANCH_PATTERN: ^\d+\.\d+\.\d+$
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
-    XMSCORE_RUN_TESTS: 1
+    XMS_RUN_TESTS: 1
     
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2013
