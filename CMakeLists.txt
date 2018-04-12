@@ -11,11 +11,13 @@ set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 
 project(xmscore)
 
-if (XMS_BUILD)
-    add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
-    add_definitions(/Zc:wchar_t-)  # Treate wchar_t as built-in type
-else()
-    add_definitions(/D BOOST_ALL_NO_LIB)
+if(WIN32)
+    if(XMS_BUILD)
+        add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
+        add_definitions(/Zc:wchar_t-)  # Treate wchar_t as built-in type
+    else()
+        add_definitions(/D BOOST_ALL_NO_LIB)
+    endif()
 endif()
 
 
