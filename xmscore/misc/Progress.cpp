@@ -164,19 +164,22 @@ public:
   MockProgressListener() {}
   ~MockProgressListener() {}
 
+  //------------------------------------------------------------------------------
   /// \brief Listen to progress status
   /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
   /// \param[in] a_fractionComplete: amount complete from 0.0 to 1.0
+  //------------------------------------------------------------------------------
   void OnProgressStatus(int a_stackIndex, double a_fractionComplete) override
   {
     std::ostringstream ss;
     ss << "OnProgressStatus " << a_stackIndex << ": " << a_fractionComplete << '\n';
     m_messages += ss.str();
   }
-
+  //------------------------------------------------------------------------------
   /// \brief Listen to when operation begins
   /// \param[in] a_operation: the name of the operation
   /// \return the ID for progress stack (0 for first)
+  //------------------------------------------------------------------------------
   int OnBeginOperationString(const std::string& a_operation) override
   {
     ++m_stackIndex;
@@ -186,8 +189,10 @@ public:
     return m_stackIndex;
   }
 
+  //------------------------------------------------------------------------------
   /// \brief Listen to when operation ends
   /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+  //------------------------------------------------------------------------------
   void OnEndOperation(int a_stackIndex) override
   {
     --m_stackIndex;
@@ -196,9 +201,11 @@ public:
     m_messages += ss.str();
   }
 
+  //------------------------------------------------------------------------------
   /// \brief Listen to when operation ends
   /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
   /// \param[in] a_message: the new message for an operation
+  //------------------------------------------------------------------------------
   void OnUpdateMessage(int a_stackIndex, const std::string& a_message) override
   {
     std::ostringstream ss;

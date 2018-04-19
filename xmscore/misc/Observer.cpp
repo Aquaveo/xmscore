@@ -225,22 +225,28 @@ public:
   std::stringstream m_info; ///< string info captured by the class
 
 private:
+  //------------------------------------------------------------------------------
   /// \brief captures the progress of an operation
   /// \param a_percentComplete: The percent complete.
+  //------------------------------------------------------------------------------
   virtual void OnProgressStatus(double a_percentComplete) override
   {
     m_percentComplete = a_percentComplete;
     int i = (int)(xms::Round(m_percentComplete * 100));
     m_info << "Percent complete: " << i << "%.\n";
   }
+  //------------------------------------------------------------------------------
   /// \param a_operation name of the operation being monitored
+  //------------------------------------------------------------------------------
   virtual void OnBeginOperationString(const std::string& a_operation) override
   {
     if (!m_info.str().empty())
       m_info << "\n";
     m_info << "Begin operation: " << a_operation << ".\n";
   }
+  //------------------------------------------------------------------------------
   /// \param a_elapsedSeconds The elapsed time since the operation began.
+  //------------------------------------------------------------------------------
   virtual void TimeElapsedInSeconds(double a_elapsedSeconds) override
   {
     m_elapsedSeconds = a_elapsedSeconds;
@@ -248,8 +254,10 @@ private:
     m_info << "Elapsed seconds: 0." << i << ".\n";
   }
 
+  //------------------------------------------------------------------------------
   /// \param a_secondsRemaining The time remaining for the current operation
   /// that the class is observing.
+  //------------------------------------------------------------------------------
   virtual void TimeRemainingInSeconds(double a_secondsRemaining) override
   {
     m_remainingSeconds = a_secondsRemaining;
@@ -264,12 +272,16 @@ public:
   MockMesher() {}
   ~MockMesher() {}
 
-  /// set the observer class
+  //------------------------------------------------------------------------------
+  /// \brief set the observer class
   /// \param a_ The observer
+  //------------------------------------------------------------------------------
   void SetObserver(BSHP<xms::Observer> a_) { m_prog = a_; }
-  /// wait until next tenth second passed
+  //------------------------------------------------------------------------------
+  /// \brief wait until next tenth second passed
   /// \param a_timer Timer to track elapsed time
   /// \param a_count Number of tenths of a second that should have elapsed
+  //------------------------------------------------------------------------------
   void WaitForNextTenthSecond(boost::timer::cpu_timer& a_timer, int& a_count)
   {
     ++a_count;
@@ -280,6 +292,9 @@ public:
     // boost::this_thread::sleep(boost::posix_time::millisec(100));
   }
   /// mock meshing method
+  //------------------------------------------------------------------------------
+  /// \brief
+  //------------------------------------------------------------------------------
   void PretendMeshing()
   {
     if (!m_prog)
@@ -321,6 +336,9 @@ public:
 /// \return CxxTest::TestGroup reference.
 //------------------------------------------------------------------------------
 #ifndef CXXTEST4
+//------------------------------------------------------------------------------
+/// \brief
+//------------------------------------------------------------------------------
 const CxxTest::TestGroup& ObserverIntermediateTests::group()
 {
   return *CxxTest::TestGroup::GetGroup(CxxTest::TG_INTERMEDIATE);
@@ -340,10 +358,10 @@ void ObserverIntermediateTests::testTimeRemaining()
   const double DELTA = 1e-5;
   TS_ASSERT_DELTA(remaining, o.m_remainingSeconds, DELTA);
 } // ObserverIntermediateTests::testTimeRemaining
+//! [snip_test_Example_Observer]
 //------------------------------------------------------------------------------
 /// \brief tests an example observer implementation
 //------------------------------------------------------------------------------
-//! [snip_test_Example_Observer]
 void ObserverIntermediateTests::testMockObserver()
 {
   // create an object derived off of Observer
