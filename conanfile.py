@@ -11,7 +11,7 @@ class XmscoreConan(ConanFile):
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
     options = {"xms": [True, False]}
-    default_options = "xms=False"
+    default_options = "xms=False", "boost:fPIC=True"
     generators = "cmake", "txt"
     build_requires = "cxxtest/4.4@aquaveo/stable"
     exports = "CMakeLists.txt", "LICENSE"
@@ -42,15 +42,19 @@ class XmscoreConan(ConanFile):
             self.requires("boost/1.66.0@conan/stable")
 
     def build(self):
+        xms_run_tests = self.env.get('XMS_RUN_TESTS', None)
+        run_tests = xms_run_tests != 'None' and xms_run_tests is not None
+
         cmake = CMake(self)
+
         if self.settings.compiler == 'Visual Studio':
             cmake.definitions["XMS_BUILD"] = self.options.xms
-        cmake.definitions["BUILD_TESTING"] = 1
+
+        cmake.definitions["BUILD_TESTING"] = run_tests
         cmake.configure(source_folder=".")
         cmake.build()
 
-        run_tests = self.env.get('XMS_RUN_TESTS', None)
-        if run_tests is not None:
+        if run_tests:
             print("***********(0.0)*************")
             try:
                 cmake.test()

@@ -5,7 +5,7 @@ set(CMAKE_DEBUG_POSTFIX _d)
 
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 
-project(xmscore)
+project(xmscore C CXX)
 
 if(WIN32)
     if(XMS_BUILD)
@@ -16,10 +16,7 @@ if(WIN32)
     endif()
 endif()
 
-
-
-set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
-
+# Conan setup
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup(TARGETS)
 
@@ -27,6 +24,7 @@ include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${CONAN_INCLUDE_DIRS})
 link_directories(${CONAN_LIB_DIRS})
 
+# Sources
 set(xmscore_sources
   xmscore/math/math.cpp
   xmscore/misc/DynBitset.cpp
@@ -69,7 +67,7 @@ set(xmscore_headers
   xmscore/stl/vector.h
 )
 
-
+# Tests
 if(BUILD_TESTING)
     add_definitions(-DCXX_TEST -DCXXTEST4)
 
@@ -103,20 +101,30 @@ if(BUILD_TESTING)
     endif()
 endif()
 
+# Static library
 add_library(${PROJECT_NAME} STATIC
-  ${xmscore_sources} ${xmscore_headers})
+  ${xmscore_sources} ${xmscore_headers}
+ )
 target_include_directories(${PROJECT_NAME}
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
     $<INSTALL_INTERFACE:include/>
-    ${Boost_INCLUDE_DIR})
+    ${Boost_INCLUDE_DIR}
+)
 find_package(Threads REQUIRED)
-
-target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
+target_link_libraries(${PROJECT_NAME}
+  ${CONAN_LIBS}
+)
 target_link_libraries(${PROJECT_NAME}
   ${CMAKE_THREAD_LIBS_INIT}
 )
+if(NOT WIN32)
+  set_target_properties(${PROJECT_NAME} PROPERTIES
+    COMPILE_FLAGS "-fPIC"
+  )
+endif()
 
+# Install recipe
 install(
   TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION lib
