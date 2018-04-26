@@ -1,0 +1,6 @@
+set(BOOST_ROOT ${CMAKE_INSTALL_PREFIX})
+set(Boost_USE_STATIC_LIBS TRUE)
+find_package(Boost REQUIRED timer log)
+set(EXT_INCLUDE_DIRS ${Boost_INCLUDE_DIRS})
+set(EXT_LIB_DIRS ${Boost_LIBRARY_DIRS})
+set(EXT_LIBS ${Boost_LIBRARIES})

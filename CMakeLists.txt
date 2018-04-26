@@ -4,6 +4,7 @@ cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
+set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
 
 project(xmscore C CXX)
 
@@ -16,13 +17,24 @@ if(WIN32)
     endif()
 endif()
 
-# Conan setup
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup(TARGETS)
+IF(IS_CONDA_BUILD)
+  include(${CMAKE_CURRENT_LIST_DIR}/condabuildinfo.cmake)
+ELSE() # If we are not using conda, we are using conan
+  # Conan setup
+  include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+  conan_basic_setup(TARGETS)
+  set(EXT_INCLUDE_DIRS ${CONAN_INCLUDE_DIRS})
+  set(EXT_LIB_DIRS ${CONAN_LIB_DIRS})
+  set(EXT_LIBS ${CONAN_LIBS})
+ENDIF(IS_CONDA_BUILD)
+
+message("Inc: ${EXT_INCLUDE_DIRS}")
+message("LibDir: ${EXT_LIB_DIRS}")
+message("Libs: ${EXT_LIBS}")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
-include_directories(${CONAN_INCLUDE_DIRS})
-link_directories(${CONAN_LIB_DIRS})
+include_directories(${EXT_INCLUDE_DIRS})
+link_directories(${EXT_LIB_DIRS})
 
 # Sources
 set(xmscore_sources
@@ -98,22 +110,23 @@ if(BUILD_TESTING)
         runner runner.cpp ${test_headers}
       )
       target_link_libraries(runner ${PROJECT_NAME})
+      install(
+        FILES "${CMAKE_BINARY_DIR}/runner"
+        DESTINATION "bin"
+        PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE
+                    OWNER_READ GROUP_READ
+                    OWNER_WRITE GROUP_WRITE
+      ) 
     endif()
 endif()
 
 # Static library
 add_library(${PROJECT_NAME} STATIC
   ${xmscore_sources} ${xmscore_headers}
- )
-target_include_directories(${PROJECT_NAME}
-  PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
-    $<INSTALL_INTERFACE:include/>
-    ${Boost_INCLUDE_DIR}
 )
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME}
-  ${CONAN_LIBS}
+  ${EXT_LIBS}
 )
 target_link_libraries(${PROJECT_NAME}
   ${CMAKE_THREAD_LIBS_INIT}

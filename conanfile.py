@@ -11,7 +11,7 @@ class XmscoreConan(ConanFile):
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
     options = {"xms": [True, False]}
-    default_options = "xms=False", "boost:fPIC=True"
+    default_options = "xms=False", "boost:fPIC=False"
     generators = "cmake", "txt"
     build_requires = "cxxtest/4.4@aquaveo/stable"
     exports = "CMakeLists.txt", "LICENSE"
