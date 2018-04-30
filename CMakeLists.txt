@@ -1,4 +1,3 @@
-set (CMAKE_CXX_STANDARD 11)
 cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
@@ -19,7 +18,13 @@ endif()
 
 IF(IS_CONDA_BUILD)
   include(${CMAKE_CURRENT_LIST_DIR}/condabuildinfo.cmake)
+  if(CMAKE_COMPILER_IS_GNUCXX)
+    add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
+  endif()
 ELSE() # If we are not using conda, we are using conan
+  # C++11 Support
+  set (CMAKE_CXX_STANDARD 11)
+
   # Conan setup
   include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
   conan_basic_setup(TARGETS)
