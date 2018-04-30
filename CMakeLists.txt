@@ -28,9 +28,9 @@ ELSE() # If we are not using conda, we are using conan
   set(EXT_LIBS ${CONAN_LIBS})
 ENDIF(IS_CONDA_BUILD)
 
-message("Inc: ${EXT_INCLUDE_DIRS}")
-message("LibDir: ${EXT_LIB_DIRS}")
-message("Libs: ${EXT_LIBS}")
+message("External Include Dirs: ${EXT_INCLUDE_DIRS}")
+message("External Lib Dirs: ${EXT_LIB_DIRS}")
+message("Extneral Libs: ${EXT_LIBS}")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${EXT_INCLUDE_DIRS})
