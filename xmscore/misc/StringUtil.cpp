@@ -193,14 +193,45 @@ VecStr explode(const std::string& source, const std::string& a_delimiter)
 /// \brief Breaks string into vector of strings based on one or more delimiters.
 /// \param[in] a_source:        The string to be split.
 /// \param[in] a_delimiterList: String where each character is a delimeter.
+/// \param[in] a_delimiterCompressOn: If true, consecutive delimeters are not
+///                                   treated as one.
 /// \return A vector of strings.
 /// \see http://stackoverflow.com/questions/236129/split-a-string-in-c
 //------------------------------------------------------------------------------
-VecStr split(const std::string& a_source, const std::string& a_delimiterList /*=wspace*/)
+VecStr split(const std::string& a_source,
+             const std::string& a_delimiterList /*=wspace*/,
+             bool a_delimiterCompressOn /*true*/)
 {
   std::string trimmed = xus::trim_copy(a_source, a_delimiterList);
   VecStr elems;
-  boost::split(elems, trimmed, boost::is_any_of(a_delimiterList), boost::token_compress_on);
+  if (a_delimiterCompressOn)
+  {
+    boost::split(elems, trimmed, boost::is_any_of(a_delimiterList), boost::token_compress_on);
+  }
+  else
+  {
+    // Unfortunately, boost::token_compress_off doesn't do the trick because
+    // it still compresses the leading and trailing delimiters. The following
+    // code works. I don't know how fast it is.
+    std::vector<char> temp(a_source.size());
+    int end = 0;
+    for (size_t i = 0; i < a_source.size(); ++i)
+    {
+      if (a_delimiterList.find(a_source[i]) != std::string::npos)
+      {
+        elems.push_back(std::string(&temp[0], end));
+        end = 0;
+      }
+      else
+      {
+        temp[end++] = a_source[i];
+      }
+    }
+    if (a_delimiterList.find(a_source.back()) != std::string::npos)
+    {
+      elems.push_back("");
+    }
+  }
   return elems;
 } // split
 //------------------------------------------------------------------------------
@@ -1431,6 +1462,9 @@ void StringUtilUnitTests::testSplit()
   expected = {"1", "2", "3", "4", "5", "6"};
   TS_ASSERT_EQUALS_VEC(expected, r);
 
+  r = xms::xus::split(",,A,B,,C,,,", ",", false);
+  expected = {"", "", "A", "B", "", "C", "", "", ""};
+  TS_ASSERT_EQUALS_VEC(expected, r);
 } // StringUtilUnitTests::testSplit
 //------------------------------------------------------------------------------
 /// \brief Test MakeUnique

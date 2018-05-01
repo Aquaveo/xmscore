@@ -55,14 +55,16 @@ private:
 namespace xus
 { // (xms string utilities)
 
-static const char* wspace = " \t\n\f\r\v"; ///< Whitespace characters
+static const char* WHITESPACE = " \t\n\f\r\v"; ///< Whitespace characters
 
 // Convenience functions
 
 bool equal_no_case(const std::string&, const std::string&);
 bool find_no_case(const std::string&, const std::string&);
 
-VEC_STR split(const std::string& source, const std::string& a_delimiterList = wspace);
+VEC_STR split(const std::string& source,
+              const std::string& a_delimiterList = WHITESPACE,
+              bool a_delimiterCompressOn = true);
 VEC_STR explode(const std::string& source, const std::string& a_delimiterString);
 std::string implode(const std::vector<std::string>& source, const std::string& delim);
 int su_indexOfElem(const VEC_STR& a_container, const std::string& str);
@@ -92,10 +94,10 @@ std::string to_lower_copy(const std::string& str);
 std::string& to_upper(std::string& str);
 std::string to_upper_copy(const std::string& str);
 
-std::string& trim(std::string& str, const std::string& delim = wspace);
-std::string trim_copy(const std::string& str, const std::string& delim = wspace);
-std::string& trim_left(std::string& str, const std::string& delim = wspace);
-std::string& trim_right(std::string& str, const std::string& delim = wspace);
+std::string& trim(std::string& str, const std::string& delim = WHITESPACE);
+std::string trim_copy(const std::string& str, const std::string& delim = WHITESPACE);
+std::string& trim_left(std::string& str, const std::string& delim = WHITESPACE);
+std::string& trim_right(std::string& str, const std::string& delim = WHITESPACE);
 
 // Misc
 
