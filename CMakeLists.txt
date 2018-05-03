@@ -115,13 +115,20 @@ if(BUILD_TESTING)
         runner runner.cpp ${test_headers}
       )
       target_link_libraries(runner ${PROJECT_NAME})
-      install(
-        FILES "${CMAKE_BINARY_DIR}/runner"
-        DESTINATION "bin"
-        PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE
-                    OWNER_READ GROUP_READ
-                    OWNER_WRITE GROUP_WRITE
-      ) 
+
+      if(WIN32)
+        set(RUNNERNAME "runner.exe")
+      else()
+        set(RUNNERNAME "runner")
+      endif()
+
+#       install(
+#         FILES "${CMAKE_BINARY_DIR}/${RUNNERNAME}"
+#         DESTINATION "bin"
+#         PERMISSIONS OWNER_EXECUTE GROUP_EXECUTE
+#                     OWNER_READ GROUP_READ
+#                     OWNER_WRITE GROUP_WRITE
+#       )
     endif()
 endif()
 
@@ -145,15 +152,14 @@ endif()
 # Install recipe
 install(
   TARGETS ${PROJECT_NAME}
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
+  ARCHIVE DESTINATION "lib"
+  LIBRARY DESTINATION "lib"
 )
 foreach (header IN LISTS xmscore_headers)
   get_filename_component(subdir "${header}" DIRECTORY)
   install(
     FILES "${header}"
-    DESTINATION "include/xmscore/${subdir}"
+    DESTINATION "include/${subdir}"
   )
 endforeach ()
 
