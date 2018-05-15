@@ -99,6 +99,7 @@ if(BUILD_TESTING)
         xmscore/testing/TestTools.h
     )
 
+
     list(APPEND xmscore_sources
         xmscore/testing/TestTools.cpp
     )
