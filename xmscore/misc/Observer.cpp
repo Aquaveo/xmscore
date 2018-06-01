@@ -51,7 +51,7 @@ public:
 
   void BeginOperationString();
   void EndOperation();
-  double ElaspedTimeInSeconds();
+  double ElapsedTimeInSeconds();
   double EstimatedTimeRemainingInSec(double a_percentComplete, double a_elapsedTime);
 
   boost::timer::cpu_timer m_timer; ///< timer to get elapsed time
@@ -80,7 +80,7 @@ bool Observer::ProgressStatus(double a_percentComplete)
 {
   if (a_percentComplete > m_p->m_percentComplete + .02)
   {
-    double elapsedTime = m_p->ElaspedTimeInSeconds();
+    double elapsedTime = m_p->ElapsedTimeInSeconds();
     m_p->m_percentComplete = a_percentComplete;
     OnProgressStatus(a_percentComplete);
 
@@ -180,14 +180,14 @@ void Observer::impl::EndOperation()
 /// \brief Returns the elapsed time for the operation being observed.
 /// \return Elapsed time in seconds.
 //------------------------------------------------------------------------------
-double Observer::impl::ElaspedTimeInSeconds()
+double Observer::impl::ElapsedTimeInSeconds()
 {
   boost::timer::cpu_times const elapsed_times(m_timer.elapsed());
   boost::timer::nanosecond_type time = elapsed_times.wall;
   const double NANO_PER_SEC = 1e9;
   double seconds = time / NANO_PER_SEC;
   return seconds;
-} // Observer::impl::ElaspedTimeInSeconds
+} // Observer::impl::ElapsedTimeInSeconds
 //------------------------------------------------------------------------------
 /// \brief Returns the elapsed time for the operation being observed.
 /// \param a_percentComplete: The percent complete between 0.0 and 1.0.
