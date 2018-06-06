@@ -139,6 +139,63 @@ if(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME} rt)
 endif()
 
+#Pybind11
+if(IS_PYTHON_BUILD)
+
+  # Pybind11 sources
+  set(xmscore_py
+    xmscore/python/cxxtest.cpp
+    xmscore/python/xmscore_py.cpp
+    # Misc
+    xmscore/python/misc/misc_py.h
+    xmscore/python/misc/misc_py.cpp
+    xmscore/python/misc/observer_py.cpp
+    xmscore/python/misc/PublicObserver.h
+    xmscore/python/misc/PyObserver.h
+  )
+
+  find_package(PythonLibs REQUIRED)
+    message("PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
+    message("PYTHON_LIBS: ${PYTHON_LIBRARIES}")
+
+    # Pybind11 module
+    if(IS_CONDA_BUILD)
+        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
+        include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
+        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Config.cmake")
+        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
+        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
+
+    else()
+        include("pybind11Tools.cmake") # TODO: Set this using conan variables...
+    endif()
+
+    pybind11_add_module(xmscore_py
+      ${xmscore_py}
+    )
+    target_include_directories(xmscore_py
+        PRIVATE
+          PYTHON_INCLUDE_DIRS
+    )
+    target_link_libraries(xmscore_py
+      PRIVATE
+        ${EXT_LIBS}
+        ${PROJECT_NAME}
+    )
+    set_target_properties(xmscore_py PROPERTIES
+      LINKER_LANGUAGE CXX
+    )
+
+    execute_process(COMMAND python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True))" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+    # Install recipe
+    install(
+      TARGETS xmscore_py
+      ARCHIVE DESTINATION ${PYTHON_SITE_PACKAGES}
+      LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES}
+    )
+endif()
+
 # Install recipe
 install(
   TARGETS ${PROJECT_NAME}
