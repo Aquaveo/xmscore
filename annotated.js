@@ -1,5 +1,10 @@
 var annotated =
 [
+    [ "python", null, [
+      [ "misc", null, [
+        [ "observer_pyt", "namespacepython_1_1misc_1_1observer__pyt.html", "namespacepython_1_1misc_1_1observer__pyt" ]
+      ] ]
+    ] ],
     [ "xmlog", "namespacexmlog.html", null ],
     [ "xms", null, [
       [ "Observer", "classxms_1_1_observer.html", "classxms_1_1_observer" ],
@@ -16,6 +21,7 @@ var annotated =
       [ "Pt2", "classxms_1_1_pt2.html", "classxms_1_1_pt2" ],
       [ "Pt3", "classxms_1_1_pt3.html", "classxms_1_1_pt3" ],
       [ "Pt4", "classxms_1_1_pt4.html", "classxms_1_1_pt4" ],
+      [ "PublicObserver", "classxms_1_1_public_observer.html", "classxms_1_1_public_observer" ],
       [ "ETestMessagingState", "classxms_1_1_e_test_messaging_state.html", "classxms_1_1_e_test_messaging_state" ]
     ] ],
     [ "FunctorsUnitTests", "class_functors_unit_tests.html", "class_functors_unit_tests" ],
@@ -26,6 +32,7 @@ var annotated =
     [ "ObserverIntermediateTests", "class_observer_intermediate_tests.html", "class_observer_intermediate_tests" ],
     [ "ProgressUnitTests", "class_progress_unit_tests.html", "class_progress_unit_tests" ],
     [ "PtUnitTests", "class_pt_unit_tests.html", "class_pt_unit_tests" ],
+    [ "PyObserver", "class_py_observer.html", "class_py_observer" ],
     [ "StringUtilUnitTests", "class_string_util_unit_tests.html", "class_string_util_unit_tests" ],
     [ "XmErrorUnitTests", "class_xm_error_unit_tests.html", "class_xm_error_unit_tests" ],
     [ "XmLogUnitTests", "class_xm_log_unit_tests.html", "class_xm_log_unit_tests" ]

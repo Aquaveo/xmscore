@@ -7,5 +7,6 @@ var searchData=
   ['setlistener',['SetListener',['../classxms_1_1_progress_listener.html#ad5c7ea41fa32cd6765b9a1e78c2ec246',1,'xms::ProgressListener']]],
   ['setobserver',['SetObserver',['../class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901',1,'MockMesher']]],
   ['setskipping',['SetSkipping',['../classxms_1_1_e_test_messaging_state.html#a7f2f1bc288a6a4a7f9b75c3d478668ea',1,'xms::ETestMessagingState']]],
+  ['setup',['setUp',['../classpython_1_1misc_1_1observer__pyt_1_1_test_observer.html#a6dba6d1735b30b7609e49c411da5eb6e',1,'python::misc::observer_pyt::TestObserver']]],
   ['stackederrtostream',['StackedErrToStream',['../structxms_1_1_xm_log_1_1_impl.html#aa02f112955c88daaff87726286897b9d',1,'xms::XmLog::Impl']]]
 ];

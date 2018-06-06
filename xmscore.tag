@@ -748,6 +748,45 @@
     <class kind="class">xms::Pt4</class>
   </compound>
   <compound kind="file">
+    <name>misc_py.cpp</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc/</path>
+    <filename>misc__py_8cpp</filename>
+    <includes id="misc__py_8h" name="misc_py.h" local="no" imported="no">xmscore/python/misc/misc_py.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>misc_py.h</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc/</path>
+    <filename>misc__py_8h</filename>
+  </compound>
+  <compound kind="file">
+    <name>observer_py.cpp</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc/</path>
+    <filename>observer__py_8cpp</filename>
+    <includes id="misc__py_8h" name="misc_py.h" local="no" imported="no">xmscore/python/misc/misc_py.h</includes>
+    <includes id="_public_observer_8h" name="PublicObserver.h" local="no" imported="no">xmscore/python/misc/PublicObserver.h</includes>
+    <includes id="_py_observer_8h" name="PyObserver.h" local="no" imported="no">xmscore/python/misc/PyObserver.h</includes>
+  </compound>
+  <compound kind="file">
+    <name>PublicObserver.h</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc/</path>
+    <filename>_public_observer_8h</filename>
+    <includes id="_observer_8h" name="Observer.h" local="no" imported="no">xmscore/misc/Observer.h</includes>
+    <class kind="class">xms::PublicObserver</class>
+  </compound>
+  <compound kind="file">
+    <name>PyObserver.h</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc/</path>
+    <filename>_py_observer_8h</filename>
+    <includes id="_public_observer_8h" name="PublicObserver.h" local="no" imported="no">xmscore/python/misc/PublicObserver.h</includes>
+    <class kind="class">PyObserver</class>
+  </compound>
+  <compound kind="file">
+    <name>xmscore_py.cpp</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/</path>
+    <filename>xmscore__py_8cpp</filename>
+    <includes id="misc__py_8h" name="misc_py.h" local="no" imported="no">xmscore/python/misc/misc_py.h</includes>
+  </compound>
+  <compound kind="file">
     <name>deque.h</name>
     <path>/home/travis/build/Aquaveo/xmscore/xmscore/stl/</path>
     <filename>deque_8h</filename>
@@ -1271,6 +1310,11 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>PyObserver</name>
+    <filename>class_py_observer.html</filename>
+    <base>xms::PublicObserver</base>
+  </compound>
+  <compound kind="class">
     <name>StringUtilUnitTests</name>
     <filename>class_string_util_unit_tests.html</filename>
     <member kind="function">
@@ -1413,6 +1457,27 @@
       <anchorfile>class_xm_log_unit_tests.html</anchorfile>
       <anchor>a92ef67747d37641518e792375178fdb7</anchor>
       <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>python::misc::observer_pyt</name>
+    <filename>namespacepython_1_1misc_1_1observer__pyt.html</filename>
+    <class kind="class">python::misc::observer_pyt::MockObserver</class>
+    <class kind="class">python::misc::observer_pyt::TestObserver</class>
+  </compound>
+  <compound kind="class">
+    <name>python::misc::observer_pyt::MockObserver</name>
+    <filename>classpython_1_1misc_1_1observer__pyt_1_1_mock_observer.html</filename>
+  </compound>
+  <compound kind="class">
+    <name>python::misc::observer_pyt::TestObserver</name>
+    <filename>classpython_1_1misc_1_1observer__pyt_1_1_test_observer.html</filename>
+    <member kind="function">
+      <type>def</type>
+      <name>setUp</name>
+      <anchorfile>classpython_1_1misc_1_1observer__pyt_1_1_test_observer.html</anchorfile>
+      <anchor>a6dba6d1735b30b7609e49c411da5eb6e</anchor>
+      <arglist></arglist>
     </member>
   </compound>
   <compound kind="namespace">
@@ -3637,6 +3702,53 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>xms::PublicObserver</name>
+    <filename>classxms_1_1_public_observer.html</filename>
+    <base>xms::Observer</base>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>OnProgressStatus</name>
+      <anchorfile>classxms_1_1_public_observer.html</anchorfile>
+      <anchor>a59f5291eaa7a6710f0cddbb95208d18e</anchor>
+      <arglist>(double a_percentComplete) override</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>OnBeginOperationString</name>
+      <anchorfile>classxms_1_1_public_observer.html</anchorfile>
+      <anchor>a3eb61c2632b4a8d026d3fb72bf3ad756</anchor>
+      <arglist>(const std::string &amp;a_operation) override</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>OnEndOperation</name>
+      <anchorfile>classxms_1_1_public_observer.html</anchorfile>
+      <anchor>a8da922214a2449d4fabbb339b160ec2f</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>OnUpdateMessage</name>
+      <anchorfile>classxms_1_1_public_observer.html</anchorfile>
+      <anchor>ac640bbab949fc3325b75fd56df6ef67e</anchor>
+      <arglist>(const std::string &amp;a_message) override</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>TimeRemainingInSeconds</name>
+      <anchorfile>classxms_1_1_public_observer.html</anchorfile>
+      <anchor>a272bd0d80acc3fc269528ff88ca8bfb4</anchor>
+      <arglist>(double a_remainingSeconds) override</arglist>
+    </member>
+    <member kind="function" protection="private">
+      <type>void</type>
+      <name>TimeElapsedInSeconds</name>
+      <anchorfile>classxms_1_1_public_observer.html</anchorfile>
+      <anchor>aefde702d3859c6e6ff376122528dc4aa</anchor>
+      <arglist>(double a_elapsedSeconds) override</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>xms::ETestMessagingState</name>
     <filename>classxms_1_1_e_test_messaging_state.html</filename>
     <member kind="function">
@@ -3719,6 +3831,18 @@
     <file>math.t.h</file>
   </compound>
   <compound kind="dir">
+    <name>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc/</path>
+    <filename>dir_4881bc6934a7205147f4e3dcb0171f6e.html</filename>
+    <file>__init__.py</file>
+    <file>misc_py.cpp</file>
+    <file>misc_py.h</file>
+    <file>observer_py.cpp</file>
+    <file>observer_pyt.py</file>
+    <file>PublicObserver.h</file>
+    <file>PyObserver.h</file>
+  </compound>
+  <compound kind="dir">
     <name>/home/travis/build/Aquaveo/xmscore/xmscore/misc</name>
     <path>/home/travis/build/Aquaveo/xmscore/xmscore/misc/</path>
     <filename>dir_17175abc7be81dc32d09e65ff06b8825.html</filename>
@@ -3762,6 +3886,15 @@
     <file>ptsfwd.h</file>
   </compound>
   <compound kind="dir">
+    <name>/home/travis/build/Aquaveo/xmscore/xmscore/python</name>
+    <path>/home/travis/build/Aquaveo/xmscore/xmscore/python/</path>
+    <filename>dir_f6932f4423028a8b1120450691f3eef1.html</filename>
+    <dir>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc</dir>
+    <file>__init__.py</file>
+    <file>cxxtest.cpp</file>
+    <file>xmscore_py.cpp</file>
+  </compound>
+  <compound kind="dir">
     <name>/home/travis/build/Aquaveo/xmscore/xmscore/stl</name>
     <path>/home/travis/build/Aquaveo/xmscore/xmscore/stl/</path>
     <filename>dir_7215248b9fd9b286115742ce43a743df.html</filename>
@@ -3788,6 +3921,7 @@
     <dir>/home/travis/build/Aquaveo/xmscore/xmscore/math</dir>
     <dir>/home/travis/build/Aquaveo/xmscore/xmscore/misc</dir>
     <dir>/home/travis/build/Aquaveo/xmscore/xmscore/points</dir>
+    <dir>/home/travis/build/Aquaveo/xmscore/xmscore/python</dir>
     <dir>/home/travis/build/Aquaveo/xmscore/xmscore/stl</dir>
     <dir>/home/travis/build/Aquaveo/xmscore/xmscore/testing</dir>
   </compound>

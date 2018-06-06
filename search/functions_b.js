@@ -25,6 +25,6 @@ var searchData=
   ['testtoupper',['testToUpper',['../class_string_util_unit_tests.html#a08347bd203879d86697e085df82bea92',1,'StringUtilUnitTests']]],
   ['testtrim',['testTrim',['../class_string_util_unit_tests.html#a0ff4446dd4516e6fd1b2a3a1148ee349',1,'StringUtilUnitTests']]],
   ['testxmcommanumpunct',['testXmCommaNumpunct',['../class_string_util_unit_tests.html#a7dac5605ae17a419bb0d92d33f5351bd',1,'StringUtilUnitTests']]],
-  ['timeelapsedinseconds',['TimeElapsedInSeconds',['../class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1',1,'MockObserver::TimeElapsedInSeconds()'],['../classxms_1_1_observer.html#a98b0e23e739cfbe97718638ed8255a73',1,'xms::Observer::TimeElapsedInSeconds()']]],
-  ['timeremaininginseconds',['TimeRemainingInSeconds',['../class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0',1,'MockObserver::TimeRemainingInSeconds()'],['../classxms_1_1_observer.html#abe6664e2f7ba8c87353e09e477644c24',1,'xms::Observer::TimeRemainingInSeconds()']]]
+  ['timeelapsedinseconds',['TimeElapsedInSeconds',['../class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1',1,'MockObserver::TimeElapsedInSeconds()'],['../classxms_1_1_observer.html#a98b0e23e739cfbe97718638ed8255a73',1,'xms::Observer::TimeElapsedInSeconds()'],['../classxms_1_1_public_observer.html#aefde702d3859c6e6ff376122528dc4aa',1,'xms::PublicObserver::TimeElapsedInSeconds()']]],
+  ['timeremaininginseconds',['TimeRemainingInSeconds',['../class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0',1,'MockObserver::TimeRemainingInSeconds()'],['../classxms_1_1_observer.html#abe6664e2f7ba8c87353e09e477644c24',1,'xms::Observer::TimeRemainingInSeconds()'],['../classxms_1_1_public_observer.html#a272bd0d80acc3fc269528ff88ca8bfb4',1,'xms::PublicObserver::TimeRemainingInSeconds()']]]
 ];

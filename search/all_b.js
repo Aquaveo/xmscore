@@ -25,7 +25,10 @@ var searchData=
   ['math_2et_2eh',['math.t.h',['../math_8t_8h.html',1,'']]],
   ['mathunittests',['MathUnitTests',['../class_math_unit_tests.html',1,'']]],
   ['messagetypeenum',['MessageTypeEnum',['../namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588',1,'xmlog']]],
+  ['misc_5fpy_2ecpp',['misc_py.cpp',['../misc__py_8cpp.html',1,'']]],
+  ['misc_5fpy_2eh',['misc_py.h',['../misc__py_8h.html',1,'']]],
   ['mockmesher',['MockMesher',['../class_mock_mesher.html',1,'']]],
+  ['mockobserver',['MockObserver',['../classpython_1_1misc_1_1observer__pyt_1_1_mock_observer.html',1,'python::misc::observer_pyt']]],
   ['mockobserver',['MockObserver',['../class_mock_observer.html',1,'']]],
   ['mockprogresslistener',['MockProgressListener',['../class_mock_progress_listener.html',1,'']]]
 ];

@@ -10,8 +10,14 @@ var hierarchy =
     [ "numpunct", null, [
       [ "xms::XmCommaNumpunct", "classxms_1_1_xm_comma_numpunct.html", null ]
     ] ],
+    [ "Observer", null, [
+      [ "python.misc.observer_pyt.MockObserver", "classpython_1_1misc_1_1observer__pyt_1_1_mock_observer.html", null ]
+    ] ],
     [ "xms::Observer", "classxms_1_1_observer.html", [
-      [ "MockObserver", "class_mock_observer.html", null ]
+      [ "MockObserver", "class_mock_observer.html", null ],
+      [ "xms::PublicObserver", "classxms_1_1_public_observer.html", [
+        [ "PyObserver", "class_py_observer.html", null ]
+      ] ]
     ] ],
     [ "xms::Progress", "classxms_1_1_progress.html", null ],
     [ "xms::ProgressListener", "classxms_1_1_progress_listener.html", [
@@ -26,6 +32,9 @@ var hierarchy =
       [ "xms::XmLog", "classxms_1_1_xm_log.html", null ]
     ] ],
     [ "xms::Temp2DigitExponents", "classxms_1_1_temp2_digit_exponents.html", null ],
+    [ "TestCase", null, [
+      [ "python.misc.observer_pyt.TestObserver", "classpython_1_1misc_1_1observer__pyt_1_1_test_observer.html", null ]
+    ] ],
     [ "TestSuite", null, [
       [ "FunctorsUnitTests", "class_functors_unit_tests.html", null ],
       [ "MathUnitTests", "class_math_unit_tests.html", null ],
