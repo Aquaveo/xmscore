@@ -99,7 +99,6 @@ if(BUILD_TESTING)
         xmscore/testing/TestTools.h
     )
 
-
     list(APPEND xmscore_sources
         xmscore/testing/TestTools.cpp
     )
@@ -144,8 +143,8 @@ if(IS_PYTHON_BUILD)
 
   # Pybind11 sources
   set(xmscore_py
-    xmscore/python/cxxtest.cpp
     xmscore/python/xmscore_py.cpp
+    xmscore/python/cxxtest.cpp
     # Misc
     xmscore/python/misc/misc_py.h
     xmscore/python/misc/misc_py.cpp
@@ -175,6 +174,7 @@ if(IS_PYTHON_BUILD)
     )
     target_include_directories(xmscore_py
         PRIVATE
+          ${EXT_LIBS}
           PYTHON_INCLUDE_DIRS
     )
     target_link_libraries(xmscore_py
