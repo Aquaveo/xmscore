@@ -186,7 +186,7 @@ if(IS_PYTHON_BUILD)
       LINKER_LANGUAGE CXX
     )
 
-    execute_process(COMMAND python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True))" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(COMMAND python -c "import os; from distutils.sysconfig import get_python_lib, os; print(str(get_python_lib(True)).split('_build_env{}'.format(os.sep))[1])" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 
     # Install recipe
     install(
