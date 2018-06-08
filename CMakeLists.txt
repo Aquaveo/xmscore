@@ -147,9 +147,12 @@ if(IS_PYTHON_BUILD)
     xmscore/python/cxxtest.cpp
     xmscore/python/xmscore_py.cpp
     # Misc
-    xmscore/python/misc/misc_py.h
     xmscore/python/misc/misc_py.cpp
     xmscore/python/misc/observer_py.cpp
+  )
+
+  set(xmscore_py_headers
+    xmscore/python/misc/misc_py.h
     xmscore/python/misc/PublicObserver.h
     xmscore/python/misc/PyObserver.h
   )
@@ -171,7 +174,7 @@ if(IS_PYTHON_BUILD)
     endif()
 
     pybind11_add_module(xmscore_py
-      ${xmscore_py}
+      ${xmscore_py} ${xmscore_py_headers}
     )
     target_include_directories(xmscore_py
         PRIVATE
@@ -186,13 +189,13 @@ if(IS_PYTHON_BUILD)
       LINKER_LANGUAGE CXX
     )
 
-    execute_process(COMMAND python -c "import os; from distutils.sysconfig import get_python_lib, os; print(str(get_python_lib(True)).split('_build_env{}'.format(os.sep))[1])" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(COMMAND python -c "import os; print('${PYTHON_SITE_PACKAGES}'.replace('${CONDA_PREFIX}' + os.sep, ''))" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES_TRIMMED OUTPUT_STRIP_TRAILING_WHITESPACE)
 
     # Install recipe
     install(
       TARGETS xmscore_py
-      ARCHIVE DESTINATION ${PYTHON_SITE_PACKAGES}
-      LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES}
+      ARCHIVE DESTINATION ${PYTHON_SITE_PACKAGES_TRIMMED}
+      LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES_TRIMMED}
     )
 endif()
 
@@ -202,11 +205,12 @@ install(
   ARCHIVE DESTINATION "lib"
   LIBRARY DESTINATION "lib"
 )
-foreach (header IN LISTS xmscore_headers)
+foreach (header IN LISTS xmscore_headers xmscore_py_headers)
   get_filename_component(subdir "${header}" DIRECTORY)
   install(
     FILES "${header}"
     DESTINATION "include/${subdir}"
   )
 endforeach ()
+
 
