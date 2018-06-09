@@ -193,7 +193,7 @@ VecStr explode(const std::string& source, const std::string& a_delimiter)
 /// \brief Breaks string into vector of strings based on one or more delimiters.
 /// \param[in] a_source:        The string to be split.
 /// \param[in] a_delimiterList: String where each character is a delimeter.
-/// \param[in] a_delimiterCompressOn: If true, consecutive delimeters are not
+/// \param[in] a_delimiterCompressOn: If true, consecutive delimeters are
 ///                                   treated as one.
 /// \return A vector of strings.
 /// \see http://stackoverflow.com/questions/236129/split-a-string-in-c
