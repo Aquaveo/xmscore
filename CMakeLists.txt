@@ -105,7 +105,7 @@ if(BUILD_TESTING)
 
     find_package(CxxTest)
     if(CXXTEST_FOUND)
-      include_directories(${CXXTEST_INCLUDE_DIR})
+      include_directories(${CXXTEST_INCLUDE_DIRS})
       enable_testing()
 
       set(CXXTEST_TESTGEN_ARGS --xunit-printer)
