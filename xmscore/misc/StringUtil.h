@@ -62,12 +62,12 @@ static const char* WHITESPACE = " \t\n\f\r\v"; ///< Whitespace characters
 bool equal_no_case(const std::string&, const std::string&);
 bool find_no_case(const std::string&, const std::string&);
 
-VEC_STR split(const std::string& source,
-              const std::string& a_delimiterList = WHITESPACE,
-              bool a_delimiterCompressOn = true);
-VEC_STR explode(const std::string& source, const std::string& a_delimiterString);
+VecStr split(const std::string& source,
+             const std::string& a_delimiterList = WHITESPACE,
+             bool a_delimiterCompressOn = true);
+VecStr explode(const std::string& source, const std::string& a_delimiterString);
 std::string implode(const std::vector<std::string>& source, const std::string& delim);
-int su_indexOfElem(const VEC_STR& a_container, const std::string& str);
+int su_indexOfElem(const VecStr& a_container, const std::string& str);
 
 std::string& left(std::string& a_source, size_t const a_length);
 std::string left_copy(const std::string& a_source, size_t const a_length);
@@ -87,7 +87,7 @@ std::string right_copy(const std::string& a_source, size_t const a_length);
 
 std::string su_simplified(const std::string& str);
 bool su_iContains(const std::string& a_container, const std::string& a_substr);
-bool su_vecContainsStr(const VEC_STR& a_container, const std::string& str);
+bool su_vecContainsStr(const VecStr& a_container, const std::string& str);
 
 std::string& to_lower(std::string& str);
 std::string to_lower_copy(const std::string& str);

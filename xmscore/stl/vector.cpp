@@ -15,9 +15,9 @@ using namespace xms;
 //----- Function definitions ---------------------------------------------------
 
 //------------------------------------------------------------------------------
-///// \brief Convert a VEC_BOOL to a VEC_BOOLEAN
+///// \brief Convert a VecBool to a VecUnsignedChar
 //------------------------------------------------------------------------------
-// void VecBoolToVecBoolean (const VEC_BOOL& a_vBool, VEC_BOOLEAN& a_vBoolean)
+// void VecBoolToVecBoolean (const VecBool& a_vBool, VecUnsignedChar& a_vBoolean)
 //{
 //  a_vBoolean.resize(a_vBool.size());
 //  for (int i = 0; i < (int)a_vBool.size(); ++i)
@@ -26,9 +26,9 @@ using namespace xms;
 //  }
 //}
 //------------------------------------------------------------------------------
-///// \brief Convert a VEC_BOOLEAN to a VEC_BOOL
+///// \brief Convert a VecUnsignedChar to a VecBool
 //------------------------------------------------------------------------------
-// void VecBooleanToVecBool (const VEC_BOOLEAN& a_vBoolean, VEC_BOOL& a_vBool)
+// void VecBooleanToVecBool (const VecUnsignedChar& a_vBoolean, VecBool& a_vBool)
 //{
 //  a_vBool.resize(a_vBoolean.size());
 //  for (int i = 0; i < (int)a_vBoolean.size(); ++i)

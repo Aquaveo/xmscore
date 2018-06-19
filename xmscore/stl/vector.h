@@ -83,13 +83,13 @@ typedef std::vector<VecDbl> VecDbl2d;     ///< short rename
 typedef std::vector<VecStr> VecStr2d;     ///< short rename
 typedef std::vector<VecSizet> VecSizet2d; ///< short rename
                                           // 3d arrays
-typedef std::vector<VecFlt2d> VecFlt3d; ///< short rename
-typedef std::vector<VecInt2d> VecInt3d; ///< short rename
-typedef std::vector<VecDbl2d> VecDbl3d; ///< short rename
-typedef std::vector<VecStr2d> VecStr3d; ///< short rename
-                                        // 4d arrays
-typedef std::vector<VecDbl3d> VecDbl4d; ///< short rename
-typedef std::vector<VecFlt3d> VecFlt4d; ///< short rename
+typedef std::vector<VecFlt2d> VecFlt3d;   ///< short rename
+typedef std::vector<VecInt2d> VecInt3d;   ///< short rename
+typedef std::vector<VecDbl2d> VecDbl3d;   ///< short rename
+typedef std::vector<VecStr2d> VecStr3d;   ///< short rename
+                                          // 4d arrays
+typedef std::vector<VecDbl3d> VecDbl4d;   ///< short rename
+typedef std::vector<VecFlt3d> VecFlt4d;   ///< short rename
 
 // 1d arrays
 typedef std::vector<Pt4d> VecPt4d; ///< short rename

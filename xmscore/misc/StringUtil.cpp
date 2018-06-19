@@ -265,7 +265,7 @@ std::string implode(const std::vector<std::string>& source, const std::string& d
 /// \param[in] str: Element we're searching for.
 /// \return Index of the position of the element. If not found it returns -1.
 //------------------------------------------------------------------------------
-int su_indexOfElem(const VEC_STR& a_container, const std::string& str)
+int su_indexOfElem(const VecStr& a_container, const std::string& str)
 {
   int loc = 0;
   for (int i = 0; i < static_cast<int>(a_container.size()); i++)
@@ -580,7 +580,7 @@ bool su_iContains(const std::string& a_container, const std::string& a_substr)
 /// \param[in] str: String to search for in the container.
 /// \return True if a_container contains a str, otherwise False.
 //------------------------------------------------------------------------------
-bool su_vecContainsStr(const VEC_STR& a_container, const std::string& str)
+bool su_vecContainsStr(const VecStr& a_container, const std::string& str)
 {
   return (std::find(a_container.begin(), a_container.end(), str) != a_container.end());
 } // su_vecContainsStr
@@ -1429,7 +1429,7 @@ void StringUtilUnitTests::testImplodeExplode()
 void StringUtilUnitTests::testSuIndexOfElem()
 {
   int expected = -1;
-  xms::VEC_STR container = {"me", "you", "they", "we", "Us"};
+  xms::VecStr container = {"me", "you", "they", "we", "Us"};
   int test1 = xms::xus::su_indexOfElem(container, "us"); // this should return -1
   TS_ASSERT_EQUALS(expected, test1);
 
@@ -1830,7 +1830,7 @@ void StringUtilUnitTests::testSuVecContainsStr()
 {
   bool expectedT = true;
   bool expectedF = false;
-  xms::VEC_STR container = {"me", "you", "they", "we", "Us"};
+  xms::VecStr container = {"me", "you", "they", "we", "Us"};
 
   bool test1 = xms::xus::su_vecContainsStr(container, "we");
   TS_ASSERT_EQUALS(expectedT, test1);
