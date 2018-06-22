@@ -16,21 +16,6 @@
 #include <xmscore/points/ptsfwd.h>
 namespace xms
 {
-//----- Old types --------------------------------------------------------------
-/// \deprecated Don't use the "SET_..." types. Use the "Set..." ones below
-typedef std::set<Pt2d> SET_MP2; ///< short rename
-typedef std::set<Pt3d> SET_MP3; ///< short rename
-typedef std::set<Pt4d> SET_MP4; ///< short rename
-
-typedef std::set<size_t> SET_SIZET;    ///< short rename
-typedef std::set<int> SET_INT;         ///< short rename
-typedef std::set<int> SET_I;           ///< short rename
-typedef std::set<float> SET_FLT;       ///< short rename
-typedef std::set<double> SET_DBL;      ///< short rename
-typedef std::set<std::string> SET_STR; ///< short rename
-
-//----- New types --------------------------------------------------------------
-
 typedef std::set<Pt2d> SetPt2d; ///< short rename
 typedef std::set<Pt3d> SetPt3d; ///< short rename
 typedef std::set<Pt4d> SetPt4d; ///< short rename

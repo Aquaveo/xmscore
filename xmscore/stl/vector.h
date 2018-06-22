@@ -19,50 +19,6 @@
 
 namespace xms
 {
-//----- Old types --------------------------------------------------------------
-/// \deprecated Don't use the "VEC_..." types. Use the "Vec..." ones below
-// 1d arrays
-// VEC_BOOL still needed for reading hdf5
-typedef std::vector<bool> VEC_BOOL;           ///< short rename
-typedef std::vector<char> VEC_CHAR;           ///< short rename
-typedef std::vector<unsigned char> VEC_UCHAR; ///< short rename
-typedef std::vector<double> VEC_DBL;          ///< short rename
-typedef std::vector<float> VEC_FLT;           ///< short rename
-typedef std::vector<int> VEC_INT;             ///< short rename
-typedef std::vector<unsigned int> VEC_UINT;   ///< short rename
-typedef std::vector<short> VEC_SHORT;         ///< short rename
-typedef std::vector<std::string> VEC_STR;     ///< short rename
-typedef std::vector<void*> VEC_VOID;          ///< short rename
-typedef std::vector<std::size_t> VEC_SIZET;   ///< short rename
-                                            // 2d arrays
-typedef std::vector<VEC_FLT> VEC_FLT2D;     ///< short rename
-typedef std::vector<VEC_INT> VEC_INT2D;     ///< short rename
-typedef std::vector<VEC_DBL> VEC_DBL2D;     ///< short rename
-typedef std::vector<VEC_STR> VEC_STR2D;     ///< short rename
-typedef std::vector<VEC_SIZET> VEC_SIZET2D; ///< short rename
-                                            // 3d arrays
-typedef std::vector<VEC_FLT2D> VEC_FLT3D; ///< short rename
-typedef std::vector<VEC_INT2D> VEC_INT3D; ///< short rename
-typedef std::vector<VEC_DBL2D> VEC_DBL3D; ///< short rename
-                                          // 4d arrays
-typedef std::vector<VEC_DBL3D> VEC_DBL4D; ///< short rename
-
-// 1d arrays
-typedef std::vector<Pt4d> VEC_MP4;  ///< short rename
-typedef std::vector<Pt3d> VEC_MP3;  ///< short rename
-typedef std::vector<Pt3f> VEC_MP3f; ///< short rename
-typedef std::vector<Pt2d> VEC_MP2;  ///< short rename
-typedef std::vector<Pt2f> VEC_MP2F; ///< short rename
-typedef std::vector<Pt2i> VEC_MIP2; ///< short rename
-
-// 2d arrays
-typedef std::vector<VEC_MP2> VEC_MP22D;   ///< short rename
-typedef std::vector<VEC_MP2F> VEC_MP2F2D; ///< short rename
-typedef std::vector<VEC_MP3> VEC_MP32D;   ///< short rename
-typedef std::vector<VEC_MP3f> VEC_MP3F2D; ///< short rename
-
-//----- New types --------------------------------------------------------------
-
 // 1d arrays
 typedef std::vector<bool> VecBool;           ///< short rename
 typedef std::vector<char> VecChar;           ///< short rename

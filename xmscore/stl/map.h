@@ -15,43 +15,6 @@
 
 namespace xms
 {
-//----- Old types --------------------------------------------------------------
-/// \deprecated Don't use the "MAP_..." types. Use the "Map..." ones below
-typedef std::map<int, Pt3d> MAP_I_MPT3; ///< short rename
-typedef std::map<Pt3d, int> MAP_MP3_I;  ///< short rename
-
-typedef std::map<int, int> MAP_I_I;                         ///< short rename
-typedef std::map<int, float> MAP_I_F;                       ///< short rename
-typedef std::map<int, float**> MAP_I_FLT2D;                 ///< short rename
-typedef std::map<int, double> MAP_I_DBL;                    ///< short rename
-typedef std::map<int, bool> MAP_I_BOOL;                     ///< short rename
-typedef std::map<int, VEC_FLT> MAP_I_VEC_FLT;               ///< short rename
-typedef std::map<int, VEC_FLT2D> MAP_I_VEC_FLT2D;           ///< short rename
-typedef std::map<int, VEC_DBL> MAP_I_VEC_DBL;               ///< short rename
-typedef std::map<int, VEC_INT> MAP_I_VEC_I;                 ///< short rename
-typedef std::map<int, SET_INT> MAP_I_SET_INT;               ///< short rename
-typedef std::map<int, MAP_I_DBL> MAP_I_MAP_I_DBL;           ///< short rename
-typedef std::map<int, MAP_I_F> MAP_I_MAP_I_F;               ///< short rename
-typedef std::map<int, MAP_I_I> MAP_I_I_I;                   ///< short rename
-typedef std::map<double, double> MAP_DBL_DBL;               ///< short rename
-typedef std::map<double, int> MAP_DBL_I;                    ///< short rename
-typedef std::map<double, std::string> MAP_DBL_STR;          ///< short rename
-typedef std::map<std::string, int> MAP_STR_I;               ///< short rename
-typedef std::map<std::string, double> MAP_STR_D;            ///< short rename
-typedef std::map<int, std::string> MAP_I_STR;               ///< short rename
-typedef std::map<std::string, std::string> MAP_STR_STR;     ///< short rename
-typedef std::map<std::string, VEC_STR> MAP_STR_VEC_STR;     ///< short rename
-typedef std::map<std::string, MAP_I_DBL> MAP_STR_MAP_I_DBL; ///< short rename
-
-// multimaps
-
-typedef std::multimap<int, int> MMAP_I_I;         ///< short rename
-typedef std::multimap<double, int> MMAP_D_I;      ///< short rename
-typedef std::multimap<std::string, int> MMAP_S_I; ///< short rename
-typedef std::multimap<bool, int> MMAP_B_I;        ///< short rename
-
-//----- New types --------------------------------------------------------------
-
 // In alphabetical order
 typedef std::map<double, double> MapDblDbl;               ///< short rename
 typedef std::map<double, int> MapDblInt;                  ///< short rename
