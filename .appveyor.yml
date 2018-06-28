@@ -34,8 +34,9 @@ build_script:
         $env:XMS_VERSION = $env:APPVEYOR_REPO_TAG_NAME 
         $env:XMS_RUN_TESTS = 'None'
       }
-  - ps: $env:CONAN_REFERENCE = 'xmscore/'+$env:XMS_VERSION
-  - ps: echo 'XMS_VERSION: '+$env:XMS_VERSION
+      $env:CONAN_REFERENCE = 'xmscore/'+$env:XMS_VERSION
+      echo 'XMS_VERSION: '+$env:XMS_VERSION
+      echo 'CONAN_REFERENCE: '+$env:CONAN_REFERENCE
   - python build.py
 
 test_script:
