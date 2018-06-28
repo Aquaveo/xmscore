@@ -6,8 +6,6 @@ environment:
     PYTHON_VERSION: "2.7.8"
     PYTHON_ARCH: "32"
 
-    XMS_VERSION: ${APPVEYOR_REPO_TAG_NAME}
-    CONAN_REFERENCE: "xmscore/${XMS_VERSION}"
     CONAN_USERNAME: "aquaveo"
     CONAN_CHANNEL: "stable"
     CONAN_LOGIN_USERNAME: ${CONAN_USER_SECRET}
@@ -29,6 +27,14 @@ install:
   - conan user # Create the conan data directory
 
 build_script:
+  - ps: |
+      if (-not (Test-Path env:APPVEYOR_REPO_TAG)) { 
+        $env:XMS_VERSION = 'Dev'
+      } else { 
+        $env:XMS_VERSION = $env:APPVEYOR_REPO_TAG_NAME 
+        $env:XMS_RUN_TESTS = 'None'
+      }
+  - ps: $env:CONAN_REFERENCE = 'xmscore/'+$env:XMS_VERSION
   - python build.py
 
 test_script:
