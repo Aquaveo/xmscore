@@ -35,6 +35,7 @@ build_script:
         $env:XMS_RUN_TESTS = 'None'
       }
   - ps: $env:CONAN_REFERENCE = 'xmscore/'+$env:XMS_VERSION
+  - ps: echo 'XMS_VERSION: '+$env:XMS_VERSION
   - python build.py
 
 test_script:
