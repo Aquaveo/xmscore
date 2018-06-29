@@ -10,8 +10,8 @@ class XmscoreConan(ConanFile):
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"xms": [True, False]}
-    default_options = "xms=False"
+    options = {"xms": [True, False], "pybind": [True, False]}
+    default_options = "xms=False", "pybind=False"
     generators = "cmake", "txt"
     build_requires = "cxxtest/4.4@aquaveo/stable"
     exports = "CMakeLists.txt", "LICENSE"
@@ -25,6 +25,9 @@ class XmscoreConan(ConanFile):
         s_os = self.settings.os
         s_compiler = self.settings.compiler
         s_compiler_version = self.settings.compiler.version
+
+        if s_compiler != "Visual Studio":
+            self.options['boost'].fPIC = True
 
         if s_compiler == "clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
@@ -40,6 +43,7 @@ class XmscoreConan(ConanFile):
             self.requires("boost/1.60.0@aquaveo/testing")
         else:
             self.requires("boost/1.66.0@conan/stable")
+        self.requires("pybind11/2.2.2@aquaveo/stable")
 
     def build(self):
         xms_run_tests = self.env.get('XMS_RUN_TESTS', None)
@@ -49,6 +53,8 @@ class XmscoreConan(ConanFile):
 
         if self.settings.compiler == 'Visual Studio':
             cmake.definitions["XMS_BUILD"] = self.options.xms
+
+        cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
 
         cmake.definitions["BUILD_TESTING"] = run_tests
         cmake.configure(source_folder=".")
