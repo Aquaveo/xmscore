@@ -54,7 +54,8 @@ class XmscoreConan(ConanFile):
 
         cmake = CMake(self)
 
-        if self.settings.compiler == 'Visual Studio':
+        if self.settings.compiler == 'Visual Studio' \
+           and self.settings.compiler.version == "12":
             cmake.definitions["XMS_BUILD"] = self.options.xms
 
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
