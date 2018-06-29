@@ -144,7 +144,6 @@ if(IS_PYTHON_BUILD)
   # Pybind11 sources
   set(xmscore_py
     xmscore/python/xmscore_py.cpp
-    xmscore/python/cxxtest.cpp
     # Misc
     xmscore/python/misc/misc_py.cpp
     xmscore/python/misc/observer_py.cpp
@@ -167,9 +166,12 @@ if(IS_PYTHON_BUILD)
         include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Config.cmake")
         include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
         include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
-
     else()
-        include("pybind11Tools.cmake") # TODO: Set this using conan variables...
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Targets.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/FindPythonLibsNew.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Config.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
+        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
     endif()
 
     pybind11_add_module(xmscore_py

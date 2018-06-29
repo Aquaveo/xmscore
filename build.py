@@ -29,6 +29,8 @@ if __name__ == "__main__":
         if settings['compiler'] == 'Visual Studio' and 'MD' in settings['compiler.runtime']:
             xms_options = dict(options)
             xms_options.update({'xmscore:xms': True})
+            if settings['compiler.version'] >= 14:
+                xms_options.update({'xmscore:pybind': True})
             updated_builds.append([settings, xms_options, env_vars, build_requires])
 
         updated_builds.append([settings, options, env_vars, build_requires])
