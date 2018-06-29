@@ -28,7 +28,7 @@
 
 namespace xms
 {
-/// Bitwise flags used by Prec(), and STR()
+/// Bitwise flags used by stPrecision(), and STR()
 enum PrecFlags {
   STR_FLOAT = 0x01 ///< Float, not double
   ,
@@ -42,76 +42,71 @@ enum PrecFlags {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-class Temp2DigitExponents
+class StTemp2DigitExponents
 {
 public:
-  Temp2DigitExponents();
-  ~Temp2DigitExponents();
+  StTemp2DigitExponents();
+  ~StTemp2DigitExponents();
 
 private:
   int m_oldOutputFormat; ///< Saved output format to restore to orignal value
 };
 
-namespace xus
-{ // (xms string utilities)
-
-static const char* WHITESPACE = " \t\n\f\r\v"; ///< Whitespace characters
+static const char* ST_WHITESPACE = " \t\n\f\r\v"; ///< Whitespace characters
 
 // Convenience functions
 
-bool equal_no_case(const std::string&, const std::string&);
-bool find_no_case(const std::string&, const std::string&);
+bool stEqualNoCase(const std::string&, const std::string&);
+bool stFindNoCase(const std::string&, const std::string&);
 
-VecStr split(const std::string& source,
-             const std::string& a_delimiterList = WHITESPACE,
-             bool a_delimiterCompressOn = true);
-VecStr explode(const std::string& source, const std::string& a_delimiterString);
-std::string implode(const std::vector<std::string>& source, const std::string& delim);
-int su_indexOfElem(const VecStr& a_container, const std::string& str);
+VecStr stSplit(const std::string& source,
+               const std::string& a_delimiterList = ST_WHITESPACE,
+               bool a_delimiterCompressOn = true);
+VecStr stExplode(const std::string& source, const std::string& a_delimiterString);
+std::string stImplode(const std::vector<std::string>& source, const std::string& delim);
+int stIndexOfElem(const VecStr& a_container, const std::string& str);
 
-std::string& left(std::string& a_source, size_t const a_length);
-std::string left_copy(const std::string& a_source, size_t const a_length);
+std::string& stLeft(std::string& a_source, size_t const a_length);
+std::string stLeftCopy(const std::string& a_source, size_t const a_length);
 
-std::string& remove(std::string& str, char source);
-std::string remove_copy(const std::string& str, char source);
+std::string& stRemove(std::string& str, char source);
+std::string stRemoveCopy(const std::string& str, char source);
 
-std::string& replace(std::string& str, char source, char dest);
-std::string& replace(std::string& str, const std::string& source, const std::string& dest);
-std::string replace_copy(const std::string& str, char source, char dest);
-std::string replace_copy(const std::string& str,
-                         const std::string& source,
-                         const std::string& dest);
+std::string& stReplace(std::string& str, char source, char dest);
+std::string& stReplace(std::string& str, const std::string& source, const std::string& dest);
+std::string stReplaceCopy(const std::string& str, char source, char dest);
+std::string stReplaceCopy(const std::string& str,
+                          const std::string& source,
+                          const std::string& dest);
 
-std::string& right(std::string& a_source, size_t const a_length);
-std::string right_copy(const std::string& a_source, size_t const a_length);
+std::string& stRight(std::string& a_source, size_t const a_length);
+std::string stRightCopy(const std::string& a_source, size_t const a_length);
 
-std::string su_simplified(const std::string& str);
-bool su_iContains(const std::string& a_container, const std::string& a_substr);
-bool su_vecContainsStr(const VecStr& a_container, const std::string& str);
+std::string stSimplified(const std::string& str);
+bool stContains(const std::string& a_container, const std::string& a_substr);
+bool stVectorContainsString(const VecStr& a_container, const std::string& str);
 
-std::string& to_lower(std::string& str);
-std::string to_lower_copy(const std::string& str);
-std::string& to_upper(std::string& str);
-std::string to_upper_copy(const std::string& str);
+std::string& stToLower(std::string& str);
+std::string stToLowerCopy(const std::string& str);
+std::string& stToUpper(std::string& str);
+std::string stToUpperCopy(const std::string& str);
 
-std::string& trim(std::string& str, const std::string& delim = WHITESPACE);
-std::string trim_copy(const std::string& str, const std::string& delim = WHITESPACE);
-std::string& trim_left(std::string& str, const std::string& delim = WHITESPACE);
-std::string& trim_right(std::string& str, const std::string& delim = WHITESPACE);
+std::string& stTrim(std::string& str, const std::string& delim = ST_WHITESPACE);
+std::string stTrimCopy(const std::string& str, const std::string& delim = ST_WHITESPACE);
+std::string& stTrimLeft(std::string& str, const std::string& delim = ST_WHITESPACE);
+std::string& stTrimRight(std::string& str, const std::string& delim = ST_WHITESPACE);
 
 // Misc
 
-unsigned int count_char(const std::string& str, char c);
-bool numeric(const std::string& str);
-bool sci_notation(const std::string& str, bool check_numeric = true);
-void ChangeExtendedASCII(std::string& str, bool to_extended);
-bool MakeUnique(const std::set<std::string>& set_str, std::string& str);
-bool str2int(const std::string&, int& i, int base = 0);
-bool str2dbl(const std::string&, double& d);
+unsigned int stCountChar(const std::string& str, char c);
+bool stNumeric(const std::string& str);
+bool stScientificNotation(const std::string& str, bool check_numeric = true);
+void stChangeExtendedAscii(std::string& str, bool to_extended);
+bool stMakeUnique(const std::set<std::string>& set_str, std::string& str);
+bool stStringToInt(const std::string&, int& i, int base = 0);
+bool stStringToDouble(const std::string&, double& d);
 
-int Prec(double value, int& flags, int length = 15);
-
-} // end namespace xus
+int stPrecision(double value, int& flags, int length = 15);
 
 // Number to string
 
@@ -140,11 +135,11 @@ inline std::string STRstd(T a_value, int a_n = 0, int width = 0, int flags = 0)
 std::string STRstd(std::string a_value);
 
 ////////////////////////////////////////////////////////////////////////////////
-class XmCommaNumpunct : public std::numpunct<char>
+class StCommaNumpunct : public std::numpunct<char>
 {
 protected:
   virtual char do_thousands_sep() const;
   virtual std::string do_grouping() const;
-}; // class XmCommaNumpunct
+}; // class StCommaNumpunct
 
 } // end namespace xms
