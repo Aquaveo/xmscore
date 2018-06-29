@@ -43,7 +43,9 @@ class XmscoreConan(ConanFile):
             self.requires("boost/1.60.0@aquaveo/testing")
         else:
             self.requires("boost/1.66.0@conan/stable")
-        self.requires("pybind11/2.2.2@aquaveo/stable")
+        # Pybind if not Visual studio 2013
+        if not (self.settings.compiler == 'Visual Studio' and int(self.settings.compiler.version) < 14):
+            self.requires("pybind11/2.2.2@aquaveo/stable")
 
     def build(self):
         xms_run_tests = self.env.get('XMS_RUN_TESTS', None)
