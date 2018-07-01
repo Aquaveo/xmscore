@@ -27,7 +27,7 @@ environment:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
           CONAN_UPLOAD: ${AQUAVEO_CONAN}
-          PYTHON: "C:\Python36-x64"
+          PYTHON: "C:\\Python36-x64"
 #        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
 #          CONAN_VISUAL_VERSIONS: 15
 #          CONAN_UPLOAD: ${AQUAVEO_CONAN}
