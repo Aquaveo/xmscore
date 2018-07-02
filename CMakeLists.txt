@@ -5,7 +5,13 @@ cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
+set(IS_PYTHON_BUILD NO CACHE BOOL "Enable/Disable PYTHON")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
+
+if(IS_PYTHON_BUILD AND BUILD_TESTING)
+  message(FATAL_ERROR "Cannot build python module when testing is enabled")
+endif()
+
 
 project(xmscore C CXX)
 
@@ -32,9 +38,9 @@ ELSE() # If we are not using conda, we are using conan
   set(EXT_LIBS ${CONAN_LIBS})
 ENDIF(IS_CONDA_BUILD)
 
-message("External Include Dirs: ${EXT_INCLUDE_DIRS}")
-message("External Lib Dirs: ${EXT_LIB_DIRS}")
-message("Extneral Libs: ${EXT_LIBS}")
+message(STATUS "External Include Dirs: ${EXT_INCLUDE_DIRS}")
+message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
+message(STATUS "Extneral Libs: ${EXT_LIBS}")
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${EXT_INCLUDE_DIRS})
@@ -143,7 +149,6 @@ if(IS_PYTHON_BUILD)
 
   # Pybind11 sources
   set(xmscore_py
-    xmscore/python/cxxtest.cpp
     xmscore/python/xmscore_py.cpp
     # Misc
     xmscore/python/misc/misc_py.cpp
@@ -157,49 +162,49 @@ if(IS_PYTHON_BUILD)
   )
 
   find_package(PythonLibs REQUIRED)
-    message("PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
-    message("PYTHON_LIBS: ${PYTHON_LIBRARIES}")
+  message(STATUS "PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
+  message(STATUS "PYTHON_LIBS: ${PYTHON_LIBRARIES}")
 
-    # Pybind11 module
-    if(IS_CONDA_BUILD)
-        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
-        include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
-        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Config.cmake")
-        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
-        include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
-    else()
-        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Targets.cmake")
-        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/FindPythonLibsNew.cmake")
-        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Config.cmake")
-        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
-        include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
-    endif()
+  # Pybind11 module
+  if(IS_CONDA_BUILD)
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Config.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
+  else()
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Targets.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/FindPythonLibsNew.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Config.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
+  endif()
 
-    pybind11_add_module(xmscore_py
-      ${xmscore_py} ${xmscore_py_headers}
-    )
-    target_include_directories(xmscore_py
-        PRIVATE
-          ${EXT_LIBS}
-          PYTHON_INCLUDE_DIRS
-    )
-    target_link_libraries(xmscore_py
+  pybind11_add_module(xmscore_py
+    ${xmscore_py} ${xmscore_py_headers}
+  )
+  target_include_directories(xmscore_py
       PRIVATE
         ${EXT_LIBS}
-        ${PROJECT_NAME}
-    )
-    set_target_properties(xmscore_py PROPERTIES
-      LINKER_LANGUAGE CXX
-    )
+        PYTHON_INCLUDE_DIRS
+  )
+  target_link_libraries(xmscore_py
+    PRIVATE
+      ${EXT_LIBS}
+      ${PROJECT_NAME}
+  )
+  set_target_properties(xmscore_py PROPERTIES
+    LINKER_LANGUAGE CXX
+  )
 
-    execute_process(COMMAND python -c "import os; print('${PYTHON_SITE_PACKAGES}'.replace('${CONDA_PREFIX}' + os.sep, ''))" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES_TRIMMED OUTPUT_STRIP_TRAILING_WHITESPACE)
+  execute_process(COMMAND python -c "import os; print('${PYTHON_SITE_PACKAGES}'.replace('${CONDA_PREFIX}' + os.sep, ''))" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES_TRIMMED OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-    # Install recipe
-    install(
-      TARGETS xmscore_py
-      ARCHIVE DESTINATION ${PYTHON_SITE_PACKAGES_TRIMMED}
-      LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES_TRIMMED}
-    )
+  # Install recipe
+  install(
+    TARGETS xmscore_py
+    ARCHIVE DESTINATION ${PYTHON_SITE_PACKAGES_TRIMMED}
+    LIBRARY DESTINATION ${PYTHON_SITE_PACKAGES_TRIMMED}
+  )
 endif()
 
 # Install recipe

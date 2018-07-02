@@ -3,9 +3,8 @@ build: false
 version: 1.0.0-{build}  # This version is somewhat arbitrary. Does not affect the version of the package.
 
 environment:
-    PYTHON: "C:\\Python27"
-    PYTHON_VERSION: "2.7.8"
-    PYTHON_ARCH: "32"
+    PYTHON: "C:\\Python36-x64"
+    PYTHON_ARCH: "64"
 
     # Assume we are only building on tagged commits.
     # Will not work on untagged commits.
@@ -27,10 +26,6 @@ environment:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
           CONAN_UPLOAD: ${AQUAVEO_CONAN}
-          PYTHON: "C:\\Python36-x64"
-#        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-#          CONAN_VISUAL_VERSIONS: 15
-#          CONAN_UPLOAD: ${AQUAVEO_CONAN}
 
 
 install:
@@ -40,6 +35,16 @@ install:
   - conan user # It creates the conan data directory
 
 build_script:
+  - ps: |
+      if ($env:APPVEYOR_REPO_TAG -eq 'false') { 
+        $env:XMS_VERSION = 'Dev'
+      } else { 
+        $env:XMS_VERSION = $env:APPVEYOR_REPO_TAG_NAME 
+        $env:XMS_RUN_TESTS = 'None'
+      }
+      $env:CONAN_REFERENCE = 'xmscore/'+$env:XMS_VERSION
+      echo 'XMS_VERSION: '+$env:XMS_VERSION
+      echo 'CONAN_REFERENCE: '+$env:CONAN_REFERENCE
   - python build.py
 
 test_script:
