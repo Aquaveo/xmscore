@@ -143,6 +143,7 @@ if(IS_PYTHON_BUILD)
 
   # Pybind11 sources
   set(xmscore_py
+    xmscore/python/cxxtest.cpp
     xmscore/python/xmscore_py.cpp
     # Misc
     xmscore/python/misc/misc_py.cpp
