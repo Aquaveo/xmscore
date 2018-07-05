@@ -35,7 +35,7 @@ class XmscoreConan(ConanFile):
         if s_compiler == "gcc" and float(s_compiler_version.value) < 5.0:
             raise ConanException("GCC < 5.0 is not supported.")
 
-        if s_compiler == "apple-clang" and s_os == 'Darwin' and float(s_compiler_version.value) < 9.0:
+        if s_compiler == "apple-clang" and s_os == 'Macos' and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
 
     def requirements(self):
