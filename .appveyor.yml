@@ -2,7 +2,7 @@ build: false
 version: 1.0.0-{build}  # This version is somewhat arbitrary. Does not affect the version of the package.
 
 environment:
-    PYTHON: "C:\\Python36-x64"
+    PYTHON: "C:\\Python35-x64"
     PYTHON_ARCH: "64"
 
     # Assume we are only building on tagged commits.
