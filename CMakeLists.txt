@@ -1,8 +1,13 @@
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_POSITION_INDEPENDENT_CODE True)
 cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
+
+if (APPLE)  
+  set(CMAKE_POSITION_INDEPENDENT_CODE False)
+else()
+  set(CMAKE_POSITION_INDEPENDENT_CODE True)
+endif()
 
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Enable/Disable PYTHON")
