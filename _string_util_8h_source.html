@@ -145,114 +145,111 @@ $(document).ready(function(){initNavTree('_string_util_8h_source.html','');});
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  STR_WITHCOMMAS = 0x10 </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classxms_1_1_temp2_digit_exponents.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="classxms_1_1_temp2_digit_exponents.html">Temp2DigitExponents</a></div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classxms_1_1_st_temp2_digit_exponents.html">   45</a></span>&#160;<span class="keyword">class </span><a class="code" href="classxms_1_1_st_temp2_digit_exponents.html">StTemp2DigitExponents</a></div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <a class="code" href="classxms_1_1_temp2_digit_exponents.html#ad65d270621b8737b6f56ecfc8525f4fc">Temp2DigitExponents</a>();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="classxms_1_1_temp2_digit_exponents.html#a2103f499a47e0b78c9d3fcecd511de58">~Temp2DigitExponents</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <a class="code" href="classxms_1_1_st_temp2_digit_exponents.html#a02180bdc964b3c70e05b723f1cb75894">StTemp2DigitExponents</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="classxms_1_1_st_temp2_digit_exponents.html#a6c3f0dc95e653a725b26cd5557497403">~StTemp2DigitExponents</a>();</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classxms_1_1_temp2_digit_exponents.html#a7678fdab2ebc6904b4438be2020025e1">   52</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classxms_1_1_temp2_digit_exponents.html#a7678fdab2ebc6904b4438be2020025e1">m_oldOutputFormat</a>; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classxms_1_1_st_temp2_digit_exponents.html#ae38d95e4e658a0a1566100fc45ba0fab">   52</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="classxms_1_1_st_temp2_digit_exponents.html#ae38d95e4e658a0a1566100fc45ba0fab">m_oldOutputFormat</a>; </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">namespace </span>xus</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{ <span class="comment">// (xms string utilities)</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* wspace = <span class="stringliteral">&quot; \t\n\f\r\v&quot;</span>; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">// Convenience functions</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* ST_WHITESPACE = <span class="stringliteral">&quot; \t\n\f\r\v&quot;</span>; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">// Convenience functions</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">bool</span> stEqualNoCase(<span class="keyword">const</span> std::string&amp;, <span class="keyword">const</span> std::string&amp;);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">bool</span> stFindNoCase(<span class="keyword">const</span> std::string&amp;, <span class="keyword">const</span> std::string&amp;);</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">bool</span> equal_no_case(<span class="keyword">const</span> std::string&amp;, <span class="keyword">const</span> std::string&amp;);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keywordtype">bool</span> find_no_case(<span class="keyword">const</span> std::string&amp;, <span class="keyword">const</span> std::string&amp;);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;VEC_STR split(<span class="keyword">const</span> std::string&amp; source, <span class="keyword">const</span> std::string&amp; a_delimiterList = wspace);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;VEC_STR explode(<span class="keyword">const</span> std::string&amp; source, <span class="keyword">const</span> std::string&amp; a_delimiterString);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;std::string implode(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; source, <span class="keyword">const</span> std::string&amp; delim);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">int</span> su_indexOfElem(<span class="keyword">const</span> VEC_STR&amp; a_container, <span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;std::string&amp; left(std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;std::string left_copy(<span class="keyword">const</span> std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;std::string&amp; <span class="keyword">remove</span>(std::string&amp; str, <span class="keywordtype">char</span> source);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;std::string remove_copy(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">char</span> source);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;std::string&amp; replace(std::string&amp; str, <span class="keywordtype">char</span> source, <span class="keywordtype">char</span> dest);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;std::string&amp; replace(std::string&amp; str, <span class="keyword">const</span> std::string&amp; source, <span class="keyword">const</span> std::string&amp; dest);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;std::string replace_copy(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">char</span> source, <span class="keywordtype">char</span> dest);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;std::string replace_copy(<span class="keyword">const</span> std::string&amp; str,</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                         <span class="keyword">const</span> std::string&amp; source,</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                         <span class="keyword">const</span> std::string&amp; dest);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;std::string&amp; right(std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;std::string right_copy(<span class="keyword">const</span> std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;std::string su_simplified(<span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">bool</span> su_iContains(<span class="keyword">const</span> std::string&amp; a_container, <span class="keyword">const</span> std::string&amp; a_substr);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">bool</span> su_vecContainsStr(<span class="keyword">const</span> VEC_STR&amp; a_container, <span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;std::string&amp; to_lower(std::string&amp; str);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;std::string to_lower_copy(<span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;std::string&amp; to_upper(std::string&amp; str);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;std::string to_upper_copy(<span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;std::string&amp; trim(std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = wspace);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;std::string trim_copy(<span class="keyword">const</span> std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = wspace);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;std::string&amp; trim_left(std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = wspace);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;std::string&amp; trim_right(std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = wspace);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// Misc</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> count_char(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">char</span> c);</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">bool</span> numeric(<span class="keyword">const</span> std::string&amp; str);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keywordtype">bool</span> sci_notation(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">bool</span> check_numeric = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span> ChangeExtendedASCII(std::string&amp; str, <span class="keywordtype">bool</span> to_extended);</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">bool</span> MakeUnique(<span class="keyword">const</span> std::set&lt;std::string&gt;&amp; set_str, std::string&amp; str);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">bool</span> str2int(<span class="keyword">const</span> std::string&amp;, <span class="keywordtype">int</span>&amp; i, <span class="keywordtype">int</span> base = 0);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">bool</span> str2dbl(<span class="keyword">const</span> std::string&amp;, <span class="keywordtype">double</span>&amp; d);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keywordtype">int</span> Prec(<span class="keywordtype">double</span> value, <span class="keywordtype">int</span>&amp; flags, <span class="keywordtype">int</span> length = 15);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;} <span class="comment">// end namespace xus</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">// Number to string</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;VecStr stSplit(<span class="keyword">const</span> std::string&amp; source,</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;               <span class="keyword">const</span> std::string&amp; a_delimiterList = ST_WHITESPACE,</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;               <span class="keywordtype">bool</span> a_delimiterCompressOn = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;VecStr stExplode(<span class="keyword">const</span> std::string&amp; source, <span class="keyword">const</span> std::string&amp; a_delimiterString);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;std::string stImplode(<span class="keyword">const</span> std::vector&lt;std::string&gt;&amp; source, <span class="keyword">const</span> std::string&amp; delim);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">int</span> stIndexOfElem(<span class="keyword">const</span> VecStr&amp; a_container, <span class="keyword">const</span> std::string&amp; str);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;std::string&amp; stLeft(std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;std::string stLeftCopy(<span class="keyword">const</span> std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;std::string&amp; stRemove(std::string&amp; str, <span class="keywordtype">char</span> source);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;std::string stRemoveCopy(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">char</span> source);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;std::string&amp; stReplace(std::string&amp; str, <span class="keywordtype">char</span> source, <span class="keywordtype">char</span> dest);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;std::string&amp; stReplace(std::string&amp; str, <span class="keyword">const</span> std::string&amp; source, <span class="keyword">const</span> std::string&amp; dest);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;std::string stReplaceCopy(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">char</span> source, <span class="keywordtype">char</span> dest);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;std::string stReplaceCopy(<span class="keyword">const</span> std::string&amp; str,</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                          <span class="keyword">const</span> std::string&amp; source,</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                          <span class="keyword">const</span> std::string&amp; dest);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;std::string&amp; stRight(std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;std::string stRightCopy(<span class="keyword">const</span> std::string&amp; a_source, <span class="keywordtype">size_t</span> <span class="keyword">const</span> a_length);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;std::string stSimplified(<span class="keyword">const</span> std::string&amp; str);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">bool</span> stContains(<span class="keyword">const</span> std::string&amp; a_container, <span class="keyword">const</span> std::string&amp; a_substr);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">bool</span> stVectorContainsString(<span class="keyword">const</span> VecStr&amp; a_container, <span class="keyword">const</span> std::string&amp; str);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;std::string&amp; stToLower(std::string&amp; str);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;std::string stToLowerCopy(<span class="keyword">const</span> std::string&amp; str);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;std::string&amp; stToUpper(std::string&amp; str);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;std::string stToUpperCopy(<span class="keyword">const</span> std::string&amp; str);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;std::string&amp; stTrim(std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = ST_WHITESPACE);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;std::string stTrimCopy(<span class="keyword">const</span> std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = ST_WHITESPACE);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;std::string&amp; stTrimLeft(std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = ST_WHITESPACE);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;std::string&amp; stTrimRight(std::string&amp; str, <span class="keyword">const</span> std::string&amp; delim = ST_WHITESPACE);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">// Misc</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> stCountChar(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">char</span> c);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keywordtype">bool</span> stNumeric(<span class="keyword">const</span> std::string&amp; str);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">bool</span> stScientificNotation(<span class="keyword">const</span> std::string&amp; str, <span class="keywordtype">bool</span> check_numeric = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keywordtype">void</span> stChangeExtendedAscii(std::string&amp; str, <span class="keywordtype">bool</span> to_extended);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">bool</span> stMakeUnique(<span class="keyword">const</span> std::set&lt;std::string&gt;&amp; set_str, std::string&amp; str);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">bool</span> stStringToInt(<span class="keyword">const</span> std::string&amp;, <span class="keywordtype">int</span>&amp; i, <span class="keywordtype">int</span> base = 0);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">bool</span> stStringToDouble(<span class="keyword">const</span> std::string&amp;, <span class="keywordtype">double</span>&amp; d);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">int</span> stPrecision(<span class="keywordtype">double</span> value, <span class="keywordtype">int</span>&amp; flags, <span class="keywordtype">int</span> length = 15);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">// Number to string</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;std::string STRstd(<span class="keywordtype">double</span> a_value, <span class="keywordtype">int</span> a_n = -1, <span class="keywordtype">int</span> width = 15, <span class="keywordtype">int</span> flags = 0);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;std::string STRstd(<span class="keywordtype">float</span> a_value, <span class="keywordtype">int</span> a_n = -1, <span class="keywordtype">int</span> width = 15, <span class="keywordtype">int</span> flags = 0);</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;std::string STRstd(<span class="keywordtype">double</span> a_value, <span class="keywordtype">int</span> a_n = -1, <span class="keywordtype">int</span> width = 15, <span class="keywordtype">int</span> flags = 0);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;std::string STRstd(<span class="keywordtype">float</span> a_value, <span class="keywordtype">int</span> a_n = -1, <span class="keywordtype">int</span> width = 15, <span class="keywordtype">int</span> flags = 0);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">//----- OVERLOAD ---------------------------------------------------------------</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keyword">inline</span> std::string STRstd(T a_value, <span class="keywordtype">int</span> a_n = 0, <span class="keywordtype">int</span> width = 0, <span class="keywordtype">int</span> flags = 0)</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  static_assert(std::is_integral&lt;T&gt;::value, <span class="stringliteral">&quot;Not an integral (integer) type&quot;</span>);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  a_n = ((flags &amp; STR_SCIENTIFIC) ? -1 : 0);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  <span class="keywordflow">return</span> STRstd((<span class="keywordtype">double</span>)a_value, a_n, width, flags);</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;std::string STRstd(std::string a_value);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="classxms_1_1_xm_comma_numpunct.html">  141</a></span>&#160;<span class="keyword">class </span><a class="code" href="classxms_1_1_xm_comma_numpunct.html">XmCommaNumpunct</a> : <span class="keyword">public</span> std::numpunct&lt;char&gt;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;{</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">char</span> <a class="code" href="classxms_1_1_xm_comma_numpunct.html#a2e9b9ae6529f274a1cacbd30cc9214eb">do_thousands_sep</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <span class="keyword">virtual</span> std::string <a class="code" href="classxms_1_1_xm_comma_numpunct.html#a62a7e8f7a171a092a84a9b44d9a586d0">do_grouping</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;}; <span class="comment">// class XmCommaNumpunct</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;} <span class="comment">// end namespace xms</span></div>
-<div class="ttc" id="classxms_1_1_xm_comma_numpunct_html"><div class="ttname"><a href="classxms_1_1_xm_comma_numpunct.html">xms::XmCommaNumpunct</a></div><div class="ttdoc">Used to format numbers with comma separators. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8h_source.html#l00141">StringUtil.h:141</a></div></div>
-<div class="ttc" id="classxms_1_1_temp2_digit_exponents_html_ad65d270621b8737b6f56ecfc8525f4fc"><div class="ttname"><a href="classxms_1_1_temp2_digit_exponents.html#ad65d270621b8737b6f56ecfc8525f4fc">xms::Temp2DigitExponents::Temp2DigitExponents</a></div><div class="ttdeci">Temp2DigitExponents()</div><div class="ttdoc">Temporarily output 2-digit exponents for floating point numbers to match C++ standard. Should be able to remove all instances of this class upon moving to Visual Studio 2015. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l00048">StringUtil.cpp:48</a></div></div>
-<div class="ttc" id="classxms_1_1_temp2_digit_exponents_html_a2103f499a47e0b78c9d3fcecd511de58"><div class="ttname"><a href="classxms_1_1_temp2_digit_exponents.html#a2103f499a47e0b78c9d3fcecd511de58">xms::Temp2DigitExponents::~Temp2DigitExponents</a></div><div class="ttdeci">~Temp2DigitExponents()</div><div class="ttdoc">Revert back to 3-digit exponents for pre-Visual Studio 2015. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l00061">StringUtil.cpp:61</a></div></div>
-<div class="ttc" id="classxms_1_1_temp2_digit_exponents_html_a7678fdab2ebc6904b4438be2020025e1"><div class="ttname"><a href="classxms_1_1_temp2_digit_exponents.html#a7678fdab2ebc6904b4438be2020025e1">xms::Temp2DigitExponents::m_oldOutputFormat</a></div><div class="ttdeci">int m_oldOutputFormat</div><div class="ttdoc">Saved output format to restore to orignal value. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8h_source.html#l00052">StringUtil.h:52</a></div></div>
-<div class="ttc" id="classxms_1_1_xm_comma_numpunct_html_a62a7e8f7a171a092a84a9b44d9a586d0"><div class="ttname"><a href="classxms_1_1_xm_comma_numpunct.html#a62a7e8f7a171a092a84a9b44d9a586d0">xms::XmCommaNumpunct::do_grouping</a></div><div class="ttdeci">virtual std::string do_grouping() const </div><div class="ttdoc">Returns the string defining how many numbers between separators. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l01306">StringUtil.cpp:1306</a></div></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">//----- OVERLOAD ---------------------------------------------------------------</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="comment"></span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">inline</span> std::string STRstd(T a_value, <span class="keywordtype">int</span> a_n = 0, <span class="keywordtype">int</span> width = 0, <span class="keywordtype">int</span> flags = 0)</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  static_assert(std::is_integral&lt;T&gt;::value, <span class="stringliteral">&quot;Not an integral (integer) type&quot;</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  a_n = ((flags &amp; STR_SCIENTIFIC) ? -1 : 0);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keywordflow">return</span> STRstd((<span class="keywordtype">double</span>)a_value, a_n, width, flags);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;std::string STRstd(std::string a_value);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="classxms_1_1_st_comma_numpunct.html">  138</a></span>&#160;<span class="keyword">class </span><a class="code" href="classxms_1_1_st_comma_numpunct.html">StCommaNumpunct</a> : <span class="keyword">public</span> std::numpunct&lt;char&gt;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;{</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">char</span> <a class="code" href="classxms_1_1_st_comma_numpunct.html#a94e9b55f55470d2bb10f1451bff1d172">do_thousands_sep</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;  <span class="keyword">virtual</span> std::string <a class="code" href="classxms_1_1_st_comma_numpunct.html#aa2069686f9a15d91b346c3988be3a954">do_grouping</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;}; <span class="comment">// class StCommaNumpunct</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;} <span class="comment">// end namespace xms</span></div>
+<div class="ttc" id="classxms_1_1_st_temp2_digit_exponents_html_ae38d95e4e658a0a1566100fc45ba0fab"><div class="ttname"><a href="classxms_1_1_st_temp2_digit_exponents.html#ae38d95e4e658a0a1566100fc45ba0fab">xms::StTemp2DigitExponents::m_oldOutputFormat</a></div><div class="ttdeci">int m_oldOutputFormat</div><div class="ttdoc">Saved output format to restore to orignal value. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8h_source.html#l00052">StringUtil.h:52</a></div></div>
+<div class="ttc" id="classxms_1_1_st_comma_numpunct_html_aa2069686f9a15d91b346c3988be3a954"><div class="ttname"><a href="classxms_1_1_st_comma_numpunct.html#aa2069686f9a15d91b346c3988be3a954">xms::StCommaNumpunct::do_grouping</a></div><div class="ttdeci">virtual std::string do_grouping() const </div><div class="ttdoc">Returns the string defining how many numbers between separators. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l01334">StringUtil.cpp:1334</a></div></div>
+<div class="ttc" id="classxms_1_1_st_temp2_digit_exponents_html_a02180bdc964b3c70e05b723f1cb75894"><div class="ttname"><a href="classxms_1_1_st_temp2_digit_exponents.html#a02180bdc964b3c70e05b723f1cb75894">xms::StTemp2DigitExponents::StTemp2DigitExponents</a></div><div class="ttdeci">StTemp2DigitExponents()</div><div class="ttdoc">Temporarily output 2-digit exponents for floating point numbers to match C++ standard. Should be able to remove all instances of this class upon moving to Visual Studio 2015. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l00048">StringUtil.cpp:48</a></div></div>
+<div class="ttc" id="classxms_1_1_st_comma_numpunct_html"><div class="ttname"><a href="classxms_1_1_st_comma_numpunct.html">xms::StCommaNumpunct</a></div><div class="ttdoc">Used to format numbers with comma separators. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8h_source.html#l00138">StringUtil.h:138</a></div></div>
+<div class="ttc" id="classxms_1_1_st_temp2_digit_exponents_html"><div class="ttname"><a href="classxms_1_1_st_temp2_digit_exponents.html">xms::StTemp2DigitExponents</a></div><div class="ttdoc">When constructed std::cout will temporarily output 2-digit exponents for floating point numbers...</div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8h_source.html#l00045">StringUtil.h:45</a></div></div>
+<div class="ttc" id="classxms_1_1_st_comma_numpunct_html_a94e9b55f55470d2bb10f1451bff1d172"><div class="ttname"><a href="classxms_1_1_st_comma_numpunct.html#a94e9b55f55470d2bb10f1451bff1d172">xms::StCommaNumpunct::do_thousands_sep</a></div><div class="ttdeci">virtual char do_thousands_sep() const </div><div class="ttdoc">Returns the character used to separate numbers by thousands. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l01326">StringUtil.cpp:1326</a></div></div>
+<div class="ttc" id="classxms_1_1_st_temp2_digit_exponents_html_a6c3f0dc95e653a725b26cd5557497403"><div class="ttname"><a href="classxms_1_1_st_temp2_digit_exponents.html#a6c3f0dc95e653a725b26cd5557497403">xms::StTemp2DigitExponents::~StTemp2DigitExponents</a></div><div class="ttdeci">~StTemp2DigitExponents()</div><div class="ttdoc">Revert back to 3-digit exponents for pre-Visual Studio 2015. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l00061">StringUtil.cpp:61</a></div></div>
 <div class="ttc" id="vector_8h_html"><div class="ttname"><a href="vector_8h.html">vector.h</a></div><div class="ttdoc">Vector types for convenience. </div></div>
-<div class="ttc" id="classxms_1_1_temp2_digit_exponents_html"><div class="ttname"><a href="classxms_1_1_temp2_digit_exponents.html">xms::Temp2DigitExponents</a></div><div class="ttdoc">When constructed std::cout will temporarily output 2-digit exponents for floating point numbers...</div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8h_source.html#l00045">StringUtil.h:45</a></div></div>
-<div class="ttc" id="classxms_1_1_xm_comma_numpunct_html_a2e9b9ae6529f274a1cacbd30cc9214eb"><div class="ttname"><a href="classxms_1_1_xm_comma_numpunct.html#a2e9b9ae6529f274a1cacbd30cc9214eb">xms::XmCommaNumpunct::do_thousands_sep</a></div><div class="ttdeci">virtual char do_thousands_sep() const </div><div class="ttdoc">Returns the character used to separate numbers by thousands. </div><div class="ttdef"><b>Definition:</b> <a href="_string_util_8cpp_source.html#l01298">StringUtil.cpp:1298</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="_string_util_8h.html">StringUtil.h</a></li>
-    <li class="footer">Generated on Fri Jul 6 2018 17:00:42 for xmscore by
+    <li class="footer">Generated on Fri Jul 6 2018 21:09:11 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

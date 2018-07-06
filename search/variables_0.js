@@ -8,7 +8,7 @@ var searchData=
   ['m_5finfo',['m_info',['../class_mock_observer.html#abd027f414e13a3fdb149f76d5be2e4d9',1,'MockObserver']]],
   ['m_5fitemcount',['m_itemCount',['../classxms_1_1_progress.html#ad0df175c22563c4a2d4de689effc1234',1,'xms::Progress']]],
   ['m_5fmessages',['m_messages',['../class_mock_progress_listener.html#ad04cb01d849d816295a88ef0c495e61c',1,'MockProgressListener']]],
-  ['m_5foldoutputformat',['m_oldOutputFormat',['../classxms_1_1_temp2_digit_exponents.html#a7678fdab2ebc6904b4438be2020025e1',1,'xms::Temp2DigitExponents']]],
+  ['m_5foldoutputformat',['m_oldOutputFormat',['../classxms_1_1_st_temp2_digit_exponents.html#ae38d95e4e658a0a1566100fc45ba0fab',1,'xms::StTemp2DigitExponents']]],
   ['m_5fp',['m_p',['../classxms_1_1_observer.html#a9f5c846c1d73b1306bdfd23ef06190ac',1,'xms::Observer']]],
   ['m_5fpercentcomplete',['m_percentComplete',['../classxms_1_1_observer_1_1impl.html#ad1716972789e4a3599f18bf96cc464ea',1,'xms::Observer::impl::m_percentComplete()'],['../class_mock_observer.html#af0a06385a1f399ca99490140fe14dd1b',1,'MockObserver::m_percentComplete()']]],
   ['m_5fprog',['m_prog',['../class_mock_mesher.html#ad20d9d1963a422214083cc34ab511fe6',1,'MockMesher']]],

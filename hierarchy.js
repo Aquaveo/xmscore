@@ -8,7 +8,7 @@ var hierarchy =
     [ "xms::ltPt3_2D< T >", "classxms_1_1lt_pt3__2_d.html", null ],
     [ "MockMesher", "class_mock_mesher.html", null ],
     [ "numpunct", null, [
-      [ "xms::XmCommaNumpunct", "classxms_1_1_xm_comma_numpunct.html", null ]
+      [ "xms::StCommaNumpunct", "classxms_1_1_st_comma_numpunct.html", null ]
     ] ],
     [ "Observer", null, [
       [ "python.misc.observer_pyt.MockObserver", "classpython_1_1misc_1_1observer__pyt_1_1_mock_observer.html", null ]
@@ -31,7 +31,7 @@ var hierarchy =
     [ "xms::Singleton< XmLog >", "classxms_1_1_singleton.html", [
       [ "xms::XmLog", "classxms_1_1_xm_log.html", null ]
     ] ],
-    [ "xms::Temp2DigitExponents", "classxms_1_1_temp2_digit_exponents.html", null ],
+    [ "xms::StTemp2DigitExponents", "classxms_1_1_st_temp2_digit_exponents.html", null ],
     [ "TestCase", null, [
       [ "python.misc.observer_pyt.TestObserver", "classpython_1_1misc_1_1observer__pyt_1_1_test_observer.html", null ]
     ] ],

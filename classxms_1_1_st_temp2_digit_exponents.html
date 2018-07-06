@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>xmscore: Member List</title>
+<title>xmscore: xms::StTemp2DigitExponents Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('classxms_1_1_xm_comma_numpunct.html','');});
+$(document).ready(function(){initNavTree('classxms_1_1_st_temp2_digit_exponents.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -105,21 +105,51 @@ $(document).ready(function(){initNavTree('classxms_1_1_xm_comma_numpunct.html','
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="classxms_1_1_st_temp2_digit_exponents-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">xms::XmCommaNumpunct Member List</div>  </div>
+<div class="title">xms::StTemp2DigitExponents Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This is the complete list of members for <a class="el" href="classxms_1_1_xm_comma_numpunct.html">xms::XmCommaNumpunct</a>, including all inherited members.</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="classxms_1_1_xm_comma_numpunct.html#a62a7e8f7a171a092a84a9b44d9a586d0">do_grouping</a>() const </td><td class="entry"><a class="el" href="classxms_1_1_xm_comma_numpunct.html">xms::XmCommaNumpunct</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classxms_1_1_xm_comma_numpunct.html#a2e9b9ae6529f274a1cacbd30cc9214eb">do_thousands_sep</a>() const </td><td class="entry"><a class="el" href="classxms_1_1_xm_comma_numpunct.html">xms::XmCommaNumpunct</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
-</table></div><!-- contents -->
+<p>When constructed std::cout will temporarily output 2-digit exponents for floating point numbers. Destructor will revert back. Should be able to remove this upon changing to Visual Studio 2015.  
+ <a href="classxms_1_1_st_temp2_digit_exponents.html#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a02180bdc964b3c70e05b723f1cb75894"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02180bdc964b3c70e05b723f1cb75894"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_st_temp2_digit_exponents.html#a02180bdc964b3c70e05b723f1cb75894">StTemp2DigitExponents</a> ()</td></tr>
+<tr class="memdesc:a02180bdc964b3c70e05b723f1cb75894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Temporarily output 2-digit exponents for floating point numbers to match C++ standard. Should be able to remove all instances of this class upon moving to Visual Studio 2015. <br/></td></tr>
+<tr class="separator:a02180bdc964b3c70e05b723f1cb75894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c3f0dc95e653a725b26cd5557497403"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c3f0dc95e653a725b26cd5557497403"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_st_temp2_digit_exponents.html#a6c3f0dc95e653a725b26cd5557497403">~StTemp2DigitExponents</a> ()</td></tr>
+<tr class="memdesc:a6c3f0dc95e653a725b26cd5557497403"><td class="mdescLeft">&#160;</td><td class="mdescRight">Revert back to 3-digit exponents for pre-Visual Studio 2015. <br/></td></tr>
+<tr class="separator:a6c3f0dc95e653a725b26cd5557497403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ae38d95e4e658a0a1566100fc45ba0fab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae38d95e4e658a0a1566100fc45ba0fab"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_st_temp2_digit_exponents.html#ae38d95e4e658a0a1566100fc45ba0fab">m_oldOutputFormat</a></td></tr>
+<tr class="memdesc:ae38d95e4e658a0a1566100fc45ba0fab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saved output format to restore to orignal value. <br/></td></tr>
+<tr class="separator:ae38d95e4e658a0a1566100fc45ba0fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>When constructed std::cout will temporarily output 2-digit exponents for floating point numbers. Destructor will revert back. Should be able to remove this upon changing to Visual Studio 2015. </p>
+
+<p>Definition at line <a class="el" href="_string_util_8h_source.html#l00045">45</a> of file <a class="el" href="_string_util_8h_source.html">StringUtil.h</a>.</p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
+<li>/home/travis/build/Aquaveo/xmscore/xmscore/misc/<a class="el" href="_string_util_8h_source.html">StringUtil.h</a></li>
+<li>/home/travis/build/Aquaveo/xmscore/xmscore/misc/<a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Jul 6 2018 17:00:43 for xmscore by
+    <li class="navelem"><b>xms</b></li><li class="navelem"><a class="el" href="classxms_1_1_st_temp2_digit_exponents.html">StTemp2DigitExponents</a></li>
+    <li class="footer">Generated on Fri Jul 6 2018 21:09:12 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

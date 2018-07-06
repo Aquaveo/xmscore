@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['temp2digitexponents',['Temp2DigitExponents',['../classxms_1_1_temp2_digit_exponents.html',1,'xms']]],
-  ['temp2digitexponents',['Temp2DigitExponents',['../classxms_1_1_temp2_digit_exponents.html#ad65d270621b8737b6f56ecfc8525f4fc',1,'xms::Temp2DigitExponents']]],
   ['test1',['test1',['../class_xm_error_unit_tests.html#a0b80b63b95b00204de6892c6cb3017e6',1,'XmErrorUnitTests']]],
   ['test_5fstr2int',['test_str2int',['../class_string_util_unit_tests.html#a093a7705670697ea101194b9bceca947',1,'StringUtilUnitTests']]],
   ['test_5fxm_5fassert',['test_XM_ASSERT',['../class_xm_error_unit_tests.html#a120631a18381195cf7299b00abe0d0d1',1,'XmErrorUnitTests']]],

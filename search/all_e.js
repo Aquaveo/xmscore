@@ -16,8 +16,11 @@ var searchData=
   ['singleton_2eh',['Singleton.h',['../_singleton_8h.html',1,'']]],
   ['singleton_3c_20xmlog_20_3e',['Singleton&lt; XmLog &gt;',['../classxms_1_1_singleton.html',1,'xms::Singleton&lt; XmLog &gt;'],['../classxms_1_1_xm_log.html#a7fb5edb11e589948eb870d1b327fa401',1,'xms::XmLog::Singleton&lt; XmLog &gt;()']]],
   ['stackederrtostream',['StackedErrToStream',['../structxms_1_1_xm_log_1_1_impl.html#aa02f112955c88daaff87726286897b9d',1,'xms::XmLog::Impl']]],
+  ['stcommanumpunct',['StCommaNumpunct',['../classxms_1_1_st_comma_numpunct.html',1,'xms']]],
   ['stringutil_2ecpp',['StringUtil.cpp',['../_string_util_8cpp.html',1,'']]],
   ['stringutil_2eh',['StringUtil.h',['../_string_util_8h.html',1,'']]],
   ['stringutil_2et_2eh',['StringUtil.t.h',['../_string_util_8t_8h.html',1,'']]],
-  ['stringutilunittests',['StringUtilUnitTests',['../class_string_util_unit_tests.html',1,'']]]
+  ['stringutilunittests',['StringUtilUnitTests',['../class_string_util_unit_tests.html',1,'']]],
+  ['sttemp2digitexponents',['StTemp2DigitExponents',['../classxms_1_1_st_temp2_digit_exponents.html',1,'xms']]],
+  ['sttemp2digitexponents',['StTemp2DigitExponents',['../classxms_1_1_st_temp2_digit_exponents.html#a02180bdc964b3c70e05b723f1cb75894',1,'xms::StTemp2DigitExponents']]]
 ];

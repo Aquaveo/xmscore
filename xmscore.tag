@@ -224,8 +224,8 @@
     <path>/home/travis/build/Aquaveo/xmscore/xmscore/misc/</path>
     <filename>_string_util_8h</filename>
     <includes id="vector_8h" name="vector.h" local="no" imported="no">xmscore/stl/vector.h</includes>
-    <class kind="class">xms::Temp2DigitExponents</class>
-    <class kind="class">xms::XmCommaNumpunct</class>
+    <class kind="class">xms::StTemp2DigitExponents</class>
+    <class kind="class">xms::StCommaNumpunct</class>
   </compound>
   <compound kind="file">
     <name>StringUtil.t.h</name>
@@ -1606,9 +1606,9 @@
     </member>
     <member kind="function">
       <type>double</type>
-      <name>ElaspedTimeInSeconds</name>
+      <name>ElapsedTimeInSeconds</name>
       <anchorfile>classxms_1_1_observer_1_1impl.html</anchorfile>
-      <anchor>a731f09732931bfb238e9575049960fb5</anchor>
+      <anchor>a771e88ca3833f7216df22bb69ba996bf</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
@@ -1771,45 +1771,45 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>xms::Temp2DigitExponents</name>
-    <filename>classxms_1_1_temp2_digit_exponents.html</filename>
+    <name>xms::StTemp2DigitExponents</name>
+    <filename>classxms_1_1_st_temp2_digit_exponents.html</filename>
     <member kind="function">
       <type></type>
-      <name>Temp2DigitExponents</name>
-      <anchorfile>classxms_1_1_temp2_digit_exponents.html</anchorfile>
-      <anchor>ad65d270621b8737b6f56ecfc8525f4fc</anchor>
+      <name>StTemp2DigitExponents</name>
+      <anchorfile>classxms_1_1_st_temp2_digit_exponents.html</anchorfile>
+      <anchor>a02180bdc964b3c70e05b723f1cb75894</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="function">
       <type></type>
-      <name>~Temp2DigitExponents</name>
-      <anchorfile>classxms_1_1_temp2_digit_exponents.html</anchorfile>
-      <anchor>a2103f499a47e0b78c9d3fcecd511de58</anchor>
+      <name>~StTemp2DigitExponents</name>
+      <anchorfile>classxms_1_1_st_temp2_digit_exponents.html</anchorfile>
+      <anchor>a6c3f0dc95e653a725b26cd5557497403</anchor>
       <arglist>()</arglist>
     </member>
     <member kind="variable" protection="private">
       <type>int</type>
       <name>m_oldOutputFormat</name>
-      <anchorfile>classxms_1_1_temp2_digit_exponents.html</anchorfile>
-      <anchor>a7678fdab2ebc6904b4438be2020025e1</anchor>
+      <anchorfile>classxms_1_1_st_temp2_digit_exponents.html</anchorfile>
+      <anchor>ae38d95e4e658a0a1566100fc45ba0fab</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="class">
-    <name>xms::XmCommaNumpunct</name>
-    <filename>classxms_1_1_xm_comma_numpunct.html</filename>
+    <name>xms::StCommaNumpunct</name>
+    <filename>classxms_1_1_st_comma_numpunct.html</filename>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual char</type>
       <name>do_thousands_sep</name>
-      <anchorfile>classxms_1_1_xm_comma_numpunct.html</anchorfile>
-      <anchor>a2e9b9ae6529f274a1cacbd30cc9214eb</anchor>
+      <anchorfile>classxms_1_1_st_comma_numpunct.html</anchorfile>
+      <anchor>a94e9b55f55470d2bb10f1451bff1d172</anchor>
       <arglist>() const </arglist>
     </member>
     <member kind="function" protection="protected" virtualness="virtual">
       <type>virtual std::string</type>
       <name>do_grouping</name>
-      <anchorfile>classxms_1_1_xm_comma_numpunct.html</anchorfile>
-      <anchor>a62a7e8f7a171a092a84a9b44d9a586d0</anchor>
+      <anchorfile>classxms_1_1_st_comma_numpunct.html</anchorfile>
+      <anchor>aa2069686f9a15d91b346c3988be3a954</anchor>
       <arglist>() const </arglist>
     </member>
   </compound>

@@ -54,7 +54,6 @@ var searchData=
   ['xm_5fsuccess',['XM_SUCCESS',['../xmstype_8h.html#a7f96d1229a7678847a8bb97c0d51af50',1,'xmstype.h']]],
   ['xm_5funlikely',['XM_UNLIKELY',['../_xm_error_8h.html#a59af96c2c6fcfdc0d6d677e04ac41945',1,'XmError.h']]],
   ['xm_5fzero_5ftol',['XM_ZERO_TOL',['../xmstype_8h.html#a2a0754bc3b4dbca0eb229608e31a4550',1,'xmstype.h']]],
-  ['xmcommanumpunct',['XmCommaNumpunct',['../classxms_1_1_xm_comma_numpunct.html',1,'xms']]],
   ['xmconst_2eh',['XmConst.h',['../_xm_const_8h.html',1,'']]],
   ['xmerror_2ecpp',['XmError.cpp',['../_xm_error_8cpp.html',1,'']]],
   ['xmerror_2eh',['XmError.h',['../_xm_error_8h.html',1,'']]],

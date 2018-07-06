@@ -155,7 +155,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a9117ce56380817da4d907c30ff229e9c">BeginOperationString</a>();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a149ecbc4f1ee7fbd718da8f9b88c5fd2">EndOperation</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">double</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a731f09732931bfb238e9575049960fb5">ElaspedTimeInSeconds</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordtype">double</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf">ElapsedTimeInSeconds</a>();</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keywordtype">double</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a4eaed90dc0e25cf1119fc449aea1fcf6">EstimatedTimeRemainingInSec</a>(<span class="keywordtype">double</span> a_percentComplete, <span class="keywordtype">double</span> a_elapsedTime);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classxms_1_1_observer_1_1impl.html#a9d51e5ce2ef2a14b65b155d33cf892d1">   57</a></span>&#160;  boost::timer::cpu_timer <a class="code" href="classxms_1_1_observer_1_1impl.html#a9d51e5ce2ef2a14b65b155d33cf892d1">m_timer</a>; </div>
@@ -179,7 +179,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;{</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keywordflow">if</span> (a_percentComplete &gt; <a class="code" href="classxms_1_1_observer.html#a9f5c846c1d73b1306bdfd23ef06190ac">m_p</a>-&gt;m_percentComplete + .02)</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">double</span> elapsedTime = <a class="code" href="classxms_1_1_observer.html#a9f5c846c1d73b1306bdfd23ef06190ac">m_p</a>-&gt;ElaspedTimeInSeconds();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">double</span> elapsedTime = <a class="code" href="classxms_1_1_observer.html#a9f5c846c1d73b1306bdfd23ef06190ac">m_p</a>-&gt;ElapsedTimeInSeconds();</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="classxms_1_1_observer.html#a9f5c846c1d73b1306bdfd23ef06190ac">m_p</a>-&gt;m_percentComplete = a_percentComplete;</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <a class="code" href="classxms_1_1_observer.html#a3feec1a66db2c85d83d0de25dc12b3ea">OnProgressStatus</a>(a_percentComplete);</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
@@ -256,14 +256,14 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;} <span class="comment">// Observer::impl::EndOperation</span></div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classxms_1_1_observer_1_1impl.html#a731f09732931bfb238e9575049960fb5">  183</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a731f09732931bfb238e9575049960fb5">Observer::impl::ElaspedTimeInSeconds</a>()</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf">  183</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf">Observer::impl::ElapsedTimeInSeconds</a>()</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;{</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  boost::timer::cpu_times <span class="keyword">const</span> elapsed_times(m_timer.elapsed());</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;  boost::timer::nanosecond_type time = elapsed_times.wall;</div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span> NANO_PER_SEC = 1e9;</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <span class="keywordtype">double</span> seconds = time / NANO_PER_SEC;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keywordflow">return</span> seconds;</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;} <span class="comment">// Observer::impl::ElaspedTimeInSeconds</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;} <span class="comment">// Observer::impl::ElapsedTimeInSeconds</span></div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="classxms_1_1_observer_1_1impl.html#a4eaed90dc0e25cf1119fc449aea1fcf6">  197</a></span>&#160;<span class="keywordtype">double</span> <a class="code" href="classxms_1_1_observer_1_1impl.html#a4eaed90dc0e25cf1119fc449aea1fcf6">Observer::impl::EstimatedTimeRemainingInSec</a>(<span class="keywordtype">double</span> a_percentComplete, <span class="keywordtype">double</span> a_elapsedTime)</div>
@@ -295,186 +295,202 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="class_mock_observer.html#abd027f414e13a3fdb149f76d5be2e4d9">  225</a></span>&#160;  std::stringstream <a class="code" href="class_mock_observer.html#abd027f414e13a3fdb149f76d5be2e4d9">m_info</a>; </div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">  230</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">OnProgressStatus</a>(<span class="keywordtype">double</span> a_percentComplete)<span class="keyword"> override</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keyword">  </span>{</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    m_percentComplete = a_percentComplete;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_percentComplete * 100));</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Percent complete: &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;%.\n&quot;</span>;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;  }</div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a61e1664593f8473eb45dad4a312116df">  237</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a61e1664593f8473eb45dad4a312116df">OnBeginOperationString</a>(<span class="keyword">const</span> std::string&amp; a_operation)<span class="keyword"> override</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="keyword">  </span>{</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">if</span> (!m_info.str().empty())</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;      m_info &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Begin operation: &quot;</span> &lt;&lt; a_operation &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;  }</div>
-<div class="line"><a name="l00244"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">  244</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">TimeElapsedInSeconds</a>(<span class="keywordtype">double</span> a_elapsedSeconds)<span class="keyword"> override</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="keyword">  </span>{</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    m_elapsedSeconds = a_elapsedSeconds;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_elapsedSeconds * 10));</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Elapsed seconds: 0.&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;  }</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">  253</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">TimeRemainingInSeconds</a>(<span class="keywordtype">double</span> a_secondsRemaining)<span class="keyword"> override</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="keyword">  </span>{</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    m_remainingSeconds = a_secondsRemaining;</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_remainingSeconds * 10));</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Time remaining (seconds): 0.&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;  }</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;};</div>
-<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="class_mock_mesher.html">  261</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_mock_mesher.html">MockMesher</a></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;{</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  <a class="code" href="class_mock_mesher.html">MockMesher</a>() {}</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;  ~<a class="code" href="class_mock_mesher.html">MockMesher</a>() {}</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">  269</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">SetObserver</a>(BSHP&lt;xms::Observer&gt; a_) { m_prog = a_; }</div>
-<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#aa79c8ee5f4c3546c0c8fadd89ab85044">  273</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_mock_mesher.html#aa79c8ee5f4c3546c0c8fadd89ab85044">WaitForNextTenthSecond</a>(boost::timer::cpu_timer&amp; a_timer, <span class="keywordtype">int</span>&amp; a_count)</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;  {</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    ++a_count;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> tenth_second = 100000000LL;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    <span class="keywordflow">while</span> (a_timer.elapsed().wall &lt; tenth_second * a_count)</div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    {</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;    }</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;    <span class="comment">// boost::this_thread::sleep(boost::posix_time::millisec(100));</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;  }</div>
-<div class="line"><a name="l00283"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">  283</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">PretendMeshing</a>()</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;  {</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">if</span> (!m_prog)</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;      <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    boost::timer::cpu_timer timer;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordtype">int</span> count = 0;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    m_prog-&gt;BeginOperationString(<span class="stringliteral">&quot;Generating mesh points&quot;</span>);</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i)</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    {</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;      WaitForNextTenthSecond(timer, count);</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;      m_prog-&gt;ProgressStatus((<span class="keywordtype">double</span>)(i + 1) / 4);</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    }</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    m_prog-&gt;BeginOperationString(<span class="stringliteral">&quot;Triangulating&quot;</span>);</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i)</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    {</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      WaitForNextTenthSecond(timer, count);</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;      m_prog-&gt;ProgressStatus((<span class="keywordtype">double</span>)(i + 1) / 5);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    }</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    m_prog-&gt;BeginOperationString(<span class="stringliteral">&quot;Generating unstructured grid&quot;</span>);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i)</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    {</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;      WaitForNextTenthSecond(timer, count);</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      m_prog-&gt;ProgressStatus((<span class="keywordtype">double</span>)(i + 1) / 3);</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;  }</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment"></span>  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">  232</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">OnProgressStatus</a>(<span class="keywordtype">double</span> a_percentComplete)<span class="keyword"> override</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="keyword">  </span>{</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    m_percentComplete = a_percentComplete;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_percentComplete * 100));</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Percent complete: &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;%.\n&quot;</span>;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;  }</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment"></span>  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a61e1664593f8473eb45dad4a312116df">  241</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a61e1664593f8473eb45dad4a312116df">OnBeginOperationString</a>(<span class="keyword">const</span> std::string&amp; a_operation)<span class="keyword"> override</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="keyword">  </span>{</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <span class="keywordflow">if</span> (!m_info.str().empty())</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      m_info &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Begin operation: &quot;</span> &lt;&lt; a_operation &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="comment"></span>  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">  250</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">TimeElapsedInSeconds</a>(<span class="keywordtype">double</span> a_elapsedSeconds)<span class="keyword"> override</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keyword">  </span>{</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    m_elapsedSeconds = a_elapsedSeconds;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_elapsedSeconds * 10));</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Elapsed seconds: 0.&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment"></span>  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">  261</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">TimeRemainingInSeconds</a>(<span class="keywordtype">double</span> a_secondsRemaining)<span class="keyword"> override</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keyword">  </span>{</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    m_remainingSeconds = a_secondsRemaining;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_remainingSeconds * 10));</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Time remaining (seconds): 0.&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;  }</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;};</div>
+<div class="line"><a name="l00269"></a><span class="lineno"><a class="line" href="class_mock_mesher.html">  269</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_mock_mesher.html">MockMesher</a></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;{</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;  <a class="code" href="class_mock_mesher.html">MockMesher</a>() {}</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  ~<a class="code" href="class_mock_mesher.html">MockMesher</a>() {}</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment"></span>  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">  279</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">SetObserver</a>(BSHP&lt;xms::Observer&gt; a_) { m_prog = a_; }</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment"></span>  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#aa79c8ee5f4c3546c0c8fadd89ab85044">  285</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_mock_mesher.html#aa79c8ee5f4c3546c0c8fadd89ab85044">WaitForNextTenthSecond</a>(boost::timer::cpu_timer&amp; a_timer, <span class="keywordtype">int</span>&amp; a_count)</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;  {</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    ++a_count;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span> tenth_second = 100000000LL;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    <span class="keywordflow">while</span> (a_timer.elapsed().wall &lt; tenth_second * a_count)</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    {</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="comment">// boost::this_thread::sleep(boost::posix_time::millisec(100));</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  }</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment"></span>  <span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">  298</a></span>&#160;  <span class="keywordtype">void</span> <a class="code" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">PretendMeshing</a>()</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  {</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordflow">if</span> (!m_prog)</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;      <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    boost::timer::cpu_timer timer;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordtype">int</span> count = 0;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    m_prog-&gt;BeginOperationString(<span class="stringliteral">&quot;Generating mesh points&quot;</span>);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i)</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    {</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;      WaitForNextTenthSecond(timer, count);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;      m_prog-&gt;ProgressStatus((<span class="keywordtype">double</span>)(i + 1) / 4);</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    }</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
-<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#ad20d9d1963a422214083cc34ab511fe6">  313</a></span>&#160;  BSHP&lt;xms::Observer&gt; <a class="code" href="class_mock_mesher.html#ad20d9d1963a422214083cc34ab511fe6">m_prog</a>; </div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;};</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="preprocessor">#ifndef CXXTEST4</span></div>
-<div class="line"><a name="l00324"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#aefbc6e786385d522f04d2e2f0f12d36e">  324</a></span>&#160;<span class="preprocessor"></span><span class="keyword">const</span> CxxTest::TestGroup&amp; <a class="code" href="class_observer_intermediate_tests.html#aefbc6e786385d522f04d2e2f0f12d36e">ObserverIntermediateTests::group</a>()</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;{</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  <span class="keywordflow">return</span> *CxxTest::TestGroup::GetGroup(CxxTest::TG_INTERMEDIATE);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;  <span class="comment">// return CxxTest::TestSuite::group();</span></div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;} <span class="comment">// ObserverIntermediateTests::group</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;<span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00333"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#a5634b85a70a491b549cfb7fbd56b2f43">  333</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_observer_intermediate_tests.html#a5634b85a70a491b549cfb7fbd56b2f43">ObserverIntermediateTests::testTimeRemaining</a>()</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;{</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;  <a class="code" href="class_mock_observer.html">MockObserver</a> o;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;  o.<a class="code" href="classxms_1_1_observer.html#a70a1cf0b6f4ab3bb533dda17767abf3f">BeginOperationString</a>(<span class="stringliteral">&quot;Test Operation&quot;</span>);</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;  boost::this_thread::sleep(boost::posix_time::millisec(100));</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;  o.<a class="code" href="classxms_1_1_observer.html#ac53cde5a326843717b57e49767ff5be4">ProgressStatus</a>(.2);</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;  <span class="keywordtype">double</span> remaining = (o.<a class="code" href="class_mock_observer.html#afc3ef4e691059d420277e39e669866c9">m_elapsedSeconds</a> * .8) / .2;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span> DELTA = 1e-5;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  TS_ASSERT_DELTA(remaining, o.<a class="code" href="class_mock_observer.html#aae5ef68dd0fb8afc8c298328a79ec4ae">m_remainingSeconds</a>, DELTA);</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;} <span class="comment">// ObserverIntermediateTests::testTimeRemaining</span></div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">  347</a></span>&#160;<span class="comment"></span><span class="keywordtype">void</span> <a class="code" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a>()</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;{</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;  <span class="comment">// create an object derived off of Observer</span></div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;  BSHP&lt;MockObserver&gt; p(<span class="keyword">new</span> <a class="code" href="class_mock_observer.html">MockObserver</a>());</div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;  <span class="comment">// create a mock meshing class</span></div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;  <a class="code" href="class_mock_mesher.html">MockMesher</a> m;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  <span class="comment">// set the observer on the mesher</span></div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  m.<a class="code" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">SetObserver</a>(p);</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="comment">// execute the mesher</span></div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  m.<a class="code" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">PretendMeshing</a>();</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  <span class="comment">// capture the output from the observer class and verify it</span></div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  std::string outStr(p-&gt;m_info.str());</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  std::string baseStr =</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating mesh points.\n&quot;</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="stringliteral">&quot;Percent complete: 25%.\n&quot;</span></div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="stringliteral">&quot;Percent complete: 50%.\n&quot;</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="stringliteral">&quot;Percent complete: 75%.\n&quot;</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="stringliteral">&quot;Begin operation: Triangulating.\n&quot;</span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="stringliteral">&quot;Percent complete: 20%.\n&quot;</span></div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.4.\n&quot;</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="stringliteral">&quot;Percent complete: 40%.\n&quot;</span></div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="stringliteral">&quot;Percent complete: 60%.\n&quot;</span></div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="stringliteral">&quot;Percent complete: 80%.\n&quot;</span></div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.5.\n&quot;</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating unstructured grid.\n&quot;</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="stringliteral">&quot;Percent complete: 33%.\n&quot;</span></div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="stringliteral">&quot;Percent complete: 67%.\n&quot;</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span>;</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;  TS_ASSERT_EQUALS(baseStr, outStr);</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;} <span class="comment">// ObserverIntermediateTests::testMockObserver</span></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="comment"></span></div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    m_prog-&gt;BeginOperationString(<span class="stringliteral">&quot;Triangulating&quot;</span>);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i)</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    {</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      WaitForNextTenthSecond(timer, count);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      m_prog-&gt;ProgressStatus((<span class="keywordtype">double</span>)(i + 1) / 5);</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    }</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    m_prog-&gt;BeginOperationString(<span class="stringliteral">&quot;Generating unstructured grid&quot;</span>);</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i)</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    {</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;      WaitForNextTenthSecond(timer, count);</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;      m_prog-&gt;ProgressStatus((<span class="keywordtype">double</span>)(i + 1) / 3);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    }</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;  }</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno"><a class="line" href="class_mock_mesher.html#ad20d9d1963a422214083cc34ab511fe6">  328</a></span>&#160;  BSHP&lt;xms::Observer&gt; <a class="code" href="class_mock_mesher.html#ad20d9d1963a422214083cc34ab511fe6">m_prog</a>; </div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;};</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="preprocessor">#ifndef CXXTEST4</span></div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;<span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#aefbc6e786385d522f04d2e2f0f12d36e">  342</a></span>&#160;<span class="keyword">const</span> CxxTest::TestGroup&amp; <a class="code" href="class_observer_intermediate_tests.html#aefbc6e786385d522f04d2e2f0f12d36e">ObserverIntermediateTests::group</a>()</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;{</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;  <span class="keywordflow">return</span> *CxxTest::TestGroup::GetGroup(CxxTest::TG_INTERMEDIATE);</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  <span class="comment">// return CxxTest::TestSuite::group();</span></div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;} <span class="comment">// ObserverIntermediateTests::group</span></div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;<span class="preprocessor"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#a5634b85a70a491b549cfb7fbd56b2f43">  351</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_observer_intermediate_tests.html#a5634b85a70a491b549cfb7fbd56b2f43">ObserverIntermediateTests::testTimeRemaining</a>()</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;{</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;  <a class="code" href="class_mock_observer.html">MockObserver</a> o;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  o.<a class="code" href="classxms_1_1_observer.html#a70a1cf0b6f4ab3bb533dda17767abf3f">BeginOperationString</a>(<span class="stringliteral">&quot;Test Operation&quot;</span>);</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  boost::this_thread::sleep(boost::posix_time::millisec(100));</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;  o.<a class="code" href="classxms_1_1_observer.html#ac53cde5a326843717b57e49767ff5be4">ProgressStatus</a>(.2);</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;  <span class="keywordtype">double</span> remaining = (o.<a class="code" href="class_mock_observer.html#afc3ef4e691059d420277e39e669866c9">m_elapsedSeconds</a> * .8) / .2;</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;  <span class="keyword">const</span> <span class="keywordtype">double</span> DELTA = 1e-5;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;  TS_ASSERT_DELTA(remaining, o.<a class="code" href="class_mock_observer.html#aae5ef68dd0fb8afc8c298328a79ec4ae">m_remainingSeconds</a>, DELTA);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;} <span class="comment">// ObserverIntermediateTests::testTimeRemaining</span></div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00365"></a><span class="lineno"><a class="line" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">  365</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a>()</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;{</div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;  <span class="comment">// create an object derived off of Observer</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;  BSHP&lt;MockObserver&gt; p(<span class="keyword">new</span> <a class="code" href="class_mock_observer.html">MockObserver</a>());</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;  <span class="comment">// create a mock meshing class</span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;  <a class="code" href="class_mock_mesher.html">MockMesher</a> m;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;  <span class="comment">// set the observer on the mesher</span></div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;  m.<a class="code" href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">SetObserver</a>(p);</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;  <span class="comment">// execute the mesher</span></div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;  m.<a class="code" href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">PretendMeshing</a>();</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;  <span class="comment">// capture the output from the observer class and verify it</span></div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;  std::string outStr(p-&gt;m_info.str());</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;  std::string baseStr =</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating mesh points.\n&quot;</span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="stringliteral">&quot;Percent complete: 25%.\n&quot;</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    <span class="stringliteral">&quot;Percent complete: 50%.\n&quot;</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="stringliteral">&quot;Percent complete: 75%.\n&quot;</span></div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="stringliteral">&quot;Begin operation: Triangulating.\n&quot;</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    <span class="stringliteral">&quot;Percent complete: 20%.\n&quot;</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.4.\n&quot;</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;    <span class="stringliteral">&quot;Percent complete: 40%.\n&quot;</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    <span class="stringliteral">&quot;Percent complete: 60%.\n&quot;</span></div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="stringliteral">&quot;Percent complete: 80%.\n&quot;</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.4.\n&quot;</span></div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.5.\n&quot;</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    <span class="stringliteral">&quot;Begin operation: Generating unstructured grid.\n&quot;</span></div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="stringliteral">&quot;Percent complete: 33%.\n&quot;</span></div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;    <span class="stringliteral">&quot;Percent complete: 67%.\n&quot;</span></div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.2.\n&quot;</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.1.\n&quot;</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;    <span class="stringliteral">&quot;Percent complete: 100%.\n&quot;</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    <span class="stringliteral">&quot;Elapsed seconds: 0.3.\n&quot;</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    <span class="stringliteral">&quot;Time remaining (seconds): 0.0.\n&quot;</span>;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;  TS_ASSERT_EQUALS(baseStr, outStr);</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;} <span class="comment">// ObserverIntermediateTests::testMockObserver</span></div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="comment"></span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="math_8h_html"><div class="ttname"><a href="math_8h.html">math.h</a></div></div>
-<div class="ttc" id="class_observer_intermediate_tests_html_a5634b85a70a491b549cfb7fbd56b2f43"><div class="ttname"><a href="class_observer_intermediate_tests.html#a5634b85a70a491b549cfb7fbd56b2f43">ObserverIntermediateTests::testTimeRemaining</a></div><div class="ttdeci">void testTimeRemaining()</div><div class="ttdoc">tests the estimated time remaining </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00333">Observer.cpp:333</a></div></div>
+<div class="ttc" id="class_observer_intermediate_tests_html_a5634b85a70a491b549cfb7fbd56b2f43"><div class="ttname"><a href="class_observer_intermediate_tests.html#a5634b85a70a491b549cfb7fbd56b2f43">ObserverIntermediateTests::testTimeRemaining</a></div><div class="ttdeci">void testTimeRemaining()</div><div class="ttdoc">tests the estimated time remaining </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00351">Observer.cpp:351</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_1_1impl_html_ad1716972789e4a3599f18bf96cc464ea"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#ad1716972789e4a3599f18bf96cc464ea">xms::Observer::impl::m_percentComplete</a></div><div class="ttdeci">double m_percentComplete</div><div class="ttdoc">percent complete </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00058">Observer.cpp:58</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_abe6664e2f7ba8c87353e09e477644c24"><div class="ttname"><a href="classxms_1_1_observer.html#abe6664e2f7ba8c87353e09e477644c24">xms::Observer::TimeRemainingInSeconds</a></div><div class="ttdeci">virtual void TimeRemainingInSeconds(double a_remainingSeconds)</div><div class="ttdoc">Virtual method to publish the time remaining. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00099">Observer.cpp:99</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_a98b0e23e739cfbe97718638ed8255a73"><div class="ttname"><a href="classxms_1_1_observer.html#a98b0e23e739cfbe97718638ed8255a73">xms::Observer::TimeElapsedInSeconds</a></div><div class="ttdeci">virtual void TimeElapsedInSeconds(double a_elapsedSeconds)</div><div class="ttdoc">Virtual method to publish the elasped time. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00107">Observer.cpp:107</a></div></div>
 <div class="ttc" id="_observer_8t_8h_html"><div class="ttname"><a href="_observer_8t_8h.html">Observer.t.h</a></div></div>
-<div class="ttc" id="class_mock_mesher_html_af90fd308a879f30505a9e7a7cae521bf"><div class="ttname"><a href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">MockMesher::PretendMeshing</a></div><div class="ttdeci">void PretendMeshing()</div><div class="ttdoc">mock meshing method </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00283">Observer.cpp:283</a></div></div>
-<div class="ttc" id="class_mock_observer_html_a08f150ac9a3c517c99de3fcd40e382d0"><div class="ttname"><a href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">MockObserver::TimeRemainingInSeconds</a></div><div class="ttdeci">virtual void TimeRemainingInSeconds(double a_secondsRemaining) override</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00253">Observer.cpp:253</a></div></div>
-<div class="ttc" id="class_mock_mesher_html_aa79c8ee5f4c3546c0c8fadd89ab85044"><div class="ttname"><a href="class_mock_mesher.html#aa79c8ee5f4c3546c0c8fadd89ab85044">MockMesher::WaitForNextTenthSecond</a></div><div class="ttdeci">void WaitForNextTenthSecond(boost::timer::cpu_timer &amp;a_timer, int &amp;a_count)</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00273">Observer.cpp:273</a></div></div>
+<div class="ttc" id="class_mock_mesher_html_af90fd308a879f30505a9e7a7cae521bf"><div class="ttname"><a href="class_mock_mesher.html#af90fd308a879f30505a9e7a7cae521bf">MockMesher::PretendMeshing</a></div><div class="ttdeci">void PretendMeshing()</div><div class="ttdoc">mock meshing method </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00298">Observer.cpp:298</a></div></div>
+<div class="ttc" id="class_mock_observer_html_a08f150ac9a3c517c99de3fcd40e382d0"><div class="ttname"><a href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">MockObserver::TimeRemainingInSeconds</a></div><div class="ttdeci">virtual void TimeRemainingInSeconds(double a_secondsRemaining) override</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00261">Observer.cpp:261</a></div></div>
+<div class="ttc" id="class_mock_mesher_html_aa79c8ee5f4c3546c0c8fadd89ab85044"><div class="ttname"><a href="class_mock_mesher.html#aa79c8ee5f4c3546c0c8fadd89ab85044">MockMesher::WaitForNextTenthSecond</a></div><div class="ttdeci">void WaitForNextTenthSecond(boost::timer::cpu_timer &amp;a_timer, int &amp;a_count)</div><div class="ttdoc">wait until next tenth second passed </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00285">Observer.cpp:285</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_1_1impl_html_a4eaed90dc0e25cf1119fc449aea1fcf6"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#a4eaed90dc0e25cf1119fc449aea1fcf6">xms::Observer::impl::EstimatedTimeRemainingInSec</a></div><div class="ttdeci">double EstimatedTimeRemainingInSec(double a_percentComplete, double a_elapsedTime)</div><div class="ttdoc">Returns the elapsed time for the operation being observed. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00197">Observer.cpp:197</a></div></div>
-<div class="ttc" id="class_mock_observer_html_a508a232c3577cabe9add637c7e735408"><div class="ttname"><a href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">MockObserver::OnProgressStatus</a></div><div class="ttdeci">virtual void OnProgressStatus(double a_percentComplete) override</div><div class="ttdoc">captures the progress of an operation </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00230">Observer.cpp:230</a></div></div>
-<div class="ttc" id="class_observer_intermediate_tests_html_aaef4873118a7f6cf08c7c9e0ae8aa184"><div class="ttname"><a href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a></div><div class="ttdeci">void testMockObserver()</div><div class="ttdoc">tests an example observer implementation </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00347">Observer.cpp:347</a></div></div>
+<div class="ttc" id="class_mock_observer_html_a508a232c3577cabe9add637c7e735408"><div class="ttname"><a href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">MockObserver::OnProgressStatus</a></div><div class="ttdeci">virtual void OnProgressStatus(double a_percentComplete) override</div><div class="ttdoc">captures the progress of an operation </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00232">Observer.cpp:232</a></div></div>
+<div class="ttc" id="class_observer_intermediate_tests_html_aaef4873118a7f6cf08c7c9e0ae8aa184"><div class="ttname"><a href="class_observer_intermediate_tests.html#aaef4873118a7f6cf08c7c9e0ae8aa184">ObserverIntermediateTests::testMockObserver</a></div><div class="ttdeci">void testMockObserver()</div><div class="ttdoc">[snip_test_Example_Observer] </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00365">Observer.cpp:365</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_afb06a8401e959a1edc51a4b4f9f4107b"><div class="ttname"><a href="classxms_1_1_observer.html#afb06a8401e959a1edc51a4b4f9f4107b">xms::Observer::UpdateMessage</a></div><div class="ttdeci">void UpdateMessage(const std::string &amp;a_message)</div><div class="ttdoc">Updates the message but not the percent complete. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00136">Observer.cpp:136</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_a50c33f8ac41895e228157fa0d4a04588"><div class="ttname"><a href="classxms_1_1_observer.html#a50c33f8ac41895e228157fa0d4a04588">xms::Observer::OnEndOperation</a></div><div class="ttdeci">virtual void OnEndOperation()</div><div class="ttdoc">Virtual function for derived class to get end operation event. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00152">Observer.cpp:152</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_a70a1cf0b6f4ab3bb533dda17767abf3f"><div class="ttname"><a href="classxms_1_1_observer.html#a70a1cf0b6f4ab3bb533dda17767abf3f">xms::Observer::BeginOperationString</a></div><div class="ttdeci">void BeginOperationString(const std::string &amp;a_operation)</div><div class="ttdoc">Publishes the name of the operation and starts the timing of the operation. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00117">Observer.cpp:117</a></div></div>
 <div class="ttc" id="_observer_8h_html"><div class="ttname"><a href="_observer_8h.html">Observer.h</a></div></div>
 <div class="ttc" id="class_mock_observer_html_aae5ef68dd0fb8afc8c298328a79ec4ae"><div class="ttname"><a href="class_mock_observer.html#aae5ef68dd0fb8afc8c298328a79ec4ae">MockObserver::m_remainingSeconds</a></div><div class="ttdeci">double m_remainingSeconds</div><div class="ttdoc">seconds remaining </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00222">Observer.cpp:222</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_1_1impl_html"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html">xms::Observer::impl</a></div><div class="ttdoc">Implementation of the observer class. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00043">Observer.cpp:43</a></div></div>
-<div class="ttc" id="class_observer_intermediate_tests_html_aefbc6e786385d522f04d2e2f0f12d36e"><div class="ttname"><a href="class_observer_intermediate_tests.html#aefbc6e786385d522f04d2e2f0f12d36e">ObserverIntermediateTests::group</a></div><div class="ttdeci">virtual const CxxTest::TestGroup &amp; group()</div><div class="ttdoc">Defines the test group. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00324">Observer.cpp:324</a></div></div>
+<div class="ttc" id="class_observer_intermediate_tests_html_aefbc6e786385d522f04d2e2f0f12d36e"><div class="ttname"><a href="class_observer_intermediate_tests.html#aefbc6e786385d522f04d2e2f0f12d36e">ObserverIntermediateTests::group</a></div><div class="ttdeci">virtual const CxxTest::TestGroup &amp; group()</div><div class="ttdoc">Defines the test group. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00342">Observer.cpp:342</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_1_1impl_html_a149ecbc4f1ee7fbd718da8f9b88c5fd2"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#a149ecbc4f1ee7fbd718da8f9b88c5fd2">xms::Observer::impl::EndOperation</a></div><div class="ttdeci">void EndOperation()</div><div class="ttdoc">Stops the timer. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00175">Observer.cpp:175</a></div></div>
-<div class="ttc" id="class_mock_mesher_html_ad20d9d1963a422214083cc34ab511fe6"><div class="ttname"><a href="class_mock_mesher.html#ad20d9d1963a422214083cc34ab511fe6">MockMesher::m_prog</a></div><div class="ttdeci">BSHP&lt; xms::Observer &gt; m_prog</div><div class="ttdoc">observer class to report progress </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00313">Observer.cpp:313</a></div></div>
-<div class="ttc" id="class_mock_mesher_html"><div class="ttname"><a href="class_mock_mesher.html">MockMesher</a></div><div class="ttdoc">mock meshing class to show how the observer works </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00261">Observer.cpp:261</a></div></div>
+<div class="ttc" id="class_mock_mesher_html_ad20d9d1963a422214083cc34ab511fe6"><div class="ttname"><a href="class_mock_mesher.html#ad20d9d1963a422214083cc34ab511fe6">MockMesher::m_prog</a></div><div class="ttdeci">BSHP&lt; xms::Observer &gt; m_prog</div><div class="ttdoc">observer class to report progress </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00328">Observer.cpp:328</a></div></div>
+<div class="ttc" id="class_mock_mesher_html"><div class="ttname"><a href="class_mock_mesher.html">MockMesher</a></div><div class="ttdoc">mock meshing class to show how the observer works </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00269">Observer.cpp:269</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_afe3235bd5b4774946d4af1d1b3e60662"><div class="ttname"><a href="classxms_1_1_observer.html#afe3235bd5b4774946d4af1d1b3e60662">xms::Observer::OnUpdateMessage</a></div><div class="ttdeci">virtual void OnUpdateMessage(const std::string &amp;a_message)</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00159">Observer.cpp:159</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_ac53cde5a326843717b57e49767ff5be4"><div class="ttname"><a href="classxms_1_1_observer.html#ac53cde5a326843717b57e49767ff5be4">xms::Observer::ProgressStatus</a></div><div class="ttdeci">bool ProgressStatus(double a_percentComplete)</div><div class="ttdoc">Method to publish the progress status. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00079">Observer.cpp:79</a></div></div>
-<div class="ttc" id="class_mock_observer_html_a61e1664593f8473eb45dad4a312116df"><div class="ttname"><a href="class_mock_observer.html#a61e1664593f8473eb45dad4a312116df">MockObserver::OnBeginOperationString</a></div><div class="ttdeci">virtual void OnBeginOperationString(const std::string &amp;a_operation) override</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00237">Observer.cpp:237</a></div></div>
+<div class="ttc" id="class_mock_observer_html_a61e1664593f8473eb45dad4a312116df"><div class="ttname"><a href="class_mock_observer.html#a61e1664593f8473eb45dad4a312116df">MockObserver::OnBeginOperationString</a></div><div class="ttdeci">virtual void OnBeginOperationString(const std::string &amp;a_operation) override</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00241">Observer.cpp:241</a></div></div>
 <div class="ttc" id="class_mock_observer_html_abd027f414e13a3fdb149f76d5be2e4d9"><div class="ttname"><a href="class_mock_observer.html#abd027f414e13a3fdb149f76d5be2e4d9">MockObserver::m_info</a></div><div class="ttdeci">std::stringstream m_info</div><div class="ttdoc">string info captured by the class </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00225">Observer.cpp:225</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_a9f5c846c1d73b1306bdfd23ef06190ac"><div class="ttname"><a href="classxms_1_1_observer.html#a9f5c846c1d73b1306bdfd23ef06190ac">xms::Observer::m_p</a></div><div class="ttdeci">BSHP&lt; impl &gt; m_p</div><div class="ttdoc">implementation class </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8h_source.html#l00049">Observer.h:49</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html_ad3690b0ea8f9d136113a6b1a5ca3306b"><div class="ttname"><a href="classxms_1_1_observer.html#ad3690b0ea8f9d136113a6b1a5ca3306b">xms::Observer::OnBeginOperationString</a></div><div class="ttdeci">virtual void OnBeginOperationString(const std::string &amp;a_operation)</div><div class="ttdoc">Virtual function for derived class to get the operation string. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00145">Observer.cpp:145</a></div></div>
@@ -485,9 +501,9 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="ttc" id="class_mock_observer_html_afc3ef4e691059d420277e39e669866c9"><div class="ttname"><a href="class_mock_observer.html#afc3ef4e691059d420277e39e669866c9">MockObserver::m_elapsedSeconds</a></div><div class="ttdeci">double m_elapsedSeconds</div><div class="ttdoc">seconds elapsed </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00222">Observer.cpp:222</a></div></div>
 <div class="ttc" id="class_mock_observer_html"><div class="ttname"><a href="class_mock_observer.html">MockObserver</a></div><div class="ttdoc">Derived class used for testing use of Observer class. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00219">Observer.cpp:219</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html"><div class="ttname"><a href="classxms_1_1_observer.html">xms::Observer</a></div><div class="ttdoc">Class used with the observer pattern. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8h_source.html#l00027">Observer.h:27</a></div></div>
-<div class="ttc" id="classxms_1_1_observer_1_1impl_html_a731f09732931bfb238e9575049960fb5"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#a731f09732931bfb238e9575049960fb5">xms::Observer::impl::ElaspedTimeInSeconds</a></div><div class="ttdeci">double ElaspedTimeInSeconds()</div><div class="ttdoc">Returns the elapsed time for the operation being observed. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00183">Observer.cpp:183</a></div></div>
-<div class="ttc" id="class_mock_observer_html_a90d9553adba545bc8e45378d3a57b2e1"><div class="ttname"><a href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">MockObserver::TimeElapsedInSeconds</a></div><div class="ttdeci">virtual void TimeElapsedInSeconds(double a_elapsedSeconds) override</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00244">Observer.cpp:244</a></div></div>
-<div class="ttc" id="class_mock_mesher_html_aeac68bcbce1b9c33aeffb497dd7b5901"><div class="ttname"><a href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">MockMesher::SetObserver</a></div><div class="ttdeci">void SetObserver(BSHP&lt; xms::Observer &gt; a_)</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00269">Observer.cpp:269</a></div></div>
+<div class="ttc" id="class_mock_observer_html_a90d9553adba545bc8e45378d3a57b2e1"><div class="ttname"><a href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">MockObserver::TimeElapsedInSeconds</a></div><div class="ttdeci">virtual void TimeElapsedInSeconds(double a_elapsedSeconds) override</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00250">Observer.cpp:250</a></div></div>
+<div class="ttc" id="class_mock_mesher_html_aeac68bcbce1b9c33aeffb497dd7b5901"><div class="ttname"><a href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">MockMesher::SetObserver</a></div><div class="ttdeci">void SetObserver(BSHP&lt; xms::Observer &gt; a_)</div><div class="ttdoc">set the observer class </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00279">Observer.cpp:279</a></div></div>
+<div class="ttc" id="classxms_1_1_observer_1_1impl_html_a771e88ca3833f7216df22bb69ba996bf"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf">xms::Observer::impl::ElapsedTimeInSeconds</a></div><div class="ttdeci">double ElapsedTimeInSeconds()</div><div class="ttdoc">Returns the elapsed time for the operation being observed. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00183">Observer.cpp:183</a></div></div>
 <div class="ttc" id="_test_tools_8h_html"><div class="ttname"><a href="_test_tools_8h.html">TestTools.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -495,7 +511,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="_observer_8cpp.html">Observer.cpp</a></li>
-    <li class="footer">Generated on Fri Jul 6 2018 17:00:42 for xmscore by
+    <li class="footer">Generated on Fri Jul 6 2018 21:09:11 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
