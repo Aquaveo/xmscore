@@ -1,16 +1,18 @@
 env:
-   global:
-     # TRAVIS_BRANCH is tag name if tag provided else branch name
-     - XMS_VERSION: $TRAVIS_BRANCH
-     - CONAN_REFERENCE: "xmscore/${XMS_VERSION}"
-     - CONAN_USERNAME: "aquaveo"
-     - CONAN_CHANNEL: "stable"
-     - CONAN_LOGIN_USERNAME: $CONAN_USER_SECRET
-     - CONAN_PASSWORD: $CONAN_PASSWORD_SECRET
-     - CONAN_REMOTES: $AQUAVEO_CONAN
-     - GH_REPO_NAME: xmscore
-     - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen/Doxyfile
-     - GH_REPO_REF: github.com/Aquaveo/xmscore.git
+  global:
+   # TRAVIS_BRANCH is tag name if tag provided else branch name
+   - XMS_VERSION: $TRAVIS_BRANCH
+   - if: (NOT(tag =~ ^\d+\.\d+\.\d+$)) AND (branch = master)
+     XMS_VERSION: Dev
+   - CONAN_REFERENCE: "xmscore/${XMS_VERSION}"
+   - CONAN_USERNAME: "aquaveo"
+   - CONAN_CHANNEL: "stable"
+   - CONAN_LOGIN_USERNAME: $CONAN_USER_SECRET
+   - CONAN_PASSWORD: $CONAN_PASSWORD_SECRET
+   - CONAN_REMOTES: $AQUAVEO_CONAN
+   - GH_REPO_NAME: xmscore
+   - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen/Doxyfile
+   - GH_REPO_REF: github.com/Aquaveo/xmscore.git
      
 linux: &linux
    os: linux
@@ -27,7 +29,7 @@ stages:
     - name: test
       if: NOT tag IS present
     - name: deploy
-      if: tag =~ ^\d+\.\d+\.\d+$
+      if: (tag =~ ^\d+\.\d+\.\d+$) OR (branch = master)
 
 # Global Lifecycle Steps
 # See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
