@@ -49,7 +49,16 @@ if __name__ == "__main__":
             xms_options.update({'xmscore:xms': True})
             xms_updated_builds.append([settings, xms_options, env_vars, build_requires])
         xms_updated_builds.append([settings, options, env_vars, build_requires])
-
     builder.builds = xms_updated_builds
+
+    testing_updated_builds = []
+    for settings, options, env_vars, build_requires, reference in builder.items:
+        # xms option
+        if not options.get('xmscore:xms', False) and not options.get('xmscore:pybind', False):
+            testing_options = dict(options)
+            testing_options.update({'xmscore:testing': True})
+            testing_updated_builds.append([settings, testing_options, env_vars, build_requires])
+        testing_updated_builds.append([settings, options, env_vars, build_requires])
+    builder.builds = testing_updated_builds
 
     builder.run()
