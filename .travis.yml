@@ -2,8 +2,6 @@ env:
   global:
    # TRAVIS_BRANCH is tag name if tag provided else branch name
    - XMS_VERSION: $TRAVIS_BRANCH
-   - if: (NOT(tag =~ ^\d+\.\d+\.\d+$)) AND (branch = master)
-     XMS_VERSION: Dev
    - CONAN_REFERENCE: "xmscore/${XMS_VERSION}"
    - CONAN_USERNAME: "aquaveo"
    - CONAN_CHANNEL: "stable"
@@ -29,7 +27,7 @@ stages:
     - name: test
       if: NOT tag IS present
     - name: deploy
-      if: (tag =~ ^\d+\.\d+\.\d+$) OR (branch = master)
+      if: tag =~ ^\d+\.\d+\.\d+$
 
 # Global Lifecycle Steps
 # See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
