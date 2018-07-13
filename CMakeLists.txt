@@ -236,5 +236,3 @@ foreach (header IN LISTS xmscore_headers xmscore_py_headers)
     DESTINATION "include/${subdir}"
   )
 endforeach ()
-
-
