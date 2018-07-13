@@ -70,59 +70,59 @@ jobs:
       # GCC 5
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=lasote/conangcc5 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
       # GCC 6
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
+        env: CONAN_GCC_VERSIONS=6 CONAN_DOCKER_IMAGE=lasote/conangcc6 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
       # GCC 7
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
       - stage: test
         <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
       # OSX
       - stage: test
         <<: *osx
         osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86
       - stage: test
         <<: *osx
         osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
       - stage: test
         <<: *osx
         osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86
       - stage: test
         <<: *osx
         osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0 XMS_RUN_TESTS=1 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
+        env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
  
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
 
