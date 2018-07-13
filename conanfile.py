@@ -58,9 +58,6 @@ class XmscoreConan(ConanFile):
             self.requires("pybind11/2.2.2@aquaveo/stable")
 
     def build(self):
-        xms_run_tests = self.env.get('XMS_RUN_TESTS', None)
-        run_tests = xms_run_tests != 'None' and xms_run_tests is not None
-
         cmake = CMake(self)
 
         if self.settings.compiler == 'Visual Studio' \
@@ -72,32 +69,24 @@ class XmscoreConan(ConanFile):
         # have tests in release code. Thus, if we want to run tests, we will
         # build a test version (without python), run the tests, and then (on
         # sucess) rebuild the library without tests.
-        cmake.definitions["IS_PYTHON_BUILD"] = False
-        cmake.definitions["BUILD_TESTING"] = True
+        cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
+        cmake.definitions["BUILD_TESTING"] = self.options.testing
         cmake.configure(source_folder=".")
         cmake.build()
 
-        print("***********(0.0)*************")
-        try:
-            cmake.test()
-        except ConanException:
-            raise
-        finally:
-            if os.path.isfile("TEST-cxxtest.xml"):
-                with open("TEST-cxxtest.xml", "r") as f:
-                    for line in f.readlines():
-                        no_newline = line.strip('\n')
-                        print(no_newline)
+        if self.options.testing:
             print("***********(0.0)*************")
-
-        # Make sure we build without tests if needed
-        cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
-        cmake.definitions["BUILD_TESTING"] = self.options.testing
-
-        if self.options.pybind or not self.options.testing:
-            cmake.definitions["BUILD_TESTING"] = False
-            cmake.configure(source_folder=".")
-            cmake.build()
+            try:
+                cmake.test()
+            except ConanException:
+                raise
+            finally:
+                if os.path.isfile("TEST-cxxtest.xml"):
+                    with open("TEST-cxxtest.xml", "r") as f:
+                        for line in f.readlines():
+                            no_newline = line.strip('\n')
+                            print(no_newline)
+                print("***********(0.0)*************")
 
     def package(self):
         self.copy("*.h", dst="include/xmscore", src="xmscore")

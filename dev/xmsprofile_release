@@ -7,6 +7,8 @@ compiler=Visual Studio
 compiler.version=12
 build_type=Release
 [options]
-xmscore:xms=True
+xmscore:xms=False
+xmscore:pybind=True
+xmscore:testing=False
 [build_requires]
 [env]
