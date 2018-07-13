@@ -137,7 +137,10 @@ if(BUILD_TESTING)
       if(CMAKE_COMPILER_IS_GNUCXX)
           include(CodeCoverage)
           APPEND_COVERAGE_COMPILER_FLAGS()
-          SETUP_TARGET_FOR_COVERAGE_LCOV(runner_coverage ${RUNNERNAME})
+          SETUP_TARGET_FOR_COVERAGE_LCOV(
+              NAME test_coverage 
+              EXECUTABLE ${RUNNERNAME} 
+              DEPENDENCIES runner)
       endif()
     endif()
 endif()
