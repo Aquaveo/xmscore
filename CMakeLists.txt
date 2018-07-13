@@ -131,6 +131,14 @@ if(BUILD_TESTING)
       else()
         set(RUNNERNAME "runner")
       endif()
+
+      # Code Coverage
+      set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+      if(CMAKE_COMPILER_IS_GNUCXX)
+          include(CodeCoverage)
+          APPEND_COVERAGE_COMPILER_FLAGS()
+          SETUP_TARGET_FOR_COVERAGE_LCOV(runner_coverage ${RUNNERNAME})
+      endif()
     endif()
 endif()
 
@@ -147,13 +155,6 @@ target_link_libraries(${PROJECT_NAME}
 )
 if(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME} rt)
-endif()
-
-# Code Coverage
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
-if(CMAKE_COMPILER_IS_GNUCXX)
-    include(CodeCoverage)
-    setup_target_for_coverage(${PROJECT_NAME}_coverage ${PROJECT_TEST_NAME} coverage)
 endif()
 
 #Pybind11
