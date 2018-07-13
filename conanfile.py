@@ -33,7 +33,7 @@ class XmscoreConan(ConanFile):
         if s_compiler != "Visual Studio" and s_compiler != "apple-clang":
             print("*****FPIC TRUE*****")
             self.options['boost'].fPIC = True
-        else:
+        elif s_compiler == "apple-clang":
             self.options['boost'].fPIC = False
 
         if s_compiler == "apple-clang" and s_os == 'Linux':
