@@ -92,9 +92,10 @@ class XmscoreConan(ConanFile):
 
         # Make sure we build without tests
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
-        cmake.definitions["BUILD_TESTING"] = False
-        cmake.configure(source_folder=".")
-        cmake.build()
+        if self.options.pybind:
+            cmake.definitions["BUILD_TESTING"] = False
+            cmake.configure(source_folder=".")
+            cmake.build()
 
     def package(self):
         self.copy("*.h", dst="include/xmscore", src="xmscore")
