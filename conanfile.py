@@ -73,7 +73,7 @@ class XmscoreConan(ConanFile):
         # build a test version (without python), run the tests, and then (on
         # sucess) rebuild the library without tests.
         cmake.definitions["IS_PYTHON_BUILD"] = False
-        cmake.definitions["BUILD_TESTING"] = run_tests
+        cmake.definitions["BUILD_TESTING"] = True
         cmake.configure(source_folder=".")
         cmake.build()
 
