@@ -34,7 +34,7 @@ class XmscoreConan(ConanFile):
             print("*****FPIC TRUE*****")
             self.options['boost'].fPIC = True
         else:
-            self.options['boost'].fPic = False
+            self.options['boost'].fPIC = False
 
         if s_compiler == "apple-clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
