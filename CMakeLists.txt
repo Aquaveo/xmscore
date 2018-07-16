@@ -157,11 +157,13 @@ if(IS_PYTHON_BUILD)
     xmscore/python/xmscore_py.cpp
     # Misc
     xmscore/python/misc/misc_py.cpp
+    xmscore/python/misc/PyUtils.cpp
     xmscore/python/misc/observer_py.cpp
   )
 
   set(xmscore_py_headers
     xmscore/python/misc/misc_py.h
+    xmscore/python/misc/PyUtils.h
     xmscore/python/misc/PublicObserver.h
     xmscore/python/misc/PyObserver.h
   )
