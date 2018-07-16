@@ -18,7 +18,7 @@ class XmscoreConan(ConanFile):
     default_options = "xms=False", "pybind=False", "testing=False"
     generators = "cmake", "txt"
     build_requires = "cxxtest/4.4@aquaveo/stable"
-    exports = "CMakeLists.txt", "LICENSE"
+    exports = "CMakeLists.txt", "CMakeModules/*", "LICENSE"
     exports_sources = "xmscore/*"
 
     def configure(self):
