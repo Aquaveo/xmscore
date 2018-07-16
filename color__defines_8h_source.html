@@ -132,11 +132,11 @@ $(document).ready(function(){initNavTree('color__defines_8h_source.html','');});
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#error &quot;Must define either ENV32BIT or ENV64BIT&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> XM_DWORD;    </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">typedef</span> XM_ULONG_PTR XM_DWORD_PTR; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> XM_WORD;    </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> XM_BYTE;     </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">typedef</span> XM_DWORD XM_COLORREF;      </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="namespacexms.html#a9914eef47ba2ef59310b7792b11f9bc0">   32</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="namespacexms.html#a9914eef47ba2ef59310b7792b11f9bc0">XM_DWORD</a>;    </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespacexms.html#aef89aab782c051695b1f554a93808789">   33</a></span>&#160;<span class="keyword">typedef</span> XM_ULONG_PTR <a class="code" href="namespacexms.html#aef89aab782c051695b1f554a93808789">XM_DWORD_PTR</a>; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">   34</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">XM_WORD</a>;    </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">   35</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">XM_BYTE</a>;     </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespacexms.html#aeacfbf0add472c121123b8206a36daf8">   36</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="namespacexms.html#a9914eef47ba2ef59310b7792b11f9bc0">XM_DWORD</a> <a class="code" href="namespacexms.html#aeacfbf0add472c121123b8206a36daf8">XM_COLORREF</a>;      </div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="color__defines_8h.html#a403390d4572778be289c1e04ed263bd9">   38</a></span>&#160;<span class="preprocessor">#define XM_LOBYTE(w) ((xms::XM_BYTE)(((xms::XM_DWORD_PTR)(w)) &amp; 0xff)) </span></div>
 <div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="color__defines_8h.html#abda0e205f09cddfd649595139e1b6fac">   39</a></span>&#160;<span class="preprocessor">#define XmsGetRValue(rgb) (XM_LOBYTE(rgb))                             </span></div>
@@ -146,14 +146,19 @@ $(document).ready(function(){initNavTree('color__defines_8h_source.html','');});
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">  ((xms::XM_COLORREF)(((xms::XM_BYTE)(r) | ((xms::XM_WORD)((xms::XM_BYTE)(g)) &lt;&lt; 8)) | \</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">                      (((xms::XM_WORD)(xms::XM_BYTE)(b)) &lt;&lt; 16))) </span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">}</span></div>
+<div class="ttc" id="namespacexms_html_a9914eef47ba2ef59310b7792b11f9bc0"><div class="ttname"><a href="namespacexms.html#a9914eef47ba2ef59310b7792b11f9bc0">xms::XM_DWORD</a></div><div class="ttdeci">unsigned long XM_DWORD</div><div class="ttdoc">DWORD rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00032">color_defines.h:32</a></div></div>
+<div class="ttc" id="namespacexms_html_af746940725ac9170fe7618a41cd2e225"><div class="ttname"><a href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">xms::XM_BYTE</a></div><div class="ttdeci">unsigned char XM_BYTE</div><div class="ttdoc">BYTE rename rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00035">color_defines.h:35</a></div></div>
+<div class="ttc" id="namespacexms_html_aeacfbf0add472c121123b8206a36daf8"><div class="ttname"><a href="namespacexms.html#aeacfbf0add472c121123b8206a36daf8">xms::XM_COLORREF</a></div><div class="ttdeci">XM_DWORD XM_COLORREF</div><div class="ttdoc">COLORREF rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00036">color_defines.h:36</a></div></div>
 <div class="ttc" id="environment_8h_html"><div class="ttname"><a href="environment_8h.html">environment.h</a></div><div class="ttdoc">64 or 32 bit detection. </div></div>
+<div class="ttc" id="namespacexms_html_a4d480ea25f374957ddccd969cc9df34a"><div class="ttname"><a href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">xms::XM_WORD</a></div><div class="ttdeci">unsigned short XM_WORD</div><div class="ttdoc">WORD rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00034">color_defines.h:34</a></div></div>
+<div class="ttc" id="namespacexms_html_aef89aab782c051695b1f554a93808789"><div class="ttname"><a href="namespacexms.html#aef89aab782c051695b1f554a93808789">xms::XM_DWORD_PTR</a></div><div class="ttdeci">XM_ULONG_PTR XM_DWORD_PTR</div><div class="ttdoc">DWORD_PTR rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00033">color_defines.h:33</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="color__defines_8h.html">color_defines.h</a></li>
-    <li class="footer">Generated on Mon Jul 16 2018 16:46:28 for xmscore by
+    <li class="footer">Generated on Mon Jul 16 2018 18:25:24 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
