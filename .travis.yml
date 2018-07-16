@@ -60,6 +60,7 @@ jobs:
               - doxygen-latex
               - doxygen-gui
               - graphviz
+              - lcov
         <<: *linux
         env: TASK_NAME="DOXYGEN Generation"
         script: 
