@@ -45,6 +45,7 @@ script:
 # After Success
 after_success:
   - python test.py
+  - bash <(curl -s https://codecov.io/bash) -t aa697b0c-21e7-4f25-825c-d1d814405999
 
 # Jobs/Build Matrix
 # Note: Lifecycle Steps specified in stages will override Global Lifecycle Steps
