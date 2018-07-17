@@ -47,6 +47,28 @@ message(STATUS "External Include Dirs: ${EXT_INCLUDE_DIRS}")
 message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
 message(STATUS "Extneral Libs: ${EXT_LIBS}")
 
+if(IS_PYTHON_BUILD)
+
+  find_package(PythonLibs REQUIRED)
+  list(APPEND EXT_INCLUDE_DIRS
+    ${PYTHON_INCLUDE_DIRS}
+  )
+  # Pybind11 module
+  if(IS_CONDA_BUILD)
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Config.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
+      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
+  else()
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Targets.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/FindPythonLibsNew.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Config.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
+      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
+  endif()
+endif()
+
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${EXT_INCLUDE_DIRS})
 link_directories(${EXT_LIB_DIRS})
@@ -134,6 +156,15 @@ if(BUILD_TESTING)
     endif()
 endif()
 
+if(IS_PYTHON_BUILD)
+  list(APPEND xmscore_sources
+    xmscore/python/misc/PyUtils.cpp
+  )
+  list(APPEND xmscore_headers
+    xmscore/python/misc/PyUtils.h
+  )
+endif()
+
 # Static library
 add_library(${PROJECT_NAME} STATIC
   ${xmscore_sources} ${xmscore_headers}
@@ -168,32 +199,15 @@ if(IS_PYTHON_BUILD)
     xmscore/python/misc/PyObserver.h
   )
 
-  find_package(PythonLibs REQUIRED)
   message(STATUS "PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
   message(STATUS "PYTHON_LIBS: ${PYTHON_LIBRARIES}")
-
-  # Pybind11 module
-  if(IS_CONDA_BUILD)
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Config.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
-  else()
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Targets.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/FindPythonLibsNew.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Config.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
-  endif()
 
   pybind11_add_module(xmscore_py
     ${xmscore_py} ${xmscore_py_headers}
   )
   target_include_directories(xmscore_py
       PRIVATE
-        ${EXT_LIBS}
-        PYTHON_INCLUDE_DIRS
+        ${EXT_INCLUDE_DIRS}
   )
   target_link_libraries(xmscore_py
     PRIVATE

@@ -15,24 +15,24 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <boost/shared_ptr.hpp>
-#include <xmscore/points/ptsfwd.h>
-#include <xmscore/stl/vector.h>
 
 // 5. Shared code headers
+#include <xmscore/misc/DynBitset.h>
+#include <xmscore/points/ptsfwd.h>
+#include <xmscore/stl/vector.h>
 
 //----- Forward declarations ---------------------------------------------------
 
 //----- Namespace declaration --------------------------------------------------
 namespace py = pybind11;
-PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 /// XMS Namespace
 namespace xms
 {
 
 // Pt3d
-Pt3d Pt3dFromPyIter(const py::iterable& pt);
-py::iterable PyIterFromPt3d(const Pt3d& pt);
+Pt3d Pt3dFromPyIter(const py::tuple& pt);
+py::tuple PyIterFromPt3d(const Pt3d& pt);
 
 // VecPt3d
 boost::shared_ptr<VecPt3d> VecPt3dFromPyIter(const py::iterable& pts);
@@ -40,26 +40,26 @@ py::iterable PyIterFromVecPt3d(const VecPt3d& pts);
 
 // VecPt3d2d
 boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts);
-boost::shared_ptr<py::iterable> PyIterFromVecPt3d2d(const VecPt3d2d& pts);
+py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& pts);
+
+// VecInt2d
+boost::shared_ptr<VecInt2d> VecInt2dFromPyIter(const py::iterable& int2d);
+py::iterable PyIterFromVecInt2d(const VecInt2d& int2d);
 
 // VecInt
 boost::shared_ptr<VecInt> VecIntFromPyIter(const py::iterable& ints);
-boost::shared_ptr<py::iterable> PyIterFromVecInt(const VecInt& ints);
+py::iterable PyIterFromVecInt(const VecInt& ints, bool numpy=false);
 
-// VecDouble
-boost::shared_ptr<VecDouble> VecDoubleFromPyIter(const py::iterable& dbls);
-boost::shared_ptr<py::iterable> PyIterFromVecDouble(const VecDouble& dbls);
+// VecDbl
+boost::shared_ptr<VecDbl> VecDblFromPyIter(const py::iterable& dbls);
+py::iterable PyIterFromVecDbl(const VecDbl& dbls, bool numpy=false);
 
-// VecFloat
-boost::shared_ptr<VecFloat> VecFloatFromPyIter(const py::iterable& flts);
-boost::shared_ptr<py::iterable> PyIterFromVecFloat(const VecFloat& flts);
-
-// VecBool
-boost::shared_ptr<VecBool> VecBoolFromPyIter(const py::iterable& bools);
-boost::shared_ptr<py::iterable> PyIterFromVecBool(const VecBool& bools);
+// VecFlt
+boost::shared_ptr<VecFlt> VecFltFromPyIter(const py::iterable& flts);
+py::iterable PyIterFromVecFlt(const VecFlt& flts, bool numpy=false);
 
 // DynamicBitset
-boost::shared_ptr<DynBitset> DynamicBitsetFromPyIter(const py::iterable& bitset);
-boost::shared_ptr<py::iterable> PyIterFromDynamicBitset(const DynBitset& bitset);
+DynBitset DynamicBitsetFromPyIter(const py::iterable& bitset);
+py::iterable PyIterFromDynamicBitset(const DynBitset& bitset);
     
 }
