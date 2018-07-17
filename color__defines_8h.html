@@ -105,7 +105,6 @@ $(document).ready(function(){initNavTree('color__defines_8h.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
@@ -119,16 +118,10 @@ $(document).ready(function(){initNavTree('color__defines_8h.html','');});
 </div>
 <p><a href="color__defines_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacexms"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html">xms</a></td></tr>
-<tr class="memdesc:namespacexms"><td class="mdescLeft">&#160;</td><td class="mdescRight">XMS Namespace. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a403390d4572778be289c1e04ed263bd9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a403390d4572778be289c1e04ed263bd9"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="color__defines_8h.html#a403390d4572778be289c1e04ed263bd9">XM_LOBYTE</a>(w)&#160;&#160;&#160;((<a class="el" href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">xms::XM_BYTE</a>)(((<a class="el" href="namespacexms.html#aef89aab782c051695b1f554a93808789">xms::XM_DWORD_PTR</a>)(w)) &amp; 0xff))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="color__defines_8h.html#a403390d4572778be289c1e04ed263bd9">XM_LOBYTE</a>(w)&#160;&#160;&#160;((xms::XM_BYTE)(((xms::XM_DWORD_PTR)(w)) &amp; 0xff))</td></tr>
 <tr class="memdesc:a403390d4572778be289c1e04ed263bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the low byte. <br/></td></tr>
 <tr class="separator:a403390d4572778be289c1e04ed263bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abda0e205f09cddfd649595139e1b6fac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abda0e205f09cddfd649595139e1b6fac"></a>
@@ -136,7 +129,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:abda0e205f09cddfd649595139e1b6fac"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetRValue Rename. <br/></td></tr>
 <tr class="separator:abda0e205f09cddfd649595139e1b6fac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa20345c7626087d691b28e96550b6254"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa20345c7626087d691b28e96550b6254"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="color__defines_8h.html#aa20345c7626087d691b28e96550b6254">XmsGetGValue</a>(rgb)&#160;&#160;&#160;(<a class="el" href="color__defines_8h.html#a403390d4572778be289c1e04ed263bd9">XM_LOBYTE</a>(((<a class="el" href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">xms::XM_WORD</a>)(rgb)) &gt;&gt; 8))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="color__defines_8h.html#aa20345c7626087d691b28e96550b6254">XmsGetGValue</a>(rgb)&#160;&#160;&#160;(<a class="el" href="color__defines_8h.html#a403390d4572778be289c1e04ed263bd9">XM_LOBYTE</a>(((xms::XM_WORD)(rgb)) &gt;&gt; 8))</td></tr>
 <tr class="memdesc:aa20345c7626087d691b28e96550b6254"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetGValue Rename. <br/></td></tr>
 <tr class="separator:aa20345c7626087d691b28e96550b6254"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a894afbdb46e64399e20270de2c7b3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3a894afbdb46e64399e20270de2c7b3c"></a>
@@ -150,23 +143,23 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a9914eef47ba2ef59310b7792b11f9bc0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9914eef47ba2ef59310b7792b11f9bc0"></a>
-typedef unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a9914eef47ba2ef59310b7792b11f9bc0">xms::XM_DWORD</a></td></tr>
+typedef unsigned long&#160;</td><td class="memItemRight" valign="bottom"><b>xms::XM_DWORD</b></td></tr>
 <tr class="memdesc:a9914eef47ba2ef59310b7792b11f9bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DWORD rename. <br/></td></tr>
 <tr class="separator:a9914eef47ba2ef59310b7792b11f9bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef89aab782c051695b1f554a93808789"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef89aab782c051695b1f554a93808789"></a>
-typedef XM_ULONG_PTR&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#aef89aab782c051695b1f554a93808789">xms::XM_DWORD_PTR</a></td></tr>
+typedef XM_ULONG_PTR&#160;</td><td class="memItemRight" valign="bottom"><b>xms::XM_DWORD_PTR</b></td></tr>
 <tr class="memdesc:aef89aab782c051695b1f554a93808789"><td class="mdescLeft">&#160;</td><td class="mdescRight">DWORD_PTR rename. <br/></td></tr>
 <tr class="separator:aef89aab782c051695b1f554a93808789"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d480ea25f374957ddccd969cc9df34a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d480ea25f374957ddccd969cc9df34a"></a>
-typedef unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">xms::XM_WORD</a></td></tr>
+typedef unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>xms::XM_WORD</b></td></tr>
 <tr class="memdesc:a4d480ea25f374957ddccd969cc9df34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">WORD rename. <br/></td></tr>
 <tr class="separator:a4d480ea25f374957ddccd969cc9df34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af746940725ac9170fe7618a41cd2e225"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af746940725ac9170fe7618a41cd2e225"></a>
-typedef unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">xms::XM_BYTE</a></td></tr>
+typedef unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>xms::XM_BYTE</b></td></tr>
 <tr class="memdesc:af746940725ac9170fe7618a41cd2e225"><td class="mdescLeft">&#160;</td><td class="mdescRight">BYTE rename rename. <br/></td></tr>
 <tr class="separator:af746940725ac9170fe7618a41cd2e225"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeacfbf0add472c121123b8206a36daf8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeacfbf0add472c121123b8206a36daf8"></a>
-typedef XM_DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#aeacfbf0add472c121123b8206a36daf8">xms::XM_COLORREF</a></td></tr>
+typedef XM_DWORD&#160;</td><td class="memItemRight" valign="bottom"><b>xms::XM_COLORREF</b></td></tr>
 <tr class="memdesc:aeacfbf0add472c121123b8206a36daf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">COLORREF rename. <br/></td></tr>
 <tr class="separator:aeacfbf0add472c121123b8206a36daf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -205,11 +198,8 @@ typedef XM_DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">((<a class="code" href="namespacexms.html#aeacfbf0add472c121123b8206a36daf8">xms::XM_COLORREF</a>)(((<a class="code" href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">xms::XM_BYTE</a>)(r) | ((<a class="code" href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">xms::XM_WORD</a>)((<a class="code" href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">xms::XM_BYTE</a>)(g)) &lt;&lt; 8)) | \</div>
-<div class="line">                      (((<a class="code" href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">xms::XM_WORD</a>)(<a class="code" href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">xms::XM_BYTE</a>)(b)) &lt;&lt; 16)))</div>
-<div class="ttc" id="namespacexms_html_af746940725ac9170fe7618a41cd2e225"><div class="ttname"><a href="namespacexms.html#af746940725ac9170fe7618a41cd2e225">xms::XM_BYTE</a></div><div class="ttdeci">unsigned char XM_BYTE</div><div class="ttdoc">BYTE rename rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00035">color_defines.h:35</a></div></div>
-<div class="ttc" id="namespacexms_html_aeacfbf0add472c121123b8206a36daf8"><div class="ttname"><a href="namespacexms.html#aeacfbf0add472c121123b8206a36daf8">xms::XM_COLORREF</a></div><div class="ttdeci">XM_DWORD XM_COLORREF</div><div class="ttdoc">COLORREF rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00036">color_defines.h:36</a></div></div>
-<div class="ttc" id="namespacexms_html_a4d480ea25f374957ddccd969cc9df34a"><div class="ttname"><a href="namespacexms.html#a4d480ea25f374957ddccd969cc9df34a">xms::XM_WORD</a></div><div class="ttdeci">unsigned short XM_WORD</div><div class="ttdoc">WORD rename. </div><div class="ttdef"><b>Definition:</b> <a href="color__defines_8h_source.html#l00034">color_defines.h:34</a></div></div>
+<b>Value:</b><div class="fragment"><div class="line">((xms::XM_COLORREF)(((xms::XM_BYTE)(r) | ((xms::XM_WORD)((xms::XM_BYTE)(g)) &lt;&lt; 8)) | \</div>
+<div class="line">                      (((xms::XM_WORD)(xms::XM_BYTE)(b)) &lt;&lt; 16)))</div>
 </div><!-- fragment -->
 <p>RGB rename. </p>
 
@@ -223,7 +213,7 @@ typedef XM_DWORD&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="color__defines_8h.html">color_defines.h</a></li>
-    <li class="footer">Generated on Mon Jul 16 2018 18:25:24 for xmscore by
+    <li class="footer">Generated on Tue Jul 17 2018 14:14:02 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -127,12 +127,12 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>xms</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">   26</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">XM0</a> = 0; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">   27</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">XM1</a> = 1; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> XM0 = 0; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> XM1 = 1; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">   33</a></span>&#160;<span class="keywordtype">bool</span>&amp; <a class="code" href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">xmAsserting</a>()</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">bool</span>&amp; xmAsserting()</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">static</span> <span class="keywordtype">bool</span> m_asserting = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordflow">return</span> m_asserting;</div>
@@ -160,13 +160,13 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  XmAssertScopedDisable() <span class="comment">// remember then disable</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  : m_initialValue(<a class="code" href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">xmAsserting</a>())</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  : m_initialValue(xmAsserting())</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  {</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">xmAsserting</a>() = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    xmAsserting() = <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  };</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  ~XmAssertScopedDisable() <span class="comment">// restore</span></div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">xmAsserting</a>() = m_initialValue;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    xmAsserting() = m_initialValue;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  };</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}; <span class="comment">// XmAssertDisable</span></div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
@@ -224,7 +224,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;} <span class="comment">// iTest_XM_ENSURE_TRUE_T</span></div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> iTest_XM_ENSURE_TRUE_ptr(<span class="keywordtype">bool</span> a_assert)</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;xmresult iTest_XM_ENSURE_TRUE_ptr(<span class="keywordtype">bool</span> a_assert)</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;{</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <span class="keywordtype">char</span>* foo = <span class="keyword">new</span> <span class="keywordtype">char</span>[123];</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <a class="code" href="_xm_error_8h.html#a3dc5059ab2a87bfa4876b29ca6567376">XM_ENSURE_TRUE</a>(foo, XR_FAILURE);           <span class="comment">// should pass</span></div>
@@ -247,7 +247,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;} <span class="comment">// iTest_XM_ENSURE_TRUE_ptr</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> iTest_XM_ENSURE_TRUE_boost_ptr(<span class="keywordtype">bool</span> a_assert)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;xmresult iTest_XM_ENSURE_TRUE_boost_ptr(<span class="keywordtype">bool</span> a_assert)</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;{</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  BSHP&lt;char&gt; foo(<span class="keyword">new</span> <span class="keywordtype">char</span>(123));</div>
 <div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  <a class="code" href="_xm_error_8h.html#a3dc5059ab2a87bfa4876b29ca6567376">XM_ENSURE_TRUE</a>(foo, XR_FAILURE);           <span class="comment">// should pass</span></div>
@@ -271,7 +271,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keywordtype">void</span> iTest_XM_ENSURE_SUCCESS_VOID(<span class="keywordtype">bool</span> a_assert)</div>
 <div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;{</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> foo = XR_SUCCESS;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  xmresult foo = XR_SUCCESS;</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  <a class="code" href="_xm_error_8h.html#a8dfbad38daa9b504f8a3e9abdbec6e26">XM_ENSURE_SUCCESS_VOID</a>(foo);           <span class="comment">// should pass</span></div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <a class="code" href="_xm_error_8h.html#a66c26261f6d4ef1489565693e77397a2">XM_ENSURE_SUCCESS_VOID_NO_ASSERT</a>(foo); <span class="comment">// should pass</span></div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
@@ -290,9 +290,9 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;} <span class="comment">// iTest_XM_ENSURE_SUCCESS_VOID</span></div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> iTest_XM_ENSURE_SUCCESS(<span class="keywordtype">bool</span> a_assert)</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;xmresult iTest_XM_ENSURE_SUCCESS(<span class="keywordtype">bool</span> a_assert)</div>
 <div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;{</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  <a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> foo = XR_SUCCESS;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  xmresult foo = XR_SUCCESS;</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;  <a class="code" href="_xm_error_8h.html#acb2560d5d3eaeac4f7d7d0f8ce02f66d">XM_ENSURE_SUCCESS</a>(foo, XR_FAILURE);           <span class="comment">// should pass</span></div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;  <a class="code" href="_xm_error_8h.html#af7a141ecf5a5e956bedccfffdecdf0b2">XM_ENSURE_SUCCESS_NO_ASSERT</a>(foo, XR_FAILURE); <span class="comment">// should pass</span></div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;</div>
@@ -312,11 +312,11 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;} <span class="comment">// iTest_XM_ENSURE_SUCCESS</span></div>
 <div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> iTest_XM_ENSURE_SUCCESS_T(<span class="keywordtype">bool</span> a_assert)</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;xmresult iTest_XM_ENSURE_SUCCESS_T(<span class="keywordtype">bool</span> a_assert)</div>
 <div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;{</div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  <span class="keywordflow">try</span></div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  {</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    <a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> foo = XR_SUCCESS;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    xmresult foo = XR_SUCCESS;</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <a class="code" href="_xm_error_8h.html#ad96b30c3341a7b5d3b6ccfca95faa4ea">XM_ENSURE_SUCCESS_T</a>(foo, XR_FAILURE);           <span class="comment">// should pass</span></div>
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="_xm_error_8h.html#ad44817449b388b04c52adb0d325d013f">XM_ENSURE_SUCCESS_T_NO_ASSERT</a>(foo, XR_FAILURE); <span class="comment">// should pass</span></div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
@@ -333,7 +333,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    TS_FAIL(<span class="stringliteral">&quot;iTest_XM_ENSURE_SUCCESS&quot;</span>); <span class="comment">// shouldn&#39;t get here</span></div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  <span class="keywordflow">catch</span> (<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a>&amp; e)</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  <span class="keywordflow">catch</span> (xmresult&amp; e)</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;  {</div>
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    TS_ASSERT_EQUALS(e, XR_FAILURE);</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">return</span> XR_SUCCESS;</div>
@@ -342,20 +342,20 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;} <span class="comment">// iTest_XM_ENSURE_SUCCESS_T</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> iTest_XM_RETURN_XMRESULT_bool(<span class="keywordtype">bool</span> a)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;xmresult iTest_XM_RETURN_XMRESULT_bool(<span class="keywordtype">bool</span> a)</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;{</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  <a class="code" href="_xm_error_8h.html#abc07f4f546cbfb927f2f9d0a1d674b59">XM_RETURN_XMRESULT</a>(a);</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;} <span class="comment">// iTest_XM_RETURN_XMRESULT_bool</span></div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> iTest_XM_RETURN_XMRESULT_boost_ptr_true()</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;xmresult iTest_XM_RETURN_XMRESULT_boost_ptr_true()</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;{</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  BSHP&lt;char&gt; foo(<span class="keyword">new</span> <span class="keywordtype">char</span>(123));</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  <a class="code" href="_xm_error_8h.html#abc07f4f546cbfb927f2f9d0a1d674b59">XM_RETURN_XMRESULT</a>(foo);</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;} <span class="comment">// iTest_XM_RETURN_XMRESULT_boost_ptr_true</span></div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xmresult</a> iTest_XM_RETURN_XMRESULT_boost_ptr_false()</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;xmresult iTest_XM_RETURN_XMRESULT_boost_ptr_false()</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;{</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;  BSHP&lt;int&gt; p;</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;  <a class="code" href="_xm_error_8h.html#abc07f4f546cbfb927f2f9d0a1d674b59">XM_RETURN_XMRESULT</a>(p);</div>
@@ -376,7 +376,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  xms::iTest_XM_ENSURE_TRUE_VOID(<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;  xms::iTest_XM_ENSURE_TRUE_VOID(<span class="keyword">true</span>);</div>
 <div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  <a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xms::xmresult</a> rv = xms::iTest_XM_ENSURE_TRUE_ptr(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;  xms::xmresult rv = xms::iTest_XM_ENSURE_TRUE_ptr(<span class="keyword">false</span>);</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;  TS_ASSERT_EQUALS(rv, xms::XR_FAILURE);</div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;  rv = xms::iTest_XM_ENSURE_TRUE_ptr(<span class="keyword">true</span>);</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;  TS_ASSERT_EQUALS(rv, xms::XR_FAILURE);</div>
@@ -421,7 +421,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;  <span class="keyword">using namespace </span>xms;</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;  <span class="comment">// TS_FAIL(&quot;XmErrorUnitTests::test_XM_ASSERT&quot;);</span></div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  TS_ASSERT_EQUALS(<a class="code" href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">xms::xmAsserting</a>(), <span class="keyword">true</span>); <span class="comment">// this is the default</span></div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  TS_ASSERT_EQUALS(xms::xmAsserting(), <span class="keyword">true</span>); <span class="comment">// this is the default</span></div>
 <div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;  <span class="comment">// XM_ASSERT(false); // this should assert. It did when it was not commented</span></div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;  XmAssertScopedDisable disable;</div>
@@ -435,9 +435,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="ttc" id="_xm_error_8h_html_a7702fc672d7c96a60db6e183e29935a6"><div class="ttname"><a href="_xm_error_8h.html#a7702fc672d7c96a60db6e183e29935a6">XM_ENSURE_TRUE_NO_ASSERT</a></div><div class="ttdeci">#define XM_ENSURE_TRUE_NO_ASSERT(...)</div><div class="ttdoc">Returns (void) if x evaluates to false and logs. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00283">XmError.h:283</a></div></div>
 <div class="ttc" id="_xm_error_8t_8h_html"><div class="ttname"><a href="_xm_error_8t_8h.html">XmError.t.h</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_af7a141ecf5a5e956bedccfffdecdf0b2"><div class="ttname"><a href="_xm_error_8h.html#af7a141ecf5a5e956bedccfffdecdf0b2">XM_ENSURE_SUCCESS_NO_ASSERT</a></div><div class="ttdeci">#define XM_ENSURE_SUCCESS_NO_ASSERT(...)</div><div class="ttdoc">Returns ret if x evaluates to xms::XR_FAILURE and logs. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00120">XmError.h:120</a></div></div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 <div class="ttc" id="boost__defines_8h_html"><div class="ttname"><a href="boost__defines_8h.html">boost_defines.h</a></div><div class="ttdoc">Macros etc that make boost more convenient to use. </div></div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_acb2560d5d3eaeac4f7d7d0f8ce02f66d"><div class="ttname"><a href="_xm_error_8h.html#acb2560d5d3eaeac4f7d7d0f8ce02f66d">XM_ENSURE_SUCCESS</a></div><div class="ttdeci">#define XM_ENSURE_SUCCESS(...)</div><div class="ttdoc">Returns ret if x evaluates to xms::XR_FAILURE, logs, and optionally asserts. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00113">XmError.h:113</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a3dc5059ab2a87bfa4876b29ca6567376"><div class="ttname"><a href="_xm_error_8h.html#a3dc5059ab2a87bfa4876b29ca6567376">XM_ENSURE_TRUE</a></div><div class="ttdeci">#define XM_ENSURE_TRUE(...)</div><div class="ttdoc">Returns (void) if x evaluates to false, logs, and optionally asserts. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00277">XmError.h:277</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_abc07f4f546cbfb927f2f9d0a1d674b59"><div class="ttname"><a href="_xm_error_8h.html#abc07f4f546cbfb927f2f9d0a1d674b59">XM_RETURN_XMRESULT</a></div><div class="ttdeci">#define XM_RETURN_XMRESULT(x)</div><div class="ttdoc">Returns XR_SUCCESS if cond == true, else XR_FAILURE. Useful to convert a true/false return value into...</div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00499">XmError.h:499</a></div></div>
@@ -448,8 +446,6 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div class="ttc" id="_xm_error_8h_html_ad96b30c3341a7b5d3b6ccfca95faa4ea"><div class="ttname"><a href="_xm_error_8h.html#ad96b30c3341a7b5d3b6ccfca95faa4ea">XM_ENSURE_SUCCESS_T</a></div><div class="ttdeci">#define XM_ENSURE_SUCCESS_T(...)</div><div class="ttdoc">Throws ret if x evaluates to xms::XR_FAILURE, logs, and optionally asserts. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00165">XmError.h:165</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_ad44817449b388b04c52adb0d325d013f"><div class="ttname"><a href="_xm_error_8h.html#ad44817449b388b04c52adb0d325d013f">XM_ENSURE_SUCCESS_T_NO_ASSERT</a></div><div class="ttdeci">#define XM_ENSURE_SUCCESS_T_NO_ASSERT(...)</div><div class="ttdoc">Throws ret if x evaluates to xms::XR_FAILURE and logs. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00172">XmError.h:172</a></div></div>
 <div class="ttc" id="_xm_error_8h_html"><div class="ttname"><a href="_xm_error_8h.html">XmError.h</a></div><div class="ttdoc">Functions and macros for assertion and checking for errors. </div></div>
-<div class="ttc" id="namespacexms_html_a1503071e7b25b13081f9f478658a1046"><div class="ttname"><a href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xms::xmresult</a></div><div class="ttdeci">xmresult</div><div class="ttdoc">Like Mozilla&#39;s nsresult. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00040">XmError.h:40</a></div></div>
-<div class="ttc" id="namespacexms_html_a321716f8c5b486484ad8b9b88e4cb919"><div class="ttname"><a href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">xms::xmAsserting</a></div><div class="ttdeci">bool &amp; xmAsserting()</div><div class="ttdoc">Stores whether we want XM_ASSERT to do something or not. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00033">XmError.cpp:33</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a8dfbad38daa9b504f8a3e9abdbec6e26"><div class="ttname"><a href="_xm_error_8h.html#a8dfbad38daa9b504f8a3e9abdbec6e26">XM_ENSURE_SUCCESS_VOID</a></div><div class="ttdeci">#define XM_ENSURE_SUCCESS_VOID(...)</div><div class="ttdoc">Returns (void) if x evaluates to xms::XR_FAILURE, logs, and optionally asserts. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00216">XmError.h:216</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_acb13434955ecaff25a715e392d154395"><div class="ttname"><a href="_xm_error_8h.html#acb13434955ecaff25a715e392d154395">XM_ENSURE_TRUE_T</a></div><div class="ttdeci">#define XM_ENSURE_TRUE_T(...)</div><div class="ttdoc">Throws ret if x evaluates to false, logs, and optionally asserts. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00326">XmError.h:326</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -458,7 +454,7 @@ $(document).ready(function(){initNavTree('_xm_error_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="_xm_error_8cpp.html">XmError.cpp</a></li>
-    <li class="footer">Generated on Mon Jul 16 2018 18:25:24 for xmscore by
+    <li class="footer">Generated on Tue Jul 17 2018 14:14:02 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

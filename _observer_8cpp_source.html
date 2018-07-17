@@ -300,7 +300,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">  232</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a508a232c3577cabe9add637c7e735408">OnProgressStatus</a>(<span class="keywordtype">double</span> a_percentComplete)<span class="keyword"> override</span></div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="keyword">  </span>{</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    m_percentComplete = a_percentComplete;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">int</span> i = (int)(<a class="code" href="namespacexms.html#adfc1700dbd9064558f9fc863ebf041eb">xms::Round</a>(m_percentComplete * 100));</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_percentComplete * 100));</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Percent complete: &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;%.\n&quot;</span>;</div>
 <div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;  }</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;  <span class="comment">//------------------------------------------------------------------------------</span></div>
@@ -316,7 +316,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">  250</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">TimeElapsedInSeconds</a>(<span class="keywordtype">double</span> a_elapsedSeconds)<span class="keyword"> override</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keyword">  </span>{</div>
 <div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    m_elapsedSeconds = a_elapsedSeconds;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">int</span> i = (int)(<a class="code" href="namespacexms.html#adfc1700dbd9064558f9fc863ebf041eb">xms::Round</a>(m_elapsedSeconds * 10));</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_elapsedSeconds * 10));</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Elapsed seconds: 0.&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
 <div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  }</div>
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
@@ -325,7 +325,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">  261</a></span>&#160;  <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_mock_observer.html#a08f150ac9a3c517c99de3fcd40e382d0">TimeRemainingInSeconds</a>(<span class="keywordtype">double</span> a_secondsRemaining)<span class="keyword"> override</span></div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="keyword">  </span>{</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    m_remainingSeconds = a_secondsRemaining;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordtype">int</span> i = (int)(<a class="code" href="namespacexms.html#adfc1700dbd9064558f9fc863ebf041eb">xms::Round</a>(m_remainingSeconds * 10));</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordtype">int</span> i = (int)(xms::Round(m_remainingSeconds * 10));</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    m_info &lt;&lt; <span class="stringliteral">&quot;Time remaining (seconds): 0.&quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;  }</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;};</div>
@@ -500,7 +500,6 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div class="ttc" id="classxms_1_1_observer_1_1impl_html_a9117ce56380817da4d907c30ff229e9c"><div class="ttname"><a href="classxms_1_1_observer_1_1impl.html#a9117ce56380817da4d907c30ff229e9c">xms::Observer::impl::BeginOperationString</a></div><div class="ttdeci">void BeginOperationString()</div><div class="ttdoc">Starts the timer to know the elapsed time for the operation and to estimate the time remaining...</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00167">Observer.cpp:167</a></div></div>
 <div class="ttc" id="class_mock_observer_html_afc3ef4e691059d420277e39e669866c9"><div class="ttname"><a href="class_mock_observer.html#afc3ef4e691059d420277e39e669866c9">MockObserver::m_elapsedSeconds</a></div><div class="ttdeci">double m_elapsedSeconds</div><div class="ttdoc">seconds elapsed </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00222">Observer.cpp:222</a></div></div>
 <div class="ttc" id="class_mock_observer_html"><div class="ttname"><a href="class_mock_observer.html">MockObserver</a></div><div class="ttdoc">Derived class used for testing use of Observer class. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00219">Observer.cpp:219</a></div></div>
-<div class="ttc" id="namespacexms_html_adfc1700dbd9064558f9fc863ebf041eb"><div class="ttname"><a href="namespacexms.html#adfc1700dbd9064558f9fc863ebf041eb">xms::Round</a></div><div class="ttdeci">int Round(_T a)</div><div class="ttdoc">Rounds. </div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00021">math.h:21</a></div></div>
 <div class="ttc" id="classxms_1_1_observer_html"><div class="ttname"><a href="classxms_1_1_observer.html">xms::Observer</a></div><div class="ttdoc">Class used with the observer pattern. </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8h_source.html#l00027">Observer.h:27</a></div></div>
 <div class="ttc" id="class_mock_observer_html_a90d9553adba545bc8e45378d3a57b2e1"><div class="ttname"><a href="class_mock_observer.html#a90d9553adba545bc8e45378d3a57b2e1">MockObserver::TimeElapsedInSeconds</a></div><div class="ttdeci">virtual void TimeElapsedInSeconds(double a_elapsedSeconds) override</div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00250">Observer.cpp:250</a></div></div>
 <div class="ttc" id="class_mock_mesher_html_aeac68bcbce1b9c33aeffb497dd7b5901"><div class="ttname"><a href="class_mock_mesher.html#aeac68bcbce1b9c33aeffb497dd7b5901">MockMesher::SetObserver</a></div><div class="ttdeci">void SetObserver(BSHP&lt; xms::Observer &gt; a_)</div><div class="ttdoc">set the observer class </div><div class="ttdef"><b>Definition:</b> <a href="_observer_8cpp_source.html#l00279">Observer.cpp:279</a></div></div>
@@ -512,7 +511,7 @@ $(document).ready(function(){initNavTree('_observer_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="_observer_8cpp.html">Observer.cpp</a></li>
-    <li class="footer">Generated on Mon Jul 16 2018 18:25:24 for xmscore by
+    <li class="footer">Generated on Tue Jul 17 2018 14:14:02 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

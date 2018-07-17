@@ -10,7 +10,5 @@ var dir_4881bc6934a7205147f4e3dcb0171f6e =
     ] ],
     [ "PyObserver.h", "_py_observer_8h.html", [
       [ "PyObserver", "class_py_observer.html", "class_py_observer" ]
-    ] ],
-    [ "PyUtils.cpp", "_py_utils_8cpp_source.html", null ],
-    [ "PyUtils.h", "_py_utils_8h.html", "_py_utils_8h" ]
+    ] ]
 ];
