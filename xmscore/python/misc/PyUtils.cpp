@@ -305,5 +305,60 @@ py::iterable PyIterFromDynamicBitset(const DynBitset& bitset, bool numpy)
     return py::array(vec_bools.size(), vec_bools.data());
   }
 } // PyIterFromDynamicBitset
+//------------------------------------------------------------------------------
+/// \brief Create std::pair<int, int> from py::iterable
+/// \param[in] pt: py::iterable object that represents a std::pair<int, int>
+/// \return a boost::shared_ptr to a std::pair<int, int>
+//------------------------------------------------------------------------------
+std::pair<int, int> IntPairFromPyIter(const py::iterable& intpair)
+{
+  py::tuple pr = intpair.cast<py::tuple>();
+  if (py::len(pr) != 2) {
+      throw py::type_error("arg must be an 2-tuple");
+  } else {
+      std::pair<int, int> ret(1, 1);//ret(pr[0].cast<int>, pr[1].cast<int>);
+      return ret;
+  }
+} // IntPairFromPyIter
+//------------------------------------------------------------------------------
+/// \brief Create py::iterable from std::pair<int, int>
+/// \param[in] pt: std::pair<int, int> object that represents a py::iterable
+/// \return a py::iterable
+//------------------------------------------------------------------------------
+py::iterable PyIterFromIntPair(const std::pair<int, int>& intpair)
+{
+  return py::make_tuple(intpair.first, intpair.second);
+} // PyIterFromIntPair
+//------------------------------------------------------------------------------
+/// \brief Create std::vector<std::pair<int, int>> from py::iterable
+/// \param[in] pt: py::iterable object that represents a std::vector<std::pair<int, int>>
+/// \return a boost::shared_ptr to a std::vector<std::pair<int, int>>
+//------------------------------------------------------------------------------
+boost::shared_ptr<std::vector<std::pair<int, int>>> VecIntPairFromPyIter(const py::iterable& intpairs)
+{
+  boost::shared_ptr<std::vector<std::pair<int, int>>> vec_pairs(new std::vector<std::pair<int, int>>);
+  vec_pairs->resize(py::len(intpairs));
+  int i = 0;
+  for (auto item : intpairs) {
+    py::tuple prs = item.cast<py::tuple>();
+    vec_pairs->at(i)= IntPairFromPyIter(prs);
+    i++;
+  }
+  return vec_pairs;
+} // VecIntPairFromPyIter
+//------------------------------------------------------------------------------
+/// \brief Create py::iterable from std::vector<std::pair<int, int>>
+/// \param[in] pt: std::vector<std::pair<int, int>> object that represents a py::iterable
+/// \return a py::iterable
+//------------------------------------------------------------------------------
+py::iterable PyIterFromVecIntPair(const std::vector<std::pair<int, int>>& intpairs)
+{
+  // NOTE: This is a copy operation
+  auto tuple_ret = py::tuple(intpairs.size());
+  for (size_t i = 0; i < tuple_ret.size(); ++i) {
+    tuple_ret[i] = PyIterFromIntPair(intpairs.at(i));
+  }
+  return tuple_ret;
+} // PyIterFromVecIntPair
 
 } // namespace xms
