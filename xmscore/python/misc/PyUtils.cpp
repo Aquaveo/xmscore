@@ -105,6 +105,7 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts)
       }
       vec_pt3d2d->at(i) = vec_pt3d;
   }
+  return vec_pt3d2d;
 } // VecPt3d2dFromPyIter
 //------------------------------------------------------------------------------
 /// \brief Create py::iterable from VecPt3d2d
@@ -113,6 +114,7 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts)
 //------------------------------------------------------------------------------
 py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& pts)
 {
+	return py::make_tuple();
 } // PyIterFromVecPt3d2d
 //------------------------------------------------------------------------------
 /// \brief Create VecInt2d from py::iterable
