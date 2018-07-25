@@ -1,10 +1,12 @@
 var searchData=
 [
-  ['_7eprogress',['~Progress',['../classxms_1_1_progress.html#a093986f04a87dda5503b097ade380029',1,'xms::Progress']]],
-  ['_7eprogresslistener',['~ProgressListener',['../classxms_1_1_progress_listener.html#a284b9861f146ecfe2ec6967288aca1d3',1,'xms::ProgressListener']]],
-  ['_7ept2',['~Pt2',['../classxms_1_1_pt2.html#a07974c1bfe87d83350b897fa8ad98e54',1,'xms::Pt2']]],
-  ['_7ept3',['~Pt3',['../classxms_1_1_pt3.html#a1b4a4cb9de9e47f8e0702dd7ac6e1fa7',1,'xms::Pt3']]],
-  ['_7ept4',['~Pt4',['../classxms_1_1_pt4.html#a5cd39733ccb240f7c9c10f3569d2f2bd',1,'xms::Pt4']]],
-  ['_7esttemp2digitexponents',['~StTemp2DigitExponents',['../classxms_1_1_st_temp2_digit_exponents.html#a6c3f0dc95e653a725b26cd5557497403',1,'xms::StTemp2DigitExponents']]],
-  ['_7exmlog',['~XmLog',['../classxms_1_1_xm_log.html#acc5f8eee341aeac5b06dba422619e5d6',1,'xms::XmLog']]]
+  ['vecbooleantodynbitset',['VecBooleanToDynBitset',['../namespacexms.html#a07a9a5ed39e6326c5725622af98f4856',1,'xms']]],
+  ['vecdblfrompyiter',['VecDblFromPyIter',['../namespacexms.html#ab5fd3653a6331570a61ff881917641ca',1,'xms']]],
+  ['vecfltfrompyiter',['VecFltFromPyIter',['../namespacexms.html#a8bddf97e8dc7cb2d2bcd1df5e477efb1',1,'xms']]],
+  ['vecint2dfrompyiter',['VecInt2dFromPyIter',['../namespacexms.html#aa4c0bf973be9e1f13c1f793eff468b37',1,'xms']]],
+  ['vecintfrompyiter',['VecIntFromPyIter',['../namespacexms.html#a3685fbd2c82bfe5ae4ec3e1e978d8d92',1,'xms']]],
+  ['vecintpairfrompyiter',['VecIntPairFromPyIter',['../namespacexms.html#afcdebdd67720da722a796de78c531f2e',1,'xms']]],
+  ['vecpt3d2dfrompyiter',['VecPt3d2dFromPyIter',['../namespacexms.html#a8341d3f2b243f05d88a293f90a0febbb',1,'xms']]],
+  ['vecpt3dfrompyiter',['VecPt3dFromPyIter',['../namespacexms.html#a43267849a6908be20246a8237928dcbf',1,'xms']]],
+  ['vectostream',['VecToStream',['../namespacexms.html#a9be33abf1221de1679a4ff237b549efb',1,'xms']]]
 ];

@@ -170,7 +170,7 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordflow">if</span> (fg_checkLogForEachTest)</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    xms::ttByPassMessages(1);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="namespacexms.html#a9a6679c474ce3bc806395023736dcfe6">xms::ttByPassMessages</a>(1);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::string errors = <a class="code" href="classxms_1_1_singleton.html#a9a8a1b054d5e8cea413f16a93afd480e">XmLog::Instance</a>().<a class="code" href="classxms_1_1_xm_log.html#a6a0e58e950e973b880fdfd566062a38b">GetAndClearStackStr</a>();</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    TS_ASSERT_EQUALS(std::string(), errors);</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordflow">return</span> errors == <span class="stringliteral">&quot;&quot;</span>;</div>
@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;{</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keywordflow">if</span> (fg_checkLogForEachTest)</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    xms::ttClearSkippingMessages();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="namespacexms.html#aca82daee4102af38576458952c71be04">xms::ttClearSkippingMessages</a>();</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::string errors = <a class="code" href="classxms_1_1_singleton.html#a9a8a1b054d5e8cea413f16a93afd480e">XmLog::Instance</a>().<a class="code" href="classxms_1_1_xm_log.html#a6a0e58e950e973b880fdfd566062a38b">GetAndClearStackStr</a>();</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    TS_ASSERT_EQUALS(std::string(), errors);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// if expected use TS_ASSERT_STACKED_ERRORS</span></div>
@@ -272,7 +272,7 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;std::string&amp; ttDefaultXmsngTestPath()</div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="namespacexms.html#aea25a4299c927c1733790a4dc3bc0882">  196</a></span>&#160;std::string&amp; <a class="code" href="namespacexms.html#aea25a4299c927c1733790a4dc3bc0882">ttDefaultXmsngTestPath</a>()</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;{</div>
 <div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#if BOOST_OS_WINDOWS</span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor"></span>  <span class="keyword">static</span> std::string m_(<span class="stringliteral">&quot;files_xmsng/Test/&quot;</span>);</div>
@@ -283,7 +283,7 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;} <span class="comment">// ttDefaultXmsngTestPath</span></div>
 <div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;std::string ttGetXmsngTestPath()</div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="namespacexms.html#acddaa287c080f4199d840c9ca3e29f23">  210</a></span>&#160;std::string <a class="code" href="namespacexms.html#acddaa287c080f4199d840c9ca3e29f23">ttGetXmsngTestPath</a>()</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;{</div>
 <div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#ifdef XMSNG_TEST_PATH</span></div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> XMSNG_TEST_PATH;</div>
@@ -340,12 +340,12 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;      <span class="keyword">delete</span>[] buf;</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    boost::filesystem::path basePath = exePath.parent_path();</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    boost::filesystem::path checkPath = basePath;</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    checkPath /= ttDefaultXmsngTestPath();</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    checkPath /= <a class="code" href="namespacexms.html#aea25a4299c927c1733790a4dc3bc0882">ttDefaultXmsngTestPath</a>();</div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordflow">while</span> (basePath.has_parent_path() &amp;&amp; !is_directory(checkPath))</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    {</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;      basePath = basePath.parent_path();</div>
 <div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;      checkPath = basePath;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      checkPath /= ttDefaultXmsngTestPath();</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      checkPath /= <a class="code" href="namespacexms.html#aea25a4299c927c1733790a4dc3bc0882">ttDefaultXmsngTestPath</a>();</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    }</div>
 <div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <span class="comment">// testPath = boost::canonical(checkPath).string(); // Doesn&#39;t work with symbolic links</span></div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    testPath = checkPath.lexically_normal().string();</div>
@@ -372,54 +372,54 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="preprocessor"></span>} <span class="comment">// ttGetXmsngTestPath</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="keywordtype">void</span> ttByPassMessages(<span class="keywordtype">int</span> a_defaultChoice)</div>
+<div class="line"><a name="l00302"></a><span class="lineno"><a class="line" href="namespacexms.html#a9a6679c474ce3bc806395023736dcfe6">  302</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#a9a6679c474ce3bc806395023736dcfe6">ttByPassMessages</a>(<span class="keywordtype">int</span> a_defaultChoice)</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;{</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  ttTestMessagingState().<a class="code" href="classxms_1_1_e_test_messaging_state.html#affaa1f5cc69a0ba6fcd4fd12b87e69ea">SetDefault</a>(a_defaultChoice);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  ttTestMessagingState().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a7f2f1bc288a6a4a7f9b75c3d478668ea">SetSkipping</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  <a class="code" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">ttTestMessagingState</a>().<a class="code" href="classxms_1_1_e_test_messaging_state.html#affaa1f5cc69a0ba6fcd4fd12b87e69ea">SetDefault</a>(a_defaultChoice);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;  <a class="code" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">ttTestMessagingState</a>().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a7f2f1bc288a6a4a7f9b75c3d478668ea">SetSkipping</a>(<span class="keyword">true</span>);</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;} <span class="comment">// ttByPassMessages</span></div>
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="keywordtype">bool</span> ttSkippingMessages()</div>
+<div class="line"><a name="l00312"></a><span class="lineno"><a class="line" href="namespacexms.html#ac8e299c3d55effb9358f87e945692da4">  312</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacexms.html#ac8e299c3d55effb9358f87e945692da4">ttSkippingMessages</a>()</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;{</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  <span class="keywordflow">return</span> ttTestMessagingState().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a5e54c4195f23b5d7ac9eb51c76ffa79a">GetSkipping</a>();</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">ttTestMessagingState</a>().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a5e54c4195f23b5d7ac9eb51c76ffa79a">GetSkipping</a>();</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;} <span class="comment">// ttSkippingMessages</span></div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="keywordtype">int</span> ttByPassDefault()</div>
+<div class="line"><a name="l00320"></a><span class="lineno"><a class="line" href="namespacexms.html#ad062784654592a88d525970efcc8d914">  320</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacexms.html#ad062784654592a88d525970efcc8d914">ttByPassDefault</a>()</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;{</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  <span class="keywordflow">return</span> ttTestMessagingState().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a576bc48a3eccc9f7fd55fcafdd8bd8f8">GetDefault</a>();</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">ttTestMessagingState</a>().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a576bc48a3eccc9f7fd55fcafdd8bd8f8">GetDefault</a>();</div>
 <div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;} <span class="comment">// ttByPassDefault</span></div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;<span class="keywordtype">void</span> ttClearSkippingMessages()</div>
+<div class="line"><a name="l00327"></a><span class="lineno"><a class="line" href="namespacexms.html#aca82daee4102af38576458952c71be04">  327</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#aca82daee4102af38576458952c71be04">ttClearSkippingMessages</a>()</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;{</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  ttTestMessagingState().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a7f2f1bc288a6a4a7f9b75c3d478668ea">SetSkipping</a>(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  ttTestMessagingState().<a class="code" href="classxms_1_1_e_test_messaging_state.html#aade9d4c6d37ea3d95c689ae38a757ed8">ClearDefault</a>();</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;  <a class="code" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">ttTestMessagingState</a>().<a class="code" href="classxms_1_1_e_test_messaging_state.html#a7f2f1bc288a6a4a7f9b75c3d478668ea">SetSkipping</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;  <a class="code" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">ttTestMessagingState</a>().<a class="code" href="classxms_1_1_e_test_messaging_state.html#aade9d4c6d37ea3d95c689ae38a757ed8">ClearDefault</a>();</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;} <span class="comment">// ttClearSkippingMessages</span></div>
 <div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;ETestMessagingState&amp; ttTestMessagingState()</div>
+<div class="line"><a name="l00336"></a><span class="lineno"><a class="line" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">  336</a></span>&#160;<a class="code" href="classxms_1_1_e_test_messaging_state.html">ETestMessagingState</a>&amp; <a class="code" href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">ttTestMessagingState</a>()</div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;{</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;  <span class="keyword">static</span> ETestMessagingState m_;</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;  <span class="keyword">static</span> <a class="code" href="classxms_1_1_e_test_messaging_state.html">ETestMessagingState</a> m_;</div>
 <div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;  <span class="keywordflow">return</span> m_;</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;} <span class="comment">// ttTestMessagingState</span></div>
 <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="keywordtype">void</span> ttCheckXmLogForEachTest(<span class="keywordtype">bool</span> a_setting)</div>
+<div class="line"><a name="l00345"></a><span class="lineno"><a class="line" href="namespacexms.html#a89a1187517e055debbd1f536e50f0a03">  345</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#a89a1187517e055debbd1f536e50f0a03">ttCheckXmLogForEachTest</a>(<span class="keywordtype">bool</span> a_setting)</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;{</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;  fg_checkLogForEachTest = a_setting;</div>
 <div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;} <span class="comment">// ttSetCheckXmLogForEachTest</span></div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;<span class="keywordtype">bool</span> ttCheckXmLogForEachTest()</div>
+<div class="line"><a name="l00353"></a><span class="lineno"><a class="line" href="namespacexms.html#a0af2260e97dd0a9508b272401bc13333">  353</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacexms.html#a89a1187517e055debbd1f536e50f0a03">ttCheckXmLogForEachTest</a>()</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;{</div>
 <div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="keywordflow">return</span> fg_checkLogForEachTest;</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;} <span class="comment">// ttCheckXmLogForEachTest</span></div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="keywordtype">void</span> ttAssertStackedErrors(<span class="keyword">const</span> <span class="keywordtype">char</span>* a_file, <span class="keywordtype">int</span> a_line, <span class="keyword">const</span> std::string&amp; a_expected)</div>
+<div class="line"><a name="l00363"></a><span class="lineno"><a class="line" href="namespacexms.html#ac619b9bd692506c31fba6febdd34136e">  363</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#ac619b9bd692506c31fba6febdd34136e">ttAssertStackedErrors</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* a_file, <span class="keywordtype">int</span> a_line, <span class="keyword">const</span> std::string&amp; a_expected)</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;{</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  <span class="keywordflow">if</span> (ttCheckXmLogForEachTest())</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="namespacexms.html#a89a1187517e055debbd1f536e50f0a03">ttCheckXmLogForEachTest</a>())</div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;  {</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    std::string errors = <a class="code" href="classxms_1_1_singleton.html#a9a8a1b054d5e8cea413f16a93afd480e">XmLog::Instance</a>().<a class="code" href="classxms_1_1_xm_log.html#a6a0e58e950e973b880fdfd566062a38b">GetAndClearStackStr</a>();</div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    _TS_ASSERT_EQUALS(a_file, a_line, a_expected, errors);</div>
@@ -427,7 +427,7 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;} <span class="comment">// ttAssertStackedErrors</span></div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;<span class="keywordtype">void</span> ttGetTestFilePaths(<span class="keyword">const</span> std::string&amp; a_path,</div>
+<div class="line"><a name="l00383"></a><span class="lineno"><a class="line" href="namespacexms.html#a21c6cbf8cb7289e3ac5adf2c02f3db62">  383</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#a21c6cbf8cb7289e3ac5adf2c02f3db62">ttGetTestFilePaths</a>(<span class="keyword">const</span> std::string&amp; a_path,</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                        <span class="keyword">const</span> std::string&amp; a_fileBase,</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                        <span class="keyword">const</span> std::string&amp; a_extension,</div>
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                        std::string&amp; a_baseFilePath,</div>
@@ -441,143 +441,163 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    a_baseFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_baseMacOsX&quot;</span> + a_extension;</div>
 <div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;    foundBase = iFindTestFile(a_baseFilePath);</div>
 <div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;  }</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;<span class="preprocessor">#if defined(ENV64BIT)</span></div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;<span class="preprocessor"></span>  <span class="comment">// see if there is a different base file for 64 bit</span></div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;  <span class="keywordflow">if</span> (!foundBase)</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  {</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    a_baseFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_base64&quot;</span> + a_extension;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    foundBase = iFindTestFile(a_baseFilePath);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;  }</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="preprocessor">#elif defined(ENV32BIT)</span></div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="preprocessor"></span>  <span class="comment">// ensure either ENV32BIT or ENV64BIT is defined</span></div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#error &quot;Must define either ENV32BIT or ENV64BIT&quot;</span></div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">if</span> (!foundBase)</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    a_baseFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_base&quot;</span> + a_extension;</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;  a_outFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_out&quot;</span> + a_extension;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;} <span class="comment">// ttGetTestFilePaths</span></div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="keywordtype">bool</span> ttTextFilesEqual(<span class="keyword">const</span> std::string&amp; a_file1,</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;                      <span class="keyword">const</span> std::string&amp; a_file2,</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;                      std::string&amp; a_message)</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;{</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;  std::ifstream iOut(a_file1), iBase(a_file2);</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;  std::string lineOut, lineBase;</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;  <span class="keywordtype">int</span> lineCnt(1);</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;  <span class="keywordflow">if</span> (!iOut.is_open() || !iBase.is_open())</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;  {</div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;    std::stringstream msg;</div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    msg &lt;&lt; <span class="stringliteral">&quot;Unable to open file: &quot;</span></div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    <span class="keywordflow">if</span> (!iOut.is_open())</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    {</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;      msg &lt;&lt; a_file1;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    }</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    {</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;      msg &lt;&lt; a_file2;</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    }</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    a_message = msg.str();</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;  }</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  <span class="keywordflow">while</span> (!iOut.eof() &amp;&amp; !iBase.eof())</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;  {</div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    std::getline(iOut, lineOut);</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    std::getline(iBase, lineBase);</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    <span class="comment">// remove trailing \r character on unix os</span></div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    lineOut.erase(lineOut.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    lineBase.erase(lineBase.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;    <span class="keywordflow">if</span> (lineOut != lineBase)</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;    {</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;      std::stringstream msg;</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Files different on line &quot;</span> &lt;&lt; lineCnt &lt;&lt; <span class="stringliteral">&quot;.&quot;</span></div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;File: &quot;</span> &lt;&lt; a_file1 &lt;&lt; <span class="stringliteral">&quot;.&quot;</span></div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;          &lt;&lt; lineOut &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;File: &quot;</span> &lt;&lt; a_file2 &lt;&lt; <span class="stringliteral">&quot;.&quot;</span></div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;          &lt;&lt; lineBase &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;      a_message = msg.str();</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    }</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;    lineCnt++;</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;  }</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;} <span class="comment">// ttTextFilesEqual</span></div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;<span class="comment">//----- OVERLOAD ---------------------------------------------------------------</span></div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;<span class="comment"></span><span class="comment">//----- OVERLOAD ---------------------------------------------------------------</span></div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="keywordtype">void</span> ttTextFilesEqual(<span class="keyword">const</span> std::string&amp; a_srcFile,</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;                      <span class="keywordtype">unsigned</span> a_line,</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;                      <span class="keyword">const</span> std::string&amp; a_file1,</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;                      <span class="keyword">const</span> std::string&amp; a_file2)</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;{</div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;  std::string msg;</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;  <span class="keywordflow">if</span> (!ttTextFilesEqual(a_file1, a_file2, msg))</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    _TS_FAIL(a_srcFile.c_str(), a_line, msg.c_str());</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;} <span class="comment">// ttTextFilesEqual</span></div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="keywordtype">void</span> ttStreamsEqual(<span class="keyword">const</span> std::string&amp; a_src,</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;                    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> a_line,</div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;                    std::istream&amp; a_strm1,</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;                    std::istream&amp; a_strm2)</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;{</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;  std::string line1, line2;</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> line_count(1);</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;  <span class="comment">// clear the flags and rewind the streams</span></div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;  a_strm1.clear();</div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;  a_strm2.clear();</div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;</div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;  a_strm1.seekg(0);</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;  a_strm2.seekg(0);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;<span class="preprocessor">#elif BOOST_OS_LINUX</span></div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;<span class="preprocessor"></span>  <span class="comment">// see if there is a different base file for linux</span></div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;  <span class="keywordflow">if</span> (!foundBase)</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;  {</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    a_baseFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_baseLinux&quot;</span> + a_extension;</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    foundBase = iFindTestFile(a_baseFilePath);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  }</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="preprocessor">#if defined(ENV64BIT)</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;<span class="preprocessor"></span>  <span class="comment">// see if there is a different base file for 64 bit</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;  <span class="keywordflow">if</span> (!foundBase)</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;  {</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    a_baseFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_base64&quot;</span> + a_extension;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    foundBase = iFindTestFile(a_baseFilePath);</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;  }</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;<span class="preprocessor">#elif defined(ENV32BIT)</span></div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;<span class="preprocessor"></span>  <span class="comment">// ensure either ENV32BIT or ENV64BIT is defined</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#error &quot;Must define either ENV32BIT or ENV64BIT&quot;</span></div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">if</span> (!foundBase)</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;    a_baseFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_base&quot;</span> + a_extension;</div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;  a_outFilePath = a_path + a_fileBase + <span class="stringliteral">&quot;_out&quot;</span> + a_extension;</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;} <span class="comment">// ttGetTestFilePaths</span></div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00430"></a><span class="lineno"><a class="line" href="namespacexms.html#a326ac713f6a09e5de3b4afdb3a8f0bd5">  430</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacexms.html#a326ac713f6a09e5de3b4afdb3a8f0bd5">ttTextFilesEqual</a>(<span class="keyword">const</span> std::string&amp; a_file1,</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;                      <span class="keyword">const</span> std::string&amp; a_file2,</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;                      std::string&amp; a_message)</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;{</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;  std::ifstream iOut(a_file1), iBase(a_file2);</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;  std::string lineOut, lineBase;</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;  <span class="keywordtype">int</span> lineCnt(1);</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;  <span class="keywordflow">if</span> (!iOut.is_open() || !iBase.is_open())</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;  {</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    std::stringstream msg;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    msg &lt;&lt; <span class="stringliteral">&quot;Unable to open file: &quot;</span></div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    <span class="keywordflow">if</span> (!iOut.is_open())</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    {</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;      msg &lt;&lt; a_file1;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    }</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    {</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;      msg &lt;&lt; a_file2;</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    }</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;    a_message = msg.str();</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;  }</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;  <span class="keywordflow">while</span> (!iOut.eof() &amp;&amp; !iBase.eof())</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;  {</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;    std::getline(iOut, lineOut);</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;    std::getline(iBase, lineBase);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;    <span class="comment">// remove trailing \r character on unix os</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;    lineOut.erase(lineOut.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;    lineBase.erase(lineBase.find_last_not_of(<span class="stringliteral">&quot;\n\r&quot;</span>) + 1);</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;    <span class="keywordflow">if</span> (lineOut != lineBase)</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;    {</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;      std::stringstream msg;</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Files different on line &quot;</span> &lt;&lt; lineCnt &lt;&lt; <span class="stringliteral">&quot;.&quot;</span></div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;File: &quot;</span> &lt;&lt; a_file1 &lt;&lt; <span class="stringliteral">&quot;.&quot;</span></div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;          &lt;&lt; lineOut &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;File: &quot;</span> &lt;&lt; a_file2 &lt;&lt; <span class="stringliteral">&quot;.&quot;</span></div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;          &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span></div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;          &lt;&lt; lineBase &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;      a_message = msg.str();</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;    }</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;    lineCnt++;</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;  }</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;} <span class="comment">// ttTextFilesEqual</span></div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;<span class="comment">//----- OVERLOAD ---------------------------------------------------------------</span></div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment"></span><span class="comment">//----- OVERLOAD ---------------------------------------------------------------</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno"><a class="line" href="namespacexms.html#af756be86cffac9304409c60bba5dbafd">  485</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#a326ac713f6a09e5de3b4afdb3a8f0bd5">ttTextFilesEqual</a>(<span class="keyword">const</span> std::string&amp; a_srcFile,</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;                      <span class="keywordtype">unsigned</span> a_line,</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;                      <span class="keyword">const</span> std::string&amp; a_file1,</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;                      <span class="keyword">const</span> std::string&amp; a_file2)</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;{</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;  std::string msg;</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;  <span class="keywordflow">if</span> (!<a class="code" href="namespacexms.html#a326ac713f6a09e5de3b4afdb3a8f0bd5">ttTextFilesEqual</a>(a_file1, a_file2, msg))</div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    _TS_FAIL(a_srcFile.c_str(), a_line, msg.c_str());</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;} <span class="comment">// ttTextFilesEqual</span></div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno"><a class="line" href="namespacexms.html#ab4a12bdfe2030df3dafdd066679656d1">  501</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#ab4a12bdfe2030df3dafdd066679656d1">ttStreamsEqual</a>(<span class="keyword">const</span> std::string&amp; a_src,</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;                    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> a_line,</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;                    std::istream&amp; a_strm1,</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;                    std::istream&amp; a_strm2)</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;{</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;  std::string line1, line2;</div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> line_count(1);</div>
 <div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;</div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;  <span class="keywordflow">while</span> (!a_strm1.eof() &amp;&amp; !a_strm2.eof())</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;  {</div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;    std::getline(a_strm1, line1);</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    std::getline(a_strm2, line2);</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;    <span class="keywordflow">if</span> (line1 != line2)</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    {</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;      std::stringstream msg;</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Streams different on line &quot;</span> &lt;&lt; line_count &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Stream1:  \&quot;&quot;</span> &lt;&lt; line1 &lt;&lt; <span class="stringliteral">&quot;\&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Stream2:  \&quot;&quot;</span> &lt;&lt; line2 &lt;&lt; <span class="stringliteral">&quot;\&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;      _TS_FAIL(a_src.c_str(), a_line, msg.str().c_str());</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;    }</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;  <span class="comment">// clear the flags and rewind the streams</span></div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;  a_strm1.clear();</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;  a_strm2.clear();</div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;  a_strm1.seekg(0);</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;  a_strm2.seekg(0);</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;  <span class="keywordflow">while</span> (!a_strm1.eof() &amp;&amp; !a_strm2.eof())</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;  {</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    std::getline(a_strm1, line1);</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;    std::getline(a_strm2, line2);</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    <span class="keywordflow">if</span> (line1 != line2)</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;    {</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;      std::stringstream msg;</div>
 <div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;    ++line_count;</div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;  }</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;  <span class="keywordflow">if</span> ((a_strm1.eof() &amp;&amp; !a_strm2.eof()) || (!a_strm1.eof() &amp;&amp; a_strm2.eof()))</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;  {</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;    _TS_FAIL(a_src.c_str(), a_line, <span class="stringliteral">&quot;Streams of different lengths&quot;</span>);</div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;  }</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;} <span class="comment">// ttStreamsEqual</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;} <span class="comment">// namespace xms</span></div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Streams different on line &quot;</span> &lt;&lt; line_count &lt;&lt; <span class="stringliteral">&quot;.\n&quot;</span>;</div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Stream1:  \&quot;&quot;</span> &lt;&lt; line1 &lt;&lt; <span class="stringliteral">&quot;\&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;      msg &lt;&lt; <span class="stringliteral">&quot;Stream2:  \&quot;&quot;</span> &lt;&lt; line2 &lt;&lt; <span class="stringliteral">&quot;\&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;      _TS_FAIL(a_src.c_str(), a_line, msg.str().c_str());</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;    }</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;    ++line_count;</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;  }</div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;  <span class="keywordflow">if</span> ((a_strm1.eof() &amp;&amp; !a_strm2.eof()) || (!a_strm1.eof() &amp;&amp; a_strm2.eof()))</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;  {</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    _TS_FAIL(a_src.c_str(), a_line, <span class="stringliteral">&quot;Streams of different lengths&quot;</span>);</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;  }</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;} <span class="comment">// ttStreamsEqual</span></div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;} <span class="comment">// namespace xms</span></div>
+<div class="ttc" id="classxms_1_1_e_test_messaging_state_html"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html">xms::ETestMessagingState</a></div><div class="ttdoc">Class to allow running in batch mode without ui elements. Currently only used for testing but it can ...</div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8h_source.html#l00261">TestTools.h:261</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_a57c93fd4ad19f66cab6fe93169eb3df2"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#a57c93fd4ad19f66cab6fe93169eb3df2">xms::ETestMessagingState::m_defaultSet</a></div><div class="ttdeci">bool m_defaultSet</div><div class="ttdoc">Has a default result value been set? </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8h_source.html#l00274">TestTools.h:274</a></div></div>
+<div class="ttc" id="namespacexms_html_a9a6679c474ce3bc806395023736dcfe6"><div class="ttname"><a href="namespacexms.html#a9a6679c474ce3bc806395023736dcfe6">xms::ttByPassMessages</a></div><div class="ttdeci">void ttByPassMessages(int a_defaultChoice)</div><div class="ttdoc">Bypass the ui elements and just set return value. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00302">TestTools.cpp:302</a></div></div>
+<div class="ttc" id="namespacexms_html_aca82daee4102af38576458952c71be04"><div class="ttname"><a href="namespacexms.html#aca82daee4102af38576458952c71be04">xms::ttClearSkippingMessages</a></div><div class="ttdeci">void ttClearSkippingMessages()</div><div class="ttdoc">Turn off skipping ui elements. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00327">TestTools.cpp:327</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_a90828ce997911657701af863ffde668c"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#a90828ce997911657701af863ffde668c">xms::ETestMessagingState::ETestMessagingState</a></div><div class="ttdeci">ETestMessagingState()</div><div class="ttdoc">Constructor. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00136">TestTools.cpp:136</a></div></div>
+<div class="ttc" id="namespacexms_html_a99d430c07eede7029ba975abe116b5e9"><div class="ttname"><a href="namespacexms.html#a99d430c07eede7029ba975abe116b5e9">xms::ttTestMessagingState</a></div><div class="ttdeci">ETestMessagingState &amp; ttTestMessagingState()</div><div class="ttdoc">Get the batch mode singleton. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00336">TestTools.cpp:336</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_aade9d4c6d37ea3d95c689ae38a757ed8"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#aade9d4c6d37ea3d95c689ae38a757ed8">xms::ETestMessagingState::ClearDefault</a></div><div class="ttdeci">void ClearDefault()</div><div class="ttdoc">Change to no default value set. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00154">TestTools.cpp:154</a></div></div>
+<div class="ttc" id="namespacexms_html_ac8e299c3d55effb9358f87e945692da4"><div class="ttname"><a href="namespacexms.html#ac8e299c3d55effb9358f87e945692da4">xms::ttSkippingMessages</a></div><div class="ttdeci">bool ttSkippingMessages()</div><div class="ttdoc">Has ttByPassMessages been called without calling ttClearSkippingMessages. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00312">TestTools.cpp:312</a></div></div>
+<div class="ttc" id="namespacexms_html_ab4a12bdfe2030df3dafdd066679656d1"><div class="ttname"><a href="namespacexms.html#ab4a12bdfe2030df3dafdd066679656d1">xms::ttStreamsEqual</a></div><div class="ttdeci">void ttStreamsEqual(const std::string &amp;a_src, unsigned int a_line, std::istream &amp;a_strm1, std::istream &amp;a_strm2)</div><div class="ttdoc">Returns true if the two streams are equal. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00501">TestTools.cpp:501</a></div></div>
 <div class="ttc" id="classxms_1_1_xm_log_html_a6a0e58e950e973b880fdfd566062a38b"><div class="ttname"><a href="classxms_1_1_xm_log.html#a6a0e58e950e973b880fdfd566062a38b">xms::XmLog::GetAndClearStackStr</a></div><div class="ttdeci">std::string GetAndClearStackStr()</div><div class="ttdoc">Clears the error stack and returns its contents as a string. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8cpp_source.html#l00229">XmLog.cpp:229</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_a576bc48a3eccc9f7fd55fcafdd8bd8f8"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#a576bc48a3eccc9f7fd55fcafdd8bd8f8">xms::ETestMessagingState::GetDefault</a></div><div class="ttdeci">int GetDefault()</div><div class="ttdoc">Get default value. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00162">TestTools.cpp:162</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_abfa35b994a6cee56d26b28ce9d98e4b0"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#abfa35b994a6cee56d26b28ce9d98e4b0">xms::ETestMessagingState::m_skippingMessages</a></div><div class="ttdeci">bool m_skippingMessages</div><div class="ttdoc">Are messages being skipped? </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8h_source.html#l00273">TestTools.h:273</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_a7f2f1bc288a6a4a7f9b75c3d478668ea"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#a7f2f1bc288a6a4a7f9b75c3d478668ea">xms::ETestMessagingState::SetSkipping</a></div><div class="ttdeci">void SetSkipping(bool a_)</div><div class="ttdoc">Set if skipping messages. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00170">TestTools.cpp:170</a></div></div>
 <div class="ttc" id="classxms_1_1_xm_log_html_a82db042ede308de7f85b0b55b8eb3587"><div class="ttname"><a href="classxms_1_1_xm_log.html#a82db042ede308de7f85b0b55b8eb3587">xms::XmLog::Log</a></div><div class="ttdeci">void Log(const char *const a_file, int a_line, xmlog::MessageTypeEnum a_level, std::string a_message)</div><div class="ttdoc">Logs. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8cpp_source.html#l00191">XmLog.cpp:191</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_affaa1f5cc69a0ba6fcd4fd12b87e69ea"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#affaa1f5cc69a0ba6fcd4fd12b87e69ea">xms::ETestMessagingState::SetDefault</a></div><div class="ttdeci">void SetDefault(int a_)</div><div class="ttdoc">Set default result value. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00146">TestTools.cpp:146</a></div></div>
+<div class="ttc" id="namespacexms_html_ad062784654592a88d525970efcc8d914"><div class="ttname"><a href="namespacexms.html#ad062784654592a88d525970efcc8d914">xms::ttByPassDefault</a></div><div class="ttdeci">int ttByPassDefault()</div><div class="ttdoc">Get the default choice when skipping messages. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00320">TestTools.cpp:320</a></div></div>
+<div class="ttc" id="namespacexms_html_a89a1187517e055debbd1f536e50f0a03"><div class="ttname"><a href="namespacexms.html#a89a1187517e055debbd1f536e50f0a03">xms::ttCheckXmLogForEachTest</a></div><div class="ttdeci">void ttCheckXmLogForEachTest(bool a_setting)</div><div class="ttdoc">Set check of XM_LOG before and after each test. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00345">TestTools.cpp:345</a></div></div>
 <div class="ttc" id="environment_8h_html"><div class="ttname"><a href="environment_8h.html">environment.h</a></div><div class="ttdoc">64 or 32 bit detection. </div></div>
+<div class="ttc" id="namespacexms_html_a326ac713f6a09e5de3b4afdb3a8f0bd5"><div class="ttname"><a href="namespacexms.html#a326ac713f6a09e5de3b4afdb3a8f0bd5">xms::ttTextFilesEqual</a></div><div class="ttdeci">bool ttTextFilesEqual(const std::string &amp;a_file1, const std::string &amp;a_file2, std::string &amp;a_message)</div><div class="ttdoc">Returns true if the two files are equal. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00430">TestTools.cpp:430</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_a1a316eaebf330b2b8a055357a6dda843"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#a1a316eaebf330b2b8a055357a6dda843">xms::ETestMessagingState::m_defaultRetValue</a></div><div class="ttdeci">int m_defaultRetValue</div><div class="ttdoc">Default return value. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8h_source.html#l00275">TestTools.h:275</a></div></div>
 <div class="ttc" id="_xm_log_8h_html"><div class="ttname"><a href="_xm_log_8h.html">XmLog.h</a></div><div class="ttdoc">Routines for creating and writing to logs and stacking errors. </div></div>
 <div class="ttc" id="classxms_1_1_singleton_html_a9a8a1b054d5e8cea413f16a93afd480e"><div class="ttname"><a href="classxms_1_1_singleton.html#a9a8a1b054d5e8cea413f16a93afd480e">xms::Singleton&lt; XmLog &gt;::Instance</a></div><div class="ttdeci">static XmLog &amp; Instance(bool a_delete=false, XmLog *a_new=NULL)</div><div class="ttdoc">Get the instance of the singleton. </div><div class="ttdef"><b>Definition:</b> <a href="_singleton_8h_source.html#l00038">Singleton.h:38</a></div></div>
+<div class="ttc" id="namespacexms_html_aea25a4299c927c1733790a4dc3bc0882"><div class="ttname"><a href="namespacexms.html#aea25a4299c927c1733790a4dc3bc0882">xms::ttDefaultXmsngTestPath</a></div><div class="ttdeci">std::string &amp; ttDefaultXmsngTestPath()</div><div class="ttdoc">Variable for the default path to the directory containing files for integration tests for xmsng...</div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00196">TestTools.cpp:196</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_adc5d8d8b958ecb0f95a901c9b819054e"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#adc5d8d8b958ecb0f95a901c9b819054e">xms::ETestMessagingState::DefaultValWasSet</a></div><div class="ttdeci">bool DefaultValWasSet()</div><div class="ttdoc">Was default value set (true) or has it been cleared? </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00186">TestTools.cpp:186</a></div></div>
+<div class="ttc" id="namespacexms_html_acddaa287c080f4199d840c9ca3e29f23"><div class="ttname"><a href="namespacexms.html#acddaa287c080f4199d840c9ca3e29f23">xms::ttGetXmsngTestPath</a></div><div class="ttdeci">std::string ttGetXmsngTestPath()</div><div class="ttdoc">Gets the testing directory for integration tests for xmsng library. Includes a &quot;\&quot; or &quot;/&quot; at the end...</div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00210">TestTools.cpp:210</a></div></div>
+<div class="ttc" id="namespacexms_html_ac619b9bd692506c31fba6febdd34136e"><div class="ttname"><a href="namespacexms.html#ac619b9bd692506c31fba6febdd34136e">xms::ttAssertStackedErrors</a></div><div class="ttdeci">void ttAssertStackedErrors(const char *a_file, int a_line, const std::string &amp;a_expected)</div><div class="ttdoc">CXX Test assert that the stackable XM_LOG has the expected errors. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00363">TestTools.cpp:363</a></div></div>
+<div class="ttc" id="namespacexms_html_a21c6cbf8cb7289e3ac5adf2c02f3db62"><div class="ttname"><a href="namespacexms.html#a21c6cbf8cb7289e3ac5adf2c02f3db62">xms::ttGetTestFilePaths</a></div><div class="ttdeci">void ttGetTestFilePaths(const std::string &amp;a_path, const std::string &amp;a_fileBase, const std::string &amp;a_extension, std::string &amp;a_baseFilePath, std::string &amp;a_outFilePath)</div><div class="ttdoc">Get testing base and output file using the compiled for architecture. Checks for appended &quot;MacOsX&quot; fo...</div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00383">TestTools.cpp:383</a></div></div>
 <div class="ttc" id="_test_tools_8h_html"><div class="ttname"><a href="_test_tools_8h.html">TestTools.h</a></div></div>
 <div class="ttc" id="classxms_1_1_e_test_messaging_state_html_a5e54c4195f23b5d7ac9eb51c76ffa79a"><div class="ttname"><a href="classxms_1_1_e_test_messaging_state.html#a5e54c4195f23b5d7ac9eb51c76ffa79a">xms::ETestMessagingState::GetSkipping</a></div><div class="ttdeci">bool GetSkipping()</div><div class="ttdoc">Get if skipping messages. </div><div class="ttdef"><b>Definition:</b> <a href="_test_tools_8cpp_source.html#l00178">TestTools.cpp:178</a></div></div>
 <div class="ttc" id="namespacexmlog_html_a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1"><div class="ttname"><a href="namespacexmlog.html#a7f66c92bb821241cbb29fb07d7bce588a6c90100ca9f6986351a3a437374735c1">xmlog::error</a></div><div class="ttdoc">Critical error message for the user. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8h_source.html#l00082">XmLog.h:82</a></div></div>
@@ -587,7 +607,7 @@ $(document).ready(function(){initNavTree('_test_tools_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_2c2e060d770fb9750ac9f3b9b695c5a0.html">testing</a></li><li class="navelem"><a class="el" href="_test_tools_8cpp.html">TestTools.cpp</a></li>
-    <li class="footer">Generated on Tue Jul 17 2018 14:28:51 for xmscore by
+    <li class="footer">Generated on Wed Jul 25 2018 19:57:22 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
