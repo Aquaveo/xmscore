@@ -394,6 +394,13 @@ void ttGetTestFilePaths(const std::string& a_path,
     a_baseFilePath = a_path + a_fileBase + "_baseMacOsX" + a_extension;
     foundBase = iFindTestFile(a_baseFilePath);
   }
+#elif BOOST_OS_LINUX
+  // see if there is a different base file for linux
+  if (!foundBase)
+  {
+    a_baseFilePath = a_path + a_fileBase + "_baseLinux" + a_extension;
+    foundBase = iFindTestFile(a_baseFilePath);
+  }
 #endif
 
 #if defined(ENV64BIT)
