@@ -1,6 +1,7 @@
 var class_string_util_unit_tests =
 [
     [ "test_str2int", "class_string_util_unit_tests.html#a093a7705670697ea101194b9bceca947", null ],
+    [ "test_STRstd", "class_string_util_unit_tests.html#ac5d9c9fbf42bb87556251525787c6449", null ],
     [ "testCountChar", "class_string_util_unit_tests.html#ac64221f59804ddb2cf57b3ec3fc4ee63", null ],
     [ "testExtendedASCII", "class_string_util_unit_tests.html#a74b1fa1249b28256edb3f10b7d8f2168", null ],
     [ "testImplodeExplode", "class_string_util_unit_tests.html#ab361b22a464513d5330a26eed0530987", null ],

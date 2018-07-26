@@ -2,6 +2,7 @@ var searchData=
 [
   ['test1',['test1',['../class_xm_error_unit_tests.html#a0b80b63b95b00204de6892c6cb3017e6',1,'XmErrorUnitTests']]],
   ['test_5fstr2int',['test_str2int',['../class_string_util_unit_tests.html#a093a7705670697ea101194b9bceca947',1,'StringUtilUnitTests']]],
+  ['test_5fstrstd',['test_STRstd',['../class_string_util_unit_tests.html#ac5d9c9fbf42bb87556251525787c6449',1,'StringUtilUnitTests']]],
   ['test_5fxm_5fassert',['test_XM_ASSERT',['../class_xm_error_unit_tests.html#a120631a18381195cf7299b00abe0d0d1',1,'XmErrorUnitTests']]],
   ['testall',['testAll',['../class_xm_log_unit_tests.html#a92ef67747d37641518e792375178fdb7',1,'XmLogUnitTests']]],
   ['testcountchar',['testCountChar',['../class_string_util_unit_tests.html#ac64221f59804ddb2cf57b3ec3fc4ee63',1,'StringUtilUnitTests']]],

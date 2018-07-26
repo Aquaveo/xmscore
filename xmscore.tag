@@ -3235,6 +3235,13 @@
       <anchor>a5dccaaeb653eb715c75fd7dd476a5d77</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_STRstd</name>
+      <anchorfile>class_string_util_unit_tests.html</anchorfile>
+      <anchor>ac5d9c9fbf42bb87556251525787c6449</anchor>
+      <arglist>()</arglist>
+    </member>
   </compound>
   <compound kind="class">
     <name>XmErrorUnitTests</name>
