@@ -48,7 +48,8 @@ message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
 message(STATUS "Extneral Libs: ${EXT_LIBS}")
 
 if(IS_PYTHON_BUILD)
-
+  set(PYTHON_LIBRARY ${PYTHON}/libs)
+  set(PYTHON_INCLUDE_DIR ${PYTHON}/include)
   find_package(PythonLibs REQUIRED)
   list(APPEND EXT_INCLUDE_DIRS
     ${PYTHON_INCLUDE_DIRS}
