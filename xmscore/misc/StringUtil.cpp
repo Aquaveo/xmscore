@@ -1244,7 +1244,8 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
   // character. This is most common with FORTRASH fixed format garbage.
   if (flags & STR_FULLWIDTH)
   {
-    size_t diff = width - str.size();
+    int len = (int)str.size();
+    int diff = width - len;
     if (diff > 0)
     {
       std::string str1, str2;
@@ -1835,5 +1836,14 @@ void StringUtilUnitTests::testSuVecContainsStr()
   bool test2 = xms::stVectorContainsString(container, "she");
   TS_ASSERT_EQUALS(expectedF, test2);
 } // StringUtilUnitTests::testSuVecContainsStr
+//------------------------------------------------------------------------------
+/// \brief Tests stVectorContainsString
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::test_STRstd()
+{
+  std::string out = xms::STRstd(0.0, 15, 15, xms::STR_FULLWIDTH | xms::STR_USEMAXPREC);
+  std::string base = "            0.0";
+  TS_ASSERT_EQUALS(base, out);
+} // StringUtilUnitTests::test_STRstd
 #endif
 //#endif
