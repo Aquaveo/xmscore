@@ -1168,7 +1168,8 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
     catch (std::exception&)
     {
       // we had an error. Generally with casting the modf integer part
-      return "";
+      // return "";
+      prec = 2; // Try 2. Probably better than returning ""
     }
     if ((flags & STR_USEMAXPREC) && prec > a_n)
     {
