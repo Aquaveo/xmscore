@@ -1790,17 +1790,18 @@ void StringUtilUnitTests::testSTR() {
   // TS_FAIL("NumTests::testSTR");
 
   {
+    xms::StTemp2DigitExponents use2DigitExponents;
     std::vector<ValStr> arr{
 
         // Test when we go into scientific notation with big and small numbers
         {0.0, -1, 15, 0, "0.0"},
-        {1e-30, -1, 15, 0, "1.0e-030"},
-        {1e-15, -1, 15, 0, "1.0e-015"},
-        {1e-6, -1, 15, 0, "1.0e-006"},
+        {1e-30, -1, 15, 0, "1.0e-30"},
+        {1e-15, -1, 15, 0, "1.0e-15"},
+        {1e-6, -1, 15, 0, "1.0e-06"},
         {1e-5, -1, 15, 0, "0.00001"},
         {1e11, -1, 15, 0, "100000000000.0"},
-        {1e12, -1, 15, 0, "1.0e+012"},
-        {1e13, -1, 15, 0, "1.0e+013"}
+        {1e12, -1, 15, 0, "1.0e+12"},
+        {1e13, -1, 15, 0, "1.0e+13"}
 
         // Test the STR_USEMAXPREC flag
         ,
@@ -1810,8 +1811,8 @@ void StringUtilUnitTests::testSTR() {
         {1e-6, -1, 15, xms::STR_USEMAXPREC, "0.0"},
         {1e-5, -1, 15, xms::STR_USEMAXPREC, "0.0"},
         {1e11, -1, 15, xms::STR_USEMAXPREC, "100000000000.0"},
-        {1e12, -1, 15, xms::STR_USEMAXPREC, "1.0e+012"},
-        {1e13, -1, 15, xms::STR_USEMAXPREC, "1.0e+013"}
+        {1e12, -1, 15, xms::STR_USEMAXPREC, "1.0e+12"},
+        {1e13, -1, 15, xms::STR_USEMAXPREC, "1.0e+13"}
 
         // Test n
         ,
@@ -1827,17 +1828,17 @@ void StringUtilUnitTests::testSTR() {
         // Test n and STR_USEMAXPREC
         ,
         {0.0, 30, 15, xms::STR_USEMAXPREC, "0.0"},
-        {1e-30, 30, 15, xms::STR_USEMAXPREC, "1.0e-030"},
-        {1e-15, 30, 15, xms::STR_USEMAXPREC, "1.0e-015"},
-        {1e-6, 30, 15, xms::STR_USEMAXPREC, "1.0e-006"},
+        {1e-30, 30, 15, xms::STR_USEMAXPREC, "1.0e-30"},
+        {1e-15, 30, 15, xms::STR_USEMAXPREC, "1.0e-15"},
+        {1e-6, 30, 15, xms::STR_USEMAXPREC, "1.0e-06"},
         {1e-5, 30, 15, xms::STR_USEMAXPREC, "0.00001"},
         {1e11, 30, 15, xms::STR_USEMAXPREC, "100000000000.0"},
-        {1e12, 30, 15, xms::STR_USEMAXPREC, "1.0e+012"},
-        {1e13, 30, 15, xms::STR_USEMAXPREC, "1.0e+013"}
+        {1e12, 30, 15, xms::STR_USEMAXPREC, "1.0e+12"},
+        {1e13, 30, 15, xms::STR_USEMAXPREC, "1.0e+13"}
 
         // Test misc scenarios
         ,
-        {-999999.0, -1, 8, xms::STR_FLOAT | xms::STR_SCIENTIFIC, "-1.0e+006"} // Bug 10580
+        {-999999.0, -1, 8, xms::STR_FLOAT | xms::STR_SCIENTIFIC, "-1.0e+06"} // Bug 10580
 
     };
     xms::VecDbl vals;
