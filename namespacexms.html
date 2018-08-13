@@ -923,11 +923,8 @@ traits &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a cla
 <tr class="memitem:a8341d3f2b243f05d88a293f90a0febbb"><td class="memItemLeft" align="right" valign="top">boost::shared_ptr&lt; <a class="el" href="namespacexms.html#a1b0ce86e91b176c54f0f122476873c75">VecPt3d2d</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a8341d3f2b243f05d88a293f90a0febbb">VecPt3d2dFromPyIter</a> (const py::iterable &amp;pts)</td></tr>
 <tr class="memdesc:a8341d3f2b243f05d88a293f90a0febbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create VecPt3d2d from py::iterable.  <a href="#a8341d3f2b243f05d88a293f90a0febbb">More...</a><br/></td></tr>
 <tr class="separator:a8341d3f2b243f05d88a293f90a0febbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e5f96042bb96b842510d6199ce14b25"><td class="memItemLeft" align="right" valign="top">py::iterable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a3e5f96042bb96b842510d6199ce14b25">PyIterFromVecPt3d2d</a> (const <a class="el" href="namespacexms.html#a1b0ce86e91b176c54f0f122476873c75">VecPt3d2d</a> &amp;pts)</td></tr>
-<tr class="memdesc:a3e5f96042bb96b842510d6199ce14b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create py::iterable from VecPt3d2d.  <a href="#a3e5f96042bb96b842510d6199ce14b25">More...</a><br/></td></tr>
-<tr class="separator:a3e5f96042bb96b842510d6199ce14b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c0bf973be9e1f13c1f793eff468b37"><td class="memItemLeft" align="right" valign="top">boost::shared_ptr&lt; <a class="el" href="namespacexms.html#a91ad569308b76393ca27c1270a637d9b">VecInt2d</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#aa4c0bf973be9e1f13c1f793eff468b37">VecInt2dFromPyIter</a> (const py::iterable &amp;int2d)</td></tr>
-<tr class="memdesc:aa4c0bf973be9e1f13c1f793eff468b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create VecInt2d from py::iterable.  <a href="#aa4c0bf973be9e1f13c1f793eff468b37">More...</a><br/></td></tr>
+<tr class="memdesc:aa4c0bf973be9e1f13c1f793eff468b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create py::iterable from VecPt3d2d.  <a href="#aa4c0bf973be9e1f13c1f793eff468b37">More...</a><br/></td></tr>
 <tr class="separator:aa4c0bf973be9e1f13c1f793eff468b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a1a01df38749fc3086ebfc93d8598da"><td class="memItemLeft" align="right" valign="top">py::iterable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a0a1a01df38749fc3086ebfc93d8598da">PyIterFromVecInt2d</a> (const <a class="el" href="namespacexms.html#a91ad569308b76393ca27c1270a637d9b">VecInt2d</a> &amp;int2d)</td></tr>
 <tr class="memdesc:a0a1a01df38749fc3086ebfc93d8598da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create py::iterable from VecPt3d2d.  <a href="#a0a1a01df38749fc3086ebfc93d8598da">More...</a><br/></td></tr>
@@ -3578,33 +3575,6 @@ template&lt;typename _T &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a3e5f96042bb96b842510d6199ce14b25"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">py::iterable xms::PyIterFromVecPt3d2d </td>
-          <td>(</td>
-          <td class="paramtype">const VecPt3d2d &amp;&#160;</td>
-          <td class="paramname"><em>pts</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Create py::iterable from VecPt3d2d. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pt</td><td>VecPt3d2d object that represents a py::iterable </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
-
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00114">114</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="adfc1700dbd9064558f9fc863ebf041eb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -6159,7 +6129,14 @@ template&lt;class _T , class _U , class _V &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Create VecInt2d from py::iterable. </p>
+<p>Create py::iterable from VecPt3d2d. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pt</td><td>VecPt3d2d object that represents a py::iterable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a py::iterable Create VecInt2d from py::iterable </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pt</td><td>py::iterable object that represents a VecInt2d </td></tr>
@@ -6500,7 +6477,7 @@ template&lt;typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacexms.html">xms</a></li>
-    <li class="footer">Generated on Mon Aug 13 2018 20:46:08 for xmscore by
+    <li class="footer">Generated on Mon Aug 13 2018 21:21:51 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

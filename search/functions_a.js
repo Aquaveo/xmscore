@@ -17,6 +17,5 @@ var searchData=
   ['pyiterfromvecint',['PyIterFromVecInt',['../namespacexms.html#a916a7b311cc18c5c1c9720be157b3d0b',1,'xms']]],
   ['pyiterfromvecint2d',['PyIterFromVecInt2d',['../namespacexms.html#a0a1a01df38749fc3086ebfc93d8598da',1,'xms']]],
   ['pyiterfromvecintpair',['PyIterFromVecIntPair',['../namespacexms.html#a90078769bd51c076d22a3911983acaf6',1,'xms']]],
-  ['pyiterfromvecpt3d',['PyIterFromVecPt3d',['../namespacexms.html#a8e892242a41a91506ce59befc5ca2f84',1,'xms']]],
-  ['pyiterfromvecpt3d2d',['PyIterFromVecPt3d2d',['../namespacexms.html#a3e5f96042bb96b842510d6199ce14b25',1,'xms']]]
+  ['pyiterfromvecpt3d',['PyIterFromVecPt3d',['../namespacexms.html#a8e892242a41a91506ce59befc5ca2f84',1,'xms']]]
 ];
