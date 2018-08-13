@@ -111,9 +111,9 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts)
 /// \param[in] pt: VecPt3d2d object that represents a py::iterable
 /// \return a py::iterable
 //------------------------------------------------------------------------------
-py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& pts)
-{
-} // PyIterFromVecPt3d2d
+// py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& pts)
+// {
+// } // PyIterFromVecPt3d2d
 //------------------------------------------------------------------------------
 /// \brief Create VecInt2d from py::iterable
 /// \param[in] pt: py::iterable object that represents a VecInt2d

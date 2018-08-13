@@ -40,7 +40,7 @@ py::iterable PyIterFromVecPt3d(const VecPt3d& pts);
 
 // VecPt3d2d
 boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts);
-py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& pts);
+//py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& pts);
 
 // VecInt2d
 boost::shared_ptr<VecInt2d> VecInt2dFromPyIter(const py::iterable& int2d);
