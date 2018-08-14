@@ -13,6 +13,12 @@ set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Enable/Disable PYTHON")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
 
+if(NOT ENV{PYTHON_VERSION})
+  set(PYTHON_VERSION 3.6)
+else()
+  set(PYTHON_VERSION $ENV{PYTHON_VERSION})
+endif()
+
 if(IS_PYTHON_BUILD AND BUILD_TESTING)
   message(FATAL_ERROR "Cannot build python module when testing is enabled")
 endif()
@@ -49,7 +55,7 @@ message(STATUS "Extneral Libs: ${EXT_LIBS}")
 
 if(IS_PYTHON_BUILD)
 
-  find_package(PythonLibs 3.5 EXACT REQUIRED)
+  find_package(PythonLibs ${PYTHON_VERSION} EXACT REQUIRED)
   list(APPEND EXT_INCLUDE_DIRS
     ${PYTHON_INCLUDE_DIRS}
   )
