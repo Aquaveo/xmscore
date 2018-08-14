@@ -474,6 +474,7 @@
     <includes id="math_8h" name="math.h" local="no" imported="no">xmscore/math/math.h</includes>
     <includes id="_xm_error_8h" name="XmError.h" local="no" imported="no">xmscore/misc/XmError.h</includes>
     <includes id="_string_util_8t_8h" name="StringUtil.t.h" local="no" imported="no">xmscore/misc/StringUtil.t.h</includes>
+    <includes id="vector_8h" name="vector.h" local="no" imported="no">xmscore/stl/vector.h</includes>
     <includes id="_test_tools_8h" name="TestTools.h" local="no" imported="no">xmscore/testing/TestTools.h</includes>
     <namespace>xms</namespace>
     <member kind="function">
@@ -1742,6 +1743,13 @@
       <anchorfile>namespacexms.html</anchorfile>
       <anchor>a8341d3f2b243f05d88a293f90a0febbb</anchor>
       <arglist>(const py::iterable &amp;pts)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromVecPt3d2d</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a3e5f96042bb96b842510d6199ce14b25</anchor>
+      <arglist>(const VecPt3d2d &amp;pts)</arglist>
     </member>
     <member kind="function">
       <type>boost::shared_ptr&lt; VecInt2d &gt;</type>
@@ -3226,6 +3234,27 @@
       <name>testSuVecContainsStr</name>
       <anchorfile>class_string_util_unit_tests.html</anchorfile>
       <anchor>a5dccaaeb653eb715c75fd7dd476a5d77</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>test_STRstd</name>
+      <anchorfile>class_string_util_unit_tests.html</anchorfile>
+      <anchor>ac5d9c9fbf42bb87556251525787c6449</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testPrec</name>
+      <anchorfile>class_string_util_unit_tests.html</anchorfile>
+      <anchor>ad9ad1ece808dcb8c012b94998b526617</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testSTR</name>
+      <anchorfile>class_string_util_unit_tests.html</anchorfile>
+      <anchor>a7da0f4bd087d62688ec21869a42007c4</anchor>
       <arglist>()</arglist>
     </member>
   </compound>
@@ -4729,6 +4758,13 @@
       <anchorfile>namespacexms.html</anchorfile>
       <anchor>a8341d3f2b243f05d88a293f90a0febbb</anchor>
       <arglist>(const py::iterable &amp;pts)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromVecPt3d2d</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a3e5f96042bb96b842510d6199ce14b25</anchor>
+      <arglist>(const VecPt3d2d &amp;pts)</arglist>
     </member>
     <member kind="function">
       <type>boost::shared_ptr&lt; VecInt2d &gt;</type>

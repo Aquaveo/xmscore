@@ -923,8 +923,11 @@ traits &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a cla
 <tr class="memitem:a8341d3f2b243f05d88a293f90a0febbb"><td class="memItemLeft" align="right" valign="top">boost::shared_ptr&lt; <a class="el" href="namespacexms.html#a1b0ce86e91b176c54f0f122476873c75">VecPt3d2d</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a8341d3f2b243f05d88a293f90a0febbb">VecPt3d2dFromPyIter</a> (const py::iterable &amp;pts)</td></tr>
 <tr class="memdesc:a8341d3f2b243f05d88a293f90a0febbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create VecPt3d2d from py::iterable.  <a href="#a8341d3f2b243f05d88a293f90a0febbb">More...</a><br/></td></tr>
 <tr class="separator:a8341d3f2b243f05d88a293f90a0febbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e5f96042bb96b842510d6199ce14b25"><td class="memItemLeft" align="right" valign="top">py::iterable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a3e5f96042bb96b842510d6199ce14b25">PyIterFromVecPt3d2d</a> (const <a class="el" href="namespacexms.html#a1b0ce86e91b176c54f0f122476873c75">VecPt3d2d</a> &amp;pts)</td></tr>
+<tr class="memdesc:a3e5f96042bb96b842510d6199ce14b25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create py::iterable from VecPt3d2d.  <a href="#a3e5f96042bb96b842510d6199ce14b25">More...</a><br/></td></tr>
+<tr class="separator:a3e5f96042bb96b842510d6199ce14b25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4c0bf973be9e1f13c1f793eff468b37"><td class="memItemLeft" align="right" valign="top">boost::shared_ptr&lt; <a class="el" href="namespacexms.html#a91ad569308b76393ca27c1270a637d9b">VecInt2d</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#aa4c0bf973be9e1f13c1f793eff468b37">VecInt2dFromPyIter</a> (const py::iterable &amp;int2d)</td></tr>
-<tr class="memdesc:aa4c0bf973be9e1f13c1f793eff468b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create py::iterable from VecPt3d2d.  <a href="#aa4c0bf973be9e1f13c1f793eff468b37">More...</a><br/></td></tr>
+<tr class="memdesc:aa4c0bf973be9e1f13c1f793eff468b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create VecInt2d from py::iterable.  <a href="#aa4c0bf973be9e1f13c1f793eff468b37">More...</a><br/></td></tr>
 <tr class="separator:aa4c0bf973be9e1f13c1f793eff468b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a1a01df38749fc3086ebfc93d8598da"><td class="memItemLeft" align="right" valign="top">py::iterable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a0a1a01df38749fc3086ebfc93d8598da">PyIterFromVecInt2d</a> (const <a class="el" href="namespacexms.html#a91ad569308b76393ca27c1270a637d9b">VecInt2d</a> &amp;int2d)</td></tr>
 <tr class="memdesc:a0a1a01df38749fc3086ebfc93d8598da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create py::iterable from VecPt3d2d.  <a href="#a0a1a01df38749fc3086ebfc93d8598da">More...</a><br/></td></tr>
@@ -1365,7 +1368,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a boost::shared_ptr to a DynBitset </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00273">273</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00275">275</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 <p>References <a class="el" href="_dyn_bitset_8cpp_source.html#l00044">VecBooleanToDynBitset()</a>.</p>
 
@@ -1406,7 +1409,7 @@ template&lt;typename T &gt; </div>
 
 <p>Definition at line <a class="el" href="_dyn_bitset_8cpp_source.html#l00057">57</a> of file <a class="el" href="_dyn_bitset_8cpp_source.html">DynBitset.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00293">PyIterFromDynamicBitset()</a>.</p>
+<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00295">PyIterFromDynamicBitset()</a>.</p>
 
 </div>
 </div>
@@ -1455,7 +1458,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 
 <p>Definition at line <a class="el" href="math_8h_source.html#l00194">194</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
 
-<p>Referenced by <a class="el" href="math_8h_source.html#l00242">GTEQ_EPS()</a>, <a class="el" href="math_8h_source.html#l00230">LTEQ_EPS()</a>, <a class="el" href="_string_util_8cpp_source.html#l00751">stPrecision()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
+<p>Referenced by <a class="el" href="math_8h_source.html#l00242">GTEQ_EPS()</a>, <a class="el" href="math_8h_source.html#l00230">LTEQ_EPS()</a>, <a class="el" href="_string_util_8cpp_source.html#l00674">stPrecision()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
 
 </div>
 </div>
@@ -1553,7 +1556,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 
 <p>Definition at line <a class="el" href="math_8h_source.html#l00218">218</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
 
-<p>Referenced by <a class="el" href="math_8h_source.html#l00242">GTEQ_EPS()</a>, <a class="el" href="_string_util_8cpp_source.html#l00751">stPrecision()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
+<p>Referenced by <a class="el" href="math_8h_source.html#l00242">GTEQ_EPS()</a>, <a class="el" href="_string_util_8cpp_source.html#l00674">stPrecision()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
 
 </div>
 </div>
@@ -1749,9 +1752,9 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a boost::shared_ptr to a std::pair&lt;int, int&gt; </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00313">313</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00315">315</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00337">VecIntPairFromPyIter()</a>.</p>
+<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00339">VecIntPairFromPyIter()</a>.</p>
 
 </div>
 </div>
@@ -1800,7 +1803,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 
 <p>Definition at line <a class="el" href="math_8h_source.html#l00206">206</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
 
-<p>Referenced by <a class="el" href="math_8h_source.html#l00230">LTEQ_EPS()</a>, <a class="el" href="_string_util_8cpp_source.html#l00751">stPrecision()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
+<p>Referenced by <a class="el" href="math_8h_source.html#l00230">LTEQ_EPS()</a>, <a class="el" href="_string_util_8cpp_source.html#l00674">stPrecision()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
 
 </div>
 </div>
@@ -1849,7 +1852,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 
 <p>Definition at line <a class="el" href="math_8h_source.html#l00278">278</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
 
-<p>Referenced by <a class="el" href="math_8h_source.html#l00302">LTEQ_TOL()</a>, <a class="el" href="functors_8h_source.html#l00044">xms::ltPt3&lt; T &gt;::operator()()</a>, <a class="el" href="functors_8h_source.html#l00095">xms::ltPt3_2D&lt; T &gt;::operator()()</a>, <a class="el" href="functors_8h_source.html#l00139">xms::ltPt2&lt; T &gt;::operator()()</a>, <a class="el" href="_string_util_8cpp_source.html#l01102">STRstd()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
+<p>Referenced by <a class="el" href="math_8h_source.html#l00302">LTEQ_TOL()</a>, <a class="el" href="functors_8h_source.html#l00044">xms::ltPt3&lt; T &gt;::operator()()</a>, <a class="el" href="functors_8h_source.html#l00095">xms::ltPt3_2D&lt; T &gt;::operator()()</a>, <a class="el" href="functors_8h_source.html#l00139">xms::ltPt2&lt; T &gt;::operator()()</a>, <a class="el" href="_string_util_8cpp_source.html#l00996">STRstd()</a>, and <a class="el" href="math_8cpp_source.html#l00032">MathUnitTests::TestIt()</a>.</p>
 
 </div>
 </div>
@@ -2303,7 +2306,7 @@ template&lt;class _T &gt; </div>
 
 <p>Definition at line <a class="el" href="math_8h_source.html#l00031">31</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00751">stPrecision()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01102">STRstd()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00674">stPrecision()</a>, and <a class="el" href="_string_util_8cpp_source.html#l00996">STRstd()</a>.</p>
 
 </div>
 </div>
@@ -3317,7 +3320,7 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00293">293</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00295">295</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 <p>References <a class="el" href="_dyn_bitset_8cpp_source.html#l00057">DynBitsetToVecBoolean()</a>.</p>
 
@@ -3346,9 +3349,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00328">328</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00330">330</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00354">PyIterFromVecIntPair()</a>.</p>
+<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00356">PyIterFromVecIntPair()</a>.</p>
 
 </div>
 </div>
@@ -3414,7 +3417,7 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00221">221</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00223">223</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -3451,7 +3454,7 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00255">255</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00257">257</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -3488,7 +3491,7 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00187">187</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00189">189</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -3515,7 +3518,7 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00148">148</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00150">150</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -3542,9 +3545,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00354">354</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00356">356</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
-<p>References <a class="el" href="_py_utils_8cpp_source.html#l00328">PyIterFromIntPair()</a>.</p>
+<p>References <a class="el" href="_py_utils_8cpp_source.html#l00330">PyIterFromIntPair()</a>.</p>
 
 </div>
 </div>
@@ -3575,6 +3578,33 @@ template&lt;typename _T &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a3e5f96042bb96b842510d6199ce14b25"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">py::iterable xms::PyIterFromVecPt3d2d </td>
+          <td>(</td>
+          <td class="paramtype">const VecPt3d2d &amp;&#160;</td>
+          <td class="paramname"><em>pts</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Create py::iterable from VecPt3d2d. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pt</td><td>VecPt3d2d object that represents a py::iterable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a py::iterable </dd></dl>
+
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00115">115</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="adfc1700dbd9064558f9fc863ebf041eb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -3602,7 +3632,7 @@ template&lt;class _T &gt; </div>
 
 <p>Definition at line <a class="el" href="math_8h_source.html#l00021">21</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
 
-<p>Referenced by <a class="el" href="_observer_8cpp_source.html#l00232">MockObserver::OnProgressStatus()</a>, <a class="el" href="_string_util_8cpp_source.html#l00751">stPrecision()</a>, <a class="el" href="_observer_8cpp_source.html#l00250">MockObserver::TimeElapsedInSeconds()</a>, and <a class="el" href="_observer_8cpp_source.html#l00261">MockObserver::TimeRemainingInSeconds()</a>.</p>
+<p>Referenced by <a class="el" href="_observer_8cpp_source.html#l00232">MockObserver::OnProgressStatus()</a>, <a class="el" href="_string_util_8cpp_source.html#l00674">stPrecision()</a>, <a class="el" href="_observer_8cpp_source.html#l00250">MockObserver::TimeElapsedInSeconds()</a>, and <a class="el" href="_observer_8cpp_source.html#l00261">MockObserver::TimeRemainingInSeconds()</a>.</p>
 
 </div>
 </div>
@@ -3678,11 +3708,11 @@ template&lt;typename _T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00126">126</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00118">118</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00385">stReplace()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00346">stReplace()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01358">StringUtilUnitTests::testExtendedASCII()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01291">StringUtilUnitTests::testExtendedASCII()</a>.</p>
 
 </div>
 </div>
@@ -3720,9 +3750,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if a_container contains an occurrence of a_substr, otherwise False. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00564">564</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00510">510</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01806">StringUtilUnitTests::testSuIcontains()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01724">StringUtilUnitTests::testSuIcontains()</a>.</p>
 
 </div>
 </div>
@@ -3760,9 +3790,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The count. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00074">74</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00071">71</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01550">StringUtilUnitTests::testCountChar()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01476">StringUtilUnitTests::testCountChar()</a>.</p>
 
 </div>
 </div>
@@ -3800,9 +3830,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00612">612</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00555">555</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01660">StringUtilUnitTests::testMisc()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01581">StringUtilUnitTests::testMisc()</a>.</p>
 
 </div>
 </div>
@@ -3841,9 +3871,9 @@ template&lt;typename _T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>Vector of strings.</dd></dl>
 <p>a_delimiter is not a list of delimiters, it is THE delimiter. Use stSplit method if you need to specify multiple different delimiter characters or need to handle multiple adjacent delimiters (ie. "1   2      3") </p>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00154">154</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00145">145</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01386">StringUtilUnitTests::testImplodeExplode()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01318">StringUtilUnitTests::testImplodeExplode()</a>.</p>
 
 </div>
 </div>
@@ -3881,9 +3911,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00622">622</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00564">564</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00459">stToLowerCopy()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00413">stToLowerCopy()</a>.</p>
 
 </div>
 </div>
@@ -3921,9 +3951,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00241">241</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00217">217</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01386">StringUtilUnitTests::testImplodeExplode()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01318">StringUtilUnitTests::testImplodeExplode()</a>.</p>
 
 </div>
 </div>
@@ -3961,9 +3991,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Index of the position of the element. If not found it returns -1. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00266">266</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00240">240</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01426">StringUtilUnitTests::testSuIndexOfElem()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01357">StringUtilUnitTests::testSuIndexOfElem()</a>.</p>
 
 </div>
 </div>
@@ -4001,11 +4031,11 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a_source. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00519">519</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00467">467</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
 <p>References <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00504">stLeftCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01660">StringUtilUnitTests::testMisc()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00453">stLeftCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01581">StringUtilUnitTests::testMisc()</a>.</p>
 
 </div>
 </div>
@@ -4043,11 +4073,11 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00504">504</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00453">453</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00519">stLeft()</a>, and <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00467">stLeft()</a>, and <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01660">StringUtilUnitTests::testMisc()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01581">StringUtilUnitTests::testMisc()</a>.</p>
 
 </div>
 </div>
@@ -4085,9 +4115,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>false if already unique, true if updated. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00632">632</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00573">573</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01469">StringUtilUnitTests::testMakeUnique()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01398">StringUtilUnitTests::testMakeUnique()</a>.</p>
 
 </div>
 </div>
@@ -4114,11 +4144,11 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00094">94</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00088">88</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00288">stTrimCopy()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00259">stTrimCopy()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00111">stScientificNotation()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01561">StringUtilUnitTests::testNumAndSciNot()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00104">stScientificNotation()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01485">StringUtilUnitTests::testNumAndSciNot()</a>.</p>
 
 </div>
 </div>
@@ -4163,11 +4193,11 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The precision. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00751">751</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00674">674</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="math_8h_source.html#l00194">EQ_EPS()</a>, <a class="el" href="math_8h_source.html#l00218">GT_EPS()</a>, <a class="el" href="math_8h_source.html#l00206">LT_EPS()</a>, <a class="el" href="math_8h_source.html#l00031">Miabs()</a>, <a class="el" href="math_8h_source.html#l00021">Round()</a>, <a class="el" href="_string_util_8h_source.html#l00033">STR_FLOAT</a>, <a class="el" href="_string_util_8h_source.html#l00035">STR_SCIENTIFIC</a>, and <a class="el" href="_string_util_8cpp_source.html#l00449">stRemove()</a>.</p>
+<p>References <a class="el" href="math_8h_source.html#l00194">EQ_EPS()</a>, <a class="el" href="math_8h_source.html#l00218">GT_EPS()</a>, <a class="el" href="math_8h_source.html#l00206">LT_EPS()</a>, <a class="el" href="math_8h_source.html#l00031">Miabs()</a>, <a class="el" href="math_8h_source.html#l00021">Round()</a>, <a class="el" href="_string_util_8h_source.html#l00033">STR_FLOAT</a>, <a class="el" href="_string_util_8h_source.html#l00035">STR_SCIENTIFIC</a>, and <a class="el" href="_string_util_8cpp_source.html#l00404">stRemove()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01102">STRstd()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00996">STRstd()</a>.</p>
 
 </div>
 </div>
@@ -4205,9 +4235,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00449">449</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00404">404</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00751">stPrecision()</a>, <a class="el" href="_string_util_8cpp_source.html#l00437">stRemoveCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01660">StringUtilUnitTests::testMisc()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00674">stPrecision()</a>, <a class="el" href="_string_util_8cpp_source.html#l00393">stRemoveCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01581">StringUtilUnitTests::testMisc()</a>.</p>
 
 </div>
 </div>
@@ -4246,11 +4276,11 @@ template&lt;typename _T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a href="http://stackoverflow.com/questions/20326356/">http://stackoverflow.com/questions/20326356/</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00437">437</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00393">393</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00449">stRemove()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00404">stRemove()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01660">StringUtilUnitTests::testMisc()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01581">StringUtilUnitTests::testMisc()</a>.</p>
 
 </div>
 </div>
@@ -4295,9 +4325,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00385">385</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00346">346</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00126">stChangeExtendedAscii()</a>, <a class="el" href="_string_util_8cpp_source.html#l00355">stReplaceCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01530">StringUtilUnitTests::testReplace()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00118">stChangeExtendedAscii()</a>, <a class="el" href="_string_util_8cpp_source.html#l00319">stReplaceCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01457">StringUtilUnitTests::testReplace()</a>.</p>
 
 </div>
 </div>
@@ -4342,7 +4372,7 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00410">410</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00368">368</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
 </div>
 </div>
@@ -4387,11 +4417,11 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00355">355</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00319">319</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00385">stReplace()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00346">stReplace()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01530">StringUtilUnitTests::testReplace()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01457">StringUtilUnitTests::testReplace()</a>.</p>
 
 </div>
 </div>
@@ -4436,9 +4466,9 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00369">369</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00332">332</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00385">stReplace()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00346">stReplace()</a>.</p>
 
 </div>
 </div>
@@ -4476,11 +4506,11 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to a_source. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00593">593</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00538">538</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
 <p>References <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00538">stRightCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01660">StringUtilUnitTests::testMisc()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00485">stRightCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01581">StringUtilUnitTests::testMisc()</a>.</p>
 
 </div>
 </div>
@@ -4518,11 +4548,11 @@ template&lt;typename _T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00538">538</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00485">485</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00593">stRight()</a>, and <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00538">stRight()</a>, and <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01660">StringUtilUnitTests::testMisc()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01581">StringUtilUnitTests::testMisc()</a>.</p>
 
 </div>
 </div>
@@ -4587,7 +4617,7 @@ template&lt;typename T &gt; </div>
 
 <p>Definition at line <a class="el" href="_string_util_8h_source.html#l00128">128</a> of file <a class="el" href="_string_util_8h_source.html">StringUtil.h</a>.</p>
 
-<p>References <a class="el" href="_string_util_8h_source.html#l00035">STR_SCIENTIFIC</a>, and <a class="el" href="_string_util_8cpp_source.html#l01102">STRstd()</a>.</p>
+<p>References <a class="el" href="_string_util_8h_source.html#l00035">STR_SCIENTIFIC</a>, and <a class="el" href="_string_util_8cpp_source.html#l00996">STRstd()</a>.</p>
 
 </div>
 </div>
@@ -4640,11 +4670,11 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::string of the number. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l01102">1102</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00996">996</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="math_8h_source.html#l00278">LT_TOL()</a>, <a class="el" href="math_8h_source.html#l00031">Miabs()</a>, <a class="el" href="_string_util_8cpp_source.html#l00751">stPrecision()</a>, <a class="el" href="_string_util_8h_source.html#l00039">STR_FULLWIDTH</a>, <a class="el" href="_string_util_8h_source.html#l00035">STR_SCIENTIFIC</a>, <a class="el" href="_string_util_8h_source.html#l00037">STR_USEMAXPREC</a>, <a class="el" href="_string_util_8h_source.html#l00041">STR_WITHCOMMAS</a>, <a class="el" href="_string_util_8cpp_source.html#l00321">stTrimRight()</a>, and <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
+<p>References <a class="el" href="math_8h_source.html#l00278">LT_TOL()</a>, <a class="el" href="math_8h_source.html#l00031">Miabs()</a>, <a class="el" href="_string_util_8cpp_source.html#l00674">stPrecision()</a>, <a class="el" href="_string_util_8h_source.html#l00039">STR_FULLWIDTH</a>, <a class="el" href="_string_util_8h_source.html#l00035">STR_SCIENTIFIC</a>, <a class="el" href="_string_util_8h_source.html#l00037">STR_USEMAXPREC</a>, <a class="el" href="_string_util_8h_source.html#l00041">STR_WITHCOMMAS</a>, <a class="el" href="_string_util_8cpp_source.html#l00289">stTrimRight()</a>, and <a class="el" href="_xm_error_8h_source.html#l00070">XM_ASSERT</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01302">STRstd()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01169">STRstd()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01757">StringUtilUnitTests::test_STRstd()</a>.</p>
 
 </div>
 </div>
@@ -4697,9 +4727,9 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::string of the number. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l01302">1302</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l01169">1169</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l01102">STRstd()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00996">STRstd()</a>.</p>
 
 </div>
 </div>
@@ -4726,7 +4756,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l01312">1312</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l01179">1179</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
 </div>
 </div>
@@ -4764,11 +4794,11 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true or false. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00111">111</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00104">104</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00094">stNumeric()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00088">stNumeric()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01561">StringUtilUnitTests::testNumAndSciNot()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01485">StringUtilUnitTests::testNumAndSciNot()</a>.</p>
 
 </div>
 </div>
@@ -4823,9 +4853,9 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Modified string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00552">552</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00498">498</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01796">StringUtilUnitTests::testSuSimplified()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01715">StringUtilUnitTests::testSuSimplified()</a>.</p>
 
 </div>
 </div>
@@ -4871,11 +4901,11 @@ template&lt;class T &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>A vector of strings. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a href="http://stackoverflow.com/questions/236129/split-a-string-in-c">http://stackoverflow.com/questions/236129/split-a-string-in-c</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00199">199</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00183">183</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00288">stTrimCopy()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00259">stTrimCopy()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01440">StringUtilUnitTests::testSplit()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01370">StringUtilUnitTests::testSplit()</a>.</p>
 
 </div>
 </div>
@@ -4914,7 +4944,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if successful </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00719">719</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00647">647</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
 </div>
 </div>
@@ -4960,9 +4990,9 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if successful </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00693">693</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00626">626</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01599">StringUtilUnitTests::test_str2int()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01521">StringUtilUnitTests::test_str2int()</a>.</p>
 
 </div>
 </div>
@@ -4989,9 +5019,9 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00469">469</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00422">422</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00459">stToLowerCopy()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00413">stToLowerCopy()</a>.</p>
 
 </div>
 </div>
@@ -5018,11 +5048,11 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00459">459</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00413">413</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00469">stToLower()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00422">stToLower()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00622">stFindNoCase()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00564">stFindNoCase()</a>.</p>
 
 </div>
 </div>
@@ -5049,9 +5079,9 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00491">491</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00442">442</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00481">stToUpperCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01585">StringUtilUnitTests::testToUpper()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00433">stToUpperCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01508">StringUtilUnitTests::testToUpper()</a>.</p>
 
 </div>
 </div>
@@ -5078,11 +5108,11 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00481">481</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00433">433</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00491">stToUpper()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00442">stToUpper()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01585">StringUtilUnitTests::testToUpper()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01508">StringUtilUnitTests::testToUpper()</a>.</p>
 
 </div>
 </div>
@@ -5120,11 +5150,11 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00342">342</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00307">307</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00300">stTrimLeft()</a>, and <a class="el" href="_string_util_8cpp_source.html#l00321">stTrimRight()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00271">stTrimLeft()</a>, and <a class="el" href="_string_util_8cpp_source.html#l00289">stTrimRight()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00288">stTrimCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01505">StringUtilUnitTests::testTrim()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00259">stTrimCopy()</a>, and <a class="el" href="_string_util_8cpp_source.html#l01433">StringUtilUnitTests::testTrim()</a>.</p>
 
 </div>
 </div>
@@ -5162,11 +5192,11 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The new string. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00288">288</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00259">259</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>References <a class="el" href="_string_util_8cpp_source.html#l00342">stTrim()</a>.</p>
+<p>References <a class="el" href="_string_util_8cpp_source.html#l00307">stTrim()</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00094">stNumeric()</a>, and <a class="el" href="_string_util_8cpp_source.html#l00199">stSplit()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00088">stNumeric()</a>, and <a class="el" href="_string_util_8cpp_source.html#l00183">stSplit()</a>.</p>
 
 </div>
 </div>
@@ -5204,9 +5234,9 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00300">300</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00271">271</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00342">stTrim()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00307">stTrim()</a>.</p>
 
 </div>
 </div>
@@ -5244,9 +5274,9 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to str. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00321">321</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00289">289</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01102">STRstd()</a>, and <a class="el" href="_string_util_8cpp_source.html#l00342">stTrim()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l00996">STRstd()</a>, and <a class="el" href="_string_util_8cpp_source.html#l00307">stTrim()</a>.</p>
 
 </div>
 </div>
@@ -5284,9 +5314,9 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if a_container contains a str, otherwise False. </dd></dl>
 
-<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00583">583</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_string_util_8cpp_source.html#l00528">528</a> of file <a class="el" href="_string_util_8cpp_source.html">StringUtil.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01826">StringUtilUnitTests::testSuVecContainsStr()</a>.</p>
+<p>Referenced by <a class="el" href="_string_util_8cpp_source.html#l01743">StringUtilUnitTests::testSuVecContainsStr()</a>.</p>
 
 </div>
 </div>
@@ -5896,7 +5926,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00494">494</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00501">501</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
 </div>
 </div>
@@ -5963,9 +5993,9 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if files are equal, else false. </dd></dl>
 
-<p>Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00423">423</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00430">430</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00478">ttTextFilesEqual()</a>.</p>
+<p>Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00485">ttTextFilesEqual()</a>.</p>
 
 </div>
 </div>
@@ -6016,9 +6046,9 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00478">478</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00485">485</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p>References <a class="el" href="_test_tools_8cpp_source.html#l00423">ttTextFilesEqual()</a>.</p>
+<p>References <a class="el" href="_test_tools_8cpp_source.html#l00430">ttTextFilesEqual()</a>.</p>
 
 </div>
 </div>
@@ -6057,7 +6087,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 
 <p>Definition at line <a class="el" href="_dyn_bitset_8cpp_source.html#l00044">44</a> of file <a class="el" href="_dyn_bitset_8cpp_source.html">DynBitset.cpp</a>.</p>
 
-<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00273">DynamicBitsetFromPyIter()</a>.</p>
+<p>Referenced by <a class="el" href="_py_utils_8cpp_source.html#l00275">DynamicBitsetFromPyIter()</a>.</p>
 
 </div>
 </div>
@@ -6084,7 +6114,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a boost::shared_ptr to a VecDbl </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00205">205</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00207">207</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -6111,7 +6141,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a boost::shared_ptr to a VecFlt </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00239">239</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00241">241</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -6129,14 +6159,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Create py::iterable from VecPt3d2d. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pt</td><td>VecPt3d2d object that represents a py::iterable </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>a py::iterable Create VecInt2d from py::iterable </dd></dl>
+<p>Create VecInt2d from py::iterable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pt</td><td>py::iterable object that represents a VecInt2d </td></tr>
@@ -6145,7 +6168,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a boost::shared_ptr to a VecInt2d </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00122">122</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00124">124</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -6172,7 +6195,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a boost::shared_ptr to a VecInt </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00171">171</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00173">173</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
 </div>
 </div>
@@ -6199,9 +6222,9 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>a boost::shared_ptr to a std::vector&lt;std::pair&lt;int, int&gt;&gt; </dd></dl>
 
-<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00337">337</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_py_utils_8cpp_source.html#l00339">339</a> of file <a class="el" href="_py_utils_8cpp_source.html">PyUtils.cpp</a>.</p>
 
-<p>References <a class="el" href="_py_utils_8cpp_source.html#l00313">IntPairFromPyIter()</a>.</p>
+<p>References <a class="el" href="_py_utils_8cpp_source.html#l00315">IntPairFromPyIter()</a>.</p>
 
 </div>
 </div>
@@ -6477,7 +6500,7 @@ template&lt;typename T &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacexms.html">xms</a></li>
-    <li class="footer">Generated on Tue Aug 14 2018 16:16:47 for xmscore by
+    <li class="footer">Generated on Tue Aug 14 2018 16:29:38 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

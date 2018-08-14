@@ -12,6 +12,7 @@ var _py_utils_8h =
     [ "PyIterFromVecInt2d", "_py_utils_8h.html#a0a1a01df38749fc3086ebfc93d8598da", null ],
     [ "PyIterFromVecIntPair", "_py_utils_8h.html#a90078769bd51c076d22a3911983acaf6", null ],
     [ "PyIterFromVecPt3d", "_py_utils_8h.html#a8e892242a41a91506ce59befc5ca2f84", null ],
+    [ "PyIterFromVecPt3d2d", "_py_utils_8h.html#a3e5f96042bb96b842510d6199ce14b25", null ],
     [ "VecDblFromPyIter", "_py_utils_8h.html#ab5fd3653a6331570a61ff881917641ca", null ],
     [ "VecFltFromPyIter", "_py_utils_8h.html#a8bddf97e8dc7cb2d2bcd1df5e477efb1", null ],
     [ "VecInt2dFromPyIter", "_py_utils_8h.html#aa4c0bf973be9e1f13c1f793eff468b37", null ],
