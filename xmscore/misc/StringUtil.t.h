@@ -41,6 +41,9 @@ public:
   void testSuSimplified();
   void testSuIcontains();
   void testSuVecContainsStr();
+  void test_STRstd();
+  void testPrec();
+  void testSTR();
 }; // StringUtilUnitTests
 
 #endif

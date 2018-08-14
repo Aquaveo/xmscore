@@ -25,16 +25,16 @@
 #include <boost/lexical_cast.hpp>
 
 // 5. Shared Headers
+#include <regex>
 #include <xmscore/math/math.h>
 #include <xmscore/misc/XmError.h>
-#include <regex>
 
-//#pragma warning(disable:4996) // 'strcpy': This function or variable may be unsafe.
+//#pragma warning(disable:4996) // 'strcpy': This function or variable may be
+//unsafe.
 
 // 6. Non-shared Headers
 
-namespace xms
-{
+namespace xms {
 ////////////////////////////////////////////////////////////////////////////////
 /// \class StTemp2DigitExponents
 /// \brief When constructed std::cout will temporarily output 2-digit exponents
@@ -45,9 +45,7 @@ namespace xms
 ///        match C++ standard. Should be able to remove all instances of this
 ///        class upon moving to Visual Studio 2015.
 //------------------------------------------------------------------------------
-StTemp2DigitExponents::StTemp2DigitExponents()
-: m_oldOutputFormat(0)
-{
+StTemp2DigitExponents::StTemp2DigitExponents() : m_oldOutputFormat(0) {
 #if defined(_MSC_VER) && _MSC_VER < 1900
   m_oldOutputFormat = _get_output_format();
   _set_output_format(_TWO_DIGIT_EXPONENT);
@@ -58,8 +56,7 @@ StTemp2DigitExponents::StTemp2DigitExponents()
 //------------------------------------------------------------------------------
 /// \brief Revert back to 3-digit exponents for pre-Visual Studio 2015.
 //------------------------------------------------------------------------------
-StTemp2DigitExponents::~StTemp2DigitExponents()
-{
+StTemp2DigitExponents::~StTemp2DigitExponents() {
 #if defined(_MSC_VER) && _MSC_VER < 1900
   _set_output_format(m_oldOutputFormat);
 #endif
@@ -71,15 +68,12 @@ StTemp2DigitExponents::~StTemp2DigitExponents()
 /// \param[in] c:   The char.
 /// \return The count.
 //------------------------------------------------------------------------------
-unsigned int stCountChar(const std::string& str, char c)
-{
+unsigned int stCountChar(const std::string &str, char c) {
   unsigned int count = 0;
   std::string::size_type size = str.size();
 
-  for (std::string::size_type pos = 0; pos < size; ++pos)
-  {
-    if (str[pos] == c)
-    {
+  for (std::string::size_type pos = 0; pos < size; ++pos) {
+    if (str[pos] == c) {
       count++;
     }
   }
@@ -91,8 +85,7 @@ unsigned int stCountChar(const std::string& str, char c)
 /// \param[in] str: The string.
 /// \return true or false.
 //------------------------------------------------------------------------------
-bool stNumeric(const std::string& str)
-{
+bool stNumeric(const std::string &str) {
   std::string copy(stTrimCopy(str));
   std::stringstream ss(copy);
   double temp;
@@ -108,10 +101,9 @@ bool stNumeric(const std::string& str)
 /// \param check_numeric: Pass false if you are sure your string is a number.
 /// \return true or false.
 //------------------------------------------------------------------------------
-bool stScientificNotation(const std::string& str, bool check_numeric /*= true*/)
-{
-  if (check_numeric && !stNumeric(str))
-  {
+bool stScientificNotation(const std::string &str,
+                          bool check_numeric /*= true*/) {
+  if (check_numeric && !stNumeric(str)) {
     return false;
   }
 
@@ -123,21 +115,20 @@ bool stScientificNotation(const std::string& str, bool check_numeric /*= true*/)
 /// \param[in,out] str:         The string to modify.
 /// \param[in] to_extended: true to add extended ASCII, false to remove it
 //------------------------------------------------------------------------------
-void stChangeExtendedAscii(std::string& str, bool to_extended)
-{
-  const char* look_up[] = {// extended ASCII always goes first
+void stChangeExtendedAscii(std::string &str, bool to_extended) {
+  const char *look_up[] = {// extended ASCII always goes first
                            // must be in pairs
-                           "\xb2", "^2",   // superscript two - squared
-                           "\xb3", "^3",   // superscript three - cubed
-                           "\xb0", "deg_", // degree sign
-                                           // this needs to be last and have both NULLs
+                           "\xb2", "^2", // superscript two - squared
+                           "\xb3", "^3", // superscript three - cubed
+                           "\xb0",
+                           "deg_", // degree sign
+                                   // this needs to be last and have both NULLs
                            nullptr, nullptr};
 
   unsigned int src = to_extended ? 1 : 0;
   unsigned int dst = to_extended ? 0 : 1;
 
-  for (; look_up[src] != nullptr; src += 2, dst += 2)
-  {
+  for (; look_up[src] != nullptr; src += 2, dst += 2) {
     stReplace(str, look_up[src], look_up[dst]);
   }
 } // stChangeExtendedAscii
@@ -151,24 +142,20 @@ void stChangeExtendedAscii(std::string& str, bool to_extended)
 /// method if you need to specify multiple different delimiter characters or
 /// need to handle multiple adjacent delimiters (ie. "1   2      3")
 //------------------------------------------------------------------------------
-VecStr stExplode(const std::string& source, const std::string& a_delimiter)
-{
+VecStr stExplode(const std::string &source, const std::string &a_delimiter) {
   std::string::size_type pos = source.find(a_delimiter);
   std::vector<std::string> exploded;
 
-  if (pos != std::string::npos)
-  {
+  if (pos != std::string::npos) {
     size_t delim_len = a_delimiter.size();
 
     exploded.push_back(source.substr(0, pos));
 
-    while (pos != std::string::npos)
-    {
+    while (pos != std::string::npos) {
       std::string::size_type pos2 = source.find(a_delimiter, pos + 1);
       std::string::size_type length = pos2 - pos - delim_len;
 
-      if (pos2 == std::string::npos)
-      {
+      if (pos2 == std::string::npos) {
         length = std::string::npos;
       }
 
@@ -176,11 +163,8 @@ VecStr stExplode(const std::string& source, const std::string& a_delimiter)
 
       pos = pos2;
     }
-  }
-  else
-  {
-    if (!source.empty())
-    {
+  } else {
+    if (!source.empty()) {
       exploded.push_back(source);
     }
   }
@@ -196,37 +180,29 @@ VecStr stExplode(const std::string& source, const std::string& a_delimiter)
 /// \return A vector of strings.
 /// \see http://stackoverflow.com/questions/236129/split-a-string-in-c
 //------------------------------------------------------------------------------
-VecStr stSplit(const std::string& a_source,
-               const std::string& a_delimiterList /*=wspace*/,
-               bool a_delimiterCompressOn /*true*/)
-{
+VecStr stSplit(const std::string &a_source,
+               const std::string &a_delimiterList /*=wspace*/,
+               bool a_delimiterCompressOn /*true*/) {
   std::string trimmed = stTrimCopy(a_source, a_delimiterList);
   VecStr elems;
-  if (a_delimiterCompressOn)
-  {
-    boost::split(elems, trimmed, boost::is_any_of(a_delimiterList), boost::token_compress_on);
-  }
-  else
-  {
+  if (a_delimiterCompressOn) {
+    boost::split(elems, trimmed, boost::is_any_of(a_delimiterList),
+                 boost::token_compress_on);
+  } else {
     // Unfortunately, boost::token_compress_off doesn't do the trick because
     // it still compresses the leading and trailing delimiters. The following
     // code works. I don't know how fast it is.
     std::vector<char> temp(a_source.size());
     int end = 0;
-    for (size_t i = 0; i < a_source.size(); ++i)
-    {
-      if (a_delimiterList.find(a_source[i]) != std::string::npos)
-      {
+    for (size_t i = 0; i < a_source.size(); ++i) {
+      if (a_delimiterList.find(a_source[i]) != std::string::npos) {
         elems.push_back(std::string(&temp[0], end));
         end = 0;
-      }
-      else
-      {
+      } else {
         temp[end++] = a_source[i];
       }
     }
-    if (a_delimiterList.find(a_source.back()) != std::string::npos)
-    {
+    if (a_delimiterList.find(a_source.back()) != std::string::npos) {
       elems.push_back("");
     }
   }
@@ -238,15 +214,13 @@ VecStr stSplit(const std::string& a_source,
 /// \param[in] delim: The delimiter to be inserted between each string.
 /// \return A string.
 //------------------------------------------------------------------------------
-std::string stImplode(const std::vector<std::string>& source, const std::string& delim)
-{
+std::string stImplode(const std::vector<std::string> &source,
+                      const std::string &delim) {
   std::string imploded;
 
-  if (!source.empty())
-  {
+  if (!source.empty()) {
     size_t size = source.size() - 1;
-    for (size_t i = 0; i < size; ++i)
-    {
+    for (size_t i = 0; i < size; ++i) {
       imploded += source[i];
       imploded += delim;
     }
@@ -263,13 +237,10 @@ std::string stImplode(const std::vector<std::string>& source, const std::string&
 /// \param[in] str: Element we're searching for.
 /// \return Index of the position of the element. If not found it returns -1.
 //------------------------------------------------------------------------------
-int stIndexOfElem(const VecStr& a_container, const std::string& str)
-{
+int stIndexOfElem(const VecStr &a_container, const std::string &str) {
   int loc = 0;
-  for (int i = 0; i < static_cast<int>(a_container.size()); i++)
-  {
-    if (a_container[i] == str)
-    {
+  for (int i = 0; i < static_cast<int>(a_container.size()); i++) {
+    if (a_container[i] == str) {
       loc = i;
       return loc;
     }
@@ -285,8 +256,8 @@ int stIndexOfElem(const VecStr& a_container, const std::string& str)
 /// \param[in]     delim: All the characters you want to be trimmed.
 /// \return The new string.
 //------------------------------------------------------------------------------
-std::string stTrimCopy(const std::string& str, const std::string& delim /*= wspace*/)
-{
+std::string stTrimCopy(const std::string &str,
+                       const std::string &delim /*= wspace*/) {
   std::string temp(str);
 
   return stTrim(temp, delim);
@@ -297,16 +268,13 @@ std::string stTrimCopy(const std::string& str, const std::string& delim /*= wspa
 /// \param[in]     delim: All the characters you want to be trimmed.
 /// \return A reference to str.
 //------------------------------------------------------------------------------
-std::string& stTrimLeft(std::string& str, const std::string& delim /*= wspace*/)
-{
+std::string &stTrimLeft(std::string &str,
+                        const std::string &delim /*= wspace*/) {
   std::string::size_type pos = str.find_first_not_of(delim);
 
-  if (pos != std::string::npos)
-  {
+  if (pos != std::string::npos) {
     str.erase(0, pos);
-  }
-  else
-  {
+  } else {
     str.clear();
   }
 
@@ -318,16 +286,13 @@ std::string& stTrimLeft(std::string& str, const std::string& delim /*= wspace*/)
 /// \param[in]     delim: All the characters you want to be trimmed.
 /// \return A reference to str.
 //------------------------------------------------------------------------------
-std::string& stTrimRight(std::string& str, const std::string& delim /*= wspace*/)
-{
+std::string &stTrimRight(std::string &str,
+                         const std::string &delim /*= wspace*/) {
   std::string::size_type pos = str.find_last_not_of(delim);
 
-  if (pos != std::string::npos)
-  {
+  if (pos != std::string::npos) {
     str.erase(pos + 1);
-  }
-  else
-  {
+  } else {
     str.clear();
   }
 
@@ -339,8 +304,7 @@ std::string& stTrimRight(std::string& str, const std::string& delim /*= wspace*/
 /// \param[in]     delim: All the characters you want to be trimmed.
 /// \return A reference to str.
 //------------------------------------------------------------------------------
-std::string& stTrim(std::string& str, const std::string& delim /*= wspace*/)
-{
+std::string &stTrim(std::string &str, const std::string &delim /*= wspace*/) {
   stTrimLeft(str, delim);
   return stTrimRight(str, delim);
 } // stTrim
@@ -352,8 +316,7 @@ std::string& stTrim(std::string& str, const std::string& delim /*= wspace*/)
 /// \param[in]     dest:   The character replacing source.
 /// \return The new string.
 //------------------------------------------------------------------------------
-std::string stReplaceCopy(const std::string& str, char source, char dest)
-{
+std::string stReplaceCopy(const std::string &str, char source, char dest) {
   std::string replaced(str);
   stReplace(replaced, source, dest);
   return replaced;
@@ -366,10 +329,8 @@ std::string stReplaceCopy(const std::string& str, char source, char dest)
 /// \param[in]     dest:   The sub string replacing source.
 /// \return The new string.
 //------------------------------------------------------------------------------
-std::string stReplaceCopy(const std::string& str,
-                          const std::string& source,
-                          const std::string& dest)
-{
+std::string stReplaceCopy(const std::string &str, const std::string &source,
+                          const std::string &dest) {
   std::string replaced(str);
   stReplace(replaced, source, dest);
   return replaced;
@@ -382,17 +343,14 @@ std::string stReplaceCopy(const std::string& str,
 /// \param[in]     dest:   The character replacing source.
 /// \return Reference to str.
 //------------------------------------------------------------------------------
-std::string& stReplace(std::string& str, char source, char dest)
-{
-  if (source == dest)
-  {
+std::string &stReplace(std::string &str, char source, char dest) {
+  if (source == dest) {
     return str;
   }
 
   size_t pos = str.find(source);
 
-  while (pos != std::string::npos)
-  {
+  while (pos != std::string::npos) {
     str[pos] = dest;
     pos = str.find(source, pos + 1);
   }
@@ -407,10 +365,9 @@ std::string& stReplace(std::string& str, char source, char dest)
 /// \param[in]     dest:   The sub string replacing source.
 /// \return Reference to str.
 //------------------------------------------------------------------------------
-std::string& stReplace(std::string& str, const std::string& source, const std::string& dest)
-{
-  if (source == dest)
-  {
+std::string &stReplace(std::string &str, const std::string &source,
+                       const std::string &dest) {
+  if (source == dest) {
     return str;
   }
 
@@ -418,8 +375,7 @@ std::string& stReplace(std::string& str, const std::string& source, const std::s
   std::string::size_type source_len = source.size();
   std::string::size_type dest_len = dest.size();
 
-  while (pos != std::string::npos)
-  {
+  while (pos != std::string::npos) {
     str.erase(pos, source_len);
     str.insert(pos, dest);
     pos = str.find(source, pos + dest_len);
@@ -434,8 +390,7 @@ std::string& stReplace(std::string& str, const std::string& source, const std::s
 /// \return The new string.
 /// \see http://stackoverflow.com/questions/20326356/
 //------------------------------------------------------------------------------
-std::string stRemoveCopy(const std::string& str, char source)
-{
+std::string stRemoveCopy(const std::string &str, char source) {
   std::string copy(str);
   return stRemove(copy, source);
 } // stRemoveCopy
@@ -446,8 +401,7 @@ std::string stRemoveCopy(const std::string& str, char source)
 /// \param[in]     source: The character to be removed.
 /// \return A reference to str.
 //------------------------------------------------------------------------------
-std::string& stRemove(std::string& str, char source)
-{
+std::string &stRemove(std::string &str, char source) {
   str.erase(std::remove(str.begin(), str.end(), source), str.end());
   return str;
 } // stRemove
@@ -456,8 +410,7 @@ std::string& stRemove(std::string& str, char source)
 /// \param str: The string.
 /// \return The new string.
 //------------------------------------------------------------------------------
-std::string stToLowerCopy(const std::string& str)
-{
+std::string stToLowerCopy(const std::string &str) {
   std::string copy(str);
   return stToLower(copy);
 } // stToLowerCopy
@@ -466,10 +419,9 @@ std::string stToLowerCopy(const std::string& str)
 /// \param[in,out] str: String to be modified.
 /// \return A reference to str.
 //------------------------------------------------------------------------------
-std::string& stToLower(std::string& str)
-{
+std::string &stToLower(std::string &str) {
   std::transform<std::string::iterator, std::string::iterator, int (*)(int)>(
-    str.begin(), str.end(), str.begin(), std::tolower);
+      str.begin(), str.end(), str.begin(), std::tolower);
 
   return str;
 } // stToLower
@@ -478,8 +430,7 @@ std::string& stToLower(std::string& str)
 /// \param str: The string.
 /// \return The new string.
 //------------------------------------------------------------------------------
-std::string stToUpperCopy(const std::string& str)
-{
+std::string stToUpperCopy(const std::string &str) {
   std::string copy(str);
   return stToUpper(copy);
 } // stToUpperCopy
@@ -488,21 +439,18 @@ std::string stToUpperCopy(const std::string& str)
 /// \param[in,out] str: String to be modified.
 /// \return A reference to str.
 //------------------------------------------------------------------------------
-std::string& stToUpper(std::string& str)
-{
+std::string &stToUpper(std::string &str) {
   std::transform<std::string::iterator, std::string::iterator, int (*)(int)>(
-    str.begin(), str.end(), str.begin(), std::toupper);
+      str.begin(), str.end(), str.begin(), std::toupper);
 
   return str;
 } // stToUpper
 //------------------------------------------------------------------------------
-/// \brief Extracts first (leftmost) a_length characters from a_source returning a copy.
-/// \param[in] a_source: The string.
-/// \param[in] a_length: Number of leftmost characters to keep.
-/// \return The new string.
+/// \brief Extracts first (leftmost) a_length characters from a_source returning
+/// a copy. \param[in] a_source: The string. \param[in] a_length: Number of
+/// leftmost characters to keep. \return The new string.
 //------------------------------------------------------------------------------
-std::string stLeftCopy(const std::string& a_source, size_t const a_length)
-{
+std::string stLeftCopy(const std::string &a_source, size_t const a_length) {
   // make sure we didn't do signed int arithmetic to pass negative length that
   // converts to very large unsigned number
   XM_ASSERT(a_length == std::string::npos || a_length < (size_t)-1 - 1000);
@@ -511,13 +459,12 @@ std::string stLeftCopy(const std::string& a_source, size_t const a_length)
   return stLeft(copy, a_length);
 } // stLeftCopy
 //------------------------------------------------------------------------------
-/// \brief Modifies a_source to contain the first (leftmost) a_length characters.
-/// \param[in,out] a_source: The string that is modified.
-/// \param[in]     a_length: Number of leftmost characters to keep.
-/// \return A reference to a_source.
+/// \brief Modifies a_source to contain the first (leftmost) a_length
+/// characters. \param[in,out] a_source: The string that is modified. \param[in]
+/// a_length: Number of leftmost characters to keep. \return A reference to
+/// a_source.
 //------------------------------------------------------------------------------
-std::string& stLeft(std::string& a_source, size_t const a_length)
-{
+std::string &stLeft(std::string &a_source, size_t const a_length) {
   // make sure we didn't do signed int arithmetic to pass negative length that
   // converts to very large unsigned number
   XM_ASSERT(a_length == std::string::npos || a_length < (size_t)-1 - 1000);
@@ -535,8 +482,7 @@ std::string& stLeft(std::string& a_source, size_t const a_length)
 /// \param[in] a_length: Number of rightmost characters to keep.
 /// \return The new string.
 //------------------------------------------------------------------------------
-std::string stRightCopy(const std::string& a_source, size_t const a_length)
-{
+std::string stRightCopy(const std::string &a_source, size_t const a_length) {
   // make sure we didn't do signed int arithmetic to pass negative length that
   // converts to very large unsigned number
   XM_ASSERT(a_length == std::string::npos || a_length < (size_t)-1 - 1000);
@@ -549,8 +495,7 @@ std::string stRightCopy(const std::string& a_source, size_t const a_length)
 /// \param[in] str: The string to be modified.
 /// \return Modified string.
 //------------------------------------------------------------------------------
-std::string stSimplified(const std::string& str)
-{
+std::string stSimplified(const std::string &str) {
   std::string modified = std::regex_replace(str, std::regex("\\s+"), " ");
   modified = boost::trim_copy(modified);
   return modified;
@@ -559,10 +504,10 @@ std::string stSimplified(const std::string& str)
 /// \brief Checks if first string contains second. Case insensitive.
 /// \param[in] a_container: Container to search if it includes a substr.
 /// \param[in] a_substr: Substring to search for in the container.
-/// \return True if a_container contains an occurrence of a_substr, otherwise False.
+/// \return True if a_container contains an occurrence of a_substr, otherwise
+/// False.
 //------------------------------------------------------------------------------
-bool stContains(const std::string& a_container, const std::string& a_substr)
-{
+bool stContains(const std::string &a_container, const std::string &a_substr) {
   std::string container = boost::to_upper_copy(a_container);
   std::string substr = boost::to_upper_copy(a_substr);
 
@@ -580,24 +525,22 @@ bool stContains(const std::string& a_container, const std::string& a_substr)
 /// \param[in] str: String to search for in the container.
 /// \return True if a_container contains a str, otherwise False.
 //------------------------------------------------------------------------------
-bool stVectorContainsString(const VecStr& a_container, const std::string& str)
-{
-  return (std::find(a_container.begin(), a_container.end(), str) != a_container.end());
+bool stVectorContainsString(const VecStr &a_container, const std::string &str) {
+  return (std::find(a_container.begin(), a_container.end(), str) !=
+          a_container.end());
 } // stVectorContainsString
 //------------------------------------------------------------------------------
-/// \brief Modifies a_source to contain the last (rightmost) a_length characters.
-/// \param[in,out] a_source: The string that is modified.
-/// \param[in]     a_length: Number of rightmost characters to keep.
-/// \return A reference to a_source.
+/// \brief Modifies a_source to contain the last (rightmost) a_length
+/// characters. \param[in,out] a_source: The string that is modified. \param[in]
+/// a_length: Number of rightmost characters to keep. \return A reference to
+/// a_source.
 //------------------------------------------------------------------------------
-std::string& stRight(std::string& a_source, size_t const a_length)
-{
+std::string &stRight(std::string &a_source, size_t const a_length) {
   // make sure we didn't do signed int arithmetic to pass negative length that
   // converts to very large unsigned number
   XM_ASSERT(a_length == std::string::npos || a_length < (size_t)-1 - 1000);
 
-  if (a_length >= a_source.size())
-  {
+  if (a_length >= a_source.size()) {
     return a_source;
   }
   a_source = a_source.substr(a_source.size() - a_length);
@@ -609,8 +552,7 @@ std::string& stRight(std::string& a_source, size_t const a_length)
 /// \param[in] b: Second string.
 /// \return true or false.
 //------------------------------------------------------------------------------
-bool stEqualNoCase(const std::string& a, const std::string& b)
-{
+bool stEqualNoCase(const std::string &a, const std::string &b) {
   return boost::iequals(a, b);
 } // stEqualNoCase
 //------------------------------------------------------------------------------
@@ -619,8 +561,7 @@ bool stEqualNoCase(const std::string& a, const std::string& b)
 /// \param[in] b: Substring searching for.
 /// \return true or false.
 //------------------------------------------------------------------------------
-bool stFindNoCase(const std::string& a, const std::string& b)
-{
+bool stFindNoCase(const std::string &a, const std::string &b) {
   return stToLowerCopy(a).find(stToLowerCopy(b)) != std::string::npos;
 } // stEqualNoCase
 //------------------------------------------------------------------------------
@@ -629,25 +570,22 @@ bool stFindNoCase(const std::string& a, const std::string& b)
 /// \param[in,out] str: A string that's made unique if it is in set_str.
 /// \return false if already unique, true if updated.
 //------------------------------------------------------------------------------
-bool stMakeUnique(const std::set<std::string>& set_str, std::string& str)
-{
-  if (set_str.find(str) == set_str.end())
-  {
+bool stMakeUnique(const std::set<std::string> &set_str, std::string &str) {
+  if (set_str.find(str) == set_str.end()) {
     // the name is already unique
     return false;
   }
 
   std::string tmpstr;
 
-  do
-  {
+  do {
     std::string::size_type pos1, pos2;
 
     pos1 = str.find('(');
     pos2 = str.find(')');
 
-    if ((pos1 != std::string::npos) && (pos2 != std::string::npos) && (pos1 < pos2))
-    {
+    if ((pos1 != std::string::npos) && (pos2 != std::string::npos) &&
+        (pos1 < pos2)) {
       int old_val;
       std::string::size_type diff;
       std::stringstream ss;
@@ -660,20 +598,15 @@ bool stMakeUnique(const std::set<std::string>& set_str, std::string& str)
 
       ss >> old_val;
 
-      if (!ss.fail() && ss.eof())
-      {
+      if (!ss.fail() && ss.eof()) {
         ss.clear();
         ss.str("");
         ss << (old_val + 1);
         str.replace(pos1, diff, ss.str(), 0, ss.str().length());
-      }
-      else
-      {
+      } else {
         str += " (2)";
       }
-    }
-    else
-    {
+    } else {
       str += " (2)";
     }
   } while (set_str.find(str) != set_str.end());
@@ -690,19 +623,14 @@ bool stMakeUnique(const std::set<std::string>& set_str, std::string& str)
 /// \param[in]  base: Numeric base.
 /// \return true if successful
 //------------------------------------------------------------------------------
-bool stStringToInt(const std::string& s, int& i, int base /*= 0*/)
-{
-  try
-  {
+bool stStringToInt(const std::string &s, int &i, int base /*= 0*/) {
+  try {
     size_t bad;
     i = std::stoi(s, &bad, base);
-    if (bad < s.size())
-    {
+    if (bad < s.size()) {
       return false;
     }
-  }
-  catch (std::exception)
-  {
+  } catch (std::exception) {
     return false;
   }
   return true;
@@ -716,19 +644,14 @@ bool stStringToInt(const std::string& s, int& i, int base /*= 0*/)
 /// \param[out] d: The double.
 /// \return true if successful
 //------------------------------------------------------------------------------
-bool stStringToDouble(const std::string& s, double& d)
-{
-  try
-  {
+bool stStringToDouble(const std::string &s, double &d) {
+  try {
     size_t bad;
     d = std::stod(s, &bad);
-    if (bad < s.size())
-    {
+    if (bad < s.size()) {
       return false;
     }
-  }
-  catch (std::exception)
-  {
+  } catch (std::exception) {
     return false;
   }
   return true;
@@ -748,8 +671,7 @@ bool stStringToDouble(const std::string& s, double& d)
 /// \param[in] length: Number characters available to display the number
 /// \return The precision.
 //------------------------------------------------------------------------------
-int stPrecision(double value, int& flags, int length /* =15 */)
-{
+int stPrecision(double value, int &flags, int length /* =15 */) {
 #if BOOST_OS_WINDOWS
   if (!_finite(value))
 #else
@@ -769,7 +691,7 @@ int stPrecision(double value, int& flags, int length /* =15 */)
   int64_t ipart = 0;
   short ilength, flength; // string lengths of integer and fractional parts
   short prec;             // ends up as num sig figs to right of decimal
-  short maxdigits;        // max num digits to right of decimal to meet limit of 15
+  short maxdigits; // max num digits to right of decimal to meet limit of 15
   bool isFraction = false;
 
   // Step 1 ////////////////////////////////////////////////////////////////////
@@ -783,13 +705,14 @@ int stPrecision(double value, int& flags, int length /* =15 */)
      -1.2345678e-006   <- this
   */
 
-  if (length >= 8)
-  { // Have to have at least 8 spaces to do sci notation
+  if (length >= 8) { // Have to have at least 8 spaces to do sci notation
     double max;
     max = pow(10.0, (double)(length - 3));
     const double min = 1e-5; // arbitrary value to use scientific notation below
-    // const double toleranceValueForZero = 1e-15; // arbitrary value to make values
-    //                                            // below zero (perhaps should be
+    // const double toleranceValueForZero = 1e-15; // arbitrary value to make
+    // values
+    //                                            // below zero (perhaps should
+    //                                            be
     //                                            // user defined in future)
     // I'm returning this to the way it was because this change broke one of
     // our tutorials in which 2e-17 is a valid input but this change made it
@@ -798,10 +721,11 @@ int stPrecision(double value, int& flags, int length /* =15 */)
     // satisfactory to everyone in all cases. So, it should be done outside
     // of this macro. Please don't change this without discussing it with
     // everyone. -MJK
-    if (GT_EPS(fabs(value), max, DBL_EPSILON) || EQ_EPS(fabs(value), max, DBL_EPSILON) ||
+    if (GT_EPS(fabs(value), max, DBL_EPSILON) ||
+        EQ_EPS(fabs(value), max, DBL_EPSILON) ||
         //(GT_TOL(fabs(value), 0.0, toleranceValueForZero) &&
-        (GT_EPS(fabs(value), 0.0, DBL_EPSILON) && LT_EPS(fabs(value), min, DBL_EPSILON)))
-    {
+        (GT_EPS(fabs(value), 0.0, DBL_EPSILON) &&
+         LT_EPS(fabs(value), min, DBL_EPSILON))) {
       flags |= STR_SCIENTIFIC;
     }
   }
@@ -818,8 +742,7 @@ int stPrecision(double value, int& flags, int length /* =15 */)
      current thing isn't working for some case, we can look back and see
      what we've already tried. */
 
-  if (flags & STR_SCIENTIFIC)
-  {
+  if (flags & STR_SCIENTIFIC) {
     if (flags & STR_FLOAT)
       istring = (boost::format("%1.6e") % value).str();
     else
@@ -828,20 +751,16 @@ int stPrecision(double value, int& flags, int length /* =15 */)
     charptr = istring.find('.');
     istring = istring.substr(0, charptr);
     charptr = fstring.find('.');
-    if (charptr != std::string::npos)
-    {
+    if (charptr != std::string::npos) {
       charptr++;
       fstring = fstring.substr(charptr);
     }
     charptr = fstring.find('e');
     fstring = fstring.substr(0, charptr);
-  }
-  else
-  {
+  } else {
     int myvar = 3;
     std::string theval;
-    switch (myvar)
-    {
+    switch (myvar) {
     case 1: // here we try getting all the digits we can and then formatting
             // the string afterward
 
@@ -867,10 +786,8 @@ int stPrecision(double value, int& flags, int length /* =15 */)
       theval.erase(indx, theval.size() - indx);
       // copy what is left into fstring
       fstring = theval;
-    }
-    break;
-    case 2:
-    {
+    } break;
+    case 2: {
       f = modf(value, &i);
       ipart = boost::numeric_cast<int64_t>(i);
       istring = (boost::format("%d") % ipart).str();
@@ -878,22 +795,19 @@ int stPrecision(double value, int& flags, int length /* =15 */)
       fstring = (boost::format("%Lg") % f).str();
       // Sometimes %g will use scientific notation, sometimes it won't.  If it
       // does, we've got to switch it to non-scientific notation.
-      if (fstring.find("e") != std::string::npos || fstring.find("E") != std::string::npos)
-      {
+      if (fstring.find("e") != std::string::npos ||
+          fstring.find("E") != std::string::npos) {
         double f2; // fractional part
         f2 = std::stod(fstring);
         fstring = (boost::format("%.16lf") % f2).str();
       }
       charptr = fstring.find('.');
-      if (charptr != std::string::npos)
-      {
+      if (charptr != std::string::npos) {
         charptr++;
         fstring = fstring.substr(charptr);
       }
-    }
-    break;
-    case 3:
-    {
+    } break;
+    case 3: {
       modf(value, &i);
       ipart = boost::numeric_cast<int64_t>(i);
       istring = (boost::format("%d") % ipart).str();
@@ -906,8 +820,7 @@ int stPrecision(double value, int& flags, int length /* =15 */)
         maxDigits = MAXFLOATDIGITS;
       else
         maxDigits = MAXDOUBLEDIGITS;
-      if (ipart == 0 && value != 0.0)
-      {
+      if (ipart == 0 && value != 0.0) {
         isFraction = true;
         modf(log10(fabs(value)), &i);
         int digits = maxDigits - Round(i);
@@ -915,24 +828,22 @@ int stPrecision(double value, int& flags, int length /* =15 */)
           ilength = (short)(digits + 2);
         else
           ilength = (short)(digits + 3);
-        format = (boost::format("%s%d.%d%s") % "%" % ilength % digits % "f").str();
-      }
-      else
-      {
         format =
-          (boost::format("%s%d.%d%s") % "%" % ilength % Miabs(maxDigits - ilength) % "f").str();
+            (boost::format("%s%d.%d%s") % "%" % ilength % digits % "f").str();
+      } else {
+        format = (boost::format("%s%d.%d%s") % "%" % ilength %
+                  Miabs(maxDigits - ilength) % "f")
+                     .str();
       }
 
       fstring = (boost::format(format) % value).str();
 
       charptr = fstring.find('.');
-      if (charptr != std::string::npos)
-      {
+      if (charptr != std::string::npos) {
         charptr++;
         fstring = fstring.substr(charptr);
       }
-    }
-    break;
+    } break;
     }
   }
   ilength = (short)istring.size();
@@ -943,30 +854,23 @@ int stPrecision(double value, int& flags, int length /* =15 */)
      Floating-Point).  So subtract ilength (the length of the left side) from
      7 or 16 and see how many are left over on the right.  Start from that
      point and work left, skipping zeros until we hit a non-zero number. */
-  if (value < 0)
-  {
+  if (value < 0) {
     ilength--; /* don't count the - sign as a sig fig. */
   }
   if (isFraction)
     prec = flength;
-  else if (flags & STR_FLOAT)
-  {
+  else if (flags & STR_FLOAT) {
     prec = MAXFLOATDIGITS - ilength - 1;
-  }
-  else
-  {
+  } else {
     prec = MAXDOUBLEDIGITS - ilength - 1;
   }
-  if (ilength == 1 && ipart == 0)
-  {
+  if (ilength == 1 && ipart == 0) {
     prec++; // 0 on left of 0.1 isn't a sig fig, one more avail for right
   }
-  if (prec >= flength)
-  {
+  if (prec >= flength) {
     prec = flength - 1; // just in case we screwed up some how
   }
-  for (; prec >= 0; prec--)
-  {
+  for (; prec >= 0; prec--) {
     if (fstring.at(prec) != '0')
       break;
   }
@@ -997,26 +901,21 @@ int stPrecision(double value, int& flags, int length /* =15 */)
   /* fabs(-1.000000000000) > fabs(value) >= fabs(-.1000000000000)     12     */
   /* fabs(-.1000000000000) > fabs(value) >= fabs(-.0100000000000)     12     */
 
-  if (flags & STR_SCIENTIFIC)
-  {
+  if (flags & STR_SCIENTIFIC) {
     maxdigits = (short)(length - 8); // 8 places used for -1. and e+012
-  }
-  else
-  {
-    maxdigits = (short)(length - 3); // 3 because 1 for + or -, 1 for 0, 1 for . (-0.)
+  } else {
+    maxdigits =
+        (short)(length - 3); // 3 because 1 for + or -, 1 for 0, 1 for . (-0.)
     double testval;
     testval = 10.0;
-    if (!LT_EPS(fabs(value), testval, DBL_EPSILON))
-    {
-      do
-      {
+    if (!LT_EPS(fabs(value), testval, DBL_EPSILON)) {
+      do {
         maxdigits--;
         testval *= 10.0;
       } while (!LT_EPS(fabs(value), testval, DBL_EPSILON));
     }
   }
-  if (!(value < 0.0))
-  {
+  if (!(value < 0.0)) {
     maxdigits++; // If value is positive, you get one more
   }
 
@@ -1029,8 +928,7 @@ int stPrecision(double value, int& flags, int length /* =15 */)
   // still significant - if the ones on the right are 0, then they're no
   // longer significant.
 
-  if (prec > maxdigits)
-  {
+  if (prec > maxdigits) {
     prec = maxdigits;
     // format = (boost::format("%s%d.%d%s") % "%" % ilength % prec % "f").str();
     // fstring = (boost::format(format) % value).str();
@@ -1039,8 +937,7 @@ int stPrecision(double value, int& flags, int length /* =15 */)
     //  charptr++;
     //  fstring = fstring.substr(charptr);
     //}
-    if ((int)fstring.size() > prec && fstring.at(prec - 1) == '0')
-    {
+    if ((int)fstring.size() > prec && fstring.at(prec - 1) == '0') {
       std::stringstream ss;
       ss << fstring.at(prec);
       int val;
@@ -1048,16 +945,13 @@ int stPrecision(double value, int& flags, int length /* =15 */)
       if (val > 4)
         fstring.at(prec - 1) = '1';
     }
-    for (; prec >= 1; prec--)
-    {
-      if (fstring.at(prec - 1) != '0')
-      {
+    for (; prec >= 1; prec--) {
+      if (fstring.at(prec - 1) != '0') {
         break;
       }
     }
   }
-  if (prec < 1)
-  {
+  if (prec < 1) {
     prec = 1; // always show 5.0 instead of just 5 to indicate it's a float
   }
 
@@ -1099,24 +993,21 @@ int stPrecision(double value, int& flags, int length /* =15 */)
 ///                  account for different locales.
 /// \return std::string of the number.
 //------------------------------------------------------------------------------
-std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags /*=0*/)
-{
+std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/,
+                   int flags /*=0*/) {
   std::string str;
   int prec = 0;
 
   // put this check in for old stuff
-  if (a_n >= 800)
-  {
+  if (a_n >= 800) {
     XM_ASSERT(false);
     a_n = -1;
   }
 
-    // check for invalid values
+  // check for invalid values
 #if BOOST_OS_WINDOWS
-  if (!_finite(a_value))
-  {
-    switch (_fpclass(a_value))
-    {
+  if (!_finite(a_value)) {
+    switch (_fpclass(a_value)) {
     case _FPCLASS_NINF:
       str = "-INF";
       break;
@@ -1130,10 +1021,8 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
     return str;
   }
 #else
-  if (!std::isfinite(a_value))
-  {
-    switch (std::fpclassify(a_value))
-    {
+  if (!std::isfinite(a_value)) {
+    switch (std::fpclassify(a_value)) {
     case FP_INFINITE:
       if (std::signbit(a_value))
         str = "-INF";
@@ -1149,60 +1038,47 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
 #endif
 
   // if not specifying an exact prec, autocompute
-  if ((a_n == -1) || (flags & STR_USEMAXPREC))
-  {
+  if ((a_n == -1) || (flags & STR_USEMAXPREC)) {
     // if using max precision and the number is small, truncate the number to
     // max precision here before stPrecision() switches the number to scientific
     // notation (a number that is beyond the limited precision range)
-    if ((flags & STR_USEMAXPREC) && LT_TOL(fabs(a_value), 1e-4, DBL_EPSILON))
-    {
+    if ((flags & STR_USEMAXPREC) && LT_TOL(fabs(a_value), 1e-4, DBL_EPSILON)) {
       a_value *= pow(10.0, a_n);
       a_value = floor(a_value + 0.5);
       a_value /= pow(10.0, a_n);
     }
     // figure out the auto-computed prec is
-    try
-    {
+    try {
       prec = stPrecision(a_value, flags, width);
-    }
-    catch (std::exception&)
-    {
+    } catch (std::exception &) {
       // we had an error. Generally with casting the modf integer part
-      return "";
+      // return "";
+      prec = 2; // Try 2. Probably better than returning ""
     }
-    if ((flags & STR_USEMAXPREC) && prec > a_n)
-    {
+    if ((flags & STR_USEMAXPREC) && prec > a_n) {
       prec = a_n;
     }
-  }
-  else
-  {
+  } else {
     prec = a_n;
   }
 
   // Format the format string, then use it to format str
 
   std::string format;
-  if (flags & STR_SCIENTIFIC)
-  {
+  if (flags & STR_SCIENTIFIC) {
     // sprintf(format, "%%.%de", Miabs(prec));
     format = (boost::format("%%.%de") % Miabs(prec)).str();
-  }
-  else
-  {
+  } else {
     // sprintf(format, "%%.%dlf", prec);
     // I added Miabs because according to my book it must be nonnegative
     // and some combinations result in a negative prec, which crashes. -MJK
     format = (boost::format("%%.%dlf") % Miabs(prec)).str();
   }
 
-  if (!(flags & STR_WITHCOMMAS))
-  {
+  if (!(flags & STR_WITHCOMMAS)) {
     // str.Format(format, a_value);
     str = (boost::format(format) % a_value).str();
-  }
-  else
-  {
+  } else {
     // Use the system locale to get the commas (or whatever else)
     std::locale loc(""); // system locale
     str = (boost::format(format, loc) % a_value).str();
@@ -1211,29 +1087,22 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
   // in some cases when specifying max prec, trailing zeros can occur. For
   // example, if the number is 5.0003 and the maxprec is 3, the string right
   // here will be 5.000 instead of 5.0.
-  if ((a_n == -1) || (flags & STR_USEMAXPREC))
-  {
+  if ((a_n == -1) || (flags & STR_USEMAXPREC)) {
     // see if there's a decimal point
     size_t index = str.find('.');
-    if (index != std::string::npos)
-    {
-      if ((index = str.find_first_of("eE")) != std::string::npos)
-      {
+    if (index != std::string::npos) {
+      if ((index = str.find_first_of("eE")) != std::string::npos) {
         // Scientific.  Start at 'e' or 'E' and go left, removing zeros
         index--;
-        while (index > 0 && str.at(index) == '0' && str.at(index - 1) != '.')
-        {
+        while (index > 0 && str.at(index) == '0' && str.at(index - 1) != '.') {
           str.erase(index, 1);
           index--;
         }
-      }
-      else
-      {
+      } else {
         // take off any trailing zeros
         stTrimRight(str, "0");
         // make sure there's at least one zero
-        if (str[str.size() - 1] == '.')
-        {
+        if (str[str.size() - 1] == '.') {
           str += '0';
         }
       }
@@ -1242,11 +1111,10 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
 
   // in some cases you want the string to always be a certain number of
   // character. This is most common with FORTRASH fixed format garbage.
-  if (flags & STR_FULLWIDTH)
-  {
-    size_t diff = width - str.size();
-    if (diff > 0)
-    {
+  if (flags & STR_FULLWIDTH) {
+    int len = (int)str.size();
+    int diff = width - len;
+    if (diff > 0) {
       std::string str1, str2;
       for (size_t i = 0; i < diff; i++)
         str1 += " ";
@@ -1256,8 +1124,7 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
   }
 
   // if the string is "-0.0" remove the negative sign
-  if (str == "-0.0")
-  {
+  if (str == "-0.0") {
     str = "0.0";
   }
 
@@ -1299,8 +1166,8 @@ std::string STRstd(double a_value, int a_n /*=-1*/, int width /*=15*/, int flags
 ///                  account for different locales.
 /// \return std::string of the number.
 //----- OVERLOAD ---------------------------------------------------------------
-std::string STRstd(float value, int n /*=-1*/, int width /*=15*/, int flags /*=0*/)
-{
+std::string STRstd(float value, int n /*=-1*/, int width /*=15*/,
+                   int flags /*=0*/) {
   return STRstd((double)value, n, width, flags);
 } // STRstd
 //----- OVERLOAD ---------------------------------------------------------------
@@ -1309,10 +1176,7 @@ std::string STRstd(float value, int n /*=-1*/, int width /*=15*/, int flags /*=0
 /// \param value   = the value.
 /// \return The string.
 //----- OVERLOAD ---------------------------------------------------------------
-std::string STRstd(std::string value)
-{
-  return value;
-}
+std::string STRstd(std::string value) { return value; }
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class StCommaNumpunct
@@ -1323,16 +1187,14 @@ std::string STRstd(std::string value)
 /// \brief Returns the character used to separate numbers by thousands.
 /// \return The character.
 //------------------------------------------------------------------------------
-char StCommaNumpunct::do_thousands_sep() const
-{
+char StCommaNumpunct::do_thousands_sep() const {
   return ',';
 } // StCommaNumpunct::do_thousands_sep
 //------------------------------------------------------------------------------
 /// \brief Returns the string defining how many numbers between separators.
 /// \return The grouping string.
 //------------------------------------------------------------------------------
-std::string StCommaNumpunct::do_grouping() const
-{
+std::string StCommaNumpunct::do_grouping() const {
   return "\03";
 } // StCommaNumpunct::do_grouping
 
@@ -1343,10 +1205,81 @@ std::string StCommaNumpunct::do_grouping() const
 
 #include <xmscore/misc/StringUtil.t.h>
 
-#include <xmscore/testing/TestTools.h>
+#include <xmscore/stl/vector.h>
 #include <xmscore/testing/TestTools.h>
 
 //----- Namespace declaration --------------------------------------------------
+
+namespace {
+
+struct ValStr {
+  double val;
+  int n;
+  int width;
+  int flag;
+  std::string str;
+};
+
+//----- Internal functions -----------------------------------------------------
+
+//------------------------------------------------------------------------------
+/// \brief
+//------------------------------------------------------------------------------
+void GetVectorsFromArray(std::vector<ValStr> a_array, xms::VecDbl &a_vals,
+                         xms::VecInt &a_ns, xms::VecInt &a_widths,
+                         xms::VecInt &a_flags, xms::VecStr &a_strs) {
+  a_vals.clear();
+  a_ns.clear();
+  a_widths.clear();
+  a_flags.clear();
+  a_strs.clear();
+  for (int i = 0; i < a_array.size(); ++i) {
+    a_vals.push_back(a_array[i].val);
+    a_ns.push_back(a_array[i].n);
+    a_widths.push_back(a_array[i].width);
+    a_flags.push_back(a_array[i].flag);
+    a_strs.push_back(a_array[i].str);
+  }
+} // GetVectorsFromArray
+//------------------------------------------------------------------------------
+/// \brief
+//------------------------------------------------------------------------------
+void RunPrec(const xms::VecDbl &a_values, const xms::VecInt &a_flags,
+             const xms::VecInt &a_precs) {
+  TS_ASSERT_EQUALS(a_values.size(), a_flags.size());
+  TS_ASSERT_EQUALS(a_values.size(), a_precs.size());
+
+  // Create the "observed answer" vectors
+  xms::VecInt flags(a_values.size(), 0);
+  xms::VecInt precs(a_values.size(), 0);
+
+  for (int i = 0; i < (int)a_values.size(); ++i) {
+    precs.at(i) = xms::stPrecision(a_values.at(i), flags.at(i));
+  }
+  TS_ASSERT_EQUALS_VEC(flags, a_flags);
+  TS_ASSERT_EQUALS_VEC(precs, a_precs);
+} // RunPrec
+//------------------------------------------------------------------------------
+/// \brief
+//------------------------------------------------------------------------------
+void RunSTR(const xms::VecDbl &a_vals, const xms::VecInt &a_ns,
+            const xms::VecInt &a_widths, const xms::VecInt &a_flags,
+            const xms::VecStr &a_strs) {
+  TS_ASSERT_EQUALS(a_vals.size(), a_ns.size());
+  TS_ASSERT_EQUALS(a_vals.size(), a_widths.size());
+  TS_ASSERT_EQUALS(a_vals.size(), a_flags.size());
+  TS_ASSERT_EQUALS(a_vals.size(), a_strs.size());
+
+  // Create the "observed answer" vector
+  xms::VecStr strs(a_vals.size(), "");
+
+  for (int i = 0; i < (int)a_vals.size(); ++i) {
+    strs.at(i) =
+        xms::STRstd(a_vals.at(i), a_ns.at(i), a_widths.at(i), a_flags.at(i));
+  }
+  TS_ASSERT_EQUALS_VEC(strs, a_strs);
+} // RunSTR
+} // unnamed namespace
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class StringUtilUnitTests
@@ -1355,8 +1288,7 @@ std::string StCommaNumpunct::do_grouping() const
 //------------------------------------------------------------------------------
 /// \brief Test stChangeExtendedAscii
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testExtendedASCII()
-{
+void StringUtilUnitTests::testExtendedASCII() {
   // \xb2 superscript two - squared
   // \xb3 superscript three - cubed
   // \xb0 degree sign
@@ -1383,8 +1315,7 @@ void StringUtilUnitTests::testExtendedASCII()
 //------------------------------------------------------------------------------
 /// \brief Test stImplode
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testImplodeExplode()
-{
+void StringUtilUnitTests::testImplodeExplode() {
   std::vector<std::string> values;
 
   values.push_back("test");
@@ -1414,7 +1345,7 @@ void StringUtilUnitTests::testImplodeExplode()
   result2 = xms::stExplode(result, "stuff");
   TS_ASSERT_EQUALS_VEC(values, result2);
 
-  result = xms::stImplode(values, "     "); // test     test2     test3     test4
+  result = xms::stImplode(values, "     "); // test     test2     test3 test4
   result2 = xms::stExplode(result, " ");
   std::vector<std::string> expected = {"test", "test2", "test3", "test4"};
   // TS_ASSERT_EQUALS_VEC(expected, result2); // FAIL!
@@ -1423,8 +1354,7 @@ void StringUtilUnitTests::testImplodeExplode()
 //------------------------------------------------------------------------------
 /// \brief Test stIndexOfElem()
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testSuIndexOfElem()
-{
+void StringUtilUnitTests::testSuIndexOfElem() {
   int expected = -1;
   xms::VecStr container = {"me", "you", "they", "we", "Us"};
   int test1 = xms::stIndexOfElem(container, "us"); // this should return -1
@@ -1437,8 +1367,7 @@ void StringUtilUnitTests::testSuIndexOfElem()
 //------------------------------------------------------------------------------
 /// \brief Test stSplit
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testSplit()
-{
+void StringUtilUnitTests::testSplit() {
   std::string s = " 1 2  3\t4\t\t5 \t6 ";
   std::vector<std::string> expected;
   std::vector<std::string> r;
@@ -1466,8 +1395,7 @@ void StringUtilUnitTests::testSplit()
 //------------------------------------------------------------------------------
 /// \brief Test stMakeUnique
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testMakeUnique()
-{
+void StringUtilUnitTests::testMakeUnique() {
   const std::string expected1("make");
   const std::string expected2("make (2)");
   const std::string expected3("make (10)");
@@ -1502,8 +1430,7 @@ void StringUtilUnitTests::testMakeUnique()
 //------------------------------------------------------------------------------
 /// \brief Test stTrim
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testTrim()
-{
+void StringUtilUnitTests::testTrim() {
   // TS_FAIL("StringUtilUnitTests::testTrim");
   {
     std::string test("\f  this has white space\t   \n   \r  \v");
@@ -1527,8 +1454,7 @@ void StringUtilUnitTests::testTrim()
 //------------------------------------------------------------------------------
 /// \brief Test stReplace
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testReplace()
-{
+void StringUtilUnitTests::testReplace() {
   std::string test("this has a few spaces");
 
   xms::stReplace(test, ' ', '_');
@@ -1547,19 +1473,16 @@ void StringUtilUnitTests::testReplace()
 //------------------------------------------------------------------------------
 /// \brief Test stCountChar
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testCountChar()
-{
-  std::string test(
-    "how much wood would a woodchuck chuck if a woodchuck could"
-    " chuck wood?");
+void StringUtilUnitTests::testCountChar() {
+  std::string test("how much wood would a woodchuck chuck if a woodchuck could"
+                   " chuck wood?");
 
   TS_ASSERT_EQUALS(11, xms::stCountChar(test, 'o'));
 } // StringUtilUnitTests::testCountChar
 //------------------------------------------------------------------------------
 /// \brief Test stNumeric and stScientificNotation
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testNumAndSciNot()
-{
+void StringUtilUnitTests::testNumAndSciNot() {
   std::string test("-123e+201");
 
   TS_ASSERT(xms::stNumeric(test));
@@ -1582,8 +1505,7 @@ void StringUtilUnitTests::testNumAndSciNot()
 //------------------------------------------------------------------------------
 /// \brief test stToUpper
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testToUpper()
-{
+void StringUtilUnitTests::testToUpper() {
   std::string str("aBcD");
   TS_ASSERT_EQUALS("ABCD", xms::stToUpper(str));
 
@@ -1596,8 +1518,7 @@ void StringUtilUnitTests::testToUpper()
 //------------------------------------------------------------------------------
 /// \brief test stStringToInt
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::test_str2int()
-{
+void StringUtilUnitTests::test_str2int() {
   // TS_FAIL("StringUtilUnitTests::test_str2int");
 
   std::string str;
@@ -1657,8 +1578,7 @@ void StringUtilUnitTests::test_str2int()
 //------------------------------------------------------------------------------
 /// \brief test various string utility functions.
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testMisc()
-{
+void StringUtilUnitTests::testMisc() {
   // TS_FAIL("StringUtilUnitTests::testMisc");
 
   std::string s1 = "abcdefg";
@@ -1777,8 +1697,7 @@ void StringUtilUnitTests::testMisc()
 //------------------------------------------------------------------------------
 /// \brief Tests StCommaNumpunct.
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testXmCommaNumpunct()
-{
+void StringUtilUnitTests::testXmCommaNumpunct() {
   double d1 = 123456.0123;
   double d2 = 0.123456789;
   int i = 123456789;
@@ -1793,8 +1712,7 @@ void StringUtilUnitTests::testXmCommaNumpunct()
 //------------------------------------------------------------------------------
 /// \brief Tests stSimplified.
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testSuSimplified()
-{
+void StringUtilUnitTests::testSuSimplified() {
   std::string s = "\t  Testing  \rextra   \nspace \t    \n\t";
   std::string expected = "Testing extra space";
   std::string modified = xms::stSimplified(s);
@@ -1803,8 +1721,7 @@ void StringUtilUnitTests::testSuSimplified()
 //------------------------------------------------------------------------------
 /// \brief Tests stContains
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testSuIcontains()
-{
+void StringUtilUnitTests::testSuIcontains() {
   std::string container = "Isn't ThiS a Lovely day?";
   std::string str1 = "DAY";
   std::string str2 = "these a";
@@ -1823,8 +1740,7 @@ void StringUtilUnitTests::testSuIcontains()
 //------------------------------------------------------------------------------
 /// \brief Tests stVectorContainsString
 //------------------------------------------------------------------------------
-void StringUtilUnitTests::testSuVecContainsStr()
-{
+void StringUtilUnitTests::testSuVecContainsStr() {
   bool expectedT = true;
   bool expectedF = false;
   xms::VecStr container = {"me", "you", "they", "we", "Us"};
@@ -1835,5 +1751,104 @@ void StringUtilUnitTests::testSuVecContainsStr()
   bool test2 = xms::stVectorContainsString(container, "she");
   TS_ASSERT_EQUALS(expectedF, test2);
 } // StringUtilUnitTests::testSuVecContainsStr
+//------------------------------------------------------------------------------
+/// \brief Tests stVectorContainsString
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::test_STRstd() {
+  std::string out =
+      xms::STRstd(0.0, 15, 15, xms::STR_FULLWIDTH | xms::STR_USEMAXPREC);
+  std::string base = "            0.0";
+  TS_ASSERT_EQUALS(base, out);
+} // StringUtilUnitTests::test_STRstd
+//------------------------------------------------------------------------------
+/// \brief Test the Prec utility.
+///
+///        This doesn't belong here but I was having trouble getting unit tests
+///        to work in Shared1 so it's here for now.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testPrec() {
+  // TS_FAIL("NumTests::testPrec");
+
+  // Test when we go into scientific notation with big and small numbers
+  {
+    // Create the "correct answer" vectors
+    xms::VecDbl vec_values{0.0, 1e-30, 1e-15, 1e-6, 1e-5, 1e11, 1e12, 1e13};
+    xms::VecInt vec_flags{0, 2, 2, 2, 0, 0, 2, 2};
+    xms::VecInt vec_precs{1, 1, 1, 1, 5, 1, 1, 1};
+
+    RunPrec(vec_values, vec_flags, vec_precs);
+  }
+
+} // StringUtilUnitTests::testPrec
+//------------------------------------------------------------------------------
+/// \brief Test the STR utility.
+///
+///        This doesn't belong here but I was having trouble getting unit tests
+///        to work in Shared1 so it's here for now.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testSTR() {
+  // TS_FAIL("NumTests::testSTR");
+
+  {
+    xms::StTemp2DigitExponents use2DigitExponents;
+    std::vector<ValStr> arr{
+
+        // Test when we go into scientific notation with big and small numbers
+        {0.0, -1, 15, 0, "0.0"},
+        {1e-30, -1, 15, 0, "1.0e-30"},
+        {1e-15, -1, 15, 0, "1.0e-15"},
+        {1e-6, -1, 15, 0, "1.0e-06"},
+        {1e-5, -1, 15, 0, "0.00001"},
+        {1e11, -1, 15, 0, "100000000000.0"},
+        {1e12, -1, 15, 0, "1.0e+12"},
+        {1e13, -1, 15, 0, "1.0e+13"}
+
+        // Test the STR_USEMAXPREC flag
+        ,
+        {0.0, -1, 15, xms::STR_USEMAXPREC, "0.0"},
+        {1e-30, -1, 15, xms::STR_USEMAXPREC, "0.0"},
+        {1e-15, -1, 15, xms::STR_USEMAXPREC, "0.0"},
+        {1e-6, -1, 15, xms::STR_USEMAXPREC, "0.0"},
+        {1e-5, -1, 15, xms::STR_USEMAXPREC, "0.0"},
+        {1e11, -1, 15, xms::STR_USEMAXPREC, "100000000000.0"},
+        {1e12, -1, 15, xms::STR_USEMAXPREC, "1.0e+12"},
+        {1e13, -1, 15, xms::STR_USEMAXPREC, "1.0e+13"}
+
+        // Test n
+        ,
+        {0.0, 3, 15, 0, "0.000"},
+        {1e-30, 3, 15, 0, "0.000"},
+        {1e-15, 3, 15, 0, "0.000"},
+        {1e-6, 3, 15, 0, "0.000"},
+        {1e-5, 3, 15, 0, "0.000"},
+        {1e11, 3, 15, 0, "100000000000.000"},
+        {1e12, 3, 15, 0, "1000000000000.000"},
+        {1e13, 3, 15, 0, "10000000000000.000"}
+
+        // Test n and STR_USEMAXPREC
+        ,
+        {0.0, 30, 15, xms::STR_USEMAXPREC, "0.0"},
+        {1e-30, 30, 15, xms::STR_USEMAXPREC, "1.0e-30"},
+        {1e-15, 30, 15, xms::STR_USEMAXPREC, "1.0e-15"},
+        {1e-6, 30, 15, xms::STR_USEMAXPREC, "1.0e-06"},
+        {1e-5, 30, 15, xms::STR_USEMAXPREC, "0.00001"},
+        {1e11, 30, 15, xms::STR_USEMAXPREC, "100000000000.0"},
+        {1e12, 30, 15, xms::STR_USEMAXPREC, "1.0e+12"},
+        {1e13, 30, 15, xms::STR_USEMAXPREC, "1.0e+13"}
+
+        // Test misc scenarios
+        ,
+        {-999999.0, -1, 8, xms::STR_FLOAT | xms::STR_SCIENTIFIC, "-1.0e+06"} // Bug 10580
+
+    };
+    xms::VecDbl vals;
+    xms::VecStr strs;
+    xms::VecInt ns, widths, flags;
+    GetVectorsFromArray(arr, vals, ns, widths, flags, strs);
+
+    RunSTR(vals, ns, widths, flags, strs);
+  }
+
+} // StringUtilUnitTests::testSTR
 #endif
 //#endif
