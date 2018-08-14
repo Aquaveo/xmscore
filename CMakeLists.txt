@@ -49,7 +49,7 @@ message(STATUS "Extneral Libs: ${EXT_LIBS}")
 
 if(IS_PYTHON_BUILD)
 
-  find_package(PythonLibs 3.5 REQUIRED)
+  find_package(PythonLibs 3.5 EXACT REQUIRED)
   list(APPEND EXT_INCLUDE_DIRS
     ${PYTHON_INCLUDE_DIRS}
   )
