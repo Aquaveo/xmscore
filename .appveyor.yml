@@ -8,6 +8,7 @@ environment:
     # Assume we are only building on tagged commits.
     # Will not work on untagged commits.
     XMS_VERSION: ${APPVEYOR_REPO_TAG_NAME}
+    AQUAVEO_CONAN: https://conan.aquaveo.com:443
     CONAN_REFERENCE: "xmscore/${XMS_VERSION}"
     CONAN_USERNAME: "aquaveo"
     CONAN_CHANNEL: "stable"
