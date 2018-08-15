@@ -50,8 +50,10 @@ message(STATUS "Extneral Libs: ${EXT_LIBS}")
 if(IS_PYTHON_BUILD)
   if(XMS_BUILD)
     find_package(PythonLibs 3.5 EXACT REQUIRED)
-  else()
+  else(WIN32)
     find_package(PythonLibs 3.6 EXACT REQUIRED)
+  else()
+    find_package(PythonLibs REQUIRED)
   endif()
   list(APPEND EXT_INCLUDE_DIRS
     ${PYTHON_INCLUDE_DIRS}
