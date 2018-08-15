@@ -30,12 +30,6 @@ class XmscoreConan(ConanFile):
         s_compiler = self.settings.compiler
         s_compiler_version = self.settings.compiler.version
 
-        if s_compiler != "Visual Studio" and s_compiler != "apple-clang":
-            print("*****FPIC TRUE*****")
-            self.options['boost'].fPIC = True
-        elif s_compiler == "apple-clang":
-            self.options['boost'].fPIC = False
-
         if s_compiler == "apple-clang" and s_os == 'Linux':
             raise ConanException("Clang on Linux is not supported.")
 
