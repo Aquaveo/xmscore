@@ -12,6 +12,7 @@ endif()
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Enable/Disable PYTHON")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
+set(PYTHON_TARGET_VERSION 3.6 CACHE STRING "Version of python to link to for python wrapping.")
 
 if(IS_PYTHON_BUILD AND BUILD_TESTING)
   message(FATAL_ERROR "Cannot build python module when testing is enabled")
@@ -48,10 +49,15 @@ message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
 message(STATUS "Extneral Libs: ${EXT_LIBS}")
 
 if(IS_PYTHON_BUILD)
-  if(WIN32)
-    find_package(PythonLibs 3.5 EXACT REQUIRED)
-  else()
+  # linux and mac builds for conan (on TRAVISCI) use a docker that has python
+  # 2.7 as system python. We do not have control over that docker image so we
+  # can't change this and it is fine for building conan packages and checking
+  # that we don't have errors in the python wrapping. We have conda recipes
+  # for building python packages that target other versions of python.
+  if(NOT WIN32 AND NOT IS_CONDA_BUILD)
     find_package(PythonLibs REQUIRED)
+  else()
+    find_package(PythonLibs ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
   endif()
   list(APPEND EXT_INCLUDE_DIRS
     ${PYTHON_INCLUDE_DIRS}

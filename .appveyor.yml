@@ -5,6 +5,7 @@ environment:
     PYTHON: "C:\\Python35-x64"
     PYTHON_ARCH: 64
     PYTHON_VERSION: 3.5
+    PYTHON_TARGET_VERSION: ${PYTHON_VERSION}
 
     # Assume we are only building on tagged commits.
     # Will not work on untagged commits.

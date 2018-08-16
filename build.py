@@ -11,11 +11,13 @@ if __name__ == "__main__":
 
     # Add environment variables to build definitions
     xms_version = os.environ.get('XMS_VERSION', None)
+    python_target_version = os.environ.get('PYTHON_TARGET_VERSION', "3.6")
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         # General Options
         env_vars.update({
             'XMS_VERSION': xms_version,
+            'PYTHON_TARGET_VERSION': python_target_version
         })
 
         # Require c++11 compatibility
