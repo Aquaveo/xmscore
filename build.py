@@ -42,7 +42,9 @@ if __name__ == "__main__":
     xms_updated_builds = []
     for settings, options, env_vars, build_requires, reference in builder.items:
         # xms option
-        if settings['compiler'] == 'Visual Studio' and 'MD' in settings['compiler.runtime']:
+        if settings['compiler'] == 'Visual Studio' \
+                and 'MD' in settings['compiler.runtime'] \
+                and int(settings['compiler.version']) < 13:
             xms_options = dict(options)
             xms_options.update({'xmscore:xms': True})
             xms_updated_builds.append([settings, xms_options, env_vars, build_requires])
