@@ -11,13 +11,14 @@ env:
    - GH_REPO_NAME: xmscore
    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen/Doxyfile
    - GH_REPO_REF: github.com/Aquaveo/xmscore.git
+   - PYTHON_TARGET_VERSION: 2.7
      
 linux: &linux
    os: linux
    sudo: required
    language: python
    python:
-     - 3.6
+     - 2.7
    services:
      - docker
 osx: &osx
