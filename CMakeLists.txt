@@ -54,11 +54,7 @@ if(IS_PYTHON_BUILD)
   # can't change this and it is fine for building conan packages and checking
   # that we don't have errors in the python wrapping. We have conda recipes
   # for building python packages that target other versions of python.
-  if(NOT WIN32 AND NOT IS_CONDA_BUILD)
-    find_package(PythonLibs REQUIRED)
-  else()
-    find_package(PythonLibs ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
-  endif()
+  find_package(PythonLibs ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
   list(APPEND EXT_INCLUDE_DIRS
     ${PYTHON_INCLUDE_DIRS}
   )
