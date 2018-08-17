@@ -55,7 +55,7 @@ jobs:
       # --- TEST STAGE ------------------------------------------------------------------------------------------------
       - stage: test
         if: branch = master
-        agit ddons:
+        addons:
           apt:
             packages:
               - doxygen
