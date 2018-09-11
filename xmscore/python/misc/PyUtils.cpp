@@ -24,11 +24,25 @@ namespace xms
 //------------------------------------------------------------------------------
 Pt3d Pt3dFromPyIter(const py::tuple& pt)
 {
-  if(py::len(pt) != 3) {
-    throw py::type_error("Input point should be a 3-tuple");
+  if(py::len(pt) > 3 || py::len(pt) < 0) {  // 0 check might not be needed but just to be safe
+    throw py::type_error("Input point should be a an empty tuple, or a 1, 2, or 3 tuple");
   } else {
-    Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
-    return point;
+    if (py::len(pt) == 1)
+    {
+      Pt3d point(pt[0].cast<double>());
+	  return point;
+    }
+	else if (py::len(pt) == 2)
+    {
+      Pt3d point(pt[0].cast<double>(), pt[1].cast<double>());
+	  return point;
+    }
+    else if (py::len(pt) == 3)
+    {
+      Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
+	  return point;
+    }
+    return Pt3d();
   }
 } // Pt3dFromPyIter
 //------------------------------------------------------------------------------
