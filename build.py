@@ -30,8 +30,7 @@ if __name__ == "__main__":
     pybind_updated_builds = []
     for settings, options, env_vars, build_requires, reference in builder.items:
         # pybind option
-        if not settings['compiler'] == "apple-clang" \
-                and (not settings['compiler'] == "Visual Studio" \
+        if (not settings['compiler'] == "Visual Studio" \
                      or int(settings['compiler.version']) > 12) \
                 and settings['arch'] == "x86_64":
             pybind_options = dict(options)
@@ -55,7 +54,7 @@ if __name__ == "__main__":
 
     testing_updated_builds = []
     for settings, options, env_vars, build_requires, reference in builder.items:
-        # xms option
+        # xms option - can't do testing with xms or pybind builds
         if not options.get('xmscore:xms', False) and not options.get('xmscore:pybind', False):
             testing_options = dict(options)
             testing_options.update({'xmscore:testing': True})
