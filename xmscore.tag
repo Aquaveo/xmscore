@@ -1814,34 +1814,6 @@
       <anchor>a49bb2e3cc528e336292b521275482042</anchor>
       <arglist>(const py::iterable &amp;bitset)</arglist>
     </member>
-    <member kind="function">
-      <type>std::pair&lt; int, int &gt;</type>
-      <name>IntPairFromPyIter</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>ad1c4eab1d9f098f293e8205a2c372788</anchor>
-      <arglist>(const py::iterable &amp;intpair)</arglist>
-    </member>
-    <member kind="function">
-      <type>py::iterable</type>
-      <name>PyIterFromIntPair</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>abb18038767a6eef784fe157b79ab5bd3</anchor>
-      <arglist>(const std::pair&lt; int, int &gt; &amp;intpair)</arglist>
-    </member>
-    <member kind="function">
-      <type>boost::shared_ptr&lt; std::vector&lt; std::pair&lt; int, int &gt; &gt; &gt;</type>
-      <name>VecIntPairFromPyIter</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>afcdebdd67720da722a796de78c531f2e</anchor>
-      <arglist>(const py::iterable &amp;intpairs)</arglist>
-    </member>
-    <member kind="function">
-      <type>py::iterable</type>
-      <name>PyIterFromVecIntPair</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>a90078769bd51c076d22a3911983acaf6</anchor>
-      <arglist>(const std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;intpairs)</arglist>
-    </member>
   </compound>
   <compound kind="file">
     <name>xmscore_py.cpp</name>
@@ -4835,34 +4807,6 @@
       <anchorfile>namespacexms.html</anchorfile>
       <anchor>a598b964e4faeea76790729781310ef21</anchor>
       <arglist>(const DynBitset &amp;bitset, bool numpy)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::pair&lt; int, int &gt;</type>
-      <name>IntPairFromPyIter</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>ad1c4eab1d9f098f293e8205a2c372788</anchor>
-      <arglist>(const py::iterable &amp;intpair)</arglist>
-    </member>
-    <member kind="function">
-      <type>py::iterable</type>
-      <name>PyIterFromIntPair</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>abb18038767a6eef784fe157b79ab5bd3</anchor>
-      <arglist>(const std::pair&lt; int, int &gt; &amp;intpair)</arglist>
-    </member>
-    <member kind="function">
-      <type>boost::shared_ptr&lt; std::vector&lt; std::pair&lt; int, int &gt; &gt; &gt;</type>
-      <name>VecIntPairFromPyIter</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>afcdebdd67720da722a796de78c531f2e</anchor>
-      <arglist>(const py::iterable &amp;intpairs)</arglist>
-    </member>
-    <member kind="function">
-      <type>py::iterable</type>
-      <name>PyIterFromVecIntPair</name>
-      <anchorfile>namespacexms.html</anchorfile>
-      <anchor>a90078769bd51c076d22a3911983acaf6</anchor>
-      <arglist>(const std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;intpairs)</arglist>
     </member>
     <member kind="function">
       <type>std::ostream &amp;</type>
