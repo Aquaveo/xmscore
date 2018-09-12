@@ -9,9 +9,11 @@
 // 1. Precompiled header
 
 // 2. My own header
+#include <pybind11/pybind11.h>
 #include <xmscore/python/misc/PyUtils.h>
 #include <xmscore/misc/DynBitset.h>
 
+namespace py = pybind11;
 
 /// XMS Namespace
 namespace xms
