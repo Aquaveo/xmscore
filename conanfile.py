@@ -94,7 +94,7 @@ class XmscoreConan(ConanFile):
         self.copy("*.h", dst="include/xmscore", src="xmscore")
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.exp", dst="lib", keep_path=False)
-        self.copy("*.pyd", dst="lib", keep_path=False)
+        self.copy("*.pyd", dst="site-packages", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.dylib*", dst="lib", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
@@ -102,6 +102,7 @@ class XmscoreConan(ConanFile):
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
 
     def package_info(self):
+        self.env_info.PYTHONPATH.append(os.path.join(self.package_folder, "site-packages"))
         if self.settings.build_type == 'Debug':
             self.cpp_info.libs = ["xmscore_d"]
         else:
