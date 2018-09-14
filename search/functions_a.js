@@ -10,11 +10,13 @@ var searchData=
   ['pt4',['Pt4',['../classxms_1_1_pt4.html#a3449555713ec1979640a1fafbec9103d',1,'xms::Pt4::Pt4()'],['../classxms_1_1_pt4.html#a8e10bdc1272f19a02218b6e529b6a3a6',1,'xms::Pt4::Pt4(T a_x, T a_y, T a_z, T a_w)'],['../classxms_1_1_pt4.html#a6e6ddfff5ba0abc31ffee2df02f1776b',1,'xms::Pt4::Pt4(T a)'],['../classxms_1_1_pt4.html#a45b892620539ec8566ed558c33c7c811',1,'xms::Pt4::Pt4(const Pt4 &amp;a)'],['../classxms_1_1_pt4.html#a408d8576e123c30dc47aa09d9e89fc19',1,'xms::Pt4::Pt4(const Pt2&lt; U &gt; &amp;a)'],['../classxms_1_1_pt4.html#a40e85a1086da35a72a4e3d6cc7c559f5',1,'xms::Pt4::Pt4(const Pt3&lt; U &gt; &amp;a)'],['../classxms_1_1_pt4.html#ac1e55f79a0e5f38c57c12e9b007ac5f2',1,'xms::Pt4::Pt4(const Pt4&lt; U &gt; &amp;a)']]],
   ['pttruncate',['ptTruncate',['../namespacexms.html#afda18734bb330566478b7c50e405e597',1,'xms::ptTruncate(Pt2&lt; _T &gt; const &amp;a_in)'],['../namespacexms.html#a15e2575a62d327a99473f9365ebeadf7',1,'xms::ptTruncate(Pt3&lt; _T &gt; const &amp;a_in)'],['../namespacexms.html#ab0369aa2588f1c303b03b0319190562c',1,'xms::ptTruncate(Pt4&lt; _T &gt; const &amp;a_in)']]],
   ['pyiterfromdynamicbitset',['PyIterFromDynamicBitset',['../namespacexms.html#a598b964e4faeea76790729781310ef21',1,'xms']]],
+  ['pyiterfromintpair',['PyIterFromIntPair',['../namespacexms.html#abb18038767a6eef784fe157b79ab5bd3',1,'xms']]],
   ['pyiterfrompt3d',['PyIterFromPt3d',['../namespacexms.html#a8d24b1f36c9883e275f3d151f757bcf8',1,'xms']]],
   ['pyiterfromvecdbl',['PyIterFromVecDbl',['../namespacexms.html#a4f49d28bec256c7554c7546ff58df20a',1,'xms']]],
   ['pyiterfromvecflt',['PyIterFromVecFlt',['../namespacexms.html#a7b285c38273bed1a3d6f3af5d3cbf357',1,'xms']]],
   ['pyiterfromvecint',['PyIterFromVecInt',['../namespacexms.html#a916a7b311cc18c5c1c9720be157b3d0b',1,'xms']]],
   ['pyiterfromvecint2d',['PyIterFromVecInt2d',['../namespacexms.html#a0a1a01df38749fc3086ebfc93d8598da',1,'xms']]],
+  ['pyiterfromvecintpair',['PyIterFromVecIntPair',['../namespacexms.html#a90078769bd51c076d22a3911983acaf6',1,'xms']]],
   ['pyiterfromvecpt3d',['PyIterFromVecPt3d',['../namespacexms.html#a8e892242a41a91506ce59befc5ca2f84',1,'xms']]],
   ['pyiterfromvecpt3d2d',['PyIterFromVecPt3d2d',['../namespacexms.html#a3e5f96042bb96b842510d6199ce14b25',1,'xms']]]
 ];

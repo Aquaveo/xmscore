@@ -4809,6 +4809,34 @@
       <arglist>(const DynBitset &amp;bitset, bool numpy)</arglist>
     </member>
     <member kind="function">
+      <type>std::pair&lt; int, int &gt;</type>
+      <name>IntPairFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>aee77481a8cca5e0af494fb2a331fc40f</anchor>
+      <arglist>(const py::iterable &amp;intpair)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromIntPair</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>abb18038767a6eef784fe157b79ab5bd3</anchor>
+      <arglist>(const std::pair&lt; int, int &gt; &amp;intpair)</arglist>
+    </member>
+    <member kind="function">
+      <type>boost::shared_ptr&lt; std::vector&lt; std::pair&lt; int, int &gt; &gt; &gt;</type>
+      <name>VecIntPairFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a43c1f652d47c87bdee5ceebe3599d393</anchor>
+      <arglist>(const py::iterable &amp;intpairs)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromVecIntPair</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a90078769bd51c076d22a3911983acaf6</anchor>
+      <arglist>(const std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;intpairs)</arglist>
+    </member>
+    <member kind="function">
       <type>std::ostream &amp;</type>
       <name>operator&lt;&lt;</name>
       <anchorfile>namespacexms.html</anchorfile>
@@ -7456,7 +7484,6 @@
     <filename>dir_f6932f4423028a8b1120450691f3eef1.html</filename>
     <dir>/home/travis/build/Aquaveo/xmscore/xmscore/python/misc</dir>
     <file>__init__.py</file>
-    <file>cxxtest.cpp</file>
     <file>xmscore_py.cpp</file>
   </compound>
   <compound kind="dir">
