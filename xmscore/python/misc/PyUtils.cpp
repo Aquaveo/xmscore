@@ -323,10 +323,6 @@ py::iterable PyIterFromDynamicBitset(const DynBitset& bitset, bool numpy)
     return py::array(vec_bools.size(), vec_bools.data());
   }
 } // PyIterFromDynamicBitset
-/*
-
-// These functions were causing compiler problems...
-
 //------------------------------------------------------------------------------
 /// \brief Create std::pair<int, int> from py::iterable
 /// \param[in] pt: py::iterable object that represents a std::pair<int, int>
@@ -382,5 +378,5 @@ py::iterable PyIterFromVecIntPair(const std::vector<std::pair<int, int>>& intpai
   }
   return tuple_ret;
 } // PyIterFromVecIntPair
-*/
+
 } // namespace xms
