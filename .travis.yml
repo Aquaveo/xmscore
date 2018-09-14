@@ -54,7 +54,6 @@ jobs:
    include:
       # --- TEST STAGE ------------------------------------------------------------------------------------------------
       - stage: test
-        if: branch = master
         addons:
           apt:
             packages:

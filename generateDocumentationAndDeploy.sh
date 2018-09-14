@@ -73,6 +73,8 @@ echo 'Generating Doxygen code documentation...'
 # Redirect both stderr and stdout to the log file AND the console.
 cd $(dirname $DOXYFILE)
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
+# ensure that we do not have doxygen warnings
+if  [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
@@ -82,27 +84,33 @@ doxygen $DOXYFILE 2>&1 | tee doxygen.log
 #if [ -d "html" ] && [ -f "html/index.html" ]; then
 if [ -d "html" ] && [ -f "html/index.html" ]; then
 
-    mv *.tag "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
-    mv html/* "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
-    cd $TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME
-    echo 'Uploading documentation to the gh-pages branch...'
-    # Add everything in this directory (the Doxygen code documentation) to the
-    # gh-pages branch.
-    # GitHub is smart enough to know which files have changed and which files have
-    # stayed the same and will only update the changed files.
-    git add --all
+    # don't upload docs unless we are in "MASTER"
+    if [$TRAVIS_BRANCH -eq "master"]
+    then
+        mv xmscore.tag "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
+        mv html/* "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
+        cd $TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME
+        echo 'Uploading documentation to the gh-pages branch...'
+        # Add everything in this directory (the Doxygen code documentation) to the
+        # gh-pages branch.
+        # GitHub is smart enough to know which files have changed and which files have
+        # stayed the same and will only update the changed files.
+        git add --all
 
-    # Commit the added files with a title and description containing the Travis CI
-    # build number and the GitHub commit reference that issued this build.
-    git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
+        # Commit the added files with a title and description containing the Travis CI
+        # build number and the GitHub commit reference that issued this build.
+        git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
 
-    # Force push to the remote gh-pages branch.
-    # The ouput is redirected to /dev/null to hide any sensitive credential data
-    # that might otherwise be exposed.
-    git push --force "https://${GH_REPO_TOKEN}@${GH_REPO_REF}" > /dev/null 2>&1
+        # Force push to the remote gh-pages branch.
+        # The ouput is redirected to /dev/null to hide any sensitive credential data
+        # that might otherwise be exposed.
+        git push --force "https://${GH_REPO_TOKEN}@${GH_REPO_REF}" > /dev/null 2>&1
+    else
+        echo "No doxygen warning found. Not on master so documentation is not uploaded."
+    fi
 else
     echo '' >&2
     echo 'Warning: No documentation (html) files have been found!' >&2
     echo 'Warning: Not going to push the documentation to GitHub!' >&2
     exit 1
-fi
+fi 
