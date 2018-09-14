@@ -17,7 +17,7 @@ class MockObserver(xm.Observer):
             'remaining_seconds': None,
             'elapsed_seconds': None
         }
-        super().__init__()
+        super(MockObserver, self).__init__()
 
     def on_progress_status(self, percent_complete):
         self.status['percent_complete'] = percent_complete
