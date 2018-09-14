@@ -223,7 +223,7 @@ if(IS_PYTHON_BUILD)
     LINKER_LANGUAGE CXX
   )
 
-  execute_process(COMMAND python -c "import os; print('${PYTHON_SITE_PACKAGES}'.replace('${CONDA_PREFIX}' + os.sep, ''))" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES_TRIMMED OUTPUT_STRIP_TRAILING_WHITESPACE)
+  execute_process(COMMAND python -c "import os; print(r'${PYTHON_SITE_PACKAGES}'.replace(r'${CONDA_PREFIX}'.replace('\\\\', '/') + '/', ''))" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES_TRIMMED OUTPUT_STRIP_TRAILING_WHITESPACE)
 
   # Install recipe
   install(

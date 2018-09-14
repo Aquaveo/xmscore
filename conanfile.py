@@ -85,6 +85,10 @@ class XmscoreConan(ConanFile):
                             no_newline = line.strip('\n')
                             print(no_newline)
                 print("***********(0.0)*************")
+        elif self.options.pybind:
+            print("***********(0.0)*************")
+            self.run('python -m unittest discover -v -p *_pyt.py -s ../xmscore/python', cwd="./lib")
+            print("***********(0.0)*************")
 
     def package(self):
         self.copy("*.h", dst="include/xmscore", src="xmscore")
