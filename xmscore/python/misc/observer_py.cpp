@@ -96,7 +96,7 @@ void initObserver(py::module &m) {
   // function: on_begin_operation_string
   // ---------------------------------------------------------------------------
   const char* on_begin_operation_string_doc = R"pydoc(
-      ???
+      Virtual function for derived class to get the operation string.
 
       Args:
           operation (str): Name of the operation being monitored.
