@@ -95,6 +95,7 @@ class XmscoreConan(ConanFile):
         self.copy("*.lib", dst="lib", keep_path=False)
         self.copy("*.exp", dst="lib", keep_path=False)
         self.copy("*.pyd", dst="site-packages", keep_path=False)
+        self.copy("*_py.*.so", dst="site-packages", keep_path=False)
         self.copy("*.dll", dst="bin", keep_path=False)
         self.copy("*.dylib*", dst="lib", keep_path=False)
         self.copy("*.so", dst="lib", keep_path=False)
