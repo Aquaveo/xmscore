@@ -56,7 +56,6 @@ if(IS_PYTHON_BUILD)
   # for building python packages that target other versions of python.
   find_package(PythonLibs ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
   # Pybind11 module
-  find_package(pybind11 REQUIRED)
   if(IS_CONDA_BUILD)
       include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
       include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
@@ -71,6 +70,7 @@ if(IS_PYTHON_BUILD)
       include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
   endif()
   
+  # Have to add this after conda because it doesn't get the path for pybind if we don't.
   list(APPEND EXT_INCLUDE_DIRS
     ${PYTHON_INCLUDE_DIRS}
   )
