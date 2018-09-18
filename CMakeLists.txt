@@ -55,10 +55,8 @@ if(IS_PYTHON_BUILD)
   # that we don't have errors in the python wrapping. We have conda recipes
   # for building python packages that target other versions of python.
   find_package(PythonLibs ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
-  list(APPEND EXT_INCLUDE_DIRS
-    ${PYTHON_INCLUDE_DIRS}
-  )
   # Pybind11 module
+  find_package(pybind11 REQUIRED)
   if(IS_CONDA_BUILD)
       include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
       include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
@@ -72,8 +70,13 @@ if(IS_PYTHON_BUILD)
       include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
       include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
   endif()
+  
+  list(APPEND EXT_INCLUDE_DIRS
+    ${PYTHON_INCLUDE_DIRS}
+  )
 endif()
 
+message("External Lib Includes: ${EXT_INCLUDE_DIRS}")
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${EXT_INCLUDE_DIRS})
 link_directories(${EXT_LIB_DIRS})
