@@ -57,6 +57,38 @@ py::tuple PyIterFromPt3d(const Pt3d& pt)
   return py::make_tuple(pt.x, pt.y, pt.z);
 } // PyIterFromPt3d
 //------------------------------------------------------------------------------
+/// \brief Create Pt2d from py::iterable
+/// \param[in] pt: py::iterable object that represents a Pt2d
+/// \return a boost::shared_ptr to a Pt2d
+//------------------------------------------------------------------------------
+Pt3d Pt2dFromPyIter(const py::tuple& pt)
+{
+  if(py::len(pt) > 2 || py::len(pt) < 0) {  // 0 check might not be needed but just to be safe
+    throw py::type_error("Input point should be a an empty tuple, or a 1, or 2 tuple");
+  } else {
+    if (py::len(pt) == 1)
+    {
+      Pt2d point(pt[0].cast<double>());
+	    return point;
+    }
+	else if (py::len(pt) == 2)
+    {
+      Pt2d point(pt[0].cast<double>(), pt[1].cast<double>());
+	    return point;
+    }
+    return Pt2d();
+  }
+} // Pt2dFromPyIter
+//------------------------------------------------------------------------------
+/// \brief Create py::iterable from Pt2d
+/// \param[in] pt: Pt2d object that represents a py::iterable
+/// \return a boost::shared_ptr to a py::iterable
+//------------------------------------------------------------------------------
+py::tuple PyIterFromPt2d(const Pt2d& pt)
+{      
+  return py::make_tuple(pt.x, pt.y);
+} // PyIterFromPt2d
+//------------------------------------------------------------------------------
 /// \brief Create VecPt3d from py::iterable
 /// \param[in] pt: py::iterable object that represents a VecPt3d
 /// \return a VecPt3d
@@ -66,7 +98,7 @@ boost::shared_ptr<VecPt3d> VecPt3dFromPyIter(const py::iterable& pts)
   boost::shared_ptr<xms::VecPt3d> vec_pts(new xms::VecPt3d());
   for (auto item : pts) {
     if(!py::isinstance<py::iterable>(item)) {
-      throw py::type_error("First arg must be a n-tuple of 3-tuples");
+      throw py::type_error("First arg must be a n-tuple of 0, 1, 2, or 3-tuples");
     }
     py::tuple tuple = item.cast<py::iterable>();
     Pt3d point;
@@ -92,6 +124,41 @@ py::iterable PyIterFromVecPt3d(const VecPt3d& pts)
   }
   return a;
 } // PyIterFromVecPt3d
+//------------------------------------------------------------------------------
+/// \brief Create VecPt2d from py::iterable
+/// \param[in] pt: py::iterable object that represents a VecPt2d
+/// \return a VecPt2d
+//------------------------------------------------------------------------------
+boost::shared_ptr<VecPt2d> VecPt2dFromPyIter(const py::iterable& pts)
+{
+  boost::shared_ptr<xms::VecPt2d> vec_pts(new xms::VecPt2d());
+  for (auto item : pts) {
+    if(!py::isinstance<py::iterable>(item)) {
+      throw py::type_error("First arg must be a n-tuple of 0, 1, or 2-tuples");
+    }
+    py::tuple tuple = item.cast<py::iterable>();
+    Pt2d point;
+    point = Pt2dFromPyIter(tuple);
+    vec_pts->push_back(point);
+  }
+  return vec_pts;
+} // VecPt2dFromPyIter
+//------------------------------------------------------------------------------
+/// \brief Create py::iterable from VecPt2d
+/// \param[in] pt: VecPt2d object that represents a py::iterable
+/// \return a py::iterable
+//------------------------------------------------------------------------------
+py::iterable PyIterFromVecPt2d(const VecPt2d& pts)
+{
+  py::array_t<double, py::array::c_style> a({(int)pts.size(), 2});
+  auto r = a.mutable_unchecked<2>();
+  int i = 0;
+  for (ssize_t i = 0; i < r.shape(0); i++) {
+   r(i, 0) = pts[i].x;
+   r(i, 1) = pts[i].y;
+  }
+  return a;
+} // PyIterFromVecPt2d
 //------------------------------------------------------------------------------
 /// \brief Create VecPt3d2d from py::iterable
 /// \param[in] pt: py::iterable object that represents a VecPt3d2d
