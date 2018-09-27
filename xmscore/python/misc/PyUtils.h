@@ -34,9 +34,17 @@ namespace xms
 Pt3d Pt3dFromPyIter(const py::tuple& pt);
 py::tuple PyIterFromPt3d(const Pt3d& pt);
 
+// Pt2d
+Pt2d Pt2dFromPyIter(const py::tuple& pt);
+py::tuple PyIterFromPt2d(const Pt2d& pt);
+
 // VecPt3d
 boost::shared_ptr<VecPt3d> VecPt3dFromPyIter(const py::iterable& pts);
 py::iterable PyIterFromVecPt3d(const VecPt3d& pts);
+
+// VecPt2d
+boost::shared_ptr<VecPt2d> VecPt2dFromPyIter(const py::iterable& pts);
+py::iterable PyIterFromVecPt2d(const VecPt2d& pts);
 
 // VecPt3d2d
 boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts);
