@@ -61,7 +61,7 @@ py::tuple PyIterFromPt3d(const Pt3d& pt)
 /// \param[in] pt: py::iterable object that represents a Pt2d
 /// \return a boost::shared_ptr to a Pt2d
 //------------------------------------------------------------------------------
-Pt3d Pt2dFromPyIter(const py::tuple& pt)
+Pt2d Pt2dFromPyIter(const py::tuple& pt)
 {
   if(py::len(pt) > 2 || py::len(pt) < 0) {  // 0 check might not be needed but just to be safe
     throw py::type_error("Input point should be a an empty tuple, or a 1, or 2 tuple");
