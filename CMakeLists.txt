@@ -12,6 +12,7 @@ endif()
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Enable/Disable PYTHON")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
+set(XMS_BUILD NO CACHE BOOL "Set this if you want to use this package with XMS.")
 set(PYTHON_TARGET_VERSION 3.6 CACHE STRING "Version of python to link to for python wrapping.")
 
 if(IS_PYTHON_BUILD AND BUILD_TESTING)
@@ -20,15 +21,6 @@ endif()
 
 
 project(xmscore C CXX)
-
-if(WIN32)
-    if(XMS_BUILD)
-        add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
-        add_definitions(/Zc:wchar_t-)  # Treat wchar_t as built-in type
-    else(NOT XMS_BUILD)
-        add_definitions(/D BOOST_ALL_NO_LIB)
-    endif()
-endif()
 
 IF(IS_CONDA_BUILD)
   include(${CMAKE_CURRENT_LIST_DIR}/condabuildinfo.cmake)
@@ -43,6 +35,38 @@ ELSE() # If we are not using conda, we are using conan
   set(EXT_LIB_DIRS ${CONAN_LIB_DIRS})
   set(EXT_LIBS ${CONAN_LIBS})
 ENDIF(IS_CONDA_BUILD)
+
+if(WIN32)
+  string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MT" USES_MT)
+  if(NOT USES_MT)
+    string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MTd" USES_MT)	
+  endif()
+  
+  if(XMS_BUILD)
+      add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
+      if(USES_MT)
+        add_definitions(/Zc:wchar_t)  # Treat wchar_t as built-in type
+      else()
+        add_definitions(/Zc:wchar_t-)  # Treat wchar_t as built-in type
+      endif()
+  else(NOT XMS_BUILD)
+      add_definitions(/D BOOST_ALL_NO_LIB)
+  endif()
+  
+  if(USES_MT)
+    set(CompilerFlags
+        CMAKE_CXX_FLAGS
+        CMAKE_CXX_FLAGS_DEBUG
+        CMAKE_CXX_FLAGS_RELEASE
+        CMAKE_C_FLAGS
+        CMAKE_C_FLAGS_DEBUG
+        CMAKE_C_FLAGS_RELEASE
+        )
+    foreach(CompilerFlag ${CompilerFlags})
+      string(REPLACE "/MD" "/MT" ${CompilerFlag} "${${CompilerFlag}}")
+    endforeach()
+  endif()
+endif()
 
 message(STATUS "External Include Dirs: ${EXT_INCLUDE_DIRS}")
 message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
