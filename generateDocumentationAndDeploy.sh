@@ -96,7 +96,7 @@ cd $(dirname $SPHINX_CONF)
 # make a directory to get the conan package
 mkdir ./conan
 # get the conan package
-conan install -o xmscore:pybind=True -s compiler-version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmscore/1.0.40@aquaveo/stable 
+conan install -o xmscore:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmscore/1.0.40@aquaveo/stable 
 # get the path to the conan package
 PATH_TO_PYTHON_PACKAGE = $(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH.*xmscore | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
 # add path to xmscore python package to the system path
