@@ -90,13 +90,13 @@ echo 'Generating Python code documentation...'
 pip install sphinx sphinx_rtd_theme conan
 # add aquaveo conan remote
 conan user
-conan remote add https://conan.aquaveo.com aquave-conan
+conan remote add aquaveo https://conan.aquaveo.com
 # change to directory where the sphinx config file
 cd $(dirname $SPHINX_CONF)
 # make a directory to get the conan package
 mkdir ./conan
 # get the conan package
-conan install -o pybind=True -if ./conan -g txt xmscore/1.0.40@aquaveo/stable 
+conan install -o pybind=True -s compiler.libcss=libstdc++11 -if ./conan -g txt xmscore/1.0.40@aquaveo/stable 
 # get the path to the conan package
 PATH_TO_PYTHON_PACKAGE = $(cat ./docs/conanbuildinfo.txt | grep PYTHONPATH.*xmscore | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
 # add path to xmscore python package to the system path
