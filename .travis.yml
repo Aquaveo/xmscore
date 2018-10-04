@@ -35,8 +35,7 @@ stages:
     - name: deploy
       if: tag =~ ^\d+\.\d+\.\d+$
     # This needs to be done on tags so that we have python package to read from.
-    - name: documentation
-      #if: tag =~ ^\d+\.\d+\.\d+$
+    # - name: documentation
 
 # Global Lifecycle Steps
 # See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
@@ -133,7 +132,7 @@ jobs:
         after_success: true
 
       # DOCUMENTATION
-      - stage: documentation
+      - stage: test
         addons:
           apt:
             packages:
