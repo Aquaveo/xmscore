@@ -30,6 +30,9 @@ stages:
       if: NOT tag IS present
     - name: deploy
       if: tag =~ ^\d+\.\d+\.\d+$
+    # This needs to be done on tags so that we have python package to read from.
+    - name: documentation
+      if: tag =~ ^\d+\.\d+\.\d+$
 
 # Global Lifecycle Steps
 # See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
@@ -140,3 +143,6 @@ jobs:
         osx_image: xcode9.2
         env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_UPLOAD=$AQUAVEO_CONAN CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
         after_success: true
+
+      # PYDOCS
+
