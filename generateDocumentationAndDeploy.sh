@@ -75,6 +75,14 @@ echo 'Generating Doxygen code documentation...'
 cd $(dirname $DOXYFILE)
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
+# Check for warnings in doxygen
+if  [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
+
+# if [[ -z "${TRAVIS_TAG}" ]]; then
+#   echo "Build not tagged. No Documentation will be uploaded"
+#   exit 0
+# fi
+
 ################################################################################
 ##### Generate the Python documentation.                                   #####
 echo 'Generating Python code documentation...'
