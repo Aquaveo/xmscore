@@ -36,10 +36,6 @@ stages:
       if: tag =~ ^\d+\.\d+\.\d+$
     # This needs to be done on tags so that we have python package to read from.
     - name: documentation
-<<<<<<< HEAD
-=======
-      if: tag =~ ^\d+\.\d+\.\d+$
->>>>>>> sphinx documentation generation
 
 # Global Lifecycle Steps
 # See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
@@ -135,7 +131,6 @@ jobs:
         env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_UPLOAD=$AQUAVEO_CONAN CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
         after_success: true
 
-<<<<<<< HEAD
       # DOCUMENTATION
       - stage: documentation
         dist: trusty
@@ -155,7 +150,4 @@ jobs:
           - cd $TRAVIS_BUILD_DIR
           - chmod +x generateDocumentationAndDeploy.sh
           - sudo docker run -v $PWD:/home/conan -e "TRAVIS_BUILD_DIR=/home/conan" -e "TRAVIS_BUILD_NUMBER=${TRAVIS_BUILD_NUMBER}" -e "TRAVIS_COMMIT=${TRAVIS_COMMIT}" -e "DOXYFILE=/home/conan/Doxygen/Doxyfile" -e "SPHINX_CONF=/home/conan/pydocs/source/conf.py" -e "GH_REPO_NAME=${GH_REPO_NAME}" -e "GH_REPO_REF=${GH_REPO_REF}" -e "GH_REPO_TOKEN=${GH_REPO_TOKEN}" -e "TRAVIS_TAG=${TRAVIS_TAG}" lasote/conangcc6 /bin/sh generateDocumentationAndDeploy.sh
-=======
-      # PYDOCS
->>>>>>> sphinx documentation generation
 
