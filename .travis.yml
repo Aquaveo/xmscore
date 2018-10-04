@@ -10,6 +10,7 @@ env:
    - CONAN_REMOTES: $AQUAVEO_CONAN
    - GH_REPO_NAME: xmscore
    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen/Doxyfile
+   - SPHINX_CONF: $TRAVIS_BUILD_DIR/pydocs/source/conf.py
    - GH_REPO_REF: github.com/Aquaveo/xmscore.git
    - PYTHON_TARGET_VERSION: 2.7
      
@@ -26,13 +27,16 @@ osx: &osx
    language: generic
 
 stages:
+    # Builds configurations and runs tests on library
+    # Also test documentation for undocumented code
     - name: test
       if: NOT tag IS present
+    # Builds configurations and runs tests on library and publishes library to conan
     - name: deploy
       if: tag =~ ^\d+\.\d+\.\d+$
     # This needs to be done on tags so that we have python package to read from.
     - name: documentation
-      if: tag =~ ^\d+\.\d+\.\d+$
+      #if: tag =~ ^\d+\.\d+\.\d+$
 
 # Global Lifecycle Steps
 # See: https://docs.travis-ci.com/user/customizing-the-build/#The-Build-Lifecycle
@@ -68,9 +72,9 @@ jobs:
         <<: *linux
         env: TASK_NAME="DOXYGEN Generation"
         script: 
-          - cd $TRAVIS_BUILD_DIR
-          - chmod +x generateDocumentationAndDeploy.sh
-          - ./generateDocumentationAndDeploy.sh
+          - cd $(dirname $DOXYFILE)
+          - doxygen $DOXYFILE 2>&1 | tee doxygen.log
+          - if  [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 
       # GCC 5
       - stage: test
@@ -144,5 +148,20 @@ jobs:
         env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_UPLOAD=$AQUAVEO_CONAN CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
         after_success: true
 
-      # PYDOCS
+      # DOCUMENTATION
+      - stage: documentation
+        addons:
+          apt:
+            packages:
+              - doxygen
+              - doxygen-doc
+              - doxygen-latex
+              - doxygen-gui
+              - graphviz
+        <<: *linux
+        env: TASK_NAME="DOXYGEN Generation"
+        script: 
+          - cd $TRAVIS_BUILD_DIR
+          - chmod +x generateDocumentationAndDeploy.sh
+          - ./generateDocumentationAndDeploy.sh
 
