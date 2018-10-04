@@ -1724,6 +1724,20 @@
       <arglist>(const Pt3d &amp;pt)</arglist>
     </member>
     <member kind="function">
+      <type>Pt2d</type>
+      <name>Pt2dFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a7ba3e1fa0e415e085b618db243cf0d1f</anchor>
+      <arglist>(const py::tuple &amp;pt)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::tuple</type>
+      <name>PyIterFromPt2d</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>ac6ab905aac031fbc4cb3c54826cc1263</anchor>
+      <arglist>(const Pt2d &amp;pt)</arglist>
+    </member>
+    <member kind="function">
       <type>boost::shared_ptr&lt; VecPt3d &gt;</type>
       <name>VecPt3dFromPyIter</name>
       <anchorfile>namespacexms.html</anchorfile>
@@ -1736,6 +1750,20 @@
       <anchorfile>namespacexms.html</anchorfile>
       <anchor>a8e892242a41a91506ce59befc5ca2f84</anchor>
       <arglist>(const VecPt3d &amp;pts)</arglist>
+    </member>
+    <member kind="function">
+      <type>boost::shared_ptr&lt; VecPt2d &gt;</type>
+      <name>VecPt2dFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a25fbf42c1412988ca094f14b04a5d3d0</anchor>
+      <arglist>(const py::iterable &amp;pts)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromVecPt2d</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a3a7560e2ef68b3ffbc875e0fb51c3518</anchor>
+      <arglist>(const VecPt2d &amp;pts)</arglist>
     </member>
     <member kind="function">
       <type>boost::shared_ptr&lt; VecPt3d2d &gt;</type>
@@ -1813,6 +1841,34 @@
       <anchorfile>namespacexms.html</anchorfile>
       <anchor>a49bb2e3cc528e336292b521275482042</anchor>
       <arglist>(const py::iterable &amp;bitset)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::pair&lt; int, int &gt;</type>
+      <name>IntPairFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>ad1c4eab1d9f098f293e8205a2c372788</anchor>
+      <arglist>(const py::iterable &amp;intpair)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromIntPair</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>abb18038767a6eef784fe157b79ab5bd3</anchor>
+      <arglist>(const std::pair&lt; int, int &gt; &amp;intpair)</arglist>
+    </member>
+    <member kind="function">
+      <type>boost::shared_ptr&lt; std::vector&lt; std::pair&lt; int, int &gt; &gt; &gt;</type>
+      <name>VecIntPairFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>afcdebdd67720da722a796de78c531f2e</anchor>
+      <arglist>(const py::iterable &amp;intpairs)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromVecIntPair</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a90078769bd51c076d22a3911983acaf6</anchor>
+      <arglist>(const std::vector&lt; std::pair&lt; int, int &gt;&gt; &amp;intpairs)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -4711,6 +4767,20 @@
       <arglist>(const Pt3d &amp;pt)</arglist>
     </member>
     <member kind="function">
+      <type>Pt2d</type>
+      <name>Pt2dFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a7ba3e1fa0e415e085b618db243cf0d1f</anchor>
+      <arglist>(const py::tuple &amp;pt)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::tuple</type>
+      <name>PyIterFromPt2d</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>ac6ab905aac031fbc4cb3c54826cc1263</anchor>
+      <arglist>(const Pt2d &amp;pt)</arglist>
+    </member>
+    <member kind="function">
       <type>boost::shared_ptr&lt; VecPt3d &gt;</type>
       <name>VecPt3dFromPyIter</name>
       <anchorfile>namespacexms.html</anchorfile>
@@ -4723,6 +4793,20 @@
       <anchorfile>namespacexms.html</anchorfile>
       <anchor>a8e892242a41a91506ce59befc5ca2f84</anchor>
       <arglist>(const VecPt3d &amp;pts)</arglist>
+    </member>
+    <member kind="function">
+      <type>boost::shared_ptr&lt; VecPt2d &gt;</type>
+      <name>VecPt2dFromPyIter</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a25fbf42c1412988ca094f14b04a5d3d0</anchor>
+      <arglist>(const py::iterable &amp;pts)</arglist>
+    </member>
+    <member kind="function">
+      <type>py::iterable</type>
+      <name>PyIterFromVecPt2d</name>
+      <anchorfile>namespacexms.html</anchorfile>
+      <anchor>a3a7560e2ef68b3ffbc875e0fb51c3518</anchor>
+      <arglist>(const VecPt2d &amp;pts)</arglist>
     </member>
     <member kind="function">
       <type>boost::shared_ptr&lt; VecPt3d2d &gt;</type>
@@ -4812,7 +4896,7 @@
       <type>std::pair&lt; int, int &gt;</type>
       <name>IntPairFromPyIter</name>
       <anchorfile>namespacexms.html</anchorfile>
-      <anchor>aee77481a8cca5e0af494fb2a331fc40f</anchor>
+      <anchor>ad1c4eab1d9f098f293e8205a2c372788</anchor>
       <arglist>(const py::iterable &amp;intpair)</arglist>
     </member>
     <member kind="function">
@@ -4826,7 +4910,7 @@
       <type>boost::shared_ptr&lt; std::vector&lt; std::pair&lt; int, int &gt; &gt; &gt;</type>
       <name>VecIntPairFromPyIter</name>
       <anchorfile>namespacexms.html</anchorfile>
-      <anchor>a43c1f652d47c87bdee5ceebe3599d393</anchor>
+      <anchor>afcdebdd67720da722a796de78c531f2e</anchor>
       <arglist>(const py::iterable &amp;intpairs)</arglist>
     </member>
     <member kind="function">
