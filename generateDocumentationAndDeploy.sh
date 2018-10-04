@@ -113,7 +113,7 @@ sphinx-build -b html . $(dirname $DOXYFILE)/html/pydocs
 # and the html/pydocs/index.html all exist. This is a good indication that 
 # Doxygen and Sphinx did their work.
 cd $(dirname $DOXYFILE)
-if [ -d "html" ] && [ -f "html/index.html" ] && [ -f "html/pydocs/index.html"]; then
+if [ -d "html" ] && [ -f "html/index.html" ] && [ -f "html/pydocs/index.html" ]; then
     mv xmscore.tag "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
     mv html/* "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
     cd $TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME
