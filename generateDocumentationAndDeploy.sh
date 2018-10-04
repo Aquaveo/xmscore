@@ -104,7 +104,7 @@ export PATH=${PATH_TO_PYTHON_PACKAGE}:$PATH
 # make a directory to hold the python documenation
 mkdir $(dirname $DOXYFILE)/pydocs
 # build the documentation
-sphinx-build -b html ./source $(dirname $DOXYFILE)/pydocs
+sphinx-build -b html . $(dirname $DOXYFILE)/pydocs
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
