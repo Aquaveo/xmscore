@@ -96,15 +96,15 @@ cd $(dirname $SPHINX_CONF)
 # make a directory to get the conan package
 mkdir ./conan
 # get the conan package
-conan install -o pybind=True -s compiler.libcss=libstdc++11 -if ./conan -g txt xmscore/1.0.40@aquaveo/stable 
+conan install -o xmscore:pybind=True -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmscore/1.0.40@aquaveo/stable 
 # get the path to the conan package
-PATH_TO_PYTHON_PACKAGE = $(cat ./docs/conanbuildinfo.txt | grep PYTHONPATH.*xmscore | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
+PATH_TO_PYTHON_PACKAGE = $(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH.*xmscore | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
 # add path to xmscore python package to the system path
 export PATH=${PATH_TO_PYTHON_PACKAGE}:$PATH
 # make a directory to hold the python documenation
-mkdir pydocs
+mkdir $(dirname $DOXYFILE)/pydocs
 # build the documentation
-sphinx-build -b html . $(dirname $DOXYFILE)/pydocs
+sphinx-build -b html ./source $(dirname $DOXYFILE)/pydocs
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
