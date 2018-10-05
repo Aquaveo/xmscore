@@ -68,6 +68,9 @@ rm -rf *
 # to NO, which it is by default. So creating the file just in case.
 echo "" > .nojekyll
 
+#install doxygen
+apt-get install doxygen
+
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
 echo 'Generating Doxygen code documentation...'
