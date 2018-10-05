@@ -20,7 +20,6 @@ Contents
    modules
 
 Acknowledgements
-================
 
 This library is from work done by aquaveo developers to support other aquaveo libraries.
 
