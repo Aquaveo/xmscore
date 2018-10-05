@@ -10,6 +10,7 @@ test_package/build/
 # Doxygen
 Doxygen/doxy_warn.log
 Doxygen/xmscore.tag
+Doxygen/html/*
 
 # Prerequisites
 *.d

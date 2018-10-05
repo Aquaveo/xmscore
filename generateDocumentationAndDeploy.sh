@@ -75,13 +75,13 @@ echo 'Generating Doxygen code documentation...'
 cd $(dirname $DOXYFILE)
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
-Check for warnings in doxygen
-if  [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
+# Check for warnings in doxygen
+if [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 
-if [[ -z "${TRAVIS_TAG}" ]]; then
-  echo "Build not tagged. No Documentation will be uploaded"
-  exit 0
-fi
+# if [ -z "${TRAVIS_TAG}" ]; then
+#   echo "Build not tagged. No Documentation will be uploaded"
+#   exit 0
+# fi
 
 ################################################################################
 ##### Generate the Python documentation.                                   #####
@@ -99,8 +99,8 @@ mkdir ./conan
 conan install -o xmscore:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmscore/1.0.40@aquaveo/stable 
 # get the path to the conan package
 export PATH_TO_PYTHON_PACKAGE=$(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH.*xmscore | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
-# add path to xmscore python package to the system path
-export PATH=${PATH_TO_PYTHON_PACKAGE}:$PATH
+# copy package into build directory
+cp ${PATH_TO_PYTHON_PACKAGE}/* $(dirname $SPHINX_CONF)/
 # make a directory to hold the python documenation
 mkdir $(dirname $DOXYFILE)/pydocs
 # build the documentation
