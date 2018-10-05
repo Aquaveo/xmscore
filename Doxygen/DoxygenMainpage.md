@@ -26,6 +26,11 @@ Python
 
 This library is available as a python module. See [Python Documentation](./pydocs)
 
+Python
+------
+
+This library is available as a python module. See [Python Documentation](./pydocs)
+
 Testing {#XmscoreTesting}
 -------
 
