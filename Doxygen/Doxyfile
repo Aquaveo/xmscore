@@ -831,9 +831,7 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = cxxtest\1.0\runner.cpp \
-                         cxxtest\1.0\runner.h \
-                         ..\xmscore\python
+EXCLUDE                = ../xmscore/python
 
 # The EXCLUDE_SYMLINKS tag can be used to select whether or not files or
 # directories that are symbolic links (a Unix file system feature) are excluded
