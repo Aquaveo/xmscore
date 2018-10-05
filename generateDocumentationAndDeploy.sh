@@ -70,7 +70,7 @@ echo "" > .nojekyll
 
 #install doxygen
 sudo apt-get update
-sudo apt-get install doxygen
+sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
 
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
