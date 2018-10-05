@@ -21,6 +21,11 @@ License {#XmscoreLicense}
 
 The code is distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at [http://www.aquaveo.com/xmsng/LICENSE_1_0.txt](http://www.aquaveo.com/xmsng/LICENSE_1_0.txt)). 
 
+Python
+------
+
+This library is available as a python module. See [Python Documentation](./pydocs)
+
 Testing {#XmscoreTesting}
 -------
 
