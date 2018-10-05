@@ -92,7 +92,7 @@ if [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 ##### Generate the Python documentation.                                   #####
 echo 'Generating Python code documentation...'
 # install sphinx and conan
-pip install sphinx sphinx_rtd_theme conan
+sudo pip install sphinx sphinx_rtd_theme conan
 # add aquaveo conan remote
 conan user
 conan remote add aquaveo https://conan.aquaveo.com
