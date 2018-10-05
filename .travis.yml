@@ -144,7 +144,7 @@ jobs:
               - doxygen-latex
               - doxygen-gui
               - graphviz
-              - g++-5
+              - gcc-5
         <<: *linux
         group: stable
         dist: trusty
