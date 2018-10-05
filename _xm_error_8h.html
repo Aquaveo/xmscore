@@ -105,7 +105,6 @@ $(document).ready(function(){initNavTree('_xm_error_8h.html','');});
 
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -123,12 +122,6 @@ $(document).ready(function(){initNavTree('_xm_error_8h.html','');});
 </div>
 <p><a href="_xm_error_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacexms"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html">xms</a></td></tr>
-<tr class="memdesc:namespacexms"><td class="mdescLeft">&#160;</td><td class="mdescRight">XMS Namespace. <br/></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:aa974d54357e1e5ce1039ace624c9a2d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa974d54357e1e5ce1039ace624c9a2d5"></a>
@@ -268,7 +261,7 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a1503071e7b25b13081f9f478658a1046"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xms::xmresult</a> { <b>XR_SUCCESS</b> = 0, 
+<tr class="memitem:a1503071e7b25b13081f9f478658a1046"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>xmresult</b> { <b>XR_SUCCESS</b> = 0, 
 <b>XR_FAILURE</b> = 1
  }</td></tr>
 <tr class="memdesc:a1503071e7b25b13081f9f478658a1046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like Mozilla's nsresult. <br/></td></tr>
@@ -276,10 +269,10 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a321716f8c5b486484ad8b9b88e4cb919"><td class="memItemLeft" align="right" valign="top">bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a321716f8c5b486484ad8b9b88e4cb919">xms::xmAsserting</a> ()</td></tr>
+<tr class="memitem:a321716f8c5b486484ad8b9b88e4cb919"><td class="memItemLeft" align="right" valign="top">bool &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>xms::xmAsserting</b> ()</td></tr>
 <tr class="memdesc:a321716f8c5b486484ad8b9b88e4cb919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores whether we want XM_ASSERT to do something or not.  <a href="#a321716f8c5b486484ad8b9b88e4cb919">More...</a><br/></td></tr>
 <tr class="separator:a321716f8c5b486484ad8b9b88e4cb919"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3969685e7c69e4ed2b8a0a7ab2838abe"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacexms.html#a3969685e7c69e4ed2b8a0a7ab2838abe">xms::XM_FAILED_impl</a> (xmresult _xmresult)</td></tr>
+<tr class="memitem:a3969685e7c69e4ed2b8a0a7ab2838abe"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>xms::XM_FAILED_impl</b> (xmresult _xmresult)</td></tr>
 <tr class="memdesc:a3969685e7c69e4ed2b8a0a7ab2838abe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like Mozilla's NS_FAILED in their nsError.h file.  <a href="#a3969685e7c69e4ed2b8a0a7ab2838abe">More...</a><br/></td></tr>
 <tr class="separator:a3969685e7c69e4ed2b8a0a7ab2838abe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -302,9 +295,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">               BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Returns <em>ret</em> if <em>x</em> evaluates to <code>true</code>, logs, and optionally asserts. </p>
 
@@ -429,9 +421,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">               BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Returns <em>ret</em> if <em>x</em> evaluates to <code>true</code> and logs. </p>
 
@@ -453,9 +444,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                          \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_T_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_T_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Throws <em>ret</em> if <em>x</em> evaluates to <code>true</code>, logs, and optionally asserts. </p>
 
@@ -581,9 +571,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                          \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_T_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_T_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Throws <em>ret</em> if <em>x</em> evaluates to <code>true</code> and logs. </p>
 
@@ -605,9 +594,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                             \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_VOID_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_VOID_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to <code>true</code>, logs, and optionally asserts. </p>
 
@@ -719,9 +707,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                             \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_VOID_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_FALSE_VOID_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to <code>true</code> and logs. </p>
 
@@ -743,9 +730,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                          \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Returns <em>ret</em> if <em>x</em> evaluates to xms::XR_FAILURE, logs, and optionally asserts. </p>
 
@@ -787,7 +773,7 @@ Functions</h2></td></tr>
 <p>Like Mozilla's NS_ENSURE_SUCCESS in their nsDebug.h file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to <a class="el" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046" title="Like Mozilla&#39;s nsresult. ">xms::xmresult</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to xms::xmresult. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ret</td><td>Value returned if x evaluates to xms::XR_FAILURE (any type). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ast</td><td>Asserts if true (<code>bool</code>). </td></tr>
   </table>
@@ -840,8 +826,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span>                                                                          \</div>
-<div class="line">  {                                                                           <a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">\</a></div>
-<div class="line"><a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">    xms::xmresult</a> __rv = x; <span class="comment">/* Don&#39;t evaluate |x| more than once */</span>           \</div>
+<div class="line">  {                                                                           \</div>
+<div class="line">    xms::xmresult __rv = x; <span class="comment">/* Don&#39;t evaluate |x| more than once */</span>           \</div>
 <div class="line">    if (<a class="code" href="_xm_error_8h.html#a23ec2302026fd78a277a01cce7b35b37">XM_FAILED</a>(__rv))                                                      \</div>
 <div class="line">    {                                                                         <a class="code" href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">\</a></div>
 <div class="line"><a class="code" href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">      XM_LOG</a>(lvl, msg);                                                       \</div>
@@ -852,18 +838,16 @@ Functions</h2></td></tr>
 <div class="line">      <span class="comment">/*TS_WARN(&quot;XM_ENSURE_SUCCESS(&quot; #x &quot;, &quot; #ret &quot;) failed&quot;);             */</span> \</div>
 <div class="line">      return ret;                                                             \</div>
 <div class="line">    }                                                                         \</div>
-<div class="line">  } <span class="keywordflow">while</span> (<a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)</div>
+<div class="line">  } <span class="keywordflow">while</span> (xms::XM0)</div>
 <div class="ttc" id="_xm_log_8h_html_a2aa4d2a0a80e464d6acba7f32b13f978"><div class="ttname"><a href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a></div><div class="ttdeci">#define XM_LOG(A, B)</div><div class="ttdoc">Log message which can have a log type (Debug, Stackable, Gui). </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8h_source.html#l00057">XmLog.h:57</a></div></div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a23ec2302026fd78a277a01cce7b35b37"><div class="ttname"><a href="_xm_error_8h.html#a23ec2302026fd78a277a01cce7b35b37">XM_FAILED</a></div><div class="ttdeci">#define XM_FAILED(_xmresult)</div><div class="ttdoc">macro </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00056">XmError.h:56</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a5c82c2e747cf320d95402dfdf2fdba85"><div class="ttname"><a href="_xm_error_8h.html#a5c82c2e747cf320d95402dfdf2fdba85">XM_ASSERT</a></div><div class="ttdeci">#define XM_ASSERT(x)</div><div class="ttdoc">Does a regular ASSERT if xmAsserting, otherwise does nothing. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00070">XmError.h:70</a></div></div>
-<div class="ttc" id="namespacexms_html_a1503071e7b25b13081f9f478658a1046"><div class="ttname"><a href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xms::xmresult</a></div><div class="ttdeci">xmresult</div><div class="ttdoc">Like Mozilla&#39;s nsresult. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00040">XmError.h:40</a></div></div>
 </div><!-- fragment -->
 <p>Returns <em>ret</em> if <em>x</em> evaluates to xms::XR_FAILURE, logs, and optionally asserts. </p>
 <p>Like Mozilla's NS_ENSURE_SUCCESS in their nsDebug.h file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to <a class="el" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046" title="Like Mozilla&#39;s nsresult. ">xms::xmresult</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to xms::xmresult. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ret</td><td>Value returned if x evaluates to xms::XR_FAILURE (any type). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lvl</td><td>Log level xmlog::LogLevelEnum. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>Log message (<code>std::string</code>). </td></tr>
@@ -890,9 +874,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                          \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Returns <em>ret</em> if <em>x</em> evaluates to xms::XR_FAILURE and logs. </p>
 
@@ -914,9 +897,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                            \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_T_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_T_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Throws <em>ret</em> if <em>x</em> evaluates to xms::XR_FAILURE, logs, and optionally asserts. </p>
 
@@ -958,7 +940,7 @@ Functions</h2></td></tr>
 <p>Like Mozilla's NS_ENSURE_SUCCESS in their nsDebug.h file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to <a class="el" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046" title="Like Mozilla&#39;s nsresult. ">xms::xmresult</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to xms::xmresult. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ret</td><td>Value returned if x evaluates to xms::XR_FAILURE (any type). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ast</td><td>Asserts if true (<code>bool</code>). </td></tr>
   </table>
@@ -1011,8 +993,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span>                                                                          \</div>
-<div class="line">  {                                                                           <a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">\</a></div>
-<div class="line"><a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">    xms::xmresult</a> __rv = x; <span class="comment">/* Don&#39;t evaluate |x| more than once */</span>           \</div>
+<div class="line">  {                                                                           \</div>
+<div class="line">    xms::xmresult __rv = x; <span class="comment">/* Don&#39;t evaluate |x| more than once */</span>           \</div>
 <div class="line">    if (<a class="code" href="_xm_error_8h.html#a23ec2302026fd78a277a01cce7b35b37">XM_FAILED</a>(__rv))                                                      \</div>
 <div class="line">    {                                                                         <a class="code" href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">\</a></div>
 <div class="line"><a class="code" href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">      XM_LOG</a>(lvl, msg);                                                       \</div>
@@ -1023,18 +1005,16 @@ Functions</h2></td></tr>
 <div class="line">      <span class="comment">/*TS_WARN(&quot;XM_ENSURE_SUCCESS(&quot; #x &quot;, &quot; #ret &quot;) failed&quot;);             */</span> \</div>
 <div class="line">      throw(ret);                                                             \</div>
 <div class="line">    }                                                                         \</div>
-<div class="line">  } <span class="keywordflow">while</span> (<a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)</div>
+<div class="line">  } <span class="keywordflow">while</span> (xms::XM0)</div>
 <div class="ttc" id="_xm_log_8h_html_a2aa4d2a0a80e464d6acba7f32b13f978"><div class="ttname"><a href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a></div><div class="ttdeci">#define XM_LOG(A, B)</div><div class="ttdoc">Log message which can have a log type (Debug, Stackable, Gui). </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8h_source.html#l00057">XmLog.h:57</a></div></div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a23ec2302026fd78a277a01cce7b35b37"><div class="ttname"><a href="_xm_error_8h.html#a23ec2302026fd78a277a01cce7b35b37">XM_FAILED</a></div><div class="ttdeci">#define XM_FAILED(_xmresult)</div><div class="ttdoc">macro </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00056">XmError.h:56</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a5c82c2e747cf320d95402dfdf2fdba85"><div class="ttname"><a href="_xm_error_8h.html#a5c82c2e747cf320d95402dfdf2fdba85">XM_ASSERT</a></div><div class="ttdeci">#define XM_ASSERT(x)</div><div class="ttdoc">Does a regular ASSERT if xmAsserting, otherwise does nothing. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00070">XmError.h:70</a></div></div>
-<div class="ttc" id="namespacexms_html_a1503071e7b25b13081f9f478658a1046"><div class="ttname"><a href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xms::xmresult</a></div><div class="ttdeci">xmresult</div><div class="ttdoc">Like Mozilla&#39;s nsresult. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00040">XmError.h:40</a></div></div>
 </div><!-- fragment -->
 <p>Returns <em>ret</em> if <em>x</em> evaluates to xms::XR_FAILURE, logs, and optionally asserts. </p>
 <p>Like Mozilla's NS_ENSURE_SUCCESS in their nsDebug.h file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to <a class="el" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046" title="Like Mozilla&#39;s nsresult. ">xms::xmresult</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to xms::xmresult. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ret</td><td>Value returned if x evaluates to xms::XR_FAILURE (any type). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lvl</td><td>Log level xmlog::LogLevelEnum. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>Log message (<code>std::string</code>). </td></tr>
@@ -1061,9 +1041,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                            \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_T_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_T_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Throws <em>ret</em> if <em>x</em> evaluates to xms::XR_FAILURE and logs. </p>
 
@@ -1085,9 +1064,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                               \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_VOID_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_VOID_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to xms::XR_FAILURE, logs, and optionally asserts. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1129,7 +1107,7 @@ Functions</h2></td></tr>
 <p>Like Mozilla's NS_ENSURE_SUCCESS_VOID in their nsDebug.h file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to <a class="el" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046" title="Like Mozilla&#39;s nsresult. ">xms::xmresult</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to xms::xmresult. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ast</td><td>Asserts if true (<code>bool</code>). </td></tr>
   </table>
   </dd>
@@ -1175,8 +1153,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span>                                                                          \</div>
-<div class="line">  {                                                                           <a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">\</a></div>
-<div class="line"><a class="code" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">    xms::xmresult</a> __rv = x;                                                   \</div>
+<div class="line">  {                                                                           \</div>
+<div class="line">    xms::xmresult __rv = x;                                                   \</div>
 <div class="line">    if (<a class="code" href="_xm_error_8h.html#a23ec2302026fd78a277a01cce7b35b37">XM_FAILED</a>(__rv))                                                      \</div>
 <div class="line">    {                                                                         <a class="code" href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">\</a></div>
 <div class="line"><a class="code" href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">      XM_LOG</a>(lvl, msg);                                                       \</div>
@@ -1187,18 +1165,16 @@ Functions</h2></td></tr>
 <div class="line">      <span class="comment">/*TS_WARN(&quot;XM_ENSURE_SUCCESS(&quot; #x &quot;) failed&quot;);                       */</span> \</div>
 <div class="line">      return;                                                                 \</div>
 <div class="line">    }                                                                         \</div>
-<div class="line">  } <span class="keywordflow">while</span> (<a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)</div>
+<div class="line">  } <span class="keywordflow">while</span> (xms::XM0)</div>
 <div class="ttc" id="_xm_log_8h_html_a2aa4d2a0a80e464d6acba7f32b13f978"><div class="ttname"><a href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a></div><div class="ttdeci">#define XM_LOG(A, B)</div><div class="ttdoc">Log message which can have a log type (Debug, Stackable, Gui). </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8h_source.html#l00057">XmLog.h:57</a></div></div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a23ec2302026fd78a277a01cce7b35b37"><div class="ttname"><a href="_xm_error_8h.html#a23ec2302026fd78a277a01cce7b35b37">XM_FAILED</a></div><div class="ttdeci">#define XM_FAILED(_xmresult)</div><div class="ttdoc">macro </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00056">XmError.h:56</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a5c82c2e747cf320d95402dfdf2fdba85"><div class="ttname"><a href="_xm_error_8h.html#a5c82c2e747cf320d95402dfdf2fdba85">XM_ASSERT</a></div><div class="ttdeci">#define XM_ASSERT(x)</div><div class="ttdoc">Does a regular ASSERT if xmAsserting, otherwise does nothing. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00070">XmError.h:70</a></div></div>
-<div class="ttc" id="namespacexms_html_a1503071e7b25b13081f9f478658a1046"><div class="ttname"><a href="namespacexms.html#a1503071e7b25b13081f9f478658a1046">xms::xmresult</a></div><div class="ttdeci">xmresult</div><div class="ttdoc">Like Mozilla&#39;s nsresult. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00040">XmError.h:40</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to xms::XR_FAILURE, logs, and optionally asserts. </p>
 <p>Like Mozilla's NS_ENSURE_SUCCESS_VOID in their nsDebug.h file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to <a class="el" href="namespacexms.html#a1503071e7b25b13081f9f478658a1046" title="Like Mozilla&#39;s nsresult. ">xms::xmresult</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>Expression that evaluates to xms::xmresult. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lvl</td><td>Log level xmlog::LogLevelEnum. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">msg</td><td>Log message (<code>std::string</code>). </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ast</td><td>Asserts if true (<code>bool</code>). </td></tr>
@@ -1224,9 +1200,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                               \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_VOID_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_SUCCESS_VOID_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to xms::XR_FAILURE and logs. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -1253,9 +1228,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">               BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to <code>false</code>, logs, and optionally asserts. </p>
 
@@ -1399,10 +1373,9 @@ Functions</h2></td></tr>
 <div class="line">      <span class="comment">/*TS_WARN(&quot;XM_ENSURE_TRUE(&quot; #x &quot;) failed&quot;);                          */</span> \</div>
 <div class="line">      return ret;                                                             \</div>
 <div class="line">    }                                                                         \</div>
-<div class="line">  } <span class="keywordflow">while</span> (<a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)</div>
+<div class="line">  } <span class="keywordflow">while</span> (xms::XM0)</div>
 <div class="ttc" id="_xm_log_8h_html_a2aa4d2a0a80e464d6acba7f32b13f978"><div class="ttname"><a href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a></div><div class="ttdeci">#define XM_LOG(A, B)</div><div class="ttdoc">Log message which can have a log type (Debug, Stackable, Gui). </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8h_source.html#l00057">XmLog.h:57</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a59af96c2c6fcfdc0d6d677e04ac41945"><div class="ttname"><a href="_xm_error_8h.html#a59af96c2c6fcfdc0d6d677e04ac41945">XM_UNLIKELY</a></div><div class="ttdeci">#define XM_UNLIKELY(x)</div><div class="ttdoc">Like Mozilla&#39;s NS_LIKELY in their Likely.h file. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00045">XmError.h:45</a></div></div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a5c82c2e747cf320d95402dfdf2fdba85"><div class="ttname"><a href="_xm_error_8h.html#a5c82c2e747cf320d95402dfdf2fdba85">XM_ASSERT</a></div><div class="ttdeci">#define XM_ASSERT(x)</div><div class="ttdoc">Does a regular ASSERT if xmAsserting, otherwise does nothing. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00070">XmError.h:70</a></div></div>
 </div><!-- fragment -->
 <p>Returns <em>ret</em> if <em>x</em> evaluates to <code>false</code>, logs, and optionally asserts. </p>
@@ -1435,9 +1408,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">               BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to <code>false</code> and logs. </p>
 
@@ -1458,9 +1430,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_T_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_T_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">               BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Throws ret if <em>x</em> evaluates to <code>false</code>, logs, and optionally asserts. </p>
 
@@ -1566,10 +1537,9 @@ Functions</h2></td></tr>
 <div class="line">      <span class="comment">/*TS_WARN(&quot;XM_ENSURE_TRUE(&quot; #x &quot;) failed&quot;);                            */</span> \</div>
 <div class="line">      throw(ret);                                                               \</div>
 <div class="line">    }                                                                           \</div>
-<div class="line">  } <span class="keywordflow">while</span> (<a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)</div>
+<div class="line">  } <span class="keywordflow">while</span> (xms::XM0)</div>
 <div class="ttc" id="_xm_log_8h_html_a2aa4d2a0a80e464d6acba7f32b13f978"><div class="ttname"><a href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a></div><div class="ttdeci">#define XM_LOG(A, B)</div><div class="ttdoc">Log message which can have a log type (Debug, Stackable, Gui). </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8h_source.html#l00057">XmLog.h:57</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a59af96c2c6fcfdc0d6d677e04ac41945"><div class="ttname"><a href="_xm_error_8h.html#a59af96c2c6fcfdc0d6d677e04ac41945">XM_UNLIKELY</a></div><div class="ttdeci">#define XM_UNLIKELY(x)</div><div class="ttdoc">Like Mozilla&#39;s NS_LIKELY in their Likely.h file. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00045">XmError.h:45</a></div></div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a5c82c2e747cf320d95402dfdf2fdba85"><div class="ttname"><a href="_xm_error_8h.html#a5c82c2e747cf320d95402dfdf2fdba85">XM_ASSERT</a></div><div class="ttdeci">#define XM_ASSERT(x)</div><div class="ttdoc">Does a regular ASSERT if xmAsserting, otherwise does nothing. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00070">XmError.h:70</a></div></div>
 </div><!-- fragment -->
 <p>Throws ret if <em>x</em> evaluates to <code>false</code>, logs, and optionally asserts. </p>
@@ -1602,9 +1572,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_T_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_T_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">               BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Throws ret if <em>x</em> evaluates to <code>false</code> and logs. </p>
 
@@ -1626,9 +1595,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                            \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_VOID_, __VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_VOID_, __VA_ARGS__, xms::XM1)(__VA_ARGS__, xms::XM1), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_a4c3305728b07d971cd598e0da2b6c91f"><div class="ttname"><a href="namespacexms.html#a4c3305728b07d971cd598e0da2b6c91f">xms::XM1</a></div><div class="ttdeci">int XM1</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00027">XmError.cpp:27</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to <code>false</code>, logs, and optionally asserts. </p>
 
@@ -1721,10 +1689,9 @@ Functions</h2></td></tr>
 <div class="line">      <span class="comment">/*TS_WARN(&quot;XM_ENSURE_TRUE(&quot; #x &quot;) failed&quot;);                            */</span> \</div>
 <div class="line">      return;                                                                   \</div>
 <div class="line">    }                                                                           \</div>
-<div class="line">  } <span class="keywordflow">while</span> (<a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)</div>
+<div class="line">  } <span class="keywordflow">while</span> (xms::XM0)</div>
 <div class="ttc" id="_xm_log_8h_html_a2aa4d2a0a80e464d6acba7f32b13f978"><div class="ttname"><a href="_xm_log_8h.html#a2aa4d2a0a80e464d6acba7f32b13f978">XM_LOG</a></div><div class="ttdeci">#define XM_LOG(A, B)</div><div class="ttdoc">Log message which can have a log type (Debug, Stackable, Gui). </div><div class="ttdef"><b>Definition:</b> <a href="_xm_log_8h_source.html#l00057">XmLog.h:57</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a59af96c2c6fcfdc0d6d677e04ac41945"><div class="ttname"><a href="_xm_error_8h.html#a59af96c2c6fcfdc0d6d677e04ac41945">XM_UNLIKELY</a></div><div class="ttdeci">#define XM_UNLIKELY(x)</div><div class="ttdoc">Like Mozilla&#39;s NS_LIKELY in their Likely.h file. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00045">XmError.h:45</a></div></div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 <div class="ttc" id="_xm_error_8h_html_a5c82c2e747cf320d95402dfdf2fdba85"><div class="ttname"><a href="_xm_error_8h.html#a5c82c2e747cf320d95402dfdf2fdba85">XM_ASSERT</a></div><div class="ttdeci">#define XM_ASSERT(x)</div><div class="ttdoc">Does a regular ASSERT if xmAsserting, otherwise does nothing. </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8h_source.html#l00070">XmError.h:70</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to <code>false</code>, logs, and optionally asserts. </p>
@@ -1757,9 +1724,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">BOOST_PP_CAT(                                                                            \</div>
-<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_VOID_, __VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>)(__VA_ARGS__, <a class="code" href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a>), \</div>
+<div class="line">    BOOST_PP_OVERLOAD(XM_ENSURE_TRUE_VOID_, __VA_ARGS__, xms::XM0)(__VA_ARGS__, xms::XM0), \</div>
 <div class="line">    BOOST_PP_EMPTY())</div>
-<div class="ttc" id="namespacexms_html_acdef92522c0ad17d614cd15b6aa3bb38"><div class="ttname"><a href="namespacexms.html#acdef92522c0ad17d614cd15b6aa3bb38">xms::XM0</a></div><div class="ttdeci">int XM0</div><div class="ttdoc">avoid warning </div><div class="ttdef"><b>Definition:</b> <a href="_xm_error_8cpp_source.html#l00026">XmError.cpp:26</a></div></div>
 </div><!-- fragment -->
 <p>Returns (void) if <em>x</em> evaluates to <code>false</code> and logs. </p>
 
@@ -1803,7 +1769,7 @@ Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="_xm_error_8h.html">XmError.h</a></li>
-    <li class="footer">Generated on Fri Oct 5 2018 05:31:55 for xmscore by
+    <li class="footer">Generated on Fri Oct 5 2018 15:58:35 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

@@ -143,7 +143,7 @@ $(document).ready(function(){initNavTree('_dyn_bitset_8cpp_source.html','');});
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="namespacexms.html#a07a9a5ed39e6326c5725622af98f4856">   44</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#a07a9a5ed39e6326c5725622af98f4856">VecBooleanToDynBitset</a>(<span class="keyword">const</span> std::vector&lt;unsigned char&gt;&amp; a_from, <a class="code" href="namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">DynBitset</a>&amp; a_to)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> VecBooleanToDynBitset(<span class="keyword">const</span> std::vector&lt;unsigned char&gt;&amp; a_from, DynBitset&amp; a_to)</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;{</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  a_to.resize(a_from.size());</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; a_from.size(); ++i)</div>
@@ -153,7 +153,7 @@ $(document).ready(function(){initNavTree('_dyn_bitset_8cpp_source.html','');});
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;} <span class="comment">// VecBooleanToDynBitset</span></div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="namespacexms.html#afde2102c1e6c433c09ef13194a92feeb">   57</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#afde2102c1e6c433c09ef13194a92feeb">DynBitsetToVecBoolean</a>(<span class="keyword">const</span> <a class="code" href="namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">DynBitset</a>&amp; a_from, std::vector&lt;unsigned char&gt;&amp; a_to)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> DynBitsetToVecBoolean(<span class="keyword">const</span> DynBitset&amp; a_from, std::vector&lt;unsigned char&gt;&amp; a_to)</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;{</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  a_to.clear();</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  a_to.reserve(a_from.size());</div>
@@ -164,17 +164,14 @@ $(document).ready(function(){initNavTree('_dyn_bitset_8cpp_source.html','');});
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <span class="comment">// DynBitsetToVecBoolean</span></div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace xms</span></div>
-<div class="ttc" id="namespacexms_html_a07a9a5ed39e6326c5725622af98f4856"><div class="ttname"><a href="namespacexms.html#a07a9a5ed39e6326c5725622af98f4856">xms::VecBooleanToDynBitset</a></div><div class="ttdeci">void VecBooleanToDynBitset(const std::vector&lt; unsigned char &gt; &amp;a_from, DynBitset &amp;a_to)</div><div class="ttdoc">Convert from a VecBoolean to a DynBitset. </div><div class="ttdef"><b>Definition:</b> <a href="_dyn_bitset_8cpp_source.html#l00044">DynBitset.cpp:44</a></div></div>
 <div class="ttc" id="_dyn_bitset_8h_html"><div class="ttname"><a href="_dyn_bitset_8h.html">DynBitset.h</a></div><div class="ttdoc">Macros etc that make boost more convenient to use. </div></div>
-<div class="ttc" id="namespacexms_html_aba8c1eacfbbd2d1f45cef2fd55a35d93"><div class="ttname"><a href="namespacexms.html#aba8c1eacfbbd2d1f45cef2fd55a35d93">xms::DynBitset</a></div><div class="ttdeci">boost::dynamic_bitset&lt; size_t &gt; DynBitset</div><div class="ttdoc">vector of flags </div><div class="ttdef"><b>Definition:</b> <a href="_dyn_bitset_8h_source.html#l00025">DynBitset.h:25</a></div></div>
-<div class="ttc" id="namespacexms_html_afde2102c1e6c433c09ef13194a92feeb"><div class="ttname"><a href="namespacexms.html#afde2102c1e6c433c09ef13194a92feeb">xms::DynBitsetToVecBoolean</a></div><div class="ttdeci">void DynBitsetToVecBoolean(const DynBitset &amp;a_from, std::vector&lt; unsigned char &gt; &amp;a_to)</div><div class="ttdoc">Convert from a DynBitset to a VecBoolean. </div><div class="ttdef"><b>Definition:</b> <a href="_dyn_bitset_8cpp_source.html#l00057">DynBitset.cpp:57</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_17175abc7be81dc32d09e65ff06b8825.html">misc</a></li><li class="navelem"><a class="el" href="_dyn_bitset_8cpp.html">DynBitset.cpp</a></li>
-    <li class="footer">Generated on Fri Oct 5 2018 05:31:55 for xmscore by
+    <li class="footer">Generated on Fri Oct 5 2018 15:58:35 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

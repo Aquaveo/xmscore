@@ -1222,19 +1222,19 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l01541"></a><span class="lineno"> 1541</span>&#160;}; <span class="comment">// Pt3</span></div>
 <div class="line"><a name="l01542"></a><span class="lineno"> 1542</span>&#160;</div>
 <div class="line"><a name="l01547"></a><span class="lineno"> 1547</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l01548"></a><span class="lineno"><a class="line" href="namespacexms.html#a631780f1735d5928d3613a6cba3c7f66"> 1548</a></span>&#160;<span class="keyword">inline</span> <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a> <a class="code" href="namespacexms.html#a631780f1735d5928d3613a6cba3c7f66">operator*</a>(<span class="keywordtype">int</span> a, <span class="keyword">const</span> <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a>&amp; pt)</div>
+<div class="line"><a name="l01548"></a><span class="lineno"> 1548</span>&#160;<span class="keyword">inline</span> Pt3&lt;T&gt; operator*(<span class="keywordtype">int</span> a, <span class="keyword">const</span> Pt3&lt;T&gt;&amp; pt)</div>
 <div class="line"><a name="l01549"></a><span class="lineno"> 1549</span>&#160;{</div>
 <div class="line"><a name="l01550"></a><span class="lineno"> 1550</span>&#160;  <span class="keywordflow">return</span> (pt * a);</div>
 <div class="line"><a name="l01551"></a><span class="lineno"> 1551</span>&#160;}</div>
 <div class="line"><a name="l01552"></a><span class="lineno"> 1552</span>&#160;</div>
 <div class="line"><a name="l01557"></a><span class="lineno"> 1557</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l01558"></a><span class="lineno"><a class="line" href="namespacexms.html#abab9e54c65c43c4da48f3609d6a82f42"> 1558</a></span>&#160;<span class="keyword">inline</span> <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a> <a class="code" href="namespacexms.html#a631780f1735d5928d3613a6cba3c7f66">operator*</a>(<span class="keywordtype">float</span> a, <span class="keyword">const</span> <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a>&amp; pt)</div>
+<div class="line"><a name="l01558"></a><span class="lineno"> 1558</span>&#160;<span class="keyword">inline</span> Pt3&lt;T&gt; operator*(<span class="keywordtype">float</span> a, <span class="keyword">const</span> Pt3&lt;T&gt;&amp; pt)</div>
 <div class="line"><a name="l01559"></a><span class="lineno"> 1559</span>&#160;{</div>
 <div class="line"><a name="l01560"></a><span class="lineno"> 1560</span>&#160;  <span class="keywordflow">return</span> (pt * a);</div>
 <div class="line"><a name="l01561"></a><span class="lineno"> 1561</span>&#160;}</div>
 <div class="line"><a name="l01562"></a><span class="lineno"> 1562</span>&#160;</div>
 <div class="line"><a name="l01567"></a><span class="lineno"> 1567</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l01568"></a><span class="lineno"><a class="line" href="namespacexms.html#ad616ca2ecb89f938799154b405ea66a7"> 1568</a></span>&#160;<span class="keyword">inline</span> <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a> <a class="code" href="namespacexms.html#a631780f1735d5928d3613a6cba3c7f66">operator*</a>(<span class="keywordtype">double</span> a, <span class="keyword">const</span> <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a>&amp; pt)</div>
+<div class="line"><a name="l01568"></a><span class="lineno"> 1568</span>&#160;<span class="keyword">inline</span> Pt3&lt;T&gt; operator*(<span class="keywordtype">double</span> a, <span class="keyword">const</span> Pt3&lt;T&gt;&amp; pt)</div>
 <div class="line"><a name="l01569"></a><span class="lineno"> 1569</span>&#160;{</div>
 <div class="line"><a name="l01570"></a><span class="lineno"> 1570</span>&#160;  <span class="keywordflow">return</span> (pt * a);</div>
 <div class="line"><a name="l01571"></a><span class="lineno"> 1571</span>&#160;}</div>
@@ -1817,7 +1817,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02354"></a><span class="lineno"> 2354</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02359"></a><span class="lineno"> 2359</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02360"></a><span class="lineno"> 2360</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> _From, <span class="keyword">class</span> _To&gt;</div>
-<div class="line"><a name="l02361"></a><span class="lineno"><a class="line" href="namespacexms.html#a659e78a80e43ed5eddb137738c8bba28"> 2361</a></span>&#160;_To&amp; <a class="code" href="namespacexms.html#a659e78a80e43ed5eddb137738c8bba28">Pt3Convert</a>(<span class="keyword">const</span> _From&amp; a_from, _To&amp; a_to)</div>
+<div class="line"><a name="l02361"></a><span class="lineno"> 2361</span>&#160;_To&amp; Pt3Convert(<span class="keyword">const</span> _From&amp; a_from, _To&amp; a_to)</div>
 <div class="line"><a name="l02362"></a><span class="lineno"> 2362</span>&#160;{</div>
 <div class="line"><a name="l02363"></a><span class="lineno"> 2363</span>&#160;  a_to.x = <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>typename _To::value_type<span class="keyword">&gt;</span>(a_from.x);</div>
 <div class="line"><a name="l02364"></a><span class="lineno"> 2364</span>&#160;  a_to.y = <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>typename _To::value_type<span class="keyword">&gt;</span>(a_from.y);</div>
@@ -1837,8 +1837,8 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02380"></a><span class="lineno"> 2380</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02385"></a><span class="lineno"> 2385</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02386"></a><span class="lineno"> 2386</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> <span class="keywordtype">char</span>T, <span class="keyword">typename</span> traits&gt;</div>
-<div class="line"><a name="l02387"></a><span class="lineno"><a class="line" href="namespacexms.html#ac664d3911e8b952aedb47b8aa7fcbe92"> 2387</a></span>&#160;<span class="keyword">inline</span> std::basic_ostream&lt;charT, traits&gt;&amp; operator&lt;&lt;(std::basic_ostream&lt;charT, traits&gt;&amp; strm,</div>
-<div class="line"><a name="l02388"></a><span class="lineno"> 2388</span>&#160;                                                     <span class="keyword">const</span> <a class="code" href="classxms_1_1_pt2.html">Pt2&lt;T&gt;</a>&amp; a_pt)</div>
+<div class="line"><a name="l02387"></a><span class="lineno"> 2387</span>&#160;<span class="keyword">inline</span> std::basic_ostream&lt;charT, traits&gt;&amp; operator&lt;&lt;(std::basic_ostream&lt;charT, traits&gt;&amp; strm,</div>
+<div class="line"><a name="l02388"></a><span class="lineno"> 2388</span>&#160;                                                     <span class="keyword">const</span> Pt2&lt;T&gt;&amp; a_pt)</div>
 <div class="line"><a name="l02389"></a><span class="lineno"> 2389</span>&#160;{</div>
 <div class="line"><a name="l02390"></a><span class="lineno"> 2390</span>&#160;  <span class="comment">// string stream</span></div>
 <div class="line"><a name="l02391"></a><span class="lineno"> 2391</span>&#160;  <span class="comment">// - with same format</span></div>
@@ -1848,7 +1848,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02395"></a><span class="lineno"> 2395</span>&#160;  s.width(0);</div>
 <div class="line"><a name="l02396"></a><span class="lineno"> 2396</span>&#160;</div>
 <div class="line"><a name="l02397"></a><span class="lineno"> 2397</span>&#160;  <span class="comment">// fill string stream</span></div>
-<div class="line"><a name="l02398"></a><span class="lineno"> 2398</span>&#160;  s &lt;&lt; a_pt.<a class="code" href="classxms_1_1_pt2.html#ad745ecd6452f58f494bb7272f15ba094">x</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.y;</div>
+<div class="line"><a name="l02398"></a><span class="lineno"> 2398</span>&#160;  s &lt;&lt; a_pt.x &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.y;</div>
 <div class="line"><a name="l02399"></a><span class="lineno"> 2399</span>&#160;</div>
 <div class="line"><a name="l02400"></a><span class="lineno"> 2400</span>&#160;  <span class="comment">// print string stream</span></div>
 <div class="line"><a name="l02401"></a><span class="lineno"> 2401</span>&#160;  strm &lt;&lt; s.str();</div>
@@ -1858,8 +1858,8 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02405"></a><span class="lineno"> 2405</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02410"></a><span class="lineno"> 2410</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02411"></a><span class="lineno"> 2411</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> <span class="keywordtype">char</span>T, <span class="keyword">typename</span> traits&gt;</div>
-<div class="line"><a name="l02412"></a><span class="lineno"><a class="line" href="namespacexms.html#ab144710d1aa9fda03fd1443dbe58d9b5"> 2412</a></span>&#160;<span class="keyword">inline</span> std::basic_istream&lt;charT, traits&gt;&amp; <a class="code" href="namespacexms.html#ab144710d1aa9fda03fd1443dbe58d9b5">operator&gt;&gt;</a>(std::basic_istream&lt;charT, traits&gt;&amp; strm,</div>
-<div class="line"><a name="l02413"></a><span class="lineno"> 2413</span>&#160;                                                     <a class="code" href="classxms_1_1_pt2.html">Pt2&lt;T&gt;</a>&amp; a_pt)</div>
+<div class="line"><a name="l02412"></a><span class="lineno"> 2412</span>&#160;<span class="keyword">inline</span> std::basic_istream&lt;charT, traits&gt;&amp; operator&gt;&gt;(std::basic_istream&lt;charT, traits&gt;&amp; strm,</div>
+<div class="line"><a name="l02413"></a><span class="lineno"> 2413</span>&#160;                                                     Pt2&lt;T&gt;&amp; a_pt)</div>
 <div class="line"><a name="l02414"></a><span class="lineno"> 2414</span>&#160;{</div>
 <div class="line"><a name="l02415"></a><span class="lineno"> 2415</span>&#160;  T x, y;</div>
 <div class="line"><a name="l02416"></a><span class="lineno"> 2416</span>&#160;</div>
@@ -1880,7 +1880,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02431"></a><span class="lineno"> 2431</span>&#160;</div>
 <div class="line"><a name="l02432"></a><span class="lineno"> 2432</span>&#160;  <span class="keywordflow">if</span> (strm)</div>
 <div class="line"><a name="l02433"></a><span class="lineno"> 2433</span>&#160;  {</div>
-<div class="line"><a name="l02434"></a><span class="lineno"> 2434</span>&#160;    a_pt = <a class="code" href="classxms_1_1_pt2.html">Pt2&lt;T&gt;</a>(x, y);</div>
+<div class="line"><a name="l02434"></a><span class="lineno"> 2434</span>&#160;    a_pt = Pt2&lt;T&gt;(x, y);</div>
 <div class="line"><a name="l02435"></a><span class="lineno"> 2435</span>&#160;  }</div>
 <div class="line"><a name="l02436"></a><span class="lineno"> 2436</span>&#160;</div>
 <div class="line"><a name="l02437"></a><span class="lineno"> 2437</span>&#160;  <span class="keywordflow">return</span> strm;</div>
@@ -1892,8 +1892,8 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02443"></a><span class="lineno"> 2443</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02448"></a><span class="lineno"> 2448</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02449"></a><span class="lineno"> 2449</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> <span class="keywordtype">char</span>T, <span class="keyword">typename</span> traits&gt;</div>
-<div class="line"><a name="l02450"></a><span class="lineno"><a class="line" href="namespacexms.html#ac2e166377153c8720707026ead37f326"> 2450</a></span>&#160;<span class="keyword">inline</span> std::basic_ostream&lt;charT, traits&gt;&amp; operator&lt;&lt;(std::basic_ostream&lt;charT, traits&gt;&amp; strm,</div>
-<div class="line"><a name="l02451"></a><span class="lineno"> 2451</span>&#160;                                                     <span class="keyword">const</span> <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a>&amp; a_pt)</div>
+<div class="line"><a name="l02450"></a><span class="lineno"> 2450</span>&#160;<span class="keyword">inline</span> std::basic_ostream&lt;charT, traits&gt;&amp; operator&lt;&lt;(std::basic_ostream&lt;charT, traits&gt;&amp; strm,</div>
+<div class="line"><a name="l02451"></a><span class="lineno"> 2451</span>&#160;                                                     <span class="keyword">const</span> Pt3&lt;T&gt;&amp; a_pt)</div>
 <div class="line"><a name="l02452"></a><span class="lineno"> 2452</span>&#160;{</div>
 <div class="line"><a name="l02453"></a><span class="lineno"> 2453</span>&#160;  <span class="comment">// string stream</span></div>
 <div class="line"><a name="l02454"></a><span class="lineno"> 2454</span>&#160;  <span class="comment">// - with same format</span></div>
@@ -1903,7 +1903,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02458"></a><span class="lineno"> 2458</span>&#160;  s.width(0);</div>
 <div class="line"><a name="l02459"></a><span class="lineno"> 2459</span>&#160;</div>
 <div class="line"><a name="l02460"></a><span class="lineno"> 2460</span>&#160;  <span class="comment">// fill string stream</span></div>
-<div class="line"><a name="l02461"></a><span class="lineno"> 2461</span>&#160;  s &lt;&lt; a_pt.<a class="code" href="classxms_1_1_pt3.html#a3870f08593cabc47fd5d213ea1c0898a">x</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.y &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.z;</div>
+<div class="line"><a name="l02461"></a><span class="lineno"> 2461</span>&#160;  s &lt;&lt; a_pt.x &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.y &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.z;</div>
 <div class="line"><a name="l02462"></a><span class="lineno"> 2462</span>&#160;</div>
 <div class="line"><a name="l02463"></a><span class="lineno"> 2463</span>&#160;  <span class="comment">// print string stream</span></div>
 <div class="line"><a name="l02464"></a><span class="lineno"> 2464</span>&#160;  strm &lt;&lt; s.str();</div>
@@ -1913,8 +1913,8 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02468"></a><span class="lineno"> 2468</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02473"></a><span class="lineno"> 2473</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02474"></a><span class="lineno"> 2474</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> <span class="keywordtype">char</span>T, <span class="keyword">typename</span> traits&gt;</div>
-<div class="line"><a name="l02475"></a><span class="lineno"><a class="line" href="namespacexms.html#a5bd13d3b7d8191820833e7cba519f7d0"> 2475</a></span>&#160;<span class="keyword">inline</span> std::basic_istream&lt;charT, traits&gt;&amp; <a class="code" href="namespacexms.html#ab144710d1aa9fda03fd1443dbe58d9b5">operator&gt;&gt;</a>(std::basic_istream&lt;charT, traits&gt;&amp; strm,</div>
-<div class="line"><a name="l02476"></a><span class="lineno"> 2476</span>&#160;                                                     <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a>&amp; a_pt)</div>
+<div class="line"><a name="l02475"></a><span class="lineno"> 2475</span>&#160;<span class="keyword">inline</span> std::basic_istream&lt;charT, traits&gt;&amp; operator&gt;&gt;(std::basic_istream&lt;charT, traits&gt;&amp; strm,</div>
+<div class="line"><a name="l02476"></a><span class="lineno"> 2476</span>&#160;                                                     Pt3&lt;T&gt;&amp; a_pt)</div>
 <div class="line"><a name="l02477"></a><span class="lineno"> 2477</span>&#160;{</div>
 <div class="line"><a name="l02478"></a><span class="lineno"> 2478</span>&#160;  T x, y, z;</div>
 <div class="line"><a name="l02479"></a><span class="lineno"> 2479</span>&#160;</div>
@@ -1945,7 +1945,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02504"></a><span class="lineno"> 2504</span>&#160;</div>
 <div class="line"><a name="l02505"></a><span class="lineno"> 2505</span>&#160;  <span class="keywordflow">if</span> (strm)</div>
 <div class="line"><a name="l02506"></a><span class="lineno"> 2506</span>&#160;  {</div>
-<div class="line"><a name="l02507"></a><span class="lineno"> 2507</span>&#160;    a_pt = <a class="code" href="classxms_1_1_pt3.html">Pt3&lt;T&gt;</a>(x, y, z);</div>
+<div class="line"><a name="l02507"></a><span class="lineno"> 2507</span>&#160;    a_pt = Pt3&lt;T&gt;(x, y, z);</div>
 <div class="line"><a name="l02508"></a><span class="lineno"> 2508</span>&#160;  }</div>
 <div class="line"><a name="l02509"></a><span class="lineno"> 2509</span>&#160;</div>
 <div class="line"><a name="l02510"></a><span class="lineno"> 2510</span>&#160;  <span class="keywordflow">return</span> strm;</div>
@@ -1957,8 +1957,8 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02516"></a><span class="lineno"> 2516</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02521"></a><span class="lineno"> 2521</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02522"></a><span class="lineno"> 2522</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> <span class="keywordtype">char</span>T, <span class="keyword">typename</span> traits&gt;</div>
-<div class="line"><a name="l02523"></a><span class="lineno"><a class="line" href="namespacexms.html#a371ec7fc6076bc607aac9ad86cabd3e6"> 2523</a></span>&#160;<span class="keyword">inline</span> std::basic_ostream&lt;charT, traits&gt;&amp; operator&lt;&lt;(std::basic_ostream&lt;charT, traits&gt;&amp; strm,</div>
-<div class="line"><a name="l02524"></a><span class="lineno"> 2524</span>&#160;                                                     <span class="keyword">const</span> <a class="code" href="classxms_1_1_pt4.html">Pt4&lt;T&gt;</a>&amp; a_pt)</div>
+<div class="line"><a name="l02523"></a><span class="lineno"> 2523</span>&#160;<span class="keyword">inline</span> std::basic_ostream&lt;charT, traits&gt;&amp; operator&lt;&lt;(std::basic_ostream&lt;charT, traits&gt;&amp; strm,</div>
+<div class="line"><a name="l02524"></a><span class="lineno"> 2524</span>&#160;                                                     <span class="keyword">const</span> Pt4&lt;T&gt;&amp; a_pt)</div>
 <div class="line"><a name="l02525"></a><span class="lineno"> 2525</span>&#160;{</div>
 <div class="line"><a name="l02526"></a><span class="lineno"> 2526</span>&#160;  <span class="comment">// string stream</span></div>
 <div class="line"><a name="l02527"></a><span class="lineno"> 2527</span>&#160;  <span class="comment">// - with same format</span></div>
@@ -1968,7 +1968,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02531"></a><span class="lineno"> 2531</span>&#160;  s.width(0);</div>
 <div class="line"><a name="l02532"></a><span class="lineno"> 2532</span>&#160;</div>
 <div class="line"><a name="l02533"></a><span class="lineno"> 2533</span>&#160;  <span class="comment">// fill string stream</span></div>
-<div class="line"><a name="l02534"></a><span class="lineno"> 2534</span>&#160;  s &lt;&lt; a_pt.<a class="code" href="classxms_1_1_pt4.html#aad37780e1c7e2ee393de407fb197b8f9">x</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.y &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.z &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.w;</div>
+<div class="line"><a name="l02534"></a><span class="lineno"> 2534</span>&#160;  s &lt;&lt; a_pt.x &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.y &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.z &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; a_pt.w;</div>
 <div class="line"><a name="l02535"></a><span class="lineno"> 2535</span>&#160;</div>
 <div class="line"><a name="l02536"></a><span class="lineno"> 2536</span>&#160;  <span class="comment">// print string stream</span></div>
 <div class="line"><a name="l02537"></a><span class="lineno"> 2537</span>&#160;  strm &lt;&lt; s.str();</div>
@@ -1978,8 +1978,8 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02541"></a><span class="lineno"> 2541</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02546"></a><span class="lineno"> 2546</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l02547"></a><span class="lineno"> 2547</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> <span class="keywordtype">char</span>T, <span class="keyword">typename</span> traits&gt;</div>
-<div class="line"><a name="l02548"></a><span class="lineno"><a class="line" href="namespacexms.html#a76c9fa0b148a3a01b927943faad3b7b9"> 2548</a></span>&#160;<span class="keyword">inline</span> std::basic_istream&lt;charT, traits&gt;&amp; <a class="code" href="namespacexms.html#ab144710d1aa9fda03fd1443dbe58d9b5">operator&gt;&gt;</a>(std::basic_istream&lt;charT, traits&gt;&amp; strm,</div>
-<div class="line"><a name="l02549"></a><span class="lineno"> 2549</span>&#160;                                                     <a class="code" href="classxms_1_1_pt4.html">Pt4&lt;T&gt;</a>&amp; a_pt)</div>
+<div class="line"><a name="l02548"></a><span class="lineno"> 2548</span>&#160;<span class="keyword">inline</span> std::basic_istream&lt;charT, traits&gt;&amp; operator&gt;&gt;(std::basic_istream&lt;charT, traits&gt;&amp; strm,</div>
+<div class="line"><a name="l02549"></a><span class="lineno"> 2549</span>&#160;                                                     Pt4&lt;T&gt;&amp; a_pt)</div>
 <div class="line"><a name="l02550"></a><span class="lineno"> 2550</span>&#160;{</div>
 <div class="line"><a name="l02551"></a><span class="lineno"> 2551</span>&#160;  T x, y, z, w;</div>
 <div class="line"><a name="l02552"></a><span class="lineno"> 2552</span>&#160;</div>
@@ -2021,7 +2021,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="line"><a name="l02588"></a><span class="lineno"> 2588</span>&#160;</div>
 <div class="line"><a name="l02589"></a><span class="lineno"> 2589</span>&#160;  <span class="keywordflow">if</span> (strm)</div>
 <div class="line"><a name="l02590"></a><span class="lineno"> 2590</span>&#160;  {</div>
-<div class="line"><a name="l02591"></a><span class="lineno"> 2591</span>&#160;    a_pt = <a class="code" href="classxms_1_1_pt4.html">Pt4&lt;T&gt;</a>(x, y, z, w);</div>
+<div class="line"><a name="l02591"></a><span class="lineno"> 2591</span>&#160;    a_pt = Pt4&lt;T&gt;(x, y, z, w);</div>
 <div class="line"><a name="l02592"></a><span class="lineno"> 2592</span>&#160;  }</div>
 <div class="line"><a name="l02593"></a><span class="lineno"> 2593</span>&#160;</div>
 <div class="line"><a name="l02594"></a><span class="lineno"> 2594</span>&#160;  <span class="keywordflow">return</span> strm;</div>
@@ -2082,7 +2082,6 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="ttc" id="classxms_1_1_pt2_html_a9dd1e8f08f4832905437006a1cd4e3e7"><div class="ttname"><a href="classxms_1_1_pt2.html#a9dd1e8f08f4832905437006a1cd4e3e7">xms::Pt2::operator&gt;</a></div><div class="ttdeci">bool operator&gt;(const Pt2&lt; U &gt; &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00381">pt.h:381</a></div></div>
 <div class="ttc" id="classxms_1_1_pt2_html_ad745ecd6452f58f494bb7272f15ba094"><div class="ttname"><a href="classxms_1_1_pt2.html#ad745ecd6452f58f494bb7272f15ba094">xms::Pt2::x</a></div><div class="ttdeci">T x</div><div class="ttdoc">x coordinate </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00089">pt.h:89</a></div></div>
 <div class="ttc" id="classxms_1_1_pt2_html_a463081f2102af08f15448ac9aa765276"><div class="ttname"><a href="classxms_1_1_pt2.html#a463081f2102af08f15448ac9aa765276">xms::Pt2::operator*</a></div><div class="ttdeci">Pt2 operator*(const Pt2&lt; U &gt; &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00522">pt.h:522</a></div></div>
-<div class="ttc" id="namespacexms_html_a631780f1735d5928d3613a6cba3c7f66"><div class="ttname"><a href="namespacexms.html#a631780f1735d5928d3613a6cba3c7f66">xms::operator*</a></div><div class="ttdeci">Pt3&lt; T &gt; operator*(int a, const Pt3&lt; T &gt; &amp;pt)</div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l01548">pt.h:1548</a></div></div>
 <div class="ttc" id="classxms_1_1_pt2_html_a72cf59bba9893abe5768054ac83c06c7"><div class="ttname"><a href="classxms_1_1_pt2.html#a72cf59bba9893abe5768054ac83c06c7">xms::Pt2::operator=</a></div><div class="ttdeci">const Pt2 &amp; operator=(const U &amp;a)</div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00158">pt.h:158</a></div></div>
 <div class="ttc" id="classxms_1_1_pt4_html_a6263db5973ed2bc03bd357c4d7d8b7a2"><div class="ttname"><a href="classxms_1_1_pt4.html#a6263db5973ed2bc03bd357c4d7d8b7a2">xms::Pt4::operator-</a></div><div class="ttdeci">Pt4 operator-(const Pt2&lt; U &gt; &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l02032">pt.h:2032</a></div></div>
 <div class="ttc" id="classxms_1_1_pt4_html_aea4582e226c3400945ef43ea303f1938"><div class="ttname"><a href="classxms_1_1_pt4.html#aea4582e226c3400945ef43ea303f1938">xms::Pt4::operator&gt;</a></div><div class="ttdeci">bool operator&gt;(const Pt3&lt; U &gt; &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l01939">pt.h:1939</a></div></div>
@@ -2176,7 +2175,6 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="ttc" id="classxms_1_1_pt2_html_a40049c791d2a5b8b95f611186bf06a70"><div class="ttname"><a href="classxms_1_1_pt2.html#a40049c791d2a5b8b95f611186bf06a70">xms::Pt2::operator+</a></div><div class="ttdeci">Pt2 operator+(const Pt2&lt; U &gt; &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00449">pt.h:449</a></div></div>
 <div class="ttc" id="classxms_1_1_pt3_html_a1b4a4cb9de9e47f8e0702dd7ac6e1fa7"><div class="ttname"><a href="classxms_1_1_pt3.html#a1b4a4cb9de9e47f8e0702dd7ac6e1fa7">xms::Pt3::~Pt3</a></div><div class="ttdeci">~Pt3()</div><div class="ttdoc">destructor. can&#39;t be virtual </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00877">pt.h:877</a></div></div>
 <div class="ttc" id="classxms_1_1_pt3_html_a4703ba1475fe6eb8bb981b3f6f0f2854"><div class="ttname"><a href="classxms_1_1_pt3.html#a4703ba1475fe6eb8bb981b3f6f0f2854">xms::Pt3::Set</a></div><div class="ttdeci">void Set(T a_x, T a_y, T a_z)</div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l01475">pt.h:1475</a></div></div>
-<div class="ttc" id="namespacexms_html_a659e78a80e43ed5eddb137738c8bba28"><div class="ttname"><a href="namespacexms.html#a659e78a80e43ed5eddb137738c8bba28">xms::Pt3Convert</a></div><div class="ttdeci">_To &amp; Pt3Convert(const _From &amp;a_from, _To &amp;a_to)</div><div class="ttdoc">Convert from one Pt3 to another. </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l02361">pt.h:2361</a></div></div>
 <div class="ttc" id="classxms_1_1_pt4_html_a0659b7115dc185bb3f1b029afff10f60"><div class="ttname"><a href="classxms_1_1_pt4.html#a0659b7115dc185bb3f1b029afff10f60">xms::Pt4::operator*=</a></div><div class="ttdeci">void operator*=(const U &amp;a)</div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l02205">pt.h:2205</a></div></div>
 <div class="ttc" id="classxms_1_1_pt3_html"><div class="ttname"><a href="classxms_1_1_pt3.html">xms::Pt3</a></div><div class="ttdoc">3d point template class </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00792">pt.h:792</a></div></div>
 <div class="ttc" id="classxms_1_1_pt2_html_a18572826ae6b934a324b196f0b58de88"><div class="ttname"><a href="classxms_1_1_pt2.html#a18572826ae6b934a324b196f0b58de88">xms::Pt2::y</a></div><div class="ttdeci">T y</div><div class="ttdoc">y coordinate </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00090">pt.h:90</a></div></div>
@@ -2197,7 +2195,6 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div class="ttc" id="classxms_1_1_pt4_html_a0317081b250e4f55459ee28fe9ed4ac4"><div class="ttname"><a href="classxms_1_1_pt4.html#a0317081b250e4f55459ee28fe9ed4ac4">xms::Pt4::operator/=</a></div><div class="ttdeci">void operator/=(const Pt3&lt; U &gt; &amp;a)</div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l02261">pt.h:2261</a></div></div>
 <div class="ttc" id="classxms_1_1_pt3_html_acec50c61924f9ee1cb04d4688c26a511"><div class="ttname"><a href="classxms_1_1_pt3.html#acec50c61924f9ee1cb04d4688c26a511">xms::Pt3::operator+</a></div><div class="ttdeci">Pt3 operator+(const Pt3&lt; U &gt; &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l01206">pt.h:1206</a></div></div>
 <div class="ttc" id="classxms_1_1_pt3_html_a00314e5f8cada621d2ed87e14343e88e"><div class="ttname"><a href="classxms_1_1_pt3.html#a00314e5f8cada621d2ed87e14343e88e">xms::Pt3::operator!=</a></div><div class="ttdeci">bool operator!=(const Pt2&lt; U &gt; &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l00970">pt.h:970</a></div></div>
-<div class="ttc" id="namespacexms_html_ab144710d1aa9fda03fd1443dbe58d9b5"><div class="ttname"><a href="namespacexms.html#ab144710d1aa9fda03fd1443dbe58d9b5">xms::operator&gt;&gt;</a></div><div class="ttdeci">std::basic_istream&lt; charT, traits &gt; &amp; operator&gt;&gt;(std::basic_istream&lt; charT, traits &gt; &amp;strm, Pt2&lt; T &gt; &amp;a_pt)</div><div class="ttdoc">operator&gt;&gt; </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l02412">pt.h:2412</a></div></div>
 <div class="ttc" id="classxms_1_1_pt4_html_a234545de1999aceb1261c72f8ad5cc6f"><div class="ttname"><a href="classxms_1_1_pt4.html#a234545de1999aceb1261c72f8ad5cc6f">xms::Pt4::operator&lt;=</a></div><div class="ttdeci">bool operator&lt;=(const U &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l01890">pt.h:1890</a></div></div>
 <div class="ttc" id="classxms_1_1_pt3_html_a12f67e56e04e520414eeee1bec541d35"><div class="ttname"><a href="classxms_1_1_pt3.html#a12f67e56e04e520414eeee1bec541d35">xms::Pt3::operator+</a></div><div class="ttdeci">Pt3 operator+(const U &amp;a) const </div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l01190">pt.h:1190</a></div></div>
 <div class="ttc" id="classxms_1_1_pt4_html_a4868f688b2e42ee007a83d8020dab7ef"><div class="ttname"><a href="classxms_1_1_pt4.html#a4868f688b2e42ee007a83d8020dab7ef">xms::Pt4::operator=</a></div><div class="ttdeci">const Pt4 &amp; operator=(const U &amp;a)</div><div class="ttdef"><b>Definition:</b> <a href="pt_8h_source.html#l01668">pt.h:1668</a></div></div>
@@ -2259,7 +2256,7 @@ $(document).ready(function(){initNavTree('pt_8h_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_23f3c927444a6adb7b8d9e2e971871ec.html">points</a></li><li class="navelem"><a class="el" href="pt_8h.html">pt.h</a></li>
-    <li class="footer">Generated on Fri Oct 5 2018 05:31:55 for xmscore by
+    <li class="footer">Generated on Fri Oct 5 2018 15:58:35 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

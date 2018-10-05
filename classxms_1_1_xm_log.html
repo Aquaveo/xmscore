@@ -116,6 +116,11 @@ $(document).ready(function(){initNavTree('classxms_1_1_xm_log.html','');});
 <div class="title">xms::XmLog Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class for logging messages.  
+ <a href="classxms_1_1_xm_log.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_xm_log_8h_source.html">XmLog.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for xms::XmLog:</div>
 <div class="dyncontent">
@@ -129,6 +134,7 @@ Inheritance diagram for xms::XmLog:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Impl</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">implementation of <a class="el" href="classxms_1_1_xm_log.html" title="Class for logging messages. ">XmLog</a>  <a href="structxms_1_1_xm_log_1_1_impl.html#details">More...</a><br/></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -143,7 +149,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a20ed692af6d8c0100c02f314c6395379"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_xm_log.html#a20ed692af6d8c0100c02f314c6395379">ErrCount</a> ()</td></tr>
 <tr class="memdesc:a20ed692af6d8c0100c02f314c6395379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the current count of the error stack.  <a href="#a20ed692af6d8c0100c02f314c6395379">More...</a><br/></td></tr>
 <tr class="separator:a20ed692af6d8c0100c02f314c6395379"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a931d33575128f427516bd258dd9642bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacexms.html#a854f1e57e755779b900d32077f1fb70c">MessageStack</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_xm_log.html#a931d33575128f427516bd258dd9642bd">GetAndClearStack</a> ()</td></tr>
+<tr class="memitem:a931d33575128f427516bd258dd9642bd"><td class="memItemLeft" align="right" valign="top">MessageStack&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_xm_log.html#a931d33575128f427516bd258dd9642bd">GetAndClearStack</a> ()</td></tr>
 <tr class="memdesc:a931d33575128f427516bd258dd9642bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a copy of the error stack before clearing it.  <a href="#a931d33575128f427516bd258dd9642bd">More...</a><br/></td></tr>
 <tr class="separator:a931d33575128f427516bd258dd9642bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a0e58e950e973b880fdfd566062a38b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_xm_log.html#a6a0e58e950e973b880fdfd566062a38b">GetAndClearStackStr</a> ()</td></tr>
@@ -152,7 +158,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab3d175834a2ed9bff301cbf304f89f47"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="namespacexms.html#ae3cd81470802b85051b6ef7e4c097535">XmLogFilenameCallback</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_xm_log.html#ab3d175834a2ed9bff301cbf304f89f47">LogFilenameCallback</a> ()</td></tr>
+<tr class="memitem:ab3d175834a2ed9bff301cbf304f89f47"><td class="memItemLeft" align="right" valign="top">static XmLogFilenameCallback &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_xm_log.html#ab3d175834a2ed9bff301cbf304f89f47">LogFilenameCallback</a> ()</td></tr>
 <tr class="memdesc:ab3d175834a2ed9bff301cbf304f89f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the callback that returns the log filename.  <a href="#ab3d175834a2ed9bff301cbf304f89f47">More...</a><br/></td></tr>
 <tr class="separator:ab3d175834a2ed9bff301cbf304f89f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a9ac073794a7d8919c088de774811d5"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxms_1_1_xm_log.html#a8a9ac073794a7d8919c088de774811d5">LogFilename</a> ()</td></tr>
@@ -185,8 +191,9 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 <tr class="separator:abed3e6f252bd9d475e9c14c724f52ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p>Definition at line <a class="el" href="_xm_log_8h_source.html#l00112">112</a> of file <a class="el" href="_xm_log_8h_source.html">XmLog.h</a>.</p>
+<div class="textblock"><p>Class for logging messages. </p>
+
+<p>Definition at line <a class="el" href="_xm_log_8h_source.html#l00113">113</a> of file <a class="el" href="_xm_log_8h_source.html">XmLog.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa755e43cb07d364b0bce3b265569985b"></a>
 <div class="memitem">
@@ -237,7 +244,7 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 
 <p>Definition at line <a class="el" href="_xm_log_8cpp_source.html#l00221">221</a> of file <a class="el" href="_xm_log_8cpp_source.html">XmLog.cpp</a>.</p>
 
-<p>References <a class="el" href="_xm_log_8h_source.html#l00132">m</a>.</p>
+<p>References <a class="el" href="_xm_log_8h_source.html#l00133">m</a>.</p>
 
 </div>
 </div>
@@ -246,7 +253,7 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacexms.html#a854f1e57e755779b900d32077f1fb70c">MessageStack</a> xms::XmLog::GetAndClearStack </td>
+          <td class="memname">MessageStack xms::XmLog::GetAndClearStack </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -259,7 +266,7 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 
 <p>Definition at line <a class="el" href="_xm_log_8cpp_source.html#l00239">239</a> of file <a class="el" href="_xm_log_8cpp_source.html">XmLog.cpp</a>.</p>
 
-<p>References <a class="el" href="_xm_log_8h_source.html#l00132">m</a>.</p>
+<p>References <a class="el" href="_xm_log_8h_source.html#l00133">m</a>.</p>
 
 </div>
 </div>
@@ -281,9 +288,7 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 
 <p>Definition at line <a class="el" href="_xm_log_8cpp_source.html#l00229">229</a> of file <a class="el" href="_xm_log_8cpp_source.html">XmLog.cpp</a>.</p>
 
-<p>References <a class="el" href="_xm_log_8h_source.html#l00132">m</a>.</p>
-
-<p>Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00363">xms::ttAssertStackedErrors()</a>.</p>
+<p>References <a class="el" href="_xm_log_8h_source.html#l00133">m</a>.</p>
 
 </div>
 </div>
@@ -336,9 +341,7 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 
 <p>Definition at line <a class="el" href="_xm_log_8cpp_source.html#l00191">191</a> of file <a class="el" href="_xm_log_8cpp_source.html">XmLog.cpp</a>.</p>
 
-<p>References <a class="el" href="_xm_log_8h_source.html#l00083">xmlog::debug</a>, <a class="el" href="_xm_log_8h_source.html#l00132">m</a>, and <a class="el" href="_xm_log_8h_source.html#l00057">XM_LOG</a>.</p>
-
-<p>Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00210">xms::ttGetXmsngTestPath()</a>.</p>
+<p>References <a class="el" href="_xm_log_8h_source.html#l00083">xmlog::debug</a>, <a class="el" href="_xm_log_8h_source.html#l00133">m</a>, and <a class="el" href="_xm_log_8h_source.html#l00057">XM_LOG</a>.</p>
 
 </div>
 </div>
@@ -364,14 +367,14 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 </div><div class="memdoc">
 
 <p>Return the name of the log file. </p>
-<p>Static because the <a class="el" href="classxms_1_1_xm_log.html">XmLog</a> constructor needs it, so we must set LogFilenameCallback BEFORE we construct the <a class="el" href="classxms_1_1_xm_log.html">XmLog</a> singleton. </p>
+<p>Static because the <a class="el" href="classxms_1_1_xm_log.html" title="Class for logging messages. ">XmLog</a> constructor needs it, so we must set LogFilenameCallback BEFORE we construct the <a class="el" href="classxms_1_1_xm_log.html" title="Class for logging messages. ">XmLog</a> singleton. </p>
 <dl class="section return"><dt>Returns</dt><dd>The name of the log file. </dd></dl>
 
 <p>Definition at line <a class="el" href="_xm_log_8cpp_source.html#l00263">263</a> of file <a class="el" href="_xm_log_8cpp_source.html">XmLog.cpp</a>.</p>
 
 <p>References <a class="el" href="_xm_log_8cpp_source.html#l00252">LogFilenameCallback()</a>.</p>
 
-<p>Referenced by <a class="el" href="_xm_log_8cpp_source.html#l00312">xms::iTest_XM_LOG_debug()</a>, <a class="el" href="_xm_log_8cpp_source.html#l00331">xms::iTest_XM_LOG_stackable()</a>, and <a class="el" href="_xm_log_8cpp_source.html#l00140">XmLog()</a>.</p>
+<p>Referenced by <a class="el" href="_xm_log_8cpp_source.html#l00140">XmLog()</a>.</p>
 
 </div>
 </div>
@@ -383,7 +386,7 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacexms.html#ae3cd81470802b85051b6ef7e4c097535">XmLogFilenameCallback</a> &amp; xms::XmLog::LogFilenameCallback </td>
+          <td class="memname">XmLogFilenameCallback &amp; xms::XmLog::LogFilenameCallback </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -397,12 +400,10 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 </div><div class="memdoc">
 
 <p>Set the callback that returns the log filename. </p>
-<p>Static because the <a class="el" href="classxms_1_1_xm_log.html">XmLog</a> constructor needs it, so we must set it BEFORE we construct the <a class="el" href="classxms_1_1_xm_log.html">XmLog</a> singleton. </p>
+<p>Static because the <a class="el" href="classxms_1_1_xm_log.html" title="Class for logging messages. ">XmLog</a> constructor needs it, so we must set it BEFORE we construct the <a class="el" href="classxms_1_1_xm_log.html" title="Class for logging messages. ">XmLog</a> singleton. </p>
 <dl class="section return"><dt>Returns</dt><dd>The callback. </dd></dl>
 
 <p>Definition at line <a class="el" href="_xm_log_8cpp_source.html#l00252">252</a> of file <a class="el" href="_xm_log_8cpp_source.html">XmLog.cpp</a>.</p>
-
-<p>References <a class="el" href="_xm_log_8cpp_source.html#l00108">xms::fg_logFilenameCallback</a>.</p>
 
 <p>Referenced by <a class="el" href="_xm_log_8cpp_source.html#l00263">LogFilename()</a>.</p>
 
@@ -417,8 +418,8 @@ boost::scoped_ptr&lt; <a class="el" href="structxms_1_1_xm_log_1_1_impl.html">Im
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespacexms.html">xms</a></li><li class="navelem"><a class="el" href="classxms_1_1_xm_log.html">XmLog</a></li>
-    <li class="footer">Generated on Fri Oct 5 2018 05:31:56 for xmscore by
+    <li class="navelem"><b>xms</b></li><li class="navelem"><a class="el" href="classxms_1_1_xm_log.html">XmLog</a></li>
+    <li class="footer">Generated on Fri Oct 5 2018 15:58:35 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>

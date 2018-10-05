@@ -119,12 +119,12 @@ $(document).ready(function(){initNavTree('utility_8h_source.html','');});
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//----- pairs ------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="namespacexms.html#ad9330a096ca1941af220275e240016d2">   17</a></span>&#160;<span class="keyword">typedef</span> std::pair&lt;int, int&gt; <a class="code" href="namespacexms.html#ad9330a096ca1941af220275e240016d2">PAIR_I_I</a>; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">typedef</span> std::pair&lt;int, int&gt; PAIR_I_I; </div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">class</span> _T, <span class="keyword">class</span> _U&gt;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="namespacexms.html#ac1d111686a755d63ff7ff55c80450e9e">   26</a></span>&#160;std::ostream&amp; operator&lt;&lt;(std::ostream&amp; a_output, const std::pair&lt;_T, _U&gt;&amp; a_value)</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;std::ostream&amp; operator&lt;&lt;(std::ostream&amp; a_output, const std::pair&lt;_T, _U&gt;&amp; a_value)</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;  a_output &lt;&lt; <span class="stringliteral">&quot;,size=&quot;</span> &lt;&lt; a_value.size();</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="comment">// add loop here like std::vector</span></div>
@@ -133,7 +133,7 @@ $(document).ready(function(){initNavTree('utility_8h_source.html','');});
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"></span><span class="comment">//------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="namespacexms.html#a9be33abf1221de1679a4ff237b549efb">   39</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespacexms.html#a9be33abf1221de1679a4ff237b549efb">VecToStream</a>(std::stringstream&amp; a_ss, <span class="keyword">const</span> T&amp; a_v, std::string a_label)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> VecToStream(std::stringstream&amp; a_ss, <span class="keyword">const</span> T&amp; a_v, std::string a_label)</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="comment">// if (!a_v.empty() &amp;&amp; !a_ss.str().empty()) { a_ss &lt;&lt; &quot;,&quot;; }</span></div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; a_v.size(); ++i)</div>
@@ -147,15 +147,13 @@ $(document).ready(function(){initNavTree('utility_8h_source.html','');});
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// VecToStream</span></div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;} <span class="comment">// namespace xms {</span></div>
-<div class="ttc" id="namespacexms_html_a9be33abf1221de1679a4ff237b549efb"><div class="ttname"><a href="namespacexms.html#a9be33abf1221de1679a4ff237b549efb">xms::VecToStream</a></div><div class="ttdeci">void VecToStream(std::stringstream &amp;a_ss, const T &amp;a_v, std::string a_label)</div><div class="ttdoc">Export a vector or bitset to a stringstream. </div><div class="ttdef"><b>Definition:</b> <a href="utility_8h_source.html#l00039">utility.h:39</a></div></div>
-<div class="ttc" id="namespacexms_html_ad9330a096ca1941af220275e240016d2"><div class="ttname"><a href="namespacexms.html#ad9330a096ca1941af220275e240016d2">xms::PAIR_I_I</a></div><div class="ttdeci">std::pair&lt; int, int &gt; PAIR_I_I</div><div class="ttdoc">short rename </div><div class="ttdef"><b>Definition:</b> <a href="utility_8h_source.html#l00017">utility.h:17</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_7215248b9fd9b286115742ce43a743df.html">stl</a></li><li class="navelem"><a class="el" href="utility_8h.html">utility.h</a></li>
-    <li class="footer">Generated on Fri Oct 5 2018 05:31:55 for xmscore by
+    <li class="footer">Generated on Fri Oct 5 2018 15:58:35 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.6 </li>
   </ul>
