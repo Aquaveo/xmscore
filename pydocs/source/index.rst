@@ -12,6 +12,7 @@ XmsCore |version|
 The xmscore library is a support library for other aquaveo products. This library contains classes generally used by all aquaveo libraries.
 
 Contents
+========
 
 .. toctree::
    :maxdepth: 1
@@ -20,6 +21,7 @@ Contents
    modules
 
 Acknowledgements
+================
 
 This library is from work done by aquaveo developers to support other aquaveo libraries.
 
