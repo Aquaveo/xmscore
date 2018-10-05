@@ -136,8 +136,6 @@ jobs:
       - stage: test
         addons:
           apt:
-            source:
-              - ubuntu-toolchain-r-test
             packages:
               - doxygen
               - doxygen-doc
@@ -146,9 +144,8 @@ jobs:
               - graphviz
               - gcc-5
         <<: *linux
-        group: stable
         dist: trusty
-        env: TASK_NAME="DOXYGEN Generation" CXX=g++11
+        env: TASK_NAME="DOXYGEN Generation" CC=gcc-5 CXX=g++-5
         script: 
           - cd $TRAVIS_BUILD_DIR
           - chmod +x generateDocumentationAndDeploy.sh
