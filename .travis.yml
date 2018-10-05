@@ -134,6 +134,7 @@ jobs:
       # DOCUMENTATION
       #- stage: documentation
       - stage: test
+        sudo: true
         addons:
           apt:
             packages:
@@ -142,13 +143,11 @@ jobs:
               - doxygen-latex
               - doxygen-gui
               - graphviz
-              - gcc-5
         <<: *linux
-        env: TASK_NAME=Documentation CC=gcc-5 CXX=g++-5
+        env: TASK_NAME=Documentation
         script: 
+          - sudo apt-get install gcc-5
           - cd $TRAVIS_BUILD_DIR
           - chmod +x generateDocumentationAndDeploy.sh
-          - $CC --version
-          - $CXX --version
           - ./generateDocumentationAndDeploy.sh
 
