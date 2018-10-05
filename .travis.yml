@@ -143,7 +143,6 @@ jobs:
               - doxygen-gui
               - graphviz
               - gcc-5
-              - g++-5
         <<: *linux
         dist: trusty
         env: TASK_NAME="DOXYGEN Generation"
