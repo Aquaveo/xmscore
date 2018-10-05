@@ -3,22 +3,23 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to xmscore's documentation!
-===================================
+Welcome to the documentation for xmscore!
+=========================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
+   :caption: Table of Contents:
    
+   intro
    classes/observer
 
-.. automodule:: xmscore_py
+Documentation for the xmscore python package developed by Aquaveo.
+If you would like to see the documentation for the c++ code please 
+visit the `Doxygen Documentation <https://aquaveo.github.io/xmscore>`_
 
-.. toctree::
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. image:: _static/aquaveo.png
+   :width: 800px
+   :height: 500px
+   :scale: 100 %
+   :alt: alternate text
+   :align: center
