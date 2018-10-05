@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['ptr',['Ptr',['../classxms_1_1_shared_singleton.html#a4aa3991d5986246d9e6d3ce16c50684d',1,'xms::SharedSingleton']]]
+  ['deq_5fpt2d',['DEQ_PT2D',['../deque_8h.html#ad17ebff442a5af50e93b027dc76fac07',1,'xms']]],
+  ['deqpt2d',['DeqPt2d',['../deque_8h.html#ab075c6283191e8574d5b982e7a059e03',1,'xms']]],
+  ['dynbitset',['DynBitset',['../_dyn_bitset_8h.html#aba8c1eacfbbd2d1f45cef2fd55a35d93',1,'xms']]]
 ];
