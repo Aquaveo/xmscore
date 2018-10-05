@@ -69,7 +69,7 @@ rm -rf *
 echo "" > .nojekyll
 
 #install doxygen
-apt-get install doxygen
+sudo apt-get install doxygen
 
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
