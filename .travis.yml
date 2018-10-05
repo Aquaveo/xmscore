@@ -138,13 +138,15 @@ jobs:
         language: cpp
         addons:
           apt:
+            source:
+              - ubuntu-toolchain-r-test
             packages:
               - doxygen
               - doxygen-doc
               - doxygen-latex
               - doxygen-gui
               - graphviz
-              - gcc-5
+              - g++-5
         <<: *linux
         env: TASK_NAME=Documentation
         script: 
