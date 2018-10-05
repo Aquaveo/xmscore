@@ -143,6 +143,7 @@ jobs:
               - doxygen-gui
               - graphviz
         <<: *linux
+        dist: trusty
         env: TASK_NAME="DOXYGEN Generation"
         script: 
           - cd $TRAVIS_BUILD_DIR
