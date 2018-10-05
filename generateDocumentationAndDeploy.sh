@@ -73,7 +73,7 @@ echo "" > .nojekyll
 echo 'Generating Doxygen code documentation...'
 # Redirect both stderr and stdout to the log file AND the console.
 cd $(dirname $DOXYFILE)
-echo doxygen -v
+doxygen -v
 doxygen $DOXYFILE 2>&1 | tee doxygen.log
 
 # Check for warnings in doxygen
