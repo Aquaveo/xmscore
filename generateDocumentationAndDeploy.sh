@@ -69,7 +69,7 @@ rm -rf *
 echo "" > .nojekyll
 
 #install doxygen
-sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+sudo apt-get update
 sudo apt-get install doxygen
 
 ################################################################################
