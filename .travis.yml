@@ -142,9 +142,7 @@ jobs:
               - doxygen-latex
               - doxygen-gui
               - graphviz
-              - gcc-5
         <<: *linux
-        env: TASK_NAME="DOXYGEN Generation" CC=gcc-5 CXX=g++-5
         script: 
           - cd $TRAVIS_BUILD_DIR
           - chmod +x generateDocumentationAndDeploy.sh
