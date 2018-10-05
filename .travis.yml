@@ -146,7 +146,6 @@ jobs:
               - doxygen-latex
               - doxygen-gui
               - graphviz
-              - gcc-5
         <<: *linux
         env: TASK_NAME=Documentation
         script: 
