@@ -2,15 +2,17 @@
 Getting Started
 ***************
 
-This is some instructions for getting started
-
 Installation
 ============
 
-Installation instructions go here...
+.. note::
+   
+    Installation instructions coming soon!
 
 Tutorial
 ========
 
-Tutorial goes here...
+.. note::
+   
+    Tutorial coming soon!
 

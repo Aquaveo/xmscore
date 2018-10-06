@@ -29,6 +29,7 @@ Doxygen/html/*
 *.so
 *.dylib
 *.dll
+*.pyd
 
 # Fortran module files
 *.mod
@@ -44,3 +45,7 @@ Doxygen/html/*
 *.exe
 *.out
 *.app
+
+# build directories
+build/*
+pybuild/*

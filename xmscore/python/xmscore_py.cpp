@@ -30,6 +30,14 @@ PYBIND11_MODULE(xmscore_py, m) {
     m.def("__version__", &version,
           "Get current version of xmscore Python bindings.");
 
-    py::module modMisc = m.def_submodule("misc");
+
+
+    const char* misc_doc = R"pydoc(
+        The misc module of the xmscore python library contains classes and
+        functions that are shared between all of the xms family of libraries.
+        These functions and classes can be used in any of the library to ensure
+        that functionality is standardized.
+    )pydoc";
+    py::module modMisc = m.def_submodule("misc", misc_doc);
     initMisc(modMisc);
 }
