@@ -14,17 +14,20 @@
 namespace py = pybind11;
 
 //----- Python Interface -------------------------------------------------------
-//PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-
 std::string version() {
-    return "1.0.0";
+#ifdef XMS_VERSION
+    return XMS_VERSION;
+#else
+    return "99.99.99";
+#endif
 }
-
 
 //------ Primary Module --------------------------------------------------------
 PYBIND11_MODULE(xmscore_py, m) {
-    m.doc() = "Python bindings for xmscore"; // optional module docstring
+    m.doc() = "Python bindings for the xmscore library"; // optional module docstring
     m.def("version", &version,
+          "Get current version of xmscore Python bindings.");
+    m.def("__version__", &version,
           "Get current version of xmscore Python bindings.");
 
     py::module modMisc = m.def_submodule("misc");
