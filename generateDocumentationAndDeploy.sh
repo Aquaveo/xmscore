@@ -114,14 +114,7 @@ ls $(dirname $SPHINX_CONF)
 # make a directory to hold the python documenation
 mkdir $(dirname $DOXYFILE)/pydocs
 # build the documentation
-sphinx-build -W -b html . $(dirname $DOXYFILE)/html/pydocs
-
-
-# Back out if this is not a tag so we don't post
-if [ -z "${TRAVIS_TAG}" ]; then
-  echo "Build not tagged. No Documentation will be uploaded"
-  exit 0
-fi
+sphinx-build -b html . $(dirname $DOXYFILE)/html/pydocs
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
