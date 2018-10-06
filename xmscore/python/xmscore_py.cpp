@@ -7,6 +7,8 @@
 //------------------------------------------------------------------------------
 
 //----- Included files ---------------------------------------------------------
+#include <sstream>
+
 #include <pybind11/pybind11.h>
 #include <xmscore/python/misc/misc_py.h>
 
@@ -16,9 +18,9 @@ namespace py = pybind11;
 //----- Python Interface -------------------------------------------------------
 std::string version() {
 #ifdef XMS_VERSION
-    return XMS_VERSION;
+  return std::string(XMS_VERSION);
 #else
-    return "99.99.99";
+  return "99.99.99";
 #endif
 }
 
