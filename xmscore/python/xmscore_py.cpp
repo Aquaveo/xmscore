@@ -31,8 +31,6 @@ PYBIND11_MODULE(xmscore_py, m) {
     m.def("__version__", &version,
           "Get current version of xmscore Python bindings.");
 
-
-
     const char* misc_doc = R"pydoc(
         The misc module of the xmscore python library contains classes and
         functions that are shared between all of the xms family of libraries.
