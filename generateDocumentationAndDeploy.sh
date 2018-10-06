@@ -83,11 +83,6 @@ doxygen $DOXYFILE 2>&1 | tee doxygen.log
 # Check for warnings in doxygen
 if [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 
-# if [ -z "${TRAVIS_TAG}" ]; then
-#   echo "Build not tagged. No Documentation will be uploaded"
-#   exit 0
-# fi
-
 ################################################################################
 ##### Generate the Python documentation.                                   #####
 echo 'Generating Python code documentation...'
@@ -111,7 +106,14 @@ ls $(dirname $SPHINX_CONF)
 # make a directory to hold the python documenation
 mkdir $(dirname $DOXYFILE)/pydocs
 # build the documentation
-sphinx-build -b html . $(dirname $DOXYFILE)/html/pydocs
+sphinx-build -W -b html . $(dirname $DOXYFILE)/html/pydocs
+
+
+# Back out if this is not a tag so we don't post
+if [ -z "${TRAVIS_TAG}" ]; then
+  echo "Build not tagged. No Documentation will be uploaded"
+  exit 0
+fi
 
 ################################################################################
 ##### Upload the documentation to the gh-pages branch of the repository.   #####
