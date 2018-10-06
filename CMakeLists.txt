@@ -26,6 +26,15 @@ endif()
 
 add_definitions(-DXMS_VERSION=\"${XMS_VERSION}\")
 
+if(WIN32)
+    if(XMS_BUILD)
+        add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
+        add_definitions(/Zc:wchar_t-)  # Treat wchar_t as built-in type
+    else(NOT XMS_BUILD)
+        add_definitions(/D BOOST_ALL_NO_LIB)
+    endif()
+endif()
+
 IF(IS_CONDA_BUILD)
   include(${CMAKE_CURRENT_LIST_DIR}/condabuildinfo.cmake)
 
