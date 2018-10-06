@@ -9,7 +9,7 @@ These are the modules currently exposed to python from the xmscore library
 Misc
 ====
 
-The misc module of the xmscore library contains miscellanious objects that are usefull when working with xms libraries
+.. automodule:: xmscore_py.misc
 
 .. toctree::
    :maxdepth: 1

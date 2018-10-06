@@ -53,7 +53,7 @@ void initObserver(py::module &m) {
 
       Args:
           operation (str): String identifying the name of the operation 
-              that is being observed by this class.
+          that is being observed by this class.
   )pydoc";
   observer.def("begin_operation_string", 
                &xms::PublicObserver::BeginOperationString, 

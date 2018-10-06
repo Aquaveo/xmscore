@@ -16,5 +16,5 @@ namespace py = pybind11;
 //----- Python Interface -------------------------------------------------------
 
 void initMisc(py::module &m) {
-    initObserver(m);
+  initObserver(m);
 }
