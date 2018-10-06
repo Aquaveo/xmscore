@@ -23,7 +23,7 @@ class XmscoreConan(ConanFile):
 
     def configure(self):
         # Set version dynamically using XMS_VERSION env variable.
-        self.version = self.env.get('XMS_VERSION', 'master')
+        self.version = self.env.get('XMS_VERSION', '99.99.99')
 
         # Raise ConanExceptions for Unsupported Versions
         s_os = self.settings.os
@@ -65,6 +65,7 @@ class XmscoreConan(ConanFile):
         # have tests in release code. Thus, if we want to run tests, we will
         # build a test version (without python), run the tests, and then (on
         # sucess) rebuild the library without tests.
+        cmake.definitions["XMS_VERSION"] = self.version
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
         cmake.definitions["BUILD_TESTING"] = self.options.testing
         cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get("PYTHON_TARGET_VERSION", "3.6")
