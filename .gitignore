@@ -50,3 +50,4 @@ Doxygen/html/*
 # build directories
 build/*
 pybuild/*
+build_py/*
