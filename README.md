@@ -20,4 +20,5 @@ Documentation
 -------------
 
 C++: [xmscore](https://aquaveo.github.io/xmscore/)
-Python:[xmscore python](https://xmscore.readthedocs.io)
+
+Python:[xmscore python]((https://aquaveo.github.io/xmscore/pydocs)
