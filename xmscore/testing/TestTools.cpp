@@ -2,9 +2,8 @@
 /// \file
 /// \brief Functions for running unit or intermediate tests
 /// \ingroup core_testing
-/// \copyright (C) Copyright Aquaveo 2018. Distributed under the xmsng
-///  Software License, Version 1.0. (See accompanying file
-///  LICENSE_1_0.txt or copy at http://www.aquaveo.com/xmsng/LICENSE_1_0.txt)
+/// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
+/// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
 //------------------------------------------------------------------------------
 
 //----- Included files ---------------------------------------------------------
@@ -187,113 +186,6 @@ bool ETestMessagingState::DefaultValWasSet()
 {
   return m_defaultSet;
 } // ETestMessagingState::DefaultValWasSet
-
-//------------------------------------------------------------------------------
-/// \brief Variable for the default path to the directory containing files for
-/// integration tests for xmsng
-/// \return The path
-//------------------------------------------------------------------------------
-std::string& ttDefaultXmsngTestPath()
-{
-#if BOOST_OS_WINDOWS
-  static std::string m_("files_xmsng/Test/");
-#else
-  static std::string m_("test_files");
-#endif
-  return m_;
-} // ttDefaultXmsngTestPath
-//------------------------------------------------------------------------------
-/// \brief Gets the testing directory for integration tests for xmsng library.
-///        Includes a "\" or "/" at the end.
-/// \return The path
-//------------------------------------------------------------------------------
-std::string ttGetXmsngTestPath()
-{
-#ifdef XMSNG_TEST_PATH
-  return XMSNG_TEST_PATH;
-#else
-  std::string testPath;
-  try
-  {
-    char* buf = nullptr;
-#if BOOST_OS_WINDOWS
-    DWORD res, sz = MAX_PATH; // 260 characters
-    do
-    {
-      sz *= 2;
-      if (buf)
-        delete[] buf;
-      buf = new char[sz];
-      res = GetModuleFileName(nullptr, buf, sz);
-      if (res == 0)
-      {
-        // TODO: check GetLastError for failure
-        assert(0);
-      }
-    } while (res == sz); // buffer too small; truncated path string
-#elif BOOST_OS_LINUX
-    struct stat sb;
-    const char file[20] = "/proc/self/exe"; // verified for RHEL7
-    ssize_t res;
-    errno = 0;
-    if (lstat(file, &sb) == -1)
-    {
-      // TODO: check errno for failure
-      assert(0);
-    }
-    if (buf)
-      delete[] buf;
-    buf = new char[sb.st_size + 1];
-    res = readlink(file, buf, sb.st_size + 1);
-    if (res < 0 || res > sb.st_size)
-    {
-      // TODO: check errno for failure or determine why buffer size was inadequate
-      assert(0);
-    }
-#elif BOOST_OS_MACOS
-    uint32_t sz = 1024;
-    do
-    {
-      if (buf)
-        delete[] buf;
-      buf = new char[sz];
-    } while (_NSGetExecutablePath(buf, &sz) != 0); // buffer too small; use new size
-#endif
-    boost::filesystem::path exePath(buf);
-    if (buf)
-      delete[] buf;
-    boost::filesystem::path basePath = exePath.parent_path();
-    boost::filesystem::path checkPath = basePath;
-    checkPath /= ttDefaultXmsngTestPath();
-    while (basePath.has_parent_path() && !is_directory(checkPath))
-    {
-      basePath = basePath.parent_path();
-      checkPath = basePath;
-      checkPath /= ttDefaultXmsngTestPath();
-    }
-    // testPath = boost::canonical(checkPath).string(); // Doesn't work with symbolic links
-    testPath = checkPath.lexically_normal().string();
-
-    // If there's a "\." or "/." at the end, remove the .
-    size_t pos = testPath.rfind("\\.");
-    if (pos == std::string::npos)
-      pos = testPath.rfind("/.");
-    if (pos == testPath.length() - 2)
-      testPath = testPath.substr(0, pos + 1);
-
-    // Make sure there's a '\' or '/' at the end
-    if (testPath.back() != '\\' && testPath.back() != '/')
-    {
-      testPath += boost::filesystem::path::preferred_separator;
-    }
-  }
-  catch (std::exception& e)
-  {
-    XmLog::Instance().Log(__FILE__, __LINE__, xmlog::error, e.what());
-  }
-  return testPath;
-#endif
-} // ttGetXmsngTestPath
 //------------------------------------------------------------------------------
 /// \brief Bypass the ui elements and just set return value
 /// \param a_defaultChoice: The option to use automatically when the user
