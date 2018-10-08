@@ -1,5 +1,3 @@
-.. _observer-class:
-
 ********
 Observer
 ********
