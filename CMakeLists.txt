@@ -16,9 +16,8 @@ set(IS_PYTHON_BUILD NO CACHE BOOL "Enable/Disable PYTHON")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
 set(XMS_BUILD NO CACHE BOOL "Set this if you want to use this package with XMS.")
 set(PYTHON_TARGET_VERSION 3.6 CACHE STRING "Version of python to link to for python wrapping.")
+set(IS_PYTHON_BUILD NO CACHE BOOL "Set this if you want to build the python bindings.")
 set(XMS_VERSION "\"99.99.99\"" CACHE STRING "Library Version")
-
-
 
 if(IS_PYTHON_BUILD AND BUILD_TESTING)
   message(FATAL_ERROR "Cannot build python module when testing is enabled")
@@ -154,6 +153,7 @@ set(xmscore_headers
 
 # Tests
 if(BUILD_TESTING)
+    add_definitions(-DXMS_TEST_PATH="${XMSGRID_TEST_PATH}/")
     add_definitions(-DCXX_TEST -DCXXTEST4)
 
     list(APPEND xmscore_headers
