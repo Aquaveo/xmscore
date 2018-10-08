@@ -22,8 +22,12 @@ void initObserver(py::module &m) {
   py::options options;
 
   // Observer Class
+    const char* observer_doc = R"pydoc(
+        Class used with the observer pattern.
+    )pydoc";
 	py::class_<xms::PublicObserver, PyObserver, 
-      boost::shared_ptr<xms::PublicObserver>> observer(m, "Observer");
+      boost::shared_ptr<xms::PublicObserver>> observer(m, "Observer", 
+            observer_doc);
 
 	// Initializer
   observer.def(py::init());
