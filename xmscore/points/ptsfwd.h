@@ -8,9 +8,8 @@
 /// where Pt3d is defined. But instead of including the large header file that
 /// defines the Pt classes, you can just include this small header. -MJK
 /// \ingroup points
-/// \copyright (C) Copyright Aquaveo 2018. Distributed under the xmsng
-///  Software License, Version 1.0. (See accompanying file
-///  LICENSE_1_0.txt or copy at http://www.aquaveo.com/xmsng/LICENSE_1_0.txt)
+/// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
+/// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
 //------------------------------------------------------------------------------
 
 namespace xms

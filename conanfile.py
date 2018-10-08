@@ -6,7 +6,7 @@ import os
 class XmscoreConan(ConanFile):
     name = "xmscore"
     version = None
-    license = "XMSNG Software License"
+    license = "FreeBSD Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
     settings = "os", "compiler", "build_type", "arch"
