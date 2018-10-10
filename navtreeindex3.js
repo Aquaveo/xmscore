@@ -1,9 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"functors_8cpp.html":[4,0,0,2,0],
-"functors_8cpp.html#acb1d89c82ac707290b00ada09bc8c896":[4,0,0,2,0,0],
-"functors_8cpp_source.html":[4,0,0,2,0],
-"functors_8h.html":[4,0,0,2,1],
 "functors_8h.html#a15e2575a62d327a99473f9365ebeadf7":[4,0,0,2,1,7],
 "functors_8h.html#a308bf67d12ecae396921de946d43c489":[4,0,0,2,1,3],
 "functors_8h.html#a6d6f9950b1bab04111e1f955550f4145":[4,0,0,2,1,4],

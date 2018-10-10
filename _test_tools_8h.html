@@ -209,12 +209,6 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aea25a4299c927c1733790a4dc3bc0882"><td class="memItemLeft" align="right" valign="top">std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#aea25a4299c927c1733790a4dc3bc0882">xms::ttDefaultXmsngTestPath</a> ()</td></tr>
-<tr class="memdesc:aea25a4299c927c1733790a4dc3bc0882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable for the default path to the directory containing files for integration tests for xmsng.  <a href="_test_tools_8cpp.html#aea25a4299c927c1733790a4dc3bc0882">More...</a><br /></td></tr>
-<tr class="separator:aea25a4299c927c1733790a4dc3bc0882"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acddaa287c080f4199d840c9ca3e29f23"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#acddaa287c080f4199d840c9ca3e29f23">xms::ttGetXmsngTestPath</a> ()</td></tr>
-<tr class="memdesc:acddaa287c080f4199d840c9ca3e29f23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the testing directory for integration tests for xmsng library. Includes a "\" or "/" at the end.  <a href="_test_tools_8cpp.html#acddaa287c080f4199d840c9ca3e29f23">More...</a><br /></td></tr>
-<tr class="separator:acddaa287c080f4199d840c9ca3e29f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a6679c474ce3bc806395023736dcfe6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#a9a6679c474ce3bc806395023736dcfe6">xms::ttByPassMessages</a> (int a_defaultChoice)</td></tr>
 <tr class="memdesc:a9a6679c474ce3bc806395023736dcfe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bypass the ui elements and just set return value.  <a href="_test_tools_8cpp.html#a9a6679c474ce3bc806395023736dcfe6">More...</a><br /></td></tr>
 <tr class="separator:a9a6679c474ce3bc806395023736dcfe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,7 +268,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <tr class="separator:a4dbfdd1e82e9a97582b148fbeba175e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under the xmsng Software License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.aquaveo.com/xmsng/LICENSE_1_0.txt">http://www.aquaveo.com/xmsng/LICENSE_1_0.txt</a>) </dd></dl>
+<div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under FreeBSD License (See accompanying file LICENSE or <a href="https://aqaveo.com/bsd/license.txt">https://aqaveo.com/bsd/license.txt</a>) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -324,7 +318,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line">{                                                                            \</div><div class="line">    if (!gmEqualPointsXY(a, b, delta))                                         \</div><div class="line">    {                                                                          \</div><div class="line">      std::stringstream msg;                                                   \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; a &lt;&lt; <span class="stringliteral">&quot;), != (&quot;</span> &lt;&lt; b &lt;&lt; <span class="stringliteral">&quot;) within delta (&quot;</span> &lt;&lt; delta &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>; \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                       \</div><div class="line">    }                                                                          \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
 <p>Tests if two points are equal within delta and gives useful output. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00165">165</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00164">164</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -374,7 +368,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line">{                                                                            \</div><div class="line">    if (!gmEqualPointsXYZ(a, b, delta))                                        \</div><div class="line">    {                                                                          \</div><div class="line">      std::stringstream msg;                                                   \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; a &lt;&lt; <span class="stringliteral">&quot;), != (&quot;</span> &lt;&lt; b &lt;&lt; <span class="stringliteral">&quot;) within delta (&quot;</span> &lt;&lt; delta &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>; \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                       \</div><div class="line">    }                                                                          \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
 <p>Used to compare two Pt3ds and give useful output information. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00152">152</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00151">151</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -424,7 +418,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line">{                                                                                        \</div><div class="line">    if (a.size() != b.size())                                                              \</div><div class="line">    {                                                                                      \</div><div class="line">      std::stringstream msg;                                                               \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;Incorrect size Expecting size: &quot;</span> &lt;&lt; a.size() &lt;&lt; <span class="stringliteral">&quot; Found size: &quot;</span> &lt;&lt; b.size(); \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                                   \</div><div class="line">    }                                                                                      \</div><div class="line">    else                                                                                   \</div><div class="line">    {                                                                                      \</div><div class="line">      for (<span class="keywordtype">size_t</span> i1x = 0; i1x &lt; a.size(); ++i1x)                                          \</div><div class="line">      {                                                                                    \</div><div class="line">        if (!::xms::gmEqualPointsXY(a[i1x].x, a[i1x].y, b[i1x].x, b[i1x].y, delta))        \</div><div class="line">        {                                                                                  \</div><div class="line">          std::stringstream msg;                                                           \</div><div class="line">          msg &lt;&lt; <span class="stringliteral">&quot;Incorrect value at position : &quot;</span> &lt;&lt; i1x &lt;&lt; <span class="stringliteral">&quot; Expecting: &quot;</span> &lt;&lt; a[i1x]       \</div><div class="line">              &lt;&lt; <span class="stringliteral">&quot; Found: &quot;</span> &lt;&lt; b[i1x];                                                     \</div><div class="line">          _TS_FAIL(f, l, msg.str().c_str());                                               \</div><div class="line">          return;                                                                          \</div><div class="line">        }                                                                                  \</div><div class="line">      }                                                                                    \</div><div class="line">    }                                                                                      \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
 <p>Tests if two point vectors are equal within delta and gives useful output. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00109">109</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00108">108</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -474,7 +468,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line">{                                                                                         \</div><div class="line">    if (a.size() != b.size())                                                               \</div><div class="line">    {                                                                                       \</div><div class="line">      std::stringstream msg;                                                                \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;Incorrect size Expecting size: &quot;</span> &lt;&lt; a.size() &lt;&lt; <span class="stringliteral">&quot; Found size: &quot;</span> &lt;&lt; b.size();  \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                                    \</div><div class="line">    }                                                                                       \</div><div class="line">    else                                                                                    \</div><div class="line">    {                                                                                       \</div><div class="line">      for (<span class="keywordtype">size_t</span> i = 0; i &lt; a.size(); ++i)                                                 \</div><div class="line">      {                                                                                     \</div><div class="line">        if (!::xms::gmEqualPointsXYZ(a.at(i).x, a.at(i).y, a.at(i).z, b.at(i).x, b.at(i).y, \</div><div class="line">                                     b.at(i).z, delta))                                     \</div><div class="line">        {                                                                                   \</div><div class="line">          std::stringstream msg;                                                            \</div><div class="line">          msg &lt;&lt; <span class="stringliteral">&quot;Incorrect value at position : &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; Expecting: &quot;</span> &lt;&lt; a.at(i)         \</div><div class="line">              &lt;&lt; <span class="stringliteral">&quot; Found: &quot;</span> &lt;&lt; b.at(i);                                                     \</div><div class="line">          _TS_FAIL(f, l, msg.str().c_str());                                                \</div><div class="line">        }                                                                                   \</div><div class="line">      }                                                                                     \</div><div class="line">    }                                                                                       \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
 <p>Tests if two point vectors are equal within delta and gives useful output. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00070">70</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00069">69</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -518,9 +512,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line">{                                                                                          \</div><div class="line">    if (a.size() != b.size())                                                                \</div><div class="line">    {                                                                                        \</div><div class="line">      std::stringstream msg;                                                                 \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;Incorrect size Expecting size: &quot;</span> &lt;&lt; a.size() &lt;&lt; <span class="stringliteral">&quot; Found size: &quot;</span> &lt;&lt; b.size();   \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                                     \</div><div class="line">    }                                                                                        \</div><div class="line">    else                                                                                     \</div><div class="line">    {                                                                                        \</div><div class="line">      for (<span class="keywordtype">size_t</span> iUnique = 0; iUnique &lt; a.size(); ++iUnique)                                \</div><div class="line">      {                                                                                      \</div><div class="line">        if (a[iUnique] != b[iUnique])                                                        \</div><div class="line">        {                                                                                    \</div><div class="line">          std::stringstream msg;                                                             \</div><div class="line">          msg &lt;&lt; <span class="stringliteral">&quot;Incorrect value at position : &quot;</span> &lt;&lt; iUnique &lt;&lt; <span class="stringliteral">&quot; Expecting: &quot;</span> &lt;&lt; a[iUnique] \</div><div class="line">              &lt;&lt; <span class="stringliteral">&quot; Found: &quot;</span> &lt;&lt; b[iUnique];                                                   \</div><div class="line">          _TS_FAIL(f, l, msg.str().c_str());                                                 \</div><div class="line">        }                                                                                    \</div><div class="line">      }                                                                                      \</div><div class="line">    }                                                                                        \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
 <p>Used to compare to vectors and give useful output information. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00205">205</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00204">204</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00426">xms::ttAssertEqualsAVec()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00423">xms::ttAssertEqualsAVec()</a>.</p>
 
 </div>
 </div>
@@ -557,7 +551,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="_test_tools_8h.html#a28a882a826cd93120c960b1b8ec18503" title="Checks that the stackable XM_LOG has the expected errors. ">TS_ASSERT_STACKED_ERRORS</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00250">250</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00249">249</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -595,7 +589,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (pointer == NULL)                          \</div><div class="line">  {                                             \</div><div class="line">    _TS_FAIL(f, l, <span class="stringliteral">&quot;Unexpected NULL pointer.&quot;</span>); \</div><div class="line">    return;                                     \</div><div class="line">  }</div></div><!-- fragment -->
 <p>Fails if <em>pointer</em> is null. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00236">236</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00235">235</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -634,7 +628,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <p>Tests if two point vectors are equal within delta and gives useful output. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00142">142</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00141">141</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -673,7 +667,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <p>Tests if two point vectors are equal within delta and gives useful output. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00103">103</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00102">102</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -737,11 +731,11 @@ template&lt;typename T , typename U &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a and b are equal within delta. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00332">332</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00329">329</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00332">xms::ttAssertDeltaVec()</a>, and <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00329">xms::ttAssertDeltaVec()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00332">xms::ttAssertDeltaVec()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00329">xms::ttAssertDeltaVec()</a>.</p>
 
 </div>
 </div>
@@ -804,11 +798,11 @@ template&lt;typename T , typename U &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a and b are equal within delta. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00373">373</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00370">370</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00373">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00370">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00373">xms::ttAssertDeltaVec2D()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00370">xms::ttAssertDeltaVec2D()</a>.</p>
 
 </div>
 </div>
@@ -870,11 +864,11 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00426">426</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00423">423</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00205">_TS_ASSERT_EQUALS_VEC</a>, and <a class="el" href="_test_tools_8h_source.html#l00426">xms::ttAssertEqualsAVec()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00204">_TS_ASSERT_EQUALS_VEC</a>, and <a class="el" href="_test_tools_8h_source.html#l00423">xms::ttAssertEqualsAVec()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00426">xms::ttAssertEqualsAVec()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00423">xms::ttAssertEqualsAVec()</a>.</p>
 
 </div>
 </div>
@@ -930,11 +924,11 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a and b are equal. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00444">444</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00441">441</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00444">xms::ttAssertEqualsVec2D()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00441">xms::ttAssertEqualsVec2D()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00444">xms::ttAssertEqualsVec2D()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00441">xms::ttAssertEqualsVec2D()</a>.</p>
 
 </div>
 </div>
@@ -980,11 +974,11 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00363">363</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00255">255</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_xm_log_8cpp_source.html#l00229">xms::XmLog::GetAndClearStackStr()</a>, <a class="el" href="_singleton_8h_source.html#l00038">xms::Singleton&lt; XmLog &gt;::Instance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00363">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00345">xms::ttCheckXmLogForEachTest()</a>.</p>
+<p class="reference">References <a class="el" href="_xm_log_8cpp_source.html#l00228">xms::XmLog::GetAndClearStackStr()</a>, <a class="el" href="_singleton_8h_source.html#l00037">xms::Singleton&lt; XmLog &gt;::Instance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00363">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
 
 </div>
 </div>
@@ -1006,11 +1000,11 @@ template&lt;typename T &gt; </div>
 <p>Get the default choice when skipping messages. </p>
 <dl class="section return"><dt>Returns</dt><dd>The default choice. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00320">320</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00212">212</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00162">xms::ETestMessagingState::GetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00320">xms::ttByPassDefault()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00336">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00161">xms::ETestMessagingState::GetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00212">xms::ttByPassDefault()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00320">xms::ttByPassDefault()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00212">xms::ttByPassDefault()</a>.</p>
 
 </div>
 </div>
@@ -1038,11 +1032,11 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00302">302</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00194">194</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00146">xms::ETestMessagingState::SetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00170">xms::ETestMessagingState::SetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00302">xms::ttByPassMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00336">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00145">xms::ETestMessagingState::SetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00169">xms::ETestMessagingState::SetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00194">xms::ttByPassMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00302">xms::ttByPassMessages()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00194">xms::ttByPassMessages()</a>.</p>
 
 </div>
 </div>
@@ -1070,11 +1064,11 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00345">345</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00237">237</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00345">xms::ttCheckXmLogForEachTest()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00363">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00345">xms::ttCheckXmLogForEachTest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
 
 </div>
 </div>
@@ -1096,35 +1090,9 @@ template&lt;typename T &gt; </div>
 <p>Turn on check of XM_LOG before and after each test. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if currently checking. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00353">353</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00245">245</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00345">xms::ttCheckXmLogForEachTest()</a>.</p>
-
-</div>
-</div>
-<a id="file_aea25a4299c927c1733790a4dc3bc0882"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_aea25a4299c927c1733790a4dc3bc0882">&#9670;&nbsp;</a></span>ttDefaultXmsngTestPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string &amp; xms::ttDefaultXmsngTestPath </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Variable for the default path to the directory containing files for integration tests for xmsng. </p>
-<dl class="section return"><dt>Returns</dt><dd>The path </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00196">196</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
-
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00196">xms::ttDefaultXmsngTestPath()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00196">xms::ttDefaultXmsngTestPath()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00210">xms::ttGetXmsngTestPath()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
 
 </div>
 </div>
@@ -1173,11 +1141,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if fabs(A - B) &lt;= tolerance </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00299">299</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00296">296</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00363">xms::ttAssertStackedErrors()</a>, <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00383">xms::ttGetTestFilePaths()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00501">xms::ttStreamsEqual()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00430">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00275">xms::ttGetTestFilePaths()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00393">xms::ttStreamsEqual()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00332">xms::ttAssertDeltaVec()</a>, <a class="el" href="_test_tools_8h_source.html#l00373">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00329">xms::ttAssertDeltaVec()</a>, <a class="el" href="_test_tools_8h_source.html#l00370">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
 
 </div>
 </div>
@@ -1237,37 +1205,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00383">383</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00275">275</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00383">xms::ttGetTestFilePaths()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00275">xms::ttGetTestFilePaths()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00383">xms::ttGetTestFilePaths()</a>.</p>
-
-</div>
-</div>
-<a id="file_acddaa287c080f4199d840c9ca3e29f23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_acddaa287c080f4199d840c9ca3e29f23">&#9670;&nbsp;</a></span>ttGetXmsngTestPath()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string xms::ttGetXmsngTestPath </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the testing directory for integration tests for xmsng library. Includes a "\" or "/" at the end. </p>
-<dl class="section return"><dt>Returns</dt><dd>The path </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00210">210</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
-
-<p class="reference">References <a class="el" href="_xm_log_8h_source.html#l00082">xmlog::error</a>, <a class="el" href="_singleton_8h_source.html#l00038">xms::Singleton&lt; XmLog &gt;::Instance()</a>, <a class="el" href="_xm_log_8cpp_source.html#l00191">xms::XmLog::Log()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00196">xms::ttDefaultXmsngTestPath()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00210">xms::ttGetXmsngTestPath()</a>.</p>
-
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00210">xms::ttGetXmsngTestPath()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00275">xms::ttGetTestFilePaths()</a>.</p>
 
 </div>
 </div>
@@ -1289,11 +1231,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 <p>Has ttByPassMessages been called without calling ttClearSkippingMessages. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if we are skipping messages. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00312">312</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00204">204</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00178">xms::ETestMessagingState::GetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00312">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00336">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00177">xms::ETestMessagingState::GetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00204">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00312">xms::ttSkippingMessages()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00204">xms::ttSkippingMessages()</a>.</p>
 
 </div>
 </div>
@@ -1346,11 +1288,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00501">501</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00393">393</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00501">xms::ttStreamsEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00393">xms::ttStreamsEqual()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00501">xms::ttStreamsEqual()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00393">xms::ttStreamsEqual()</a>.</p>
 
 </div>
 </div>
@@ -1372,11 +1314,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 <p>Get the batch mode singleton. </p>
 <dl class="section return"><dt>Returns</dt><dd>Reference to ETestMessagingState </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00336">336</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00228">228</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00336">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00320">xms::ttByPassDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00302">xms::ttByPassMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00327">xms::ttClearSkippingMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00312">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00336">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00212">xms::ttByPassDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00194">xms::ttByPassMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00219">xms::ttClearSkippingMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00204">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
 
 </div>
 </div>
@@ -1423,11 +1365,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if files are equal, else false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00430">430</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00322">322</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00430">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00299">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00430">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
 
 </div>
 </div>
@@ -1480,9 +1422,9 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00485">485</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00377">377</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00430">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
 
 </div>
 </div>
@@ -1492,7 +1434,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_2c2e060d770fb9750ac9f3b9b695c5a0.html">testing</a></li><li class="navelem"><a class="el" href="_test_tools_8h.html">TestTools.h</a></li>
-    <li class="footer">Generated on Sat Oct 6 2018 17:43:11 for xmscore by
+    <li class="footer">Generated on Wed Oct 10 2018 16:49:20 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

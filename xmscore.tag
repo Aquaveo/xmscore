@@ -2579,20 +2579,6 @@
     <includes id="environment_8h" name="environment.h" local="no" imported="no">xmscore/misc/environment.h</includes>
     <includes id="_xm_log_8h" name="XmLog.h" local="no" imported="no">xmscore/misc/XmLog.h</includes>
     <member kind="function">
-      <type>std::string &amp;</type>
-      <name>ttDefaultXmsngTestPath</name>
-      <anchorfile>_test_tools_8cpp.html</anchorfile>
-      <anchor>aea25a4299c927c1733790a4dc3bc0882</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>ttGetXmsngTestPath</name>
-      <anchorfile>_test_tools_8cpp.html</anchorfile>
-      <anchor>acddaa287c080f4199d840c9ca3e29f23</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
       <type>void</type>
       <name>ttByPassMessages</name>
       <anchorfile>_test_tools_8cpp.html</anchorfile>
@@ -2878,20 +2864,6 @@
       <anchorfile>_test_tools_8h.html</anchorfile>
       <anchor>a28a882a826cd93120c960b1b8ec18503</anchor>
       <arglist>(expected)</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string &amp;</type>
-      <name>ttDefaultXmsngTestPath</name>
-      <anchorfile>_test_tools_8cpp.html</anchorfile>
-      <anchor>aea25a4299c927c1733790a4dc3bc0882</anchor>
-      <arglist>()</arglist>
-    </member>
-    <member kind="function">
-      <type>std::string</type>
-      <name>ttGetXmsngTestPath</name>
-      <anchorfile>_test_tools_8cpp.html</anchorfile>
-      <anchor>acddaa287c080f4199d840c9ca3e29f23</anchor>
-      <arglist>()</arglist>
     </member>
     <member kind="function">
       <type>void</type>
