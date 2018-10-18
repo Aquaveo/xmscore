@@ -36,13 +36,13 @@ void initObserver(py::module &m) {
   // function: progress_status
   // ---------------------------------------------------------------------------
   const char* progress_status_doc = R"pydoc(
-      Method to publish the progress status
+      Method to publish the progress status.
 
       Args:
-          percent_complete (float): Method to publish the progress status
+          percent_complete (float): Method to publish the progress status.
 
       Returns:
-          bool: Was the progress bar updated
+          bool: Was the progress bar updated.
   )pydoc";
   observer.def("progress_status", &xms::PublicObserver::ProgressStatus, 
                progress_status_doc, py::arg("percent_complete"));
@@ -56,7 +56,7 @@ void initObserver(py::module &m) {
 
       Args:
           operation (str): String identifying the name of the operation 
-          that is being observed by this class.
+            that is being observed by this class.
   )pydoc";
   observer.def("begin_operation_string", 
                &xms::PublicObserver::BeginOperationString, 
