@@ -1,4 +1,10 @@
 var namespaces =
 [
-    [ "xmlog", "namespacexmlog.html", null ]
+    [ "python", null, [
+      [ "misc", null, [
+        [ "observer_pyt", "namespacepython_1_1misc_1_1observer__pyt.html", null ]
+      ] ]
+    ] ],
+    [ "xmlog", "namespacexmlog.html", null ],
+    [ "xms", "namespacexms.html", null ]
 ];
