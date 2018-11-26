@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
-project(xmscore C CXX)
+project(xmscorelib C CXX)
 
 if (APPLE)  
   set(CMAKE_POSITION_INDEPENDENT_CODE False)
@@ -248,25 +248,25 @@ if(IS_PYTHON_BUILD)
   message(STATUS "PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
   message(STATUS "PYTHON_LIBS: ${PYTHON_LIBRARIES}")
 
-  pybind11_add_module(xmscore_py
+  pybind11_add_module(xmscore
     ${xmscore_py} ${xmscore_py_headers}
   )
-  target_include_directories(xmscore_py
+  target_include_directories(xmscore
       PRIVATE
         ${EXT_INCLUDE_DIRS}
   )
-  target_link_libraries(xmscore_py
+  target_link_libraries(xmscore
     PRIVATE
       ${EXT_LIBS}
       ${PROJECT_NAME}
   )
-  set_target_properties(xmscore_py PROPERTIES
+  set_target_properties(xmscore PROPERTIES
     LINKER_LANGUAGE CXX
   )
   
   # Install recipe
   install(
-    TARGETS xmscore_py
+    TARGETS xmscore
     ARCHIVE DESTINATION "site-packages"
     LIBRARY DESTINATION "site-packages"
   )

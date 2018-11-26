@@ -33,6 +33,14 @@ void initObserver(py::module &m) {
   observer.def(py::init());
 
   // ---------------------------------------------------------------------------
+  // attribute: __repr__
+  // ---------------------------------------------------------------------------
+  observer.def("__repr__",
+               [](const xms::PublicObserver &o) {
+                   return "<xmscore.misc.Observer>";
+               }
+  );
+  // ---------------------------------------------------------------------------
   // function: progress_status
   // ---------------------------------------------------------------------------
   const char* progress_status_doc = R"pydoc(

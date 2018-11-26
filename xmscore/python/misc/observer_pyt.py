@@ -1,7 +1,7 @@
 """Test InterpLinear_py.cpp."""
 import unittest
 import time
-import xmscore_py.misc as xm
+import xmscore.misc as xm
 
 
 class MockObserver(xm.Observer):
