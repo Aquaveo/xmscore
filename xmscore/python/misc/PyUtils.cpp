@@ -486,6 +486,45 @@ std::string StringFromVecPt3d(const VecPt3d& a_pts)
   return ss.str();
 } // StringFromVecPt3d
 //------------------------------------------------------------------------------
+/// \brief Create a __repr__ string from a VecPt3d2d
+/// \param[in] a_vals: 2d vector of Pt3ds.
+/// \return a string
+//------------------------------------------------------------------------------
+std::string StringFromVecPt3d2d(const VecPt3d2d& a_vals)
+{
+  bool printDotDotDot(false);
+  std::stringstream ss;
+  VecPt3d2d v;
+  if (a_vals.size() < 7)
+  {
+    v = a_vals;
+  }
+  else
+  {
+    printDotDotDot = true;
+    size_t idx = a_vals.size();
+    v.insert(v.end(), a_vals.begin(), a_vals.begin()+3);
+    v.insert(v.end(), a_vals.begin()+(idx-3), a_vals.end());
+  }
+
+  ss << "(length " << a_vals.size() << "):\n";
+  ss << "[";
+  for (size_t i = 0; i < v.size(); ++i)
+  {
+    if (printDotDotDot && i == 3)
+      ss << " ...\n";
+    if (i > 0)
+      ss << " ";
+    std::string strVecPt3d = StringFromVecPt3d(v[i]);
+    strVecPt3d.pop_back();
+    ss << strVecPt3d;
+    if (i + 1 != v.size())
+      ss << ",\n";
+   }
+  ss << "]\n";
+  return ss.str();
+} // StringFromVecPt3d2d
+//------------------------------------------------------------------------------
 /// \brief Create a __repr__ string from a VecInt
 /// \param[in] a_vals: vector of ints.
 /// \return a string
