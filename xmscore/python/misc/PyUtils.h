@@ -74,5 +74,12 @@ py::iterable PyIterFromIntPair(const std::pair<int, int>& intpair);
 
 boost::shared_ptr<std::vector<std::pair<int, int>>> VecIntPairFromPyIter(const py::iterable& intpairs);
 py::iterable PyIterFromVecIntPair(const std::vector<std::pair<int, int>>& intpairs);
-    
+
+// string from VecPt3d for __repr__
+std::string StringFromVecPt3d(const VecPt3d& a_);
+std::string StringFromVecInt(const VecInt& a_);
+std::string StringFromVecInt2d(const VecInt2d& a_);
+std::string StringFromDynBitset(const DynBitset& a_);
+std::string StringFromVecFlt(const VecFlt& a_);
+
 }
