@@ -10,8 +10,12 @@
 
 // 2. My own header
 #include <pybind11/pybind11.h>
-#include <xmscore/python/misc/PyUtils.h>
+
+#include <sstream>
+
 #include <xmscore/misc/DynBitset.h>
+#include <xmscore/misc/StringUtil.h>
+#include <xmscore/python/misc/PyUtils.h>
 
 namespace py = pybind11;
 
@@ -445,5 +449,165 @@ py::iterable PyIterFromVecIntPair(const std::vector<std::pair<int, int>>& intpai
   }
   return tuple_ret;
 } // PyIterFromVecIntPair
+//------------------------------------------------------------------------------
+/// \brief Create a __repr__ string from a VecPt3d
+/// \param[in] a_pts: vector of points.
+/// \return a string
+//------------------------------------------------------------------------------
+std::string StringFromVecPt3d(const VecPt3d& a_pts)
+{
+  bool printDotDotDot(false);
+  VecPt3d p;
+  if (a_pts.size() < 7)
+  {
+    p = a_pts;
+  }
+  else
+  {
+    printDotDotDot = true;
+    size_t idx = a_pts.size();
+    p.insert(p.end(), a_pts.begin(), a_pts.begin()+3);
+    p.insert(p.end(), a_pts.begin()+(idx-3), a_pts.end());
+  }
+  std::stringstream ss;
+  ss << "(length " << a_pts.size() << "): \n";
+  ss << "[";
+  for (size_t i=0; i<p.size(); ++i)
+  {
+    if (printDotDotDot && i == 3)
+      ss << " ...\n";
+    if (i > 0)
+      ss << " ";
+    ss << "(" << STRstd(p[i].x) << ", " << STRstd(p[i].y) << ", " << STRstd(p[i].z) << ")";
+    if (i+1 != p.size())
+      ss << ", \n";
+  }
+  ss << "]\n";
+  return ss.str();
+} // StringFromVecPt3d
+//------------------------------------------------------------------------------
+/// \brief Create a __repr__ string from a VecInt
+/// \param[in] a_vals: vector of ints.
+/// \return a string
+//------------------------------------------------------------------------------
+std::string StringFromVecInt(const VecInt& a_vals)
+{
+  std::stringstream ss;
+  ss << "(length " << a_vals.size() << "): ";
+  VecInt v;
+  bool printDotDotDot(false);
+  if (a_vals.size() < 11)
+  {
+    v = a_vals;
+  }
+  else
+  {
+    printDotDotDot = true;
+    size_t idx = a_vals.size();
+    v.insert(v.end(), a_vals.begin(), a_vals.begin()+5);
+    v.insert(v.end(), a_vals.begin()+(idx-5), a_vals.end());
+  }
+
+  ss << "[";
+  for (size_t i = 0; i < v.size(); ++i)
+  {
+    if (printDotDotDot && i == 5)
+      ss << "... ";
+    ss << v[i];
+    if (i + 1 != v.size())
+      ss << ", ";
+  }
+  ss << "]\n";
+  return ss.str();
+} // StringFromVecInt
+//------------------------------------------------------------------------------
+/// \brief Create a __repr__ string from a VecInt2d
+/// \param[in] a_vals: 2d vector of ints.
+/// \return a string
+//------------------------------------------------------------------------------
+std::string StringFromVecInt2d(const VecInt2d& a_vals)
+{
+  bool printDotDotDot(false);
+  std::stringstream ss;
+  VecInt2d v;
+  if (a_vals.size() < 7)
+  {
+    v = a_vals;
+  }
+  else
+  {
+    printDotDotDot = true;
+    size_t idx = a_vals.size();
+    v.insert(v.end(), a_vals.begin(), a_vals.begin()+3);
+    v.insert(v.end(), a_vals.begin()+(idx-3), a_vals.end());
+  }
+
+  ss << "(length " << a_vals.size() << "):\n";
+  ss << "[";
+  for (size_t i = 0; i < v.size(); ++i)
+  {
+    if (printDotDotDot && i == 3)
+      ss << " ...\n";
+    if (i > 0)
+      ss << " ";
+    std::string strVecInt = StringFromVecInt(v[i]);
+    strVecInt.pop_back();
+    ss << strVecInt;
+    if (i + 1 != v.size())
+      ss << ",\n";
+   }
+  ss << "]\n";
+  return ss.str();
+} // StringFromVecInt2d
+//------------------------------------------------------------------------------
+/// \brief Create a __repr__ string from a DynBitset
+/// \param[in] a_vals: dynamic bitset
+/// \return a string
+//------------------------------------------------------------------------------
+std::string StringFromDynBitset(const DynBitset& a_vals)
+{
+  VecInt v;
+  v.reserve(a_vals.size());
+  for (size_t i = 0; i < a_vals.size(); ++i)
+  {
+    v.push_back(a_vals[i] ? 1 : 0);
+  }
+  return StringFromVecInt(v);
+} // StringFromDynBitset
+//------------------------------------------------------------------------------
+/// \brief Create a __repr__ string from a DynBitset
+/// \param[in] a_vals: dynamic bitset
+/// \return a string
+//------------------------------------------------------------------------------
+std::string StringFromVecFlt(const VecFlt& a_vals)
+{
+  std::stringstream ss;
+  ss << "(length " << a_vals.size() << "): ";
+  VecFlt v;
+  bool printDotDotDot(false);
+  if (a_vals.size() < 11)
+  {
+    v = a_vals;
+  }
+  else
+  {
+    printDotDotDot = true;
+    size_t idx = a_vals.size();
+    v.insert(v.end(), a_vals.begin(), a_vals.begin()+5);
+    v.insert(v.end(), a_vals.begin()+(idx-5), a_vals.end());
+  }
+
+  ss << "[";
+  for (size_t i = 0; i < v.size(); ++i)
+  {
+    if (printDotDotDot && i == 5)
+      ss << "... ";
+    ss << STRstd(v[i]);
+    if (i + 1 != v.size())
+      ss << ", ";
+  }
+  ss << "]\n";
+  return ss.str();
+} // StringFromDynBitset
 
 } // namespace xms
