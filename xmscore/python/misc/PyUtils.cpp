@@ -175,7 +175,7 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pt3d2d)
   int i = 0;
   for (auto pts : pt3d2d) {
       if (!py::isinstance<py::iterable>(pts)) {
-          throw py::type_error("Second arg must be an n-tuple of n-tuples of 1, 2, or 3-tuples");
+          throw py::type_error("Second arg must be an iterable");
       }
       py::tuple tuple = pts.cast<py::iterable>();
       xms::VecPt3d vec_pt3d = *xms::VecPt3dFromPyIter(tuple);
