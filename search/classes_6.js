@@ -6,7 +6,5 @@ var searchData=
   ['pt2',['Pt2',['../classxms_1_1_pt2.html',1,'xms']]],
   ['pt3',['Pt3',['../classxms_1_1_pt3.html',1,'xms']]],
   ['pt4',['Pt4',['../classxms_1_1_pt4.html',1,'xms']]],
-  ['ptunittests',['PtUnitTests',['../class_pt_unit_tests.html',1,'']]],
-  ['publicobserver',['PublicObserver',['../classxms_1_1_public_observer.html',1,'xms']]],
-  ['pyobserver',['PyObserver',['../class_py_observer.html',1,'']]]
+  ['ptunittests',['PtUnitTests',['../class_pt_unit_tests.html',1,'']]]
 ];
