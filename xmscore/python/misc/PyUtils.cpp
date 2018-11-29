@@ -12,6 +12,7 @@
 #include <pybind11/pybind11.h>
 
 #include <sstream>
+#include <iostream>
 
 #include <xmscore/misc/DynBitset.h>
 #include <xmscore/misc/StringUtil.h>
@@ -168,29 +169,18 @@ py::iterable PyIterFromVecPt2d(const VecPt2d& pts)
 /// \param[in] pt: py::iterable object that represents a VecPt3d2d
 /// \return a boost::shared_ptr to a VecPt3d2d
 //------------------------------------------------------------------------------
-boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts)
+boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pt3d2d)
 {
-  boost::shared_ptr<VecPt3d2d> vec_pt3d2d(new VecPt3d2d(py::len(pts)));
+  boost::shared_ptr<VecPt3d2d> vec_pt3d2d(new VecPt3d2d(py::len(pt3d2d)));
   int i = 0;
-  for (auto poly : pts) {
-      if (!py::isinstance<py::iterable>(poly)) {
-          throw py::type_error("Second arg must be an n-tuple of n-tuples of 3-tuples");
+  for (auto pts : pt3d2d) {
+      if (!py::isinstance<py::iterable>(pts)) {
+          throw py::type_error("Second arg must be an n-tuple of n-tuples of 1, 2, or 3-tuples");
       }
-      xms::VecPt3d vec_pt3d(py::len(poly));
-      int j = 0;
-      for (auto p : poly) {
-          if (!py::isinstance<py::iterable>(poly)) {
-              throw py::type_error("Second arg must be an n-tuple of n-tuples of 3-tuples");
-          }
-          py::tuple pt = p.cast<py::tuple>();
-          if (py::len(pt) != 3) {
-              throw py::type_error("Second arg must be an n-tuple of n-tuples of 3-tuples");
-          } else {
-              xms::Pt3d point(pt[0].cast<double>(), pt[1].cast<double>(), pt[2].cast<double>());
-              vec_pt3d.at(j) = point;
-          }
-      }
+      py::tuple tuple = pts.cast<py::iterable>();
+      xms::VecPt3d vec_pt3d = *xms::VecPt3dFromPyIter(tuple);
       vec_pt3d2d->at(i) = vec_pt3d;
+      i++;
   }
   return vec_pt3d2d;
 } // VecPt3d2dFromPyIter
@@ -199,9 +189,16 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pts)
 /// \param[in] pt: VecPt3d2d object that represents a py::iterable
 /// \return a py::iterable
 //------------------------------------------------------------------------------
-py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& pts)
+py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& vecPt3d2d)
 {
-	return py::make_tuple();
+    py::tuple pt3d2d(vecPt3d2d.size());
+    for (int i = 0; i < vecPt3d2d.size(); i++) {
+        std::cout << "Iter" << std::endl;
+        auto inside_poly = vecPt3d2d[i];
+        py::array_t<double, py::array::c_style> poly_points = xms::PyIterFromVecPt3d(inside_poly);
+        pt3d2d[i] = poly_points;
+    }
+    return pt3d2d;
 } // PyIterFromVecPt3d2d
 //------------------------------------------------------------------------------
 /// \brief Create VecInt2d from py::iterable
