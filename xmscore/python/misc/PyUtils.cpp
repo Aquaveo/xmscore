@@ -193,7 +193,6 @@ py::iterable PyIterFromVecPt3d2d(const VecPt3d2d& vecPt3d2d)
 {
     py::tuple pt3d2d(vecPt3d2d.size());
     for (int i = 0; i < vecPt3d2d.size(); i++) {
-        std::cout << "Iter" << std::endl;
         auto inside_poly = vecPt3d2d[i];
         py::array_t<double, py::array::c_style> poly_points = xms::PyIterFromVecPt3d(inside_poly);
         pt3d2d[i] = poly_points;
