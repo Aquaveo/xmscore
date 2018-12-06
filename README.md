@@ -1,9 +1,13 @@
-[![Build Status](https://travis-ci.org/Aquaveo/xmscore.svg?branch=master)](https://travis-ci.org/Aquaveo/xmscore)
-[![Build status](https://ci.appveyor.com/api/projects/status/0jj8bujujbsw1enu?svg=true)](https://ci.appveyor.com/project/Aquaveo/xmscore)
-
 XMSCore
 ========
 Support library for XMS products
+
+Master Branch Status
+--------------------
+
+[![Build Status](https://travis-ci.org/Aquaveo/xmscore.svg?branch=master)](https://travis-ci.org/Aquaveo/xmscore)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/0jj8bujujbsw1enu?svg=true)](https://ci.appveyor.com/project/Aquaveo/xmscore)
 
 Prerequisites
 --------------
@@ -19,6 +23,6 @@ See xmscore build [instructions](https://github.com/Aquaveo/xmscore/wiki/Buildin
 Documentation
 -------------
 
-C++: [xmscore](https://aquaveo.github.io/xmscore/)
+[C++ Documentation](https://aquaveo.github.io/xmscore/)
 
-Python:[xmscore python]((https://aquaveo.github.io/xmscore/pydocs)
+[Python Documentation](https://aquaveo.github.io/xmscore/pydocs)
