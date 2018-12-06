@@ -2,5 +2,5 @@
 Observer
 ********
 
-.. autoclass:: xmscore_py.misc.Observer
+.. autoclass:: xmscore.misc.Observer
    :members:

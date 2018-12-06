@@ -7,7 +7,7 @@
 XmsCore |version|
 *****************
 
-**Last Updated:** October 5, 2018
+**Last Updated:** December 5, 2018
 
 The xmscore library is a support library for other aquaveo products. This library contains classes generally used by all aquaveo libraries.
 

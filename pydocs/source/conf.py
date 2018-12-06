@@ -25,7 +25,8 @@ copyright = '2018, aquaveo'
 author = 'aquaveo'
 
 # The short X.Y version
-version = ''
+import xmscore
+version = xmscore.__version__
 # The full version, including alpha/beta/rc tags
 release = ''
 
