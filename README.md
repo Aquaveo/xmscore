@@ -19,6 +19,6 @@ See xmscore build [instructions](https://github.com/Aquaveo/xmscore/wiki/Buildin
 Documentation
 -------------
 
-C++: [xmscore](https://aquaveo.github.io/xmscore/)
+[C++ Documentation](https://aquaveo.github.io/xmscore/)
 
-Python:[xmscore python]((https://aquaveo.github.io/xmscore/pydocs)
+[Python Documentation](https://aquaveo.github.io/xmscore/pydocs)
