@@ -5,7 +5,7 @@ import os
 
 class XmscoreConan(ConanFile):
     name = "xmscore"
-    version = None
+    # version = None  # This no longer worked after conan version 1.11
     license = "FreeBSD Software License"
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
