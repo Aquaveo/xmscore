@@ -2,14 +2,14 @@
 Modules
 *******
 
-**Last Update:** October 5, 2018
+**Last Update:** January 13, 2019
 
 These are the modules currently exposed to python from the xmscore library
 
 Misc
 ====
 
-.. automodule:: xmscore_py.misc
+.. automodule:: xmscore.misc
 
 .. toctree::
    :maxdepth: 1
