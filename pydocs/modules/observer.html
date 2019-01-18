@@ -56,6 +56,10 @@
           
             
             
+              <div class="version">
+                2.0.2
+              </div>
+            
           
 
           
@@ -80,7 +84,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../modules.html#misc">Misc</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../modules.html#module-xmscore.misc">Misc</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Observer</a></li>
 </ul>
 </li>
@@ -154,6 +158,115 @@
             
   <div class="section" id="observer">
 <h1>Observer<a class="headerlink" href="#observer" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="xmscore.misc.Observer">
+<em class="property">class </em><code class="descclassname">xmscore.misc.</code><code class="descname">Observer</code><a class="headerlink" href="#xmscore.misc.Observer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class used with the observer pattern.</p>
+<dl class="method">
+<dt id="xmscore.misc.Observer.begin_operation_string">
+<code class="descname">begin_operation_string</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>operation: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.begin_operation_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Publishes the name of the operation and starts the timing of 
+the operation.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>operation (str): String identifying the name of the operation </dt>
+<dd>that is being observed by this class.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.end_operation">
+<code class="descname">end_operation</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.end_operation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ends the operation.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.on_begin_operation_string">
+<code class="descname">on_begin_operation_string</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>operation: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_begin_operation_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Virtual function for derived class to get the operation string.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>operation (str): Name of the operation being monitored.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.on_end_operation">
+<code class="descname">on_end_operation</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_end_operation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Virtual function for derived class to get end operation event.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.on_progress_status">
+<code class="descname">on_progress_status</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>percent_complete: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_progress_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Captures the progress of an operation.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>percent_complete (float): The percent complete.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.on_update_message">
+<code class="descname">on_update_message</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>message: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_update_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Virtual function to be notified that the message has been set.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>message (str): The new message.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.progress_status">
+<code class="descname">progress_status</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>percent_complete: float</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#xmscore.misc.Observer.progress_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to publish the progress status.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>percent_complete (float): Method to publish the progress status.</dd>
+<dt>Returns:</dt>
+<dd>bool: Was the progress bar updated.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.time_elapsed_in_seconds">
+<code class="descname">time_elapsed_in_seconds</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>elapsed_seconds: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.time_elapsed_in_seconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the time elapsed since the operation began.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>elapsed_seconds (float): The elapsed time since the operation began.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.time_remaining_in_seconds">
+<code class="descname">time_remaining_in_seconds</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>seconds_remaining: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.time_remaining_in_seconds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the time remaining in seconds.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><dl class="first last docutils">
+<dt>seconds_remaining (float): The time remaining for the current </dt>
+<dd>operation that the class is observing.</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="xmscore.misc.Observer.update_message">
+<code class="descname">update_message</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>message: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.update_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the message but not the percent complete.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>message (str): The new message.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -199,6 +312,7 @@
         <script type="text/javascript" src="../_static/jquery.js"></script>
         <script type="text/javascript" src="../_static/underscore.js"></script>
         <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
     
 
   
