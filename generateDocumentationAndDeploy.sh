@@ -95,7 +95,7 @@ fi
 ##### Generate the Python documentation.                                   #####
 echo 'Generating Python code documentation...'
 # install sphinx and conan
-sudo pip install sphinx sphinx_rtd_theme conan
+sudo pip install sphinxcontrib-napoleon sphinx_rtd_theme conan
 # add aquaveo conan remote
 conan user
 conan remote add aquaveo https://conan.aquaveo.com
