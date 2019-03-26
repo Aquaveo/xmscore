@@ -18,6 +18,7 @@
 //#endif // ifdef CXX_TEST
 
 // 5. Shared code headers
+#include <xmscore/points/ptsfwd.h>
 #include <xmscore/stl/utility.h>
 
 namespace xms
@@ -43,12 +44,14 @@ namespace xms
 #define TS_ASSERT_DELTA_VEC(a, b, delta) _TS_ASSERT_DELTA_VEC(__FILE__, __LINE__, a, b, delta)
 
 //------------------------------------------------------------------------------
-/// \brief Tests if two 2D vectors are equal within delta and gives useful output.
+/// \brief Tests if two 2D vectors are equal within delta and gives useful
+/// output.
 //------------------------------------------------------------------------------
 #define _TS_ASSERT_DELTA_VEC2D(f, l, a, b, delta) \
   xms::ttAssertDeltaVec2D((f), (l), (a), (b), (delta))
 //------------------------------------------------------------------------------
-/// \brief Tests if two 2D vectors are equal within delta and gives useful output.
+/// \brief Tests if two 2D vectors are equal within delta and gives useful
+/// output.
 //------------------------------------------------------------------------------
 #define TS_ASSERT_DELTA_VEC2D(a, b, delta) _TS_ASSERT_DELTA_VEC2D(__FILE__, __LINE__, a, b, delta)
 
@@ -64,113 +67,49 @@ namespace xms
   _TS_ASSERT_EQUALS_VEC2D(__FILE__, __LINE__, expected, actual)
 
 //------------------------------------------------------------------------------
-/// \brief Tests if two point vectors are equal within delta and gives useful output.
+/// \brief Tests if two point vectors are equal within delta and gives useful
+/// output.
 //------------------------------------------------------------------------------
-#define _TS_ASSERT_DELTA_VECPT3D(f, l, a, b, delta)                                         \
-  {                                                                                         \
-    if (a.size() != b.size())                                                               \
-    {                                                                                       \
-      std::stringstream msg;                                                                \
-      msg << "Incorrect size Expecting size: " << a.size() << " Found size: " << b.size();  \
-      _TS_FAIL(f, l, msg.str().c_str());                                                    \
-    }                                                                                       \
-    else                                                                                    \
-    {                                                                                       \
-      for (size_t i = 0; i < a.size(); ++i)                                                 \
-      {                                                                                     \
-        if (!::xms::gmEqualPointsXYZ(a.at(i).x, a.at(i).y, a.at(i).z, b.at(i).x, b.at(i).y, \
-                                     b.at(i).z, delta))                                     \
-        {                                                                                   \
-          std::stringstream msg;                                                            \
-          msg << "Incorrect value at position : " << i << " Expecting: " << a.at(i)         \
-              << " Found: " << b.at(i);                                                     \
-          _TS_FAIL(f, l, msg.str().c_str());                                                \
-        }                                                                                   \
-      }                                                                                     \
-    }                                                                                       \
-  \
-}
+#define _TS_ASSERT_DELTA_VECPT3D(f, l, a, b, delta) ttAssertDeltaVecPt3d(f, l, a, b, delta)
 //------------------------------------------------------------------------------
-/// \brief Tests if two point vectors are equal within delta and gives useful output.
+/// \brief Tests if two point vectors are equal within delta and gives useful
+/// output.
 //------------------------------------------------------------------------------
 #define TS_ASSERT_DELTA_VECPT3D(a, b, delta) \
   _TS_ASSERT_DELTA_VECPT3D(__FILE__, __LINE__, a, b, delta)
 //------------------------------------------------------------------------------
-/// \brief Tests if two point vectors are equal within delta and gives useful output.
-/// \deprecated
+/// \brief Tests if two point vectors are equal within delta and gives useful
+/// output. \deprecated
 //------------------------------------------------------------------------------
 #define TS_ASSERT_DELTA_VEC_MP3(a, b, delta) \
   _TS_ASSERT_DELTA_VECPT3D(__FILE__, __LINE__, a, b, delta)
 
 //------------------------------------------------------------------------------
-/// \brief Tests if two point vectors are equal within delta and gives useful output.
+/// \brief Tests if two point vectors are equal within delta and gives useful
+/// output.
 //------------------------------------------------------------------------------
-#define _TS_ASSERT_DELTA_VECPT2D(f, l, a, b, delta)                                        \
-  {                                                                                        \
-    if (a.size() != b.size())                                                              \
-    {                                                                                      \
-      std::stringstream msg;                                                               \
-      msg << "Incorrect size Expecting size: " << a.size() << " Found size: " << b.size(); \
-      _TS_FAIL(f, l, msg.str().c_str());                                                   \
-    }                                                                                      \
-    else                                                                                   \
-    {                                                                                      \
-      for (size_t i1x = 0; i1x < a.size(); ++i1x)                                          \
-      {                                                                                    \
-        if (!::xms::gmEqualPointsXY(a[i1x].x, a[i1x].y, b[i1x].x, b[i1x].y, delta))        \
-        {                                                                                  \
-          std::stringstream msg;                                                           \
-          msg << "Incorrect value at position : " << i1x << " Expecting: " << a[i1x]       \
-              << " Found: " << b[i1x];                                                     \
-          _TS_FAIL(f, l, msg.str().c_str());                                               \
-          return;                                                                          \
-        }                                                                                  \
-      }                                                                                    \
-    }                                                                                      \
-  \
-}
+#define _TS_ASSERT_DELTA_VECPT2D(f, l, a, b, delta) ttAssertDeltaVecPt2d(f, l, a, b, delta)
 //------------------------------------------------------------------------------
-/// \brief Tests if two point vectors are equal within delta and gives useful output.
+/// \brief Tests if two point vectors are equal within delta and gives useful
+/// output.
 //------------------------------------------------------------------------------
 #define TS_ASSERT_DELTA_VECPT2D(a, b, delta) \
   _TS_ASSERT_DELTA_VECPT2D(__FILE__, __LINE__, a, b, delta)
 //------------------------------------------------------------------------------
-/// \brief Tests if two point vectors are equal within delta and gives useful output.
-/// \deprecated
+/// \brief Tests if two point vectors are equal within delta and gives useful
+/// output. \deprecated
 //------------------------------------------------------------------------------
 #define TS_ASSERT_DELTA_VEC_MP2(a, b, delta) \
   _TS_ASSERT_DELTA_VECPT2D(__FILE__, __LINE__, a, b, delta)
 
 //------------------------------------------------------------------------------
 /// \brief Used to compare two Pt3ds and give useful output information.
-///
-//  You'll need to include the following wherever you use this:
-//  #include <shared1/geometry/geoms.h>     // for gmEqualPointsXYZ
-//  #include <shared1/guido/mpts_streams.h> // for << on Pt3d
 //------------------------------------------------------------------------------
-#define _TS_ASSERT_DELTA_PT3D(f, l, a, b, delta)                               \
-  {                                                                            \
-    if (!gmEqualPointsXYZ(a, b, delta))                                        \
-    {                                                                          \
-      std::stringstream msg;                                                   \
-      msg << "(" << a << "), != (" << b << ") within delta (" << delta << ")"; \
-      _TS_FAIL(f, l, msg.str().c_str());                                       \
-    }                                                                          \
-  \
-}
+#define _TS_ASSERT_DELTA_PT3D(f, l, a, b, delta) ttAssertDeltaPt3d(f, l, a, b, delta)
 //------------------------------------------------------------------------------
 /// \brief Tests if two points are equal within delta and gives useful output.
 //------------------------------------------------------------------------------
-#define _TS_ASSERT_DELTA_PT2D(f, l, a, b, delta)                               \
-  {                                                                            \
-    if (!gmEqualPointsXY(a, b, delta))                                         \
-    {                                                                          \
-      std::stringstream msg;                                                   \
-      msg << "(" << a << "), != (" << b << ") within delta (" << delta << ")"; \
-      _TS_FAIL(f, l, msg.str().c_str());                                       \
-    }                                                                          \
-  \
-}
+#define _TS_ASSERT_DELTA_PT2D(f, l, a, b, delta) ttAssertDeltaPt2d(f, l, a, b, delta);
 //------------------------------------------------------------------------------
 /// \brief Tests if two points are equal within delta and gives useful output.
 //------------------------------------------------------------------------------
@@ -316,6 +255,17 @@ void ttStreamsEqual(const std::string& a_src,
                     unsigned int a_line,
                     std::istream& a_strm1,
                     std::istream& a_strm2);
+bool ttEqualPointsXYZ(const Pt3d& a_pt1, const Pt3d& a_pt2, double a_tolerance);
+bool ttEqualPointsXYZ(double a_x1,
+                      double a_y1,
+                      double a_z1,
+                      double a_x2,
+                      double a_y2,
+                      double a_z2,
+                      double a_tolerance);
+bool ttEqualPointsXY(const Pt2d& a_pt1, const Pt2d& a_pt2, double a_tolerance);
+bool ttEqualPointsXY(const Pt3d& a_pt1, const Pt3d& a_pt2, double a_tolerance);
+bool ttEqualPointsXY(double a_x1, double a_y1, double a_x2, double a_y2, double a_tolerance);
 //------------------------------------------------------------------------------
 /// \brief Template function returning true or false to help debug tests.
 /// \param f: file.
@@ -369,8 +319,8 @@ bool ttAssertDeltaVec(const char* f,
 template <typename T, typename U>
 bool ttAssertDeltaVec2D(const char* f,
                         unsigned l,
-                        const std::vector<std::vector<T> >& a,
-                        const std::vector<std::vector<T> >& b,
+                        const std::vector<std::vector<T>>& a,
+                        const std::vector<std::vector<T>>& b,
                         U delta)
 {
   bool ok = true;
@@ -440,8 +390,8 @@ void ttAssertEqualsAVec(const char* a_file,
 template <typename T>
 bool ttAssertEqualsVec2D(const char* f,
                          unsigned l,
-                         const std::vector<std::vector<T> >& a,
-                         const std::vector<std::vector<T> >& b)
+                         const std::vector<std::vector<T>>& a,
+                         const std::vector<std::vector<T>>& b)
 {
   bool ok = true;
   if (a.size() != b.size())
@@ -480,6 +430,126 @@ bool ttAssertEqualsVec2D(const char* f,
   }
   return ok;
 } // ttAssertEqualsVec2D
+//------------------------------------------------------------------------------
+/// \brief Assert two points are equal.
+/// \brief Template function returning true or false to help debug tests.
+/// \param a_file: file.
+/// \param a_line: line.
+/// \param a_pt1: First point.
+/// \param a_pt2: Second point.
+/// \param a_delta: Tolerance.
+//------------------------------------------------------------------------------
+template <class Pt>
+void ttAssertDeltaPt3d(const char* a_file,
+                       int a_line,
+                       const Pt& a_pt1,
+                       const Pt& a_pt2,
+                       double a_delta)
+{
+  if (!::xms::ttEqualPointsXYZ(a_pt1, a_pt2, a_delta))
+  {
+    std::stringstream msg;
+    msg << "(" << a_pt1 << "), != (" << a_pt2 << ") within delta (" << a_delta << ")";
+    _TS_FAIL(a_file, a_line, msg.str().c_str());
+  }
+} // ttAssertDeltaPt3d
+//------------------------------------------------------------------------------
+/// \brief Assert two points are equal.
+/// \brief Template function returning true or false to help debug tests.
+/// \param a_file: file.
+/// \param a_line: line.
+/// \param a_pt1: First point.
+/// \param a_pt2: Second point.
+/// \param a_delta: Tolerance.
+//------------------------------------------------------------------------------
+template <class Pt>
+void ttAssertDeltaPt2d(const char* a_file,
+                       int a_line,
+                       const Pt& a_pt1,
+                       const Pt& a_pt2,
+                       double a_delta)
+{
+  if (!::xms::ttEqualPointsXY(a_pt1, a_pt2, a_delta))
+  {
+    std::stringstream msg;
+    msg << "(" << a_pt1 << "), != (" << a_pt2 << ") within delta (" << a_delta << ")";
+    _TS_FAIL(a_file, a_line, msg.str().c_str());
+  }
+} // ttAssertDeltaPt2d
+//------------------------------------------------------------------------------
+/// \brief Assert two points are equal.
+/// \brief Template function returning true or false to help debug tests.
+/// \param a_file: file.
+/// \param a_line: line.
+/// \param a_pts1: First vector of points.
+/// \param a_pts2: Second vector of points.
+/// \param a_delta: Tolerance.
+//------------------------------------------------------------------------------
+template <class Pt1, class Pt2>
+void ttAssertDeltaVecPt3d(const char* a_file,
+                          int a_line,
+                          const Pt1& a_pts1,
+                          const Pt2& a_pts2,
+                          double a_delta)
+{
+  if (a_pts1.size() != a_pts2.size())
+  {
+    std::stringstream msg;
+    msg << "Incorrect size Expecting size: " << a_pts1.size() << " Found size: " << a_pts2.size();
+    _TS_FAIL(a_file, a_line, msg.str().c_str());
+  }
+  else
+  {
+    for (size_t i = 0; i < a_pts1.size(); ++i)
+    {
+      if (!::xms::ttEqualPointsXYZ(a_pts1.at(i).x, a_pts1.at(i).y, a_pts1.at(i).z, a_pts2.at(i).x,
+                                   a_pts2.at(i).y, a_pts2.at(i).z, a_delta))
+      {
+        std::stringstream msg;
+        msg << "Incorrect value at position : " << i << " Expecting: " << a_pts1.at(i)
+            << " Found: " << a_pts2.at(i);
+        _TS_FAIL(a_file, a_line, msg.str().c_str());
+      }
+    }
+  }
+} // ttAssertDeltaVecPt3d
+//------------------------------------------------------------------------------
+/// \brief Assert two points are equal.
+/// \brief Template function returning true or false to help debug tests.
+/// \param a_file: file.
+/// \param a_line: line.
+/// \param a_pts1: First vector of points.
+/// \param a_pts2: Second vector of points.
+/// \param a_delta: Tolerance.
+//------------------------------------------------------------------------------
+template <class Pt1, class Pt2>
+void ttAssertDeltaVecPt2d(const char* a_file,
+                          int a_line,
+                          const Pt1& a_pts1,
+                          const Pt2& a_pts2,
+                          double a_delta)
+{
+  if (a_pts1.size() != a_pts2.size())
+  {
+    std::stringstream msg;
+    msg << "Incorrect size Expecting size: " << a_pts1.size() << " Found size: " << a_pts2.size();
+    _TS_FAIL(a_file, a_line, msg.str().c_str());
+  }
+  else
+  {
+    for (size_t i = 0; i < a_pts1.size(); ++i)
+    {
+      if (!::xms::ttEqualPointsXY(a_pts1.at(i).x, a_pts1.at(i).y, a_pts2.at(i).x, a_pts2.at(i).y,
+                                  a_delta))
+      {
+        std::stringstream msg;
+        msg << "Incorrect value at position : " << i << " Expecting: " << a_pts1.at(i)
+            << " Found: " << a_pts2.at(i);
+        _TS_FAIL(a_file, a_line, msg.str().c_str());
+      }
+    }
+  }
+} // ttAssertDeltaVecPt2d
 //#endif // ifdef CXX_TEST
 
 } // namespace xms

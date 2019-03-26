@@ -8,8 +8,8 @@
 
 //----- Less than functors that use tolerances ---------------------------------
 
-#include <xmscore/points/pt.h>
 #include <xmscore/math/math.h>
+#include <xmscore/points/pt.h>
 
 namespace xms
 {
@@ -202,4 +202,4 @@ Pt4<_T> ptTruncate(Pt4<_T> const& a_in)
   return out;
 }
 
-} // namespace xms {
+} // namespace xms

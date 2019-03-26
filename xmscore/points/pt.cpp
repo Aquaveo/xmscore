@@ -18,25 +18,9 @@
 
 #include <xmscore/points/pt.t.h>
 #include <cfloat>
-#include <limits>
+#include <xmscore/stl/vector.h>
+#include <xmscore/testing/TestTools.h>
 
-namespace // unnamed namespace
-{
-/// EQ_EPS isn't in shared1 so I defined this here until it is
-#define iEQ_EPS(A, B, epsilon) (fabs((A) - (B)) <= fabs(((A) + (B)) * (epsilon)))
-
-//------------------------------------------------------------------------------
-/// \brief gmEqualPointsXYZ isn't in shared1 so can't use
-///        TS_ASSERT_DELTA_PT3D
-//------------------------------------------------------------------------------
-bool iTS_ASSERT_DELTA_PT3D(const xms::Pt3d& a_pt1, const xms::Pt3d& a_pt2, double a_eps)
-{
-  if (iEQ_EPS(a_pt1.x, a_pt2.x, a_eps) && iEQ_EPS(a_pt1.y, a_pt2.y, a_eps) &&
-      iEQ_EPS(a_pt1.z, a_pt2.z, a_eps))
-    return true;
-  return false;
-} // iTS_ASSERT_DELTA_PT3D
-} // unnamed namespace
 //------------------------------------------------------------------------------
 /// \brief tests for points
 //------------------------------------------------------------------------------
@@ -89,8 +73,14 @@ void PtUnitTests::testIt()
   {
     xms::Pt3d pt;
     pt = 2;
-    iTS_ASSERT_DELTA_PT3D(pt, xms::Pt3d(2), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt, xms::Pt3d(2), DBL_EPSILON);
   }
+  {
+    xms::Pt2d pt;
+    pt = 2;
+    TS_ASSERT_DELTA_PT2D(pt, xms::Pt2d(2), DBL_EPSILON);
+  }
+
   {
     xms::Pt2d pt1(1, 2);
     xms::Pt3d pt2;
@@ -102,13 +92,13 @@ void PtUnitTests::testIt()
     xms::Pt3d pt1(1, 2, 3);
     xms::Pt3d pt2;
     pt2 = pt1;
-    iTS_ASSERT_DELTA_PT3D(pt2, xms::Pt3d(1, 2, 3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2, xms::Pt3d(1, 2, 3), DBL_EPSILON);
   }
   {
     xms::Pt4d pt1(1, 2, 3, 4);
     xms::Pt3d pt2;
     pt2 = pt1;
-    iTS_ASSERT_DELTA_PT3D(pt2, xms::Pt3d(1, 2, 3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2, xms::Pt3d(1, 2, 3), DBL_EPSILON);
   }
 
   // Test operator==
@@ -174,43 +164,43 @@ void PtUnitTests::testIt()
   // Test operator+
   {
     xms::Pt3d pt(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt + 1, xms::Pt3d(2, 3, 4), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt + 1, xms::Pt3d(2, 3, 4), DBL_EPSILON);
   }
   {
     xms::Pt2d pt1(1, 2);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 + pt1, xms::Pt3d(2, 4, 3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 + pt1, xms::Pt3d(2, 4, 3), DBL_EPSILON);
   }
   {
     xms::Pt3d pt1(1, 2, 3);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 + pt1, xms::Pt3d(2, 4, 6), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 + pt1, xms::Pt3d(2, 4, 6), DBL_EPSILON);
   }
   {
     xms::Pt4d pt1(1, 2, 3, 4);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 + pt1, xms::Pt3d(2, 4, 6), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 + pt1, xms::Pt3d(2, 4, 6), DBL_EPSILON);
   }
 
   // Test operator-
   {
     xms::Pt3d pt(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt - 1, xms::Pt3d(0, 1, 2), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt - 1, xms::Pt3d(0, 1, 2), DBL_EPSILON);
   }
   {
     xms::Pt2d pt1(1, 2);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 - pt1, xms::Pt3d(0, 0, 3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 - pt1, xms::Pt3d(0, 0, 3), DBL_EPSILON);
   }
   {
     xms::Pt3d pt1(1, 2, 3);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 - pt1, xms::Pt3d(0, 0, 0), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 - pt1, xms::Pt3d(0, 0, 0), DBL_EPSILON);
   }
   {
     xms::Pt4d pt1(1, 2, 3, 4);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 - pt1, xms::Pt3d(0, 0, 0), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 - pt1, xms::Pt3d(0, 0, 0), DBL_EPSILON);
   }
 
   // Test unary operator-
@@ -224,7 +214,7 @@ void PtUnitTests::testIt()
     xms::Pt3d pt1(1, -2, 3);
     xms::Pt3d pt2;
     pt2 = -pt1;
-    iTS_ASSERT_DELTA_PT3D(pt2, xms::Pt3d(-1, 2, -3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2, xms::Pt3d(-1, 2, -3), DBL_EPSILON);
   }
   {
     xms::Pt4f pt1(1, -2, 3, -4);
@@ -236,43 +226,43 @@ void PtUnitTests::testIt()
   // Test operator*
   {
     xms::Pt3d pt(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt * 2, xms::Pt3d(2, 4, 6), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt * 2, xms::Pt3d(2, 4, 6), DBL_EPSILON);
   }
   {
     xms::Pt2d pt1(1, 2);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 * pt1, xms::Pt3d(1, 4, 3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 * pt1, xms::Pt3d(1, 4, 3), DBL_EPSILON);
   }
   {
     xms::Pt3d pt1(1, 2, 3);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 * pt1, xms::Pt3d(1, 4, 9), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 * pt1, xms::Pt3d(1, 4, 9), DBL_EPSILON);
   }
   {
     xms::Pt4d pt1(1, 2, 3, 4);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 * pt1, xms::Pt3d(1, 4, 9), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 * pt1, xms::Pt3d(1, 4, 9), DBL_EPSILON);
   }
 
   // Test operator/
   {
     xms::Pt3d pt(2, 4, 6);
-    iTS_ASSERT_DELTA_PT3D(pt / 2, xms::Pt3d(1, 2, 3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt / 2, xms::Pt3d(1, 2, 3), DBL_EPSILON);
   }
   {
     xms::Pt2d pt1(1, 2);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 / pt1, xms::Pt3d(1, 1, 3), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 / pt1, xms::Pt3d(1, 1, 3), DBL_EPSILON);
   }
   {
     xms::Pt3d pt1(1, 2, 3);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 / pt1, xms::Pt3d(1, 1, 1), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 / pt1, xms::Pt3d(1, 1, 1), DBL_EPSILON);
   }
   {
     xms::Pt4d pt1(1, 2, 3, 4);
     xms::Pt3d pt2(1, 2, 3);
-    iTS_ASSERT_DELTA_PT3D(pt2 / pt1, xms::Pt3d(1, 1, 1), DBL_EPSILON);
+    TS_ASSERT_DELTA_PT3D(pt2 / pt1, xms::Pt3d(1, 1, 1), DBL_EPSILON);
   }
 
   // Test Set
@@ -309,6 +299,22 @@ void PtUnitTests::testIt()
     TS_ASSERT_DELTA(pt.at(0), 1, DBL_EPSILON);
     TS_ASSERT_DELTA(pt.at(1), 2, DBL_EPSILON);
     TS_ASSERT_DELTA(pt.at(2), 3, DBL_EPSILON);
+  }
+
+  // Test that TS_ASSERT_DELTA_VECPT3D works with mismatching 3D point types
+  {
+    using namespace xms;
+    VecPt4d expected = {Pt4d(1.0), Pt4d(2.0), Pt4d(3.0)};
+    VecPt3f actual = {Pt3f(1.001f), Pt3f(2.001f), Pt3f(3.001f)};
+    TS_ASSERT_DELTA_VECPT3D(expected, actual, 0.01);
+  }
+
+  // Test that TS_ASSERT_DELTA_VECPT2D works with mismatching point types
+  {
+    using namespace xms;
+    VecPt3d expected = {Pt3d(1.0), Pt3d(2.0), Pt3d(3.0)};
+    VecPt2f actual = {Pt2f(1.001f), Pt2f(2.001f), Pt2f(3.001f)};
+    TS_ASSERT_DELTA_VECPT2D(expected, actual, 0.01);
   }
   // TS_ASSERT_THROWS(pt.at(3), std::out_of_range&);
 

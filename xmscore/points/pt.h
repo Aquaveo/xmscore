@@ -2370,7 +2370,8 @@ _To& Pt3Convert(const _From& a_from, _To& a_to)
 ////////////////////////////////////////////////////////////////////////////////
 
 //
-// This code ported by GMS from "The Standard C++ Library" by Nicolai M. Josuttis
+// This code ported by GMS from "The Standard C++ Library" by Nicolai M.
+// Josuttis
 //
 
 //------------------------------------------------------------------------------
@@ -2593,4 +2594,4 @@ inline std::basic_istream<charT, traits>& operator>>(std::basic_istream<charT, t
   return strm;
 } // operator>> for Pt4<T>
 
-} // namespace xms {
+} // namespace xms
