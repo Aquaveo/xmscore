@@ -35,8 +35,9 @@
 #endif
 
 // 5. Shared code headers
-#include <xmscore/misc/environment.h>
 #include <xmscore/misc/XmLog.h>
+#include <xmscore/misc/environment.h>
+#include <xmscore/points/pt.h>
 
 // 6. Non-shared code headers
 
@@ -120,7 +121,7 @@ bool iFindTestFile(const std::string& a_filePath)
   return found;
 } // iFindTestFile
 
-} // namespace {
+} // namespace
 
 //----- Class / Function definitions -------------------------------------------
 
@@ -303,7 +304,7 @@ void ttGetTestFilePaths(const std::string& a_path,
     foundBase = iFindTestFile(a_baseFilePath);
   }
 #elif defined(ENV32BIT)
-  // ensure either ENV32BIT or ENV64BIT is defined
+    // ensure either ENV32BIT or ENV64BIT is defined
 #else
 #error "Must define either ENV32BIT or ENV64BIT"
 #endif
@@ -429,5 +430,82 @@ void ttStreamsEqual(const std::string& a_src,
     _TS_FAIL(a_src.c_str(), a_line, "Streams of different lengths");
   }
 } // ttStreamsEqual
+//------------------------------------------------------------------------------
+/// \brief  Returns true if the points are equal to within tolerance.
+/// \param a_pt1: Point 1.
+/// \param a_pt2: Point 2.
+/// \param a_tolerance: tolerance.
+/// \return true if equal within tolerance.
+//------------------------------------------------------------------------------
+bool ttEqualPointsXYZ(const Pt3d& a_pt1, const Pt3d& a_pt2, double a_tolerance)
+{
+  return ttEqualPointsXYZ(a_pt1.x, a_pt1.y, a_pt1.z, a_pt2.x, a_pt2.y, a_pt2.z, a_tolerance);
+} // ttEqualPointsXYZ
+//------------------------------------------------------------------------------
+/// \brief  Returns true if the points are equal to within tolerance.
+/// \param a_x1: x of point 1.
+/// \param a_y1: y of point 1.
+/// \param a_z1: z of point 1.
+/// \param a_x2: x of point 2.
+/// \param a_y2: y of point 2.
+/// \param a_z2: z of point 2.
+/// \param a_tolerance: tolerance.
+/// \return true if equal.
+//------------------------------------------------------------------------------
+bool ttEqualPointsXYZ(double a_x1,
+                      double a_y1,
+                      double a_z1,
+                      double a_x2,
+                      double a_y2,
+                      double a_z2,
+                      double a_tolerance)
+{
+  if ((fabs(a_x1 - a_x2) <= a_tolerance) && (fabs(a_y1 - a_y2) <= a_tolerance) &&
+      (fabs(a_z1 - a_z2) <= a_tolerance))
+    return true;
+  return false;
+} // ttEqualPointsXYZ
+//------------------------------------------------------------------------------
+/// \brief  Returns true if the points are equal to within tolerance.
+/// \param a_x1: x of point 1.
+/// \param a_y1: y of point 1.
+/// \param a_x2: x of point 2.
+/// \param a_y2: y of point 2.
+/// \param a_tolerance: a_tolerance.
+/// \return true if equal.
+//------------------------------------------------------------------------------
+bool ttEqualPointsXY(double a_x1, double a_y1, double a_x2, double a_y2, double a_tolerance)
+{
+  double dx = fabs(a_x1 - a_x2);
+  double dy = fabs(a_y1 - a_y2);
+  if (dx > a_tolerance || dy > a_tolerance)
+    return false;
+  else if (sqrt(dx * dx + dy * dy) <= a_tolerance)
+    return true;
+  else
+    return false;
+} // ttEqualPointsXY
+//------------------------------------------------------------------------------
+/// \overload
+/// \param a_pt1: Point 1.
+/// \param a_pt2: Point 2.
+/// \param a_tolerance: tolerance.
+/// \return true if equal within tolerance.
+//------------------------------------------------------------------------------
+bool ttEqualPointsXY(const Pt2d& a_pt1, const Pt2d& a_pt2, double a_tolerance)
+{
+  return ttEqualPointsXY(a_pt1.x, a_pt1.y, a_pt2.x, a_pt2.y, a_tolerance);
+} // ttEqualPointsXY
+//------------------------------------------------------------------------------
+/// \overload
+/// \param a_pt1: Point 1.
+/// \param a_pt2: Point 2.
+/// \param a_tolerance: tolerance.
+/// \return true if equal within tolerance.
+//------------------------------------------------------------------------------
+bool ttEqualPointsXY(const Pt3d& a_pt1, const Pt3d& a_pt2, double a_tolerance)
+{
+  return ttEqualPointsXY(a_pt1.x, a_pt1.y, a_pt2.x, a_pt2.y, a_tolerance);
+} // ttEqualPointsXY
 
 } // namespace xms
