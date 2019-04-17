@@ -93,9 +93,9 @@ class XmscoreConan(ConanFile):
                 self.run('python -m unittest discover -v -p *_pyt.py -s {}/xmscore/python'.format(
                     os.path.join(self.build_folder)), cwd=os.path.join(self.package_folder, "_package"))
                 # Create and upload wheel to PyPi if release and windows
-                is_release = self.env.get("RELEASE_PYTHON", False)
+                is_release = self.env.get("RELEASE_PYTHON", 'False')
                 print("*****IS RELEASE=={}*****".format(is_release))
-                if self.settings.os == "Windows" and is_release:
+                if self.settings.os == "Windows" and is_release == 'True':
                     self.run('python setup.py bdist_wheel --plat-name=win_amd64 --dist-dir {}'.format(
                         os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
                     self.run('twine upload dist/*', cwd=".")
