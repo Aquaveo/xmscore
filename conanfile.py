@@ -1,4 +1,4 @@
-from conans import ConanFile, CMake
+from conans import ConanFile, CMake, tools
 from conans.errors import ConanException
 import os
 
@@ -89,9 +89,18 @@ class XmscoreConan(ConanFile):
                             print(no_newline)
                 print("***********(0.0)*************")
         elif self.options.pybind:
-            print("***********(0.0)*************")
-            self.run('python -m unittest discover -v -p *_pyt.py -s ../xmscore/python', cwd="./lib")
-            print("***********(0.0)*************")
+            with tools.pythonpath(self):
+                self.run('python -m unittest discover -v -p *_pyt.py -s {}/xmscore/python'.format(
+                    os.path.join(self.build_folder)), cwd=os.path.join(self.package_folder, "_package"))
+                # Create and upload wheel to PyPi if release and windows
+                is_release = self.env.get("RELEASE_PYTHON", False)
+                if self.settings.os == "Windows" and is_release:
+                    repo_url = "https://aquapi.aquaveo.com/aquaveo/dev/"
+                    self.run('python setup.py bdist_wheel --plat-name=win_amd64 --dist-dir {}'.format(
+                        os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
+                    self.run('twine upload dist/*'.format(
+                        repo_url), cwd=".")
+
 
     def package(self):
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)

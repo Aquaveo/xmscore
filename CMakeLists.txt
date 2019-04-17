@@ -248,28 +248,31 @@ if(IS_PYTHON_BUILD)
   message(STATUS "PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
   message(STATUS "PYTHON_LIBS: ${PYTHON_LIBRARIES}")
 
-  pybind11_add_module(xmscore
+  pybind11_add_module(_xmscore
     ${xmscore_py} ${xmscore_py_headers}
   )
-  target_include_directories(xmscore
+  target_include_directories(_xmscore
       PRIVATE
         ${EXT_INCLUDE_DIRS}
   )
-  target_link_libraries(xmscore
+  target_link_libraries(_xmscore
     PRIVATE
       ${EXT_LIBS}
       ${PROJECT_NAME}
   )
-  set_target_properties(xmscore PROPERTIES
+  set_target_properties(_xmscore PROPERTIES
     LINKER_LANGUAGE CXX
   )
-  
+
   # Install recipe
   install(
-    TARGETS xmscore
-    ARCHIVE DESTINATION "site-packages"
-    LIBRARY DESTINATION "site-packages"
+      TARGETS _xmscore
+      ARCHIVE DESTINATION "_package/xmscore"
+      LIBRARY DESTINATION "_package/xmscore"
   )
+
+  install(DIRECTORY "_package/" DESTINATION "_package"
+           FILES_MATCHING PATTERN "*.py")
 endif()
 
 # Install recipe
