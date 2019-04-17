@@ -33,7 +33,6 @@ class MockObserver(Observer):
         self.status['message'] = message
 
     def time_remaining_in_seconds(self, remaining_seconds):
-        print("*******updating time{}".format(remaining_seconds))
         self.status['remaining_seconds'] = remaining_seconds
 
     def time_elapsed_in_seconds(self, elapsed_seconds):
