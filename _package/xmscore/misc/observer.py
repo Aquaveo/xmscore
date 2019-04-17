@@ -1,29 +1,26 @@
-from .._xmscore import misc as xm
+from .._xmscore.misc import Observer as Obs
 
 
-class Observer(xm.Observer):
+class Observer(Obs):
     """Mock Observer class for testing."""
 
     def __init__(self, instance=None):
-        if instance:
-            self._instance = instance
-        else:
-            self._instance = xm.Observer()
+        super(Observer, self).__init__()
 
     def on_progress_status(self, percent_complete):
-        self._instance.on_progress_status(percent_complete)
+        self.on_progress_status(percent_complete)
 
     def on_begin_operation_string(self, operation):
-        self._instance.on_begin_operation_string(operation)
+        self.on_begin_operation_string(operation)
 
     def on_end_operation(self):
-        self._instance.on_end_operation()
+        self.on_end_operation()
 
     def on_update_message(self, message):
-        self._instance.on_end_operation()
+        self.on_update_message(message)
 
     def time_remaining_in_seconds(self, remaining_seconds):
-        self._instance.time_remaining_in_seconds(remaining_seconds)
+        self.time_remaining_in_seconds(remaining_seconds)
 
     def time_elapsed_in_seconds(self, elapsed_seconds):
-        self._instance.time_elapsed_in_seconds(elapsed_seconds)
+        self.time_elapsed_in_seconds(elapsed_seconds)
