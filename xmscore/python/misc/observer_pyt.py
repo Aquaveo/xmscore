@@ -1,10 +1,10 @@
 """Test InterpLinear_py.cpp."""
 import unittest
 import time
-import xmscore.misc as xm
+from xmscore.misc import Observer
 
 
-class MockObserver(xm.Observer):
+class MockObserver(Observer):
     """Mock Observer class for testing."""
 
     def __init__(self):
@@ -33,6 +33,7 @@ class MockObserver(xm.Observer):
         self.status['message'] = message
 
     def time_remaining_in_seconds(self, remaining_seconds):
+        print("*******updating time{}".format(remaining_seconds))
         self.status['remaining_seconds'] = remaining_seconds
 
     def time_elapsed_in_seconds(self, elapsed_seconds):
