@@ -20,16 +20,10 @@ namespace py = pybind11;
 #endif
 
 //------ Primary Module --------------------------------------------------------
-PYBIND11_MODULE(xmscore, m) {
+PYBIND11_MODULE(_xmscore, m) {
     m.doc() = "Python bindings for the xmscore library"; // optional module docstring
     m.attr("__version__") = XMS_VERSION;
 
-    const char* misc_doc = R"pydoc(
-        The misc module of the xmscore python library contains classes and
-        functions that are shared between all of the xms family of libraries.
-        These functions and classes can be used in any of the library to ensure
-        that functionality is standardized.
-    )pydoc";
-    py::module modMisc = m.def_submodule("misc", misc_doc);
+    py::module modMisc = m.def_submodule("misc");
     initMisc(modMisc);
 }
