@@ -13,13 +13,19 @@ if __name__ == "__main__":
     xms_version = os.environ.get('XMS_VERSION', None)
     python_target_version = os.environ.get('PYTHON_TARGET_VERSION', "3.6")
     release_python = os.environ.get('RELEASE_PYTHON', 'False')
+    twine_username = os.environ.get('TWINE_USERNAME', None)
+    twine_password = os.environ.get('TWINE_PASSWORD', None)
+    twine_repository = os.environ.get('TWINE_REPOSITORY', None)
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         # General Options
         env_vars.update({
             'XMS_VERSION': xms_version,
             'PYTHON_TARGET_VERSION': python_target_version,
-            'RELEASE_PYTHON': release_python
+            'RELEASE_PYTHON': release_python,
+            'TWINE_USERNAME': twine_username,
+            'TWINE_PASSWORD': twine_password,
+            'TWINE_REPOSITORY': twine_repository,
         })
 
         # Require c++11 compatibility
