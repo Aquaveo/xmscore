@@ -61,6 +61,7 @@ build_script:
       $env:CONAN_REFERENCE = 'xmscore/'+$env:XMS_VERSION
       echo 'XMS_VERSION: '+$env:XMS_VERSION
       echo 'CONAN_REFERENCE: '+$env:CONAN_REFERENCE
+      echo 'RELEASE_PYTHON: '+$env:RELEASE_PYTHON
   - python build.py
 
 test_script:
