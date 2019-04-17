@@ -19,7 +19,7 @@ class XmscoreConan(ConanFile):
     generators = "cmake", "txt"
     build_requires = "cxxtest/4.4@aquaveo/stable"
     exports = "CMakeLists.txt", "LICENSE"
-    exports_sources = "xmscore/*"
+    exports_sources = "xmscore/*", "_package/*"
 
     def configure(self):
         # Set version dynamically using XMS_VERSION env variable.
