@@ -13,7 +13,7 @@ env:
    - SPHINX_CONF: $TRAVIS_BUILD_DIR/pydocs/source/conf.py
    - GH_REPO_REF: github.com/Aquaveo/xmscore.git
    - PYTHON_TARGET_VERSION: 2.7
-     
+
 linux: &linux
    os: linux
    sudo: required
