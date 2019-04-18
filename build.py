@@ -15,7 +15,6 @@ if __name__ == "__main__":
     release_python = os.environ.get('RELEASE_PYTHON', 'False')
     twine_username = os.environ.get('TWINE_USERNAME', None)
     twine_password = os.environ.get('TWINE_PASSWORD', None)
-    twine_repository = os.environ.get('TWINE_REPOSITORY', None)
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         # General Options
@@ -25,7 +24,6 @@ if __name__ == "__main__":
             'RELEASE_PYTHON': release_python,
             'TWINE_USERNAME': twine_username,
             'TWINE_PASSWORD': twine_password,
-            'TWINE_REPOSITORY': twine_repository,
         })
 
         # Require c++11 compatibility
