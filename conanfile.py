@@ -104,7 +104,7 @@ class XmscoreConan(ConanFile):
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
 
     def package_info(self):
-        self.env_info.PYTHONPATH.append(os.path.join(self.package_folder, "site-packages"))
+        self.env_info.PYTHONPATH.append(os.path.join(self.package_folder, "_package"))
         if self.settings.build_type == 'Debug':
             self.cpp_info.libs = ["xmscorelib_d"]
         else:
