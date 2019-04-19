@@ -67,7 +67,7 @@ py::iterable PyIterFromVecFlt(const VecFlt& flts, bool numpy=false);
 
 // DynamicBitset
 DynBitset DynamicBitsetFromPyIter(const py::iterable& bitset);
-py::iterable PyIterFromDynamicBitset(const DynBitset& bitset);
+py::iterable PyIterFromDynamicBitset(const DynBitset& bitset, bool numpy=false);
 
 std::pair<int, int> IntPairFromPyIter(const py::iterable& intpair);
 py::iterable PyIterFromIntPair(const std::pair<int, int>& intpair);
