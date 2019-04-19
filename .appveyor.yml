@@ -52,7 +52,6 @@ build_script:
   - ps: |
       if ($env:APPVEYOR_REPO_TAG -eq 'false') { 
         $env:XMS_VERSION = 'Dev'
-        $env:RELEASE_PYTHON = 'True'
       } else { 
         $env:XMS_VERSION = $env:APPVEYOR_REPO_TAG_NAME 
         $env:CONAN_UPLOAD = $env:AQUAVEO_CONAN
