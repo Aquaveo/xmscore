@@ -7,27 +7,37 @@
 XmsCore |version|
 *****************
 
-**Last Updated:** January 13, 2019
+**Last Updated:** March 18, 2019
 
-The xmscore library is a support library for other aquaveo products. This library contains classes generally used by all aquaveo libraries.
+The xmscore library is a support library for other aquaveo products. This library
+contains classes generally used by all aquaveo libraries.
 
-Contents
-========
+Index
+=====
+
+**Getting Started**
+
+* :doc:`getting_started`
+
+.. toctree::
+   :maxdepth: 2
+   :hidden:
+   :caption: Getting Started
+
+   getting_started.rst
+
+**User Interface**
+
+* :doc:`modules/misc/Observer`
 
 .. toctree::
    :maxdepth: 1
+   :hidden:
+   :caption: User Interface
 
-   gettingstarted
-   modules
+   modules/misc/Observer.rst
 
 Acknowledgements
 ================
 
 This library is from work done by aquaveo developers to support other aquaveo libraries.
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

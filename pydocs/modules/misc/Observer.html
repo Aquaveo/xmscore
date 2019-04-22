@@ -17,37 +17,39 @@
   
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Modules" href="../modules.html" /> 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Installation" href="../../getting_started.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
-            <a href="../index.html" class="icon icon-home"> XmsCore Library
+            <a href="../../index.html" class="icon icon-home"> XmsCore Library
           
 
           
@@ -57,14 +59,14 @@
             
             
               <div class="version">
-                2.0.2
+                2.0.3
               </div>
             
           
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -81,15 +83,14 @@
               
             
             
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../modules.html">Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../modules.html#module-xmscore.misc">Misc</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Observer</a></li>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#usage">Usage</a></li>
 </ul>
-</li>
-</ul>
-</li>
+<p class="caption"><span class="caption-text">User Interface</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Observer</a></li>
 </ul>
 
             
@@ -104,7 +105,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">XmsCore Library</a>
+          <a href="../../index.html">XmsCore Library</a>
         
       </nav>
 
@@ -133,9 +134,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-          <li><a href="../modules.html">Modules</a> &raquo;</li>
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
         
       <li>Observer</li>
     
@@ -143,7 +142,7 @@
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/modules/observer.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/modules/misc/Observer.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -165,16 +164,17 @@
 <dl class="method">
 <dt id="xmscore.misc.Observer.begin_operation_string">
 <code class="descname">begin_operation_string</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>operation: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.begin_operation_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Publishes the name of the operation and starts the timing of 
+<dd><p>Publishes the name of the operation and starts the timing of
 the operation.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>operation (str): String identifying the name of the operation </dt>
-<dd>that is being observed by this class.</dd>
-</dl>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>operation</strong> (<em>str</em>) – String identifying the name of the operation
+that is being observed by this class.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -187,10 +187,14 @@ the operation.</p>
 <dt id="xmscore.misc.Observer.on_begin_operation_string">
 <code class="descname">on_begin_operation_string</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>operation: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_begin_operation_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Virtual function for derived class to get the operation string.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>operation (str): Name of the operation being monitored.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>operation</strong> (<em>str</em>) – Name of the operation being monitored.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -203,66 +207,89 @@ the operation.</p>
 <dt id="xmscore.misc.Observer.on_progress_status">
 <code class="descname">on_progress_status</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>percent_complete: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_progress_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Captures the progress of an operation.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>percent_complete (float): The percent complete.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>percent_complete</strong> (<em>float</em>) – The percent complete.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.on_update_message">
 <code class="descname">on_update_message</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>message: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_update_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Virtual function to be notified that the message has been set.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>message (str): The new message.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> (<em>str</em>) – The new message.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.progress_status">
 <code class="descname">progress_status</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>percent_complete: float</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#xmscore.misc.Observer.progress_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method to publish the progress status.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>percent_complete (float): Method to publish the progress status.</dd>
-<dt>Returns:</dt>
-<dd>bool: Was the progress bar updated.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>percent_complete</strong> (<em>float</em>) – Method to publish the progress status.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Was the progress bar updated.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.time_elapsed_in_seconds">
 <code class="descname">time_elapsed_in_seconds</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>elapsed_seconds: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.time_elapsed_in_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the time elapsed since the operation began.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>elapsed_seconds (float): The elapsed time since the operation began.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>elapsed_seconds</strong> (<em>float</em>) – The elapsed time since the operation began.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.time_remaining_in_seconds">
 <code class="descname">time_remaining_in_seconds</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>seconds_remaining: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.time_remaining_in_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the time remaining in seconds.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd><dl class="first last docutils">
-<dt>seconds_remaining (float): The time remaining for the current </dt>
-<dd>operation that the class is observing.</dd>
-</dl>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seconds_remaining</strong> (<em>float</em>) – The time remaining for the current
+operation that the class is observing.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.update_message">
 <code class="descname">update_message</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>message: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.update_message" title="Permalink to this definition">¶</a></dt>
 <dd><p>Updates the message but not the percent complete.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>message (str): The new message.</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> (<em>str</em>) – The new message.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -278,7 +305,7 @@ the operation.</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../modules.html" class="btn btn-neutral" title="Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../../getting_started.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -304,26 +331,16 @@ the operation.</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script type="text/javascript" src="../_static/language_data.js"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
