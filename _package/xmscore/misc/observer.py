@@ -4,7 +4,7 @@ from .._xmscore.misc import Observer as Obs
 class Observer(Obs):
     """Mock Observer class for testing."""
 
-    def __init__(self, instance=None):
+    def __init__(self):
         super(Observer, self).__init__()
 
     def on_progress_status(self, percent_complete):
