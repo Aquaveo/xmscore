@@ -108,7 +108,7 @@ conan install -o xmscore:pybind=True -s compiler.version=6 -s compiler.libcxx=li
 # get the path to the conan package
 export PATH_TO_PYTHON_PACKAGE=$(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH.*xmscore | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
 # copy package into build directory
-cp ${PATH_TO_PYTHON_PACKAGE}/* $(dirname $SPHINX_CONF)/
+cp -r ${PATH_TO_PYTHON_PACKAGE}/* $(dirname $SPHINX_CONF)/
 ls ${PATH_TO_PYTHON_PACKAGE}
 ls $(dirname $SPHINX_CONF)
 # make a directory to hold the python documenation
