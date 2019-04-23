@@ -18,7 +18,7 @@ requires = [
     'numpy',
 ]
 
-version = '3.0.1'
+version = '3.0.2'
 
 setup(
     python_requires='==3.6.*',
