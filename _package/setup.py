@@ -18,10 +18,10 @@ requires = [
     'numpy',
 ]
 
-version = '99.99.97'
+version = '3.0.0'
 
 setup(
-    python_requires='==3.6.8',
+    python_requires='==3.6.*',
     name='xmscore',
     version=version,
     packages=find_packages(),

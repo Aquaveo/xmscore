@@ -4,7 +4,7 @@ version: 1.0.0-{build}  # This version is somewhat arbitrary. Does not affect th
 environment:
     PYTHON: "C:\\Python35-x64"
     PYTHON_ARCH: 64
-    PYTHON_VERSION: 3.5
+    PYTHON_VERSION: 3.6
     PYTHON_TARGET_VERSION: ${PYTHON_VERSION}
     RELEASE_PYTHON: 'False'
 
