@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                2.0.3
+                3.0.2
               </div>
             
           
@@ -160,38 +160,16 @@
 <dl class="class">
 <dt id="xmscore.misc.Observer">
 <em class="property">class </em><code class="descclassname">xmscore.misc.</code><code class="descname">Observer</code><a class="headerlink" href="#xmscore.misc.Observer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class used with the observer pattern.</p>
-<dl class="method">
-<dt id="xmscore.misc.Observer.begin_operation_string">
-<code class="descname">begin_operation_string</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>operation: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.begin_operation_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Publishes the name of the operation and starts the timing of
-the operation.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>operation</strong> (<em>str</em>) – String identifying the name of the operation
-that is being observed by this class.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmscore.misc.Observer.end_operation">
-<code class="descname">end_operation</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.end_operation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Ends the operation.</p>
-</dd></dl>
-
+<dd><p>Mock Observer class for testing.</p>
 <dl class="method">
 <dt id="xmscore.misc.Observer.on_begin_operation_string">
-<code class="descname">on_begin_operation_string</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>operation: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_begin_operation_string" title="Permalink to this definition">¶</a></dt>
-<dd><p>Virtual function for derived class to get the operation string.</p>
+<code class="descname">on_begin_operation_string</code><span class="sig-paren">(</span><em>operation</em><span class="sig-paren">)</span><a class="headerlink" href="#xmscore.misc.Observer.on_begin_operation_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>The operation string</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>operation</strong> (<em>str</em>) – Name of the operation being monitored.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>operation</strong> – Name of the operation being monitored.</td>
 </tr>
 </tbody>
 </table>
@@ -199,19 +177,19 @@ that is being observed by this class.</td>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.on_end_operation">
-<code class="descname">on_end_operation</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_end_operation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Virtual function for derived class to get end operation event.</p>
+<code class="descname">on_end_operation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#xmscore.misc.Observer.on_end_operation" title="Permalink to this definition">¶</a></dt>
+<dd><p>The end operation event</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.on_progress_status">
-<code class="descname">on_progress_status</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>percent_complete: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_progress_status" title="Permalink to this definition">¶</a></dt>
+<code class="descname">on_progress_status</code><span class="sig-paren">(</span><em>percent_complete</em><span class="sig-paren">)</span><a class="headerlink" href="#xmscore.misc.Observer.on_progress_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Captures the progress of an operation.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>percent_complete</strong> (<em>float</em>) – The percent complete.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>percent_complete</strong> (<em>float</em>) – The percent complete</td>
 </tr>
 </tbody>
 </table>
@@ -219,45 +197,20 @@ that is being observed by this class.</td>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.on_update_message">
-<code class="descname">on_update_message</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>message: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.on_update_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Virtual function to be notified that the message has been set.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> (<em>str</em>) – The new message.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmscore.misc.Observer.progress_status">
-<code class="descname">progress_status</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>percent_complete: float</em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#xmscore.misc.Observer.progress_status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to publish the progress status.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>percent_complete</strong> (<em>float</em>) – Method to publish the progress status.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Was the progress bar updated.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
-</tr>
-</tbody>
-</table>
+<code class="descname">on_update_message</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#xmscore.misc.Observer.on_update_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>When update message has been sent
+:param message: The new message</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.time_elapsed_in_seconds">
-<code class="descname">time_elapsed_in_seconds</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>elapsed_seconds: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.time_elapsed_in_seconds" title="Permalink to this definition">¶</a></dt>
+<code class="descname">time_elapsed_in_seconds</code><span class="sig-paren">(</span><em>elapsed_seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#xmscore.misc.Observer.time_elapsed_in_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the time elapsed since the operation began.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>elapsed_seconds</strong> (<em>float</em>) – The elapsed time since the operation began.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>elapsed_seconds</strong> (<em>Float</em>) – The elapsed time since the operation began.</td>
 </tr>
 </tbody>
 </table>
@@ -265,28 +218,13 @@ that is being observed by this class.</td>
 
 <dl class="method">
 <dt id="xmscore.misc.Observer.time_remaining_in_seconds">
-<code class="descname">time_remaining_in_seconds</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>seconds_remaining: float</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.time_remaining_in_seconds" title="Permalink to this definition">¶</a></dt>
+<code class="descname">time_remaining_in_seconds</code><span class="sig-paren">(</span><em>remaining_seconds</em><span class="sig-paren">)</span><a class="headerlink" href="#xmscore.misc.Observer.time_remaining_in_seconds" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the time remaining in seconds.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seconds_remaining</strong> (<em>float</em>) – The time remaining for the current
-operation that the class is observing.</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="xmscore.misc.Observer.update_message">
-<code class="descname">update_message</code><span class="sig-paren">(</span><em>self: xmscore.misc.Observer</em>, <em>message: unicode</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#xmscore.misc.Observer.update_message" title="Permalink to this definition">¶</a></dt>
-<dd><p>Updates the message but not the percent complete.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> (<em>str</em>) – The new message.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>remaining_seconds</strong> (<em>Float</em>) – The time remaining for the current operation that the class is observing.</td>
 </tr>
 </tbody>
 </table>
