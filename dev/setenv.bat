@@ -10,8 +10,6 @@ set CONAN_USERNAME=aquaveo
 set CONAN_PASSWORD=aquaveo
 set CONAN_UPLOAD=https://conan.aquaveo.com
 
-set TWINE_USERNAME=aquaveo
-set TWINE_PASSWORD=$p5!sSYQKL
 set TWINE_REPOSITORY=https://test.pypi.org/aquaveo
 
 REM export CONAN_UPLOAD="<conanserver>"
