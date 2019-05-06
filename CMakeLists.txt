@@ -120,6 +120,7 @@ link_directories(${EXT_LIB_DIRS})
 
 # Sources
 set(xmscore_sources
+  xmscore/dataio/daStreamIo.cpp
   xmscore/math/math.cpp
   xmscore/misc/DynBitset.cpp
   xmscore/misc/Observer.cpp
@@ -134,6 +135,7 @@ set(xmscore_sources
 )
 
 set(xmscore_headers
+  xmscore/dataio/daStreamIo.h
   xmscore/math/math.h
   xmscore/misc/base_macros.h
   xmscore/misc/boost_defines.h
@@ -167,6 +169,7 @@ if(BUILD_TESTING)
     add_definitions(-DCXX_TEST -DCXXTEST4)
 
     list(APPEND xmscore_headers
+        xmscore/dataio/daStreamIo.t.h
         xmscore/math/math.t.h
         xmscore/misc/Observer.t.h
         xmscore/misc/Progress.t.h
