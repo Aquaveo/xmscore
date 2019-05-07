@@ -1,10 +1,14 @@
-//------------------------------------------------------------------------------
-// \file
-// \copyright (C) Copyright Aquaveo 2019.
-//------------------------------------------------------------------------------
 #pragma once
+#ifdef CXX_TEST
+//------------------------------------------------------------------------------
+/// \file
+/// \ingroup dataio
+/// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
+/// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
+//------------------------------------------------------------------------------
 
 //----- Included files ---------------------------------------------------------
+
 // 3. Standard Library Headers
 
 // 4. External Library Headers
@@ -15,10 +19,6 @@
 // 6. Non-shared Headers
 
 //----- Namespace declaration --------------------------------------------------
-
-//----- Forward declarations ---------------------------------------------------
-
-//----- Structs / Classes ------------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
 class CoUtilsIoUnitTests : public CxxTest::TestSuite
@@ -35,3 +35,5 @@ public:
   void testReadWriteVecDbl();
   void testReadWriteVecPt3d();
 }; // CoQuadtreeGridUnitTests
+
+#endif
