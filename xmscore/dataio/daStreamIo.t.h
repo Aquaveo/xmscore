@@ -24,11 +24,13 @@
 class CoUtilsIoUnitTests : public CxxTest::TestSuite
 {
 public:
+  void testReadNamedLine();
   void testReadWriteLine();
   void testReadWriteStringLine();
   void testReadWrite2StringLine();
   void testReadWrite3StringLine();
   void testReadWriteIntLine();
+  void testReadIntFromLine();
   void testReadWriteDoubleLine();
   void testReadWrite3DoubleLine();
   void testReadWriteVecInt();

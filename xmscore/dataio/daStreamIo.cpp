@@ -352,6 +352,8 @@ bool daReadIntFromLine(std::string& a_line, int& a_val)
 {
   std::istringstream inStream(a_line);
   inStream >> a_val;
+  if (inStream.fail())
+    return false;
   size_t position = inStream.tellg();
   if (position != std::string::npos)
     a_line = inStream.str().substr(position);
@@ -359,7 +361,6 @@ bool daReadIntFromLine(std::string& a_line, int& a_val)
     a_line = "";
   return !inStream.fail();
 } // daReadIntFromLine
-// daReadIntLine
 //------------------------------------------------------------------------------
 /// \brief Read a named double value from a line.
 /// \param a_inStream The stream to read from.
@@ -630,6 +631,23 @@ using namespace xms;
 /// \brief Tests for Stream IO utilities.
 ////////////////////////////////////////////////////////////////////////////////
 //------------------------------------------------------------------------------
+/// \brief Test daReadNamedLine.
+//------------------------------------------------------------------------------
+void CoUtilsIoUnitTests::testReadNamedLine()
+{
+  // test read with CR LF, LF, CR, and no line endings
+  std::string lineEndingsInput =
+    "Windows Line\r\n"
+    "Unix Line\n"
+    "Mac Line\r"
+    "Last Line";
+  std::istringstream inStream(lineEndingsInput);
+  TS_ASSERT(daReadNamedLine(inStream, "Windows Line"));
+  TS_ASSERT(daReadNamedLine(inStream, "Unix Line"));
+  TS_ASSERT(daReadNamedLine(inStream, "Mac Line"));
+  TS_ASSERT(daReadNamedLine(inStream, "Last Line"));
+} // CoUtilsIoUnitTests::testReadNamedLine
+//------------------------------------------------------------------------------
 /// \brief Test daWriteLine and daReadLine.
 //------------------------------------------------------------------------------
 void CoUtilsIoUnitTests::testReadWriteLine()
@@ -725,6 +743,24 @@ void CoUtilsIoUnitTests::testReadWrite3StringLine()
   TS_ASSERT_EQUALS(expectedValue2, foundValue2);
   TS_ASSERT_EQUALS(expectedValue3, foundValue3);
 } // CoUtilsIoUnitTests::testReadWrite3StringLine
+//------------------------------------------------------------------------------
+/// \brief Test daWReadIntFromLine.
+//------------------------------------------------------------------------------
+void CoUtilsIoUnitTests::testReadIntFromLine()
+{
+  std::string line = "1 -1 A 2";
+  int intValue;
+  TS_ASSERT(daReadIntFromLine(line, intValue));
+  TS_ASSERT_EQUALS(1, intValue);
+  TS_ASSERT_EQUALS(" -1 A 2", line);
+
+  TS_ASSERT(daReadIntFromLine(line, intValue));
+  TS_ASSERT_EQUALS(-1, intValue);
+  TS_ASSERT_EQUALS(" A 2", line);
+
+  TS_ASSERT(!daReadIntFromLine(line, intValue));
+  TS_ASSERT_EQUALS(" A 2", line);
+} // CoUtilsIoUnitTests::testReadIntFromLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteIntLine and daReadIntLine.
 //------------------------------------------------------------------------------
