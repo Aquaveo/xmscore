@@ -1,6 +1,8 @@
 //------------------------------------------------------------------------------
 /// \file
-/// \copyright (C) Copyright Aquaveo 2019.
+/// \ingroup dataio
+/// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
+/// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
 //------------------------------------------------------------------------------
 
 //----- Included files ---------------------------------------------------------
