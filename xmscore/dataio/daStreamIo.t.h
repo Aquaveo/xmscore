@@ -21,7 +21,7 @@
 //----- Namespace declaration --------------------------------------------------
 
 ////////////////////////////////////////////////////////////////////////////////
-class CoUtilsIoUnitTests : public CxxTest::TestSuite
+class DaStreamIoUnitTests : public CxxTest::TestSuite
 {
 public:
   void testReadNamedLine();

@@ -627,13 +627,13 @@ void daWriteVecPt3d(std::ostream& a_outStream, const char* a_name, const VecPt3d
 using namespace xms;
 
 ////////////////////////////////////////////////////////////////////////////////
-/// \class CoUtilsIoUnitTests
+/// \class DaStreamIoUnitTests
 /// \brief Tests for Stream IO utilities.
 ////////////////////////////////////////////////////////////////////////////////
 //------------------------------------------------------------------------------
 /// \brief Test daReadNamedLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadNamedLine()
+void DaStreamIoUnitTests::testReadNamedLine()
 {
   // test read with CR LF, LF, CR, and no line endings
   std::string lineEndingsInput =
@@ -646,11 +646,11 @@ void CoUtilsIoUnitTests::testReadNamedLine()
   TS_ASSERT(daReadNamedLine(inStream, "Unix Line"));
   TS_ASSERT(daReadNamedLine(inStream, "Mac Line"));
   TS_ASSERT(daReadNamedLine(inStream, "Last Line"));
-} // CoUtilsIoUnitTests::testReadNamedLine
+} // DaStreamIoUnitTests::testReadNamedLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteLine and daReadLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWriteLine()
+void DaStreamIoUnitTests::testReadWriteLine()
 {
   std::ostringstream ostream;
   daWriteLine(ostream, "daWriteLine version 1.0");
@@ -679,11 +679,11 @@ void CoUtilsIoUnitTests::testReadWriteLine()
   TS_ASSERT_EQUALS("Mac Line", value);
   daReadLine(endingsIn, value);
   TS_ASSERT_EQUALS("Last Line", value);
-} // CoUtilsIoUnitTests::testReadWriteLine
+} // DaStreamIoUnitTests::testReadWriteLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteStringLine and daReadStringLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWriteStringLine()
+void DaStreamIoUnitTests::testReadWriteStringLine()
 {
   std::ostringstream ostream;
   const char* name = "LINE_NAME";
@@ -697,11 +697,11 @@ void CoUtilsIoUnitTests::testReadWriteStringLine()
   std::string foundValue;
   TS_ASSERT(daReadStringLine(istream, name, foundValue));
   TS_ASSERT_EQUALS(expectedValue, foundValue);
-} // CoUtilsIoUnitTests::testReadWriteStringLine
+} // DaStreamIoUnitTests::testReadWriteStringLine
 //------------------------------------------------------------------------------
 /// \brief Test daWrite2StringLine and daRead2StringLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWrite2StringLine()
+void DaStreamIoUnitTests::testReadWrite2StringLine()
 {
   std::ostringstream ostream;
   const char* name = "LINE_NAME";
@@ -718,11 +718,11 @@ void CoUtilsIoUnitTests::testReadWrite2StringLine()
   TS_ASSERT(daRead2StringLine(istream, name, foundValue1, foundValue2));
   TS_ASSERT_EQUALS(expectedValue1, foundValue1);
   TS_ASSERT_EQUALS(expectedValue2, foundValue2);
-} // CoUtilsIoUnitTests::testReadWrite2StringLine
+} // DaStreamIoUnitTests::testReadWrite2StringLine
 //------------------------------------------------------------------------------
 /// \brief Test daWrite3StringLine and daRead3StringLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWrite3StringLine()
+void DaStreamIoUnitTests::testReadWrite3StringLine()
 {
   std::ostringstream ostream;
   const char* name = "LINE_NAME";
@@ -742,11 +742,11 @@ void CoUtilsIoUnitTests::testReadWrite3StringLine()
   TS_ASSERT_EQUALS(expectedValue1, foundValue1);
   TS_ASSERT_EQUALS(expectedValue2, foundValue2);
   TS_ASSERT_EQUALS(expectedValue3, foundValue3);
-} // CoUtilsIoUnitTests::testReadWrite3StringLine
+} // DaStreamIoUnitTests::testReadWrite3StringLine
 //------------------------------------------------------------------------------
 /// \brief Test daWReadIntFromLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadIntFromLine()
+void DaStreamIoUnitTests::testReadIntFromLine()
 {
   std::string line = "1 -1 A 2";
   int intValue;
@@ -760,11 +760,11 @@ void CoUtilsIoUnitTests::testReadIntFromLine()
 
   TS_ASSERT(!daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(" A 2", line);
-} // CoUtilsIoUnitTests::testReadIntFromLine
+} // DaStreamIoUnitTests::testReadIntFromLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteIntLine and daReadIntLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWriteIntLine()
+void DaStreamIoUnitTests::testReadWriteIntLine()
 {
   std::ostringstream ostream;
   const char* name = "LINE_NAME";
@@ -778,11 +778,11 @@ void CoUtilsIoUnitTests::testReadWriteIntLine()
   int found;
   TS_ASSERT(daReadIntLine(istream, name, found));
   TS_ASSERT_EQUALS(expect, found);
-} // CoUtilsIoUnitTests::testReadWriteIntLine
+} // DaStreamIoUnitTests::testReadWriteIntLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteDoubleLine and daReadDoubleLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWriteDoubleLine()
+void DaStreamIoUnitTests::testReadWriteDoubleLine()
 {
   std::ostringstream ostream;
   const char* name = "LINE_NAME";
@@ -796,11 +796,11 @@ void CoUtilsIoUnitTests::testReadWriteDoubleLine()
   double found;
   TS_ASSERT(daReadDoubleLine(istream, name, found));
   TS_ASSERT_EQUALS(expect, found);
-} // CoUtilsIoUnitTests::testReadWriteDoubleLine
+} // DaStreamIoUnitTests::testReadWriteDoubleLine
 //------------------------------------------------------------------------------
 /// \brief Test daWrite3DoubleLine and daRead3DoubleLine.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWrite3DoubleLine()
+void DaStreamIoUnitTests::testReadWrite3DoubleLine()
 {
   std::ostringstream ostream;
   const char* name = "LINE_NAME";
@@ -820,11 +820,11 @@ void CoUtilsIoUnitTests::testReadWrite3DoubleLine()
   TS_ASSERT_EQUALS(expect1, found1);
   TS_ASSERT_EQUALS(expect2, found2);
   TS_ASSERT_EQUALS(expect3, found3);
-} // CoUtilsIoUnitTests::testReadWrite3DoubleLine
+} // DaStreamIoUnitTests::testReadWrite3DoubleLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteVecInt and daReadVecInt.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWriteVecInt()
+void DaStreamIoUnitTests::testReadWriteVecInt()
 {
   std::ostringstream ostream;
   const char* name = "VECTOR_NAME";
@@ -842,11 +842,11 @@ void CoUtilsIoUnitTests::testReadWriteVecInt()
   VecInt found;
   TS_ASSERT(daReadVecInt(istream, name, found));
   TS_ASSERT_EQUALS(expect, found);
-} // CoUtilsIoUnitTests::testReadWriteVecInt
+} // DaStreamIoUnitTests::testReadWriteVecInt
 //------------------------------------------------------------------------------
 /// \brief Test daWriteVecDbl and daReadVecDbl.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWriteVecDbl()
+void DaStreamIoUnitTests::testReadWriteVecDbl()
 {
   std::ostringstream ostream;
   const char* name = "VECTOR_NAME";
@@ -864,11 +864,11 @@ void CoUtilsIoUnitTests::testReadWriteVecDbl()
   VecDbl found;
   TS_ASSERT(daReadVecDbl(istream, name, found));
   TS_ASSERT_EQUALS(expect, found);
-} // CoUtilsIoUnitTests::testReadWriteVecDbl
+} // DaStreamIoUnitTests::testReadWriteVecDbl
 //------------------------------------------------------------------------------
 /// \brief Test daWriteVecPt3d and daReadVecPt3d.
 //------------------------------------------------------------------------------
-void CoUtilsIoUnitTests::testReadWriteVecPt3d()
+void DaStreamIoUnitTests::testReadWriteVecPt3d()
 {
   std::ostringstream ostream;
   const char* name = "VECTOR_NAME";
@@ -888,6 +888,6 @@ void CoUtilsIoUnitTests::testReadWriteVecPt3d()
   VecPt3d found;
   TS_ASSERT(daReadVecPt3d(istream, name, found));
   TS_ASSERT_EQUALS(expect, found);
-} // CoUtilsIoUnitTests::testReadWriteVecPt3d
+} // DaStreamIoUnitTests::testReadWriteVecPt3d
 
 #endif
