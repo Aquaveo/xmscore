@@ -31,6 +31,8 @@ public:
   void testReadWrite3StringLine();
   void testReadWriteIntLine();
   void testReadIntFromLine();
+  void testReadStringFromLine();
+  void testReadDoubleFromLine();
   void testReadWriteDoubleLine();
   void testReadWrite3DoubleLine();
   void testReadWriteVecInt();
