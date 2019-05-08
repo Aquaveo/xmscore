@@ -42,10 +42,9 @@ namespace xms
 namespace
 {
 //------------------------------------------------------------------------------
-/// \brief Read line of name (beginning of line) followed with up to 3 expected values.
-/// \param a_outStream The stream to write too.
-/// \param a_prefix The string to expect before the values.
-/// \param a_val1 Optional first value.
+/// \brief Read line of name (beginning of line) followed with up to 3 expected
+/// values. \param a_outStream The stream to write too. \param a_prefix The
+/// string to expect before the values. \param a_val1 Optional first value.
 /// \param a_val2 Optional second value.
 /// \param a_val3 Optional third value.
 /// \return true if name was found and all expected values.
@@ -221,10 +220,9 @@ bool iRead2Values(std::istream& a_inStream, const char* a_name, _T& d1, _T& d2)
   ss >> d2;
   return !ss.fail();
 } // iRead2Values
-namespace
-{
 //------------------------------------------------------------------------------
-/// \brief Write name followed with up to 3 optional values each preceded by a space,
+/// \brief Write name followed with up to 3 optional values each preceded by a
+/// space,
 ///        and a new line after the last value.
 /// \param a_outStream The stream to write too.
 /// \param a_name The name to be written before the value.
@@ -268,7 +266,27 @@ void iWriteVec(std::ostream& a_outStream, const char* a_name, const _T& a_vec)
     iWriteLine(a_outStream, " ", &sval); // name is an indentation of spaces
   }
 }
-} // namespace
+//------------------------------------------------------------------------------
+/// \brief Read an integer value from a string. Return the remaining string.
+/// \param a_line The string to read from. Returns the remaining string.
+/// \param a_val The value to read.
+/// \return True if no errors.
+//------------------------------------------------------------------------------
+template <typename _T>
+bool iReadValueFromLine(std::string& a_line, _T& a_val)
+{
+  std::string line = a_line;
+  std::string stringValue;
+  if (!daReadStringFromLine(line, stringValue))
+    return false;
+
+  std::istringstream inStream(stringValue);
+  inStream >> a_val;
+  if (inStream.fail() || !inStream.eof())
+    return false;
+  a_line = line;
+  return true;
+} // iReadValueFromLine
 
 } // namespace
 
@@ -303,7 +321,7 @@ bool daReadLine(std::istream& a_inStream, std::string& a_line)
   std::istream::sentry se(a_inStream, true);
   std::streambuf* sb = a_inStream.rdbuf();
 
-  for(;;)
+  for (;;)
   {
     int c = sb->sbumpc();
     if (c == '\n')
@@ -342,25 +360,6 @@ bool daReadIntLine(std::istream& a_inStream, const char* a_name, int& a_val)
 {
   return iReadValue(a_inStream, a_name, a_val);
 } // daReadIntLine
-//------------------------------------------------------------------------------
-/// \brief Read an integer value from a string. Return the remaining string.
-/// \param a_line The string to read from. Returns the remaining string.
-/// \param a_val The value to read.
-/// \return True if no errors.
-//------------------------------------------------------------------------------
-bool daReadIntFromLine(std::string& a_line, int& a_val)
-{
-  std::istringstream inStream(a_line);
-  inStream >> a_val;
-  if (inStream.fail())
-    return false;
-  size_t position = inStream.tellg();
-  if (position != std::string::npos)
-    a_line = inStream.str().substr(position);
-  else
-    a_line = "";
-  return !inStream.fail();
-} // daReadIntFromLine
 //------------------------------------------------------------------------------
 /// \brief Read a named double value from a line.
 /// \param a_inStream The stream to read from.
@@ -478,6 +477,45 @@ bool daRead3DoubleLine(std::istream& a_inStream,
 {
   return iRead3Values(a_inStream, a_name, a_val1, a_val2, a_val3);
 } // daRead3DoubleLine
+//------------------------------------------------------------------------------
+/// \brief Read an integer value from a string. Return the remaining string.
+/// \param a_line The string to read from. Returns the remaining string.
+/// \param a_val The value to read.
+/// \return True if no errors.
+//------------------------------------------------------------------------------
+bool daReadIntFromLine(std::string& a_line, int& a_val)
+{
+  return iReadValueFromLine(a_line, a_val);
+} // daReadIntFromLine
+//------------------------------------------------------------------------------
+/// \brief Read a string value from a string. Return the remaining string.
+/// \param a_line The string to read from. Returns the remaining string.
+/// \param a_val The value to read.
+/// \return True if no errors.
+//------------------------------------------------------------------------------
+bool daReadStringFromLine(std::string& a_line, std::string& a_val)
+{
+  std::istringstream inStream(a_line);
+  inStream >> a_val;
+  if (inStream.fail())
+    return false;
+  size_t position = inStream.tellg();
+  if (position != std::string::npos)
+    a_line = inStream.str().substr(position);
+  else
+    a_line = "";
+  return true;
+} // daReadStringFromLine
+//------------------------------------------------------------------------------
+/// \brief Read a double value from a string. Return the remaining string.
+/// \param a_line The string to read from. Returns the remaining string.
+/// \param a_val The value to read.
+/// \return True if no errors.
+//------------------------------------------------------------------------------
+bool daReadDoubleFromLine(std::string& a_line, double& a_val)
+{
+  return iReadValueFromLine(a_line, a_val);
+} // daReadDoubleFromLine
 //------------------------------------------------------------------------------
 /// \brief Write a given line to a stream.
 /// \param a_outStream The stream to write too.
@@ -744,23 +782,112 @@ void DaStreamIoUnitTests::testReadWrite3StringLine()
   TS_ASSERT_EQUALS(expectedValue3, foundValue3);
 } // DaStreamIoUnitTests::testReadWrite3StringLine
 //------------------------------------------------------------------------------
-/// \brief Test daWReadIntFromLine.
+/// \brief Test daReadIntFromLine.
 //------------------------------------------------------------------------------
 void DaStreamIoUnitTests::testReadIntFromLine()
 {
-  std::string line = "1 -1 A 2";
+  std::string line;
+
+  // read from front
   int intValue;
+  line = "1 -1 A 2.0 B 4";
   TS_ASSERT(daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(1, intValue);
-  TS_ASSERT_EQUALS(" -1 A 2", line);
+  TS_ASSERT_EQUALS(" -1 A 2.0 B 4", line);
 
+  // read second value (with a space)
+  line = " -1 A 2.0 B 4";
   TS_ASSERT(daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS(" A 2", line);
+  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
 
+  // fails to read alpha (int value stays the same)
+  line = " A 2.0 B 4";
+  intValue = -1;
   TS_ASSERT(!daReadIntFromLine(line, intValue));
-  TS_ASSERT_EQUALS(" A 2", line);
+  TS_ASSERT_EQUALS(-1, intValue);
+  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+
+  // fails to read double (int value stays the same)
+  line = " A 2.0 B 4";
+  intValue = -1;
+  TS_ASSERT(!daReadIntFromLine(line, intValue));
+  TS_ASSERT_EQUALS(-1, intValue);
+  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+
+  // fails with empty line
+  line = "";
+  intValue = -1;
+  TS_ASSERT(!daReadIntFromLine(line, intValue));
+  TS_ASSERT_EQUALS(-1, intValue);
+  TS_ASSERT_EQUALS("", line);
 } // DaStreamIoUnitTests::testReadIntFromLine
+//------------------------------------------------------------------------------
+/// \brief Test daReadStringFromLine.
+//------------------------------------------------------------------------------
+void DaStreamIoUnitTests::testReadStringFromLine()
+{
+  std::string line;
+
+  // read from front
+  std::string stringValue;
+  line = "value1 value2 3";
+  TS_ASSERT(daReadStringFromLine(line, stringValue));
+  TS_ASSERT_EQUALS("value1", stringValue);
+  TS_ASSERT_EQUALS(" value2 3", line);
+
+  // read second value (with a space)
+  line = " value2 value3";
+  TS_ASSERT(daReadStringFromLine(line, stringValue));
+  TS_ASSERT_EQUALS("value2", stringValue);
+  TS_ASSERT_EQUALS(" value3", line);
+
+  // read last value
+  line = "3";
+  TS_ASSERT(daReadStringFromLine(line, stringValue));
+  TS_ASSERT_EQUALS("3", stringValue);
+  TS_ASSERT_EQUALS("", line);
+
+  // fails with empty line (string value stays the same)
+  line = "";
+  stringValue = "3";
+  TS_ASSERT(!daReadStringFromLine(line, stringValue));
+  TS_ASSERT_EQUALS("3", stringValue);
+  TS_ASSERT_EQUALS("", line);
+} // DaStreamIoUnitTests::testReadStringFromLine
+//------------------------------------------------------------------------------
+/// \brief Test daReadDoubleFromLine.
+//------------------------------------------------------------------------------
+void DaStreamIoUnitTests::testReadDoubleFromLine()
+{
+  std::string line;
+
+  // read from front
+  double doubleValue;
+  line = "1.1 -1.0e-3 3";
+  TS_ASSERT(daReadDoubleFromLine(line, doubleValue));
+  TS_ASSERT_EQUALS(1.1, doubleValue);
+  TS_ASSERT_EQUALS(" -1.0e-3 3", line);
+
+  // read second value (with a space)
+  line = " -1.0e-3 3";
+  TS_ASSERT(daReadDoubleFromLine(line, doubleValue));
+  TS_ASSERT_EQUALS(-1.0e-3, doubleValue);
+  TS_ASSERT_EQUALS(" 3", line);
+
+  // read last value
+  line = "3";
+  TS_ASSERT(daReadDoubleFromLine(line, doubleValue));
+  TS_ASSERT_EQUALS(3, doubleValue);
+  TS_ASSERT_EQUALS("", line);
+
+  // fails with empty line (string value stays the same)
+  line = "";
+  doubleValue = 3;
+  TS_ASSERT(!daReadDoubleFromLine(line, doubleValue));
+  TS_ASSERT_EQUALS(3, doubleValue);
+  TS_ASSERT_EQUALS("", line);
+} // DaStreamIoUnitTests::testReadDoubleFromLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteIntLine and daReadIntLine.
 //------------------------------------------------------------------------------

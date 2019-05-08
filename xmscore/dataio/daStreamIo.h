@@ -35,7 +35,6 @@ namespace xms
 bool daReadNamedLine(std::istream& a_inStream, const char* a_name);
 bool daReadLine(std::istream& a_inStream, std::string& a_line);
 bool daReadIntLine(std::istream& a_inStream, const char* a_name, int& a_val);
-bool daReadIntFromLine(std::string& a_line, int& a_val);
 bool daReadDoubleLine(std::istream& a_inStream, const char* a_name, double& a_val);
 bool daReadStringLine(std::istream& a_inStream, const char* a_name, std::string& a_val);
 bool daReadVecInt(std::istream& a_inStream, const char* a_name, VecInt& a_vec);
@@ -55,6 +54,10 @@ bool daRead3DoubleLine(std::istream& a_inStream,
                        double& a_val1,
                        double& a_val2,
                        double& a_val3);
+
+bool daReadIntFromLine(std::string& a_line, int& a_val);
+bool daReadStringFromLine(std::string& a_line, std::string& a_val);
+bool daReadDoubleFromLine(std::string& a_line, double& a_val);
 
 void daWriteVecInt(std::ostream& a_outStream, const char* a_name, const VecInt& a_vec);
 void daWriteVecDbl(std::ostream& a_outStream, const char* a_name, const VecDbl& a_vec);
