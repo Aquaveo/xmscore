@@ -281,9 +281,11 @@ bool iReadValueFromLine(std::string& a_line, _T& a_val)
     return false;
 
   std::istringstream inStream(stringValue);
-  inStream >> a_val;
+  _T tempVal;
+  inStream >> tempVal;
   if (inStream.fail() || !inStream.eof())
     return false;
+  a_val = tempVal;
   a_line = line;
   return true;
 } // iReadValueFromLine
