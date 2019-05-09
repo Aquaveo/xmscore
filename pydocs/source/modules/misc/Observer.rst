@@ -2,5 +2,5 @@
 Observer
 ********
 
-.. autoclass:: xmscore.misc.Observer
+.. autoclass:: xms.core.misc.Observer
    :members:

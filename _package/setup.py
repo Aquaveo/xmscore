@@ -24,7 +24,7 @@ setup(
     python_requires='==3.6.*',
     name='xmscore',
     version=version,
-    packages=find_packages(),
+    packages=['xms.core'],
     include_package_data=True,
     license='BSD 2-Clause License',
     description='',
@@ -35,4 +35,5 @@ setup(
     #     'tests': [],
     # },
     # test_suite='tests',
+)
 )
