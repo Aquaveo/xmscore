@@ -37,6 +37,7 @@ __AUTHOR__="Aquaveo"
 ################################################################################
 ##### Setup this script and get the current gh-pages branch.               #####
 echo 'Setting up the script...'
+sudo apt-get update
 # Exit with nonzero exit code if anything fails
 set -e
 
@@ -69,7 +70,7 @@ rm -rf *
 echo "" > .nojekyll
 
 #install doxygen
-sudo apt-get update
+#sudo apt-get update
 sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
 
 ################################################################################
