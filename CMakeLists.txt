@@ -267,8 +267,8 @@ if(IS_PYTHON_BUILD)
   # Install recipe
   install(
       TARGETS _xmscore
-      ARCHIVE DESTINATION "_package/xmscore"
-      LIBRARY DESTINATION "_package/xmscore"
+      ARCHIVE DESTINATION "_package/xms/core"
+      LIBRARY DESTINATION "_package/xms/core"
   )
 
   install(DIRECTORY "_package/" DESTINATION "_package"

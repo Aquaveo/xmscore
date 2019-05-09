@@ -13,14 +13,14 @@ This will install XmsCore and **all** the needed dependencies.
 Usage
 -----
 
-Currently the xmscore python library only has one public interface. The :class:`Observer <xmscore.misc.observer>`
+Currently the xmscore python library only has one public interface. The :class:`Observer <xms.core.misc.observer>`
 interface is used by some of the classes in other aquaveo libraries to help determine progress of certain work
-flows. The :class:`Observer <xmscore.misc.observer>` class has several functions that you can override to get
+flows. The :class:`Observer <xms.core.misc.observer>` class has several functions that you can override to get
 the progress from functions that accept an Observer object.
 
 .. code-block:: python
 
-    from xmscore.misc import Observer
+    from xms.core.misc import Observer
 
     class ExampleObserver(Observer):
         """Mock Observer class for testing."""
@@ -35,7 +35,7 @@ the progress from functions that accept an Observer object.
                 'remaining_seconds': None,
                 'elapsed_seconds': None
             }
-            super(MockObserver, self).__init__()
+            super(ExampleObserver, self).__init__()
 
         def on_progress_status(self, percent_complete):
             self.status['percent_complete'] = percent_complete
@@ -56,7 +56,7 @@ the progress from functions that accept an Observer object.
         def time_elapsed_in_seconds(self, elapsed_seconds):
             self.status['elapsed_seconds'] = elapsed_seconds
 
-This example :class:`Observer <xmscore.misc.Observer>` can be passed to other classes/functions such
+This example :class:`Observer <xms.core.misc.Observer>` can be passed to other classes/functions such
 as :func:`set_observer <xmsinterp.interpolate.InterpIdw.set_observer>` function of the
 :class:`InterpIdw <xmsinterp.interpolate.InterpIdw>` class. As the interp class goes through
 operations, this example observer will update the dictionary and you can retrieve the desired data.
