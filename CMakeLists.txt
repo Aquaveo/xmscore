@@ -272,7 +272,8 @@ if(IS_PYTHON_BUILD)
   )
 
   install(DIRECTORY "_package/" DESTINATION "_package"
-           FILES_MATCHING PATTERN "*.py")
+           FILES_MATCHING PATTERN "*.py"
+           PATTERN "_package/tests" EXCLUDE)
 endif()
 
 # Install recipe

@@ -9,6 +9,7 @@
 """
 import os
 from setuptools import setup, find_packages
+from xms import core
 
 
 # allow setup.py to be run from any path
@@ -18,7 +19,8 @@ requires = [
     'numpy',
 ]
 
-version = '3.0.2'
+
+version = core.__version__
 
 setup(
     python_requires='==3.6.*',
@@ -30,10 +32,6 @@ setup(
     description='',
     author='Aquaveo',
     install_requires=requires,
-    package_data={'': ['*.pyd']}
-    # extras_require={
-    #     'tests': [],
-    # },
-    # test_suite='tests',
-)
+    package_data={'': ['*.pyd']},
+    test_suite="tests",
 )
