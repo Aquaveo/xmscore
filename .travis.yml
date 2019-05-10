@@ -24,6 +24,7 @@ linux: &linux
      - docker
 osx: &osx
    os: osx
+   python: "3.6"
    language: generic
 
 stages:
