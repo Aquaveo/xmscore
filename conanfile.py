@@ -90,12 +90,13 @@ class XmscoreConan(ConanFile):
                 print("***********(0.0)*************")
         elif self.options.pybind:
             with tools.pythonpath(self):
-                self.run('python -m unittest discover -v -p *_pyt.py -s {}/xmscore/python'.format(
+                self.run('python -m unittest discover -v -p *_pyt.py -s {}/_package/tests'.format(
                     os.path.join(self.build_folder)), cwd=os.path.join(self.package_folder, "_package"))
                 # Create and upload wheel to PyPi if release and windows
                 is_release = self.env.get("RELEASE_PYTHON", 'False')
-                if self.settings.os == "Windows" and is_release == 'True' and \
-                        str(self.settings.compiler.runtime) == "MD":
+                if is_release == 'True' and ((self.settings.os == "Macos" or self.settings.os == "Linux")
+                                             or (self.settings.os == "Windows" and
+                                             str(self.settings.compiler.runtime) == "MD")):
                     self.run('python setup.py bdist_wheel --plat-name=win_amd64 --dist-dir {}'.format(
                         os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
                     self.run('twine upload dist/*', cwd=".")
