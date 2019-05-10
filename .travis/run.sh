@@ -12,4 +12,5 @@ else
     sudo docker login -u ${AQUAVEO_DOCKER_USERNAME_SECRET} -p ${AQUAVEO_DOCKER_USERNAME_PASSWORD} docker.aquaveo.com
 fi
 
+python --version
 python build.py
