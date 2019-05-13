@@ -9,7 +9,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     fi
     pyenv activate conan
     export PATH=$(pyenv root)/version/3.6.8/bin:$PATH
-    ls $(pyenv root)/version/3.6.8/bin
+    ls $(pyenv root)
 else
     sudo docker login -u ${AQUAVEO_DOCKER_USERNAME_SECRET} -p ${AQUAVEO_DOCKER_USERNAME_PASSWORD} docker.aquaveo.com
 fi
