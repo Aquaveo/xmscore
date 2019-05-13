@@ -91,7 +91,8 @@ if(IS_PYTHON_BUILD)
   # can't change this and it is fine for building conan packages and checking
   # that we don't have errors in the python wrapping. We have conda recipes
   # for building python packages that target other versions of python.
-  find_package(PythonLibs ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
+  # find_package(PythonLibs ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
+  find_package(PythonLibs)
   # Pybind11 module
   if(IS_CONDA_BUILD)
       include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
