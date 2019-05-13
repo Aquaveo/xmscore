@@ -15,7 +15,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
 
     pyenv install 3.6.8
     pyenv global 3.6.8
-    pyenv virtualenv 3.6.8 conan
+    pyenv virtualenv 3.6.8 conan conan-package-tools
     pyenv install 3.6-dev
     pyenv rehash
     pyenv activate conan
