@@ -5,8 +5,6 @@ set -x
 
 if [[ "$(uname -s)" == 'Darwin' ]]; then
     brew update || brew update
-    brew uninstall python
-    brew install python
     brew outdated pyenv || brew upgrade pyenv
     brew install pyenv-virtualenv
     brew install cmake || true
@@ -16,7 +14,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     fi
 
     pyenv install 3.6.8
-    pyenv install 3.6-dev
+    pyenv install python-dev python3-dev
     pyenv global 3.6.8
     pyenv virtualenv 3.6.8 conan
     pyenv rehash
