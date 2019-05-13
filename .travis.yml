@@ -12,7 +12,7 @@ env:
    - DOXYFILE: $TRAVIS_BUILD_DIR/Doxygen/Doxyfile
    - SPHINX_CONF: $TRAVIS_BUILD_DIR/pydocs/source/conf.py
    - GH_REPO_REF: github.com/Aquaveo/xmscore.git
-   - PYTHON_TARGET_VERSION: 3.6
+   - PYTHON_TARGET_VERSION: 3.6.8
 
 linux: &linux
    os: linux
