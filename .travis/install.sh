@@ -21,6 +21,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
     pyenv activate conan
 fi
 
+export PATH=$(pyenv root)/versions/3.6.8/bin:$PATH
 pip install conan --upgrade
 pip install conan_package_tools
 
