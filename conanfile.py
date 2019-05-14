@@ -90,6 +90,10 @@ class XmscoreConan(ConanFile):
                 print("***********(0.0)*************")
         elif self.options.pybind:
             with tools.pythonpath(self):
+                if not self.settings.os == "Macos":
+                  self.run('pip install --user numpy twine wheel')
+                else:
+                  self.run('pip install numpy twine wheel')
                 self.run('python -m unittest discover -v -p *_pyt.py -s {}/_package/tests'.format(
                     os.path.join(self.build_folder)), cwd=os.path.join(self.package_folder, "_package"))
                 # Create and upload wheel to PyPi if release and windows
