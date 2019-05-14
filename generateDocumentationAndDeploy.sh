@@ -70,8 +70,10 @@ echo "" > .nojekyll
 
 #install doxygen
 # Try this with out apt-get update
-#sudo DEBIAN_FRONTEND=noninteractive sudo apt-get update
-sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
+echo "Update apt..."
+sudo DEBIAN_FRONTEND=noninteractive sudo apt-get update
+echo "Install doxygen..."
+sudo DEBIAN_FRONTEND=noninteractive sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
 
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
