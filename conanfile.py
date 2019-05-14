@@ -94,7 +94,7 @@ class XmscoreConan(ConanFile):
                     os.path.join(self.build_folder)), cwd=os.path.join(self.package_folder, "_package"))
                 # Create and upload wheel to PyPi if release and windows
                 is_release = self.env.get("RELEASE_PYTHON", 'False')
-                if is_release == 'True' and ((self.settings.os == "Macos" or (self.settings.os == "Linux" and float(self.settings.compiler.value) == 6.0))
+                if is_release == 'True' and ((self.settings.os == "Macos" or (self.settings.os == "Linux" and float(self.settings.compiler.version.value) == 6.0))
                                              or (self.settings.os == "Windows" and
                                              str(self.settings.compiler.runtime) == "MD")):
                     print("Deploying to pip...")
