@@ -24,6 +24,7 @@ fi
 export PATH=$(pyenv root)/versions/3.6.8/bin:$PATH
 pip install conan --upgrade
 pip install conan_package_tools
+pip install twine wheel
 
 python --version
 
