@@ -73,7 +73,7 @@ echo "" > .nojekyll
 echo "Update apt..."
 sudo DEBIAN_FRONTEND=noninteractive sudo apt-get update
 echo "Install doxygen..."
-sudo DEBIAN_FRONTEND=noninteractive sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
+sudo DEBIAN_FRONTEND=noninteractive sudo DEBCONF_NONINTERACTIVE_SEEN=true sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
 
 ################################################################################
 ##### Generate the Doxygen code documentation and log the output.          #####
