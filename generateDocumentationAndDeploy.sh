@@ -69,7 +69,8 @@ rm -rf *
 echo "" > .nojekyll
 
 #install doxygen
-sudo DEBIAN_FRONTEND=noninteractive sudo apt-get update
+# Try this with out apt-get update
+#sudo DEBIAN_FRONTEND=noninteractive sudo apt-get update
 sudo apt-get install -y doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
 
 ################################################################################
