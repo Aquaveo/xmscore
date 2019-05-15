@@ -15,13 +15,13 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
 
     pyenv install 3.6.8
     pyenv global 3.6.8
-    pyenv virtualenv 3.6.8 conan conan-package-tools
+    pyenv virtualenv 3.6.8 conan conan-package-tools twine wheel
     pyenv install 3.6-dev
     pyenv rehash
     pyenv activate conan
 fi
 
-export PATH=$(pyenv root)/versions/3.6.8/bin:$PATH
+export PATH=$(pyenv root)/versions/3.6.8/bin:/hom/conan/.local/bin:$PATH
 pip install conan --upgrade
 pip install conan_package_tools
 pip install twine wheel
