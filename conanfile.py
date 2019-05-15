@@ -103,7 +103,7 @@ class XmscoreConan(ConanFile):
                                              str(self.settings.compiler.runtime) == "MD")):
                     print("Deploying to pip...")
                     plat_names = {'Windows': 'win_amd64', 'Linux': 'linux_x86_64', "Macos": 'macosx'}
-                    self.run('python setup.py bdist_wheel --plat-name={} --dist-dir {}'.format(
+                    self.run('python setup.py bdist_wheel --plat-name={} --dist-dir {} --verbose'.format(
                         plat_names[str(self.settings.os)],
                         os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
                     self.run('twine upload dist/*', cwd=".")
