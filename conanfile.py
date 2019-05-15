@@ -91,12 +91,15 @@ class XmscoreConan(ConanFile):
         elif self.options.pybind:
             with tools.pythonpath(self):
                 if not self.settings.os == "Macos":
-                  self.run('pip install --user numpy twine wheel')
+                  self.run('pip install --user numpy')
                 else:
-                  self.run('pip install numpy twine wheel')
+                  self.run('pip install numpy')
                 self.run('python -m unittest discover -v -p *_pyt.py -s {}/_package/tests'.format(
                     os.path.join(self.build_folder)), cwd=os.path.join(self.package_folder, "_package"))
-                # Create and upload wheel to PyPi if release and windows
+                # Create and upload wheel to aquapi if release and windows
+                # We are uploading to aquapi here instead of pypi because pypi doesn't accept
+                # the type of package 'linux_x86_64 that we want to upload. They only accept
+                # manylinux1 as the plat-tag
                 is_release = self.env.get("RELEASE_PYTHON", 'False')
                 if is_release == 'True' and ((self.settings.os == "Macos" or (self.settings.os == "Linux" and float(self.settings.compiler.version.value) == 6.0))
                                              or (self.settings.os == "Windows" and
