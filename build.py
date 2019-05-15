@@ -13,8 +13,9 @@ if __name__ == "__main__":
     xms_version = os.environ.get('XMS_VERSION', None)
     python_target_version = os.environ.get('PYTHON_TARGET_VERSION', "3.6")
     release_python = os.environ.get('RELEASE_PYTHON', 'False')
-    twine_username = os.environ.get('TWINE_USERNAME', None)
-    twine_password = os.environ.get('TWINE_PASSWORD', None)
+    aquapi_username = os.environ.get('AQUAPI_USERNAME', None)
+    aquapi_password = os.environ.get('AQUAPI_PASSWORD', None)
+    aquapi_url = os.environ.get('AQUAPI_URL', None)
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         # General Options
@@ -22,8 +23,9 @@ if __name__ == "__main__":
             'XMS_VERSION': xms_version,
             'PYTHON_TARGET_VERSION': python_target_version,
             'RELEASE_PYTHON': release_python,
-            'TWINE_USERNAME': twine_username,
-            'TWINE_PASSWORD': twine_password,
+            'AQUAPI_USERNAME': aquapi_username,
+            'AQUAPI_PASSWORD': aquapi_password,
+            'AQUAPI_URL': aquapi_url,
         })
 
         # Require c++11 compatibility
