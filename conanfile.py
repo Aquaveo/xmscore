@@ -109,7 +109,9 @@ class XmscoreConan(ConanFile):
                     devpi_password = self.env.get("AQUAPI_PASSWORD", 'NO_PASSWORD')
                     self.run('devpi use {}'.format(devpi_url))
                     self.run('devpi login {} --password {}'.format(devpi_username, devpi_password))
-                    self.run('python setup.py bdist_wheel --plat-name=win_amd64 --dist-dir {}'.format(
+                    plat_names = {'Windows': 'win_amd64', 'Linux': 'linux_x86_64', "Macos": 'macosx'}
+                    self.run('python setup.py bdist_wheel --plat-name={} --dist-dir {}'.format(
+                        plat_names[str(self.settings.os)],
                         os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
                     self.run('devpi upload --from-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=".")
 
