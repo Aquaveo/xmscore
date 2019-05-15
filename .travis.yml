@@ -112,7 +112,7 @@ jobs:
         after_success: true
       - stage: deploy
         <<: *linux
-        env: CONAN_GCC_VERSIONS=6 RELEASE_PYTHON='True' CONAN_DOCKER_IMAGE=docker.aquaveo.com/aquaveo/conan-docker/conan-gcc6:py36 CONAN_UPLOAD=$AQUAVEO_CONAN CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
+        env: CONAN_GCC_VERSIONS=6 TWINE_USERNAME=$TWINE_USERNAME_SECRET TWINE_PASSWORD=$TWINE_PASSWORD_SECRET RELEASE_PYTHON='True' CONAN_DOCKER_IMAGE=docker.aquaveo.com/aquaveo/conan-docker/conan-gcc6:py36 CONAN_UPLOAD=$AQUAVEO_CONAN CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
         after_success: true
       # GCC 7
       - stage: deploy
