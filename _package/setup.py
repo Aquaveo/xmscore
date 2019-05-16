@@ -26,7 +26,7 @@ setup(
     python_requires='==3.6.*',
     name='xmscore',
     version=version,
-    packages=['xms.core'],
+    packages=['xms.core', 'xms.core.misc'],
     include_package_data=True,
     license='BSD 2-Clause License',
     description='',
