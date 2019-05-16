@@ -114,7 +114,6 @@ class XmscoreConan(ConanFile):
                         plat_names[str(self.settings.os)],
                         os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
                     self.run('devpi upload --from-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=".")
-                exit(1)
 
 
     def package(self):
