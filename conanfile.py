@@ -91,9 +91,9 @@ class XmscoreConan(ConanFile):
         elif self.options.pybind:
             with tools.pythonpath(self):
                 if not self.settings.os == "Macos":
-                  self.run('pip install --user numpy')
+                  self.run('pip install --user numpy wheel')
                 else:
-                  self.run('pip install numpy')
+                  self.run('pip install numpy wheel')
                 self.run('python -m unittest discover -v -p *_pyt.py -s {}/_package/tests'.format(
                     os.path.join(self.build_folder)), cwd=os.path.join(self.package_folder, "_package"))
                 # Create and upload wheel to aquapi if release and windows
