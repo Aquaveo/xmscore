@@ -9,7 +9,7 @@
 """
 import os
 from setuptools import setup, find_packages
-from xms import core
+from xms.core import __version__
 
 
 # allow setup.py to be run from any path
@@ -20,7 +20,7 @@ requires = [
 ]
 
 
-version = core.__version__
+version = __version__
 
 setup(
     python_requires='==3.6.*',
@@ -32,6 +32,6 @@ setup(
     description='',
     author='Aquaveo',
     install_requires=requires,
-    package_data={'': ['*.pyd']},
+    package_data={'': ['*.pyd', '*.so']},
     test_suite="tests",
 )
