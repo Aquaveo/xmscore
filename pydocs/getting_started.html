@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Observer" href="modules/misc/Observer.html" />
-    <link rel="prev" title="XmsCore 3.0.2" href="index.html" /> 
+    <link rel="prev" title="XmsCore 3.0.3" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -60,7 +60,7 @@
             
             
               <div class="version">
-                3.0.2
+                3.0.3
               </div>
             
           
@@ -171,7 +171,7 @@
 interface is used by some of the classes in other aquaveo libraries to help determine progress of certain work
 flows. The <code class="xref py py-class docutils literal notranslate"><span class="pre">Observer</span></code> class has several functions that you can override to get
 the progress from functions that accept an Observer object.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xmscore.misc</span> <span class="kn">import</span> <span class="n">Observer</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">xms.core.misc</span> <span class="kn">import</span> <span class="n">Observer</span>
 
 <span class="k">class</span> <span class="nc">ExampleObserver</span><span class="p">(</span><span class="n">Observer</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Mock Observer class for testing.&quot;&quot;&quot;</span>
@@ -186,7 +186,7 @@ the progress from functions that accept an Observer object.</p>
             <span class="s1">&#39;remaining_seconds&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
             <span class="s1">&#39;elapsed_seconds&#39;</span><span class="p">:</span> <span class="bp">None</span>
         <span class="p">}</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MockObserver</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ExampleObserver</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">on_progress_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">percent_complete</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">[</span><span class="s1">&#39;percent_complete&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">percent_complete</span>
@@ -208,9 +208,9 @@ the progress from functions that accept an Observer object.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">[</span><span class="s1">&#39;elapsed_seconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">elapsed_seconds</span>
 </pre></div>
 </div>
-<p>This example <a class="reference internal" href="modules/misc/Observer.html#xmscore.misc.Observer" title="xmscore.misc.Observer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observer</span></code></a> can be passed to other classes/functions such
+<p>This example <a class="reference internal" href="modules/misc/Observer.html#xms.core.misc.Observer" title="xms.core.misc.Observer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observer</span></code></a> can be passed to other classes/functions such
 as <code class="xref py py-func docutils literal notranslate"><span class="pre">set_observer</span></code> function of the
-<a class="reference external" href="https://aquaveo.github.io/xmsinterp/pydocs/modules/interpolate/InterpIdw.html#xmsinterp.interpolate.InterpIdw" title="(in XmsInterp Library v2.2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterpIdw</span></code></a> class. As the interp class goes through
+<a class="reference external" href="https://aquaveo.github.io/xmsinterp/pydocs/modules/interpolate/InterpIdw.html#xmsinterp.interpolate.InterpIdw" title="(in XmsInterp Library v3.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterpIdw</span></code></a> class. As the interp class goes through
 operations, this example observer will update the dictionary and you can retrieve the desired data.</p>
 </div>
 
@@ -225,7 +225,7 @@ operations, this example observer will update the dictionary and you can retriev
         <a href="modules/misc/Observer.html" class="btn btn-neutral float-right" title="Observer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="XmsCore 3.0.2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="XmsCore 3.0.3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

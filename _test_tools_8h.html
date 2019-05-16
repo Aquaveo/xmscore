@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('_test_tools_8h.html','');});
 <div class="textblock"><code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;cxxtest/TestSuite.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="ptsfwd_8h_source.html">xmscore/points/ptsfwd.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="utility_8h_source.html">xmscore/stl/utility.h</a>&gt;</code><br />
 </div>
 <p><a href="_test_tools_8h_source.html">Go to the source code of this file.</a></p>
@@ -136,8 +137,9 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a035dbfd193c794bbdf2c916aaaf8ec88">TS_ASSERT_EQUALS_VEC2D</a>(expected,  actual)&#160;&#160;&#160;<a class="el" href="_test_tools_8h.html#ae55d85d8b1c484f41b27cf8c13133a39">_TS_ASSERT_EQUALS_VEC2D</a>(__FILE__, __LINE__, expected, actual)</td></tr>
 <tr class="memdesc:a035dbfd193c794bbdf2c916aaaf8ec88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two 2D vectors are equal and gives useful output. <br /></td></tr>
 <tr class="separator:a035dbfd193c794bbdf2c916aaaf8ec88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a161e4d96aba9bdcb92b3b970d5e80717"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a161e4d96aba9bdcb92b3b970d5e80717">_TS_ASSERT_DELTA_VECPT3D</a>(f,  l,  a,  b,  delta)</td></tr>
-<tr class="memdesc:a161e4d96aba9bdcb92b3b970d5e80717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two point vectors are equal within delta and gives useful output.  <a href="#a161e4d96aba9bdcb92b3b970d5e80717">More...</a><br /></td></tr>
+<tr class="memitem:a161e4d96aba9bdcb92b3b970d5e80717"><td class="memItemLeft" align="right" valign="top"><a id="a161e4d96aba9bdcb92b3b970d5e80717"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a161e4d96aba9bdcb92b3b970d5e80717">_TS_ASSERT_DELTA_VECPT3D</a>(f,  l,  a,  b,  delta)&#160;&#160;&#160;ttAssertDeltaVecPt3d(f, l, a, b, delta)</td></tr>
+<tr class="memdesc:a161e4d96aba9bdcb92b3b970d5e80717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two point vectors are equal within delta and gives useful output. <br /></td></tr>
 <tr class="separator:a161e4d96aba9bdcb92b3b970d5e80717"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad074895a54cf874aed416e323758f355"><td class="memItemLeft" align="right" valign="top"><a id="ad074895a54cf874aed416e323758f355"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#ad074895a54cf874aed416e323758f355">TS_ASSERT_DELTA_VECPT3D</a>(a,  b,  delta)&#160;&#160;&#160;<a class="el" href="_test_tools_8h.html#a161e4d96aba9bdcb92b3b970d5e80717">_TS_ASSERT_DELTA_VECPT3D</a>(__FILE__, __LINE__, a, b, delta)</td></tr>
@@ -146,8 +148,9 @@ Macros</h2></td></tr>
 <tr class="memitem:ae6993be421133bed244cbf5876690747"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#ae6993be421133bed244cbf5876690747">TS_ASSERT_DELTA_VEC_MP3</a>(a,  b,  delta)&#160;&#160;&#160;<a class="el" href="_test_tools_8h.html#a161e4d96aba9bdcb92b3b970d5e80717">_TS_ASSERT_DELTA_VECPT3D</a>(__FILE__, __LINE__, a, b, delta)</td></tr>
 <tr class="memdesc:ae6993be421133bed244cbf5876690747"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two point vectors are equal within delta and gives useful output.  <a href="#ae6993be421133bed244cbf5876690747">More...</a><br /></td></tr>
 <tr class="separator:ae6993be421133bed244cbf5876690747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62afee6ecfd200a6d10f9e3739624633"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a62afee6ecfd200a6d10f9e3739624633">_TS_ASSERT_DELTA_VECPT2D</a>(f,  l,  a,  b,  delta)</td></tr>
-<tr class="memdesc:a62afee6ecfd200a6d10f9e3739624633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two point vectors are equal within delta and gives useful output.  <a href="#a62afee6ecfd200a6d10f9e3739624633">More...</a><br /></td></tr>
+<tr class="memitem:a62afee6ecfd200a6d10f9e3739624633"><td class="memItemLeft" align="right" valign="top"><a id="a62afee6ecfd200a6d10f9e3739624633"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a62afee6ecfd200a6d10f9e3739624633">_TS_ASSERT_DELTA_VECPT2D</a>(f,  l,  a,  b,  delta)&#160;&#160;&#160;ttAssertDeltaVecPt2d(f, l, a, b, delta)</td></tr>
+<tr class="memdesc:a62afee6ecfd200a6d10f9e3739624633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two point vectors are equal within delta and gives useful output. <br /></td></tr>
 <tr class="separator:a62afee6ecfd200a6d10f9e3739624633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d5f328388c2034d6fdcd47bb5d64759"><td class="memItemLeft" align="right" valign="top"><a id="a7d5f328388c2034d6fdcd47bb5d64759"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a7d5f328388c2034d6fdcd47bb5d64759">TS_ASSERT_DELTA_VECPT2D</a>(a,  b,  delta)&#160;&#160;&#160;<a class="el" href="_test_tools_8h.html#a62afee6ecfd200a6d10f9e3739624633">_TS_ASSERT_DELTA_VECPT2D</a>(__FILE__, __LINE__, a, b, delta)</td></tr>
@@ -156,11 +159,13 @@ Macros</h2></td></tr>
 <tr class="memitem:a19ff19a981397a8a431689b23f0c690f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a19ff19a981397a8a431689b23f0c690f">TS_ASSERT_DELTA_VEC_MP2</a>(a,  b,  delta)&#160;&#160;&#160;<a class="el" href="_test_tools_8h.html#a62afee6ecfd200a6d10f9e3739624633">_TS_ASSERT_DELTA_VECPT2D</a>(__FILE__, __LINE__, a, b, delta)</td></tr>
 <tr class="memdesc:a19ff19a981397a8a431689b23f0c690f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two point vectors are equal within delta and gives useful output.  <a href="#a19ff19a981397a8a431689b23f0c690f">More...</a><br /></td></tr>
 <tr class="separator:a19ff19a981397a8a431689b23f0c690f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed62aaca51fceea372f299053edc30f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#aed62aaca51fceea372f299053edc30f9">_TS_ASSERT_DELTA_PT3D</a>(f,  l,  a,  b,  delta)</td></tr>
-<tr class="memdesc:aed62aaca51fceea372f299053edc30f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to compare two Pt3ds and give useful output information.  <a href="#aed62aaca51fceea372f299053edc30f9">More...</a><br /></td></tr>
+<tr class="memitem:aed62aaca51fceea372f299053edc30f9"><td class="memItemLeft" align="right" valign="top"><a id="aed62aaca51fceea372f299053edc30f9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#aed62aaca51fceea372f299053edc30f9">_TS_ASSERT_DELTA_PT3D</a>(f,  l,  a,  b,  delta)&#160;&#160;&#160;ttAssertDeltaPt3d(f, l, a, b, delta)</td></tr>
+<tr class="memdesc:aed62aaca51fceea372f299053edc30f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to compare two Pt3ds and give useful output information. <br /></td></tr>
 <tr class="separator:aed62aaca51fceea372f299053edc30f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b413493a3f5104ffc246199ae30cde3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a9b413493a3f5104ffc246199ae30cde3">_TS_ASSERT_DELTA_PT2D</a>(f,  l,  a,  b,  delta)</td></tr>
-<tr class="memdesc:a9b413493a3f5104ffc246199ae30cde3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two points are equal within delta and gives useful output.  <a href="#a9b413493a3f5104ffc246199ae30cde3">More...</a><br /></td></tr>
+<tr class="memitem:a9b413493a3f5104ffc246199ae30cde3"><td class="memItemLeft" align="right" valign="top"><a id="a9b413493a3f5104ffc246199ae30cde3"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a9b413493a3f5104ffc246199ae30cde3">_TS_ASSERT_DELTA_PT2D</a>(f,  l,  a,  b,  delta)&#160;&#160;&#160;ttAssertDeltaPt2d(f, l, a, b, delta);</td></tr>
+<tr class="memdesc:a9b413493a3f5104ffc246199ae30cde3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests if two points are equal within delta and gives useful output. <br /></td></tr>
 <tr class="separator:a9b413493a3f5104ffc246199ae30cde3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cf38238ae1360b955b35555180bd5bb"><td class="memItemLeft" align="right" valign="top"><a id="a8cf38238ae1360b955b35555180bd5bb"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a8cf38238ae1360b955b35555180bd5bb">TS_ASSERT_DELTA_PT3D</a>(a,  b,  delta)&#160;&#160;&#160;<a class="el" href="_test_tools_8h.html#aed62aaca51fceea372f299053edc30f9">_TS_ASSERT_DELTA_PT3D</a>(__FILE__, __LINE__, a, b, delta)</td></tr>
@@ -250,228 +255,57 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <tr class="memitem:ab4a12bdfe2030df3dafdd066679656d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#ab4a12bdfe2030df3dafdd066679656d1">xms::ttStreamsEqual</a> (const std::string &amp;a_src, unsigned int a_line, std::istream &amp;a_strm1, std::istream &amp;a_strm2)</td></tr>
 <tr class="memdesc:ab4a12bdfe2030df3dafdd066679656d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the two streams are equal.  <a href="_test_tools_8cpp.html#ab4a12bdfe2030df3dafdd066679656d1">More...</a><br /></td></tr>
 <tr class="separator:ab4a12bdfe2030df3dafdd066679656d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a6751da8dbefa43dbea0c9e6b78d121"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#a5a6751da8dbefa43dbea0c9e6b78d121">xms::ttEqualPointsXYZ</a> (const Pt3d &amp;a_pt1, const Pt3d &amp;a_pt2, double a_tolerance)</td></tr>
+<tr class="memdesc:a5a6751da8dbefa43dbea0c9e6b78d121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the points are equal to within tolerance.  <a href="_test_tools_8cpp.html#a5a6751da8dbefa43dbea0c9e6b78d121">More...</a><br /></td></tr>
+<tr class="separator:a5a6751da8dbefa43dbea0c9e6b78d121"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18ba18a264d57716c710374c45b6cf5d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#a18ba18a264d57716c710374c45b6cf5d">xms::ttEqualPointsXYZ</a> (double a_x1, double a_y1, double a_z1, double a_x2, double a_y2, double a_z2, double a_tolerance)</td></tr>
+<tr class="memdesc:a18ba18a264d57716c710374c45b6cf5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the points are equal to within tolerance.  <a href="_test_tools_8cpp.html#a18ba18a264d57716c710374c45b6cf5d">More...</a><br /></td></tr>
+<tr class="separator:a18ba18a264d57716c710374c45b6cf5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d49d04fb167be76115c41648f181cb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#a8d49d04fb167be76115c41648f181cb8">xms::ttEqualPointsXY</a> (const Pt2d &amp;a_pt1, const Pt2d &amp;a_pt2, double a_tolerance)</td></tr>
+<tr class="separator:a8d49d04fb167be76115c41648f181cb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6188fd6883b14cc8c4e74b70d99342f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#ae6188fd6883b14cc8c4e74b70d99342f">xms::ttEqualPointsXY</a> (const Pt3d &amp;a_pt1, const Pt3d &amp;a_pt2, double a_tolerance)</td></tr>
+<tr class="separator:ae6188fd6883b14cc8c4e74b70d99342f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03587c7aef0142b86bfa620717351068"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_test_tools_8cpp.html#a03587c7aef0142b86bfa620717351068">xms::ttEqualPointsXY</a> (double a_x1, double a_y1, double a_x2, double a_y2, double a_tolerance)</td></tr>
+<tr class="memdesc:a03587c7aef0142b86bfa620717351068"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if the points are equal to within tolerance.  <a href="_test_tools_8cpp.html#a03587c7aef0142b86bfa620717351068">More...</a><br /></td></tr>
+<tr class="separator:a03587c7aef0142b86bfa620717351068"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60ce526c07fa6f1fb54bf3713ae93c9a"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
 <tr class="memitem:a60ce526c07fa6f1fb54bf3713ae93c9a"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a60ce526c07fa6f1fb54bf3713ae93c9a">xms::ttAssertDeltaVec</a> (const char *f, unsigned l, const std::vector&lt; T &gt; &amp;a, const std::vector&lt; T &gt; &amp;b, U delta)</td></tr>
 <tr class="memdesc:a60ce526c07fa6f1fb54bf3713ae93c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template function returning true or false to help debug tests.  <a href="_test_tools_8h.html#a60ce526c07fa6f1fb54bf3713ae93c9a">More...</a><br /></td></tr>
 <tr class="separator:a60ce526c07fa6f1fb54bf3713ae93c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae98e466f8d6113a5361c16aa586427e6"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
-<tr class="memitem:ae98e466f8d6113a5361c16aa586427e6"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#ae98e466f8d6113a5361c16aa586427e6">xms::ttAssertDeltaVec2D</a> (const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;b, U delta)</td></tr>
-<tr class="memdesc:ae98e466f8d6113a5361c16aa586427e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template function returning true or false to help debug tests.  <a href="_test_tools_8h.html#ae98e466f8d6113a5361c16aa586427e6">More...</a><br /></td></tr>
-<tr class="separator:ae98e466f8d6113a5361c16aa586427e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a57748922684ffa7ff13f02277f3355"><td class="memTemplParams" colspan="2">template&lt;typename T , typename U &gt; </td></tr>
+<tr class="memitem:a0a57748922684ffa7ff13f02277f3355"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a0a57748922684ffa7ff13f02277f3355">xms::ttAssertDeltaVec2D</a> (const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;b, U delta)</td></tr>
+<tr class="memdesc:a0a57748922684ffa7ff13f02277f3355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template function returning true or false to help debug tests.  <a href="_test_tools_8h.html#a0a57748922684ffa7ff13f02277f3355">More...</a><br /></td></tr>
+<tr class="separator:a0a57748922684ffa7ff13f02277f3355"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb9eb5d8ce05366856464f6258e84f85"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr class="memitem:aeb9eb5d8ce05366856464f6258e84f85"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#aeb9eb5d8ce05366856464f6258e84f85">xms::ttAssertEqualsAVec</a> (const char *a_file, int a_line, const T *a_expected, size_t a_expectedLength, const std::vector&lt; T &gt; &amp;a_actual)</td></tr>
 <tr class="memdesc:aeb9eb5d8ce05366856464f6258e84f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function for TS_ASSERT_EQUALS_AVEC.  <a href="_test_tools_8h.html#aeb9eb5d8ce05366856464f6258e84f85">More...</a><br /></td></tr>
 <tr class="separator:aeb9eb5d8ce05366856464f6258e84f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dbfdd1e82e9a97582b148fbeba175e4"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a4dbfdd1e82e9a97582b148fbeba175e4"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a4dbfdd1e82e9a97582b148fbeba175e4">xms::ttAssertEqualsVec2D</a> (const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;b)</td></tr>
-<tr class="memdesc:a4dbfdd1e82e9a97582b148fbeba175e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template function returning true or false to help debug tests.  <a href="_test_tools_8h.html#a4dbfdd1e82e9a97582b148fbeba175e4">More...</a><br /></td></tr>
-<tr class="separator:a4dbfdd1e82e9a97582b148fbeba175e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0ee23ab8cc5c537be8132fb71dd8459"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:af0ee23ab8cc5c537be8132fb71dd8459"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#af0ee23ab8cc5c537be8132fb71dd8459">xms::ttAssertEqualsVec2D</a> (const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;b)</td></tr>
+<tr class="memdesc:af0ee23ab8cc5c537be8132fb71dd8459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Template function returning true or false to help debug tests.  <a href="_test_tools_8h.html#af0ee23ab8cc5c537be8132fb71dd8459">More...</a><br /></td></tr>
+<tr class="separator:af0ee23ab8cc5c537be8132fb71dd8459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1fcc1af3720cabeea51cd5a97781d51"><td class="memTemplParams" colspan="2">template&lt;class Pt &gt; </td></tr>
+<tr class="memitem:ae1fcc1af3720cabeea51cd5a97781d51"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#ae1fcc1af3720cabeea51cd5a97781d51">xms::ttAssertDeltaPt3d</a> (const char *a_file, int a_line, const Pt &amp;a_pt1, const Pt &amp;a_pt2, double a_delta)</td></tr>
+<tr class="memdesc:ae1fcc1af3720cabeea51cd5a97781d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert two points are equal.  <a href="_test_tools_8h.html#ae1fcc1af3720cabeea51cd5a97781d51">More...</a><br /></td></tr>
+<tr class="separator:ae1fcc1af3720cabeea51cd5a97781d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6193c3490a91b530640de7848b8c5c5"><td class="memTemplParams" colspan="2">template&lt;class Pt &gt; </td></tr>
+<tr class="memitem:ac6193c3490a91b530640de7848b8c5c5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#ac6193c3490a91b530640de7848b8c5c5">xms::ttAssertDeltaPt2d</a> (const char *a_file, int a_line, const Pt &amp;a_pt1, const Pt &amp;a_pt2, double a_delta)</td></tr>
+<tr class="memdesc:ac6193c3490a91b530640de7848b8c5c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert two points are equal.  <a href="_test_tools_8h.html#ac6193c3490a91b530640de7848b8c5c5">More...</a><br /></td></tr>
+<tr class="separator:ac6193c3490a91b530640de7848b8c5c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d06070634cde8a9d5c2cf0d3c25733"><td class="memTemplParams" colspan="2">template&lt;class Pt1 , class Pt2 &gt; </td></tr>
+<tr class="memitem:aa9d06070634cde8a9d5c2cf0d3c25733"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#aa9d06070634cde8a9d5c2cf0d3c25733">xms::ttAssertDeltaVecPt3d</a> (const char *a_file, int a_line, const Pt1 &amp;a_pts1, const Pt2 &amp;a_pts2, double a_delta)</td></tr>
+<tr class="memdesc:aa9d06070634cde8a9d5c2cf0d3c25733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert two points are equal.  <a href="_test_tools_8h.html#aa9d06070634cde8a9d5c2cf0d3c25733">More...</a><br /></td></tr>
+<tr class="separator:aa9d06070634cde8a9d5c2cf0d3c25733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2509fdf820c25afbf353736721b5b75d"><td class="memTemplParams" colspan="2">template&lt;class Pt1 , class Pt2 &gt; </td></tr>
+<tr class="memitem:a2509fdf820c25afbf353736721b5b75d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="_test_tools_8h.html#a2509fdf820c25afbf353736721b5b75d">xms::ttAssertDeltaVecPt2d</a> (const char *a_file, int a_line, const Pt1 &amp;a_pts1, const Pt2 &amp;a_pts2, double a_delta)</td></tr>
+<tr class="memdesc:a2509fdf820c25afbf353736721b5b75d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert two points are equal.  <a href="_test_tools_8h.html#a2509fdf820c25afbf353736721b5b75d">More...</a><br /></td></tr>
+<tr class="separator:a2509fdf820c25afbf353736721b5b75d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><dl class="section copyright"><dt>Copyright</dt><dd>(C) Copyright Aquaveo 2018. Distributed under FreeBSD License (See accompanying file LICENSE or <a href="https://aqaveo.com/bsd/license.txt">https://aqaveo.com/bsd/license.txt</a>) </dd></dl>
 
 <p class="definition">Definition in file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a9b413493a3f5104ffc246199ae30cde3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b413493a3f5104ffc246199ae30cde3">&#9670;&nbsp;</a></span>_TS_ASSERT_DELTA_PT2D</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _TS_ASSERT_DELTA_PT2D</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">f, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">l, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">b, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">delta&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{                                                                            \</div><div class="line">    if (!gmEqualPointsXY(a, b, delta))                                         \</div><div class="line">    {                                                                          \</div><div class="line">      std::stringstream msg;                                                   \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; a &lt;&lt; <span class="stringliteral">&quot;), != (&quot;</span> &lt;&lt; b &lt;&lt; <span class="stringliteral">&quot;) within delta (&quot;</span> &lt;&lt; delta &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>; \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                       \</div><div class="line">    }                                                                          \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
-<p>Tests if two points are equal within delta and gives useful output. </p>
-
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00164">164</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
-
-</div>
-</div>
-<a id="aed62aaca51fceea372f299053edc30f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed62aaca51fceea372f299053edc30f9">&#9670;&nbsp;</a></span>_TS_ASSERT_DELTA_PT3D</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _TS_ASSERT_DELTA_PT3D</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">f, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">l, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">b, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">delta&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{                                                                            \</div><div class="line">    if (!gmEqualPointsXYZ(a, b, delta))                                        \</div><div class="line">    {                                                                          \</div><div class="line">      std::stringstream msg;                                                   \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; a &lt;&lt; <span class="stringliteral">&quot;), != (&quot;</span> &lt;&lt; b &lt;&lt; <span class="stringliteral">&quot;) within delta (&quot;</span> &lt;&lt; delta &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>; \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                       \</div><div class="line">    }                                                                          \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
-<p>Used to compare two Pt3ds and give useful output information. </p>
-
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00151">151</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
-
-</div>
-</div>
-<a id="a62afee6ecfd200a6d10f9e3739624633"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62afee6ecfd200a6d10f9e3739624633">&#9670;&nbsp;</a></span>_TS_ASSERT_DELTA_VECPT2D</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _TS_ASSERT_DELTA_VECPT2D</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">f, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">l, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">b, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">delta&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{                                                                                        \</div><div class="line">    if (a.size() != b.size())                                                              \</div><div class="line">    {                                                                                      \</div><div class="line">      std::stringstream msg;                                                               \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;Incorrect size Expecting size: &quot;</span> &lt;&lt; a.size() &lt;&lt; <span class="stringliteral">&quot; Found size: &quot;</span> &lt;&lt; b.size(); \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                                   \</div><div class="line">    }                                                                                      \</div><div class="line">    else                                                                                   \</div><div class="line">    {                                                                                      \</div><div class="line">      for (<span class="keywordtype">size_t</span> i1x = 0; i1x &lt; a.size(); ++i1x)                                          \</div><div class="line">      {                                                                                    \</div><div class="line">        if (!::xms::gmEqualPointsXY(a[i1x].x, a[i1x].y, b[i1x].x, b[i1x].y, delta))        \</div><div class="line">        {                                                                                  \</div><div class="line">          std::stringstream msg;                                                           \</div><div class="line">          msg &lt;&lt; <span class="stringliteral">&quot;Incorrect value at position : &quot;</span> &lt;&lt; i1x &lt;&lt; <span class="stringliteral">&quot; Expecting: &quot;</span> &lt;&lt; a[i1x]       \</div><div class="line">              &lt;&lt; <span class="stringliteral">&quot; Found: &quot;</span> &lt;&lt; b[i1x];                                                     \</div><div class="line">          _TS_FAIL(f, l, msg.str().c_str());                                               \</div><div class="line">          return;                                                                          \</div><div class="line">        }                                                                                  \</div><div class="line">      }                                                                                    \</div><div class="line">    }                                                                                      \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
-<p>Tests if two point vectors are equal within delta and gives useful output. </p>
-
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00108">108</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
-
-</div>
-</div>
-<a id="a161e4d96aba9bdcb92b3b970d5e80717"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a161e4d96aba9bdcb92b3b970d5e80717">&#9670;&nbsp;</a></span>_TS_ASSERT_DELTA_VECPT3D</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define _TS_ASSERT_DELTA_VECPT3D</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">f, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">l, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">a, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">b, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">delta&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">{                                                                                         \</div><div class="line">    if (a.size() != b.size())                                                               \</div><div class="line">    {                                                                                       \</div><div class="line">      std::stringstream msg;                                                                \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;Incorrect size Expecting size: &quot;</span> &lt;&lt; a.size() &lt;&lt; <span class="stringliteral">&quot; Found size: &quot;</span> &lt;&lt; b.size();  \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                                    \</div><div class="line">    }                                                                                       \</div><div class="line">    else                                                                                    \</div><div class="line">    {                                                                                       \</div><div class="line">      for (<span class="keywordtype">size_t</span> i = 0; i &lt; a.size(); ++i)                                                 \</div><div class="line">      {                                                                                     \</div><div class="line">        if (!::xms::gmEqualPointsXYZ(a.at(i).x, a.at(i).y, a.at(i).z, b.at(i).x, b.at(i).y, \</div><div class="line">                                     b.at(i).z, delta))                                     \</div><div class="line">        {                                                                                   \</div><div class="line">          std::stringstream msg;                                                            \</div><div class="line">          msg &lt;&lt; <span class="stringliteral">&quot;Incorrect value at position : &quot;</span> &lt;&lt; i &lt;&lt; <span class="stringliteral">&quot; Expecting: &quot;</span> &lt;&lt; a.at(i)         \</div><div class="line">              &lt;&lt; <span class="stringliteral">&quot; Found: &quot;</span> &lt;&lt; b.at(i);                                                     \</div><div class="line">          _TS_FAIL(f, l, msg.str().c_str());                                                \</div><div class="line">        }                                                                                   \</div><div class="line">      }                                                                                     \</div><div class="line">    }                                                                                       \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
-<p>Tests if two point vectors are equal within delta and gives useful output. </p>
-
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00069">69</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
-
-</div>
-</div>
 <a id="ae2431bc820a697eba3c4bfb00cd5fb97"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae2431bc820a697eba3c4bfb00cd5fb97">&#9670;&nbsp;</a></span>_TS_ASSERT_EQUALS_VEC</h2>
 
@@ -512,9 +346,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line">{                                                                                          \</div><div class="line">    if (a.size() != b.size())                                                                \</div><div class="line">    {                                                                                        \</div><div class="line">      std::stringstream msg;                                                                 \</div><div class="line">      msg &lt;&lt; <span class="stringliteral">&quot;Incorrect size Expecting size: &quot;</span> &lt;&lt; a.size() &lt;&lt; <span class="stringliteral">&quot; Found size: &quot;</span> &lt;&lt; b.size();   \</div><div class="line">      _TS_FAIL(f, l, msg.str().c_str());                                                     \</div><div class="line">    }                                                                                        \</div><div class="line">    else                                                                                     \</div><div class="line">    {                                                                                        \</div><div class="line">      for (<span class="keywordtype">size_t</span> iUnique = 0; iUnique &lt; a.size(); ++iUnique)                                \</div><div class="line">      {                                                                                      \</div><div class="line">        if (a[iUnique] != b[iUnique])                                                        \</div><div class="line">        {                                                                                    \</div><div class="line">          std::stringstream msg;                                                             \</div><div class="line">          msg &lt;&lt; <span class="stringliteral">&quot;Incorrect value at position : &quot;</span> &lt;&lt; iUnique &lt;&lt; <span class="stringliteral">&quot; Expecting: &quot;</span> &lt;&lt; a[iUnique] \</div><div class="line">              &lt;&lt; <span class="stringliteral">&quot; Found: &quot;</span> &lt;&lt; b[iUnique];                                                   \</div><div class="line">          _TS_FAIL(f, l, msg.str().c_str());                                                 \</div><div class="line">        }                                                                                    \</div><div class="line">      }                                                                                      \</div><div class="line">    }                                                                                        \</div><div class="line">  \</div><div class="line">}</div></div><!-- fragment -->
 <p>Used to compare to vectors and give useful output information. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00204">204</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00143">143</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00423">xms::ttAssertEqualsAVec()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00373">xms::ttAssertEqualsAVec()</a>.</p>
 
 </div>
 </div>
@@ -551,7 +385,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="_test_tools_8h.html#a28a882a826cd93120c960b1b8ec18503" title="Checks that the stackable XM_LOG has the expected errors. ">TS_ASSERT_STACKED_ERRORS</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00249">249</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00188">188</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -589,7 +423,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">if</span> (pointer == NULL)                          \</div><div class="line">  {                                             \</div><div class="line">    _TS_FAIL(f, l, <span class="stringliteral">&quot;Unexpected NULL pointer.&quot;</span>); \</div><div class="line">    return;                                     \</div><div class="line">  }</div></div><!-- fragment -->
 <p>Fails if <em>pointer</em> is null. </p>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00235">235</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00174">174</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -628,7 +462,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <p>Tests if two point vectors are equal within delta and gives useful output. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00141">141</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00102">102</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
@@ -667,11 +501,143 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_tes
 <p>Tests if two point vectors are equal within delta and gives useful output. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00102">102</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00084">84</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="file_ac6193c3490a91b530640de7848b8c5c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ac6193c3490a91b530640de7848b8c5c5">&#9670;&nbsp;</a></span>ttAssertDeltaPt2d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Pt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void xms::ttAssertDeltaPt2d </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>a_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a_line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Pt &amp;&#160;</td>
+          <td class="paramname"><em>a_pt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Pt &amp;&#160;</td>
+          <td class="paramname"><em>a_pt2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assert two points are equal. </p>
+<p>Template function returning true or false to help debug tests. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_file</td><td>file. </td></tr>
+    <tr><td class="paramname">a_line</td><td>line. </td></tr>
+    <tr><td class="paramname">a_pt1</td><td>First point. </td></tr>
+    <tr><td class="paramname">a_pt2</td><td>Second point. </td></tr>
+    <tr><td class="paramname">a_delta</td><td>Tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00466">466</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00466">xms::ttAssertDeltaPt2d()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00506">xms::ttEqualPointsXY()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00466">xms::ttAssertDeltaPt2d()</a>.</p>
+
+</div>
+</div>
+<a id="file_ae1fcc1af3720cabeea51cd5a97781d51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ae1fcc1af3720cabeea51cd5a97781d51">&#9670;&nbsp;</a></span>ttAssertDeltaPt3d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Pt &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void xms::ttAssertDeltaPt3d </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>a_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a_line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Pt &amp;&#160;</td>
+          <td class="paramname"><em>a_pt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Pt &amp;&#160;</td>
+          <td class="paramname"><em>a_pt2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assert two points are equal. </p>
+<p>Template function returning true or false to help debug tests. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_file</td><td>file. </td></tr>
+    <tr><td class="paramname">a_line</td><td>line. </td></tr>
+    <tr><td class="paramname">a_pt1</td><td>First point. </td></tr>
+    <tr><td class="paramname">a_pt2</td><td>Second point. </td></tr>
+    <tr><td class="paramname">a_delta</td><td>Tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00443">443</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00443">xms::ttAssertDeltaPt3d()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00455">xms::ttEqualPointsXYZ()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00443">xms::ttAssertDeltaPt3d()</a>.</p>
+
+</div>
+</div>
 <a id="file_a60ce526c07fa6f1fb54bf3713ae93c9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#file_a60ce526c07fa6f1fb54bf3713ae93c9a">&#9670;&nbsp;</a></span>ttAssertDeltaVec()</h2>
 
@@ -731,16 +697,16 @@ template&lt;typename T , typename U &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a and b are equal within delta. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00329">329</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00279">279</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00329">xms::ttAssertDeltaVec()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00279">xms::ttAssertDeltaVec()</a>, and <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00329">xms::ttAssertDeltaVec()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00279">xms::ttAssertDeltaVec()</a>.</p>
 
 </div>
 </div>
-<a id="file_ae98e466f8d6113a5361c16aa586427e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_ae98e466f8d6113a5361c16aa586427e6">&#9670;&nbsp;</a></span>ttAssertDeltaVec2D()</h2>
+<a id="file_a0a57748922684ffa7ff13f02277f3355"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a0a57748922684ffa7ff13f02277f3355">&#9670;&nbsp;</a></span>ttAssertDeltaVec2D()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -762,13 +728,13 @@ template&lt;typename T , typename U &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
@@ -798,11 +764,143 @@ template&lt;typename T , typename U &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a and b are equal within delta. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00370">370</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00320">320</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00370">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00320">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00370">xms::ttAssertDeltaVec2D()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00320">xms::ttAssertDeltaVec2D()</a>.</p>
+
+</div>
+</div>
+<a id="file_a2509fdf820c25afbf353736721b5b75d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a2509fdf820c25afbf353736721b5b75d">&#9670;&nbsp;</a></span>ttAssertDeltaVecPt2d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Pt1 , class Pt2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void xms::ttAssertDeltaVecPt2d </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>a_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a_line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Pt1 &amp;&#160;</td>
+          <td class="paramname"><em>a_pts1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classxms_1_1_pt2.html">Pt2</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pts2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assert two points are equal. </p>
+<p>Template function returning true or false to help debug tests. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_file</td><td>file. </td></tr>
+    <tr><td class="paramname">a_line</td><td>line. </td></tr>
+    <tr><td class="paramname">a_pts1</td><td>First vector of points. </td></tr>
+    <tr><td class="paramname">a_pts2</td><td>Second vector of points. </td></tr>
+    <tr><td class="paramname">a_delta</td><td>Tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00526">526</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+
+<p class="reference">References <a class="el" href="pt_8h_source.html#l00753">xms::Pt2&lt; T &gt;::at()</a>, <a class="el" href="_test_tools_8h_source.html#l00526">xms::ttAssertDeltaVecPt2d()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00506">xms::ttEqualPointsXY()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00526">xms::ttAssertDeltaVecPt2d()</a>.</p>
+
+</div>
+</div>
+<a id="file_aa9d06070634cde8a9d5c2cf0d3c25733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_aa9d06070634cde8a9d5c2cf0d3c25733">&#9670;&nbsp;</a></span>ttAssertDeltaVecPt3d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Pt1 , class Pt2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void xms::ttAssertDeltaVecPt3d </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>a_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a_line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Pt1 &amp;&#160;</td>
+          <td class="paramname"><em>a_pts1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classxms_1_1_pt2.html">Pt2</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pts2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_delta</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Assert two points are equal. </p>
+<p>Template function returning true or false to help debug tests. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_file</td><td>file. </td></tr>
+    <tr><td class="paramname">a_line</td><td>line. </td></tr>
+    <tr><td class="paramname">a_pts1</td><td>First vector of points. </td></tr>
+    <tr><td class="paramname">a_pts2</td><td>Second vector of points. </td></tr>
+    <tr><td class="paramname">a_delta</td><td>Tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00489">489</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+
+<p class="reference">References <a class="el" href="pt_8h_source.html#l00753">xms::Pt2&lt; T &gt;::at()</a>, <a class="el" href="_test_tools_8h_source.html#l00489">xms::ttAssertDeltaVecPt3d()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00455">xms::ttEqualPointsXYZ()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00489">xms::ttAssertDeltaVecPt3d()</a>.</p>
 
 </div>
 </div>
@@ -864,16 +962,16 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00423">423</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00373">373</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00204">_TS_ASSERT_EQUALS_VEC</a>, and <a class="el" href="_test_tools_8h_source.html#l00423">xms::ttAssertEqualsAVec()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00143">_TS_ASSERT_EQUALS_VEC</a>, and <a class="el" href="_test_tools_8h_source.html#l00373">xms::ttAssertEqualsAVec()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00423">xms::ttAssertEqualsAVec()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00373">xms::ttAssertEqualsAVec()</a>.</p>
 
 </div>
 </div>
-<a id="file_a4dbfdd1e82e9a97582b148fbeba175e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#file_a4dbfdd1e82e9a97582b148fbeba175e4">&#9670;&nbsp;</a></span>ttAssertEqualsVec2D()</h2>
+<a id="file_af0ee23ab8cc5c537be8132fb71dd8459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_af0ee23ab8cc5c537be8132fb71dd8459">&#9670;&nbsp;</a></span>ttAssertEqualsVec2D()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -895,13 +993,13 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -924,11 +1022,11 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a and b are equal. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00441">441</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00391">391</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00441">xms::ttAssertEqualsVec2D()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8h_source.html#l00391">xms::ttAssertEqualsVec2D()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00441">xms::ttAssertEqualsVec2D()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00391">xms::ttAssertEqualsVec2D()</a>.</p>
 
 </div>
 </div>
@@ -974,11 +1072,11 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00255">255</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00256">256</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_xm_log_8cpp_source.html#l00228">xms::XmLog::GetAndClearStackStr()</a>, <a class="el" href="_singleton_8h_source.html#l00037">xms::Singleton&lt; XmLog &gt;::Instance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
+<p class="reference">References <a class="el" href="_xm_log_8cpp_source.html#l00228">xms::XmLog::GetAndClearStackStr()</a>, <a class="el" href="_singleton_8h_source.html#l00037">xms::Singleton&lt; XmLog &gt;::Instance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00256">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00238">xms::ttCheckXmLogForEachTest()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00256">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>.</p>
 
 </div>
 </div>
@@ -1000,11 +1098,11 @@ template&lt;typename T &gt; </div>
 <p>Get the default choice when skipping messages. </p>
 <dl class="section return"><dt>Returns</dt><dd>The default choice. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00212">212</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00213">213</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00161">xms::ETestMessagingState::GetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00212">xms::ttByPassDefault()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00162">xms::ETestMessagingState::GetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00213">xms::ttByPassDefault()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00229">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00212">xms::ttByPassDefault()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00213">xms::ttByPassDefault()</a>.</p>
 
 </div>
 </div>
@@ -1032,11 +1130,11 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00194">194</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00195">195</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00145">xms::ETestMessagingState::SetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00169">xms::ETestMessagingState::SetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00194">xms::ttByPassMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00146">xms::ETestMessagingState::SetDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00170">xms::ETestMessagingState::SetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00195">xms::ttByPassMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00229">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00194">xms::ttByPassMessages()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00195">xms::ttByPassMessages()</a>.</p>
 
 </div>
 </div>
@@ -1064,11 +1162,11 @@ template&lt;typename T &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00237">237</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00238">238</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00238">xms::ttCheckXmLogForEachTest()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00256">xms::ttAssertStackedErrors()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00238">xms::ttCheckXmLogForEachTest()</a>.</p>
 
 </div>
 </div>
@@ -1090,9 +1188,300 @@ template&lt;typename T &gt; </div>
 <p>Turn on check of XM_LOG before and after each test. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if currently checking. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00245">245</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00246">246</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00237">xms::ttCheckXmLogForEachTest()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00238">xms::ttCheckXmLogForEachTest()</a>.</p>
+
+</div>
+</div>
+<a id="file_a03587c7aef0142b86bfa620717351068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a03587c7aef0142b86bfa620717351068">&#9670;&nbsp;</a></span>ttEqualPointsXY() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool xms::ttEqualPointsXY </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_x2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_y2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_tolerance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the points are equal to within tolerance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_x1</td><td>x of point 1. </td></tr>
+    <tr><td class="paramname">a_y1</td><td>y of point 1. </td></tr>
+    <tr><td class="paramname">a_x2</td><td>x of point 2. </td></tr>
+    <tr><td class="paramname">a_y2</td><td>y of point 2. </td></tr>
+    <tr><td class="paramname">a_tolerance</td><td>a_tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if equal. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00477">477</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00477">xms::ttEqualPointsXY()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00477">xms::ttEqualPointsXY()</a>, and <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>.</p>
+
+</div>
+</div>
+<a id="file_a8d49d04fb167be76115c41648f181cb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a8d49d04fb167be76115c41648f181cb8">&#9670;&nbsp;</a></span>ttEqualPointsXY() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool xms::ttEqualPointsXY </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ptsfwd_8h.html#a744e494df03812a8bf92b5383bb48cef">Pt2d</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="ptsfwd_8h.html#a744e494df03812a8bf92b5383bb48cef">Pt2d</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pt2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_tolerance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_pt1</td><td>Point 1. </td></tr>
+    <tr><td class="paramname">a_pt2</td><td>Point 2. </td></tr>
+    <tr><td class="paramname">a_tolerance</td><td>tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if equal within tolerance. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00495">495</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00477">xms::ttEqualPointsXY()</a>, <a class="el" href="pt_8h_source.html#l00088">xms::Pt2&lt; T &gt;::x</a>, and <a class="el" href="pt_8h_source.html#l00089">xms::Pt2&lt; T &gt;::y</a>.</p>
+
+</div>
+</div>
+<a id="file_ae6188fd6883b14cc8c4e74b70d99342f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_ae6188fd6883b14cc8c4e74b70d99342f">&#9670;&nbsp;</a></span>ttEqualPointsXY() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool xms::ttEqualPointsXY </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ptsfwd_8h.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="ptsfwd_8h.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pt2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_tolerance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_pt1</td><td>Point 1. </td></tr>
+    <tr><td class="paramname">a_pt2</td><td>Point 2. </td></tr>
+    <tr><td class="paramname">a_tolerance</td><td>tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if equal within tolerance. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00506">506</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00477">xms::ttEqualPointsXY()</a>, <a class="el" href="pt_8h_source.html#l00797">xms::Pt3&lt; T &gt;::x</a>, and <a class="el" href="pt_8h_source.html#l00798">xms::Pt3&lt; T &gt;::y</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00466">xms::ttAssertDeltaPt2d()</a>, and <a class="el" href="_test_tools_8h_source.html#l00526">xms::ttAssertDeltaVecPt2d()</a>.</p>
+
+</div>
+</div>
+<a id="file_a5a6751da8dbefa43dbea0c9e6b78d121"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a5a6751da8dbefa43dbea0c9e6b78d121">&#9670;&nbsp;</a></span>ttEqualPointsXYZ() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool xms::ttEqualPointsXYZ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="ptsfwd_8h.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pt1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="ptsfwd_8h.html#a33ae0c78e599c46ba59bce7f2b32d7ab">Pt3d</a> &amp;&#160;</td>
+          <td class="paramname"><em>a_pt2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_tolerance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the points are equal to within tolerance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_pt1</td><td>Point 1. </td></tr>
+    <tr><td class="paramname">a_pt2</td><td>Point 2. </td></tr>
+    <tr><td class="paramname">a_tolerance</td><td>tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if equal within tolerance. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00440">440</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00440">xms::ttEqualPointsXYZ()</a>, <a class="el" href="pt_8h_source.html#l00797">xms::Pt3&lt; T &gt;::x</a>, <a class="el" href="pt_8h_source.html#l00798">xms::Pt3&lt; T &gt;::y</a>, and <a class="el" href="pt_8h_source.html#l00799">xms::Pt3&lt; T &gt;::z</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00440">xms::ttEqualPointsXYZ()</a>, and <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>.</p>
+
+</div>
+</div>
+<a id="file_a18ba18a264d57716c710374c45b6cf5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#file_a18ba18a264d57716c710374c45b6cf5d">&#9670;&nbsp;</a></span>ttEqualPointsXYZ() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool xms::ttEqualPointsXYZ </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_x1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_y1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_z1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_x2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_y2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_z2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>a_tolerance</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if the points are equal to within tolerance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a_x1</td><td>x of point 1. </td></tr>
+    <tr><td class="paramname">a_y1</td><td>y of point 1. </td></tr>
+    <tr><td class="paramname">a_z1</td><td>z of point 1. </td></tr>
+    <tr><td class="paramname">a_x2</td><td>x of point 2. </td></tr>
+    <tr><td class="paramname">a_y2</td><td>y of point 2. </td></tr>
+    <tr><td class="paramname">a_z2</td><td>z of point 2. </td></tr>
+    <tr><td class="paramname">a_tolerance</td><td>tolerance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if equal. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00455">455</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00440">xms::ttEqualPointsXYZ()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00443">xms::ttAssertDeltaPt3d()</a>, and <a class="el" href="_test_tools_8h_source.html#l00489">xms::ttAssertDeltaVecPt3d()</a>.</p>
 
 </div>
 </div>
@@ -1141,11 +1530,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if fabs(A - B) &lt;= tolerance </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00296">296</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8h_source.html#l00235">235</a> of file <a class="el" href="_test_tools_8h_source.html">TestTools.h</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00255">xms::ttAssertStackedErrors()</a>, <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00275">xms::ttGetTestFilePaths()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00393">xms::ttStreamsEqual()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00256">xms::ttAssertStackedErrors()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00477">xms::ttEqualPointsXY()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00440">xms::ttEqualPointsXYZ()</a>, <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00276">xms::ttGetTestFilePaths()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00394">xms::ttStreamsEqual()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00323">xms::ttTextFilesEqual()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00329">xms::ttAssertDeltaVec()</a>, <a class="el" href="_test_tools_8h_source.html#l00370">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00279">xms::ttAssertDeltaVec()</a>, <a class="el" href="_test_tools_8h_source.html#l00320">xms::ttAssertDeltaVec2D()</a>, and <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>.</p>
 
 </div>
 </div>
@@ -1205,11 +1594,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00275">275</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00276">276</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00275">xms::ttGetTestFilePaths()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00276">xms::ttGetTestFilePaths()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00275">xms::ttGetTestFilePaths()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00276">xms::ttGetTestFilePaths()</a>.</p>
 
 </div>
 </div>
@@ -1231,11 +1620,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 <p>Has ttByPassMessages been called without calling ttClearSkippingMessages. </p>
 <dl class="section return"><dt>Returns</dt><dd>true if we are skipping messages. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00204">204</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00205">205</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00177">xms::ETestMessagingState::GetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00204">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00178">xms::ETestMessagingState::GetSkipping()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00205">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00229">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00204">xms::ttSkippingMessages()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00205">xms::ttSkippingMessages()</a>.</p>
 
 </div>
 </div>
@@ -1288,11 +1677,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00393">393</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00394">394</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00393">xms::ttStreamsEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00394">xms::ttStreamsEqual()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00393">xms::ttStreamsEqual()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00394">xms::ttStreamsEqual()</a>.</p>
 
 </div>
 </div>
@@ -1314,11 +1703,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 <p>Get the batch mode singleton. </p>
 <dl class="section return"><dt>Returns</dt><dd>Reference to ETestMessagingState </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00228">228</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00229">229</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00229">xms::ttTestMessagingState()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00212">xms::ttByPassDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00194">xms::ttByPassMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00219">xms::ttClearSkippingMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00204">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00228">xms::ttTestMessagingState()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8cpp_source.html#l00213">xms::ttByPassDefault()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00195">xms::ttByPassMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00220">xms::ttClearSkippingMessages()</a>, <a class="el" href="_test_tools_8cpp_source.html#l00205">xms::ttSkippingMessages()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00229">xms::ttTestMessagingState()</a>.</p>
 
 </div>
 </div>
@@ -1365,11 +1754,11 @@ template&lt;class _T , class _U , class _V &gt; </div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if files are equal, else false. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00322">322</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00323">323</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00323">xms::ttTextFilesEqual()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00296">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_test_tools_8h_source.html#l00235">xms::ttEqualWithinTolerance()</a>, and <a class="el" href="_test_tools_8cpp_source.html#l00323">xms::ttTextFilesEqual()</a>.</p>
 
 </div>
 </div>
@@ -1422,9 +1811,9 @@ template&lt;class _T , class _U , class _V &gt; </div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00377">377</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_test_tools_8cpp_source.html#l00378">378</a> of file <a class="el" href="_test_tools_8cpp_source.html">TestTools.cpp</a>.</p>
 
-<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00322">xms::ttTextFilesEqual()</a>.</p>
+<p class="reference">References <a class="el" href="_test_tools_8cpp_source.html#l00323">xms::ttTextFilesEqual()</a>.</p>
 
 </div>
 </div>
@@ -1434,7 +1823,7 @@ template&lt;class _T , class _U , class _V &gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_6cdcad1f5e4081dc72dc4b275cda5426.html">xmscore</a></li><li class="navelem"><a class="el" href="dir_2c2e060d770fb9750ac9f3b9b695c5a0.html">testing</a></li><li class="navelem"><a class="el" href="_test_tools_8h.html">TestTools.h</a></li>
-    <li class="footer">Generated on Tue Apr 23 2019 19:07:37 for xmscore by
+    <li class="footer">Generated on Thu May 16 2019 11:07:53 for xmscore by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>

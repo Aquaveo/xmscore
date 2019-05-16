@@ -1698,8 +1698,8 @@
     <name>functors.h</name>
     <path>/home/conan/xmscore/points/</path>
     <filename>functors_8h</filename>
-    <includes id="pt_8h" name="pt.h" local="no" imported="no">xmscore/points/pt.h</includes>
     <includes id="math_8h" name="math.h" local="no" imported="no">xmscore/math/math.h</includes>
+    <includes id="pt_8h" name="pt.h" local="no" imported="no">xmscore/points/pt.h</includes>
     <class kind="class">xms::ltPt3</class>
     <class kind="class">xms::ltPt3_2D</class>
     <class kind="class">xms::ltPt2</class>
@@ -1758,13 +1758,8 @@
     <filename>pt_8cpp</filename>
     <includes id="pt_8h" name="pt.h" local="no" imported="no">xmscore/points/pt.h</includes>
     <includes id="pt_8t_8h" name="pt.t.h" local="no" imported="no">xmscore/points/pt.t.h</includes>
-    <member kind="define">
-      <type>#define</type>
-      <name>iEQ_EPS</name>
-      <anchorfile>pt_8cpp.html</anchorfile>
-      <anchor>a1cd890747cc6e8d07dcd4b855ce016d0</anchor>
-      <arglist>(A, B, epsilon)</arglist>
-    </member>
+    <includes id="vector_8h" name="vector.h" local="no" imported="no">xmscore/stl/vector.h</includes>
+    <includes id="_test_tools_8h" name="TestTools.h" local="no" imported="no">xmscore/testing/TestTools.h</includes>
   </compound>
   <compound kind="file">
     <name>pt.h</name>
@@ -2576,8 +2571,9 @@
     <path>/home/conan/xmscore/testing/</path>
     <filename>_test_tools_8cpp</filename>
     <includes id="_test_tools_8h" name="TestTools.h" local="no" imported="no">xmscore/testing/TestTools.h</includes>
-    <includes id="environment_8h" name="environment.h" local="no" imported="no">xmscore/misc/environment.h</includes>
     <includes id="_xm_log_8h" name="XmLog.h" local="no" imported="no">xmscore/misc/XmLog.h</includes>
+    <includes id="environment_8h" name="environment.h" local="no" imported="no">xmscore/misc/environment.h</includes>
+    <includes id="pt_8h" name="pt.h" local="no" imported="no">xmscore/points/pt.h</includes>
     <member kind="function">
       <type>void</type>
       <name>ttByPassMessages</name>
@@ -2662,11 +2658,47 @@
       <anchor>ab4a12bdfe2030df3dafdd066679656d1</anchor>
       <arglist>(const std::string &amp;a_src, unsigned int a_line, std::istream &amp;a_strm1, std::istream &amp;a_strm2)</arglist>
     </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXYZ</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a5a6751da8dbefa43dbea0c9e6b78d121</anchor>
+      <arglist>(const Pt3d &amp;a_pt1, const Pt3d &amp;a_pt2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXYZ</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a18ba18a264d57716c710374c45b6cf5d</anchor>
+      <arglist>(double a_x1, double a_y1, double a_z1, double a_x2, double a_y2, double a_z2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXY</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a03587c7aef0142b86bfa620717351068</anchor>
+      <arglist>(double a_x1, double a_y1, double a_x2, double a_y2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXY</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a8d49d04fb167be76115c41648f181cb8</anchor>
+      <arglist>(const Pt2d &amp;a_pt1, const Pt2d &amp;a_pt2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXY</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>ae6188fd6883b14cc8c4e74b70d99342f</anchor>
+      <arglist>(const Pt3d &amp;a_pt1, const Pt3d &amp;a_pt2, double a_tolerance)</arglist>
+    </member>
   </compound>
   <compound kind="file">
     <name>TestTools.h</name>
     <path>/home/conan/xmscore/testing/</path>
     <filename>_test_tools_8h</filename>
+    <includes id="ptsfwd_8h" name="ptsfwd.h" local="no" imported="no">xmscore/points/ptsfwd.h</includes>
     <includes id="utility_8h" name="utility.h" local="no" imported="no">xmscore/stl/utility.h</includes>
     <class kind="class">xms::ETestMessagingState</class>
     <member kind="define">
@@ -2958,6 +2990,41 @@
     </member>
     <member kind="function">
       <type>bool</type>
+      <name>ttEqualPointsXYZ</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a5a6751da8dbefa43dbea0c9e6b78d121</anchor>
+      <arglist>(const Pt3d &amp;a_pt1, const Pt3d &amp;a_pt2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXYZ</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a18ba18a264d57716c710374c45b6cf5d</anchor>
+      <arglist>(double a_x1, double a_y1, double a_z1, double a_x2, double a_y2, double a_z2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXY</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a8d49d04fb167be76115c41648f181cb8</anchor>
+      <arglist>(const Pt2d &amp;a_pt1, const Pt2d &amp;a_pt2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXY</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>ae6188fd6883b14cc8c4e74b70d99342f</anchor>
+      <arglist>(const Pt3d &amp;a_pt1, const Pt3d &amp;a_pt2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ttEqualPointsXY</name>
+      <anchorfile>_test_tools_8cpp.html</anchorfile>
+      <anchor>a03587c7aef0142b86bfa620717351068</anchor>
+      <arglist>(double a_x1, double a_y1, double a_x2, double a_y2, double a_tolerance)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
       <name>ttAssertDeltaVec</name>
       <anchorfile>_test_tools_8h.html</anchorfile>
       <anchor>a60ce526c07fa6f1fb54bf3713ae93c9a</anchor>
@@ -2967,8 +3034,8 @@
       <type>bool</type>
       <name>ttAssertDeltaVec2D</name>
       <anchorfile>_test_tools_8h.html</anchorfile>
-      <anchor>ae98e466f8d6113a5361c16aa586427e6</anchor>
-      <arglist>(const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;b, U delta)</arglist>
+      <anchor>a0a57748922684ffa7ff13f02277f3355</anchor>
+      <arglist>(const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;b, U delta)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -2981,8 +3048,36 @@
       <type>bool</type>
       <name>ttAssertEqualsVec2D</name>
       <anchorfile>_test_tools_8h.html</anchorfile>
-      <anchor>a4dbfdd1e82e9a97582b148fbeba175e4</anchor>
-      <arglist>(const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt; &gt; &amp;b)</arglist>
+      <anchor>af0ee23ab8cc5c537be8132fb71dd8459</anchor>
+      <arglist>(const char *f, unsigned l, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;a, const std::vector&lt; std::vector&lt; T &gt;&gt; &amp;b)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ttAssertDeltaPt3d</name>
+      <anchorfile>_test_tools_8h.html</anchorfile>
+      <anchor>ae1fcc1af3720cabeea51cd5a97781d51</anchor>
+      <arglist>(const char *a_file, int a_line, const Pt &amp;a_pt1, const Pt &amp;a_pt2, double a_delta)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ttAssertDeltaPt2d</name>
+      <anchorfile>_test_tools_8h.html</anchorfile>
+      <anchor>ac6193c3490a91b530640de7848b8c5c5</anchor>
+      <arglist>(const char *a_file, int a_line, const Pt &amp;a_pt1, const Pt &amp;a_pt2, double a_delta)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ttAssertDeltaVecPt3d</name>
+      <anchorfile>_test_tools_8h.html</anchorfile>
+      <anchor>aa9d06070634cde8a9d5c2cf0d3c25733</anchor>
+      <arglist>(const char *a_file, int a_line, const Pt1 &amp;a_pts1, const Pt2 &amp;a_pts2, double a_delta)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>ttAssertDeltaVecPt2d</name>
+      <anchorfile>_test_tools_8h.html</anchorfile>
+      <anchor>a2509fdf820c25afbf353736721b5b75d</anchor>
+      <arglist>(const char *a_file, int a_line, const Pt1 &amp;a_pts1, const Pt2 &amp;a_pts2, double a_delta)</arglist>
     </member>
   </compound>
   <compound kind="class">

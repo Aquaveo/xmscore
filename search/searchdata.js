@@ -9,7 +9,7 @@ var indexSectionsWithContent =
   6: "dhlmpsvx",
   7: "mpx",
   8: "deisw",
-  9: "_bfitx",
+  9: "_bftx",
   10: "dx"
 };
 
