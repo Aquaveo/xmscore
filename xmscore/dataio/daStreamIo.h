@@ -13,6 +13,7 @@
 // 4. External Library Headers
 
 // 5. Shared Headers
+#include <xmscore/misc/base_macros.h>
 #include <xmscore/misc/boost_defines.h>
 #include <xmscore/stl/vector.h>
 
@@ -35,9 +36,7 @@ class DaStreamReader
 {
 public:
   explicit DaStreamReader(std::istream& a_inStream, bool a_binaryArrays = false);
-  DaStreamReader(const DaStreamReader&) = delete;
   ~DaStreamReader();
-  DaStreamReader& operator=(const DaStreamReader&) = delete;
 
   bool IsBinary() const;
   bool ReadNamedLine(const char* a_name);
@@ -66,6 +65,7 @@ public:
   bool ReadBinaryBytes(char* a_dest, long long a_destLength);
 
 private:
+  XM_DISALLOW_COPY_AND_ASSIGN(DaStreamReader)
   class Impl;
   std::unique_ptr<Impl> m_impl; ///< Implementation.
 };
@@ -74,10 +74,8 @@ private:
 class DaStreamWriter
 {
 public:
-  explicit DaStreamWriter(std::ostream& a_outStream, bool a_binary = false);
-  DaStreamWriter(const DaStreamWriter&) = delete;
+  explicit DaStreamWriter(std::ostream& a_outStream, bool a_binaryArrays = false);
   ~DaStreamWriter();
-  DaStreamWriter& operator=(const DaStreamWriter&) = delete;
 
   bool IsBinary() const;
   void WriteVecInt(const char* a_name, const VecInt& a_vec);
@@ -110,6 +108,7 @@ public:
   void SetBinaryBlockSize(int a_blockSize);
 
 private:
+  XM_DISALLOW_COPY_AND_ASSIGN(DaStreamWriter)
   class Impl;
   std::unique_ptr<Impl> m_impl; ///< Implementation.
 };
