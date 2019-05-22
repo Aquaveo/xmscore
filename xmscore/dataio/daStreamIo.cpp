@@ -57,6 +57,8 @@ class DaStreamReader::Impl
 {
 public:
   /// Constructor
+  /// \param a_inStream The input stream.
+  /// \param a_binaryArrays Were binary arrays written?
   Impl(std::istream& a_inStream, bool a_binaryArrays)
   : m_inStream(a_inStream)
   , m_binaryArrays(a_binaryArrays)
@@ -74,6 +76,8 @@ class DaStreamWriter::Impl
 {
 public:
   /// Constructor
+  /// \param a_outStream The input stream.
+  /// \param a_binaryArrays Should binary arrays be written?
   Impl(std::ostream& a_outStream, bool a_binaryArrays)
   : m_outStream(a_outStream)
   , m_binaryArrays(a_binaryArrays)
@@ -774,9 +778,11 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
 ////////////////////////////////////////////////////////////////////////////////
 //------------------------------------------------------------------------------
 /// \brief Constructor.
+/// \param a_outStream The output stream.
+/// \param a_binaryArrays Should binary arrays be written?
 //------------------------------------------------------------------------------
-DaStreamWriter::DaStreamWriter(std::ostream& a_outStream, bool a_binary /*= false*/)
-: m_impl(new Impl(a_outStream, a_binary))
+DaStreamWriter::DaStreamWriter(std::ostream& a_outStream, bool a_binaryArrays /*= false*/)
+: m_impl(new Impl(a_outStream, a_binaryArrays))
 {
 } // DaStreamWriter::DaStreamWriter
 //------------------------------------------------------------------------------
