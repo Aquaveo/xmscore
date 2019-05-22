@@ -39,7 +39,7 @@
   \
 static std::string XM_UTIL(__LINE__);                     \
   \
-if(!XM_UTIL(__LINE__).size())                             \
+if(XM_UTIL(__LINE__).empty())                             \
   {                                                       \
     XM_UTIL(__LINE__) = xms::g_xmUtil;                    \
   \
