@@ -5,6 +5,8 @@
 *.pyc
 .idea/
 build/
+cmake-build-debug/
+cmake-build-release/
 test_package/build/
 
 # Doxygen
