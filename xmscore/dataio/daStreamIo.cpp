@@ -2217,7 +2217,7 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryVecDbl()
     e = ++count;
   writer.WriteVecDbl(name, expect);
 
-  std::istringstream inputStream(outputStream.str(), useBinaryArrays);
+  std::istringstream inputStream(outputStream.str());
   DaStreamReader reader(inputStream, useBinaryArrays);
   VecDbl found;
   TS_ASSERT(reader.ReadVecDbl(name, found));
@@ -2241,7 +2241,7 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryVecPt3d()
   }
   writer.WriteVecPt3d(name, expect);
 
-  std::istringstream inputStream(outputStream.str(), useBinaryArrays);
+  std::istringstream inputStream(outputStream.str());
   DaStreamReader reader(inputStream, useBinaryArrays);
   VecPt3d found;
   TS_ASSERT(reader.ReadVecPt3d(name, found));
