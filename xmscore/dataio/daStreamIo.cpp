@@ -142,7 +142,7 @@ int32_t iBase64Encode(const char* a_source, int32_t a_sourceLength, char* a_dest
   using namespace boost::archive::iterators;
   typedef base64_from_binary<transform_width<const char*, 6, 8>> base64_text;
 
-  const char* srcBegin = &a_source[0];
+  const char* srcBegin = a_source;
   const char* srcEnd = srcBegin + a_sourceLength;
   char* destBegin = a_dest;
   char* destIterator = a_dest;
@@ -156,7 +156,7 @@ int32_t iBase64Encode(const char* a_source, int32_t a_sourceLength, char* a_dest
 //------------------------------------------------------------------------------
 /// \brief
 //------------------------------------------------------------------------------
-void iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest)
+int32_t iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest)
 {
   using namespace boost::archive::iterators;
   typedef transform_width<binary_from_base64<const char*>, 8, 6> base64_dec;
@@ -168,10 +168,21 @@ void iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest)
     if (size && a_source[size - 1] == '=')
       --size;
   }
+
   if (size != 0)
   {
-    std::copy(base64_dec(a_source), base64_dec(a_source + size), a_dest);
+    const char* srcBegin = a_source;
+    const char* srcEnd = srcBegin + a_sourceLength;
+    char* destBegin = a_dest;
+    char* destIterator = a_dest;
+    for (auto it = base64_dec(a_source); it != base64_dec(a_source + size); ++it)
+      *destIterator++ = *it;
+
+    auto decodedLength = int32_t(destIterator - destBegin);
+    return decodedLength;
   }
+
+  return 0;
 } // iBase64Decode
 //------------------------------------------------------------------------------
 /// \brief Read line of name (beginning of line) followed with up to 3 expected
@@ -745,11 +756,9 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
     // read block info
     std::string blockString;
     int32_t encodedLength;
-    int32_t compressedLength;
     int32_t blockLength;
     ReadString(blockString);
     ReadInt(encodedLength);
-    ReadInt(compressedLength);
     ReadInt(blockLength);
     NextLine();
 
@@ -757,7 +766,7 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
     m_impl->m_inStream.read(encoded.get(), encodedLength);
     NextLine();
 
-    iBase64Decode(encoded.get(), encodedLength, compressed.get());
+    auto compressedLength = iBase64Decode(encoded.get(), encodedLength, compressed.get());
 
     // decompress data
     if (!iUncompress(compressed.get(), compressedLength, a_dest, blockLength))
@@ -1007,7 +1016,6 @@ bool DaStreamWriter::WriteBinaryBytes(const char* a_source, long long a_sourceLe
     // write block info
     WriteString("BINARY_BLOCK");
     AppendInt(encodedLength);
-    AppendInt(compressedLength);
     AppendInt(blockLength);
     EndLine();
     m_impl->m_outStream.write(encoded.get(), encodedLength);
