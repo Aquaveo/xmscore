@@ -83,7 +83,7 @@ public:
   ~DaStreamWriter();
 
   bool IsBinary() const;
-  
+
   void WriteLine(const std::string& a_line);
   void WriteStringLine(const char* a_name, const std::string& a_val);
   void WriteIntLine(const char* a_name, int a_val);
