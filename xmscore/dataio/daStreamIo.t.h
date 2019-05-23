@@ -58,6 +58,12 @@ public:
   void testReadWriteVecInt();
   void testReadWriteVecDbl();
   void testReadWriteVecPt3d();
+  void testReadWriteBinaryVecInt();
+  void testReadWriteBinaryVecDbl();
+  void testReadWriteBinaryVecPt3d();
+  void testReadWriteLineParts();
+  void testReadWriteBinaryArrays();
+  void testLineBeginsWith();
 };
 
 #endif

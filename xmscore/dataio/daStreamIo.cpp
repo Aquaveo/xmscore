@@ -581,6 +581,18 @@ bool DaStreamReader::ReadVecInt(const char* a_name, VecInt& a_vec)
 //------------------------------------------------------------------------------
 bool DaStreamReader::ReadVecDbl(const char* a_name, VecDbl& a_vec)
 {
+  if (IsBinary())
+  {
+    int size;
+    if (!ReadIntLine(a_name, size))
+      return false;
+
+    a_vec.resize(size);
+    if (size != 0)
+      ReadBinaryBytes(reinterpret_cast<char*>(&a_vec[0]), size * sizeof(VecDbl::value_type));
+    return true;
+  }
+
   return iReadVector(m_impl->m_inStream, a_name, a_vec);
 } // DaStreamReader::ReadVecDbl
 //------------------------------------------------------------------------------
@@ -779,6 +791,24 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
 
   return true;
 } // DaStreamReader::ReadBinaryBytes
+//------------------------------------------------------------------------------
+/// \brief Determines if next line read will begin given text.
+/// \param a_text The text to check for.
+/// \return True if next line begins with given string.
+//------------------------------------------------------------------------------
+bool DaStreamReader::LineBeginsWith(const char* a_text)
+{
+  auto streamPosition = m_impl->m_inStream.tellg();
+  bool foundText = false;
+  std::string line;
+  if (ReadLine(line))
+  {
+    foundText = line.find(a_text) == 0;
+  }
+
+  m_impl->m_inStream.seekg(streamPosition);
+  return foundText;
+} // DaStreamReader::LineBeginsWith
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class DaStreamWriter
@@ -818,6 +848,24 @@ void DaStreamWriter::WriteLine(const std::string& a_line)
   iWriteLine(m_impl->m_outStream, a_line);
 } // DaStreamWriter::WriteLine
 //------------------------------------------------------------------------------
+/// \brief Write a named word line.
+/// \param a_name The name to be written before the value.
+/// \param a_val The word.
+//------------------------------------------------------------------------------
+void DaStreamWriter::WriteStringLine(const char* a_name, const std::string& a_val)
+{
+  iWriteLine(m_impl->m_outStream, a_name, &a_val);
+} // DaStreamWriter::WriteStringLine
+//------------------------------------------------------------------------------
+/// \brief Write a named integer value to a line.
+/// \param a_name The name to be written before the value.
+/// \param a_val The integer value.
+//------------------------------------------------------------------------------
+void DaStreamWriter::WriteIntLine(const char* a_name, int a_val)
+{
+  iWriteLine(m_impl->m_outStream, a_name, &a_val);
+} // DaStreamWriter::WriteIntLine
+//------------------------------------------------------------------------------
 /// \brief Write a named double line value.
 /// \param a_name The name to be written before the value.
 /// \param a_val The double value to write.
@@ -826,16 +874,6 @@ void DaStreamWriter::WriteDoubleLine(const char* a_name, double a_val)
 {
   iWriteLine(m_impl->m_outStream, a_name, &a_val);
 } // DaStreamWriter::WriteDoubleLine
-//------------------------------------------------------------------------------
-/// \brief Write a named word line.
-/// \param a_name The name to be written before the value.
-/// \param a_val The word.
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-void DaStreamWriter::WriteStringLine(const char* a_name, const std::string& a_val)
-{
-  iWriteLine(m_impl->m_outStream, a_name, &a_val);
-} // DaStreamWriter::WriteStringLine
 //------------------------------------------------------------------------------
 /// \brief Write a named vector of integers to several lines.
 /// \param a_name The name to be written before the value.
@@ -856,6 +894,56 @@ void DaStreamWriter::WriteVecInt(const char* a_name, const VecInt& a_vec)
     iWriteVec(m_impl->m_outStream, a_name, a_vec);
   }
 } // DaStreamWriter::WriteVecInt
+//------------------------------------------------------------------------------
+/// \brief Write a named vector of doubles to multiple lines.
+/// \param a_name The name to be written before the value.
+/// \param a_vec The vector of doubles.
+//------------------------------------------------------------------------------
+void DaStreamWriter::WriteVecDbl(const char* a_name, const VecDbl& a_vec)
+{
+  if (IsBinary())
+  {
+    size_t size = a_vec.size();
+    iWriteLine(m_impl->m_outStream, a_name, &size);
+    if (!a_vec.empty())
+      WriteBinaryBytes(reinterpret_cast<const char*>(&a_vec[0]),
+                       a_vec.size() * sizeof(VecDbl::value_type));
+  }
+  else
+  {
+    iWriteVec(m_impl->m_outStream, a_name, a_vec);
+  }
+} // DaStreamWriter::WriteVecDbl
+//------------------------------------------------------------------------------
+/// \brief Write a named vector of Pt3d to multiple lines.
+/// \param a_name The name to be written before the value.
+/// \param a_points The vector of Pt3d.
+//------------------------------------------------------------------------------
+void DaStreamWriter::WriteVecPt3d(const char* a_name, const VecPt3d& a_points)
+{
+  // write name and size of vector
+  const size_t size = a_points.size();
+  iWriteLine(m_impl->m_outStream, a_name, &size);
+
+  if (IsBinary())
+  {
+    if (!a_points.empty())
+      WriteBinaryBytes(reinterpret_cast<const char*>(&a_points[0]),
+                       a_points.size() * sizeof(VecPt3d::value_type));
+  }
+  else
+  {
+    // write each indented point and XYZ (why not remove POINT text?)
+    for (size_t i = 0; i < a_points.size(); ++i)
+    {
+      const Pt3d& point = a_points[i];
+      std::string sx(STRstd(point.x));
+      std::string sy(STRstd(point.y));
+      std::string sz(STRstd(point.z));
+      m_impl->m_outStream << "  POINT " << i << ' ' << sx << ' ' << sy << ' ' << sz << '\n';
+    }
+  }
+} // DaStreamWriter::WriteVecPt3d
 //------------------------------------------------------------------------------
 /// \brief Write a named pair of words to a line.
 /// \param a_name The name to be written before the value.
@@ -896,54 +984,6 @@ void DaStreamWriter::Write3DoubleLine(const char* a_name,
 {
   iWriteLine(m_impl->m_outStream, a_name, &a_val1, &a_val2, &a_val3);
 } // DaStreamWriter::Write3DoubleLine
-//------------------------------------------------------------------------------
-/// \brief Write a named integer value to a line.
-/// \param a_name The name to be written before the value.
-/// \param a_val The integer value.
-//------------------------------------------------------------------------------
-void DaStreamWriter::WriteIntLine(const char* a_name, int a_val)
-{
-  iWriteLine(m_impl->m_outStream, a_name, &a_val);
-} // DaStreamWriter::WriteIntLine
-//------------------------------------------------------------------------------
-/// \brief Write a named vector of doubles to multiple lines.
-/// \param a_name The name to be written before the value.
-/// \param a_vec The vector of doubles.
-//------------------------------------------------------------------------------
-void DaStreamWriter::WriteVecDbl(const char* a_name, const VecDbl& a_vec)
-{
-  iWriteVec(m_impl->m_outStream, a_name, a_vec);
-} // DaStreamWriter::WriteVecDbl
-//------------------------------------------------------------------------------
-/// \brief Write a named vector of Pt3d to multiple lines.
-/// \param a_name The name to be written before the value.
-/// \param a_points The vector of Pt3d.
-//------------------------------------------------------------------------------
-void DaStreamWriter::WriteVecPt3d(const char* a_name, const VecPt3d& a_points)
-{
-  // write name and size of vector
-  const size_t size = a_points.size();
-  iWriteLine(m_impl->m_outStream, a_name, &size);
-
-  if (IsBinary())
-  {
-    if (!a_points.empty())
-      WriteBinaryBytes(reinterpret_cast<const char*>(&a_points[0]),
-                       a_points.size() * sizeof(VecPt3d::value_type));
-  }
-  else
-  {
-    // write each indented point and XYZ (why not remove POINT text?)
-    for (size_t i = 0; i < a_points.size(); ++i)
-    {
-      const Pt3d& point = a_points[i];
-      std::string sx(STRstd(point.x));
-      std::string sy(STRstd(point.y));
-      std::string sz(STRstd(point.z));
-      m_impl->m_outStream << "  POINT " << i << ' ' << sx << ' ' << sy << ' ' << sz << '\n';
-    }
-  }
-} // DaStreamWriter::WriteVecPt3d
 //------------------------------------------------------------------------------
 /// \brief Write a string value to the stream.
 /// \param a_string
@@ -1419,6 +1459,8 @@ void daWriteVecPt3d(std::ostream& a_outStream, const char* a_name, const VecPt3d
 
 #include <xmscore/dataio/daStreamIo.t.h>
 
+#include <numeric>
+
 using namespace xms;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1832,7 +1874,7 @@ void DaReaderWriterIoUnitTests::testReadWriteLine()
   TS_ASSERT_EQUALS("Last Line", value);
 } // DaReaderWriterIoUnitTests::testReadWriteLine
 //------------------------------------------------------------------------------
-/// \brief Test daWriteStringLine and ReadStringLine.
+/// \brief Test WriteStringLine and ReadStringLine.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWriteStringLine()
 {
@@ -1852,7 +1894,7 @@ void DaReaderWriterIoUnitTests::testReadWriteStringLine()
   TS_ASSERT_EQUALS(expectedValue, foundValue);
 } // DaReaderWriterIoUnitTests::testReadWriteStringLine
 //------------------------------------------------------------------------------
-/// \brief Test daWrite2StringLine and Read2StringLine.
+/// \brief Test Write2StringLine and Read2StringLine.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWrite2StringLine()
 {
@@ -1875,7 +1917,7 @@ void DaReaderWriterIoUnitTests::testReadWrite2StringLine()
   TS_ASSERT_EQUALS(expectedValue2, foundValue2);
 } // DaReaderWriterIoUnitTests::testReadWrite2StringLine
 //------------------------------------------------------------------------------
-/// \brief Test daWrite3StringLine and Read3StringLine.
+/// \brief Test Write3StringLine and Read3StringLine.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWrite3StringLine()
 {
@@ -2002,7 +2044,7 @@ void DaReaderWriterIoUnitTests::testReadDoubleFromLine()
   TS_ASSERT_EQUALS("", line);
 } // DaReaderWriterIoUnitTests::testReadDoubleFromLine
 //------------------------------------------------------------------------------
-/// \brief Test daWriteIntLine and ReadIntLine.
+/// \brief Test WriteIntLine and ReadIntLine.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWriteIntLine()
 {
@@ -2022,7 +2064,7 @@ void DaReaderWriterIoUnitTests::testReadWriteIntLine()
   TS_ASSERT_EQUALS(expect, found);
 } // DaReaderWriterIoUnitTests::testReadWriteIntLine
 //------------------------------------------------------------------------------
-/// \brief Test daWriteDoubleLine and ReadDoubleLine.
+/// \brief Test WriteDoubleLine and ReadDoubleLine.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWriteDoubleLine()
 {
@@ -2042,7 +2084,7 @@ void DaReaderWriterIoUnitTests::testReadWriteDoubleLine()
   TS_ASSERT_EQUALS(expect, found);
 } // DaReaderWriterIoUnitTests::testReadWriteDoubleLine
 //------------------------------------------------------------------------------
-/// \brief Test daWrite3DoubleLine and reader.Read3DoubleLine.
+/// \brief Test Write3DoubleLine and Read3DoubleLine.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWrite3DoubleLine()
 {
@@ -2068,7 +2110,7 @@ void DaReaderWriterIoUnitTests::testReadWrite3DoubleLine()
   TS_ASSERT_EQUALS(expect3, found3);
 } // DaReaderWriterIoUnitTests::testReadWrite3DoubleLine
 //------------------------------------------------------------------------------
-/// \brief Test daWriteVecInt and ReadVecInt.
+/// \brief Test WriteVecInt and ReadVecInt.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWriteVecInt()
 {
@@ -2092,7 +2134,7 @@ void DaReaderWriterIoUnitTests::testReadWriteVecInt()
   TS_ASSERT_EQUALS(expect, found);
 } // DaReaderWriterIoUnitTests::testReadWriteVecInt
 //------------------------------------------------------------------------------
-/// \brief Test daWriteVecDbl and ReadVecDbl.
+/// \brief Test WriteVecDbl and ReadVecDbl.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWriteVecDbl()
 {
@@ -2116,7 +2158,7 @@ void DaReaderWriterIoUnitTests::testReadWriteVecDbl()
   TS_ASSERT_EQUALS(expect, found);
 } // DaReaderWriterIoUnitTests::testReadWriteVecDbl
 //------------------------------------------------------------------------------
-/// \brief Test daWriteVecPt3d and ReadVecPt3d.
+/// \brief Test WriteVecPt3d and ReadVecPt3d.
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadWriteVecPt3d()
 {
@@ -2141,5 +2183,182 @@ void DaReaderWriterIoUnitTests::testReadWriteVecPt3d()
   TS_ASSERT(reader.ReadVecPt3d(name, found));
   TS_ASSERT_EQUALS(expect, found);
 } // DaReaderWriterIoUnitTests::testReadWriteVecPt3d
+//------------------------------------------------------------------------------
+/// \brief Test binary WriteVecInt and binary ReadVecInt.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadWriteBinaryVecInt()
+{
+  std::ostringstream outputStream;
+  bool useBinaryArrays = true;
+  DaStreamWriter writer(outputStream, useBinaryArrays);
+  const char* name = "VECTOR_NAME";
+  VecInt expect(100);
+  std::iota(expect.begin(), expect.end(), 0);
+  writer.WriteVecInt(name, expect);
+
+  std::istringstream inputStream(outputStream.str());
+  DaStreamReader reader(inputStream, useBinaryArrays);
+  VecInt found;
+  TS_ASSERT(reader.ReadVecInt(name, found));
+  TS_ASSERT_EQUALS(expect, found);
+} // DaReaderWriterIoUnitTests::testReadWriteBinaryVecInt
+//------------------------------------------------------------------------------
+/// \brief Test binary WriteVecDbl and binary ReadVecDbl.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadWriteBinaryVecDbl()
+{
+  std::ostringstream outputStream;
+  bool useBinaryArrays = true;
+  DaStreamWriter writer(outputStream, useBinaryArrays);
+  const char* name = "VECTOR_NAME";
+  VecDbl expect(100);
+  int count = 0;
+  for (auto& e : expect)
+    e = ++count;
+  writer.WriteVecDbl(name, expect);
+
+  std::istringstream inputStream(outputStream.str(), useBinaryArrays);
+  DaStreamReader reader(inputStream, useBinaryArrays);
+  VecDbl found;
+  TS_ASSERT(reader.ReadVecDbl(name, found));
+  TS_ASSERT_EQUALS(expect, found);
+} // DaReaderWriterIoUnitTests::testReadWriteBinaryVecDbl
+//------------------------------------------------------------------------------
+/// \brief Test binary WriteVecPt3d and binary ReadVecPt3d.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadWriteBinaryVecPt3d()
+{
+  std::ostringstream outputStream;
+  bool useBinaryArrays = true;
+  DaStreamWriter writer(outputStream, useBinaryArrays);
+  const char* name = "VECTOR_NAME";
+  VecPt3d expect(100);
+  int count = 0;
+  for (auto& e : expect)
+  {
+    e = Pt3d(count, count + 1, count + 2);
+    ++count;
+  }
+  writer.WriteVecPt3d(name, expect);
+
+  std::istringstream inputStream(outputStream.str(), useBinaryArrays);
+  DaStreamReader reader(inputStream, useBinaryArrays);
+  VecPt3d found;
+  TS_ASSERT(reader.ReadVecPt3d(name, found));
+  TS_ASSERT_EQUALS(expect, found);
+} // DaReaderWriterIoUnitTests::testReadWriteBinaryVecPt3d
+//------------------------------------------------------------------------------
+/// \brief Test function that read and write parts of a line.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadWriteLineParts()
+{
+  std::ostringstream outputStream;
+  DaStreamWriter writer(outputStream);
+  writer.WriteString("STRING_ONE");
+  TS_ASSERT_EQUALS("STRING_ONE", outputStream.str());
+  writer.AppendInt(0);
+  TS_ASSERT_EQUALS("STRING_ONE 0", outputStream.str());
+  writer.AppendString("STRING_TWO");
+  TS_ASSERT_EQUALS("STRING_ONE 0 STRING_TWO", outputStream.str());
+  int ints[] = {1, 2, 3};
+  writer.AppendInts(ints, 3);
+  TS_ASSERT_EQUALS("STRING_ONE 0 STRING_TWO 1 2 3", outputStream.str());
+  writer.EndLine();
+  TS_ASSERT_EQUALS("STRING_ONE 0 STRING_TWO 1 2 3\n", outputStream.str());
+
+  std::istringstream inputStream("STRING_ONE 0\n1 STRING_TWO");
+  DaStreamReader reader(inputStream);
+  std::string s;
+  int i;
+  TS_ASSERT(reader.ReadString(s));
+  TS_ASSERT_EQUALS("STRING_ONE", s)
+  TS_ASSERT(reader.ReadInt(i));
+  TS_ASSERT_EQUALS(0, i);
+  TS_ASSERT(reader.NextLine());
+
+  TS_ASSERT(reader.ReadInt(i));
+  TS_ASSERT_EQUALS(1, i);
+  TS_ASSERT(reader.ReadString(s));
+  TS_ASSERT_EQUALS("STRING_TWO", s)
+  TS_ASSERT(!reader.NextLine());
+} // DaReaderWriterIoUnitTests::testReadWriteLineParts
+//------------------------------------------------------------------------------
+/// \brief Test reading and writing a binary array.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadWriteBinaryArrays()
+{
+  VecInt outValues(500);
+  std::iota(outValues.begin(), outValues.end(), 0);
+  long long lengthInBytes = (long long)outValues.size() * sizeof(VecInt::value_type);
+  std::ostringstream output;
+  DaStreamWriter writer(output);
+  writer.SetBinaryBlockSize(120);
+  writer.WriteBinaryBytes((char*)&outValues[0], lengthInBytes);
+  std::string text = output.str();
+  std::string expectedText =
+    "BINARY_BLOCK 74 120\n"
+    "eAENw4UNwDAAAKDO3d3+f3OQEEIIkbGJqZm5haWVtY2tnb2Do5Ozi6ubu4enl7ePr58/RrQBtA\n"
+    "BINARY_BLOCK 78 120\n"
+    "eAENw4UNwzAAALBcUuaVGf7/a7bkKIQQm5iamVtYWlnb2Nr5s3dwdHJ2cXVz9/D08vbx9fMPILsFOA\n"
+    "BINARY_BLOCK 78 120\n"
+    "eAENw4UNwzAAALAcVuaVGf5/ZLbkKIQQm5iamVtYWlnb2Nr5s3dwdHJ2cXVz9/D08vbx9fMP+rMIvA\n"
+    "BINARY_BLOCK 76 120\n"
+    "eAENw4UNwzAAALDcWeaVGd6fLTkKIcQmpmbmFpZW1ja2dv7sHRydnF1c3dw9PL28fXz9/APUugxA\n"
+    "BINARY_BLOCK 76 120\n"
+    "eAENw4UNwzAAALCcXeaVGf6dLTkKIcQmpmbmFpZW1ja2dv7sHRydnF1c3dw9PL28fXz9/AOuwQ/E\n"
+    "BINARY_BLOCK 78 120\n"
+    "eAENw4UNwzAAALD8f0CZV2Z4cLbkKIQQm5iamVtYWlnb2Nr5s3dwdHJ2cXVz9/D08vbx9fMPiMgTSA\n"
+    "BINARY_BLOCK 78 120\n"
+    "eAENw4UNwzAAALD8f0+ZV2b4aLbkKIQQm5iamVtYWlnb2Nr5s3dwdHJ2cXVz9/D08vbx9fMPYs8WzA\n"
+    "BINARY_BLOCK 78 120\n"
+    "eAENw4UNwzAAALD8f16ZV2Z4YbbkKIQQm5iamVtYWlnb2Nr5s3dwdHJ2cXVz9/D08vbx9fMPPNYaUA\n"
+    "BINARY_BLOCK 74 120\n"
+    "eAENw4UNwDAAAKDO/f83524k0IcQBkcnZxdXN3cPTy9vH18/Q4SxiamZuYWllbWNrZ0/dFUP4g\n"
+    "BINARY_BLOCK 82 120\n"
+    "eAENw4URg0AAALBnAbRIkeJS2H8/krvEUQiJqZm5hR9LK2sbv7Z29g7+HJ2cXVzd3D08vfx7+/gCs5IDdg\n"
+    "BINARY_BLOCK 82 120\n"
+    "eAENw4URg0AAALBnH7RIkeJS2H8hkrvEUQiJqZm5hR9LK2sbv7Z29g7+HJ2cXVzd3D08vfx7+/gCjZkG+g\n"
+    "BINARY_BLOCK 82 120\n"
+    "eAENw4URg0AAALBnPbRIkeJS2H8DkrvEUQiJqZm5hR9LK2sbv7Z29g7+HJ2cXVzd3D08vfx7+/gCZ6AKfg\n"
+    "BINARY_BLOCK 79 120\n"
+    "eAENwwUOg0AAALDjt+iQIcNl8G/apHEUQmJqZm7hx9LK2savrZ29gz9HJ2cXVzd3D08v/94+vkGnDgI\n"
+    "BINARY_BLOCK 79 120\n"
+    "eAENwwUOg0AAALDj8+iQIcNl8FHapHEUQmJqZm7hx9LK2savrZ29gz9HJ2cXVzd3D08v/94+vhuuEYY\n"
+    "BINARY_BLOCK 82 120\n"
+    "eAENw4URg0AAALBn/zXQIkWKS2EzkrvEUQiJqZm5hR9LK2sbv7Z29g7+HJ2cXVzd3D08vfx7+/gC9aYVCg\n"
+    "BINARY_BLOCK 82 120\n"
+    "eAENw4URg0AAALBn/63QIkWKS2EVkrvEUQiJqZm5hR9LK2sbv7Z29g7+HJ2cXVzd3D08vfx7+/gCz60Yjg\n"
+    "BINARY_BLOCK 63 80\n"
+    "eAENwwESQCAAALD8/5NEkUj0Advd5imExejqZjK7e1g8rV7eNh+7r5/DH/dqElM\n";
+  TS_ASSERT_EQUALS(expectedText, text);
+
+  std::istringstream input(expectedText);
+  DaStreamReader reader(input);
+  VecInt inValues(500);
+  TS_ASSERT(reader.ReadBinaryBytes((char*)&inValues[0], lengthInBytes));
+  TS_ASSERT_EQUALS(outValues, inValues);
+} // DaReaderWriterIoUnitTests::testReadWriteBinaryArrays
+//------------------------------------------------------------------------------
+/// \brief Test DaStreamReader::LineBeginsWith
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testLineBeginsWith()
+{
+  const char* inputText =
+    "VECTOR_NAME 2\n"
+    "  POINT 0 1.1 1.2 1.3\n"
+    "  POINT 1 2.1 2.2 2.3\n";
+  std::istringstream inputStream(inputText);
+  DaStreamReader reader(inputStream);
+  TS_ASSERT(reader.LineBeginsWith("VECTOR_NAME"));
+  std::string line;
+  TS_ASSERT(reader.ReadLine(line));
+  TS_ASSERT_EQUALS("VECTOR_NAME 2", line);
+  TS_ASSERT(reader.LineBeginsWith("  POINT"));
+  TS_ASSERT(reader.ReadLine(line));
+  TS_ASSERT_EQUALS("  POINT 0 1.1 1.2 1.3", line);
+  TS_ASSERT(reader.LineBeginsWith("  POINT 1 2.1 2.2 2.3"));
+  TS_ASSERT(reader.ReadLine(line));
+  TS_ASSERT_EQUALS("  POINT 1 2.1 2.2 2.3", line);
+} // DaReaderWriterIoUnitTests::testLineBeginsWith
 
 #endif
