@@ -23,8 +23,9 @@
 #include <boost/archive/iterators/insert_linebreaks.hpp>
 #include <boost/archive/iterators/transform_width.hpp>
 #include <boost/archive/iterators/ostream_iterator.hpp>
+#include <boost/iostreams/filter/zlib.hpp>
 #include <boost/unordered_map.hpp>
-#include <zlib.h>
+#include "zlib.h"
 
 // 5. Shared Headers
 #include <xmscore/misc/StringUtil.h>
