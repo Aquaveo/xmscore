@@ -25,7 +25,7 @@
 #include <boost/archive/iterators/ostream_iterator.hpp>
 #include <boost/iostreams/filter/zlib.hpp>
 #include <boost/unordered_map.hpp>
-#include "zlib.h"
+#include <zlib.h>
 
 // 5. Shared Headers
 #include <xmscore/misc/StringUtil.h>
