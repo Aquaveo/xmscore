@@ -798,16 +798,7 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
 //------------------------------------------------------------------------------
 bool DaStreamReader::LineBeginsWith(const char* a_text)
 {
-  auto streamPosition = m_impl->m_inStream.tellg();
-  bool foundText = false;
-  std::string line;
-  if (ReadLine(line))
-  {
-    foundText = line.find(a_text) == 0;
-  }
-
-  m_impl->m_inStream.seekg(streamPosition);
-  return foundText;
+  return daLineBeginsWith(m_impl->m_inStream, a_text);
 } // DaStreamReader::LineBeginsWith
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1312,6 +1303,25 @@ bool daReadDoubleFromLine(std::string& a_line, double& a_val)
 {
   return iReadValueFromLine(a_line, a_val);
 } // daReadDoubleFromLine
+//------------------------------------------------------------------------------
+/// \brief Determines if next line read will begin given text.
+/// \param a_inStream The stream to read from.
+/// \param a_text The text to check for.
+/// \return True if next line begins with given string.
+//------------------------------------------------------------------------------
+bool daLineBeginsWith(std::istream& a_inStream, const std::string& a_text)
+{
+  auto streamPosition = a_inStream.tellg();
+  bool foundText = false;
+  std::string line;
+  if (daReadLine(a_inStream, line))
+  {
+    foundText = line.find(a_text) == 0;
+  }
+
+  a_inStream.seekg(streamPosition);
+  return foundText;
+} // daLineBeginsWith
 //------------------------------------------------------------------------------
 /// \brief Write a given line to a stream.
 /// \param a_outStream The stream to write too.
