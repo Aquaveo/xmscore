@@ -147,6 +147,8 @@ bool daReadIntFromLine(std::string& a_line, int& a_val);
 bool daReadStringFromLine(std::string& a_line, std::string& a_val);
 bool daReadDoubleFromLine(std::string& a_line, double& a_val);
 
+bool daLineBeginsWith(std::istream& a_inStream, const std::string& a_text);
+
 void daWriteVecInt(std::ostream& a_outStream, const char* a_name, const VecInt& a_vec);
 void daWriteVecDbl(std::ostream& a_outStream, const char* a_name, const VecDbl& a_vec);
 void daWriteVecPt3d(std::ostream& a_outStream, const char* a_name, const VecPt3d& a_points);

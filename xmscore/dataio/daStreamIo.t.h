@@ -38,6 +38,7 @@ public:
   void testReadWriteVecInt();
   void testReadWriteVecDbl();
   void testReadWriteVecPt3d();
+  void testLineBeginsWith();
 };
 
 ////////////////////////////////////////////////////////////////////////////////
