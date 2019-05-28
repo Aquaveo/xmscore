@@ -1,6 +1,7 @@
 var searchData=
 [
   ['elapsedtimeinseconds',['ElapsedTimeInSeconds',['../classxms_1_1_observer_1_1impl.html#a771e88ca3833f7216df22bb69ba996bf',1,'xms::Observer::impl']]],
+  ['endline',['EndLine',['../classxms_1_1_da_stream_writer.html#aa00d2e9898a2c3ff201d9c57df3b4e18',1,'xms::DaStreamWriter']]],
   ['endoperation',['EndOperation',['../classxms_1_1_observer_1_1impl.html#a149ecbc4f1ee7fbd718da8f9b88c5fd2',1,'xms::Observer::impl::EndOperation()'],['../classxms_1_1_observer.html#a6ab39e266617c93fb0720f23efa723e0',1,'xms::Observer::EndOperation()']]],
   ['eq_5feps',['EQ_EPS',['../math_8h.html#aae3e3dee54b4e049573f92c74a38f79f',1,'xms']]],
   ['eq_5ftol',['EQ_TOL',['../math_8h.html#ad2b764be90f289082998491db1b52711',1,'xms']]],

@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['xmerrorunittests',['XmErrorUnitTests',['../class_xm_error_unit_tests.html',1,'']]],
-  ['xmlog',['XmLog',['../classxms_1_1_xm_log.html',1,'xms']]],
-  ['xmlogunittests',['XmLogUnitTests',['../class_xm_log_unit_tests.html',1,'']]]
+  ['sharedsingleton',['SharedSingleton',['../classxms_1_1_shared_singleton.html',1,'xms']]],
+  ['singleton',['Singleton',['../classxms_1_1_singleton.html',1,'xms']]],
+  ['singleton_3c_20xmlog_20_3e',['Singleton&lt; XmLog &gt;',['../classxms_1_1_singleton.html',1,'xms']]],
+  ['stcommanumpunct',['StCommaNumpunct',['../classxms_1_1_st_comma_numpunct.html',1,'xms']]],
+  ['stringutilunittests',['StringUtilUnitTests',['../class_string_util_unit_tests.html',1,'']]],
+  ['sttemp2digitexponents',['StTemp2DigitExponents',['../classxms_1_1_st_temp2_digit_exponents.html',1,'xms']]]
 ];

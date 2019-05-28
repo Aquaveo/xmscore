@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['linebeginswith',['LineBeginsWith',['../classxms_1_1_da_stream_reader.html#abb923437aed09ece53df5f9d0d1f6212',1,'xms::DaStreamReader']]],
   ['log',['Log',['../classxms_1_1_xm_log.html#a82db042ede308de7f85b0b55b8eb3587',1,'xms::XmLog']]],
   ['logfilename',['LogFilename',['../classxms_1_1_xm_log.html#a8a9ac073794a7d8919c088de774811d5',1,'xms::XmLog']]],
   ['logfilenamecallback',['LogFilenameCallback',['../classxms_1_1_xm_log.html#ab3d175834a2ed9bff301cbf304f89f47',1,'xms::XmLog']]],

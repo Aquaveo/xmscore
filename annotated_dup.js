@@ -1,6 +1,8 @@
 var annotated_dup =
 [
     [ "xms", null, [
+      [ "DaStreamReader", "classxms_1_1_da_stream_reader.html", "classxms_1_1_da_stream_reader" ],
+      [ "DaStreamWriter", "classxms_1_1_da_stream_writer.html", "classxms_1_1_da_stream_writer" ],
       [ "ETestMessagingState", "classxms_1_1_e_test_messaging_state.html", "classxms_1_1_e_test_messaging_state" ],
       [ "ltPt2", "classxms_1_1lt_pt2.html", "classxms_1_1lt_pt2" ],
       [ "ltPt3", "classxms_1_1lt_pt3.html", "classxms_1_1lt_pt3" ],
@@ -17,6 +19,8 @@ var annotated_dup =
       [ "StTemp2DigitExponents", "classxms_1_1_st_temp2_digit_exponents.html", "classxms_1_1_st_temp2_digit_exponents" ],
       [ "XmLog", "classxms_1_1_xm_log.html", "classxms_1_1_xm_log" ]
     ] ],
+    [ "DaReaderWriterIoUnitTests", "class_da_reader_writer_io_unit_tests.html", "class_da_reader_writer_io_unit_tests" ],
+    [ "DaStreamIoUnitTests", "class_da_stream_io_unit_tests.html", "class_da_stream_io_unit_tests" ],
     [ "FunctorsUnitTests", "class_functors_unit_tests.html", "class_functors_unit_tests" ],
     [ "MathUnitTests", "class_math_unit_tests.html", "class_math_unit_tests" ],
     [ "MockMesher", "class_mock_mesher.html", "class_mock_mesher" ],

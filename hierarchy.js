@@ -1,8 +1,12 @@
 var hierarchy =
 [
+    [ "xms::DaStreamReader", "classxms_1_1_da_stream_reader.html", null ],
+    [ "xms::DaStreamWriter", "classxms_1_1_da_stream_writer.html", null ],
     [ "xms::ETestMessagingState", "classxms_1_1_e_test_messaging_state.html", null ],
-    [ "xms::XmLog::Impl", "structxms_1_1_xm_log_1_1_impl.html", null ],
     [ "xms::Observer::impl", "classxms_1_1_observer_1_1impl.html", null ],
+    [ "xms::DaStreamWriter::Impl", "classxms_1_1_da_stream_writer_1_1_impl.html", null ],
+    [ "xms::DaStreamReader::Impl", "classxms_1_1_da_stream_reader_1_1_impl.html", null ],
+    [ "xms::XmLog::Impl", "structxms_1_1_xm_log_1_1_impl.html", null ],
     [ "xms::ltPt2< T >", "classxms_1_1lt_pt2.html", null ],
     [ "xms::ltPt3< T >", "classxms_1_1lt_pt3.html", null ],
     [ "xms::ltPt3_2D< T >", "classxms_1_1lt_pt3__2_d.html", null ],
@@ -27,6 +31,8 @@ var hierarchy =
     ] ],
     [ "xms::StTemp2DigitExponents", "classxms_1_1_st_temp2_digit_exponents.html", null ],
     [ "TestSuite", null, [
+      [ "DaReaderWriterIoUnitTests", "class_da_reader_writer_io_unit_tests.html", null ],
+      [ "DaStreamIoUnitTests", "class_da_stream_io_unit_tests.html", null ],
       [ "FunctorsUnitTests", "class_functors_unit_tests.html", null ],
       [ "MathUnitTests", "class_math_unit_tests.html", null ],
       [ "ObserverIntermediateTests", "class_observer_intermediate_tests.html", null ],

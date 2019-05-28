@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['linebeginswith',['LineBeginsWith',['../classxms_1_1_da_stream_reader.html#abb923437aed09ece53df5f9d0d1f6212',1,'xms::DaStreamReader']]],
   ['list_2eh',['list.h',['../list_8h.html',1,'']]],
   ['list_5fmp2',['LIST_MP2',['../list_8h.html#a752b01cd2f5da0f0666c9b8d618d3e73',1,'xms']]],
   ['listpt2d',['ListPt2d',['../list_8h.html#ae9fd3d8a0d241b1da7cf2f6b22e13fb7',1,'xms']]],

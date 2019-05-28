@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['ltpt2',['ltPt2',['../classxms_1_1lt_pt2.html',1,'xms']]],
-  ['ltpt3',['ltPt3',['../classxms_1_1lt_pt3.html',1,'xms']]],
-  ['ltpt3_5f2d',['ltPt3_2D',['../classxms_1_1lt_pt3__2_d.html',1,'xms']]]
+  ['impl',['impl',['../classxms_1_1_observer_1_1impl.html',1,'xms::Observer::impl'],['../classxms_1_1_da_stream_writer_1_1_impl.html',1,'xms::DaStreamWriter::Impl'],['../classxms_1_1_da_stream_reader_1_1_impl.html',1,'xms::DaStreamReader::Impl'],['../structxms_1_1_xm_log_1_1_impl.html',1,'xms::XmLog::Impl']]]
 ];

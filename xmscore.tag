@@ -1,6 +1,392 @@
 <?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
 <tagfile>
   <compound kind="file">
+    <name>daStreamIo.cpp</name>
+    <path>/home/conan/xmscore/dataio/</path>
+    <filename>da_stream_io_8cpp</filename>
+    <includes id="da_stream_io_8h" name="daStreamIo.h" local="no" imported="no">xmscore/dataio/daStreamIo.h</includes>
+    <includes id="_string_util_8h" name="StringUtil.h" local="no" imported="no">xmscore/misc/StringUtil.h</includes>
+    <includes id="_xm_error_8h" name="XmError.h" local="no" imported="no">xmscore/misc/XmError.h</includes>
+    <includes id="_xm_log_8h" name="XmLog.h" local="no" imported="no">xmscore/misc/XmLog.h</includes>
+    <includes id="da_stream_io_8t_8h" name="daStreamIo.t.h" local="no" imported="no">xmscore/dataio/daStreamIo.t.h</includes>
+    <class kind="class">xms::DaStreamReader::Impl</class>
+    <class kind="class">xms::DaStreamWriter::Impl</class>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadNamedLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a9ff1a644becc0649606a279801d50d57</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a99168b11f65e2fda3fa9500db54fa8b9</anchor>
+      <arglist>(std::istream &amp;a_inStream, std::string &amp;a_line)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadIntLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a655bc4538e518ba7e0eabbdccadff623</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, int &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadDoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a8723825ff4d19c820ec4a93627108b7d</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, double &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadStringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a1366f7b066ac9dcf2066393b9fa0a320</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadVecInt</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a2eb7bc47f0cbfd57c24dcb0354afbd04</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, VecInt &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadVecDbl</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a6266b89ec372af4f30c150834aac2d10</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, VecDbl &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadVecPt3d</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a3266e512c5d36dc41068671bf09e1807</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, VecPt3d &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daRead2StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a2b79b69ad46f4d3df2b69dbc1a0d80fa</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, std::string &amp;a_val1, std::string &amp;a_val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daRead3StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>aeb0855865fe76b5dc43e61aa03000a54</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, std::string &amp;a_val1, std::string &amp;a_val2, std::string &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daRead3DoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a52683cf43b365c518744f88afcfadba9</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, double &amp;a_val1, double &amp;a_val2, double &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadIntFromLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>aef032aee57cbf2c51652d7b1d7d22ba0</anchor>
+      <arglist>(std::string &amp;a_line, int &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadStringFromLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a63a489ebaca768e7e5f3e9979f1172ff</anchor>
+      <arglist>(std::string &amp;a_line, std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadDoubleFromLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a291a7e0b5ba35ed3e6e2657bfffa04c6</anchor>
+      <arglist>(std::string &amp;a_line, double &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daLineBeginsWith</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a1672263af00779eaf053f9812b25ce31</anchor>
+      <arglist>(std::istream &amp;a_inStream, const std::string &amp;a_text)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteNamedLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>ad1efef3c62b3b5eaa1e11a5d5809f504</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a63715090599d70ec856b131d66d67c91</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const std::string &amp;a_line)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteDoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a08e31ee5378954137b7c77254f7cd785</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, double a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteStringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>ab8c1d4bf9a6cf72f11b644da95fe2e3d</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteVecInt</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a0fd632f51fbc39d1559aeb3473f9f28c</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const VecInt &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWrite2StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>abeb055a4148b5b428d9d82e28db9a2c5</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const std::string &amp;a_val1, const std::string &amp;a_val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWrite3StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>ac4c3d7dafe848f1351d3fd0f7e79c6dc</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const std::string &amp;a_val1, const std::string &amp;a_val2, const std::string &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWrite3DoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a05d8f46d4b6313692ed20a47bf7cd2cb</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const double &amp;a_val1, const double &amp;a_val2, const double &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteIntLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a25596ab8d3e98d6577e2046d8c55dcd6</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, int a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteVecDbl</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a883ee4c9904f675eb3791155d93b18a3</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const VecDbl &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteVecPt3d</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>aa9e8d0f53d3dc02a821213aaeb0d4f00</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const VecPt3d &amp;a_points)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>daStreamIo.h</name>
+    <path>/home/conan/xmscore/dataio/</path>
+    <filename>da_stream_io_8h</filename>
+    <includes id="base__macros_8h" name="base_macros.h" local="no" imported="no">xmscore/misc/base_macros.h</includes>
+    <includes id="boost__defines_8h" name="boost_defines.h" local="no" imported="no">xmscore/misc/boost_defines.h</includes>
+    <includes id="vector_8h" name="vector.h" local="no" imported="no">xmscore/stl/vector.h</includes>
+    <class kind="class">xms::DaStreamReader</class>
+    <class kind="class">xms::DaStreamWriter</class>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadNamedLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a9ff1a644becc0649606a279801d50d57</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a99168b11f65e2fda3fa9500db54fa8b9</anchor>
+      <arglist>(std::istream &amp;a_inStream, std::string &amp;a_line)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadIntLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a655bc4538e518ba7e0eabbdccadff623</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, int &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadDoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a8723825ff4d19c820ec4a93627108b7d</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, double &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadStringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a1366f7b066ac9dcf2066393b9fa0a320</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadVecInt</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a2eb7bc47f0cbfd57c24dcb0354afbd04</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, VecInt &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadVecDbl</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a6266b89ec372af4f30c150834aac2d10</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, VecDbl &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadVecPt3d</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a3266e512c5d36dc41068671bf09e1807</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, VecPt3d &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daRead2StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a2b79b69ad46f4d3df2b69dbc1a0d80fa</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, std::string &amp;a_val1, std::string &amp;a_val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daRead3StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>aeb0855865fe76b5dc43e61aa03000a54</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, std::string &amp;a_val1, std::string &amp;a_val2, std::string &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daRead3DoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a52683cf43b365c518744f88afcfadba9</anchor>
+      <arglist>(std::istream &amp;a_inStream, const char *a_name, double &amp;a_val1, double &amp;a_val2, double &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadIntFromLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>aef032aee57cbf2c51652d7b1d7d22ba0</anchor>
+      <arglist>(std::string &amp;a_line, int &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadStringFromLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a63a489ebaca768e7e5f3e9979f1172ff</anchor>
+      <arglist>(std::string &amp;a_line, std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daReadDoubleFromLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a291a7e0b5ba35ed3e6e2657bfffa04c6</anchor>
+      <arglist>(std::string &amp;a_line, double &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>daLineBeginsWith</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a1672263af00779eaf053f9812b25ce31</anchor>
+      <arglist>(std::istream &amp;a_inStream, const std::string &amp;a_text)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteVecInt</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a0fd632f51fbc39d1559aeb3473f9f28c</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const VecInt &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteVecDbl</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a883ee4c9904f675eb3791155d93b18a3</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const VecDbl &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteVecPt3d</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>aa9e8d0f53d3dc02a821213aaeb0d4f00</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const VecPt3d &amp;a_points)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteIntLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a25596ab8d3e98d6577e2046d8c55dcd6</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, int a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteDoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a08e31ee5378954137b7c77254f7cd785</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, double a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWrite3DoubleLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a05d8f46d4b6313692ed20a47bf7cd2cb</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const double &amp;a_val1, const double &amp;a_val2, const double &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>a63715090599d70ec856b131d66d67c91</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const std::string &amp;a_line)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWriteStringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>ab8c1d4bf9a6cf72f11b644da95fe2e3d</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWrite2StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>abeb055a4148b5b428d9d82e28db9a2c5</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const std::string &amp;a_val1, const std::string &amp;a_val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>daWrite3StringLine</name>
+      <anchorfile>da_stream_io_8cpp.html</anchorfile>
+      <anchor>ac4c3d7dafe848f1351d3fd0f7e79c6dc</anchor>
+      <arglist>(std::ostream &amp;a_outStream, const char *a_name, const std::string &amp;a_val1, const std::string &amp;a_val2, const std::string &amp;a_val3)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>daStreamIo.t.h</name>
+    <path>/home/conan/xmscore/dataio/</path>
+    <filename>da_stream_io_8t_8h</filename>
+    <class kind="class">DaStreamIoUnitTests</class>
+    <class kind="class">DaReaderWriterIoUnitTests</class>
+  </compound>
+  <compound kind="file">
     <name>math.cpp</name>
     <path>/home/conan/xmscore/math/</path>
     <filename>math_8cpp</filename>
@@ -3081,6 +3467,577 @@
     </member>
   </compound>
   <compound kind="class">
+    <name>DaReaderWriterIoUnitTests</name>
+    <filename>class_da_reader_writer_io_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadNamedLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a716b5bba94397b3bc9c92679b9087b37</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>add9bd20bbde3be430bec100b45f44588</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteStringLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>ab2f03d480fb584d8020f421947660475</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWrite2StringLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>ad3bb14619ee74d031e95ebba7d550ba3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWrite3StringLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>aeae0d5801763c4f8aa1a1a6b0542a868</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteIntLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>ae25442472ad4e03cb4ca800ed2562384</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadIntFromLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>acc15c67773c265a51afb2f2f16e5e2bf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadStringFromLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a271854eb276dfd9c32ff690129499ae6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadDoubleFromLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a81b983e9cca90e42b29165e0ad86d935</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteDoubleLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a34c735bbcb0fc4fca44f18f42d54c5ef</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWrite3DoubleLine</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>ac1a9bc4fc6dbac7365168a95e88b47e2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteVecInt</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a9761515720874ad73addd0957eeecce4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteVecDbl</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a7fdf9127a35fb5447813a63c2c66958d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteVecPt3d</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a39fa512eeb0262ee3036e37646d05b4e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteBinaryVecInt</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a09019332ed645865467610982d4046c1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteBinaryVecDbl</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>aad92b5475b848b82d4a089da6aa76ea0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteBinaryVecPt3d</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>abfd20f027600f212528c784332994778</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteLineParts</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>acbb54278ec1c4930c8972d5d75be2cc5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteBinaryArrays</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a28f210d4261b110f2e930df65e6c296d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testLineBeginsWith</name>
+      <anchorfile>class_da_reader_writer_io_unit_tests.html</anchorfile>
+      <anchor>a89b620e9cb8cd28eb14a26531c693d0c</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>DaStreamIoUnitTests</name>
+    <filename>class_da_stream_io_unit_tests.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadNamedLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>aaf19a20d570f3b1895b7bb7c50d278c8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>a7f0478a7417894203a523a565639c6dc</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteStringLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>a7e2ac1568ebd3b226c5436389922a990</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWrite2StringLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>a195db63ae3de5f585f12797e35b07d40</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWrite3StringLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>accc0ebc29414017a81b67d3aaaaabd2b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteIntLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>ab51aecc8f0b31e2854602ee6f4664999</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadIntFromLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>a765522cc82037d85fc8b782379c5f73a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadStringFromLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>aeaea165def271b77e0f82bd3c3a0fb0c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadDoubleFromLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>a3217062bcccade5fb47b5b767b42f43d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteDoubleLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>a10091f0373c6785049a200bc41226e1f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWrite3DoubleLine</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>a3e7c6caa6386a5a503bed797dcb12db9</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteVecInt</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>af24ced9c2256263ea49d3524c113153c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteVecDbl</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>ab5f7167524514f970f22bf6dcd465b83</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testReadWriteVecPt3d</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>aedba940a8203c7132d438c5d2b0d820f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>testLineBeginsWith</name>
+      <anchorfile>class_da_stream_io_unit_tests.html</anchorfile>
+      <anchor>add4c6f719cbdf18f5455ad8e911dd0a3</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::DaStreamReader</name>
+    <filename>classxms_1_1_da_stream_reader.html</filename>
+    <class kind="class">xms::DaStreamReader::Impl</class>
+    <member kind="function">
+      <type></type>
+      <name>DaStreamReader</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a9a7608c45c5b069c17438ba8f5fb9331</anchor>
+      <arglist>(std::istream &amp;a_inStream, bool a_binaryArrays=false)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DaStreamReader</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>aad5dc1455f83c68d4acff807b43e825c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsBinary</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a9cfdd50b3ac11f0201da1cae67829b27</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadNamedLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>af9c10152e1891c67b4f3ddbe35116de1</anchor>
+      <arglist>(const char *a_name)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a303dcb1e5f557547c1741c0bb1e09382</anchor>
+      <arglist>(std::string &amp;a_line)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadStringLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a9d0f7b25c2789835979e84197495ae34</anchor>
+      <arglist>(const char *a_name, std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadIntLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>aa51c92b5cf0e509242297c7cf9aff5ac</anchor>
+      <arglist>(const char *a_name, int &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadDoubleLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a8c429b03c52443288404f012cf105370</anchor>
+      <arglist>(const char *a_name, double &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadVecInt</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>aafc242439c210394eb68f37bc740f8a3</anchor>
+      <arglist>(const char *a_name, VecInt &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadVecDbl</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a82549b7c2e8659250f2e49c07c285cd2</anchor>
+      <arglist>(const char *a_name, VecDbl &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadVecPt3d</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a448610799fe3d9ed84f88bfb848688de</anchor>
+      <arglist>(const char *a_name, VecPt3d &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Read2StringLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>ab77cfe3aab94845d3b58ebdc9529ac06</anchor>
+      <arglist>(const char *a_name, std::string &amp;a_val1, std::string &amp;a_val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Read3StringLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a59ed9e4bdb6f687def18c6933d314d3a</anchor>
+      <arglist>(const char *a_name, std::string &amp;a_val1, std::string &amp;a_val2, std::string &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>Read3DoubleLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a313853de9f46ae9f77e555d42c6ee7ef</anchor>
+      <arglist>(const char *a_name, double &amp;a_val1, double &amp;a_val2, double &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadString</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a97a79ab5d3c70e3b69363364d8959216</anchor>
+      <arglist>(std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadInt</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a11876f3af14a992ec4a875b28d342cf9</anchor>
+      <arglist>(int &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>NextLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a8e054b57543105c5f85214e7fa513db8</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>ReadBinaryBytes</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>aa45dda3c4fa4249a1bbca716541ab012</anchor>
+      <arglist>(char *a_dest, long long a_destLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>LineBeginsWith</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>abb923437aed09ece53df5f9d0d1f6212</anchor>
+      <arglist>(const char *a_text)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>ReadIntFromLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>aef18fa58e6ad30db009f858e334a32b7</anchor>
+      <arglist>(std::string &amp;a_line, int &amp;a_val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>ReadStringFromLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a54626e78121c0f6346d19800a891b00e</anchor>
+      <arglist>(std::string &amp;a_line, std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static bool</type>
+      <name>ReadDoubleFromLine</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a48ede3cb19cbf151876d24e47a23f401</anchor>
+      <arglist>(std::string &amp;a_line, double &amp;a_val)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::unique_ptr&lt; Impl &gt;</type>
+      <name>m_impl</name>
+      <anchorfile>classxms_1_1_da_stream_reader.html</anchorfile>
+      <anchor>a33faa697135fc33b403bac51574bc29d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::DaStreamWriter</name>
+    <filename>classxms_1_1_da_stream_writer.html</filename>
+    <class kind="class">xms::DaStreamWriter::Impl</class>
+    <member kind="function">
+      <type></type>
+      <name>DaStreamWriter</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>aff096c65d37189d3434c017bcad2178e</anchor>
+      <arglist>(std::ostream &amp;a_outStream, bool a_binaryArrays=false)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>~DaStreamWriter</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a1f25e755097823e1a1e8736c29862259</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>IsBinary</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a5faefae4d7fb71d47b53dc04c424bf49</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a7dfa34e204e347fe2afff226a904e364</anchor>
+      <arglist>(const std::string &amp;a_line)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteStringLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a39f8d167a1b585db2c9ae8a964e27a7e</anchor>
+      <arglist>(const char *a_name, const std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteIntLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a6d1239f3ff12aab173b06f291538c976</anchor>
+      <arglist>(const char *a_name, int a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteDoubleLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>aee79b3268957cead3f6560acd440072d</anchor>
+      <arglist>(const char *a_name, double a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteVecInt</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a584f19415c93c04d15987f083119db82</anchor>
+      <arglist>(const char *a_name, const VecInt &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteVecDbl</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a3a8057a8dc7ea7fa0e477e6f19ab4199</anchor>
+      <arglist>(const char *a_name, const VecDbl &amp;a_vec)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteVecPt3d</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a72bcae5763891f5d60d21984f63724a1</anchor>
+      <arglist>(const char *a_name, const VecPt3d &amp;a_points)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Write2StringLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a3c0a56287ff34f5418ab01b2735c267b</anchor>
+      <arglist>(const char *a_name, const std::string &amp;a_val1, const std::string &amp;a_val2)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Write3StringLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a66b53ecb359d132482c120ce6942a224</anchor>
+      <arglist>(const char *a_name, const std::string &amp;a_val1, const std::string &amp;a_val2, const std::string &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>Write3DoubleLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>aa19e35438fa1f80be58752fba553dfdc</anchor>
+      <arglist>(const char *a_name, const double &amp;a_val1, const double &amp;a_val2, const double &amp;a_val3)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>WriteString</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a253a188c2ca26d86e8de0d4db73efcb0</anchor>
+      <arglist>(const char *a_string)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>AppendInt</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>abb052a16b35ff88b7afe09e9a14b405c</anchor>
+      <arglist>(int a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>AppendInts</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>aa68669762015aa7b742672ffe8c53488</anchor>
+      <arglist>(const int *a_vals, int a_numVals)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>AppendString</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>ae03834cbc3b24019ea1c9e5ec2b449da</anchor>
+      <arglist>(const std::string &amp;a_val)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>EndLine</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>aa00d2e9898a2c3ff201d9c57df3b4e18</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>WriteBinaryBytes</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a1f2c1f13e4ad653aefbf6a87be121c64</anchor>
+      <arglist>(const char *a_source, long long a_sourceLength)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>SetBinaryBlockSize</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>acd288959ca051c6932c87b08bdd73b0d</anchor>
+      <arglist>(int a_blockSize)</arglist>
+    </member>
+    <member kind="variable" protection="private">
+      <type>std::unique_ptr&lt; Impl &gt;</type>
+      <name>m_impl</name>
+      <anchorfile>classxms_1_1_da_stream_writer.html</anchorfile>
+      <anchor>a818fbbc657db058569f6a24a8f6a82f2</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
     <name>xms::ETestMessagingState</name>
     <filename>classxms_1_1_e_test_messaging_state.html</filename>
     <member kind="function">
@@ -3166,31 +4123,6 @@
     </member>
   </compound>
   <compound kind="class">
-    <name>xms::XmLog::Impl</name>
-    <filename>structxms_1_1_xm_log_1_1_impl.html</filename>
-    <member kind="function">
-      <type>void</type>
-      <name>StackedErrToStream</name>
-      <anchorfile>structxms_1_1_xm_log_1_1_impl.html</anchorfile>
-      <anchor>aa02f112955c88daaff87726286897b9d</anchor>
-      <arglist>(std::ostream &amp;a_os)</arglist>
-    </member>
-    <member kind="variable">
-      <type>MessageStack</type>
-      <name>m_stackedMessages</name>
-      <anchorfile>structxms_1_1_xm_log_1_1_impl.html</anchorfile>
-      <anchor>afac679dd307a287bc958e5716947d079</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>bool</type>
-      <name>m_firstRun</name>
-      <anchorfile>structxms_1_1_xm_log_1_1_impl.html</anchorfile>
-      <anchor>a126ad2f69767f72cc2a59a67f0f5692e</anchor>
-      <arglist></arglist>
-    </member>
-  </compound>
-  <compound kind="class">
     <name>xms::Observer::impl</name>
     <filename>classxms_1_1_observer_1_1impl.html</filename>
     <member kind="function">
@@ -3233,6 +4165,88 @@
       <name>m_percentComplete</name>
       <anchorfile>classxms_1_1_observer_1_1impl.html</anchorfile>
       <anchor>ad1716972789e4a3599f18bf96cc464ea</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::DaStreamWriter::Impl</name>
+    <filename>classxms_1_1_da_stream_writer_1_1_impl.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Impl</name>
+      <anchorfile>classxms_1_1_da_stream_writer_1_1_impl.html</anchorfile>
+      <anchor>af38f494330959aa5078e4149d00dfa37</anchor>
+      <arglist>(std::ostream &amp;a_outStream, bool a_binaryArrays)</arglist>
+    </member>
+    <member kind="variable">
+      <type>std::ostream &amp;</type>
+      <name>m_outStream</name>
+      <anchorfile>classxms_1_1_da_stream_writer_1_1_impl.html</anchorfile>
+      <anchor>a871dd4bc6de9c0bd0c54bacc55b40f56</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_binaryArrays</name>
+      <anchorfile>classxms_1_1_da_stream_writer_1_1_impl.html</anchorfile>
+      <anchor>a32a196c8ac58383586c61e1750fe740b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>int</type>
+      <name>m_blockSize</name>
+      <anchorfile>classxms_1_1_da_stream_writer_1_1_impl.html</anchorfile>
+      <anchor>adbf9ae0d3aa37b8ba02c21ee76fcf3d8</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::DaStreamReader::Impl</name>
+    <filename>classxms_1_1_da_stream_reader_1_1_impl.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>Impl</name>
+      <anchorfile>classxms_1_1_da_stream_reader_1_1_impl.html</anchorfile>
+      <anchor>a8f7d0f1c29dc90cf955a0bd01f4482ac</anchor>
+      <arglist>(std::istream &amp;a_inStream, bool a_binaryArrays)</arglist>
+    </member>
+    <member kind="variable">
+      <type>std::istream &amp;</type>
+      <name>m_inStream</name>
+      <anchorfile>classxms_1_1_da_stream_reader_1_1_impl.html</anchorfile>
+      <anchor>a946b8330cdf2804daaae37c8b2b3476a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_binaryArrays</name>
+      <anchorfile>classxms_1_1_da_stream_reader_1_1_impl.html</anchorfile>
+      <anchor>a2e53a8b6afcbe53bae70fd503af38355</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>xms::XmLog::Impl</name>
+    <filename>structxms_1_1_xm_log_1_1_impl.html</filename>
+    <member kind="function">
+      <type>void</type>
+      <name>StackedErrToStream</name>
+      <anchorfile>structxms_1_1_xm_log_1_1_impl.html</anchorfile>
+      <anchor>aa02f112955c88daaff87726286897b9d</anchor>
+      <arglist>(std::ostream &amp;a_os)</arglist>
+    </member>
+    <member kind="variable">
+      <type>MessageStack</type>
+      <name>m_stackedMessages</name>
+      <anchorfile>structxms_1_1_xm_log_1_1_impl.html</anchorfile>
+      <anchor>afac679dd307a287bc958e5716947d079</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>m_firstRun</name>
+      <anchorfile>structxms_1_1_xm_log_1_1_impl.html</anchorfile>
+      <anchor>a126ad2f69767f72cc2a59a67f0f5692e</anchor>
       <arglist></arglist>
     </member>
   </compound>
