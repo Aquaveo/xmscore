@@ -20,10 +20,7 @@
 // 4. External Library Headers
 #include <boost/archive/iterators/base64_from_binary.hpp>
 #include <boost/archive/iterators/binary_from_base64.hpp>
-#include <boost/archive/iterators/insert_linebreaks.hpp>
 #include <boost/archive/iterators/transform_width.hpp>
-#include <boost/archive/iterators/ostream_iterator.hpp>
-#include <boost/iostreams/filter/zlib.hpp>
 #include <boost/unordered_map.hpp>
 #include <zlib.h>
 
@@ -93,7 +90,12 @@ public:
 namespace
 {
 //------------------------------------------------------------------------------
-/// \brief
+/// \brief Compresses bytes of given length using zlib compress.
+/// \param a_source The bytes to compress.
+/// \param a_sourceLength The number of bytes to compress.
+/// \param a_dest The destination for the compressed bytes.
+/// \param a_destLength The maximum destination length.
+/// \return The length of the compressed bytes or -1 on failure.
 //------------------------------------------------------------------------------
 int32_t iCompress(const char* a_source, int32_t a_sourceLength, char* a_dest, int32_t a_destLength)
 {
