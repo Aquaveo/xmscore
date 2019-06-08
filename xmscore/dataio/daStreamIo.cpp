@@ -14,7 +14,6 @@
 
 // 3. Standard Library Headers
 #include <fstream>
-#include <regex>
 #include <sstream>
 
 // 4. External Library Headers
@@ -174,11 +173,11 @@ int32_t iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest
 
   if (size != 0)
   {
-    const char* srcBegin = a_source;
-    const char* srcEnd = srcBegin + a_sourceLength;
     char* destBegin = a_dest;
     char* destIterator = a_dest;
-    for (auto it = base64_dec(a_source); it != base64_dec(a_source + size); ++it)
+    auto base64Begin = base64_dec(a_source);
+    auto base64End = base64_dec(a_source + size);
+    for (auto it = base64Begin; it != base64End; ++it)
       *destIterator++ = *it;
 
     auto decodedLength = int32_t(destIterator - destBegin);
@@ -187,56 +186,6 @@ int32_t iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest
 
   return 0;
 } // iBase64Decode
-//------------------------------------------------------------------------------
-/// \brief Read line of name (beginning of line) followed with up to 3 expected
-/// values.
-/// \param a_inStream The stream to write too. \param a_prefix The
-/// string to expect before the values. \param a_val1 Optional first value.
-/// \param a_val2 Optional second value.
-/// \param a_val3 Optional third value.
-/// \return true if name was found and all expected values.
-//------------------------------------------------------------------------------
-template <typename _T1 = int, typename _T2 = int, typename _T3 = int>
-bool iReadLine(std::istream& a_inStream,
-               const std::string& a_prefix,
-               _T1* a_val1 = nullptr,
-               _T2* a_val2 = nullptr,
-               _T3* a_val3 = nullptr)
-{
-  // assert that a_prefix is entire line only if all a_val are null
-  XM_ASSERT((!a_val1 && !a_val2 && !a_val3) ||
-            !std::regex_match(a_prefix, std::regex("[^ \t]+[ \t]+[^ \t]+")));
-  std::string line;
-  if (!daReadLine(a_inStream, line))
-    return false;
-  for (int ii = 0; ii < a_prefix.size(); ++ii)
-  {
-    if (a_prefix[ii] != line[ii])
-      return false;
-  }
-
-  std::string afterName = line.substr(a_prefix.size());
-  std::stringstream ssline(afterName); // remainder of line
-  if (a_val1)
-  {
-    ssline >> *a_val1;
-    if (ssline.bad())
-      return false;
-  }
-  if (a_val2)
-  {
-    ssline >> *a_val2;
-    if (ssline.bad())
-      return false;
-  }
-  if (a_val3)
-  {
-    ssline >> *a_val3;
-    if (ssline.bad())
-      return false;
-  }
-  return true;
-} // iReadLine
 //------------------------------------------------------------------------------
 /// \brief Read a line into a std::stringstream.
 /// \param a_inStream The stream to read from.
@@ -367,52 +316,6 @@ bool iRead2Values(std::istream& a_inStream, const char* a_name, _T& d1, _T& d2)
   ss >> d2;
   return !ss.fail();
 } // iRead2Values
-//------------------------------------------------------------------------------
-/// \brief Write name followed with up to 3 optional values each preceded by a
-/// space,
-///        and a new line after the last value.
-/// \param a_outStream The stream to write too.
-/// \param a_name The name to be written before the value.
-/// \param a_val1 The optional first value.
-/// \param a_val2 The optional second value.
-/// \param a_val3 The optional third value.
-//------------------------------------------------------------------------------
-template <typename _T1 = int, typename _T2 = int, typename _T3 = int>
-void iWriteLine(std::ostream& a_outStream,
-                const std::string& a_name,
-                const _T1* a_val1 = nullptr,
-                const _T2* a_val2 = nullptr,
-                const _T3* a_val3 = nullptr)
-{
-  // assert that a_name is multiple words only if all a_val are null
-  XM_ASSERT((!a_val1 && !a_val2 && !a_val3) ||
-            !std::regex_match(a_name, std::regex("[^ \t]+[ \t]+[^ \t]+")));
-  a_outStream << a_name;
-  if (a_val1)
-    a_outStream << ' ' << *a_val1;
-  if (a_val2)
-    a_outStream << ' ' << *a_val2;
-  if (a_val3)
-    a_outStream << ' ' << *a_val3;
-  a_outStream << '\n';
-} // iWriteLine
-//------------------------------------------------------------------------------
-/// \brief Write a named vector of values to multiple lines.
-/// \param a_outStream The stream to write too.
-/// \param a_name The name to be written before the value.
-/// \param a_vec The vector of values.
-//------------------------------------------------------------------------------
-template <typename _T>
-void iWriteVec(std::ostream& a_outStream, const char* a_name, const _T& a_vec)
-{
-  size_t size = a_vec.size();
-  iWriteLine(a_outStream, a_name, &size);
-  for (auto val : a_vec)
-  {
-    std::string sval(STRstd(val));
-    iWriteLine(a_outStream, " ", &sval); // name is an indentation of spaces
-  }
-}
 //------------------------------------------------------------------------------
 /// \brief Read an integer value from a string. Return the remaining string.
 /// \param a_line The string to read from. Returns the remaining string.
@@ -838,7 +741,7 @@ bool DaStreamWriter::IsBinary() const
 //------------------------------------------------------------------------------
 void DaStreamWriter::WriteLine(const std::string& a_line)
 {
-  iWriteLine(m_impl->m_outStream, a_line);
+  daWriteLine(m_impl->m_outStream, a_line);
 } // DaStreamWriter::WriteLine
 //------------------------------------------------------------------------------
 /// \brief Write a named word line.
@@ -847,7 +750,7 @@ void DaStreamWriter::WriteLine(const std::string& a_line)
 //------------------------------------------------------------------------------
 void DaStreamWriter::WriteStringLine(const char* a_name, const std::string& a_val)
 {
-  iWriteLine(m_impl->m_outStream, a_name, &a_val);
+  daWriteStringLine(m_impl->m_outStream, a_name, a_val);
 } // DaStreamWriter::WriteStringLine
 //------------------------------------------------------------------------------
 /// \brief Write a named integer value to a line.
@@ -856,7 +759,7 @@ void DaStreamWriter::WriteStringLine(const char* a_name, const std::string& a_va
 //------------------------------------------------------------------------------
 void DaStreamWriter::WriteIntLine(const char* a_name, int a_val)
 {
-  iWriteLine(m_impl->m_outStream, a_name, &a_val);
+  daWriteIntLine(m_impl->m_outStream, a_name, a_val);
 } // DaStreamWriter::WriteIntLine
 //------------------------------------------------------------------------------
 /// \brief Write a named double line value.
@@ -865,7 +768,7 @@ void DaStreamWriter::WriteIntLine(const char* a_name, int a_val)
 //------------------------------------------------------------------------------
 void DaStreamWriter::WriteDoubleLine(const char* a_name, double a_val)
 {
-  iWriteLine(m_impl->m_outStream, a_name, &a_val);
+  daWriteDoubleLine(m_impl->m_outStream, a_name, a_val);
 } // DaStreamWriter::WriteDoubleLine
 //------------------------------------------------------------------------------
 /// \brief Write a named vector of integers to several lines.
@@ -876,15 +779,14 @@ void DaStreamWriter::WriteVecInt(const char* a_name, const VecInt& a_vec)
 {
   if (IsBinary())
   {
-    size_t size = a_vec.size();
-    iWriteLine(m_impl->m_outStream, a_name, &size);
+    m_impl->m_outStream << a_name << ' ' << a_vec.size() << '\n';
     if (!a_vec.empty())
       WriteBinaryBytes(reinterpret_cast<const char*>(&a_vec[0]),
                        a_vec.size() * sizeof(VecInt::value_type));
   }
   else
   {
-    iWriteVec(m_impl->m_outStream, a_name, a_vec);
+    daWriteVecInt(m_impl->m_outStream, a_name, a_vec);
   }
 } // DaStreamWriter::WriteVecInt
 //------------------------------------------------------------------------------
@@ -896,15 +798,14 @@ void DaStreamWriter::WriteVecDbl(const char* a_name, const VecDbl& a_vec)
 {
   if (IsBinary())
   {
-    size_t size = a_vec.size();
-    iWriteLine(m_impl->m_outStream, a_name, &size);
+    m_impl->m_outStream << a_name << ' ' << a_vec.size() << '\n';
     if (!a_vec.empty())
       WriteBinaryBytes(reinterpret_cast<const char*>(&a_vec[0]),
                        a_vec.size() * sizeof(VecDbl::value_type));
   }
   else
   {
-    iWriteVec(m_impl->m_outStream, a_name, a_vec);
+    daWriteVecDbl(m_impl->m_outStream, a_name, a_vec);
   }
 } // DaStreamWriter::WriteVecDbl
 //------------------------------------------------------------------------------
@@ -914,27 +815,16 @@ void DaStreamWriter::WriteVecDbl(const char* a_name, const VecDbl& a_vec)
 //------------------------------------------------------------------------------
 void DaStreamWriter::WriteVecPt3d(const char* a_name, const VecPt3d& a_points)
 {
-  // write name and size of vector
-  const size_t size = a_points.size();
-  iWriteLine(m_impl->m_outStream, a_name, &size);
-
   if (IsBinary())
   {
+    m_impl->m_outStream << a_name << ' ' << a_points.size() << '\n';
     if (!a_points.empty())
       WriteBinaryBytes(reinterpret_cast<const char*>(&a_points[0]),
                        a_points.size() * sizeof(VecPt3d::value_type));
   }
   else
   {
-    // write each indented point and XYZ (why not remove POINT text?)
-    for (size_t i = 0; i < a_points.size(); ++i)
-    {
-      const Pt3d& point = a_points[i];
-      std::string sx(STRstd(point.x));
-      std::string sy(STRstd(point.y));
-      std::string sz(STRstd(point.z));
-      m_impl->m_outStream << "  POINT " << i << ' ' << sx << ' ' << sy << ' ' << sz << '\n';
-    }
+    daWriteVecPt3d(m_impl->m_outStream, a_name, a_points);
   }
 } // DaStreamWriter::WriteVecPt3d
 //------------------------------------------------------------------------------
@@ -947,7 +837,7 @@ void DaStreamWriter::Write2StringLine(const char* a_name,
                                       const std::string& a_val1,
                                       const std::string& a_val2)
 {
-  iWriteLine(m_impl->m_outStream, a_name, &a_val1, &a_val2);
+  daWrite2StringLine(m_impl->m_outStream, a_name, a_val1, a_val2);
 } // DaStreamWriter::Write2StringLine
 //------------------------------------------------------------------------------
 /// \brief Write a named triplet of words to a line.
@@ -961,7 +851,7 @@ void DaStreamWriter::Write3StringLine(const char* a_name,
                                       const std::string& a_val2,
                                       const std::string& a_val3)
 {
-  iWriteLine(m_impl->m_outStream, a_name, &a_val1, &a_val2, &a_val3);
+  daWrite3StringLine(m_impl->m_outStream, a_name, a_val1, a_val2, a_val3);
 } // DaStreamWriter::Write3StringLine
 //------------------------------------------------------------------------------
 /// \brief Write a named triplet of doubles to a line.
@@ -975,7 +865,7 @@ void DaStreamWriter::Write3DoubleLine(const char* a_name,
                                       const double& a_val2,
                                       const double& a_val3)
 {
-  iWriteLine(m_impl->m_outStream, a_name, &a_val1, &a_val2, &a_val3);
+  daWrite3DoubleLine(m_impl->m_outStream, a_name, a_val1, a_val2, a_val3);
 } // DaStreamWriter::Write3DoubleLine
 //------------------------------------------------------------------------------
 /// \brief Write a string value to the stream.
@@ -1331,7 +1221,7 @@ bool daLineBeginsWith(std::istream& a_inStream, const std::string& a_text)
 //------------------------------------------------------------------------------
 void daWriteNamedLine(std::ostream& a_outStream, const char* a_name)
 {
-  iWriteLine(a_outStream, a_name);
+  a_outStream << a_name << '\n';
 } // daWriteNamedLine
   //------------------------------------------------------------------------------
   /// \brief Write a given line to a stream.
@@ -1340,7 +1230,7 @@ void daWriteNamedLine(std::ostream& a_outStream, const char* a_name)
   //------------------------------------------------------------------------------
 void daWriteLine(std::ostream& a_outStream, const std::string& a_line)
 {
-  iWriteLine(a_outStream, a_line);
+  a_outStream << a_line << '\n';
 } // daWriteLine
 //------------------------------------------------------------------------------
 /// \brief Write a named double line value.
@@ -1350,7 +1240,7 @@ void daWriteLine(std::ostream& a_outStream, const std::string& a_line)
 //------------------------------------------------------------------------------
 void daWriteDoubleLine(std::ostream& a_outStream, const char* a_name, double a_val)
 {
-  iWriteLine(a_outStream, a_name, &a_val);
+  a_outStream << a_name << ' ' << STRstd(a_val) << '\n';
 } // daWriteDoubleLine
 //------------------------------------------------------------------------------
 /// \brief Write a named word line.
@@ -1361,7 +1251,7 @@ void daWriteDoubleLine(std::ostream& a_outStream, const char* a_name, double a_v
 //------------------------------------------------------------------------------
 void daWriteStringLine(std::ostream& a_outStream, const char* a_name, const std::string& a_val)
 {
-  iWriteLine(a_outStream, a_name, &a_val);
+  a_outStream << a_name << ' ' << a_val << '\n';
 } // daWriteStringLine
 //------------------------------------------------------------------------------
 /// \brief Write a named vector of integers to several lines.
@@ -1371,7 +1261,12 @@ void daWriteStringLine(std::ostream& a_outStream, const char* a_name, const std:
 //------------------------------------------------------------------------------
 void daWriteVecInt(std::ostream& a_outStream, const char* a_name, const VecInt& a_vec)
 {
-  iWriteVec(a_outStream, a_name, a_vec);
+  size_t size = a_vec.size();
+  a_outStream << a_name << ' ' << size << '\n';
+  for (auto val : a_vec)
+  {
+    a_outStream << "  " << val << '\n';
+  }
 } // daWriteVecInt
 //------------------------------------------------------------------------------
 /// \brief Write a named pair of words to a line.
@@ -1385,7 +1280,7 @@ void daWrite2StringLine(std::ostream& a_outStream,
                         const std::string& a_val1,
                         const std::string& a_val2)
 {
-  iWriteLine(a_outStream, a_name, &a_val1, &a_val2);
+  a_outStream << a_name << ' ' << a_val1 << ' ' << a_val2 << '\n';
 } // daWrite2StringLine
 //------------------------------------------------------------------------------
 /// \brief Write a named triplet of words to a line.
@@ -1401,7 +1296,7 @@ void daWrite3StringLine(std::ostream& a_outStream,
                         const std::string& a_val2,
                         const std::string& a_val3)
 {
-  iWriteLine(a_outStream, a_name, &a_val1, &a_val2, &a_val3);
+  a_outStream << a_name << ' ' << a_val1 << ' ' << a_val2 << ' ' << a_val3 << '\n';
 } // daWrite3StringLine
 //------------------------------------------------------------------------------
 /// \brief Write a named triplet of doubles to a line.
@@ -1417,7 +1312,7 @@ void daWrite3DoubleLine(std::ostream& a_outStream,
                         const double& a_val2,
                         const double& a_val3)
 {
-  iWriteLine(a_outStream, a_name, &a_val1, &a_val2, &a_val3);
+  a_outStream << a_name << ' ' << a_val1 << ' ' << a_val2 << ' ' << a_val3 << '\n';
 } // daWrite3DoubleLine
 //------------------------------------------------------------------------------
 /// \brief Write a named integer value to a line.
@@ -1427,7 +1322,7 @@ void daWrite3DoubleLine(std::ostream& a_outStream,
 //------------------------------------------------------------------------------
 void daWriteIntLine(std::ostream& a_outStream, const char* a_name, int a_val)
 {
-  iWriteLine(a_outStream, a_name, &a_val);
+  a_outStream << a_name << ' ' << a_val << '\n';
 } // daWriteIntLine
 //------------------------------------------------------------------------------
 /// \brief Write a named vector of doubles to multiple lines.
@@ -1437,7 +1332,12 @@ void daWriteIntLine(std::ostream& a_outStream, const char* a_name, int a_val)
 //------------------------------------------------------------------------------
 void daWriteVecDbl(std::ostream& a_outStream, const char* a_name, const VecDbl& a_vec)
 {
-  iWriteVec(a_outStream, a_name, a_vec);
+  size_t size = a_vec.size();
+  a_outStream << a_name << ' ' << size << '\n';
+  for (auto val : a_vec)
+  {
+    a_outStream << "  " << STRstd(val) << '\n';
+  }
 } // daWriteVecDbl
 //------------------------------------------------------------------------------
 /// \brief Write a named vector of Pt3d to multiple lines.
@@ -1448,10 +1348,10 @@ void daWriteVecDbl(std::ostream& a_outStream, const char* a_name, const VecDbl& 
 void daWriteVecPt3d(std::ostream& a_outStream, const char* a_name, const VecPt3d& a_points)
 {
   // write name and size of vector
-  const size_t size = a_points.size();
-  iWriteLine(a_outStream, a_name, &size);
+  a_outStream << a_name << ' ' << a_points.size() << '\n';
 
   // write each indented point and XYZ (why not remove POINT text?)
+  StTemp2DigitExponents use2DigitExponents;
   for (size_t i = 0; i < a_points.size(); ++i)
   {
     const Pt3d& point = a_points[i];
@@ -1724,16 +1624,20 @@ void DaStreamIoUnitTests::testReadWriteDoubleLine()
 {
   std::ostringstream outputStream;
   const char* name = "LINE_NAME";
-  const double expect = 22.1;
-  daWriteDoubleLine(outputStream, name, expect);
-  std::string outputExpected = "LINE_NAME 22.1\n";
+  const double expect1 = 1.123e-20;
+  const double expect2 = 2.0;
+  daWriteDoubleLine(outputStream, name, expect1);
+  daWriteDoubleLine(outputStream, name, expect2);
+  std::string outputExpected = "LINE_NAME 1.123e-20\nLINE_NAME 2.0\n";
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
   std::istringstream inputStream(outputStream.str());
   double found;
   TS_ASSERT(daReadDoubleLine(inputStream, name, found));
-  TS_ASSERT_EQUALS(expect, found);
+  TS_ASSERT_EQUALS(expect1, found);
+  TS_ASSERT(daReadDoubleLine(inputStream, name, found));
+  TS_ASSERT_EQUALS(expect2, found);
 } // DaStreamIoUnitTests::testReadWriteDoubleLine
 //------------------------------------------------------------------------------
 /// \brief Test daWrite3DoubleLine and daRead3DoubleLine.
@@ -1788,12 +1692,12 @@ void DaStreamIoUnitTests::testReadWriteVecDbl()
 {
   std::ostringstream outputStream;
   const char* name = "VECTOR_NAME";
-  const VecDbl expect = {1.1, 2.2, 3.3};
+  const VecDbl expect = {1.0, 2.2e-20, 3.3};
   daWriteVecDbl(outputStream, name, expect);
   std::string outputExpected =
     "VECTOR_NAME 3\n"
-    "  1.1\n"
-    "  2.2\n"
+    "  1.0\n"
+    "  2.2e-20\n"
     "  3.3\n";
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
@@ -1811,14 +1715,14 @@ void DaStreamIoUnitTests::testReadWriteVecPt3d()
   std::ostringstream outputStream;
   const char* name = "VECTOR_NAME";
   const VecPt3d expect = {
-    {1.1, 1.2, 1.3},
-    {2.1, 2.2, 2.3},
+    {1.0, 1.2, 1.3},
+    {2.1, 2.2, 2.3e-20},
   };
   daWriteVecPt3d(outputStream, name, expect);
   std::string outputExpected =
     "VECTOR_NAME 2\n"
-    "  POINT 0 1.1 1.2 1.3\n"
-    "  POINT 1 2.1 2.2 2.3\n";
+    "  POINT 0 1.0 1.2 1.3\n"
+    "  POINT 1 2.1 2.2 2.3e-20\n";
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
