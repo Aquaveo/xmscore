@@ -1240,6 +1240,7 @@ void daWriteLine(std::ostream& a_outStream, const std::string& a_line)
 //------------------------------------------------------------------------------
 void daWriteDoubleLine(std::ostream& a_outStream, const char* a_name, double a_val)
 {
+  StTemp2DigitExponents temp2DigitExponents;
   a_outStream << a_name << ' ' << STRstd(a_val) << '\n';
 } // daWriteDoubleLine
 //------------------------------------------------------------------------------
@@ -1332,6 +1333,7 @@ void daWriteIntLine(std::ostream& a_outStream, const char* a_name, int a_val)
 //------------------------------------------------------------------------------
 void daWriteVecDbl(std::ostream& a_outStream, const char* a_name, const VecDbl& a_vec)
 {
+  StTemp2DigitExponents temp2DigitExponents;
   size_t size = a_vec.size();
   a_outStream << a_name << ' ' << size << '\n';
   for (auto val : a_vec)
