@@ -1313,7 +1313,8 @@ void daWrite3DoubleLine(std::ostream& a_outStream,
                         const double& a_val2,
                         const double& a_val3)
 {
-  a_outStream << a_name << ' ' << a_val1 << ' ' << a_val2 << ' ' << a_val3 << '\n';
+  a_outStream << a_name << ' ' << STRstd(a_val1) << ' ' << STRstd(a_val2) << ' ' << STRstd(a_val3)
+              << '\n';
 } // daWrite3DoubleLine
 //------------------------------------------------------------------------------
 /// \brief Write a named integer value to a line.
@@ -1648,11 +1649,11 @@ void DaStreamIoUnitTests::testReadWrite3DoubleLine()
 {
   std::ostringstream outputStream;
   const char* name = "LINE_NAME";
-  const double expect1 = 22.1;
-  const double expect2 = 22.2;
+  const double expect1 = 560770.5;
+  const double expect2 = 70055.4;
   const double expect3 = 22.3;
   daWrite3DoubleLine(outputStream, name, expect1, expect2, expect3);
-  std::string outputExpected = "LINE_NAME 22.1 22.2 22.3\n";
+  std::string outputExpected = "LINE_NAME 560770.5 70055.4 22.3\n";
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
