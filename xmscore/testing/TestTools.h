@@ -13,9 +13,11 @@
 #include <vector>
 
 // 4. External library headers
-//#ifdef CXX_TEST
+#ifdef CXX_TEST
 #include <cxxtest/TestSuite.h>
-//#endif // ifdef CXX_TEST
+#else
+#error "Should only be included in builds with testing enabled."
+#endif // ifdef CXX_TEST
 
 // 5. Shared code headers
 #include <xmscore/points/ptsfwd.h>
