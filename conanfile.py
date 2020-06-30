@@ -137,7 +137,7 @@ class XmscoreConan(ConanFile):
 
             # Run python tests.
             path_to_python_tests = os.path.join(self.build_folder, '_package', 'tests')
-            self.run(f'python -m unittest discover -v -p *_pyt.py -s {path_to_python_tests}/_package/tests',
+            self.run(f'python -m unittest discover -v -p *_pyt.py -s {path_to_python_tests}',
                      cwd=os.path.join(self.package_folder, "_package"))
 
             # Create and upload wheel to aquapi if release and windows
