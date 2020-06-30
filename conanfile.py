@@ -35,10 +35,9 @@ class XmscoreConan(ConanFile):
     def set_name(self):
         self.name = 'xmscore'
 
-    def set_version(self):
-        self.version = os.getenv('XMS_VERSION', '99.99.99')
-
     def configure(self):
+        self.version = self.env.get('XMS_VERSION', '99.99.99')
+
         # Raise ConanExceptions for Unsupported Versions
         s_os = self.settings.os
         s_compiler = self.settings.compiler
@@ -76,7 +75,7 @@ class XmscoreConan(ConanFile):
 
         # Version Info
         cmake.definitions["XMS_VERSION"] = '{}'.format(self.version)
-        cmake.definitions["PYTHON_TARGET_VERSION"] = os.getenv("PYTHON_TARGET_VERSION", "3.6")
+        cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get("PYTHON_TARGET_VERSION", "3.6")
 
         cmake.configure(source_folder=".")
         cmake.build()
@@ -145,7 +144,7 @@ class XmscoreConan(ConanFile):
             # We are uploading to aquapi here instead of pypi because pypi doesn't accept
             # the type of package 'linux_x86_64 that we want to upload. They only accept
             # manylinux1 as the plat-tag
-            is_release = os.getenv("RELEASE_PYTHON", 'False') == 'True'
+            is_release = self.env.get("RELEASE_PYTHON", 'False') == 'True'
             is_mac_os = self.settings.os == 'Macos'
             is_gcc_6 = self.settings.os == "Linux" and float(self.settings.compiler.version.value) == 6.0
             is_windows_md = (self.settings.os == "Windows" and str(self.settings.compiler.runtime) == "MD")
@@ -155,9 +154,9 @@ class XmscoreConan(ConanFile):
     def upload_python_package(self):
         self.output.info("----- ** RUNNING UPLOAD_PYTHON_PACKAGE()")
         """A method to upload the python package."""
-        devpi_url = os.getenv("AQUAPI_URL", 'NO_URL')
-        devpi_username = os.getenv("AQUAPI_USERNAME", 'NO_USERNAME')
-        devpi_password = os.getenv("AQUAPI_PASSWORD", 'NO_PASSWORD')
+        devpi_url = self.env.get("AQUAPI_URL", 'NO_URL')
+        devpi_username = self.env.get("AQUAPI_USERNAME", 'NO_USERNAME')
+        devpi_password = self.env.get("AQUAPI_PASSWORD", 'NO_PASSWORD')
         self.run('devpi use {}'.format(devpi_url))
         self.run('devpi login {} --password {}'.format(devpi_username, devpi_password))
         plat_names = {'Windows': 'win_amd64', 'Linux': 'linux_x86_64', "Macos": 'macosx-10.6-intel'}
