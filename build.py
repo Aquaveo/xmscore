@@ -9,12 +9,12 @@ if __name__ == "__main__":
     builder.add_common_builds()
 
     # Add environment variables to build definitions
-    xms_version = os.environ.get('XMS_VERSION', None)
-    python_target_version = os.environ.get('PYTHON_TARGET_VERSION', "3.6")
-    release_python = os.environ.get('RELEASE_PYTHON', 'False')
-    aquapi_username = os.environ.get('AQUAPI_USERNAME', None)
-    aquapi_password = os.environ.get('AQUAPI_PASSWORD', None)
-    aquapi_url = os.environ.get('AQUAPI_URL', None)
+    xms_version = os.getenv('XMS_VERSION', None)
+    python_target_version = os.getenv('PYTHON_TARGET_VERSION', "3.6")
+    release_python = os.getenv('RELEASE_PYTHON', 'False')
+    aquapi_username = os.getenv('AQUAPI_USERNAME', None)
+    aquapi_password = os.getenv('AQUAPI_PASSWORD', None)
+    aquapi_url = os.getenv('AQUAPI_URL', None)
 
     for settings, options, env_vars, build_requires, reference in builder.items:
         # General Options

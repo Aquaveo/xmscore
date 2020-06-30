@@ -21,15 +21,11 @@ class XmscoreConan(ConanFile):
     url = "https://github.com/Aquaveo/xmscore"
     description = "Support library for XMS products"
 
-
-    exports = "CMakeLists.txt", "LICENSE"
-    exports_sources = "xmscore/*", "_package/*"
-
     def configure_options(self):
         """
         Configure the options for the conan class.
         """
-        self.output.info("----- RUNNING CONFIGURE_OPTIONS() -----")
+        self.output.info("----- RUNNING CONFIGURE_OPTIONS()")
         if self.settings.os != "Windows":
             del self.options.xms
 
