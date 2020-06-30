@@ -90,7 +90,7 @@ class XmscoreConan(ConanFile):
             self.run_python_tests_and_upload()
 
     def package(self):
-        """
+        """ve
         The package method of the conan class.
         """
         self.output.info("----- RUNNING PACKAGE()")
