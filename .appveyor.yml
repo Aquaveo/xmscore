@@ -21,7 +21,7 @@ environment:
     AQUAPI_USERNAME: ${AQUAPI_USERNAME_SECRET}
     AQUAPI_PASSWORD: ${AQUAPI_PASSWORD_SECRET}
     AQUAPI_URL: ${AQUAPI_URL_SECRET}
-    CONAN_STABLE_BRANCH_PATTERN: ^\d+\.\d+\.\d+$
+    CONAN_STABLE_BRANCH_PATTERN: ^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
     
     matrix:
