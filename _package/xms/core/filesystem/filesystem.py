@@ -132,7 +132,7 @@ def does_file_exist(file, proj_dir):
         if not os.path.isabs(file):  # Convert relative to absolute
             file = resolve_relative_path(proj_dir, file)
         return os.path.exists(file)
-    except Exception as _:
+    except Exception:
         return False
 
 

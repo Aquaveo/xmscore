@@ -1,9 +1,17 @@
+"""
+The Observer class for the xms.core library.
+"""
 from .._xmscore.misc import Observer as Obs
 
 
 class Observer(Obs):
-    """Mock Observer class for testing."""
+    """
+    Mock Observer class for testing.
+    """
     def __init__(self):
+        """
+        The __init__ function for the Observer class.
+        """
         super(Observer, self).__init__()
 
     def on_progress_status(self, percent_complete):
@@ -17,7 +25,7 @@ class Observer(Obs):
 
     def on_begin_operation_string(self, operation):
         """
-        The operation string
+        The operation string.
 
         Args:
             operation: Name of the operation being monitored.
@@ -26,13 +34,14 @@ class Observer(Obs):
 
     def on_end_operation(self):
         """
-        The end operation event
+        The end operation event.
         """
         self.on_end_operation()
 
     def on_update_message(self, message):
         """
-        When update message has been sent
+        When update message has been sent.
+
         Args:
             message: The new message
         """
