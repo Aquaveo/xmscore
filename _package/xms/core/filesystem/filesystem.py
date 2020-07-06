@@ -182,7 +182,7 @@ def file_prefix(filepath):
 
 
 def temp_filename(dir='', suffix=''):
-    """Returns a temporary filename.
+    """Returns a temporary filename, in the XMS temp directory by default.
 
     Args:
         dir: If provided, filename will be in the directory. Otherwise it will be in the
@@ -191,12 +191,15 @@ def temp_filename(dir='', suffix=''):
 
     Returns:
         See description.
-
     """
     if dir:  # If we call the next line with dir == '', it seems to use the working directory.
         file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, dir=dir, delete=True)
     else:
-        file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, delete=True)
+        xms_temp = os.environ.get('XMS_PYTHON_APP_TEMP_DIRECTORY', 'unknown')
+        if xms_temp != 'unknown':
+            file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, dir=xms_temp, delete=True)
+        else:
+            file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, delete=True)
 
     filename = file.name
     file.close()

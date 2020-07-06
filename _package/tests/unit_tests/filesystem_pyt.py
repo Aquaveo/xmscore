@@ -46,4 +46,11 @@ class FilesystemTests(unittest.TestCase):
         extension = os.path.splitext(f)[1]
         self.assertEqual('.suffix_test', extension)
 
+        # With XMS_PYTHON_APP_TEMP_DIRECTORY environment variable
+        d = tempfile.mkdtemp()
+        os.environ['XMS_PYTHON_APP_TEMP_DIRECTORY'] = d
+        f = filesystem.temp_filename()
+        os.environ.pop('XMS_PYTHON_APP_TEMP_DIRECTORY')
+        self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(d))
+
         shutil.rmtree(d)
