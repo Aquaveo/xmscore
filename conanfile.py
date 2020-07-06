@@ -1,9 +1,16 @@
-from conans import ConanFile, CMake, tools
-from conans.errors import ConanException
+"""
+conanfile.py for the xmscore project.
+"""
 import os
+
+from conans import CMake, ConanFile, tools
+from conans.errors import ConanException
 
 
 class XmscoreConan(ConanFile):
+    """
+    XmscoreConan class used for defining the conan info.
+    """
     license = "FreeBSD Software License"
     settings = "os", "compiler", "build_type", "arch"
     options = {
@@ -33,9 +40,15 @@ class XmscoreConan(ConanFile):
             del self.option.pybind
 
     def set_name(self):
+        """
+        The function that sets the name of the conan package.
+        """
         self.name = 'xmscore'
 
     def configure(self):
+        """
+        The configure method.
+        """
         self.version = self.env.get('XMS_VERSION', '99.99.99')
 
         # Raise ConanExceptions for Unsupported Versions
@@ -90,7 +103,7 @@ class XmscoreConan(ConanFile):
             self.run_python_tests_and_upload()
 
     def package(self):
-        """ve
+        """
         The package method of the conan class.
         """
         self.output.info("----- RUNNING PACKAGE()")
@@ -109,7 +122,7 @@ class XmscoreConan(ConanFile):
 
     def run_cxx_tests(self, cmake):
         """
-        A function to run the cxx_tests
+        A function to run the cxx_tests.
         """
         self.output.info("----- ** RUNNING RUN_CXX_TEST()")
         try:
@@ -152,6 +165,9 @@ class XmscoreConan(ConanFile):
                 self.upload_python_package()
 
     def upload_python_package(self):
+        """
+        Upload the python package to AQUAPI_URL.
+        """
         self.output.info("----- ** RUNNING UPLOAD_PYTHON_PACKAGE()")
         """A method to upload the python package."""
         devpi_url = self.env.get("AQUAPI_URL", 'NO_URL')
@@ -166,17 +182,23 @@ class XmscoreConan(ConanFile):
         self.run('devpi upload --from-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=".")
 
     def export_sources(self):
-        self.output.info("----- RUNNING EXPORT_SOURCES()")
-        self.copy(f'*', src=f'{self.name}', dst=f'{self.name}')
-        self.copy("*", src='_package', dst='_package')
+        """
+        Specify sources to be exported.
+        """
+        self.output.info('----- RUNNING EXPORT_SOURCES()')
+        self.copy('*', src=f'{self.name}', dst=f'{self.name}')
+        self.copy('*', src='_package', dst='_package')
 
     def export(self):
-        self.output.info("----- RUNNING EXPORT()")
+        """
+        Specify files to be exported.
+        """
+        self.output.info('----- RUNNING EXPORT()')
         self.copy('CMakeLists.txt')
         self.copy('LICENSE')
 
     def requirements(self):
-        """requirements"""
+        """Requirements."""
         if self.options.xms and self.settings.compiler.version == "12":
             self.requires("boost/1.60.0@aquaveo/stable")
             self.requires("zlib/1.2.11@conan/stable")
@@ -184,7 +206,6 @@ class XmscoreConan(ConanFile):
             self.requires("boost/1.66.0@conan/stable")
         # Pybind if not Visual studio 2013 or clang
         if not self.settings.compiler == "clang" \
-                and not (self.settings.compiler == 'Visual Studio' \
-                and self.settings.compiler.version == "12") \
+                and not (self.settings.compiler == 'Visual Studio' and self.settings.compiler.version == "12") \
                 and self.options.pybind:
             self.requires("pybind11/2.2.2@aquaveo/stable")

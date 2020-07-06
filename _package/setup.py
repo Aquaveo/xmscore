@@ -1,14 +1,10 @@
 """
-********************************************************************************
-* Name: setup.py
-* Author: Gage Larsen, Andrew Clark
-* Created On: April 18th, 2019
-* Copyright: (c)
-* License: BSD 2-Clause
-********************************************************************************
+Setup.py file for the xms.core python package.
 """
 import os
-from setuptools import setup, find_packages
+
+from setuptools import setup
+
 from xms.core import __version__
 
 

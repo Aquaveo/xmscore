@@ -23,7 +23,7 @@ fi
 
 export PATH=$(pyenv root)/versions/3.6.8/bin:/hom/conan/.local/bin:$PATH
 pip install conan --upgrade
-pip install conan_package_tools devpi-client wheel
+pip install conan_package_tools devpi-client wheel flake8 flake8-docstrings flake8-bugbear flake8-import-order pep8-naming
 
 python --version
 
