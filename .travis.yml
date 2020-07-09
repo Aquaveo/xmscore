@@ -88,12 +88,12 @@ jobs:
       # OSX
       - stage: test
         <<: *osx
-        osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
+        osx_image: xcode11.5
+        env: CONAN_APPLE_CLANG_VERSIONS=11.0 CONAN_BUILD_TYPES=Debug CONAN_ARCHS=x86_64
       - stage: test
         <<: *osx
-        osx_image: xcode9.2
-        env: CONAN_APPLE_CLANG_VERSIONS=9.0 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
+        osx_image: xcode11.5
+        env: CONAN_APPLE_CLANG_VERSIONS=11.0 CONAN_BUILD_TYPES=Release CONAN_ARCHS=x86_64
  
       # --- DEPLOY STAGE ----------------------------------------------------------------------------------------------
 
