@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 import shutil
+import sys
 import tempfile
 
 # 2. Third party modules
@@ -204,3 +205,28 @@ def temp_filename(dir='', suffix=''):
     filename = file.name
     file.close()
     return filename
+
+
+def make_filename_unique(filepath):
+    """Appends a suffix to the file if needed to make it unique.
+
+    Example: file.txt becomes file(2).txt
+
+    Args:
+        filepath (str): Filepath to consider.
+
+    Returns:
+        The unique filename.
+    """
+    if not os.path.exists(filepath):
+        return filepath
+
+    path, name = os.path.split(filepath)
+    name, extension = os.path.splitext(name)
+
+    for i in range(2, sys.maxsize):
+        unique_filename = os.path.join(path, f'{name}({i}){extension}')
+        if not os.path.exists(unique_filename):
+            return unique_filename
+
+    return None  # pragma: no cover
