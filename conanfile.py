@@ -199,11 +199,11 @@ class XmscoreConan(ConanFile):
 
     def requirements(self):
         """Requirements."""
-        if self.options.xms and self.settings.compiler.version == "12":
+        if self.settings.compiler == 'Visual Studio' and self.settings.compiler.version == "12":
             self.requires("boost/1.60.0@aquaveo/stable")
-            self.requires("zlib/1.2.11@conan/stable")
+            self.requires("zlib/1.2.11@aquaveo/stable")
         else:
-            self.requires("boost/1.66.0@conan/stable")
+            self.requires("boost/1.73.0")
         # Pybind if not Visual studio 2013 or clang
         if not self.settings.compiler == "clang" \
                 and not (self.settings.compiler == 'Visual Studio' and self.settings.compiler.version == "12") \
