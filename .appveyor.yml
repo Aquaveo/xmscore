@@ -23,8 +23,16 @@ environment:
     AQUAPI_URL: ${AQUAPI_URL_SECRET}
     CONAN_STABLE_BRANCH_PATTERN: ^([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)\.([0-9]|[1-9][0-9]*)(?:-([0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+[0-9A-Za-z-]+)?$
     CONAN_UPLOAD_ONLY_WHEN_STABLE: 1
-    
+
     matrix:
+        - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+          CONAN_VISUAL_VERSIONS: 16
+          CONAN_BUILD_TYPES: Release
+          CONAN_ARCHS: x86_64
+         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
+          CONAN_VISUAL_VERSIONS: 16
+          CONAN_BUILD_TYPES: Debug
+          CONAN_ARCHS: x86_64
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
           CONAN_VISUAL_VERSIONS: 14
           CONAN_BUILD_TYPES: Release
@@ -51,10 +59,10 @@ install:
 
 build_script:
   - ps: |
-      if ($env:APPVEYOR_REPO_TAG -eq 'false') { 
+      if ($env:APPVEYOR_REPO_TAG -eq 'false') {
         $env:XMS_VERSION = 'Dev'
-      } else { 
-        $env:XMS_VERSION = $env:APPVEYOR_REPO_TAG_NAME 
+      } else {
+        $env:XMS_VERSION = $env:APPVEYOR_REPO_TAG_NAME
         $env:CONAN_UPLOAD = $env:AQUAVEO_CONAN
         $env:RELEASE_PYTHON = 'True'
       }
