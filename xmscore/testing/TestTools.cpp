@@ -22,6 +22,7 @@
 #pragma warning(disable : 4103) // boost code: alignment change
 #include <boost/filesystem.hpp>
 #pragma warning(pop)
+#include <boost/predef.h>
 #include <cxxtest/GlobalFixture.h>
 #include <cxxtest/TestSuite.h>
 
