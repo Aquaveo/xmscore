@@ -3,7 +3,7 @@ conanfile.py for the xmscore project.
 """
 import os
 
-from conans import ConanFile, CMake, tools
+from conans import CMake, ConanFile, tools
 from conans.errors import ConanException
 
 
