@@ -204,7 +204,7 @@ class XmscoreConan(ConanFile):
                 self.requires("boost/1.60.0@aquaveo/stable")
                 self.requires("zlib/1.2.11@conan/stable")
             else:
-                self.requires("boost/1.66.0@aquaveo/stable")
+                self.requires("boost/1.66.0@conan/stable")
         elif self.settings.compiler == 'apple-clang':
             self.requires("boost/1.74.0@aquaveo/stable")
         else:
