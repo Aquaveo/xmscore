@@ -200,7 +200,7 @@ class XmscoreConan(ConanFile):
     def requirements(self):
         """Requirements."""
         if self.settings.compiler == 'Visual Studio' and self.settings.compiler.version == "12":
-            if self.xms:
+            if self.options.xms:
                 self.requires("boost/1.60.0@aquaveo/stable")
                 self.requires("zlib/1.2.11@conan/stable")
             else:
