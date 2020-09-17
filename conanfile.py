@@ -205,7 +205,7 @@ class XmscoreConan(ConanFile):
                 self.requires("zlib/1.2.11@conan/stable")
             else:
                 self.requires("boost/1.66.0@conan/stable")
-        elif self.settings.compiler == 'apple-clang':
+        elif self.settings.compiler in ['apple-clang', 'Visual Studio']:
             self.requires("boost/1.74.0@aquaveo/stable")
         else:
             self.requires("boost/1.74.0")

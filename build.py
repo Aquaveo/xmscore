@@ -31,13 +31,19 @@ if __name__ == "__main__":
             'AQUAPI_URL': aquapi_url,
         })
 
-        # Require c++11 compatibility
+        # Require c++ standard compatibility
         if settings['compiler'] == 'gcc':
             settings.update({
                 'compiler.libcxx': 'libstdc++11'
             })
         elif settings['compiler'] == 'apple-clang':
             settings.update({'cppstd': 'gnu17'})
+        elif settings['compiler'] == 'Visual Studio':
+            compiler_version = int(settings['compiler.version'])
+            if compiler_version == 14:
+                settings.update({'cppstd': '14'})
+            elif compiler_version == 16:
+                settings.update({'cppstd': '17'})
 
     pybind_updated_builds = []
     for settings, options, env_vars, build_requires, _ in builder.items:
