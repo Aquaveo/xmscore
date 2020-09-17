@@ -2,15 +2,15 @@ cmake_minimum_required(VERSION 3.1.2)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
-if (APPLE)
+if (APPLE OR WIN32)
+    # Target C++17 on MacOS and Windows. If building with version of Visual Studio without
+    # support, has no effect.
     set(CMAKE_CXX_STANDARD 17)
-else()
-    set(CMAKE_CXX_STANDARD 11)
 endif()
 
 project(xmscorelib C CXX)
 
-if (APPLE)  
+if (APPLE)
   set(CMAKE_POSITION_INDEPENDENT_CODE False)
 else()
   set(CMAKE_POSITION_INDEPENDENT_CODE True)
@@ -57,9 +57,9 @@ ENDIF(IS_CONDA_BUILD)
 if(WIN32)
   string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MT" USES_MT)
   if(NOT USES_MT)
-    string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MTd" USES_MT)	
+    string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MTd" USES_MT)
   endif()
-  
+
   if(XMS_BUILD)
       add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
       if(USES_MT)
@@ -70,7 +70,7 @@ if(WIN32)
   else(NOT XMS_BUILD)
       add_definitions(/D BOOST_ALL_NO_LIB)
   endif()
-  
+
   if(USES_MT)
     set(CompilerFlags
         CMAKE_CXX_FLAGS
