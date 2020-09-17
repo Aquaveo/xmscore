@@ -31,7 +31,7 @@ if __name__ == "__main__":
             'AQUAPI_URL': aquapi_url,
         })
 
-        # Require c++ standard compatibility
+        # Require C++ standard compatibility
         if settings['compiler'] == 'gcc':
             settings.update({
                 'compiler.libcxx': 'libstdc++11'
