@@ -6,7 +6,10 @@ if (APPLE OR WIN32)
     # Target C++17 on MacOS and Windows. If building with version of Visual Studio without
     # support, has no effect.
     set(CMAKE_CXX_STANDARD 17)
+else()
+    set(CMAKE_CXX_STANDARD 11)
 endif()
+
 
 project(xmscorelib C CXX)
 
