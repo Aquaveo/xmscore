@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/Aquaveo/xmscore.svg?branch=master)](https://travis-ci.org/Aquaveo/xmscore)
-[![Build status](https://ci.appveyor.com/api/projects/status/0jj8bujujbsw1enu?svg=true)](https://ci.appveyor.com/project/Aquaveo/xmscore)
+![Linux-CI](https://github.com/Aquaveo/xmscore/workflows/Linux-CI/badge.svg)
+![Mac-CI](https://github.com/Aquaveo/xmscore/workflows/Mac-CI/badge.svg)
+![Windows-CI](https://github.com/Aquaveo/xmscore/workflows/Windows-CI/badge.svg)
 
 XMSCore
 ========
