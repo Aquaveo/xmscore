@@ -36,6 +36,11 @@ if __name__ == "__main__":
             settings.update({
                 'compiler.libcxx': 'libstdc++11'
             })
+            compiler_version = int(settings['compiler.version'])
+            if compiler_version in [5, 6]:
+                settings.update({'cppstd': '14'})
+            elif compiler_version == 7:
+                settings.update({'cppstd': '17'})
         elif settings['compiler'] == 'apple-clang':
             settings.update({'cppstd': 'gnu17'})
         elif settings['compiler'] == 'Visual Studio':
