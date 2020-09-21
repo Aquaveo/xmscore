@@ -74,8 +74,7 @@ class XmscoreConan(ConanFile):
         cmake = CMake(self)
 
         # If this is Visual Studio Version 12 Then it is an XMS Build
-        if self.settings.compiler == 'Visual Studio' \
-           and self.settings.compiler.version == "12":
+        if self.settings.compiler == 'Visual Studio':
             cmake.definitions["XMS_BUILD"] = self.options.xms
 
         # CxxTest doesn't play nice with PyBind. Also, it would be nice to not
@@ -199,16 +198,7 @@ class XmscoreConan(ConanFile):
 
     def requirements(self):
         """Requirements."""
-        if self.settings.compiler == 'Visual Studio' and self.settings.compiler.version == "12":
-            if self.options.xms:
-                self.requires("boost/1.60.0@aquaveo/stable")
-                self.requires("zlib/1.2.11@conan/stable")
-            else:
-                self.requires("boost/1.66.0@conan/stable")
-        else:
-            self.requires("boost/1.74.0@aquaveo/stable")
-        # Pybind if not Visual studio 2013 or clang
-        if not self.settings.compiler == "clang" \
-                and not (self.settings.compiler == 'Visual Studio' and self.settings.compiler.version == "12") \
-                and self.options.pybind:
+        self.requires("boost/1.74.0@aquaveo/stable")
+        # Pybind if not clang
+        if not self.settings.compiler == "clang" and self.options.pybind:
             self.requires("pybind11/2.5.0@aquaveo/testing")
