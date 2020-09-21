@@ -205,10 +205,8 @@ class XmscoreConan(ConanFile):
                 self.requires("zlib/1.2.11@conan/stable")
             else:
                 self.requires("boost/1.66.0@conan/stable")
-        elif self.settings.compiler in ['apple-clang', 'Visual Studio']:
-            self.requires("boost/1.74.0@aquaveo/stable")
         else:
-            self.requires("boost/1.74.0@aquaveo/testing")
+            self.requires("boost/1.74.0@aquaveo/stable")
         # Pybind if not Visual studio 2013 or clang
         if not self.settings.compiler == "clang" \
                 and not (self.settings.compiler == 'Visual Studio' and self.settings.compiler.version == "12") \
