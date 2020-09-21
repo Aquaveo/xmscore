@@ -36,7 +36,8 @@ jobs:
       # Aquapi Variables
       AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
       AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
-      AQUAPI_URL: ${{ secrets.AQUAPI_URL_SECRET }}
+      # AQUAPI_URL: ${{ secrets.AQUAPI_URL_SECRET }}
+      AQUAPI_URL: https://aquapi.aquaveo.com/aquaveo/dev/+simple
       # Python Variables
       PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
       RELEASE_PYTHON: 'False'
