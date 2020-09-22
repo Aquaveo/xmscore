@@ -57,7 +57,7 @@ jobs:
           pip install conan conan_package_tools devpi-client wheel
       # Login to Aquaveo Docker
       - name: Login to Aquaveo Docker
-        run: sudo docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_PASSWORD_SECRET }} docker.aquaveo.com
+        run: sudo docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_TOKEN }} docker.aquaveo.com
         shell: bash
       # Setup Conan
       - name: Setup Conan Directory
