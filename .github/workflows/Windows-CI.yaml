@@ -82,7 +82,7 @@ jobs:
         uses: allenevans/set-env@v1.1.0
         with:
           CONAN_CHANNEL: stable
-          AQUAPI_URL: ${{ AQUAPI_URL_STABLE }}
+          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
         if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, 'release-')
       # Build the Conan Package
       - name: Build the Conan Packages
