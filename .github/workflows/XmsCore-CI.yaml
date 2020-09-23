@@ -140,7 +140,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.git_release.outpts.upload_url }}
+          upload_url: ${{ steps.git_release.outputs.upload_url }}
           asset_path: ./${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
           asset_name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
           asset_content_type: application/zip
@@ -252,7 +252,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.git_release.outpts.upload_url }}
+          upload_url: ${{ steps.git_release.outputs.upload_url }}
           asset_path: ./${{ matrix.platform }}-GCC{{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
           asset_name: ${{ matrix.platform }}-GCC{{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
           asset_content_type: application/zip
@@ -365,7 +365,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.git_release.outpts.upload_url }}
+          upload_url: ${{ steps.git_release.outputs.upload_url }}
           asset_path: ./${{ matrix.platform }}-VS{{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
           asset_name: ${{ matrix.platform }}-VS{{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
           asset_content_type: application/zip
