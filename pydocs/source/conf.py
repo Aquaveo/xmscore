@@ -14,9 +14,26 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath(os.path.join('..', '..', 'build_py', 'install', '_package')))
+from unittest import mock
 
+MOCK_MODULES = [
+    'xms.core._xmscore', 'xms.core._xmscore.misc',
+]
+
+
+class MockModule(mock.MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return mock.MagicMock()
+
+
+print('NOTE: The following modules are mocked out for documentation builds.')
+print('{}'.format(', '.join(MOCK_MODULES)))
+sys.modules.update((mod_name, MockModule()) for mod_name in MOCK_MODULES)
+
+
+sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath(os.path.join('..', '..', '_package')))
 
 # -- Project information -----------------------------------------------------
 
