@@ -33,7 +33,7 @@ jobs:
       # Aquapi Variables
       AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
       AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
-      AQUAPI_URL: ${{ secrets.AQUAPI_URL_SECRET }}
+      AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
       # Python Variables
       PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
       RELEASE_PYTHON: 'False'
@@ -74,6 +74,16 @@ jobs:
           CONAN_UPLOAD: https://conan.aquaveo.com
           RELEASE_PYTHON: 'True'
         if: startsWith(github.ref, 'refs/tags/')
+      # Check for release branch
+      - name: Get Branch Name
+        id: gitBranch
+        uses: nelonoel/branch-name@v1
+      - name: Change Channel and URL if Release Branch
+        uses: allenevans/set-env@v1.1.0
+        with:
+          CONAN_CHANNEL: stable
+          AQUAPI_URL: ${{ AQUAPI_URL_STABLE }}
+        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, 'release-')
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
