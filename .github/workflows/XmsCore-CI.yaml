@@ -122,7 +122,7 @@ jobs:
         run: python build.py
       # Zip Built Conan Packages
       - name: Zip Conan Packages
-        uses: papeloto/action-zip@v0.1.0
+        uses: papeloto/action-zip@v1
         with:
           files: ${{ env.CONAN_PATH }}/${{ env.PACKAGE_NAME }}
           dest: ${{ matrix.platform }}-VS{{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
@@ -234,7 +234,7 @@ jobs:
         run: python build.py
       # Zip Built Conan Packages
       - name: Zip Conan Packages
-        uses: papeloto/action-zip@v0.1.0
+        uses: papeloto/action-zip@v1
         with:
           files: ${{ env.CONAN_PATH }}/${{ env.PACKAGE_NAME }}
           dest: ${{ matrix.platform }}-VS{{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
@@ -347,7 +347,7 @@ jobs:
         shell: cmd
       # Zip Built Conan Packages
       - name: Zip Conan Packages
-        uses: papeloto/action-zip@v0.1.0
+        uses: papeloto/action-zip@v1
         with:
           files: ${{ env.CONAN_PATH }}/${{ env.PACKAGE_NAME }}
           dest: ${{ matrix.platform }}-VS{{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
