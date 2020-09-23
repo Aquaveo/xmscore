@@ -19,9 +19,9 @@ jobs:
     env:
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 99.99.99
+      XMS_VERSION: 4.0.0
       # Conan Variables
-      CONAN_REFERENCE: xmscore/99.99.99
+      CONAN_REFERENCE: xmscore/4.0.0
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
