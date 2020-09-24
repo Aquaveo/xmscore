@@ -135,9 +135,13 @@ jobs:
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ steps.locate_conan_package.outputs.path }}
+          files: ${{ steps.locate_conan_package.outputs.path }}/
           dest: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
         if: startsWith(github.ref, 'refs/tags/')
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
+          path: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -256,9 +260,13 @@ jobs:
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ steps.locate_conan_package.outputs.path }}
+          files: ${{ steps.locate_conan_package.outputs.path }}/
           dest: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
         if: startsWith(github.ref, 'refs/tags/')
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}
+          path: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -378,9 +386,13 @@ jobs:
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ steps.locate_conan_package.outputs.path }}
+          files: ${{ steps.locate_conan_package.outputs.path }}/
           dest: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
         if: startsWith(github.ref, 'refs/tags/')
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}
+          path: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       # Get the Release Data
       - name: Get Release
         id: git_release
