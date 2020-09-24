@@ -121,10 +121,17 @@ jobs:
       - name: Build the Conan Packages
         run: python build.py
       # Zip Built Conan Packages
+      - uses: grisumbras/locate-conan-package@latest
+        id: locate_conan_package
+        with:
+          name: ${{ env.LIBRARY_NAME }}
+          version: ${{ env.CONAN_VERSION }}
+          user: ${{ env.CONAN_USERNAME }}
+          channel: ${{ env.CONAN_CHANNEL }}
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ env.CONAN_PATH }}/${{ env.PACKAGE_NAME }}
+          files: ${{ steps.locate_conan_package.outputs.path }}
           dest: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
         if: startsWith(github.ref, 'refs/tags/')
       # Get the Release Data
