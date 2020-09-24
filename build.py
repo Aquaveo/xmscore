@@ -62,17 +62,6 @@ if __name__ == "__main__":
         pybind_updated_builds.append([settings, options, env_vars, build_requires])
     builder.builds = pybind_updated_builds
 
-    xms_updated_builds = []
-    for settings, options, env_vars, build_requires, _ in builder.items:
-        # xms option
-        if settings['compiler'] == 'Visual Studio' \
-                and int(settings['compiler.version']) < 13:
-            xms_options = dict(options)
-            xms_options.update({'xmscore:xms': True})
-            xms_updated_builds.append([settings, xms_options, env_vars, build_requires])
-        xms_updated_builds.append([settings, options, env_vars, build_requires])
-    builder.builds = xms_updated_builds
-
     testing_updated_builds = []
     for settings, options, env_vars, build_requires, _ in builder.items:
         # testing option - can't do testing with xms or pybind builds
