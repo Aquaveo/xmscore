@@ -87,7 +87,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install conan conan_package_tools devpi-client wheel
       # Setup Xcode
-      - uses: sinoru/actions-setup-xcode@v1.1
+      - name: Setup XCode
+        uses: sinoru/actions-setup-xcode@v1.1
         with:
           xcode-version: '11.6'
       # Setup Conan
@@ -121,11 +122,12 @@ jobs:
       - name: Build the Conan Packages
         run: python build.py
       # Zip Built Conan Packages
-      - uses: grisumbras/locate-conan-package@latest
+      - name: Locate Conan Package
+        uses: grisumbras/locate-conan-package@latest
         id: locate_conan_package
         with:
           name: ${{ env.LIBRARY_NAME }}
-          version: ${{ env.CONAN_VERSION }}
+          version: ${{ env.XMS_VERSION }}
           user: ${{ env.CONAN_USERNAME }}
           channel: ${{ env.CONAN_CHANNEL }}
       - name: Zip Conan Packages
