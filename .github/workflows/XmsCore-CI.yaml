@@ -146,9 +146,8 @@ jobs:
         run: |
           ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package/
       - name: Zip Conan Packages
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: unzip -qq '${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip' -d ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+        run: |
+          tar czf ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
