@@ -152,7 +152,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
-          path: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          path: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
       # Get the Release Data
       - name: Get Release
         id: git_release
