@@ -216,7 +216,11 @@ jobs:
         run: conan user
       - name: Set Conan Path
         run: |
-          echo ::set-env name=/home/runner/work/${{ env.LIBRARY_NAME }}
+          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
+      - name: Set Conan Docker Options
+        uses: allenevans/set-env@v1.1.0
+        with:
+          CONAN_DOCKER_RUN_OPTIONS: '-v "${{ env.CONAN_PATH }}:/home/conan/.conan/data"'
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -340,7 +344,7 @@ jobs:
         shell: cmd
       - name: Set Conan Path
         run: |
-          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
+          echo "::set-env name=CONAN_PATH::$(conan config get storage.path)"
         shell: powershell
       # Get Tag Name
       - name: Get Tag
