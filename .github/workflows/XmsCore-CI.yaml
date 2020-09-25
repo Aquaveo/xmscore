@@ -96,6 +96,9 @@ jobs:
       # Setup Conan
       - name: Setup Conan Directory
         run: conan user
+      - name: Set Conan Path
+        run: |
+          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
       # Get Tag Name (ONLY RUNS ON TAGS)
       - name: Get Tag
         id: gitTag
@@ -124,19 +127,11 @@ jobs:
       - name: Build the Conan Packages
         run: python build.py
       # Zip Built Conan Packages
-      - name: Locate Conan Package
-        uses: grisumbras/locate-conan-package@latest
-        id: locate_conan_package
-        with:
-          name: ${{ env.LIBRARY_NAME }}
-          version: ${{ env.XMS_VERSION }}
-          user: ${{ env.CONAN_USERNAME }}
-          channel: ${{ env.CONAN_CHANNEL }}
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ steps.locate_conan_package.outputs.path }}/
-          dest: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL}}/package/
+          dest: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -221,6 +216,9 @@ jobs:
       # Setup Conan
       - name: Setup Conan Directory
         run: conan user
+      - name: Set Conan Path
+        run: |
+          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -249,21 +247,11 @@ jobs:
       - name: Build the Conan Packages
         run: python build.py
       # Zip Built Conan Packages
-      - name: Locate Conan Package
-        uses: grisumbras/locate-conan-package@latest
-        id: locate_conan_package
-        with:
-          reference: ${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}@${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL }}
-      - name: Debug Locate Conan Package
-        run: |
-          ls
-          ls ${{ github.workspace }}
-          ls ${{ github.workspace }}/${{ steps.locate_conan_package.outputs.path }}
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ steps.locate_conan_package.outputs.path }}/
-          dest: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL}}/package/
+          dest: ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
@@ -348,6 +336,9 @@ jobs:
       - name: Setup Conan Directory
         run: conan user
         shell: cmd
+      - name: Set Conan Path
+        run: |
+          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -377,19 +368,11 @@ jobs:
         run: python build.py
         shell: cmd
       # Zip Built Conan Packages
-      - name: Locate Conan Package
-        uses: grisumbras/locate-conan-package@latest
-        id: locate_conan_package
-        with:
-          name: ${{ env.LIBRARY_NAME }}
-          version: ${{ env.XMS_VERSION }}
-          user: ${{ env.CONAN_USERNAME }}
-          channel: ${{ env.CONAN_CHANNEL }}
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ steps.locate_conan_package.outputs.path }}/
-          dest: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL}}/package/
+          dest: ${{ github.workspace }}/${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
