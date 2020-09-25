@@ -127,24 +127,6 @@ jobs:
       - name: Build the Conan Packages
         run: python build.py
       # Zip Built Conan Packages
-      - name: Debug Prints 1
-        run: |
-          ls ${{ env.CONAN_PATH }}
-      - name: Debug Prints 2
-        run: |
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
-      - name: Debug Prints 3
-        run: |
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}
-      - name: Debug Prints 4
-        run: |
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo
-      - name: Debug Prints 5
-        run: |
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}
-      - name: Debug Prints 6
-        run: |
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package/
       - name: Zip Conan Packages
         run: |
           tar czf ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
@@ -232,6 +214,9 @@ jobs:
       # Setup Conan
       - name: Setup Conan Directory
         run: conan user
+      - name: Set Conan Path
+        run: |
+          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -259,6 +244,32 @@ jobs:
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
+      - name: Zip Conan Packages
+        run: |
+          tar czf ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+      - name: Add Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
+          path: ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+      # Get the Release Data
+      - name: Get Release
+        id: git_release
+        uses: bruceadams/get-release@v1.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+        if: startsWith(github.ref, 'refs/tags/')
+      # Upload Zipped Conan Packages
+      - name: Upload Zipped Conan Packages
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.git_release.outputs.upload_url }}
+          asset_path: ./${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          asset_name: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          asset_content_type: application/zip
+        if: startsWith(github.ref, 'refs/tags/')
 
 # ----------------------------------------------------------------------------------------------
 # WINDOWS
@@ -320,6 +331,10 @@ jobs:
       - name: Setup Conan Directory
         run: conan user
         shell: cmd
+      - name: Set Conan Path
+        run: |
+          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
+        shell: powershell
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -348,3 +363,30 @@ jobs:
       - name: Build the Conan Packages
         run: python build.py
         shell: cmd
+      # Zip Packages
+      - name: Zip Conan Packages
+        run: |
+          tar czf ${{ github.workspace }}/${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+      - name: Add Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
+          path: ${{ github.workspace }}/${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+      # Get the Release Data
+      - name: Get Release
+        id: git_release
+        uses: bruceadams/get-release@v1.2.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+        if: startsWith(github.ref, 'refs/tags/')
+      # Upload Zipped Conan Packages
+      - name: Upload Zipped Conan Packages
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.git_release.outputs.upload_url }}
+          asset_path: ./${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          asset_name: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          asset_content_type: application/zip
+        if: startsWith(github.ref, 'refs/tags/')
