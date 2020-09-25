@@ -130,7 +130,7 @@ jobs:
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL}}/package/
+          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package/
           dest: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       - name: Add Artifact
         uses: actions/upload-artifact@v1
@@ -250,7 +250,7 @@ jobs:
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL}}/package/
+          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package/
           dest: ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       - name: Add Artifact
         uses: actions/upload-artifact@v1
@@ -371,7 +371,7 @@ jobs:
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
-          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL}}/package/
+          files: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package/
           dest: ${{ github.workspace }}/${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       - name: Add Artifact
         uses: actions/upload-artifact@v1
