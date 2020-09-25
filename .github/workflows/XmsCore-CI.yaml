@@ -96,6 +96,12 @@ jobs:
       # Setup Conan
       - name: Setup Conan Directory
         run: conan user
+      - name: Set Conan Path
+        run: |
+          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
+      - name: Debug Statements
+        run : |
+          ls ${{ env.CONAN_PATH }}
       # Get Tag Name (ONLY RUNS ON TAGS)
       - name: Get Tag
         id: gitTag
@@ -123,6 +129,13 @@ jobs:
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
+      - name: Debug Statements
+        run: |
+          ls ${{ env.CONAN_PATH }}
+          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
+          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}
+          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo
+          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/testing
 
 # ----------------------------------------------------------------------------------------------
 # LINUX
