@@ -99,9 +99,6 @@ jobs:
       - name: Set Conan Path
         run: |
           echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
-      - name: Debug Statements
-        run : |
-          ls ${{ env.CONAN_PATH }}
       # Get Tag Name (ONLY RUNS ON TAGS)
       - name: Get Tag
         id: gitTag
