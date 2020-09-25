@@ -257,6 +257,10 @@ jobs:
           version: ${{ env.XMS_VERSION }}
           user: ${{ env.CONAN_USERNAME }}
           channel: ${{ env.CONAN_CHANNEL }}
+      - name: Debug Locate Conan Package
+        run: |
+          ls ${{ steps.locate_conan_package.outputs.path }}
+          ls
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
