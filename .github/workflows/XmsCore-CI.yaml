@@ -142,14 +142,12 @@ jobs:
       - name: Debug Prints 5
         run: |
           ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}
-      - name: Debug Prints 6
-        run: |
+      - name: Debug Prints 6 run: |
           ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package/
       - name: Zip Conan Packages
-        uses: thedoctor0/zip-release@master
+        uses: montudor/action-zip@v0.1.0
         with:
-          filename: '${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip'
-          path: ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+          args: unzip -qq '${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip' -d ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
