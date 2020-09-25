@@ -244,6 +244,13 @@ jobs:
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
+      # Zip Conan Package
+      - name: Debug Print 01
+        run: |
+          ls /home/runner/work/${{ env.LIBRARY_NAME }}
+      - name: Debug Print 02
+        run: |
+          ls /home/runner/work/${{ env.LIBRARY_NAME }}/${{ env.LIBRARY_NAME }}
       - name: Zip Conan Packages
         run: |
           tar czf ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
