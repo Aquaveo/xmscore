@@ -147,12 +147,12 @@ jobs:
           ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package/
       - name: Zip Conan Packages
         run: |
-          tar czf ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+          tar czf ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
-          path: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
+          path: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.zip
       # Get the Release Data
       - name: Get Release
         id: git_release
