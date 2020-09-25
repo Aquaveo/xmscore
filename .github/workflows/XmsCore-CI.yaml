@@ -216,7 +216,7 @@ jobs:
         run: conan user
       - name: Set Conan Path
         run: |
-          echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
+          echo ::set-env name=/home/runner/work/${{ env.LIBRARY_NAME }}
       # Get Tag Name
       - name: Get Tag
         id: gitTag
