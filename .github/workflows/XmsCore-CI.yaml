@@ -247,17 +247,6 @@ jobs:
       - name: Build the Conan Packages
         run: python build.py
       # Zip Built Conan Packages
-      - name: Debug Prints
-        run: |
-          ls
-          echo "--------"
-          ls ${{ env.CONAN_PATH }}
-          echo "--------"
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
-          echo "--------"
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}
-          echo "--------"
-          ls ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
@@ -379,6 +368,17 @@ jobs:
         run: python build.py
         shell: cmd
       # Zip Built Conan Packages
+      - name: Debug Prints
+        run: |
+          dir
+          echo "--------"
+          dir ${{ env.CONAN_PATH }}
+          echo "--------"
+          dir ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
+          echo "--------"
+          dir ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}
+          echo "--------"
+          dir ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
