@@ -253,14 +253,12 @@ jobs:
         uses: grisumbras/locate-conan-package@latest
         id: locate_conan_package
         with:
-          name: ${{ env.LIBRARY_NAME }}
-          version: ${{ env.XMS_VERSION }}
-          user: ${{ env.CONAN_USERNAME }}
-          channel: ${{ env.CONAN_CHANNEL }}
+          reference: ${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}@${{ env.CONAN_USERNAME }}/${{ env.CONAN_CHANNEL }}
       - name: Debug Locate Conan Package
         run: |
-          ls ${{ steps.locate_conan_package.outputs.path }}
           ls
+          ls ${{ github.workspace }}
+          ls ${{ github.workspace }}/${{ steps.locate_conan_package.outputs.path }}
       - name: Zip Conan Packages
         uses: papeloto/action-zip@v1
         with:
