@@ -220,7 +220,7 @@ jobs:
       - name: Set Conan Docker Options
         uses: allenevans/set-env@v1.1.0
         with:
-          CONAN_DOCKER_RUN_OPTIONS: '-v "${{ env.CONAN_PATH }}:/home/conan/.conan/data"'
+          CONAN_DOCKER_RUN_OPTIONS: '-v "${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}:/home/conan/.conan/data/{{ env.LIBRARY_NAME }}"'
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -250,7 +250,7 @@ jobs:
         run: mkdir -p ${{ env.CONAN_PATH }}
       - name: Build the Conan Packages
         run: |
-          chmod -R 775 ${{ env.CONAN_PATH }}
+          chmod -R 775 ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
           python build.py
       # Zip Conan Package
       - name: Debug Print 01
