@@ -249,7 +249,9 @@ jobs:
       - name: Create Directory for Docker Packages
         run: mkdir data
       - name: Build the Conan Packages
-        run: python build.py
+        run: |
+          chmod 775 ${{ env.CONAN_PATH }}/data
+          python build.py
       # Zip Conan Package
       - name: Debug Print 01
         run: |
