@@ -250,6 +250,7 @@ jobs:
         run: mkdir data
       - name: Build the Conan Packages
         run: |
+          mkdir -p ${{ env.CONAN_PATH }}
           chmod -R 775 ${{ env.CONAN_PATH }}
           python build.py
       # Zip Conan Package
