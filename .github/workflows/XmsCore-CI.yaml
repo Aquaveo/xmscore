@@ -247,7 +247,7 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, 'release-')
       # Build the Conan Package
       - name: Create Directory for Docker Packages
-        run: mkdir -p ${{ env.CONAN_PATH }}
+        run: mkdir -p ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
       - name: Build the Conan Packages
         run: |
           chmod -R 775 ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
