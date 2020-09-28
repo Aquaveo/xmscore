@@ -217,6 +217,7 @@ jobs:
       - name: Set Conan Path
         run: |
           echo ::set-env name=CONAN_PATH::$(conan config get storage.path)
+          mkdir -p ${{ env.CONAN_PATH }}
       - name: Set Conan Docker Options
         uses: allenevans/set-env@v1.1.0
         with:
