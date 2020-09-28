@@ -220,7 +220,7 @@ jobs:
       - name: Set Conan Docker Options
         uses: allenevans/set-env@v1.1.0
         with:
-          CONAN_DOCKER_RUN_OPTIONS: "-v '${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}:/home/conan/.conan/data/${{ env.LIBRARY_NAME }}'"
+          CONAN_DOCKER_RUN_OPTIONS: "-v '${{ env.CONAN_PATH }}:/home/conan/.conan/data'"
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -246,19 +246,11 @@ jobs:
           AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
         if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, 'release-')
       # Build the Conan Package
-      - name: Create Directory for Docker Packages
-        run: mkdir -p ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
       - name: Build the Conan Packages
         run: |
           chmod -R 777 ${{ env.CONAN_PATH }}
           python build.py
       # Zip Conan Package
-      - name: Debug Print 01
-        run: |
-          ls /home/runner/work/${{ env.LIBRARY_NAME }}
-      - name: Debug Print 02
-        run: |
-          ls /home/runner/work/${{ env.LIBRARY_NAME }}/${{ env.LIBRARY_NAME }}
       - name: Zip Conan Packages
         run: |
           tar czf ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
