@@ -250,7 +250,7 @@ jobs:
         run: mkdir -p ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
       - name: Build the Conan Packages
         run: |
-          chmod -R 777 ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}
+          chmod -R 777 ${{ env.CONAN_PATH }}
           python build.py
       # Zip Conan Package
       - name: Debug Print 01
