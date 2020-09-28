@@ -220,7 +220,7 @@ jobs:
       - name: Set Conan Docker Options
         uses: allenevans/set-env@v1.1.0
         with:
-          CONAN_DOCKER_RUN_OPTIONS: '-v "${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}:/home/conan/.conan/data/{{ env.LIBRARY_NAME }}"'
+          CONAN_DOCKER_RUN_OPTIONS: '-v "${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}:/home/conan/.conan/data/{{ env.LIBRARY_NAME }}" --privileged'
       # Get Tag Name
       - name: Get Tag
         id: gitTag
