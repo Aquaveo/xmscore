@@ -76,6 +76,9 @@ jobs:
 
     steps:
       # Checkout Sources
+      - name: Set Line Endings
+        run: |
+          git config --global core.autocrlf false
       - name: Checkout Source
         uses: actions/checkout@v2
       # Setup Python
@@ -194,7 +197,11 @@ jobs:
 
 
     steps:
+
       # Checkout Sources
+      - name: Set Line Endings
+        run: |
+          git config --global core.autocrlf false
       - name: Checkout Source
         uses: actions/checkout@v2
       # Setup Python
@@ -318,6 +325,9 @@ jobs:
 
     steps:
       # Checkout Sources
+      - name: Set Line Endings
+        run: |
+          git config --global core.autocrlf false
       - name: Checkout Source
         uses: actions/checkout@v2
       # Setup Python
