@@ -35,7 +35,7 @@ jobs:
       # Flake Code
       - name: Run Flake
         run: |
-          flake8 --exclude .tox,.git,__pycache__,_package/tests/files/*,pydocs/source/conf.py,build,dist,tests/fixtures/*,*.pyc,*.egg-info,.cache,.eggs --ignore=D200,D212 --max-line-length=120 --docstring-convention google --isolated --import-order-style=appnexus --application-import-names=xms.core --application-package-names=xms --count --statistics _package
+          flake8 --exclude .tox,.git,__pycache__,_package/tests/files/*,pydocs/source/conf.py,build,dist,tests/fixtures/*,*.pyc,*.egg-info,.cache,.eggs --ignore=D200 --max-line-length=120 --docstring-convention google --isolated --import-order-style=appnexus --application-import-names=xms.core --application-package-names=xms --count --statistics _package
 
 # ----------------------------------------------------------------------------------------------
 # MAC
