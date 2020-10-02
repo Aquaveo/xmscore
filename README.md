@@ -1,6 +1,4 @@
-![Linux-CI](https://github.com/Aquaveo/xmscore/workflows/Linux-CI/badge.svg)
-![Mac-CI](https://github.com/Aquaveo/xmscore/workflows/Mac-CI/badge.svg)
-![Windows-CI](https://github.com/Aquaveo/xmscore/workflows/Windows-CI/badge.svg)
+![XmsCore-CI](https://github.com/Aquaveo/xmscore/workflows/XmsCore-4.0/badge.svg)
 
 XMSCore
 ========
