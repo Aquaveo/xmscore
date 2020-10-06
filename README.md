@@ -1,4 +1,4 @@
-![XmsCore-CI](https://github.com/Aquaveo/xmscore/workflows/XmsCore-4.0/badge.svg)
+![XmsCore-CI](https://github.com/Aquaveo/xmscore/workflows/XmsCore-4.1/badge.svg)
 
 XMSCore
 ========

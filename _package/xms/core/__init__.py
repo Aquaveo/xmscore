@@ -4,4 +4,4 @@ The __init__.py for the core module of the xms.core library.
 from . import filesystem  # NOQA: F401
 from . import misc  # NOQA: F401
 
-__version__ = '4.0.0'
+__version__ = '4.1.0'
