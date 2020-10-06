@@ -60,7 +60,7 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: 'release-*'
+      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
@@ -123,7 +123,7 @@ jobs:
         with:
           CONAN_CHANNEL: stable
           AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
-        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, 'release-')
+        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
@@ -179,7 +179,7 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: 'release-*'
+      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
@@ -247,7 +247,7 @@ jobs:
         with:
           CONAN_CHANNEL: stable
           AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
-        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, 'release-')
+        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
       # Build the Conan Package
       - name: Build the Conan Packages
         run: |
@@ -305,7 +305,7 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: 'release-*'
+      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
@@ -369,7 +369,7 @@ jobs:
         with:
           CONAN_CHANNEL: stable
           AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
-        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, 'release-')
+        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
