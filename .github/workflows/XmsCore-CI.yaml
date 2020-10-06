@@ -60,6 +60,7 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
+      CONAN_STABLE_BRANCH_PATTERN: 'release-*'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
@@ -178,6 +179,7 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
+      CONAN_STABLE_BRANCH_PATTERN: 'release-*'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
@@ -303,6 +305,7 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
+      CONAN_STABLE_BRANCH_PATTERN: 'release-*'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
