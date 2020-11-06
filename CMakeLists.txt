@@ -132,6 +132,7 @@ set(xmscore_sources
   xmscore/dataio/daStreamIo.cpp
   xmscore/math/math.cpp
   xmscore/misc/DynBitset.cpp
+  xmscore/misc/HeaderCheck.cpp
   xmscore/misc/Observer.cpp
   xmscore/misc/Progress.cpp
   xmscore/misc/Singleton.cpp
