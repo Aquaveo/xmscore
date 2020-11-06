@@ -44,7 +44,8 @@
 #include <xmscore/stl/set.h>
 #include <xmscore/stl/utility.h>
 #include <xmscore/stl/vector.h>
-#include <xmscore/testing/TestTools.h>
+// #include <xmscore/testing/TestTools.h>  This can only be included with testing builds.
+
 
 //----- Forward declarations ---------------------------------------------------
 
