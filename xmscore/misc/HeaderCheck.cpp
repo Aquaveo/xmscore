@@ -39,7 +39,6 @@
 #include <xmscore/points/ptsfwd.h>
 #include <xmscore/points/ptsfwd.h>
 #include <xmscore/stl/deque.h>
-#include <xmscore/stl/hash.h>
 #include <xmscore/stl/list.h>
 #include <xmscore/stl/map.h>
 #include <xmscore/stl/set.h>
