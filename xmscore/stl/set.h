@@ -10,6 +10,7 @@
 // 3. Standard library headers
 #include <cstdint> // for int64_t
 #include <set>
+#include <string>
 
 // 5. Shared code headers
 #include <xmscore/points/ptsfwd.h>

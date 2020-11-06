@@ -165,7 +165,6 @@ set(xmscore_headers
   xmscore/points/pt.h
   xmscore/points/ptsfwd.h
   xmscore/stl/deque.h
-  xmscore/stl/hash.h
   xmscore/stl/list.h
   xmscore/stl/map.h
   xmscore/stl/set.h
