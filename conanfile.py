@@ -202,3 +202,6 @@ class XmscoreConan(ConanFile):
         # Pybind if not clang
         if not self.settings.compiler == "clang" and self.options.pybind:
             self.requires("pybind11/2.5.0@aquaveo/testing")
+        if self.settings.os == 'Macos':
+            # Use conan-center-index syntax for Mac
+            self.requires('bzip2/1.0.8')
