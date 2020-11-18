@@ -344,7 +344,9 @@ jobs:
         shell: cmd
       - name: Set Conan Path
         run: |
-          echo "CONAN_PATH=$(conan config get storage.path)" >> $GITHUB_ENV
+          echo 'CONAN_PATH<<EOF' >> $GITHUB_ENV
+          conan config get storage.path >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
         shell: powershell
       # Get Tag Name
       - name: Get Tag
