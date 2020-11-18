@@ -335,7 +335,7 @@ jobs:
           pip install conan conan_package_tools devpi-client wheel
       # Setup Visual Studio
       - name: Setup Visual Studio
-        uses: microsoft/setup-msbuild@v1.0.1
+        uses: microsoft/setup-msbuild@v1.0.2
         with:
           vs-version: ${{ matrix.compiler-version }}
       # Setup Conan
