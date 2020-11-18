@@ -41,7 +41,7 @@ jobs:
 # MAC
 # ----------------------------------------------------------------------------------------------
   mac:
-    name: Clang-11.0 (${{ matrix.build_type }}, Macos)
+    name: Clang-11.0 (${{ matrix.build_type }}, ${{ matrix.python-version }}, Macos)
     runs-on: ${{ matrix.platform }}
 
     strategy:
@@ -159,7 +159,7 @@ jobs:
 # LINUX
 # ----------------------------------------------------------------------------------------------
   linux:
-    name: GCC-${{ matrix.compiler-version }} (${{ matrix.build_type }}, Linux)
+    name: GCC-${{ matrix.compiler-version }} (${{ matrix.build_type }}, ${{ matrix.python-version }}, Linux)
     runs-on: ${{ matrix.platform }}
 
     strategy:
@@ -285,7 +285,7 @@ jobs:
 # WINDOWS
 # ----------------------------------------------------------------------------------------------
   windows:
-    name: Visual Studio ${{ matrix.compiler-version }} (${{ matrix.build_type }}, Windows)
+    name: Visual Studio ${{ matrix.compiler-version }} (${{ matrix.build_type }}, ${{ matrix.python-version }}, Windows)
     runs-on: ${{ matrix.platform }}
 
     strategy:
