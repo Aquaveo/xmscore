@@ -117,7 +117,7 @@ jobs:
       # Check for release branch
       - name: Get Branch Name
         id: gitBranch
-        uses: nelonoel/branch-name@v1
+        uses: nelonoel/branch-name@v1.0.1
       - name: Change Channel and URL if Release Branch
         uses: allenevans/set-env@v2.0.0
         with:
@@ -241,7 +241,7 @@ jobs:
       # Check for release branch
       - name: Get Branch Name
         id: gitBranch
-        uses: nelonoel/branch-name@v1
+        uses: nelonoel/branch-name@v1.0.1
       - name: Change Channel and URL if Release Branch
         uses: allenevans/set-env@v2.0.0
         with:
@@ -363,7 +363,7 @@ jobs:
       # Check for release branch
       - name: Get Branch Name
         id: gitBranch
-        uses: nelonoel/branch-name@v1
+        uses: nelonoel/branch-name@v1.0.1
       - name: Change Channel and URL if Release Branch
         uses: allenevans/set-env@v2.0.0
         with:
