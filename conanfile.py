@@ -198,7 +198,10 @@ class XmscoreConan(ConanFile):
 
     def requirements(self):
         """Requirements."""
-        self.requires("boost/1.74.0@aquaveo/stable")
+        if self.settings.compiler == 'Visual Studio' and 'MD' in str(self.settings.compiler.runtime):
+            self.requires("boost/1.74.0@aquaveo/testing")  # Use legacy wchar_t setting for XMS
+        else:
+            self.requires("boost/1.74.0@aquaveo/stable")
         # Pybind if not clang
         if not self.settings.compiler == "clang" and self.options.pybind:
             self.requires("pybind11/2.5.0@aquaveo/testing")
