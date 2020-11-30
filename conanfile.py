@@ -15,12 +15,12 @@ class XmscoreConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {
         "xms": [True, False],
-        "pybind": [None, "3.6", "3.7", "3.8", "3.9"],
+        "pybind": ["", "3.6", "3.7", "3.8", "3.9"],
         "testing": [True, False],
     }
     default_options = {
         'xms': False,
-        'pybind': None,
+        'pybind': "",
         'testing': False,
     }
     generators = "cmake", "txt"
@@ -81,7 +81,7 @@ class XmscoreConan(ConanFile):
         # have tests in release code. Thus, if we want to run tests, we will
         # build a test version (without python), run the tests, and then (on
         # success) rebuild the library without tests.
-        cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind is not None
+        cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind != ""
         cmake.definitions["BUILD_TESTING"] = self.options.testing
         cmake.definitions["XMS_TEST_PATH"] = "test_files"
 
@@ -98,7 +98,7 @@ class XmscoreConan(ConanFile):
             self.run_cxx_tests(cmake)
 
         # If this build is python run the python tests.
-        elif self.options.pybind is not None:
+        elif self.options.pybind != "":
             self.run_python_tests_and_upload()
 
     def package(self):
@@ -203,7 +203,7 @@ class XmscoreConan(ConanFile):
         else:
             self.requires("boost/1.74.0@aquaveo/stable")
         # Pybind if not clang
-        if not self.settings.compiler == "clang" and self.options.pybind is not None:
+        if not self.settings.compiler == "clang" and self.options.pybind != "":
             self.requires("pybind11/2.5.0@aquaveo/testing")
         if self.settings.os == 'Macos':
             # Use conan-center-index syntax for Mac
