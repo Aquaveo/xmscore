@@ -56,7 +56,7 @@ if __name__ == "__main__":
         if (not settings['compiler'] == "Visual Studio" or int(settings['compiler.version']) > 12) \
                 and settings['arch'] == "x86_64" and settings['build_type'] != 'Debug':
             pybind_options = dict(options)
-            pybind_options.update({'xmscore:pybind': True})
+            pybind_options.update({'xmscore:pybind': python_target_version})
             pybind_updated_builds.append([settings, pybind_options, env_vars, build_requires])
 
         pybind_updated_builds.append([settings, options, env_vars, build_requires])
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     testing_updated_builds = []
     for settings, options, env_vars, build_requires, _ in builder.items:
         # testing option - can't do testing with xms or pybind builds
-        if not options.get('xmscore:xms', False) and not options.get('xmscore:pybind', False):
+        if not options.get('xmscore:xms', False) and not options.get('xmscore:pybind', None):
             testing_options = dict(options)
             testing_options.update({'xmscore:testing': True})
             testing_updated_builds.append([settings, testing_options, env_vars, build_requires])
