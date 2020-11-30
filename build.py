@@ -51,6 +51,8 @@ if __name__ == "__main__":
                 settings.update({'cppstd': '17'})
 
     pybind_updated_builds = []
+    if python_target_version == "3.6.8":
+        python_target_version = "3.6"
     for settings, options, env_vars, build_requires, _ in builder.items:
         # pybind option
         if (not settings['compiler'] == "Visual Studio" or int(settings['compiler.version']) > 12) \
