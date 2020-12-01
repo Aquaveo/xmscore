@@ -116,7 +116,7 @@ export PATH_TO_PYTHON_PACKAGE=$(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH
 cp -r ${PATH_TO_PYTHON_PACKAGE}/* $(dirname $SPHINX_CONF)/
 ls ${PATH_TO_PYTHON_PACKAGE}
 ls $(dirname $SPHINX_CONF)
-# make a directory to hold the python documenation
+# make a directory to hold the python documentation
 mkdir $(dirname $DOXYFILE)/pydocs
 # build the documentation
 sphinx-build -b html . $(dirname $DOXYFILE)/html/pydocs
