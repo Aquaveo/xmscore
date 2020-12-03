@@ -185,7 +185,7 @@ jobs:
       CONAN_REMOTES: https://conan.aquaveo.com
       CONAN_BUILD_TYPES: ${{ matrix.build_type }}
       CONAN_GCC_VERSIONS: ${{ matrix.compiler-version }}
-      CONAN_DOCKER_IMAGE: docker.aquaveo.com/aquaveo/conan-docker/conan-gcc${{ matrix.compiler-version }}:py36
+      CONAN_DOCKER_IMAGE: docker.aquaveo.com/aquaveo/conan-docker/conan-gcc${{ matrix.compiler-version }}-py${{ matrix.python-version }}:v1.0
       # Aquapi Variables
       AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
       AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
