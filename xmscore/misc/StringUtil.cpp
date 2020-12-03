@@ -1758,9 +1758,6 @@ void StringUtilUnitTests::test_STRstd() {
       xms::STRstd(0.0, 15, 15, xms::STR_FULLWIDTH | xms::STR_USEMAXPREC);
   std::string base = "            0.0";
   TS_ASSERT_EQUALS(base, out);
-
-  out = xms::STRstd(1e25, -1);
-  TS_ASSERT_EQUALS(out, "1.0e+025");
 } // StringUtilUnitTests::test_STRstd
 //------------------------------------------------------------------------------
 /// \brief Test the Prec utility.
