@@ -205,6 +205,7 @@ class XmscoreConan(ConanFile):
         # Pybind if not clang
         if not self.settings.compiler == "clang" and self.options.pybind:
             self.requires("pybind11/2.5.0@aquaveo/testing")
-        if self.settings.os == 'Macos':
-            # Use conan-center-index syntax for Mac
-            self.requires('bzip2/1.0.8')
+        # zlib and bzip2 are required by boost. They used to get pulled automatically from conan-center, but something
+        # changed and we now need to explicitly list them as requirements using the new style notation.
+        self.requires('zlib/1.2.11')
+        self.requires('bzip2/1.0.8')
