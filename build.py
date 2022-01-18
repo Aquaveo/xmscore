@@ -67,5 +67,8 @@ if __name__ == "__main__":
             testing_updated_builds.append([settings, testing_options, env_vars, build_requires])
         testing_updated_builds.append([settings, options, env_vars, build_requires])
     builder.builds = testing_updated_builds
+    
+    # Require both xms and typedef, or neither.
+    builder.remove_build_if(lambda build: build.options['xms'] != (build.options['wchar_t'] == 'typedef'))
 
     builder.run()
