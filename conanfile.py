@@ -205,14 +205,7 @@ class XmscoreConan(ConanFile):
 
     def requirements(self):
         """Requirements."""
-        if self.settings.compiler == 'Visual Studio' and 'MD' in str(self.settings.compiler.runtime):
-            self.requires("boost/1.74.0@aquaveo/testing")  # Use legacy wchar_t setting for XMS
-        else:
-            self.requires("boost/1.74.0@aquaveo/stable")
+        self.requires("boost/1.74.0.2@aquaveo/stable")
         # Pybind if not clang
         if not self.settings.compiler == "clang" and self.options.pybind:
             self.requires("pybind11/2.5.0@aquaveo/testing")
-        # zlib and bzip2 are required by boost. They used to get pulled automatically from conan-center, but something
-        # changed and we now need to explicitly list them as requirements using the new style notation.
-        self.requires('zlib/1.2.11')
-        self.requires('bzip2/1.0.8')
