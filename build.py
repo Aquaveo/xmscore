@@ -9,7 +9,7 @@ from cpt.packager import ConanMultiPackager
 if __name__ == "__main__":
     # ConanPackageTools
     # See: https://github.com/conan-io/conan-package-tools/blob/develop/README.md
-    builder = ConanMultiPackager(build_all_options_values=['xmscore:pybind', 'xmscore:testing', 'xmscore:wchar_t')
+    builder = ConanMultiPackager(build_all_options_values=['xmscore:pybind', 'xmscore:testing', 'xmscore:wchar_t'])
     builder.add_common_builds()
 
     # Add environment variables to build definitions
