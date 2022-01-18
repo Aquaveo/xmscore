@@ -15,13 +15,11 @@ class XmscoreConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {
         "wchar_t": ['typedef', 'builtin'],
-        "xms": [True, False],
         "pybind": [True, False],
         "testing": [True, False],
     }
     default_options = {
         'wchar_t': 'builtin',
-        'xms': False,
         'pybind': False,
         'testing': False,
     }
@@ -35,8 +33,6 @@ class XmscoreConan(ConanFile):
         Configure the options for the conan class.
         """
         self.output.info("----- RUNNING CONFIGURE_OPTIONS()")
-        if self.settings.os != "Windows":
-            del self.options.xms
 
         if self.settings.build_type != "Release":
             del self.options.pybind
@@ -80,12 +76,6 @@ class XmscoreConan(ConanFile):
         self.output.info("----- RUNNING BUILD()")
         cmake = CMake(self)
 
-        cmake.definitions['USE_TYPEDEF_WCHAR_T'] = (self.options.wchar_t == 'typedef')
-
-        # If this is Visual Studio Version 12 Then it is an XMS Build
-        if self.settings.compiler == 'Visual Studio':
-            cmake.definitions["XMS_BUILD"] = self.options.xms
-
         # CxxTest doesn't play nice with PyBind. Also, it would be nice to not
         # have tests in release code. Thus, if we want to run tests, we will
         # build a test version (without python), run the tests, and then (on
@@ -93,6 +83,7 @@ class XmscoreConan(ConanFile):
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
         cmake.definitions["BUILD_TESTING"] = self.options.testing
         cmake.definitions["XMS_TEST_PATH"] = "test_files"
+        cmake.definitions['USE_TYPEDEF_WCHAR_T'] = (self.options.wchar_t == 'typedef')
 
         # Version Info
         cmake.definitions["XMS_VERSION"] = '{}'.format(self.version)

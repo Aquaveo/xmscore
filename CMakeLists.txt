@@ -58,11 +58,7 @@ if(WIN32)
     add_definitions(/Zc:wchar_t-)  # Treat wchar_t as a typedef
   endif()
 
-  if(XMS_BUILD)
-    add_definitions(/D _WIN32_WINNT=0x0501)  # Windows XP and higher
-  else(NOT XMS_BUILD)
-    add_definitions(/D BOOST_ALL_NO_LIB)
-  endif()
+  add_definitions(/D BOOST_ALL_NO_LIB)
 
   if(USES_MT)
     set(CompilerFlags
