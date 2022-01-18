@@ -70,6 +70,8 @@ class XmscoreConan(ConanFile):
         if s_compiler == "apple-clang" and s_os == 'Macos' \
                 and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
+        
+        self.options['boost'].wchar_t = self.options.wchar_t
 
     def build(self):
         """
