@@ -73,6 +73,8 @@ class XmscoreConan(ConanFile):
         self.output.info("----- RUNNING BUILD()")
         cmake = CMake(self)
 
+        cmake.definitions['USE_TYPEDEF_WCHAR_T'] = self.options.xms
+
         # If this is Visual Studio Version 12 Then it is an XMS Build
         if self.settings.compiler == 'Visual Studio':
             cmake.definitions["XMS_BUILD"] = self.options.xms
