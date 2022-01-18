@@ -67,7 +67,7 @@ class XmscoreConan(ConanFile):
                 and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
         
-        if (self.options['boost'].wchar_t == 'typedef'
+        if (self.options.wchar_t == 'typedef'
                 and self.settings.compiler != 'Visual Studio'):
             raise ConanException('wchar_t==typedef is only supported for'
                                  'Visual Studio')
