@@ -14,11 +14,13 @@ class XmscoreConan(ConanFile):
     license = "FreeBSD Software License"
     settings = "os", "compiler", "build_type", "arch"
     options = {
+        "wchar_t": ['typedef', 'builtin'],
         "xms": [True, False],
         "pybind": [True, False],
         "testing": [True, False],
     }
     default_options = {
+        'wchar_t': 'builtin',
         'xms': False,
         'pybind': False,
         'testing': False,
@@ -37,7 +39,10 @@ class XmscoreConan(ConanFile):
             del self.options.xms
 
         if self.settings.build_type != "Release":
-            del self.option.pybind
+            del self.options.pybind
+        
+        if self.settings.compiler != 'Visual Studio':
+            del self.options.wchar_t
 
     def set_name(self):
         """
@@ -73,7 +78,7 @@ class XmscoreConan(ConanFile):
         self.output.info("----- RUNNING BUILD()")
         cmake = CMake(self)
 
-        cmake.definitions['USE_TYPEDEF_WCHAR_T'] = self.options.xms
+        cmake.definitions['USE_TYPEDEF_WCHAR_T'] = (self.options.wchar_t == 'typedef')
 
         # If this is Visual Studio Version 12 Then it is an XMS Build
         if self.settings.compiler == 'Visual Studio':
