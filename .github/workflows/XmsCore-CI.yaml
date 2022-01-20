@@ -297,6 +297,7 @@ jobs:
         python-version: [3.6.8]
         compiler-version: [16]
         build_type: [Release, Debug]
+        wchar_t: [builtin, typedef]
 
     env:
       # Library Variables
@@ -313,6 +314,7 @@ jobs:
       CONAN_REMOTES: https://conan.aquaveo.com
       CONAN_BUILD_TYPES: ${{ matrix.build_type }}
       CONAN_VISUAL_VERSIONS: ${{ matrix.compiler-version }}
+      CONAN_OPTIONS: xmscore:wchar_t=${{ matrix.wchar_t }}
       # Aquapi Variables
       AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
       AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
