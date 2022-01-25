@@ -1,4 +1,4 @@
-name: XmsCore-6.0
+name: XmsCore-5.0
 
 on: [push, pull_request]
 
@@ -54,9 +54,9 @@ jobs:
     env:
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 6.0.0
+      XMS_VERSION: 5.0.1
       # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
+      CONAN_REFERENCE: xmscore/5.0.1
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
@@ -173,9 +173,9 @@ jobs:
     env:
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 6.0.0
+      XMS_VERSION: 5.0.1
       # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
+      CONAN_REFERENCE: xmscore/5.0.1
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
@@ -302,9 +302,9 @@ jobs:
     env:
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 6.0.0
+      XMS_VERSION: 5.0.1
       # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
+      CONAN_REFERENCE: xmscore/5.0.1
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
