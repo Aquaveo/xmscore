@@ -1,0 +1,41 @@
+name: XmsCore-Documentation
+
+on: [push, pull_request]
+
+
+jobs:
+  build_documentation:
+    name: Build XmsCore Documentation
+    runs-on: ubuntu-18.04
+
+
+    steps:
+      # Checkout Sources
+      - name: Checkout Source
+        uses: actions/checkout@v2
+      # Setup Python
+      - name: Setup Python 3.6
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.6
+      # Install Python Dependencies
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install conan==1.41.0 conan-package-tools==0.35.1
+      # Get Tag Name
+      - name: Get Tag
+        id: gitTag
+        uses: little-core-labs/get-git-tag@v3.0.2
+      # Login to Aquaveo Docker
+      - name: Login to Aquaveo Docker
+        run: sudo docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_TOKEN }} docker.aquaveo.com
+        shell: bash
+      # Make documentation script runable
+      - name: Enable Documentation script
+        run: chmod +x generateDocumentationAndDeploy.sh
+        shell: bash
+      # Build and deploy documentation
+      - name: Build and Deploy Documentation
+        run: sudo docker run -v $PWD:/home/conan -e "BUILD_DIR=/home/conan" -e "BUILD_NUMBER=${{ github.run_number }}" -e "DEBIAN_FRONTEND=noninteractive" -e "GITHUB_COMMIT=${{ github.sha }}" -e "DOXYFILE=/home/conan/Doxygen/Doxyfile" -e "SPHINX_CONF=/home/conan/pydocs/source/conf.py" -e "GH_REPO_NAME=${GH_REPO_NAME}" -e "GH_REPO_REF=${GH_REPO_REF}" -e "GH_REPO_TOKEN=${GH_REPO_TOKEN}" -e "GIT_TAG=${{ steps.gitTag.outputs.tag }}" docker.aquaveo.com/aquaveo/conan-docker/conan-gcc6:py36 /bin/sh generateDocumentationAndDeploy.sh
+        shell: bash
