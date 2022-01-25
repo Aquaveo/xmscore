@@ -2,19 +2,20 @@
 ################################################################################
 # Title         : generateDocumentationAndDeploy.sh
 # Date created  : 2016/02/22
+# Date updated  : 2020/01/25
 # Notes         :
 __AUTHOR__="Aquaveo"
 # Preconditions:
 # - Packages doxygen doxygen-doc doxygen-latex doxygen-gui graphviz
 #   must be installed.
 # - Doxygen configuration file must have the destination directory empty and
-#   source code directory with a $(TRAVIS_BUILD_DIR) prefix.
+#   source code directory with a $(BUILD_DIR) prefix.
 # - An gh-pages branch should already exist. See below for more info on how to
 #   create a gh-pages branch.
 #
 # Required global variables:
-# - TRAVIS_BUILD_NUMBER : The number of the current build.
-# - TRAVIS_COMMIT       : The commit that the current build is testing.
+# - BUILD_NUMBER : The number of the current build.
+# - GITHUB_COMMIT       : The commit that the current build is testing.
 # - DOXYFILE            : The Doxygen configuration file.
 # - SPHINX_CONF         : The Sphinx configuration file.
 # - GH_REPO_NAME        : The name of the repository.
@@ -91,7 +92,7 @@ if [ -s 'doxy_warn.log' ]; then cat doxy_warn.log && exit 1; fi;
 # Back out if this is not a tag so we don't post - We can only build python docs
 # on tags because we won't have a python package until it is tagged with a 
 # specific version.
-if [ -z "${TRAVIS_TAG}" ]; then
+if [ -z "${GIT_TAG}" ]; then
   echo "Build not tagged. No Documentation will be uploaded"
   exit 0
 fi
@@ -109,7 +110,7 @@ cd $(dirname $SPHINX_CONF)
 # make a directory to get the conan package
 mkdir ./conan
 # get the conan package
-conan install -o xmscore:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmscore/${TRAVIS_TAG}@aquaveo/stable 
+conan install -o xmscore:pybind=True -s compiler.version=6 -s compiler.libcxx=libstdc++11 -if ./conan -g txt xmscore/${GIT_TAG}@aquaveo/stable 
 # get the path to the conan package
 export PATH_TO_PYTHON_PACKAGE=$(cat ./conan/conanbuildinfo.txt | grep PYTHONPATH.*xmscore | sed -r 's/^PYTHONPATH=\["(.*?)"\]$/\1/')
 # copy package into build directory
@@ -129,9 +130,9 @@ sphinx-build -b html . $(dirname $DOXYFILE)/html/pydocs
 # Doxygen and Sphinx did their work.
 cd $(dirname $DOXYFILE)
 if [ -d "html" ] && [ -f "html/index.html" ] && [ -f "html/pydocs/index.html" ]; then
-    mv xmscore.tag "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
-    mv html/* "$TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME/"
-    cd $TRAVIS_BUILD_DIR/code_docs/$GH_REPO_NAME
+    mv xmscore.tag "$BUILD_DIR/code_docs/$GH_REPO_NAME/"
+    mv html/* "$BUILD_DIR/code_docs/$GH_REPO_NAME/"
+    cd $BUILD_DIR/code_docs/$GH_REPO_NAME
     echo 'Uploading documentation to the gh-pages branch...'
     # Add everything in this directory (the Doxygen code documentation) to the
     # gh-pages branch.
@@ -141,7 +142,7 @@ if [ -d "html" ] && [ -f "html/index.html" ] && [ -f "html/pydocs/index.html" ];
 
     # Commit the added files with a title and description containing the Travis CI
     # build number and the GitHub commit reference that issued this build.
-    git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${TRAVIS_COMMIT}"
+    git commit -m "Deploy code docs to GitHub Pages Travis build: ${TRAVIS_BUILD_NUMBER}" -m "Commit: ${GITHUB_COMMIT}"
 
     # Force push to the remote gh-pages branch.
     # The ouput is redirected to /dev/null to hide any sensitive credential data
