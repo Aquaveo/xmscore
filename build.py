@@ -38,19 +38,20 @@ if __name__ == "__main__":
             })
             compiler_version = int(settings['compiler.version'])
             if compiler_version in [5, 6]:
-                settings.update({'cppstd': '14'})
+                settings.update({'compiler.cppstd': '14'})
             elif compiler_version == 7:
-                settings.update({'cppstd': '17'})
+                settings.update({'compiler.cppstd': '17'})
         elif settings['compiler'] == 'apple-clang':
-            settings.update({'cppstd': 'gnu17'})
+            settings.update({'compiler.cppstd': 'gnu17'})
         elif settings['compiler'] == 'Visual Studio':
-            settings.update({'cppstd': '17'})
+            settings.update({'compiler.cppstd': '17'})
 
     pybind_updated_builds = []
     for settings, options, env_vars, build_requires, _ in builder.items:
         # pybind option
+        # If any release build except VS2013
         if (not settings['compiler'] == "Visual Studio" or int(settings['compiler.version']) > 12) \
-                and settings['arch'] == "x86_64" and settings['build_type'] != 'Debug':
+                and settings['build_type'] == 'Release':
             pybind_options = dict(options)
             pybind_options.update({'xmscore:pybind': True})
             pybind_updated_builds.append([settings, pybind_options, env_vars, build_requires])
@@ -60,8 +61,8 @@ if __name__ == "__main__":
 
     testing_updated_builds = []
     for settings, options, env_vars, build_requires, _ in builder.items:
-        # testing option - can't do testing with xms or pybind builds
-        if not options.get('xmscore:xms', False) and not options.get('xmscore:pybind', False):
+        # testing option - can't do testing with wchar_t=typedef or pybind builds
+        if options.get('xmscore:wchar_t', 'typedef') != 'typedef' and not options.get('xmscore:pybind', False):
             testing_options = dict(options)
             testing_options.update({'xmscore:testing': True})
             testing_updated_builds.append([settings, testing_options, env_vars, build_requires])
