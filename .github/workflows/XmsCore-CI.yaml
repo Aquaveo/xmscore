@@ -287,7 +287,7 @@ jobs:
 # WINDOWS
 # ----------------------------------------------------------------------------------------------
   windows:
-    name: Visual Studio ${{ matrix.compiler-version }} (${{ matrix.build_type }}, ${{ matrix.python-version }}, Windows)
+    name: Visual Studio ${{ matrix.compiler-version }} (${{ matrix.build_type }}, ${{ matrix.python-version }}, ${{ matrix.wchar_t}} wchar_t, Windows)
     runs-on: ${{ matrix.platform }}
 
     strategy:
@@ -300,6 +300,7 @@ jobs:
         wchar_t: [builtin, typedef]
 
     env:
+      MATRIX_NAME: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}-${{ matrix.wchar_t }}
       # Library Variables
       LIBRARY_NAME: xmscore
       XMS_VERSION: 5.0.1
@@ -381,12 +382,12 @@ jobs:
       # Zip Packages
       - name: Zip Conan Packages
         run: |
-          tar czf ${{ github.workspace }}/${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+          tar czf ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
-          name: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}
-          path: ${{ github.workspace }}/${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+          name: ${{ env.MATRIX_NAME }}
+          path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -401,7 +402,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.git_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
-          asset_name: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+          asset_path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
+          asset_name: ${{ env.MATRIX_NAME }}.tar.gz
           asset_content_type: application/zip
         if: startsWith(github.ref, 'refs/tags/')
