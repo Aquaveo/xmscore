@@ -19,7 +19,7 @@ requires = [
 version = __version__
 
 setup(
-    python_requires='>=3.6',
+    python_requires='>=3.10',
     name='xmscore',
     version=version,
     packages=['xms.core', 'xms.core.misc', 'xms.core.filesystem'],

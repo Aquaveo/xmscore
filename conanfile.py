@@ -36,7 +36,7 @@ class XmscoreConan(ConanFile):
 
         if self.settings.build_type != "Release":
             del self.options.pybind
-        
+
         if self.settings.compiler != 'Visual Studio':
             del self.options.wchar_t
 
@@ -66,7 +66,7 @@ class XmscoreConan(ConanFile):
         if s_compiler == "apple-clang" and s_os == 'Macos' \
                 and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
-        
+
         if (self.options.wchar_t == 'typedef'
                 and self.settings.compiler != 'Visual Studio'):
             raise ConanException('wchar_t==typedef is only supported for'
@@ -92,7 +92,7 @@ class XmscoreConan(ConanFile):
 
         # Version Info
         cmake.definitions["XMS_VERSION"] = '{}'.format(self.version)
-        cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get("PYTHON_TARGET_VERSION", "3.6")
+        cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get("PYTHON_TARGET_VERSION", "3.10")
 
         cmake.configure(source_folder=".")
         cmake.build()

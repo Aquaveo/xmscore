@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     # Add environment variables to build definitions
     xms_version = os.getenv('XMS_VERSION', None)
-    python_target_version = os.getenv('PYTHON_TARGET_VERSION', "3.6")
+    python_target_version = os.getenv('PYTHON_TARGET_VERSION', "3.10")
     release_python = os.getenv('RELEASE_PYTHON', 'False')
     aquapi_username = os.getenv('AQUAPI_USERNAME', None)
     aquapi_password = os.getenv('AQUAPI_PASSWORD', None)
@@ -67,5 +67,5 @@ if __name__ == "__main__":
             testing_updated_builds.append([settings, testing_options, env_vars, build_requires])
         testing_updated_builds.append([settings, options, env_vars, build_requires])
     builder.builds = testing_updated_builds
-    
+
     builder.run()
