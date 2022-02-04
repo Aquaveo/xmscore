@@ -206,4 +206,4 @@ class XmscoreConan(ConanFile):
         self.requires("boost/1.74.0.3@aquaveo/stable")
         # Pybind if not clang
         if not self.settings.compiler == "clang" and self.options.pybind:
-            self.requires("pybind11/2.5.0@aquaveo/testing")
+            self.requires("pybind11/2.9.1@aquaveo/testing")
