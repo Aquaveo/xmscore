@@ -293,7 +293,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [windows-latest]
+        platform: [windows-2019]
         python-version: ['3.10']
         compiler-version: [16]
         build_type: [Release, Debug]
