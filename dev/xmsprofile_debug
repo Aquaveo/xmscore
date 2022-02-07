@@ -4,8 +4,9 @@ os_build=Windows
 arch=x86_64
 arch_build=x86_64
 compiler=Visual Studio
-compiler.version=12
+compiler.version=16
 build_type=Debug
+cppstd=17
 [options]
 xmscore:xms=True
 [build_requires]
