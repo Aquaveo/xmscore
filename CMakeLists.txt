@@ -116,6 +116,7 @@ link_directories(${EXT_LIB_DIRS})
 # Sources
 set(xmscore_sources
   xmscore/dataio/daStreamIo.cpp
+  xmscore/locale/locale.cpp
   xmscore/math/math.cpp
   xmscore/misc/DynBitset.cpp
   xmscore/misc/HeaderCheck.cpp
@@ -132,6 +133,7 @@ set(xmscore_sources
 
 set(xmscore_headers
   xmscore/dataio/daStreamIo.h
+  xmscore/locale/locale.h
   xmscore/math/math.h
   xmscore/misc/base_macros.h
   xmscore/misc/boost_defines.h
