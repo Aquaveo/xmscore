@@ -58,7 +58,7 @@ template <typename First>
 void stFormat(std::string& a_format, const First& a_first)
 {
   boost::locale::format formatter(a_format);
-  stFormatHelper(formatter, a_rest...);
+  stFormatHelper(formatter, a_first);
   a_format = formatter.str();
 } // stFormat
 
