@@ -76,6 +76,34 @@ void stFormat(std::string& a_format, const First& a_first, const Rest&... a_rest
   a_format = formatter.str();
 } // stFormat
 
+//------------------------------------------------------------------------------
+/// \brief Same as stFormat, but using the C locale. Used for untranslatable
+///        strings.
+/// \param a_format: A format string.
+/// \param a_first: An object to insert into the format string.
+//------------------------------------------------------------------------------
+template <typename First>
+void stCFormat(std::string& a_format, const First& a_first)
+{
+  boost::locale::format formatter(a_format);
+  stFormatHelper(formatter, a_first);
+  a_format = formatter.str(std::locale("C"));
+} // stCFormat
+
+//------------------------------------------------------------------------------
+/// \brief A multi-parameter overload.
+/// \param a_format: A format string.
+/// \param a_first: The first object to insert into the string.
+/// \param a_rest: One or more other objects to be inserted into the string.
+//------------------------------------------------------------------------------
+template <typename First, typename... Rest>
+void stCFormat(std::string& a_format, const First& a_first, const Rest&... a_rest)
+{
+  boost::locale::format formatter(a_format);
+  stFormatHelper(formatter, a_first, a_rest...);
+  a_format = formatter.str(std::locale("C"));
+} // stCFormat
+
 std::string stTranslate(const char* a_message, const char* a_domain);
 void stBindTextDomain(const std::string& a_domain, const std::string& a_messagesPath);
 
