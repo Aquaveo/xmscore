@@ -20,6 +20,7 @@
 #endif // ifdef CXX_TEST
 
 // 5. Shared code headers
+#include <xmscore/locale/locale.h>
 #include <xmscore/points/ptsfwd.h>
 #include <xmscore/stl/utility.h>
 
@@ -142,29 +143,27 @@ namespace xms
 //------------------------------------------------------------------------------
 /// \brief Used to compare to vectors and give useful output information
 //------------------------------------------------------------------------------
-#define _TS_ASSERT_EQUALS_VEC(f, l, a, b)                                                    \
-  {                                                                                          \
-    if (a.size() != b.size())                                                                \
-    {                                                                                        \
-      std::stringstream msg;                                                                 \
-      msg << "Incorrect size Expecting size: " << a.size() << " Found size: " << b.size();   \
-      _TS_FAIL(f, l, msg.str().c_str());                                                     \
-    }                                                                                        \
-    else                                                                                     \
-    {                                                                                        \
-      for (size_t iUnique = 0; iUnique < a.size(); ++iUnique)                                \
-      {                                                                                      \
-        if (a[iUnique] != b[iUnique])                                                        \
-        {                                                                                    \
-          std::stringstream msg;                                                             \
-          msg << "Incorrect value at position : " << iUnique << " Expecting: " << a[iUnique] \
-              << " Found: " << b[iUnique];                                                   \
-          _TS_FAIL(f, l, msg.str().c_str());                                                 \
-        }                                                                                    \
-      }                                                                                      \
-    }                                                                                        \
-  \
-}
+#define _TS_ASSERT_EQUALS_VEC(f, l, a, b)                                                      \
+  {                                                                                            \
+    if (a.size() != b.size())                                                                  \
+    {                                                                                          \
+      std::string msg = N_("Incorrect size Expecting size: {1} Found size: {2}");              \
+      xms::stCFormat(msg, a.size(), b.size());                                                 \
+      _TS_FAIL(f, l, msg.c_str());                                                             \
+    }                                                                                          \
+    else                                                                                       \
+    {                                                                                          \
+      for (size_t iUnique = 0; iUnique < a.size(); ++iUnique)                                  \
+      {                                                                                        \
+        if (a[iUnique] != b[iUnique])                                                          \
+        {                                                                                      \
+          std::string msg = N_("Incorrect value at position : {1} Expecting: {2} Found: {3}"); \
+          xms::stCFormat(msg, iUnique, a[iUnique], b[iUnique]);                                \
+          _TS_FAIL(f, l, msg.c_str());                                                         \
+        }                                                                                      \
+      }                                                                                        \
+    }                                                                                          \
+  }
 //------------------------------------------------------------------------------
 /// \brief Used to compare to vectors and give useful output information
 //------------------------------------------------------------------------------
@@ -173,11 +172,11 @@ namespace xms
 //------------------------------------------------------------------------------
 /// \brief Fails if \a pointer is null.
 //------------------------------------------------------------------------------
-#define _TS_REQUIRE_NOT_NULL(f, l, pointer)     \
-  if (pointer == NULL)                          \
-  {                                             \
-    _TS_FAIL(f, l, "Unexpected NULL pointer."); \
-    return;                                     \
+#define _TS_REQUIRE_NOT_NULL(f, l, pointer)         \
+  if (pointer == NULL)                              \
+  {                                                 \
+    _TS_FAIL(f, l, N_("Unexpected NULL pointer.")); \
+    return;                                         \
   }
 //------------------------------------------------------------------------------
 /// \brief Fails if \a pointer is null.
@@ -287,9 +286,9 @@ bool ttAssertDeltaVec(const char* f,
   bool ok = true;
   if (a.size() != b.size())
   {
-    std::stringstream msg;
-    msg << "Incorrect size (" << a.size() << " != " << b.size() << ")";
-    _TS_FAIL(f, l, msg.str().c_str());
+    std::string msg = N_("Incorrect size ({1} != {2})");
+    stCFormat(msg, a.size(), b.size());
+    _TS_FAIL(f, l, msg.c_str());
     ok = false;
   }
   else
@@ -298,11 +297,9 @@ bool ttAssertDeltaVec(const char* f,
     {
       if (!ttEqualWithinTolerance(a.at(i), b.at(i), delta))
       {
-        std::stringstream msg;
-        msg << "Incorrect value at position (" << i << "). "
-            << "(" << a.at(i) << " != " << b.at(i) << ")"
-            << " within delta (" << delta << ")";
-        _TS_FAIL(f, l, msg.str().c_str());
+        std::string msg = N_("Incorrect value at position ({1}). ({2} != {3}) within delta ({4})");
+        stCFormat(msg, i, a.at(i), b.at(i), delta);
+        _TS_FAIL(f, l, msg.c_str());
         ok = false;
       }
     }
@@ -328,9 +325,9 @@ bool ttAssertDeltaVec2D(const char* f,
   bool ok = true;
   if (a.size() != b.size())
   {
-    std::stringstream msg;
-    msg << "Incorrect size (" << a.size() << " != " << b.size() << ")";
-    _TS_FAIL(f, l, msg.str().c_str());
+    std::string msg = N_("Incorrect size ({1} != {2})");
+    stCFormat(msg, a.size(), b.size());
+    _TS_FAIL(f, l, msg.c_str());
     ok = false;
   }
   else
@@ -339,9 +336,9 @@ bool ttAssertDeltaVec2D(const char* f,
     {
       if (a.at(i).size() != b.at(i).size())
       {
-        std::stringstream msg;
-        msg << "Incorrect size (" << a.at(i).size() << " != " << b.at(i).size() << ")";
-        _TS_FAIL(f, l, msg.str().c_str());
+        std::string msg = N_("Incorrect size ({1} != {2})");
+        stCFormat(msg, a.at(i).size(), b.at(i).size());
+        _TS_FAIL(f, l, msg.c_str());
         ok = false;
       }
       else
@@ -350,11 +347,10 @@ bool ttAssertDeltaVec2D(const char* f,
         {
           if (!ttEqualWithinTolerance(a.at(i).at(j), b.at(i).at(j), delta))
           {
-            std::stringstream msg;
-            msg << "Incorrect value at position (" << i << ")(" << j << "). "
-                << "(" << a.at(i).at(j) << " != " << b.at(i).at(j) << ")"
-                << " within delta (" << delta << ")";
-            _TS_FAIL(f, l, msg.str().c_str());
+            std::string msg =
+              N_("Incorrect value at position ({1})({2}). ({3} != {4}) within delta ({5})");
+            stCFormat(msg, i, j, a.at(i).at(j), b.at(i).at(j), delta);
+            _TS_FAIL(f, l, msg.c_str());
             ok = false;
           }
         }
@@ -398,9 +394,9 @@ bool ttAssertEqualsVec2D(const char* f,
   bool ok = true;
   if (a.size() != b.size())
   {
-    std::stringstream msg;
-    msg << "Incorrect size (" << a.size() << " != " << b.size() << ")";
-    _TS_FAIL(f, l, msg.str().c_str());
+    std::string msg = N_("Incorrect size ({1} != {2})");
+    stCFormat(msg, a.size(), b.size());
+    _TS_FAIL(f, l, msg.c_str());
     ok = false;
   }
   else
@@ -409,9 +405,9 @@ bool ttAssertEqualsVec2D(const char* f,
     {
       if (a.at(i).size() != b.at(i).size())
       {
-        std::stringstream msg;
-        msg << "Incorrect size (" << a.at(i).size() << " != " << b.at(i).size() << ")";
-        _TS_FAIL(f, l, msg.str().c_str());
+        std::string msg = N_("Incorrect size ({1} != {2})");
+        stCFormat(msg, a.at(i).size(), b.at(i).size());
+        _TS_FAIL(f, l, msg.c_str());
         ok = false;
       }
       else
@@ -420,10 +416,9 @@ bool ttAssertEqualsVec2D(const char* f,
         {
           if (a.at(i).at(j) != b.at(i).at(j))
           {
-            std::stringstream msg;
-            msg << "Incorrect value at position (" << i << ")(" << j << "). "
-                << "(" << a.at(i).at(j) << " != " << b.at(i).at(j) << ")";
-            _TS_FAIL(f, l, msg.str().c_str());
+            std::string msg = N_("Incorrect value at position ({1})({2}). ({3} != {4})");
+            stCFormat(msg, i, j, a.at(i).at(j), b.at(i).at(j));
+            _TS_FAIL(f, l, msg.c_str());
             ok = false;
           }
         }
@@ -450,9 +445,9 @@ void ttAssertDeltaPt3d(const char* a_file,
 {
   if (!::xms::ttEqualPointsXYZ(a_pt1, a_pt2, a_delta))
   {
-    std::stringstream msg;
-    msg << "(" << a_pt1 << "), != (" << a_pt2 << ") within delta (" << a_delta << ")";
-    _TS_FAIL(a_file, a_line, msg.str().c_str());
+    std::string msg = N_("({1}), != ({2}) within delta ({3})");
+    stCFormat(msg, a_pt1, a_pt2, a_delta);
+    _TS_FAIL(a_file, a_line, msg.c_str());
   }
 } // ttAssertDeltaPt3d
 //------------------------------------------------------------------------------
@@ -473,9 +468,9 @@ void ttAssertDeltaPt2d(const char* a_file,
 {
   if (!::xms::ttEqualPointsXY(a_pt1, a_pt2, a_delta))
   {
-    std::stringstream msg;
-    msg << "(" << a_pt1 << "), != (" << a_pt2 << ") within delta (" << a_delta << ")";
-    _TS_FAIL(a_file, a_line, msg.str().c_str());
+    std::string msg = N_("({1}), != ({2}) within delta ({3})");
+    stCFormat(msg, a_pt1, a_pt2, a_delta);
+    _TS_FAIL(a_file, a_line, msg.c_str());
   }
 } // ttAssertDeltaPt2d
 //------------------------------------------------------------------------------
@@ -496,9 +491,9 @@ void ttAssertDeltaVecPt3d(const char* a_file,
 {
   if (a_pts1.size() != a_pts2.size())
   {
-    std::stringstream msg;
-    msg << "Incorrect size Expecting size: " << a_pts1.size() << " Found size: " << a_pts2.size();
-    _TS_FAIL(a_file, a_line, msg.str().c_str());
+    std::string msg = N_("Incorrect size Expecting size: {1} Found size: {2}");
+    stCFormat(msg, a_pts1.size(), a_pts2.size());
+    _TS_FAIL(a_file, a_line, msg.c_str());
   }
   else
   {
@@ -507,10 +502,9 @@ void ttAssertDeltaVecPt3d(const char* a_file,
       if (!::xms::ttEqualPointsXYZ(a_pts1.at(i).x, a_pts1.at(i).y, a_pts1.at(i).z, a_pts2.at(i).x,
                                    a_pts2.at(i).y, a_pts2.at(i).z, a_delta))
       {
-        std::stringstream msg;
-        msg << "Incorrect value at position : " << i << " Expecting: " << a_pts1.at(i)
-            << " Found: " << a_pts2.at(i);
-        _TS_FAIL(a_file, a_line, msg.str().c_str());
+        std::string msg = N_("Incorrect value at position : {1} Expecting: {2} Found: {3}");
+        stCFormat(msg, i, a_pts1.at(i), a_pts2.at(i));
+        _TS_FAIL(a_file, a_line, msg.c_str());
       }
     }
   }
@@ -533,9 +527,9 @@ void ttAssertDeltaVecPt2d(const char* a_file,
 {
   if (a_pts1.size() != a_pts2.size())
   {
-    std::stringstream msg;
-    msg << "Incorrect size Expecting size: " << a_pts1.size() << " Found size: " << a_pts2.size();
-    _TS_FAIL(a_file, a_line, msg.str().c_str());
+    std::string msg = N_("Incorrect size Expecting size: {1} Found size: {2}");
+    stCFormat(msg, a_pts1.size(), a_pts2.size());
+    _TS_FAIL(a_file, a_line, msg.c_str());
   }
   else
   {
@@ -544,10 +538,9 @@ void ttAssertDeltaVecPt2d(const char* a_file,
       if (!::xms::ttEqualPointsXY(a_pts1.at(i).x, a_pts1.at(i).y, a_pts2.at(i).x, a_pts2.at(i).y,
                                   a_delta))
       {
-        std::stringstream msg;
-        msg << "Incorrect value at position : " << i << " Expecting: " << a_pts1.at(i)
-            << " Found: " << a_pts2.at(i);
-        _TS_FAIL(a_file, a_line, msg.str().c_str());
+        std::string msg = N_("Incorrect value at position : {1} Expecting: {2} Found: {3}");
+        stCFormat(msg, i, a_pts1.at(i), a_pts2.at(i));
+        _TS_FAIL(a_file, a_line, msg.c_str());
       }
     }
   }
