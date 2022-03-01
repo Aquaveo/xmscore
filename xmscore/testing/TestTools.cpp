@@ -71,7 +71,7 @@ bool CheckXmLogFixture::setUp()
     xms::ttByPassMessages(1);
     std::string errors = XmLog::Instance().GetAndClearStackStr();
     TS_ASSERT_EQUALS(std::string(), errors);
-    return errors == "";
+    return errors.empty();
   }
   else
   {
@@ -90,7 +90,7 @@ bool CheckXmLogFixture::tearDown()
     std::string errors = XmLog::Instance().GetAndClearStackStr();
     TS_ASSERT_EQUALS(std::string(), errors);
     // if expected use TS_ASSERT_STACKED_ERRORS
-    return errors == "";
+    return errors.empty();
   }
   else
   {
@@ -285,14 +285,14 @@ void ttGetTestFilePaths(const std::string& a_path,
   // see if there is a different base file for mac os x
   if (!foundBase)
   {
-    a_baseFilePath = a_path + a_fileBase + "_baseMacOsX" + a_extension;
+    a_baseFilePath = a_path + a_fileBase + N_("_baseMacOsX") + a_extension;
     foundBase = iFindTestFile(a_baseFilePath);
   }
 #elif BOOST_OS_LINUX
   // see if there is a different base file for linux
   if (!foundBase)
   {
-    a_baseFilePath = a_path + a_fileBase + "_baseLinux" + a_extension;
+    a_baseFilePath = a_path + a_fileBase + N_("_baseLinux") + a_extension;
     foundBase = iFindTestFile(a_baseFilePath);
   }
 #endif
@@ -301,7 +301,7 @@ void ttGetTestFilePaths(const std::string& a_path,
   // see if there is a different base file for 64 bit
   if (!foundBase)
   {
-    a_baseFilePath = a_path + a_fileBase + "_base64" + a_extension;
+    a_baseFilePath = a_path + a_fileBase + N_("_base64") + a_extension;
     foundBase = iFindTestFile(a_baseFilePath);
   }
 #elif defined(ENV32BIT)
@@ -310,9 +310,9 @@ void ttGetTestFilePaths(const std::string& a_path,
 #error "Must define either ENV32BIT or ENV64BIT"
 #endif
   if (!foundBase)
-    a_baseFilePath = a_path + a_fileBase + "_base" + a_extension;
+    a_baseFilePath = a_path + a_fileBase + N_("_base") + a_extension;
 
-  a_outFilePath = a_path + a_fileBase + "_out" + a_extension;
+  a_outFilePath = a_path + a_fileBase + N_("_out") + a_extension;
 } // ttGetTestFilePaths
 //------------------------------------------------------------------------------
 /// \brief Returns true if the two files are equal.
@@ -330,18 +330,17 @@ bool ttTextFilesEqual(const std::string& a_file1,
   int lineCnt(1);
   if (!iOut.is_open() || !iBase.is_open())
   {
-    std::stringstream msg;
-    msg << "Unable to open file: "
-        << "\n";
+    std::string msg = N_("Unable to open file: \n{0}");
+    
     if (!iOut.is_open())
     {
-      msg << a_file1;
+      stCFormat(msg, a_file1);
     }
     else
     {
-      msg << a_file2;
+      stCFormat(msg, a_file2);
     }
-    a_message = msg.str();
+    a_message = msg;
     return false;
   }
   while (!iOut.eof() && !iBase.eof())
@@ -353,16 +352,14 @@ bool ttTextFilesEqual(const std::string& a_file1,
     lineBase.erase(lineBase.find_last_not_of("\n\r") + 1);
     if (lineOut != lineBase)
     {
-      std::stringstream msg;
-      msg << "Files different on line " << lineCnt << "."
-          << "\n"
-          << "File: " << a_file1 << "."
-          << "\n"
-          << lineOut << "\n"
-          << "File: " << a_file2 << "."
-          << "\n"
-          << lineBase << "\n";
-      a_message = msg.str();
+      std::string msg = N_(
+        "Files different on line {0}.\n"
+        "File: {1}.\n"
+        "{2}\n"
+        "File: {3}.\n"
+        "{4}\n");
+      stCFormat(msg, lineCnt, a_file1, lineOut, a_file2, lineBase);
+      a_message = msg;
       return false;
     }
     lineCnt++;
@@ -414,21 +411,20 @@ void ttStreamsEqual(const std::string& a_src,
 
     if (line1 != line2)
     {
-      std::stringstream msg;
-
-      msg << "Streams different on line " << line_count << ".\n";
-      msg << "Stream1:  \"" << line1 << "\"\n";
-      msg << "Stream2:  \"" << line2 << "\"\n";
-
-      _TS_FAIL(a_src.c_str(), a_line, msg.str().c_str());
+      std::string msg = N_(
+        "Streams different on line {1}.\n"
+        "Stream1:  \"{2}\"\n"
+        "Stream2:  \"{3}\"\n");
+      stCFormat(msg, line_count, line1, line2);
+      _TS_FAIL(a_src.c_str(), a_line, msg.c_str());
     }
 
     ++line_count;
   }
 
-  if ((a_strm1.eof() && !a_strm2.eof()) || (!a_strm1.eof() && a_strm2.eof()))
+  if (!a_strm1.eof() || !a_strm2.eof())
   {
-    _TS_FAIL(a_src.c_str(), a_line, "Streams of different lengths");
+    _TS_FAIL(a_src.c_str(), a_line, N_("Streams of different lengths"));
   }
 } // ttStreamsEqual
 //------------------------------------------------------------------------------
