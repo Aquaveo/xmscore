@@ -75,10 +75,13 @@ typedef std::vector<VecPt3d2d> VecPt3d3d; ///< short rename
 template <class _T>
 std::ostream& operator<<(std::ostream& a_output, const std::vector<_T>& a_value)
 {
-  a_output << ",size=" << a_value.size();
+  std::string header = N_(",size={1}");
+  stCFormat(header, a_value.size());
   for (unsigned int ii = 0; ii < a_value.size(); ++ii)
   {
-    a_output << "," << ii << "=" << a_value[ii];
+    std::string value = N_(",{0}={1}");
+    stCFormat(value, ii, a_value[i]);
+    a_output << value;
   }
   return a_output;
 }

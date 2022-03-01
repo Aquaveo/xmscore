@@ -53,7 +53,7 @@ void stFormatHelper(boost::locale::format& a_formatter, First& a_first, Rest&...
 /// \param a_format: A format string. Uses the boost::locale::format
 ///                  specification. See
 ///                  https://www.boost.org/doc/libs/1_74_0/libs/locale/doc/html/localized_text_formatting.html
-///                  This string will have placeholders replaced.
+///                  This string will be mutated to replace placeholders.
 /// \param a_first: An object to insert into the format string.
 //------------------------------------------------------------------------------
 template <typename First>
