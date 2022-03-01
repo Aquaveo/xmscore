@@ -334,25 +334,25 @@ void PtUnitTests::testStreams()
     std::stringstream sstrm;
     Pt2i pt(1, 2);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1,2"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1,2"));
   }
   {
     std::stringstream sstrm;
     Pt2f pt(1.5, 2.5);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1.5,2.5"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1.5,2.5"));
   }
   {
     std::stringstream sstrm;
     Pt2d pt(1.5, 2.5);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1.5,2.5"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1.5,2.5"));
   }
   {
     std::stringstream sstrm;
     Pt2<char> pt('1', '2');
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1,2"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1,2"));
   }
 
   // Pt3<>
@@ -360,25 +360,25 @@ void PtUnitTests::testStreams()
     std::stringstream sstrm;
     Pt3i pt(1, 2, 3);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1,2,3"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1,2,3"));
   }
   {
     std::stringstream sstrm;
     Pt3f pt(1.5, 2.5, 3.5);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1.5,2.5,3.5"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1.5,2.5,3.5"));
   }
   {
     std::stringstream sstrm;
     Pt3d pt(1.5, 2.5, 3.5);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1.5,2.5,3.5"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1.5,2.5,3.5"));
   }
   {
     std::stringstream sstrm;
     Pt3<char> pt('1', '2', '3');
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1,2,3"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1,2,3"));
   }
 
   // Pt4<>
@@ -386,25 +386,25 @@ void PtUnitTests::testStreams()
     std::stringstream sstrm;
     Pt4i pt(1, 2, 3, 4);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1,2,3,4"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1,2,3,4"));
   }
   {
     std::stringstream sstrm;
     Pt4f pt(1.5, 2.5, 3.5, 4.5);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1.5,2.5,3.5,4.5"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1.5,2.5,3.5,4.5"));
   }
   {
     std::stringstream sstrm;
     Pt4d pt(1.5, 2.5, 3.5, 4.5);
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1.5,2.5,3.5,4.5"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1.5,2.5,3.5,4.5"));
   }
   {
     std::stringstream sstrm;
     Pt4<char> pt('1', '2', '3', '4');
     sstrm << pt;
-    TS_ASSERT_EQUALS(sstrm.str(), M_("1,2,3,4"));
+    TS_ASSERT_EQUALS(sstrm.str(), N_("1,2,3,4"));
   }
 
   // operator>>
@@ -412,28 +412,28 @@ void PtUnitTests::testStreams()
   // Pt2<>
   {
     std::stringstream sstrm;
-    sstrm << M_("1,2");
+    sstrm << N_("1,2");
     Pt2i pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt2i(1, 2));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1.5,2.5");
+    sstrm << N_("1.5,2.5");
     Pt2f pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt2f(1.5, 2.5));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1.5,2.5");
+    sstrm << N_("1.5,2.5");
     Pt2d pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt2d(1.5, 2.5));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1,2");
+    sstrm << N_("1,2");
     Pt2<char> pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt2<char>('1', '2'));
@@ -442,28 +442,28 @@ void PtUnitTests::testStreams()
   // Pt3<>
   {
     std::stringstream sstrm;
-    sstrm << M_("1,2,3");
+    sstrm << N_("1,2,3");
     Pt3i pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt3i(1, 2, 3));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1.5,2.5,3.5");
+    sstrm << N_("1.5,2.5,3.5");
     Pt3f pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt3f(1.5, 2.5, 3.5));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1.5,2.5,3.5");
+    sstrm << N_("1.5,2.5,3.5");
     Pt3d pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt3d(1.5, 2.5, 3.5));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1,2,3");
+    sstrm << N_("1,2,3");
     Pt3<char> pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt3<char>('1', '2', '3'));
@@ -472,28 +472,28 @@ void PtUnitTests::testStreams()
   // Pt4<>
   {
     std::stringstream sstrm;
-    sstrm << M_("1,2,3,4");
+    sstrm << N_("1,2,3,4");
     Pt4i pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt4i(1, 2, 3, 4));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1.5,2.5,3.5,4.5");
+    sstrm << N_("1.5,2.5,3.5,4.5");
     Pt4f pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt4f(1.5, 2.5, 3.5, 4.5));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1.5,2.5,3.5,4.5");
+    sstrm << N_("1.5,2.5,3.5,4.5");
     Pt4d pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt4d(1.5, 2.5, 3.5, 4.5));
   }
   {
     std::stringstream sstrm;
-    sstrm << M_("1,2,3,4");
+    sstrm << N_("1,2,3,4");
     Pt4<char> pt;
     sstrm >> pt;
     TS_ASSERT_EQUALS(pt, Pt4<char>('1', '2', '3', '4'));

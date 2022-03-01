@@ -149,6 +149,11 @@ void stBindTextDomain(const std::string& a_domain, const std::string& a_messages
 #define _(a_message) stTranslate(a_message, LOCALE_DOMAIN)
 
 // Used to mark string literals that cannot be translated.
-#define M_(a_message) a_message
+// 
+// When you see an unmarked string, it's ambiguous why it's unmarked. It might
+// be an untranslatable string, or maybe it's a bug and it *should* be marked.
+// Use this marker to make it explicit that a string should *not* be
+// translated. Then any unmarked strings can be assumed to be bugs.
+#define N_(a_message) a_message
 
 } // namespace xms
