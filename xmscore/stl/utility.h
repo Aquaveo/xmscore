@@ -37,15 +37,23 @@ std::ostream& operator<<(std::ostream& a_output, const std::pair<_T, _U>& a_valu
 template <typename T>
 void VecToStream(std::stringstream& a_ss, const T& a_v, std::string a_label)
 {
-  // if (!a_v.empty() && !a_ss.str().empty()) { a_ss << ","; }
   for (size_t i = 0; i < a_v.size(); ++i)
   {
+    std::string value;
     if (i > 0)
-      a_ss << " ";
-    a_ss << a_v[i];
+    {
+      value = N_(" {1}");
+    }
+    else
+    {
+      value = N_("{1}");
+    }
+    stCFormat(value, a_v[i]);  
+    a_ss << value;
   }
-  a_ss << "=" << a_label << " ";
-  a_ss << "\n";
+  std::string label = N_("={1} \n");
+  stCFormat(label, a_label);
+  a_ss << label;
 } // VecToStream
 
 } // namespace xms {
