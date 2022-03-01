@@ -18,6 +18,7 @@
 
 // 5. Shared code headers
 #include <xmscore/misc/XmError.h>
+#include <xmscore/locale/locale.h>
 
 // 6. Non-shared code headers
 
@@ -170,9 +171,9 @@ public:
   //------------------------------------------------------------------------------
   void OnProgressStatus(int a_stackIndex, double a_fractionComplete) override
   {
-    std::ostringstream ss;
-    ss << "OnProgressStatus " << a_stackIndex << ": " << a_fractionComplete << '\n';
-    m_messages += ss.str();
+    std::string message = N_("OnProgressStatus {1}: {2}\n");
+    stCFormat(message, a_stackIndex, a_fractionComplete);
+    m_messages += message;
   }
   //------------------------------------------------------------------------------
   /// \brief Listen to when operation begins
@@ -182,9 +183,9 @@ public:
   int OnBeginOperationString(const std::string& a_operation) override
   {
     ++m_stackIndex;
-    std::ostringstream ss;
-    ss << "OnBeginOperationString " << a_operation << '\n';
-    m_messages += ss.str();
+    std::string message = N_("OnBeginOperationString {1}\n");
+    stCFormat(message, a_operation);
+    m_messages += message;
     return m_stackIndex;
   }
 
@@ -195,9 +196,9 @@ public:
   void OnEndOperation(int a_stackIndex) override
   {
     --m_stackIndex;
-    std::ostringstream ss;
-    ss << "OnEndOperation " << a_stackIndex << '\n';
-    m_messages += ss.str();
+    std::string message = N_("OnEndOperation {1}\n");
+    stCFormat(message, a_stackIndex);
+    m_messages += message;
   }
 
   //------------------------------------------------------------------------------
@@ -207,9 +208,9 @@ public:
   //------------------------------------------------------------------------------
   void OnUpdateMessage(int a_stackIndex, const std::string& a_message) override
   {
-    std::ostringstream ss;
-    ss << "OnUpdateMessage " << a_stackIndex << ": " << a_message << '\n';
-    m_messages += ss.str();
+    std::string message = N_("OnUpdateMessage {1}: {2}\n");
+    stCFormat(message, a_stackIndex, a_message);
+    m_messages += message;
   }
 
   std::string m_messages; ///< stored up messages
@@ -228,17 +229,17 @@ void ProgressUnitTests::testProgress()
   BSHP<MockProgressListener> listener(new MockProgressListener);
   ProgressListener::SetListener(listener);
   {
-    Progress p1("First progress");
+    Progress p1(N_("First progress"));
     p1.ProgressStatus(0.5);
     {
       {
-        Progress p2("Second progress");
+        Progress p2(N_("Second progress"));
         p2.ProgressStatus(0.25);
-        p2.UpdateMessage("Second progress message 2");
+        p2.UpdateMessage(N_("Second progress message 2"));
         p2.ProgressStatus(0.75);
       }
       {
-        Progress p3("Third progress");
+        Progress p3(N_("Third progress"));
         p3.SetItemCount(4);
         p3.CurrentItem(0);
         p3.CurrentItem(1);
@@ -249,7 +250,7 @@ void ProgressUnitTests::testProgress()
     p1.ProgressStatus(1.0);
   }
 
-  std::string expected =
+  std::string expected = N_(
     "OnBeginOperationString First progress\n"
     "OnProgressStatus 1: 0.5\n"
     "OnBeginOperationString Second progress\n"
@@ -264,7 +265,7 @@ void ProgressUnitTests::testProgress()
     "OnProgressStatus 2: 1\n"
     "OnEndOperation 2\n"
     "OnProgressStatus 1: 1\n"
-    "OnEndOperation 1\n";
+    "OnEndOperation 1\n");
   TS_ASSERT_EQUALS(expected, listener->m_messages);
   ProgressListener::SetListener(old);
 } // ProgressUnitTests::testProgress
