@@ -58,7 +58,7 @@ typedef std::multimap<std::string, int> MmapStrInt; ///< short rename
 template <class _T, class _U>
 std::ostream& operator<<(std::ostream& a_output, const std::map<_T, _U>& a_value)
 {
-  a_output << ",size=" << a_value.size();
+  a_output << N_(",size=") << a_value.size();
   // add loop here like std::vector
   return a_output;
 }
@@ -72,7 +72,7 @@ std::ostream& operator<<(std::ostream& a_output, const std::map<_T, _U>& a_value
 template <class _T, class _U>
 std::ostream& operator<<(std::ostream& a_output, const std::multimap<_T, _U>& a_value)
 {
-  a_output << ",size=" << a_value.size();
+  a_output << N_(",size=") << a_value.size();
   // add loop here like std::vector above
   return a_output;
 }
