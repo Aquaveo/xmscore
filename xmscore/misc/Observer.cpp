@@ -21,6 +21,7 @@
 #pragma warning(pop)
 
 // 5. Shared code headers
+#include <xmscore/locale/locale.h>
 
 // 6. Non-shared code headers
 
@@ -232,7 +233,8 @@ private:
   {
     m_percentComplete = a_percentComplete;
     int i = (int)(xms::Round(m_percentComplete * 100));
-    m_info << "Percent complete: " << i << "%.\n";
+    std::string message = N_( "Percent complete: {1}%.\n");
+    m_info << xms::stCFormat(message, i);
   }
   //------------------------------------------------------------------------------
   /// \param a_operation name of the operation being monitored
@@ -240,8 +242,11 @@ private:
   virtual void OnBeginOperationString(const std::string& a_operation) override
   {
     if (!m_info.str().empty())
-      m_info << "\n";
-    m_info << "Begin operation: " << a_operation << ".\n";
+    {
+      m_info << '\n';
+    }
+    std::string message = N_("Begin operation: {1}.\n");
+    m_info << xms::stCFormat(message, a_operation);
   }
   //------------------------------------------------------------------------------
   /// \param a_elapsedSeconds The elapsed time since the operation began.
@@ -250,7 +255,8 @@ private:
   {
     m_elapsedSeconds = a_elapsedSeconds;
     int i = (int)(xms::Round(m_elapsedSeconds * 10));
-    m_info << "Elapsed seconds: 0." << i << ".\n";
+    std::string message = N_("Elapsed seconds: 0.{1}.\n");
+    m_info << xms::stCFormat(message, i);
   }
 
   //------------------------------------------------------------------------------
@@ -261,7 +267,8 @@ private:
   {
     m_remainingSeconds = a_secondsRemaining;
     int i = (int)(xms::Round(m_remainingSeconds * 10));
-    m_info << "Time remaining (seconds): 0." << i << ".\n";
+    std::string message = N_("Time remaining (seconds): 0.{1}.\n");
+    m_info << xms::stCFormat(message, i);
   }
 };
 /// \brief mock meshing class to show how the observer works
@@ -302,21 +309,21 @@ public:
     boost::timer::cpu_timer timer;
     int count = 0;
 
-    m_prog->BeginOperationString("Generating mesh points");
+    m_prog->BeginOperationString(N_("Generating mesh points"));
     for (int i = 0; i < 4; ++i)
     {
       WaitForNextTenthSecond(timer, count);
       m_prog->ProgressStatus((double)(i + 1) / 4);
     }
 
-    m_prog->BeginOperationString("Triangulating");
+    m_prog->BeginOperationString(N_("Triangulating"));
     for (int i = 0; i < 5; ++i)
     {
       WaitForNextTenthSecond(timer, count);
       m_prog->ProgressStatus((double)(i + 1) / 5);
     }
 
-    m_prog->BeginOperationString("Generating unstructured grid");
+    m_prog->BeginOperationString(N_("Generating unstructured grid"));
     for (int i = 0; i < 3; ++i)
     {
       WaitForNextTenthSecond(timer, count);
@@ -350,7 +357,7 @@ const CxxTest::TestGroup& ObserverIntermediateTests::group()
 void ObserverIntermediateTests::testTimeRemaining()
 {
   MockObserver o;
-  o.BeginOperationString("Test Operation");
+  o.BeginOperationString(N_("Test Operation"));
   boost::this_thread::sleep(boost::posix_time::millisec(100));
   o.ProgressStatus(.2);
   double remaining = (o.m_elapsedSeconds * .8) / .2;
@@ -373,7 +380,7 @@ void ObserverIntermediateTests::testMockObserver()
   m.PretendMeshing();
   // capture the output from the observer class and verify it
   std::string outStr(p->m_info.str());
-  std::string baseStr =
+  std::string baseStr = N_(
     "Begin operation: Generating mesh points.\n"
     "Percent complete: 25%.\n"
     "Elapsed seconds: 0.1.\n"
@@ -414,7 +421,7 @@ void ObserverIntermediateTests::testMockObserver()
     "Time remaining (seconds): 0.1.\n"
     "Percent complete: 100%.\n"
     "Elapsed seconds: 0.3.\n"
-    "Time remaining (seconds): 0.0.\n";
+    "Time remaining (seconds): 0.0.\n");
   TS_ASSERT_EQUALS(baseStr, outStr);
 } // ObserverIntermediateTests::testMockObserver
   //! [snip_test_Example_Observer]

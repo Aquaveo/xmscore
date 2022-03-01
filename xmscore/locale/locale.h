@@ -55,13 +55,15 @@ void stFormatHelper(boost::locale::format& a_formatter, First& a_first, Rest&...
 ///                  https://www.boost.org/doc/libs/1_74_0/libs/locale/doc/html/localized_text_formatting.html
 ///                  This string will be mutated to replace placeholders.
 /// \param a_first: An object to insert into the format string.
+/// \returns a_format.
 //------------------------------------------------------------------------------
 template <typename First>
-void stFormat(std::string& a_format, const First& a_first)
+std::string& stFormat(std::string& a_format, const First& a_first)
 {
   boost::locale::format formatter(a_format);
   stFormatHelper(formatter, a_first);
   a_format = formatter.str();
+  return a_format;
 } // stFormat
 
 //------------------------------------------------------------------------------
@@ -69,13 +71,15 @@ void stFormat(std::string& a_format, const First& a_first)
 /// \param a_format: A format string.
 /// \param a_first: The first object to insert into the string.
 /// \param a_rest: One or more other objects to be inserted into the string.
+/// \returns a_format.
 //------------------------------------------------------------------------------
 template <typename First, typename... Rest>
-void stFormat(std::string& a_format, const First& a_first, const Rest&... a_rest)
+std::string& stFormat(std::string& a_format, const First& a_first, const Rest&... a_rest)
 {
   boost::locale::format formatter(a_format);
   stFormatHelper(formatter, a_first, a_rest...);
   a_format = formatter.str();
+  return a_format;
 } // stFormat
 
 //------------------------------------------------------------------------------
@@ -83,13 +87,15 @@ void stFormat(std::string& a_format, const First& a_first, const Rest&... a_rest
 ///        strings.
 /// \param a_format: A format string.
 /// \param a_first: An object to insert into the format string.
+/// \returns a_format.
 //------------------------------------------------------------------------------
 template <typename First>
-void stCFormat(std::string& a_format, const First& a_first)
+std::string& stCFormat(std::string& a_format, const First& a_first)
 {
   boost::locale::format formatter(a_format);
   stFormatHelper(formatter, a_first);
   a_format = formatter.str(std::locale("C"));
+  return a_format;
 } // stCFormat
 
 //------------------------------------------------------------------------------
@@ -97,13 +103,15 @@ void stCFormat(std::string& a_format, const First& a_first)
 /// \param a_format: A format string.
 /// \param a_first: The first object to insert into the string.
 /// \param a_rest: One or more other objects to be inserted into the string.
+/// \returns a_format.
 //------------------------------------------------------------------------------
 template <typename First, typename... Rest>
-void stCFormat(std::string& a_format, const First& a_first, const Rest&... a_rest)
+std::string& stCFormat(std::string& a_format, const First& a_first, const Rest&... a_rest)
 {
   boost::locale::format formatter(a_format);
   stFormatHelper(formatter, a_first, a_rest...);
   a_format = formatter.str(std::locale("C"));
+  return a_format;
 } // stCFormat
 
 std::string stTranslate(const char* a_message, const char* a_domain);
