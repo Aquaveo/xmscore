@@ -1,5 +1,6 @@
 import gettext
 
+
 class Locale:
     """
     A localization class.
@@ -8,7 +9,6 @@ class Locale:
         """
         Initialize the Locale.
         """
-        self._locale = locale
         self._translation = None
 
     def __call__(self, message):
