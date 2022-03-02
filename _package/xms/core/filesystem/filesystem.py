@@ -11,6 +11,7 @@ import tempfile
 # 3. Aquaveo modules
 
 # 4. Local modules
+from xms.core.locale import null_translator as N_
 
 
 __copyright__ = "(C) Copyright Aquaveo 2019"
@@ -196,8 +197,8 @@ def temp_filename(dir='', suffix=''):
     if dir:  # If we call the next line with dir == '', it seems to use the working directory.
         file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, dir=dir, delete=True)
     else:
-        xms_temp = os.environ.get('XMS_PYTHON_APP_TEMP_DIRECTORY', 'unknown')
-        if xms_temp != 'unknown':
+        xms_temp = os.environ.get(N_('XMS_PYTHON_APP_TEMP_DIRECTORY'), N_('unknown'))
+        if xms_temp != N_('unknown'):
             file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, dir=xms_temp, delete=True)
         else:
             file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, delete=True)
@@ -225,7 +226,7 @@ def make_filename_unique(filepath):
     name, extension = os.path.splitext(name)
 
     for i in range(2, sys.maxsize):
-        unique_filename = os.path.join(path, f'{name}({i}){extension}')
+        unique_filename = os.path.join(path, N_(f'{name}({i}){extension}'))
         if not os.path.exists(unique_filename):
             return unique_filename
 

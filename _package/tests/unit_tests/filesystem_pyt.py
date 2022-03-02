@@ -11,6 +11,7 @@ import unittest
 
 # 4. Local modules
 from xms.core.filesystem import filesystem
+from xms.core.locale import N_
 
 __copyright__ = "(C) Copyright Aquaveo 2019"
 __license__ = "All rights reserved"
@@ -23,7 +24,7 @@ class FilesystemTests(unittest.TestCase):
         # 'C:\\temp\\dummy.ext.txt' doesn't work on linux
         str = os.path.join('C:', 'temp', 'dummy.txt')
         self.assertEqual(filesystem.file_prefix(str), 'dummy')
-        # 'C:\\temp\\dummy.ext.txt' doesn't work on linus
+        # 'C:\\temp\\dummy.ext.txt' doesn't work on linux
         str = os.path.join('C:', 'temp', 'dummy.ext.txt')
         self.assertEqual(filesystem.file_prefix(str), 'dummy.ext')
         self.assertEqual(filesystem.file_prefix('C:/temp/dummy.txt'), 'dummy')
@@ -50,7 +51,7 @@ class FilesystemTests(unittest.TestCase):
         d = tempfile.mkdtemp()
         os.environ['XMS_PYTHON_APP_TEMP_DIRECTORY'] = d
         f = filesystem.temp_filename()
-        os.environ.pop('XMS_PYTHON_APP_TEMP_DIRECTORY')
+        os.environ.pop(N_('XMS_PYTHON_APP_TEMP_DIRECTORY'))
         self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(d))
 
         shutil.rmtree(d)

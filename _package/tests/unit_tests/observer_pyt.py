@@ -4,8 +4,9 @@ Test InterpLinear_py.cpp.
 import time
 import unittest
 
+from xms.core.locale import Locale, null_translator as N_
 from xms.core.misc import Observer
-
+_ = Locale('xmscore')
 
 class MockObserver(Observer):
     """Mock Observer class for testing."""
@@ -111,7 +112,9 @@ class TestObserver(unittest.TestCase):
         """
         Test the on update message function.
         """
-        message = '21 jelly beans counted so far.'
+        # This doesn't really need translating, but it's a good
+        # test for message extraction.
+        message = _('21 jelly beans counted so far.')
         self.observer.update_message(message)
         self.assertEqual(message, self.observer.status['message'])
 
@@ -119,7 +122,7 @@ class TestObserver(unittest.TestCase):
         """
         Test the time remaining in seconds function.
         """
-        self.observer.begin_operation_string('Test Operation')
+        self.observer.begin_operation_string(N_('Test Operation'))
         time.sleep(0.1)
         self.observer.progress_status(0.2)
         remaining = self.observer.status['remaining_seconds']
@@ -131,7 +134,7 @@ class TestObserver(unittest.TestCase):
         """
         Test the time elapsed in seconds function.
         """
-        self.observer.begin_operation_string('Test Operation')
+        self.observer.begin_operation_string(N_('Test Operation'))
         time.sleep(0.1)
         self.observer.progress_status(0.2)
         base_time_elapsed = (self.observer.status['remaining_seconds'] * 0.2) / 0.8
@@ -185,7 +188,8 @@ class TestObserver(unittest.TestCase):
         """
         Test the update message function.
         """
-        message = '21 jelly beans counted so far.'
+        # Marked so the message extractor has something to extract
+        message = _('21 jelly beans counted so far.')
         self.observer.update_message(message)
         self.assertEqual(message, self.observer.status['message'])
 
