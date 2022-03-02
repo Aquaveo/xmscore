@@ -76,11 +76,15 @@ template <typename CharT, typename TraitsT>
 inline std::basic_ostream<CharT, TraitsT>& operator<<(std::basic_ostream<CharT, TraitsT>& strm,
                                                       xmlog::MessageTypeEnum lvl)
 {
-  static const char* const str[] = {"   info", "warning", "  error", "  debug"};
+  static const char* const str[] = {N_("   info"), N_("warning"), N_("  error"), N_("  debug")};
   if (static_cast<std::size_t>(lvl) < (sizeof(str) / sizeof(*str)))
+  {
     strm << str[lvl];
+  }
   else
+  {
     strm << static_cast<int>(lvl);
+  }
   return strm;
 }
 
@@ -94,14 +98,12 @@ BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT(xms_global_log,
 {
   boost::log::sources::severity_logger_mt<xmlog::MessageTypeEnum> lg;
   // Configure the logger here
-  lg.add_attribute("TimeStamp", boost::log::attributes::local_clock());
-  lg.add_attribute("Process", boost::log::attributes::current_process_name());
-  lg.add_attribute("Scope", boost::log::attributes::named_scope());
+  lg.add_attribute(N_("TimeStamp"), boost::log::attributes::local_clock());
+  lg.add_attribute(N_("Process"), boost::log::attributes::current_process_name());
+  lg.add_attribute(N_("Scope"), boost::log::attributes::named_scope());
   return lg;
 }
-BOOST_LOG_ATTRIBUTE_KEYWORD(severity, "Severity", xmlog::MessageTypeEnum)
-// BOOST_LOG_ATTRIBUTE_KEYWORD(file_name, "FileName", const char* const)
-// BOOST_LOG_ATTRIBUTE_KEYWORD(line_num, "LineNumber", int)
+BOOST_LOG_ATTRIBUTE_KEYWORD(severity, N_("Severity"), xmlog::MessageTypeEnum)
 
 /// Callback to return the name of the log file
 static XmLogFilenameCallback fg_logFilenameCallback;
@@ -196,7 +198,7 @@ void XmLog::Log(const char* const a_file,
   {
     m->m_firstRun = false;
     // Make sure the log file is created
-    XM_LOG(xmlog::debug, "Start Log");
+    XM_LOG(xmlog::debug, N_("Start Log"));
   }
 
   if (a_level == xmlog::debug)
@@ -271,7 +273,7 @@ std::string XmLog::LogFilename()
     if (fg_logPath.empty())
     {
       bfs::path p = bfs::temp_directory_path() / bfs::unique_path();
-      fg_logPath = p.string() + "debug.log";
+      fg_logPath = p.string() + N_("debug.log");
     }
     return fg_logPath;
   }
@@ -286,8 +288,7 @@ void XmLog::Impl::StackedErrToStream(std::ostream& a_os)
   {
     for (auto it = m_stackedMessages.begin(); it != m_stackedMessages.end(); it++)
     {
-      a_os << "---" << it->second << "\n"
-           << "\n";
+      a_os << N_("---") << it->second << N_("\n\n");
     }
     m_stackedMessages.clear();
   }
@@ -310,7 +311,7 @@ namespace xms
 //------------------------------------------------------------------------------
 void iTest_XM_LOG_debug()
 {
-  XM_LOG(xmlog::debug, "Debug Log Test");
+  XM_LOG(xmlog::debug, N_("Debug Log Test"));
 
   std::ifstream t(XmLog::LogFilename());
   std::string str;
@@ -320,16 +321,16 @@ void iTest_XM_LOG_debug()
   t.seekg(0, std::ios::beg);
 
   str.assign((std::istreambuf_iterator<char>(t)), std::istreambuf_iterator<char>());
-  TS_ASSERT(str.find("  debug]") != std::string::npos);
-  TS_ASSERT(str.find("Start Log") != std::string::npos);
-  TS_ASSERT(str.find("Debug Log Test") != std::string::npos);
+  TS_ASSERT(str.find(N_("  debug]")) != std::string::npos);
+  TS_ASSERT(str.find(N_("Start Log")) != std::string::npos);
+  TS_ASSERT(str.find(N_("Debug Log Test")) != std::string::npos);
 }
 //------------------------------------------------------------------------------
 /// \brief Run stackable log test.
 //------------------------------------------------------------------------------
 void iTest_XM_LOG_stackable()
 {
-  XM_LOG(xmlog::info, "Stackable Log Test");
+  XM_LOG(xmlog::info, N_("Stackable Log Test"));
 
   std::ifstream t(XmLog::LogFilename());
   std::string str;
@@ -340,16 +341,16 @@ void iTest_XM_LOG_stackable()
 
   str.assign((std::istreambuf_iterator<char>(t)), std::istreambuf_iterator<char>());
 
-  TS_ASSERT(str.find("  debug]") != std::string::npos);
-  TS_ASSERT(str.find("Start Log") != std::string::npos);
-  TS_ASSERT(str.find("Stackable Log Test") != std::string::npos);
+  TS_ASSERT(str.find(N_("  debug]")) != std::string::npos);
+  TS_ASSERT(str.find(N_("Start Log")) != std::string::npos);
+  TS_ASSERT(str.find(N_("Stackable Log Test")) != std::string::npos);
 }
 //------------------------------------------------------------------------------
 /// \brief Run GUI log test.
 //------------------------------------------------------------------------------
 void iTest_XM_LOG_gui()
 {
-  XM_LOG(xmlog::error, "Test Log");
+  XM_LOG(xmlog::error, N_("Test Log"));
 }
 
 } // xms namespace
