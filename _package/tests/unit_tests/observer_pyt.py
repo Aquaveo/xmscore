@@ -4,7 +4,7 @@ Test InterpLinear_py.cpp.
 import time
 import unittest
 
-from xms.core.locale import Locale, null_translator as N_
+from xms.core.locale import Locale, N_
 from xms.core.misc import Observer
 _ = Locale('xmscore')
 

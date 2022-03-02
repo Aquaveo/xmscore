@@ -11,7 +11,7 @@ import tempfile
 # 3. Aquaveo modules
 
 # 4. Local modules
-from xms.core.locale import null_translator as N_
+from xms.core.locale import N_
 
 
 __copyright__ = "(C) Copyright Aquaveo 2019"
