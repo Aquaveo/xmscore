@@ -90,7 +90,7 @@ void iTest_XM_ENSURE_TRUE_VOID(bool a_assert)
     XM_ENSURE_TRUE_VOID_NO_ASSERT(foo); // should return
   }
 
-  TS_FAIL("iTest_XM_ENSURE_TRUE_VOID"); // shouldn't get here
+  TS_FAIL(N_("iTest_XM_ENSURE_TRUE_VOID")); // shouldn't get here
 } // iTest_XM_ENSURE_TRUE_VOID
 
 //------------------------------------------------------------------------------
@@ -101,27 +101,27 @@ void iTest_XM_ENSURE_TRUE_T(bool a_assert)
   try
   {
     char* foo = new char[123];
-    XM_ENSURE_TRUE_T(foo, "1");           // should pass
-    XM_ENSURE_TRUE_T_NO_ASSERT(foo, "1"); // should pass
+    XM_ENSURE_TRUE_T(foo, N_("1"));           // should pass
+    XM_ENSURE_TRUE_T_NO_ASSERT(foo, N_("1")); // should pass
 
     delete[] foo;
     foo = nullptr;
     if (a_assert)
     {
       XmAssertScopedDisable disable;
-      XM_ENSURE_TRUE_T(foo, std::runtime_error("2")); // should throw
+      XM_ENSURE_TRUE_T(foo, std::runtime_error(N_("2"))); // should throw
     }
     else
     {
-      XM_ENSURE_TRUE_T_NO_ASSERT(foo, std::runtime_error("2")); // should throw
+      XM_ENSURE_TRUE_T_NO_ASSERT(foo, std::runtime_error(N_("2"))); // should throw
     }
 
-    TS_FAIL("iTest_XM_ENSURE_TRUE_T"); // shouldn't get here
+    TS_FAIL(N_("iTest_XM_ENSURE_TRUE_T")); // shouldn't get here
   }
   catch (std::runtime_error& e)
   {
     std::string s = e.what();
-    TS_ASSERT_EQUALS(s, "2");
+    TS_ASSERT_EQUALS(s, N_("2"));
   }
 } // iTest_XM_ENSURE_TRUE_T
 //------------------------------------------------------------------------------
@@ -145,7 +145,7 @@ xmresult iTest_XM_ENSURE_TRUE_ptr(bool a_assert)
     XM_ENSURE_TRUE_NO_ASSERT(foo, XR_FAILURE); // should pass
   }
 
-  TS_FAIL("iTest_XM_ENSURE_TRUE_ptr"); // shouldn't get here
+  TS_FAIL(N_("iTest_XM_ENSURE_TRUE_ptr")); // shouldn't get here
   return XR_FAILURE;
 } // iTest_XM_ENSURE_TRUE_ptr
 //------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ xmresult iTest_XM_ENSURE_TRUE_boost_ptr(bool a_assert)
     XM_ENSURE_TRUE_NO_ASSERT(foo, XR_FAILURE); // should pass
   }
 
-  TS_FAIL("iTest_XM_ENSURE_TRUE_boost_ptr"); // shouldn't get here
+  TS_FAIL(N_("iTest_XM_ENSURE_TRUE_boost_ptr")); // shouldn't get here
   return XR_FAILURE;
 } // iTest_XM_ENSURE_TRUE_boost_ptr
 //------------------------------------------------------------------------------
@@ -191,7 +191,7 @@ void iTest_XM_ENSURE_SUCCESS_VOID(bool a_assert)
     XM_ENSURE_SUCCESS_VOID_NO_ASSERT(foo); // should pass
   }
 
-  TS_FAIL("iTest_XM_ENSURE_SUCCESS_VOID"); // shouldn't get here
+  TS_FAIL(N_("iTest_XM_ENSURE_SUCCESS_VOID")); // shouldn't get here
 } // iTest_XM_ENSURE_SUCCESS_VOID
 //------------------------------------------------------------------------------
 /// \brief
@@ -213,7 +213,7 @@ xmresult iTest_XM_ENSURE_SUCCESS(bool a_assert)
     XM_ENSURE_SUCCESS_NO_ASSERT(foo, XR_FAILURE); // should pass
   }
 
-  TS_FAIL("iTest_XM_ENSURE_SUCCESS"); // shouldn't get here
+  TS_FAIL(N_("iTest_XM_ENSURE_SUCCESS")); // shouldn't get here
   return XR_FAILURE;
 } // iTest_XM_ENSURE_SUCCESS
 //------------------------------------------------------------------------------
@@ -238,7 +238,7 @@ xmresult iTest_XM_ENSURE_SUCCESS_T(bool a_assert)
       XM_ENSURE_SUCCESS_T_NO_ASSERT(foo, XR_FAILURE); // should pass
     }
 
-    TS_FAIL("iTest_XM_ENSURE_SUCCESS"); // shouldn't get here
+    TS_FAIL(N_("iTest_XM_ENSURE_SUCCESS")); // shouldn't get here
   }
   catch (xmresult& e)
   {
@@ -284,8 +284,6 @@ xmresult iTest_XM_RETURN_XMRESULT_boost_ptr_false()
 //------------------------------------------------------------------------------
 void XmErrorUnitTests::test1()
 {
-  // TS_FAIL("XmErrorUnitTests::test1");
-
   // XM_ENSURE_TRUE
 
   xms::iTest_XM_ENSURE_TRUE_VOID(false);
@@ -334,13 +332,9 @@ void XmErrorUnitTests::test1()
 //------------------------------------------------------------------------------
 void XmErrorUnitTests::test_XM_ASSERT()
 {
-  using namespace xms;
-  // TS_FAIL("XmErrorUnitTests::test_XM_ASSERT");
-
   TS_ASSERT_EQUALS(xms::xmAsserting(), true); // this is the default
-  // XM_ASSERT(false); // this should assert. It did when it was not commented
 
-  XmAssertScopedDisable disable;
+  xms::XmAssertScopedDisable disable;
   XM_ASSERT(false); // now it should do nothing
 } // XmErrorUnitTests::test_XM_ASSERT
 
