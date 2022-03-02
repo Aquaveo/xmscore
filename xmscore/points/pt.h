@@ -759,7 +759,7 @@ public:
     case 1:
       return y;
     default:
-      throw std::out_of_range("Pt2<T>::at(): error out of range");
+      throw std::out_of_range(N_("Pt2<T>::at(): error out of range"));
     }
   }
   ///  OVERLOAD
@@ -1509,7 +1509,7 @@ public:
     case 2:
       return z;
     default:
-      throw std::out_of_range("Pt3<T>::at(): error out of range");
+      throw std::out_of_range(N_("Pt3<T>::at(): error out of range"));
     }
   }
   /// ----- OVERLOAD -----
@@ -2323,7 +2323,7 @@ public:
     case 3:
       return w;
     default:
-      throw std::out_of_range("Pt4<T>::at(): error out of range");
+      throw std::out_of_range(N_("Pt4<T>::at(): error out of range"));
     }
   }
   /// ----- OVERLOAD -----
@@ -2395,7 +2395,7 @@ inline std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, t
   s.width(0);
 
   // fill string stream
-  s << a_pt.x << "," << a_pt.y;
+  s << a_pt.x << ',' << a_pt.y;
 
   // print string stream
   strm << s.str();
@@ -2458,7 +2458,7 @@ inline std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, t
   s.width(0);
 
   // fill string stream
-  s << a_pt.x << "," << a_pt.y << "," << a_pt.z;
+  s << a_pt.x << ',' << a_pt.y << ',' << a_pt.z;
 
   // print string stream
   strm << s.str();
@@ -2531,7 +2531,7 @@ inline std::basic_ostream<charT, traits>& operator<<(std::basic_ostream<charT, t
   s.width(0);
 
   // fill string stream
-  s << a_pt.x << "," << a_pt.y << "," << a_pt.z << "," << a_pt.w;
+  s << a_pt.x << ',' << a_pt.y << ',' << a_pt.z << ',' << a_pt.w;
 
   // print string stream
   strm << s.str();
