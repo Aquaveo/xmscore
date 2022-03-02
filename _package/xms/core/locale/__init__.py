@@ -1,1 +1,1 @@
-from .locale import Locale  # NOQA: F401
+"""Initialize the filesystem module."""
