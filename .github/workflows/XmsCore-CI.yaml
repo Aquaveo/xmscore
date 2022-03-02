@@ -31,7 +31,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install flake8 flake8-docstrings flake8-bugbear flake8-import-order pep8-naming
+          pip install flake8 flake8-docstrings flake8-bugbear flake8-import-order pep8-naming markupsafe<2.1.0
       # Flake Code
       - name: Run Flake
         run: |
@@ -88,7 +88,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel
+          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel markupsafe<2.1.0
       # Setup Xcode
       - name: Setup XCode
         uses: sinoru/actions-setup-xcode@v1.1
@@ -210,7 +210,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel
+          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel markupsafe<2.1.0
       # Login to Aquaveo Docker
       - name: Login to Aquaveo Docker
         run: sudo docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_TOKEN }} docker.aquaveo.com
@@ -337,7 +337,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel
+          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel markupsafe<2.1.0
       # Setup Visual Studio
       - name: Setup Visual Studio
         uses: microsoft/setup-msbuild@v1.0.2
