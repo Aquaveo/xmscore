@@ -30,8 +30,6 @@
 //------------------------------------------------------------------------------
 void MathUnitTests::TestIt()
 {
-  // TS_FAIL("MathUnitTests::TestIt");
-
   // TS_ASSERT_EQUALS(0,1);
   TS_ASSERT_DELTA(xms::MagSquared(1, 2, 3, 4), 30.0, 0.001);
   TS_ASSERT_DELTA(xms::MagSquared(1, 2, 3), 14.0, 0.001);
