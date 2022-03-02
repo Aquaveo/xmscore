@@ -8,6 +8,8 @@
 //------------------------------------------------------------------------------
 
 #include <map>
+
+#include <xmscore/locale/locale.h>
 #include <xmscore/points/ptsfwd.h>
 #include <xmscore/stl/vector.h> // VEC_* ShrinkCapacity
 #include <xmscore/stl/set.h>    // SET_*

@@ -21,6 +21,7 @@
 // 4. External Library Headers
 
 // 5. Shared Headers
+#include <xmscore/locale/locale.h>
 #include <xmscore/stl/vector.h>
 
 // 6. Non-shared Headers

@@ -9,6 +9,8 @@
 #include <sstream>
 
 #include <pybind11/pybind11.h>
+
+#include <xmscore/locale/locale.h>
 #include <xmscore/python/misc/misc_py.h>
 
 //----- Namespace declaration --------------------------------------------------

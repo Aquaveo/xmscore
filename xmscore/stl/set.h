@@ -13,7 +13,9 @@
 #include <string>
 
 // 5. Shared code headers
+#include <xmscore/locale/locale.h>
 #include <xmscore/points/ptsfwd.h>
+
 namespace xms
 {
 typedef std::set<Pt2d> SetPt2d; ///< short rename

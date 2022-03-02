@@ -36,6 +36,7 @@
 #endif
 
 // 5. Shared code headers
+#include <xmscore/locale/locale.h>
 #include <xmscore/misc/XmLog.h>
 #include <xmscore/misc/environment.h>
 #include <xmscore/points/pt.h>

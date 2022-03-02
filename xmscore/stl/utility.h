@@ -9,6 +9,8 @@
 #include <sstream>
 #include <utility>
 
+#include <xmscore/locale/locale.h>
+
 namespace xms
 {
 //----- pairs ------------------------------------------------------------------

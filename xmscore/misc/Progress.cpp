@@ -17,8 +17,8 @@
 // 4. External library headers
 
 // 5. Shared code headers
-#include <xmscore/misc/XmError.h>
 #include <xmscore/locale/locale.h>
+#include <xmscore/misc/XmError.h>
 
 // 6. Non-shared code headers
 
