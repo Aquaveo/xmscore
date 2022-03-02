@@ -40,7 +40,7 @@ namespace xms
 Pt3d Pt3dFromPyIter(const py::tuple& pt)
 {
   if(py::len(pt) > 3 || py::len(pt) < 0) {  // 0 check might not be needed but just to be safe
-    throw py::type_error("Input point should be a an empty tuple, or a 1, 2, or 3 tuple");
+    throw py::type_error(N_("Input point should be a an empty tuple, or a 1, 2, or 3 tuple"));
   } else {
     if (py::len(pt) == 1)
     {
@@ -77,7 +77,7 @@ py::tuple PyIterFromPt3d(const Pt3d& pt)
 Pt2d Pt2dFromPyIter(const py::tuple& pt)
 {
   if(py::len(pt) > 2 || py::len(pt) < 0) {  // 0 check might not be needed but just to be safe
-    throw py::type_error("Input point should be a an empty tuple, or a 1, or 2 tuple");
+    throw py::type_error(N_("Input point should be a an empty tuple, or a 1, or 2 tuple"));
   } else {
     if (py::len(pt) == 1)
     {
@@ -111,7 +111,7 @@ boost::shared_ptr<VecPt3d> VecPt3dFromPyIter(const py::iterable& pts)
   boost::shared_ptr<xms::VecPt3d> vec_pts(new xms::VecPt3d());
   for (auto item : pts) {
     if(!py::isinstance<py::iterable>(item)) {
-      throw py::type_error("First arg must be an iterable object");
+      throw py::type_error(N_("First arg must be an iterable object"));
     }
     py::tuple tuple = item.cast<py::iterable>();
     Pt3d point;
@@ -147,7 +147,7 @@ boost::shared_ptr<VecPt2d> VecPt2dFromPyIter(const py::iterable& pts)
   boost::shared_ptr<xms::VecPt2d> vec_pts(new xms::VecPt2d());
   for (auto item : pts) {
     if(!py::isinstance<py::iterable>(item)) {
-      throw py::type_error("First arg must be an iterable object");
+      throw py::type_error(N_("First arg must be an iterable object"));
     }
     py::tuple tuple = item.cast<py::iterable>();
     Pt2d point;
@@ -183,7 +183,7 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pt3d2d)
   int i = 0;
   for (auto pts : pt3d2d) {
       if (!py::isinstance<py::iterable>(pts)) {
-          throw py::type_error("Second arg must be an iterable");
+          throw py::type_error(N_("Second arg must be an iterable"));
       }
       py::tuple tuple = pts.cast<py::iterable>();
       xms::VecPt3d vec_pt3d = *xms::VecPt3dFromPyIter(tuple);
@@ -219,7 +219,7 @@ boost::shared_ptr<VecInt2d> VecInt2dFromPyIter(const py::iterable& int2d)
   int j = 0;
   for (auto item : int2d) {
     if(!py::isinstance<py::iterable>(item)) {
-      throw py::type_error("First arg must be a n-tuple of n-tuples");
+      throw py::type_error(N_("First arg must be a n-tuple of n-tuples"));
     }
     py::tuple tuple = item.cast<py::iterable>();
     xms::VecInt inner_vec(py::len(tuple));
@@ -407,7 +407,7 @@ std::pair<int, int> IntPairFromPyIter(const py::iterable& intpair)
 {
   py::tuple pr = intpair.cast<py::tuple>();
   if (py::len(pr) != 2) {
-      throw py::type_error("arg must be an 2-tuple");
+      throw py::type_error(N_("arg must be an 2-tuple"));
   } else {
       std::pair<int, int> ret(1, 1);//ret(pr[0].cast<int>, pr[1].cast<int>);
       return ret;
@@ -474,19 +474,25 @@ std::string StringFromVecPt3d(const VecPt3d& a_pts)
     p.insert(p.end(), a_pts.begin()+(idx-3), a_pts.end());
   }
   std::stringstream ss;
-  ss << "(length " << a_pts.size() << "): \n";
-  ss << "[";
+  ss << N_("(length ") << a_pts.size() << N_("): \n");
+  ss << N_("[");
   for (size_t i=0; i<p.size(); ++i)
   {
     if (printDotDotDot && i == 3)
-      ss << " ...\n";
+    {
+      ss << N_(" ...\n");
+    }
     if (i > 0)
-      ss << " ";
-    ss << "(" << STRstd(p[i].x) << ", " << STRstd(p[i].y) << ", " << STRstd(p[i].z) << ")";
-    if (i+1 != p.size())
-      ss << ", \n";
+    {
+      ss << ' ';
+    }
+    ss << '(' << STRstd(p[i].x) << N_(", ") << STRstd(p[i].y) << N_(", ") << STRstd(p[i].z) << ')';
+    if (i + 1 != p.size())
+    {
+      ss << N_(", \n");
+    }
   }
-  ss << "]\n";
+  ss << N_("]\n");
   return ss.str();
 } // StringFromVecPt3d
 //------------------------------------------------------------------------------
@@ -511,21 +517,27 @@ std::string StringFromVecPt3d2d(const VecPt3d2d& a_vals)
     v.insert(v.end(), a_vals.begin()+(idx-3), a_vals.end());
   }
 
-  ss << "(length " << a_vals.size() << "):\n";
-  ss << "[";
+  ss << N_("(length ") << a_vals.size() << N_("):\n");
+  ss << '[';
   for (size_t i = 0; i < v.size(); ++i)
   {
     if (printDotDotDot && i == 3)
-      ss << " ...\n";
+    {
+      ss << N_(" ...\n");
+    }
     if (i > 0)
-      ss << " ";
+    {
+      ss << ' ';
+    }
     std::string strVecPt3d = StringFromVecPt3d(v[i]);
     strVecPt3d.pop_back();
     ss << strVecPt3d;
     if (i + 1 != v.size())
-      ss << ",\n";
+    {
+      ss << N_(",\n");
+    }
    }
-  ss << "]\n";
+  ss <<N_("]\n");
   return ss.str();
 } // StringFromVecPt3d2d
 //------------------------------------------------------------------------------
@@ -536,7 +548,7 @@ std::string StringFromVecPt3d2d(const VecPt3d2d& a_vals)
 std::string StringFromVecInt(const VecInt& a_vals)
 {
   std::stringstream ss;
-  ss << "(length " << a_vals.size() << "): ";
+  ss << N_("(length ") << a_vals.size() << N_("): ");
   VecInt v;
   bool printDotDotDot(false);
   if (a_vals.size() < 11)
@@ -551,16 +563,20 @@ std::string StringFromVecInt(const VecInt& a_vals)
     v.insert(v.end(), a_vals.begin()+(idx-5), a_vals.end());
   }
 
-  ss << "[";
+  ss << '[';
   for (size_t i = 0; i < v.size(); ++i)
   {
     if (printDotDotDot && i == 5)
-      ss << "... ";
+    {
+      ss << N_("... ");
+    }
     ss << v[i];
     if (i + 1 != v.size())
-      ss << ", ";
+    {
+      ss << N_(", ");
+    }
   }
-  ss << "]\n";
+  ss << N_("]\n");
   return ss.str();
 } // StringFromVecInt
 //------------------------------------------------------------------------------
@@ -585,21 +601,27 @@ std::string StringFromVecInt2d(const VecInt2d& a_vals)
     v.insert(v.end(), a_vals.begin()+(idx-3), a_vals.end());
   }
 
-  ss << "(length " << a_vals.size() << "):\n";
-  ss << "[";
+  ss << N_("(length ") << a_vals.size() << N_("):\n");
+  ss << '[';
   for (size_t i = 0; i < v.size(); ++i)
   {
     if (printDotDotDot && i == 3)
-      ss << " ...\n";
+    {
+        ss << N_(" ...\n");
+    }
     if (i > 0)
-      ss << " ";
+    {
+      ss << ' ';
+    }
     std::string strVecInt = StringFromVecInt(v[i]);
     strVecInt.pop_back();
     ss << strVecInt;
     if (i + 1 != v.size())
-      ss << ",\n";
+    {
+      ss << N_(",\n");
+    }
    }
-  ss << "]\n";
+  ss << N_("]\n");
   return ss.str();
 } // StringFromVecInt2d
 //------------------------------------------------------------------------------
@@ -625,7 +647,7 @@ std::string StringFromDynBitset(const DynBitset& a_vals)
 std::string StringFromVecFlt(const VecFlt& a_vals)
 {
   std::stringstream ss;
-  ss << "(length " << a_vals.size() << "): ";
+  ss << N_("(length ") << a_vals.size() << N_("): ");
   VecFlt v;
   bool printDotDotDot(false);
   if (a_vals.size() < 11)
@@ -640,17 +662,21 @@ std::string StringFromVecFlt(const VecFlt& a_vals)
     v.insert(v.end(), a_vals.begin()+(idx-5), a_vals.end());
   }
 
-  ss << "[";
+  ss << '[';
   for (size_t i = 0; i < v.size(); ++i)
   {
     if (printDotDotDot && i == 5)
-      ss << "... ";
+    {
+      ss << N_("... ");
+    }
     ss << STRstd(v[i]);
     if (i + 1 != v.size())
-      ss << ", ";
+    {
+      ss << N_(", ");
+    }
   }
-  ss << "]\n";
+  ss << N_("]\n");
   return ss.str();
-} // StringFromDynBitset
+} // StringFromVecFlt
 
 } // namespace xms
