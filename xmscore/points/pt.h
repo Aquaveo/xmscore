@@ -15,6 +15,7 @@
 // 4. External Library Headers
 
 // 5. Shared Headers
+#include <xmscore/locale/locale.h>
 #include <xmscore/points/ptsfwd.h>
 
 namespace xms
