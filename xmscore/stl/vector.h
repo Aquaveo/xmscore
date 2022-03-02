@@ -81,7 +81,7 @@ std::ostream& operator<<(std::ostream& a_output, const std::vector<_T>& a_value)
   for (unsigned int ii = 0; ii < a_value.size(); ++ii)
   {
     std::string value = N_(",{0}={1}");
-    stCFormat(value, ii, a_value[i]);
+    stCFormat(value, ii, a_value[ii]);
     a_output << value;
   }
   return a_output;

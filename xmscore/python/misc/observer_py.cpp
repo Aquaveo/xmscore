@@ -35,7 +35,7 @@ void initObserver(py::module &m) {
   // ---------------------------------------------------------------------------
   // function: begin_operation_string
   // ---------------------------------------------------------------------------
-  observer.def(N_("begin_operation_string", &xms::PublicObserver::BeginOperationString,
+  observer.def(N_("begin_operation_string"), &xms::PublicObserver::BeginOperationString,
                py::arg(N_("operation")));
 
   // ---------------------------------------------------------------------------
@@ -59,7 +59,7 @@ void initObserver(py::module &m) {
   // function: on_begin_operation_string
   // ---------------------------------------------------------------------------
   observer.def(N_("on_begin_operation_string"), &xms::PublicObserver::on_begin_operation_string,
-               py::arg(N_("operation"));
+               py::arg(N_("operation")));
 
   // ---------------------------------------------------------------------------
   // function: on_end_operation
