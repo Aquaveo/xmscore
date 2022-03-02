@@ -185,7 +185,5 @@ void FunctorsUnitTests::TestIt()
     TS_ASSERT_DELTA(in.y, -1.0, 0.001);
     TS_ASSERT_DELTA(in.z, 4.0, 0.001);
   }
-
-  // TS_FAIL("PtTest::TestIt");
 } // MptTester::testLessThanFunctors
 #endif

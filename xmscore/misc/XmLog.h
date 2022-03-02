@@ -81,18 +81,6 @@ enum MessageTypeEnum {
   error,   ///< Critical error message for the user
   debug    ///< Details of internal operation
 };
-/*
-//------------------------------------------------------------------------------
-/// \brief Get MessageTypeEnum as a string
-//------------------------------------------------------------------------------
-static std::string MessageTypeStr(MessageTypeEnum a_level) {
-  if (a_level == info) return "INFO";
-  if (a_level == warning) return "WARNING";
-  if (a_level == error) return "ERROR";
-  if (a_level == debug) return "DEBUG";
-  return "";
-} // MessageTypeStr
-*/
 }
 
 namespace xms
