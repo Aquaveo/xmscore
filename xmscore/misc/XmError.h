@@ -90,7 +90,6 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
       {                                                                       \
         XM_ASSERT(!#x);                                                       \
       }                                                                       \
-      /*TS_WARN("XM_ENSURE_SUCCESS(" #x ", " #ret ") failed");             */ \
       return ret;                                                             \
     }                                                                         \
   } while (xms::XM0)
@@ -104,7 +103,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_SUCCESS_3(x, ret, ast) \
-  XM_ENSURE_SUCCESS_5(x, ret, xmlog::debug, "XM_ENSURE_SUCCESS(" #x ", " #ret ") failed", ast)
+  XM_ENSURE_SUCCESS_5(x, ret, xmlog::debug, N_("XM_ENSURE_SUCCESS(" #x ", " #ret ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Returns \a ret if \a x evaluates to xms::XR_FAILURE, logs, and
 ///        optionally asserts.
@@ -142,7 +141,6 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
       {                                                                       \
         XM_ASSERT(!#x);                                                       \
       }                                                                       \
-      /*TS_WARN("XM_ENSURE_SUCCESS(" #x ", " #ret ") failed");             */ \
       throw(ret);                                                             \
     }                                                                         \
   } while (xms::XM0)
@@ -156,7 +154,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_SUCCESS_T_3(x, ret, ast) \
-  XM_ENSURE_SUCCESS_T_5(x, ret, xmlog::debug, "XM_ENSURE_SUCCESS_T(" #x ", " #ret ") failed", ast)
+  XM_ENSURE_SUCCESS_T_5(x, ret, xmlog::debug, N_("XM_ENSURE_SUCCESS_T(" #x ", " #ret ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Throws \a ret if \a x evaluates to xms::XR_FAILURE, logs, and
 ///        optionally asserts.
@@ -193,7 +191,6 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
       {                                                                       \
         XM_ASSERT(!#x);                                                       \
       }                                                                       \
-      /*TS_WARN("XM_ENSURE_SUCCESS(" #x ") failed");                       */ \
       return;                                                                 \
     }                                                                         \
   } while (xms::XM0)
@@ -206,7 +203,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_SUCCESS_VOID_2(x, ast) \
-  XM_ENSURE_SUCCESS_VOID_4(x, xmlog::debug, "XM_ENSURE_SUCCESS_VOID(" #x ") failed", ast)
+  XM_ENSURE_SUCCESS_VOID_4(x, xmlog::debug, N_("XM_ENSURE_SUCCESS_VOID(" #x ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Returns (void) if \a x evaluates to xms::XR_FAILURE, logs, and
 ///        optionally asserts.
@@ -245,7 +242,6 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
       {                                                                       \
         XM_ASSERT(!#x);                                                       \
       }                                                                       \
-      /*TS_WARN("XM_ENSURE_TRUE(" #x ") failed");                          */ \
       return ret;                                                             \
     }                                                                         \
   } while (xms::XM0)
@@ -259,7 +255,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_TRUE_3(x, ret, ast) \
-  XM_ENSURE_TRUE_5(x, ret, xmlog::debug, "XM_ENSURE_TRUE(" #x ", " #ret ") failed", ast)
+  XM_ENSURE_TRUE_5(x, ret, xmlog::debug, N_("XM_ENSURE_TRUE(" #x ", " #ret ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Returns (void) if \a x evaluates to \c false, logs, and optionally
 ///        asserts.
@@ -303,7 +299,6 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
       {                                                                         \
         XM_ASSERT(!#x);                                                         \
       }                                                                         \
-      /*TS_WARN("XM_ENSURE_TRUE(" #x ") failed");                            */ \
       throw(ret);                                                               \
     }                                                                           \
   } while (xms::XM0)
@@ -317,7 +312,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_TRUE_T_3(x, ret, ast) \
-  XM_ENSURE_TRUE_T_5(x, ret, xmlog::debug, "XM_ENSURE_TRUE_T(" #x ", " #ret ") failed", ast)
+  XM_ENSURE_TRUE_T_5(x, ret, xmlog::debug, N_("XM_ENSURE_TRUE_T(" #x ", " #ret ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Throws ret if \a x evaluates to \c false, logs, and optionally
 ///        asserts.
@@ -351,7 +346,6 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
       {                                                                         \
         XM_ASSERT(!#x);                                                         \
       }                                                                         \
-      /*TS_WARN("XM_ENSURE_TRUE(" #x ") failed");                            */ \
       return;                                                                   \
     }                                                                           \
   } while (xms::XM0)
@@ -364,7 +358,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_TRUE_VOID_2(x, ast) \
-  XM_ENSURE_TRUE_VOID_4(x, xmlog::debug, "XM_ENSURE_TRUE_VOID(" #x ") failed", ast)
+  XM_ENSURE_TRUE_VOID_4(x, xmlog::debug, N_("XM_ENSURE_TRUE_VOID(" #x ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Returns (void) if \a x evaluates to \c false, logs, and optionally
 ///        asserts.
@@ -402,7 +396,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_FALSE_3(x, ret, ast) \
-  XM_ENSURE_FALSE_5(x, ret, xmlog::debug, "XM_ENSURE_FALSE(" #x ", " #ret ") failed", ast)
+  XM_ENSURE_FALSE_5(x, ret, xmlog::debug, N_("XM_ENSURE_FALSE(" #x ", " #ret ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Returns \a ret if \a x evaluates to \c true, logs, and optionally
 ///        asserts.
@@ -438,7 +432,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_FALSE_T_3(x, ret, ast) \
-  XM_ENSURE_FALSE_T_5(x, ret, xmlog::debug, "XM_ENSURE_FALSE_T(" #x ", " #ret ") failed", ast)
+  XM_ENSURE_FALSE_T_5(x, ret, xmlog::debug, N_("XM_ENSURE_FALSE_T(" #x ", " #ret ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Throws \a ret if \a x evaluates to \c true, logs, and optionally
 ///        asserts.
@@ -474,7 +468,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
 #define XM_ENSURE_FALSE_VOID_2(x, ast) \
-  XM_ENSURE_FALSE_VOID_4(x, xmlog::debug, "XM_ENSURE_FALSE_VOID(" #x ") failed", ast)
+  XM_ENSURE_FALSE_VOID_4(x, xmlog::debug, N_("XM_ENSURE_FALSE_VOID(" #x ") failed"), ast)
 //------------------------------------------------------------------------------
 /// \brief Returns (void) if \a x evaluates to \c true, logs, and optionally
 ///        asserts.
