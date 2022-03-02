@@ -24,6 +24,7 @@
 #include <zlib.h>
 
 // 5. Shared Headers
+#include <xmscore/locale/locale.h>
 #include <xmscore/misc/StringUtil.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/XmLog.h>
@@ -104,7 +105,7 @@ int32_t iCompress(const char* a_source, int32_t a_sourceLength, char* a_dest, in
                           static_cast<uLong>(a_sourceLength), Z_BEST_SPEED);
   if (result != Z_OK)
   {
-    XM_LOG(xmlog::error, "Unable to write file. Compression failed.")
+    XM_LOG(xmlog::error, _("Unable to write file. Compression failed."));
     return -1;
   }
 
@@ -122,7 +123,7 @@ bool iUncompress(const char* a_source, int32_t a_sourceLength, char* a_dest, int
   success = success && static_cast<int32_t>(uncompressedLength) == a_destLength;
   if (!success)
   {
-    XM_LOG(xmlog::error, "Unable to read file. Unable to uncompress data.")
+    XM_LOG(xmlog::error, _("Unable to read file. Unable to uncompress data."));
     return false;
   }
 
@@ -530,7 +531,7 @@ bool DaStreamReader::ReadVecPt3d(const char* a_name, VecPt3d& a_vec)
         return false;
 
       bool success = daReadStringFromLine(pointLine, pointValue);
-      success = success && pointValue == "POINT";
+      success = success && pointValue == N_("POINT");
       int readPointIdx = -1;
       success = success && daReadIntFromLine(pointLine, readPointIdx);
       success = success && readPointIdx == static_cast<int>(i);
@@ -608,12 +609,18 @@ bool DaStreamReader::ReadStringFromLine(std::string& a_line, std::string& a_val)
   std::istringstream inStream(a_line);
   inStream >> a_val;
   if (inStream.fail())
+  {
     return false;
+  }
   size_t position = inStream.tellg();
   if (position != std::string::npos)
+  {
     a_line = inStream.str().substr(position);
+  }
   else
+  {
     a_line = "";
+  }
   return true;
 } // DaStreamReader::ReadStringFromLine
 //------------------------------------------------------------------------------
@@ -938,7 +945,7 @@ bool DaStreamWriter::WriteBinaryBytes(const char* a_source, long long a_sourceLe
     int32_t encodedLength = iBase64Encode(compressed.get(), compressedLength, encoded.get());
 
     // write block info
-    WriteString("BINARY_BLOCK");
+    WriteString(N_("BINARY_BLOCK"));
     AppendInt(encodedLength);
     AppendInt(blockLength);
     EndLine();
@@ -1092,7 +1099,7 @@ bool daReadVecPt3d(std::istream& a_inStream, const char* a_name, VecPt3d& a_vec)
       return false;
 
     bool success = daReadStringFromLine(pointLine, pointValue);
-    success = success && pointValue == "POINT";
+    success = success && pointValue == N_("POINT");
     int readPointIdx = -1;
     success = success && daReadIntFromLine(pointLine, readPointIdx);
     success = success && readPointIdx == (int)i;
@@ -1177,12 +1184,18 @@ bool daReadStringFromLine(std::string& a_line, std::string& a_val)
   std::istringstream inStream(a_line);
   inStream >> a_val;
   if (inStream.fail())
+  {
     return false;
+  }
   size_t position = inStream.tellg();
   if (position != std::string::npos)
+  {
     a_line = inStream.str().substr(position);
+  }
   else
+  {
     a_line = "";
+  }
   return true;
 } // daReadStringFromLine
 //------------------------------------------------------------------------------
@@ -1266,7 +1279,7 @@ void daWriteVecInt(std::ostream& a_outStream, const char* a_name, const VecInt& 
   a_outStream << a_name << ' ' << size << '\n';
   for (auto val : a_vec)
   {
-    a_outStream << "  " << val << '\n';
+    a_outStream << N_("  ") << val << '\n';
   }
 } // daWriteVecInt
 //------------------------------------------------------------------------------
@@ -1339,7 +1352,7 @@ void daWriteVecDbl(std::ostream& a_outStream, const char* a_name, const VecDbl& 
   a_outStream << a_name << ' ' << size << '\n';
   for (auto val : a_vec)
   {
-    a_outStream << "  " << STRstd(val) << '\n';
+    a_outStream << N_("  ") << STRstd(val) << '\n';
   }
 } // daWriteVecDbl
 //------------------------------------------------------------------------------
@@ -1361,7 +1374,7 @@ void daWriteVecPt3d(std::ostream& a_outStream, const char* a_name, const VecPt3d
     std::string sx(STRstd(point.x));
     std::string sy(STRstd(point.y));
     std::string sz(STRstd(point.z));
-    a_outStream << "  POINT " << i << ' ' << sx << ' ' << sy << ' ' << sz << '\n';
+    a_outStream << N_("  POINT ") << i << ' ' << sx << ' ' << sy << ' ' << sz << '\n';
   }
 } // daWriteVecPt3d
 
@@ -1388,16 +1401,16 @@ using namespace xms;
 void DaStreamIoUnitTests::testReadNamedLine()
 {
   // test read with CR LF, LF, CR, and no line endings
-  std::string lineEndingsInput =
+  std::string lineEndingsInput =N_(
     "Windows Line\r\n"
     "Unix Line\n"
     "Mac Line\r"
-    "Last Line";
+    "Last Line");
   std::istringstream inStream(lineEndingsInput);
-  TS_ASSERT(daReadNamedLine(inStream, "Windows Line"));
-  TS_ASSERT(daReadNamedLine(inStream, "Unix Line"));
-  TS_ASSERT(daReadNamedLine(inStream, "Mac Line"));
-  TS_ASSERT(daReadNamedLine(inStream, "Last Line"));
+  TS_ASSERT(daReadNamedLine(inStream, N_("Windows Line")));
+  TS_ASSERT(daReadNamedLine(inStream, N_("Unix Line")));
+  TS_ASSERT(daReadNamedLine(inStream, N_("Mac Line")));
+  TS_ASSERT(daReadNamedLine(inStream, N_("Last Line")));
 } // DaStreamIoUnitTests::testReadNamedLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteLine and daReadLine.
@@ -1405,32 +1418,32 @@ void DaStreamIoUnitTests::testReadNamedLine()
 void DaStreamIoUnitTests::testReadWriteLine()
 {
   std::ostringstream outputStream;
-  daWriteLine(outputStream, "daWriteLine version 1.0");
-  std::string expected = "daWriteLine version 1.0\n";
+  daWriteLine(outputStream, N_("daWriteLine version 1.0"));
+  std::string expected = N_("daWriteLine version 1.0\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
   std::istringstream inputStream(outputStream.str());
   std::string value;
   daReadLine(inputStream, value);
-  expected = "daWriteLine version 1.0";
+  expected = N_("daWriteLine version 1.0");
   TS_ASSERT_EQUALS(expected, value);
 
   // test read with CR LF, LF, CR, and no line endings
-  std::string lineEndingsInput =
+  std::string lineEndingsInput =N_(
     "Windows Line\r\n"
     "Unix Line\n"
     "Mac Line\r"
-    "Last Line";
+    "Last Line");
   std::istringstream endingsIn(lineEndingsInput);
   daReadLine(endingsIn, value);
-  TS_ASSERT_EQUALS("Windows Line", value);
+  TS_ASSERT_EQUALS(N_("Windows Line"), value);
   daReadLine(endingsIn, value);
-  TS_ASSERT_EQUALS("Unix Line", value);
+  TS_ASSERT_EQUALS(N_("Unix Line"), value);
   daReadLine(endingsIn, value);
-  TS_ASSERT_EQUALS("Mac Line", value);
+  TS_ASSERT_EQUALS(N_("Mac Line"), value);
   daReadLine(endingsIn, value);
-  TS_ASSERT_EQUALS("Last Line", value);
+  TS_ASSERT_EQUALS(N_("Last Line"), value);
 } // DaStreamIoUnitTests::testReadWriteLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteStringLine and daReadStringLine.
@@ -1438,10 +1451,10 @@ void DaStreamIoUnitTests::testReadWriteLine()
 void DaStreamIoUnitTests::testReadWriteStringLine()
 {
   std::ostringstream outputStream;
-  const char* name = "LINE_NAME";
-  std::string expectedValue = "VALUE";
+  const char* name = N_("LINE_NAME");
+  std::string expectedValue = N_("VALUE");
   daWriteStringLine(outputStream, name, expectedValue);
-  std::string expected = "LINE_NAME VALUE\n";
+  std::string expected = N_("LINE_NAME VALUE\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
@@ -1456,11 +1469,11 @@ void DaStreamIoUnitTests::testReadWriteStringLine()
 void DaStreamIoUnitTests::testReadWrite2StringLine()
 {
   std::ostringstream outputStream;
-  const char* name = "LINE_NAME";
-  std::string expectedValue1 = "VALUE1";
-  std::string expectedValue2 = "VALUE2";
+  const char* name = N_("LINE_NAME");
+  std::string expectedValue1 = N_("VALUE1");
+  std::string expectedValue2 = N_("VALUE2");
   daWrite2StringLine(outputStream, name, expectedValue1, expectedValue2);
-  std::string expected = "LINE_NAME VALUE1 VALUE2\n";
+  std::string expected = N_("LINE_NAME VALUE1 VALUE2\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
@@ -1477,12 +1490,12 @@ void DaStreamIoUnitTests::testReadWrite2StringLine()
 void DaStreamIoUnitTests::testReadWrite3StringLine()
 {
   std::ostringstream outputStream;
-  const char* name = "LINE_NAME";
-  std::string expectedValue1 = "VALUE1";
-  std::string expectedValue2 = "VALUE2";
-  std::string expectedValue3 = "VALUE3";
+  const char* name = N_("LINE_NAME");
+  std::string expectedValue1 = N_("VALUE1");
+  std::string expectedValue2 = N_("VALUE2");
+  std::string expectedValue3 = N_("VALUE3");
   daWrite3StringLine(outputStream, name, expectedValue1, expectedValue2, expectedValue3);
-  std::string expected = "LINE_NAME VALUE1 VALUE2 VALUE3\n";
+  std::string expected = N_("LINE_NAME VALUE1 VALUE2 VALUE3\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
@@ -1504,37 +1517,37 @@ void DaStreamIoUnitTests::testReadIntFromLine()
 
   // read from front
   int intValue;
-  line = "1 -1 A 2.0 B 4";
+  line = N_("1 -1 A 2.0 B 4");
   TS_ASSERT(daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(1, intValue);
-  TS_ASSERT_EQUALS(" -1 A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" -1 A 2.0 B 4"), line);
 
   // read second value (with a space)
-  line = " -1 A 2.0 B 4";
+  line = N_(" -1 A 2.0 B 4");
   TS_ASSERT(daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" A 2.0 B 4"), line);
 
   // fails to read alpha (int value stays the same)
-  line = " A 2.0 B 4";
+  line = N_(" A 2.0 B 4");
   intValue = -1;
   TS_ASSERT(!daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" A 2.0 B 4"), line);
 
   // fails to read double (int value stays the same)
-  line = " A 2.0 B 4";
+  line = N_(" A 2.0 B 4");
   intValue = -1;
   TS_ASSERT(!daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" A 2.0 B 4"), line);
 
   // fails with empty line
-  line = "";
+  line = N_("");
   intValue = -1;
   TS_ASSERT(!daReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_(""), line);
 } // DaStreamIoUnitTests::testReadIntFromLine
 //------------------------------------------------------------------------------
 /// \brief Test daReadStringFromLine.
@@ -1545,29 +1558,29 @@ void DaStreamIoUnitTests::testReadStringFromLine()
 
   // read from front
   std::string stringValue;
-  line = "value1 value2 3";
+  line = N_("value1 value2 3");
   TS_ASSERT(daReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("value1", stringValue);
-  TS_ASSERT_EQUALS(" value2 3", line);
+  TS_ASSERT_EQUALS(N_("value1"), stringValue);
+  TS_ASSERT_EQUALS(N_(" value2 3"), line);
 
   // read second value (with a space)
-  line = " value2 value3";
+  line = N_(" value2 value3");
   TS_ASSERT(daReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("value2", stringValue);
-  TS_ASSERT_EQUALS(" value3", line);
+  TS_ASSERT_EQUALS(N_("value2"), stringValue);
+  TS_ASSERT_EQUALS(N_(" value3"), line);
 
   // read last value
-  line = "3";
+  line = N_("3");
   TS_ASSERT(daReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("3", stringValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_("3"), stringValue);
+  TS_ASSERT_EQUALS(N_(""), line);
 
   // fails with empty line (string value stays the same)
-  line = "";
-  stringValue = "3";
+  line = N_("");
+  stringValue = N_("3");
   TS_ASSERT(!daReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("3", stringValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_("3"), stringValue);
+  TS_ASSERT_EQUALS(N_(""), line);
 } // DaStreamIoUnitTests::testReadStringFromLine
 //------------------------------------------------------------------------------
 /// \brief Test daReadDoubleFromLine.
@@ -1578,29 +1591,29 @@ void DaStreamIoUnitTests::testReadDoubleFromLine()
 
   // read from front
   double doubleValue;
-  line = "1.1 -1.0e-3 3";
+  line = N_("1.1 -1.0e-3 3");
   TS_ASSERT(daReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(1.1, doubleValue);
-  TS_ASSERT_EQUALS(" -1.0e-3 3", line);
+  TS_ASSERT_EQUALS(N_(" -1.0e-3 3"), line);
 
   // read second value (with a space)
-  line = " -1.0e-3 3";
+  line = N_(" -1.0e-3 3");
   TS_ASSERT(daReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(-1.0e-3, doubleValue);
-  TS_ASSERT_EQUALS(" 3", line);
+  TS_ASSERT_EQUALS(N_(" 3"), line);
 
   // read last value
-  line = "3";
+  line = N_("3");
   TS_ASSERT(daReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(3, doubleValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_(""), line);
 
   // fails with empty line (string value stays the same)
-  line = "";
+  line = N_("");
   doubleValue = 3;
   TS_ASSERT(!daReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(3, doubleValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_(""), line);
 } // DaStreamIoUnitTests::testReadDoubleFromLine
 //------------------------------------------------------------------------------
 /// \brief Test daWriteIntLine and daReadIntLine.
@@ -1608,10 +1621,10 @@ void DaStreamIoUnitTests::testReadDoubleFromLine()
 void DaStreamIoUnitTests::testReadWriteIntLine()
 {
   std::ostringstream outputStream;
-  const char* name = "LINE_NAME";
+  const char* name = N_("LINE_NAME");
   const int expect = 22;
   daWriteIntLine(outputStream, name, expect);
-  std::string outputExpected = "LINE_NAME 22\n";
+  std::string outputExpected = N_("LINE_NAME 22\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -1626,12 +1639,12 @@ void DaStreamIoUnitTests::testReadWriteIntLine()
 void DaStreamIoUnitTests::testReadWriteDoubleLine()
 {
   std::ostringstream outputStream;
-  const char* name = "LINE_NAME";
+  const char* name = N_("LINE_NAME");
   const double expect1 = 1.123e-20;
   const double expect2 = 2.0;
   daWriteDoubleLine(outputStream, name, expect1);
   daWriteDoubleLine(outputStream, name, expect2);
-  std::string outputExpected = "LINE_NAME 1.123e-20\nLINE_NAME 2.0\n";
+  std::string outputExpected =N_( "LINE_NAME 1.123e-20\nLINE_NAME 2.0\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -1648,12 +1661,12 @@ void DaStreamIoUnitTests::testReadWriteDoubleLine()
 void DaStreamIoUnitTests::testReadWrite3DoubleLine()
 {
   std::ostringstream outputStream;
-  const char* name = "LINE_NAME";
+  const char* name = N_("LINE_NAME");
   const double expect1 = 560770.5;
   const double expect2 = 70055.4;
   const double expect3 = 22.3;
   daWrite3DoubleLine(outputStream, name, expect1, expect2, expect3);
-  std::string outputExpected = "LINE_NAME 560770.5 70055.4 22.3\n";
+  std::string outputExpected = N_("LINE_NAME 560770.5 70055.4 22.3\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -1672,14 +1685,14 @@ void DaStreamIoUnitTests::testReadWrite3DoubleLine()
 void DaStreamIoUnitTests::testReadWriteVecInt()
 {
   std::ostringstream outputStream;
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   const VecInt expect = {1, 2, 3};
   daWriteVecInt(outputStream, name, expect);
-  std::string outputExpected =
+  std::string outputExpected =N_(
     "VECTOR_NAME 3\n"
     "  1\n"
     "  2\n"
-    "  3\n";
+    "  3\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -1694,14 +1707,14 @@ void DaStreamIoUnitTests::testReadWriteVecInt()
 void DaStreamIoUnitTests::testReadWriteVecDbl()
 {
   std::ostringstream outputStream;
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   const VecDbl expect = {1.0, 2.2e-20, 3.3};
   daWriteVecDbl(outputStream, name, expect);
-  std::string outputExpected =
+  std::string outputExpected =N_(
     "VECTOR_NAME 3\n"
     "  1.0\n"
     "  2.2e-20\n"
-    "  3.3\n";
+    "  3.3\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -1716,16 +1729,16 @@ void DaStreamIoUnitTests::testReadWriteVecDbl()
 void DaStreamIoUnitTests::testReadWriteVecPt3d()
 {
   std::ostringstream outputStream;
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   const VecPt3d expect = {
     {1.0, 1.2, 1.3},
     {2.1, 2.2, 2.3e-20},
   };
   daWriteVecPt3d(outputStream, name, expect);
-  std::string outputExpected =
+  std::string outputExpected =N_(
     "VECTOR_NAME 2\n"
     "  POINT 0 1.0 1.2 1.3\n"
-    "  POINT 1 2.1 2.2 2.3e-20\n";
+    "  POINT 1 2.1 2.2 2.3e-20\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -1739,21 +1752,21 @@ void DaStreamIoUnitTests::testReadWriteVecPt3d()
 //------------------------------------------------------------------------------
 void DaStreamIoUnitTests::testLineBeginsWith()
 {
-  const char* inputText =
+  const char* inputText =N_(
     "VECTOR_NAME 2\n"
     "  POINT 0 1.1 1.2 1.3\n"
-    "  POINT 1 2.1 2.2 2.3\n";
+    "  POINT 1 2.1 2.2 2.3\n");
   std::istringstream inputStream(inputText);
-  TS_ASSERT(daLineBeginsWith(inputStream, "VECTOR_NAME"));
+  TS_ASSERT(daLineBeginsWith(inputStream, N_("VECTOR_NAME")));
   std::string line;
   TS_ASSERT(daReadLine(inputStream, line));
-  TS_ASSERT_EQUALS("VECTOR_NAME 2", line);
-  TS_ASSERT(daLineBeginsWith(inputStream, "  POINT"));
+  TS_ASSERT_EQUALS(N_("VECTOR_NAME 2"), line);
+  TS_ASSERT(daLineBeginsWith(inputStream, N_("  POINT")));
   TS_ASSERT(daReadLine(inputStream, line));
-  TS_ASSERT_EQUALS("  POINT 0 1.1 1.2 1.3", line);
-  TS_ASSERT(daLineBeginsWith(inputStream, "  POINT 1 2.1 2.2 2.3"));
+  TS_ASSERT_EQUALS(N_("  POINT 0 1.1 1.2 1.3"), line);
+  TS_ASSERT(daLineBeginsWith(inputStream, N_("  POINT 1 2.1 2.2 2.3")));
   TS_ASSERT(daReadLine(inputStream, line));
-  TS_ASSERT_EQUALS("  POINT 1 2.1 2.2 2.3", line);
+  TS_ASSERT_EQUALS(N_("  POINT 1 2.1 2.2 2.3"), line);
 } // DaStreamIoUnitTests::testLineBeginsWith
 ////////////////////////////////////////////////////////////////////////////////
 /// \class DaReaderWriterIoUnitTests
@@ -1765,17 +1778,17 @@ void DaStreamIoUnitTests::testLineBeginsWith()
 void DaReaderWriterIoUnitTests::testReadNamedLine()
 {
   // test read with CR LF, LF, CR, and no line endings
-  std::string lineEndingsInput =
+  std::string lineEndingsInput =N_(
     "Windows Line\r\n"
     "Unix Line\n"
     "Mac Line\r"
-    "Last Line";
+    "Last Line");
   std::istringstream inStream(lineEndingsInput);
   DaStreamReader reader(inStream);
-  TS_ASSERT(reader.ReadNamedLine("Windows Line"));
-  TS_ASSERT(reader.ReadNamedLine("Unix Line"));
-  TS_ASSERT(reader.ReadNamedLine("Mac Line"));
-  TS_ASSERT(reader.ReadNamedLine("Last Line"));
+  TS_ASSERT(reader.ReadNamedLine(N_("Windows Line")));
+  TS_ASSERT(reader.ReadNamedLine(N_("Unix Line")));
+  TS_ASSERT(reader.ReadNamedLine(N_("Mac Line")));
+  TS_ASSERT(reader.ReadNamedLine(N_("Last Line")));
 } // DaReaderWriterIoUnitTests::testReadNamedLine
 //------------------------------------------------------------------------------
 /// \brief Test WriteLine and ReadLine.
@@ -1784,8 +1797,8 @@ void DaReaderWriterIoUnitTests::testReadWriteLine()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  writer.WriteLine("daWriteLine version 1.0");
-  std::string expected = "daWriteLine version 1.0\n";
+  writer.WriteLine(N_("daWriteLine version 1.0"));
+  std::string expected = N_("daWriteLine version 1.0\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
@@ -1793,25 +1806,25 @@ void DaReaderWriterIoUnitTests::testReadWriteLine()
   DaStreamReader reader(inputStream);
   std::string value;
   reader.ReadLine(value);
-  expected = "daWriteLine version 1.0";
+  expected = N_("daWriteLine version 1.0");
   TS_ASSERT_EQUALS(expected, value);
 
   // test read with CR LF, LF, CR, and no line endings
-  std::string lineEndingsInput =
+  std::string lineEndingsInput =N_(
     "Windows Line\r\n"
     "Unix Line\n"
     "Mac Line\r"
-    "Last Line";
+    "Last Line");
   std::istringstream endingsIn(lineEndingsInput);
   DaStreamReader readerIn(endingsIn);
   readerIn.ReadLine(value);
-  TS_ASSERT_EQUALS("Windows Line", value);
+  TS_ASSERT_EQUALS(N_("Windows Line"), value);
   readerIn.ReadLine(value);
-  TS_ASSERT_EQUALS("Unix Line", value);
+  TS_ASSERT_EQUALS(N_("Unix Line"), value);
   readerIn.ReadLine(value);
-  TS_ASSERT_EQUALS("Mac Line", value);
+  TS_ASSERT_EQUALS(N_("Mac Line"), value);
   readerIn.ReadLine(value);
-  TS_ASSERT_EQUALS("Last Line", value);
+  TS_ASSERT_EQUALS(N_("Last Line"), value);
 } // DaReaderWriterIoUnitTests::testReadWriteLine
 //------------------------------------------------------------------------------
 /// \brief Test WriteStringLine and ReadStringLine.
@@ -1820,10 +1833,10 @@ void DaReaderWriterIoUnitTests::testReadWriteStringLine()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "LINE_NAME";
-  std::string expectedValue = "VALUE";
+  const char* name = N_("LINE_NAME");
+  std::string expectedValue = N_("VALUE");
   writer.WriteStringLine(name, expectedValue);
-  std::string expected = "LINE_NAME VALUE\n";
+  std::string expected = N_("LINE_NAME VALUE\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
@@ -1840,11 +1853,11 @@ void DaReaderWriterIoUnitTests::testReadWrite2StringLine()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "LINE_NAME";
-  std::string expectedValue1 = "VALUE1";
-  std::string expectedValue2 = "VALUE2";
+  const char* name = N_("LINE_NAME");
+  std::string expectedValue1 = N_("VALUE1");
+  std::string expectedValue2 = N_("VALUE2");
   writer.Write2StringLine(name, expectedValue1, expectedValue2);
-  std::string expected = "LINE_NAME VALUE1 VALUE2\n";
+  std::string expected = N_("LINE_NAME VALUE1 VALUE2\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
@@ -1863,12 +1876,12 @@ void DaReaderWriterIoUnitTests::testReadWrite3StringLine()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "LINE_NAME";
-  std::string expectedValue1 = "VALUE1";
-  std::string expectedValue2 = "VALUE2";
-  std::string expectedValue3 = "VALUE3";
+  const char* name = N_("LINE_NAME");
+  std::string expectedValue1 = N_("VALUE1");
+  std::string expectedValue2 = N_("VALUE2");
+  std::string expectedValue3 = N_("VALUE3");
   writer.Write3StringLine(name, expectedValue1, expectedValue2, expectedValue3);
-  std::string expected = "LINE_NAME VALUE1 VALUE2 VALUE3\n";
+  std::string expected = N_("LINE_NAME VALUE1 VALUE2 VALUE3\n");
   std::string found = outputStream.str();
   TS_ASSERT_EQUALS(expected, found);
 
@@ -1889,37 +1902,37 @@ void DaReaderWriterIoUnitTests::testReadIntFromLine()
 {
   // read from front
   int intValue;
-  std::string line = "1 -1 A 2.0 B 4";
+  std::string line = N_("1 -1 A 2.0 B 4");
   TS_ASSERT(DaStreamReader::ReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(1, intValue);
-  TS_ASSERT_EQUALS(" -1 A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" -1 A 2.0 B 4"), line);
 
   // read second value (with a space)
-  line = " -1 A 2.0 B 4";
+  line = N_(" -1 A 2.0 B 4");
   TS_ASSERT(DaStreamReader::ReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" A 2.0 B 4"), line);
 
   // fails to read alpha (int value stays the same)
-  line = " A 2.0 B 4";
+  line = N_(" A 2.0 B 4");
   intValue = -1;
   TS_ASSERT(!DaStreamReader::ReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" A 2.0 B 4"), line);
 
   // fails to read double (int value stays the same)
-  line = " A 2.0 B 4";
+  line = N_(" A 2.0 B 4");
   intValue = -1;
   TS_ASSERT(!DaStreamReader::ReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS(" A 2.0 B 4", line);
+  TS_ASSERT_EQUALS(N_(" A 2.0 B 4"), line);
 
   // fails with empty line
-  line = "";
+  line = N_("");
   intValue = -1;
   TS_ASSERT(!DaStreamReader::ReadIntFromLine(line, intValue));
   TS_ASSERT_EQUALS(-1, intValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_(""), line);
 } // DaReaderWriterIoUnitTests::testReadIntFromLine
 //------------------------------------------------------------------------------
 /// \brief Test ReadStringFromLine.
@@ -1928,29 +1941,29 @@ void DaReaderWriterIoUnitTests::testReadStringFromLine()
 {
   // read from front
   std::string stringValue;
-  std::string line = "value1 value2 3";
+  std::string line = N_("value1 value2 3");
   TS_ASSERT(DaStreamReader::ReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("value1", stringValue);
-  TS_ASSERT_EQUALS(" value2 3", line);
+  TS_ASSERT_EQUALS(N_("value1"), stringValue);
+  TS_ASSERT_EQUALS(N_(" value2 3"), line);
 
   // read second value (with a space)
-  line = " value2 value3";
+  line = N_(" value2 value3");
   TS_ASSERT(DaStreamReader::ReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("value2", stringValue);
-  TS_ASSERT_EQUALS(" value3", line);
+  TS_ASSERT_EQUALS(N_("value2"), stringValue);
+  TS_ASSERT_EQUALS(N_(" value3"), line);
 
   // read last value
-  line = "3";
+  line = N_("3");
   TS_ASSERT(DaStreamReader::ReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("3", stringValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_("3"), stringValue);
+  TS_ASSERT_EQUALS(N_(""), line);
 
   // fails with empty line (string value stays the same)
-  line = "";
-  stringValue = "3";
+  line = N_("");
+  stringValue = N_("3");
   TS_ASSERT(!DaStreamReader::ReadStringFromLine(line, stringValue));
-  TS_ASSERT_EQUALS("3", stringValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_("3"), stringValue);
+  TS_ASSERT_EQUALS(N_(""), line);
 } // DaReaderWriterIoUnitTests::testReadStringFromLine
 //------------------------------------------------------------------------------
 /// \brief Test ReadDoubleFromLine.
@@ -1959,29 +1972,29 @@ void DaReaderWriterIoUnitTests::testReadDoubleFromLine()
 {
   // read from front
   double doubleValue;
-  std::string line = "1.1 -1.0e-3 3";
+  std::string line = N_("1.1 -1.0e-3 3");
   TS_ASSERT(DaStreamReader::ReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(1.1, doubleValue);
-  TS_ASSERT_EQUALS(" -1.0e-3 3", line);
+  TS_ASSERT_EQUALS(N_(" -1.0e-3 3"), line);
 
   // read second value (with a space)
-  line = " -1.0e-3 3";
+  line = N_(" -1.0e-3 3");
   TS_ASSERT(DaStreamReader::ReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(-1.0e-3, doubleValue);
-  TS_ASSERT_EQUALS(" 3", line);
+  TS_ASSERT_EQUALS(N_(" 3"), line);
 
   // read last value
-  line = "3";
+  line = N_("3");
   TS_ASSERT(DaStreamReader::ReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(3, doubleValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_(""), line);
 
   // fails with empty line (string value stays the same)
-  line = "";
+  line = N_("");
   doubleValue = 3;
   TS_ASSERT(!DaStreamReader::ReadDoubleFromLine(line, doubleValue));
   TS_ASSERT_EQUALS(3, doubleValue);
-  TS_ASSERT_EQUALS("", line);
+  TS_ASSERT_EQUALS(N_(""), line);
 } // DaReaderWriterIoUnitTests::testReadDoubleFromLine
 //------------------------------------------------------------------------------
 /// \brief Test WriteIntLine and ReadIntLine.
@@ -1990,10 +2003,10 @@ void DaReaderWriterIoUnitTests::testReadWriteIntLine()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "LINE_NAME";
+  const char* name = N_("LINE_NAME");
   const int expect = 22;
   writer.WriteIntLine(name, expect);
-  std::string outputExpected = "LINE_NAME 22\n";
+  std::string outputExpected = N_("LINE_NAME 22\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -2010,10 +2023,10 @@ void DaReaderWriterIoUnitTests::testReadWriteDoubleLine()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "LINE_NAME";
+  const char* name = N_("LINE_NAME");
   const double expect = 22.1;
   writer.WriteDoubleLine(name, expect);
-  std::string outputExpected = "LINE_NAME 22.1\n";
+  std::string outputExpected = N_("LINE_NAME 22.1\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -2030,12 +2043,12 @@ void DaReaderWriterIoUnitTests::testReadWrite3DoubleLine()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "LINE_NAME";
+  const char* name = N_("LINE_NAME");
   const double expect1 = 22.1;
   const double expect2 = 22.2;
   const double expect3 = 22.3;
   writer.Write3DoubleLine(name, expect1, expect2, expect3);
-  std::string outputExpected = "LINE_NAME 22.1 22.2 22.3\n";
+  std::string outputExpected = N_("LINE_NAME 22.1 22.2 22.3\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -2056,14 +2069,14 @@ void DaReaderWriterIoUnitTests::testReadWriteVecInt()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   const VecInt expect = {1, 2, 3};
   writer.WriteVecInt(name, expect);
-  std::string outputExpected =
+  std::string outputExpected =N_(
     "VECTOR_NAME 3\n"
     "  1\n"
     "  2\n"
-    "  3\n";
+    "  3\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -2080,14 +2093,14 @@ void DaReaderWriterIoUnitTests::testReadWriteVecDbl()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   const VecDbl expect = {1.1, 2.2, 3.3};
   writer.WriteVecDbl(name, expect);
-  std::string outputExpected =
+  std::string outputExpected =N_(
     "VECTOR_NAME 3\n"
     "  1.1\n"
     "  2.2\n"
-    "  3.3\n";
+    "  3.3\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -2104,16 +2117,16 @@ void DaReaderWriterIoUnitTests::testReadWriteVecPt3d()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   const VecPt3d expect = {
     {1.1, 1.2, 1.3},
     {2.1, 2.2, 2.3},
   };
   writer.WriteVecPt3d(name, expect);
-  std::string outputExpected =
+  std::string outputExpected =N_(
     "VECTOR_NAME 2\n"
     "  POINT 0 1.1 1.2 1.3\n"
-    "  POINT 1 2.1 2.2 2.3\n";
+    "  POINT 1 2.1 2.2 2.3\n");
   std::string outputFound = outputStream.str();
   TS_ASSERT_EQUALS(outputExpected, outputFound);
 
@@ -2131,7 +2144,7 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryVecInt()
   std::ostringstream outputStream;
   bool useBinaryArrays = true;
   DaStreamWriter writer(outputStream, useBinaryArrays);
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   VecInt expect(100);
   std::iota(expect.begin(), expect.end(), 0);
   writer.WriteVecInt(name, expect);
@@ -2150,7 +2163,7 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryVecDbl()
   std::ostringstream outputStream;
   bool useBinaryArrays = true;
   DaStreamWriter writer(outputStream, useBinaryArrays);
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   VecDbl expect(100);
   int count = 0;
   for (auto& e : expect)
@@ -2171,7 +2184,7 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryVecPt3d()
   std::ostringstream outputStream;
   bool useBinaryArrays = true;
   DaStreamWriter writer(outputStream, useBinaryArrays);
-  const char* name = "VECTOR_NAME";
+  const char* name = N_("VECTOR_NAME");
   VecPt3d expect(100);
   int count = 0;
   for (auto& e : expect)
@@ -2194,24 +2207,24 @@ void DaReaderWriterIoUnitTests::testReadWriteLineParts()
 {
   std::ostringstream outputStream;
   DaStreamWriter writer(outputStream);
-  writer.WriteString("STRING_ONE");
-  TS_ASSERT_EQUALS("STRING_ONE", outputStream.str());
+  writer.WriteString(N_("STRING_ONE"));
+  TS_ASSERT_EQUALS(N_("STRING_ONE"), outputStream.str());
   writer.AppendInt(0);
-  TS_ASSERT_EQUALS("STRING_ONE 0", outputStream.str());
-  writer.AppendString("STRING_TWO");
-  TS_ASSERT_EQUALS("STRING_ONE 0 STRING_TWO", outputStream.str());
+  TS_ASSERT_EQUALS(N_("STRING_ONE 0"), outputStream.str());
+  writer.AppendString(N_("STRING_TWO"));
+  TS_ASSERT_EQUALS(N_("STRING_ONE 0 STRING_TWO"), outputStream.str());
   int ints[] = {1, 2, 3};
   writer.AppendInts(ints, 3);
-  TS_ASSERT_EQUALS("STRING_ONE 0 STRING_TWO 1 2 3", outputStream.str());
+  TS_ASSERT_EQUALS(N_("STRING_ONE 0 STRING_TWO 1 2 3"), outputStream.str());
   writer.EndLine();
-  TS_ASSERT_EQUALS("STRING_ONE 0 STRING_TWO 1 2 3\n", outputStream.str());
+  TS_ASSERT_EQUALS(N_("STRING_ONE 0 STRING_TWO 1 2 3\n"), outputStream.str());
 
-  std::istringstream inputStream("STRING_ONE 0\n1 STRING_TWO");
+  std::istringstream inputStream(N_("STRING_ONE 0\n1 STRING_TWO"));
   DaStreamReader reader(inputStream);
   std::string s;
   int i;
   TS_ASSERT(reader.ReadString(s));
-  TS_ASSERT_EQUALS("STRING_ONE", s)
+  TS_ASSERT_EQUALS(N_("STRING_ONE"), s)
   TS_ASSERT(reader.ReadInt(i));
   TS_ASSERT_EQUALS(0, i);
   TS_ASSERT(reader.NextLine());
@@ -2219,7 +2232,7 @@ void DaReaderWriterIoUnitTests::testReadWriteLineParts()
   TS_ASSERT(reader.ReadInt(i));
   TS_ASSERT_EQUALS(1, i);
   TS_ASSERT(reader.ReadString(s));
-  TS_ASSERT_EQUALS("STRING_TWO", s)
+  TS_ASSERT_EQUALS(N_("STRING_TWO"), s)
   TS_ASSERT(!reader.NextLine());
 } // DaReaderWriterIoUnitTests::testReadWriteLineParts
 //------------------------------------------------------------------------------
@@ -2235,7 +2248,7 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryArrays()
   writer.SetBinaryBlockSize(120);
   writer.WriteBinaryBytes((char*)&outValues[0], lengthInBytes);
   std::string text = output.str();
-  std::string expectedText =
+  std::string expectedText =N_(
     "BINARY_BLOCK 74 120\n"
     "eAENw4UNwDAAAKDO3d3+f3OQEEIIkbGJqZm5haWVtY2tnb2Do5Ozi6ubu4enl7ePr58/RrQBtA\n"
     "BINARY_BLOCK 78 120\n"
@@ -2269,7 +2282,7 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryArrays()
     "BINARY_BLOCK 82 120\n"
     "eAENw4URg0AAALBn/63QIkWKS2EVkrvEUQiJqZm5hR9LK2sbv7Z29g7+HJ2cXVzd3D08vfx7+/gCz60Yjg\n"
     "BINARY_BLOCK 63 80\n"
-    "eAENwwESQCAAALD8/5NEkUj0Advd5imExejqZjK7e1g8rV7eNh+7r5/DH/dqElM\n";
+    "eAENwwESQCAAALD8/5NEkUj0Advd5imExejqZjK7e1g8rV7eNh+7r5/DH/dqElM\n");
   TS_ASSERT_EQUALS(expectedText, text);
 
   std::istringstream input(expectedText);
@@ -2283,22 +2296,22 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryArrays()
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testLineBeginsWith()
 {
-  const char* inputText =
+  const char* inputText =N_(
     "VECTOR_NAME 2\n"
     "  POINT 0 1.1 1.2 1.3\n"
-    "  POINT 1 2.1 2.2 2.3\n";
+    "  POINT 1 2.1 2.2 2.3\n");
   std::istringstream inputStream(inputText);
   DaStreamReader reader(inputStream);
-  TS_ASSERT(reader.LineBeginsWith("VECTOR_NAME"));
+  TS_ASSERT(reader.LineBeginsWith(N_("VECTOR_NAME")));
   std::string line;
   TS_ASSERT(reader.ReadLine(line));
-  TS_ASSERT_EQUALS("VECTOR_NAME 2", line);
-  TS_ASSERT(reader.LineBeginsWith("  POINT"));
+  TS_ASSERT_EQUALS(N_("VECTOR_NAME 2"), line);
+  TS_ASSERT(reader.LineBeginsWith(N_("  POINT")));
   TS_ASSERT(reader.ReadLine(line));
-  TS_ASSERT_EQUALS("  POINT 0 1.1 1.2 1.3", line);
-  TS_ASSERT(reader.LineBeginsWith("  POINT 1 2.1 2.2 2.3"));
+  TS_ASSERT_EQUALS(N_("  POINT 0 1.1 1.2 1.3"), line);
+  TS_ASSERT(reader.LineBeginsWith(N_("  POINT 1 2.1 2.2 2.3")));
   TS_ASSERT(reader.ReadLine(line));
-  TS_ASSERT_EQUALS("  POINT 1 2.1 2.2 2.3", line);
+  TS_ASSERT_EQUALS(N_("  POINT 1 2.1 2.2 2.3"), line);
 } // DaReaderWriterIoUnitTests::testLineBeginsWith
 
 #endif
