@@ -51,7 +51,7 @@ private:
   int m_oldOutputFormat; ///< Saved output format to restore to orignal value
 };
 
-static const char* ST_WHITESPACE = " \t\n\f\r\v"; ///< Whitespace characters
+static const char* ST_WHITESPACE = N_(" \t\n\f\r\v"); ///< Whitespace characters
 
 // Convenience functions
 
@@ -126,7 +126,7 @@ std::string STRstd(float a_value, int a_n = -1, int width = 15, int flags = 0);
 template <typename T>
 inline std::string STRstd(T a_value, int a_n = 0, int width = 0, int flags = 0)
 {
-  static_assert(std::is_integral<T>::value, "Not an integral (integer) type");
+  static_assert(std::is_integral<T>::value, N_("Not an integral (integer) type"));
   a_n = ((flags & STR_SCIENTIFIC) ? -1 : 0);
   return STRstd((double)a_value, a_n, width, flags);
 }
