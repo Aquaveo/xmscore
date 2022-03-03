@@ -81,7 +81,7 @@ endif()
 
 message(STATUS "External Include Dirs: ${EXT_INCLUDE_DIRS}")
 message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
-message(STATUS "Extneral Libs: ${EXT_LIBS}")
+message(STATUS "External Libs: ${EXT_LIBS}")
 
 if(IS_PYTHON_BUILD)
 
