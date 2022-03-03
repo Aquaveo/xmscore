@@ -35,7 +35,6 @@ void iInitializeGenerator()
 
   auto manager = boost::locale::localization_backend_manager::global();
   manager.select("std");
-  boost::locale::localization_backend_manager::global(manager);
 
   fg_generator = new boost::locale::generator(manager);
   fg_locale = fg_generator->generate("en_US");
