@@ -98,6 +98,28 @@ std::string stTranslate(const char* a_message, const char* a_domain)
 
 #include <xmscore/testing/TestTools.h>
 
+using namespace xms;
+
+//------------------------------------------------------------------------------
+/// \brief
+//------------------------------------------------------------------------------
+void LocaleUnitTests::setUp()
+{
+  stBindTextDomain(LOCALE_DOMAIN, "E:/xmscore/build/bin/locale");
+} // LocaleUnitTests::testMarkedUntranslated
+
+//------------------------------------------------------------------------------
+/// \brief
+//------------------------------------------------------------------------------
+void LocaleUnitTests::tearDown()
+{
+  iInitializeGenerator();
+
+  fg_generator->clear_paths();
+  fg_generator->clear_domains();
+  fg_locale = fg_generator->generate("en_US");
+} // LocaleUnitTests::testMarkedUntranslated
+
 //------------------------------------------------------------------------------
 /// \brief Translate a marked string with no translation.
 //------------------------------------------------------------------------------

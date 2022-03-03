@@ -12,6 +12,9 @@
 class LocaleUnitTests : public CxxTest::TestSuite
 {
 public:
+  void setUp();
+  void tearDown();
+
   void testMarkedUntranslated();
   void testMarkedTranslated();
   void testUnmarked();
