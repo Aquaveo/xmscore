@@ -169,7 +169,7 @@ set(xmscore_headers
 if(BUILD_TESTING)
     add_definitions(-DXMS_TEST_PATH="${XMS_TEST_PATH}/")
     add_definitions(-DCXX_TEST -DCXXTEST4)
-	add_definitions(-DLOCALE_ROOT="${CMAKE_CURRENT_SOURCE_DIR}/locale")
+	add_definitions(-DLOCALE_ROOT="${CMAKE_CURRENT_SOURCE_DIR}/locales")
 
     list(APPEND xmscore_headers
         xmscore/dataio/daStreamIo.t.h
