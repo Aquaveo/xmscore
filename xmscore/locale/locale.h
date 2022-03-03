@@ -156,7 +156,7 @@ void stBindTextDomain(const std::string& a_domain, const std::string& a_messages
 // stFormat(message4, corrupted, limit, limit-corrupted);
 // showMessage(message4);
 // ```
-#define _(a_message) stTranslate(a_message, LOCALE_DOMAIN)
+#define _(a_message) xms::stTranslate(a_message, LOCALE_DOMAIN)
 
 // Used to mark string literals that cannot be translated.
 // 
