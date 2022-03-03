@@ -124,7 +124,7 @@ void LocaleUnitTests::testMarkedTranslated()
     "This message should not be modified by documentation.\n"
     "It is used for testing marked messages with a modification.\n"
     "Modifying it will cause tests to fail.\n"
-    "Specifically, it will cause testMarkedTranslated to fail.";
+    "Specifically, it will cause testMarkedTranslated to fail.\n";
   std::string translated =
     _("This message should not be modified by documentation.\n"
       "It is used for testing marked messages with a modification.\n"
