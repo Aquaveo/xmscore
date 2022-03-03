@@ -5,10 +5,11 @@ class Locale:
     """
     A localization class.
     """
-    def __init__(self):
+    def __init__(self, domain):
         """
         Initialize the Locale.
         """
+        self._domain = domain
         self._translation = None
 
     def __call__(self, message):
@@ -23,7 +24,7 @@ class Locale:
             or the unmodified message otherwise.
         """
         if self._translation is None:
-            self._translation = gettext.translation("en_US")
+            self._translation = gettext.translation(self._domain, languages=["en_US"])
         return self._translation.gettext(message)
 
 
