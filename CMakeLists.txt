@@ -32,7 +32,7 @@ if(IS_PYTHON_BUILD AND BUILD_TESTING)
 endif()
 
 add_definitions(-DXMS_VERSION=\"${XMS_VERSION}\")
-add_definitions(-DLOCALE_DOMAIN=\"${CMAKE_PROJECT_NAME}\")
+add_definitions(-DLOCALE_DOMAIN=\"xmscore\")
 
 IF(IS_CONDA_BUILD)
   include(${CMAKE_CURRENT_LIST_DIR}/condabuildinfo.cmake)
