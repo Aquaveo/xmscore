@@ -11,6 +11,7 @@
 // 2. My header
 
 // 3. Standard Library Headers
+#include <locale>
 #include <string>
 
 // 4. External Library Headers
@@ -22,6 +23,13 @@
 
 namespace xms
 {
+
+// stiGetLocale is only here for the formatting functions' use. Not meant for other use.
+std::locale& stiGetLocale();
+
+std::string stTranslate(const char* a_message, const char* a_domain);
+void stBindTextDomain(const std::string& a_domain, const std::string& a_messagesPath);
+
 //------------------------------------------------------------------------------
 /// \brief Used by stFormat. Not for external use. Single parameter version.
 /// \param a_formatter: A boost::locale::format to format with.
@@ -113,9 +121,6 @@ std::string& stCFormat(std::string& a_format, const First& a_first, const Rest&.
   a_format = formatter.str(std::locale("C"));
   return a_format;
 } // stCFormat
-
-std::string stTranslate(const char* a_message, const char* a_domain);
-void stBindTextDomain(const std::string& a_domain, const std::string& a_messagesPath);
 
 // Used to mark string literals that can be translated. Returns the translated
 // literal if available, or the original literal otherwise.

@@ -23,7 +23,8 @@ namespace xms
 {
 namespace
 {
-boost::locale::generator* fg_generator = nullptr;
+std::locale fg_locale;
+boost::locale::generator* fg_generator;
 
 void iInitializeGenerator()
 {
@@ -37,9 +38,16 @@ void iInitializeGenerator()
   boost::locale::localization_backend_manager::global(manager);
 
   fg_generator = new boost::locale::generator(manager);
-  std::locale::global(fg_generator->generate("en_US"));
+  fg_locale = fg_generator->generate("en_US");
 } // iInitializeGenerator
 } // anonymous namespace
+
+std::locale& stiGetLocale()
+{
+  iInitializeGenerator();
+
+  return fg_locale;
+} // stiGetLocale
 
 //------------------------------------------------------------------------------
 /// \brief Enable translation for the given domain.
@@ -62,7 +70,7 @@ void stBindTextDomain(const std::string& a_domain, const std::string& a_messages
 
   fg_generator->add_messages_path(a_messagesPath);
   fg_generator->add_messages_domain(a_domain);
-  std::locale::global(fg_generator->generate("en_US"));
+  fg_locale = fg_generator->generate("en_US");
 } // stBindTextDomain
 
 //------------------------------------------------------------------------------
