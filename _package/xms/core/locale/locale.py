@@ -24,7 +24,7 @@ class Locale:
             or the unmodified message otherwise.
         """
         if self._translation is None:
-            self._translation = gettext.translation(self._domain, languages=["en_US"])
+            self._translation = gettext.translation(self._domain, languages=["en_US"], fallback=True)
         return self._translation.gettext(message)
 
 
