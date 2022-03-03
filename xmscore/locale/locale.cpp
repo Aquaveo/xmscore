@@ -83,7 +83,7 @@ std::string stTranslate(const char* a_message, const char* a_domain)
 {
   iInitializeGenerator();
 
-  return boost::locale::dgettext(a_domain, a_message);
+  return boost::locale::dgettext(a_domain, a_message, fg_locale);
 } // stTranslate
 
 } // namespace xms
