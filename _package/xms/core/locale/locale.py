@@ -27,7 +27,7 @@ class Locale:
         return self._translation.gettext(message)
 
 
-def N_(message):
+def N_(message):  # NOQA: N802
     """
     A null translator.
 

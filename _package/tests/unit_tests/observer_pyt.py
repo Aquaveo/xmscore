@@ -8,6 +8,7 @@ from xms.core.locale import Locale, N_
 from xms.core.misc import Observer
 _ = Locale('xmscore')
 
+
 class MockObserver(Observer):
     """Mock Observer class for testing."""
 
