@@ -79,3 +79,85 @@ std::string stTranslate(const char* a_message, const char* a_domain)
 } // stTranslate
 
 } // namespace xms
+
+
+#if CXX_TEST
+////////////////////////////////////////////////////////////////////////////////
+// TESTS
+////////////////////////////////////////////////////////////////////////////////
+
+#include <xmscore/locale/locale.t.h>
+
+#include <xmscore/testing/TestTools.h>
+
+//------------------------------------------------------------------------------
+/// \brief Translate a marked string with no translation.
+//------------------------------------------------------------------------------
+void LocaleUnitTests::testMarkedUntranslated()
+{
+  std::string expected =
+    "This message should not be modified by documentation.\n"
+    "It is used for testing marked messages with no modifications.\n"
+    "Modifying it will cause tests to fail.\n";
+  std::string translated =
+    _("This message should not be modified by documentation.\n"
+      "It is used for testing marked messages with no modifications.\n"
+      "Modifying it will cause tests to fail.\n");
+  
+  TS_ASSERT(expected == translated);
+} // LocaleUnitTests::testMarkedUntranslated
+
+//------------------------------------------------------------------------------
+/// \brief Translate a marked string with a translation.
+//------------------------------------------------------------------------------
+void LocaleUnitTests::testMarkedTranslated()
+{
+  std::string expected =
+    "This message should not be modified by documentation.\n"
+    "It is used for testing marked messages with a modification.\n"
+    "Modifying it will cause tests to fail.\n"
+    "Specifically, it will cause testMarkedTranslated to fail.";
+  std::string translated =
+    _("This message should not be modified by documentation.\n"
+      "It is used for testing marked messages with a modification.\n"
+      "Modifying it will cause tests to fail.\n");
+  
+  TS_ASSERT(expected == translated);
+} // LocaleUnitTests::testMarkedTranslated
+
+//------------------------------------------------------------------------------
+/// \brief Translate an unmarked string.
+//------------------------------------------------------------------------------
+void LocaleUnitTests::testUnmarked()
+{
+  std::string expected =
+    "This message should not be modified by documentation.\n"
+    "It is used for testing modification of unmarked messages.\n"
+    "Modifying it will cause tests to fail.\n";
+  std::string translated = xms::stTranslate(
+    "This message should not be modified by documentation.\n"
+    "It is used for testing modification of unmarked messages.\n"
+    "Modifying it will cause tests to fail.\n",
+    "xmscorelib");
+  
+  TS_ASSERT(expected == translated);
+} // LocaleUnitTests::testUnmarked
+
+//------------------------------------------------------------------------------
+/// \brief Translate a null-marked string.
+//------------------------------------------------------------------------------
+void LocaleUnitTests::testNullMarked()
+{
+  std::string expected =
+    "This message should not be modified by documentation.\n"
+    "It is used for testing modification of null-marked messages.\n"
+    "Modifying it will cause tests to fail.\n";
+  std::string translated =
+    _("This message should not be modified by documentation.\n"
+      "It is used for testing modification of null-marked messages.\n"
+      "Modifying it will cause tests to fail.\n");
+
+  TS_ASSERT(expected == translated);
+} // LocaleUnitTests::testNullMarked
+
+#endif

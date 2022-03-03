@@ -172,6 +172,7 @@ if(BUILD_TESTING)
 
     list(APPEND xmscore_headers
         xmscore/dataio/daStreamIo.t.h
+		xmscore/locale/locale.t.h
         xmscore/math/math.t.h
         xmscore/misc/Observer.t.h
         xmscore/misc/Progress.t.h
