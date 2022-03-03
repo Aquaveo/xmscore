@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: xmscore\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: support@aquaveo.com\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: E:\xmscore\xmscore\dataio\daStreamIo.cpp:108
+msgid "Unable to write file. Compression failed."
+msgstr ""
+
+#: E:\xmscore\xmscore\dataio\daStreamIo.cpp:126
+msgid "Unable to read file. Unable to uncompress data."
+msgstr ""
+
+#: E:\xmscore\xmscore\locale\locale.cpp:111
+msgid ""
+"This message should not be modified by documentation.\n"
+"It is used for testing marked messages with no modifications.\n"
+"Modifying it will cause tests to fail.\n"
+msgstr ""
+
+#: E:\xmscore\xmscore\locale\locale.cpp:129
+msgid ""
+"This message should not be modified by documentation.\n"
+"It is used for testing marked messages with a modification.\n"
+"Modifying it will cause tests to fail.\n"
+msgstr ""
+"This message should not be modified by documentation.\n"
+"It is used for testing marked messages with a modification.\n"
+"Modifying it will cause tests to fail.\n"
+"Specifically, it will cause testMarkedTranslated to fail.\n"
+
+#: E:\xmscore\xmscore\locale\locale.cpp:164
+msgid ""
+"This message should not be modified by documentation.\n"
+"It is used for testing modification of null-marked messages.\n"
+"Modifying it will cause tests to fail.\n"
+msgstr ""
+
+#: E:\xmscore\_package\tests\unit_tests\observer_pyt.py:118
+#: E:\xmscore\_package\tests\unit_tests\observer_pyt.py:193
+msgid "21 jelly beans counted so far."
+msgstr ""
