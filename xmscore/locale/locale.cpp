@@ -105,7 +105,7 @@ using namespace xms;
 //------------------------------------------------------------------------------
 void LocaleUnitTests::setUp()
 {
-  stBindTextDomain(LOCALE_DOMAIN, "E:/xmscore/build/bin/locale");
+  stBindTextDomain(LOCALE_DOMAIN, LOCALE_ROOT);
 } // LocaleUnitTests::testMarkedUntranslated
 
 //------------------------------------------------------------------------------
