@@ -23,10 +23,6 @@
 
 namespace xms
 {
-
-// stiGetLocale is only here for the formatting functions' use. Not meant for other use.
-std::locale& stiGetLocale();
-
 std::string stTranslate(const char* a_message, const char* a_domain);
 void stBindTextDomain(const std::string& a_domain, const std::string& a_messagesPath);
 

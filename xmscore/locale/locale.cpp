@@ -42,13 +42,6 @@ void iInitializeGenerator()
 } // iInitializeGenerator
 } // anonymous namespace
 
-std::locale& stiGetLocale()
-{
-  iInitializeGenerator();
-
-  return fg_locale;
-} // stiGetLocale
-
 //------------------------------------------------------------------------------
 /// \brief Enable translation for the given domain.
 /// \param a_domain: The domain of the messages to be translated. It is
