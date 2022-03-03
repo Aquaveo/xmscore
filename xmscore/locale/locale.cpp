@@ -42,28 +42,39 @@ void iInitializeGenerator()
 } // anonymous namespace
 
 //------------------------------------------------------------------------------
-/// \brief Enable translation for the given domain.
-/// \param a_domain: The domain of the messages to be translated. It is
-///                  recommended to pass the macro LOCALE_DOMAIN for this.
-/// \param a_messagesPath: Where to start looking for messages for this domain.
-/// \note This must be called for each domain before using it with stTranslate
-///       or the _() marker, or they will silently fail and return the original
-///       untranslated message.
-/// \note Translation dictionaries will be looked for at
+/// \brief Add a path to search for messages.
+/// \param a_messagesPath: The path to add.
+/// \note This must be called before any use of the _() marker, or else it will
+///       silently fail to modify the message.
+/// \note Dictionaries will be looked for at
 ///       `<a_messagesPath>/<locale name>/LC_MESSAGES/<a_domain>`.
 ///       E.g. if a_messagesPath="c:\path\to\messages" and a_domain="xmscore"
 ///       and the current locale is "en_US", then the dictionary at
 ///       `c:\path\to\messages\en_US\LC_MESSAGES\xmscore.mo` will be used to
 ///       translate messages in the xmscore domain.
 //------------------------------------------------------------------------------
-void stBindTextDomain(const std::string& a_domain, const std::string& a_messagesPath)
+void stAddMessagePath(const std::string& a_messagePath)
 {
   iInitializeGenerator();
 
-  fg_generator->add_messages_path(a_messagesPath);
+  fg_generator->add_messages_path(a_messagePath);
+  fg_locale = fg_generator->generate("en_US");
+} // stAddMessagePath
+
+//------------------------------------------------------------------------------
+/// \brief Enable translation for the given domain.
+/// \param a_domain: The domain of the messages to be translated.
+/// \note This must be called for each domain before using it with stTranslate
+///       or the _() marker, or they will silently fail and return the original
+///       untranslated message.
+//------------------------------------------------------------------------------
+void stAddTextDomain(const std::string& a_domain)
+{
+  iInitializeGenerator();
+
   fg_generator->add_messages_domain(a_domain);
   fg_locale = fg_generator->generate("en_US");
-} // stBindTextDomain
+} // stAddTextDomain
 
 //------------------------------------------------------------------------------
 /// \brief Translate a message from developer's language to user's language.
@@ -79,7 +90,6 @@ std::string stTranslate(const char* a_message, const char* a_domain)
 } // stTranslate
 
 } // namespace xms
-
 
 #if CXX_TEST
 ////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +107,8 @@ using namespace xms;
 //------------------------------------------------------------------------------
 void LocaleUnitTests::setUp()
 {
-  stBindTextDomain(LOCALE_DOMAIN, LOCALE_ROOT);
+  stAddMessagePath(LOCALE_ROOT);
+  stAddTextDomain(LOCALE_DOMAIN);
 } // LocaleUnitTests::testMarkedUntranslated
 
 //------------------------------------------------------------------------------
@@ -125,7 +136,7 @@ void LocaleUnitTests::testMarkedUntranslated()
     _("This message should not be modified by documentation.\n"
       "It is used for testing marked messages with no modifications.\n"
       "Modifying it will cause tests to fail.\n");
-  
+
   TS_ASSERT(expected == translated);
 } // LocaleUnitTests::testMarkedUntranslated
 
@@ -143,7 +154,7 @@ void LocaleUnitTests::testMarkedTranslated()
     _("This message should not be modified by documentation.\n"
       "It is used for testing marked messages with a modification.\n"
       "Modifying it will cause tests to fail.\n");
-  
+
   TS_ASSERT(expected == translated);
 } // LocaleUnitTests::testMarkedTranslated
 
@@ -161,7 +172,7 @@ void LocaleUnitTests::testUnmarked()
     "It is used for testing modification of unmarked messages.\n"
     "Modifying it will cause tests to fail.\n",
     "xmscorelib");
-  
+
   TS_ASSERT(expected == translated);
 } // LocaleUnitTests::testUnmarked
 
