@@ -186,9 +186,9 @@ void LocaleUnitTests::testNullMarked()
     "It is used for testing modification of null-marked messages.\n"
     "Modifying it will cause tests to fail.\n";
   std::string translated =
-    _("This message should not be modified by documentation.\n"
-      "It is used for testing modification of null-marked messages.\n"
-      "Modifying it will cause tests to fail.\n");
+    N_("This message should not be modified by documentation.\n"
+       "It is used for testing modification of null-marked messages.\n"
+       "Modifying it will cause tests to fail.\n");
 
   TS_ASSERT(expected == translated);
 } // LocaleUnitTests::testNullMarked
