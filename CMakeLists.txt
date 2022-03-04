@@ -113,7 +113,7 @@ if(IS_PYTHON_BUILD)
   )
 endif()
 
-message("External Lib Includes: ${EXT_INCLUDE_DIRS}")
+message(STATUS "External Lib Includes: ${EXT_INCLUDE_DIRS}")
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 include_directories(${EXT_INCLUDE_DIRS})
 link_directories(${EXT_LIB_DIRS})
@@ -272,6 +272,12 @@ if(IS_PYTHON_BUILD)
   set_target_properties(_xmscore PROPERTIES
     LINKER_LANGUAGE CXX
   )
+
+  add_custom_command(
+    TARGET _xmscore POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy_directory
+	  ${CMAKE_CURRENT_SOURCE_DIR}/locales
+      ${CMAKE_CURRENT_SOURCE_DIR}/_package/xms/core/locales)
 
   # Install recipe
   install(
