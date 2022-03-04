@@ -4,9 +4,8 @@ Test InterpLinear_py.cpp.
 import time
 import unittest
 
-from xms.core.locale import Locale, N_
+from xms.core.locale import n_
 from xms.core.misc import Observer
-_ = Locale('xmscore')
 
 
 class MockObserver(Observer):
@@ -115,7 +114,7 @@ class TestObserver(unittest.TestCase):
         """
         # This doesn't really need translating, but it's a good
         # test for message extraction.
-        message = _('21 jelly beans counted so far.')
+        message = n_('21 jelly beans counted so far.')
         self.observer.update_message(message)
         self.assertEqual(message, self.observer.status['message'])
 
@@ -190,7 +189,7 @@ class TestObserver(unittest.TestCase):
         Test the update message function.
         """
         # Marked so the message extractor has something to extract
-        message = _('21 jelly beans counted so far.')
+        message = n_('21 jelly beans counted so far.')
         self.observer.update_message(message)
         self.assertEqual(message, self.observer.status['message'])
 
