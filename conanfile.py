@@ -193,6 +193,7 @@ class XmscoreConan(ConanFile):
         self.output.info('----- RUNNING EXPORT_SOURCES()')
         self.copy('*', src=f'{self.name}', dst=f'{self.name}')
         self.copy('*', src='_package', dst='_package')
+        self.copy('*', src='locales', dst='locales')
 
     def export(self):
         """
