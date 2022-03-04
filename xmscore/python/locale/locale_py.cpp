@@ -20,7 +20,7 @@ void initLocale(py::module& m)
 {
   py::module locale = m.def_submodule(N_("locale"));
   locale.def(N_("translate"), &xms::stTranslate, py::arg(N_("message")), py::arg(N_("domain")));
-  locale.def(N_("add_message_path", &xms::stAddMessagePath, pyy::arg(N_("message_path"))));
-  locale.def(N_("add_text_domain", &xms::stAddTextDomain, py::arg(N_("text_domain"))));
+  locale.def(N_("add_message_path"), &xms::stAddMessagePath, py::arg(N_("message_path")));
+  locale.def(N_("add_text_domain"), &xms::stAddTextDomain, py::arg(N_("text_domain")));
   locale.def(N_("n_"), [](py::object a_) { return a_; });
 }
