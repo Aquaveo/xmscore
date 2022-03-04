@@ -112,6 +112,7 @@ class XmscoreConan(ConanFile):
         """
         self.output.info("----- RUNNING PACKAGE()")
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
+        self.copy("locales")
 
     def package_info(self):
         """
