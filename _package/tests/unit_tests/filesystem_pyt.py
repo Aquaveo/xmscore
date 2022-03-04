@@ -11,7 +11,7 @@ import unittest
 
 # 4. Local modules
 from xms.core.filesystem import filesystem
-from xms.core.locale import N_
+from xms.core.locale import n_
 
 __copyright__ = "(C) Copyright Aquaveo 2019"
 __license__ = "All rights reserved"
@@ -51,7 +51,7 @@ class FilesystemTests(unittest.TestCase):
         d = tempfile.mkdtemp()
         os.environ['XMS_PYTHON_APP_TEMP_DIRECTORY'] = d
         f = filesystem.temp_filename()
-        os.environ.pop(N_('XMS_PYTHON_APP_TEMP_DIRECTORY'))
+        os.environ.pop(n_('XMS_PYTHON_APP_TEMP_DIRECTORY'))
         self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(d))
 
         shutil.rmtree(d)

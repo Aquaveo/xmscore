@@ -122,7 +122,7 @@ class TestObserver(unittest.TestCase):
         """
         Test the time remaining in seconds function.
         """
-        self.observer.begin_operation_string(N_('Test Operation'))
+        self.observer.begin_operation_string(n_('Test Operation'))
         time.sleep(0.1)
         self.observer.progress_status(0.2)
         remaining = self.observer.status['remaining_seconds']
@@ -134,7 +134,7 @@ class TestObserver(unittest.TestCase):
         """
         Test the time elapsed in seconds function.
         """
-        self.observer.begin_operation_string(N_('Test Operation'))
+        self.observer.begin_operation_string(n_('Test Operation'))
         time.sleep(0.1)
         self.observer.progress_status(0.2)
         base_time_elapsed = (self.observer.status['remaining_seconds'] * 0.2) / 0.8
