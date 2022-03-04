@@ -1,7 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xmscore\n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: support@aquaveo.com\n"
+"POT-Creation-Date: 2022-03-04 14:59-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: support@aquaveo.com\n"
@@ -20,14 +21,14 @@ msgstr ""
 msgid "Unable to read file. Unable to uncompress data."
 msgstr ""
 
-#: E:\xmscore\xmscore\locale\locale.cpp:111
+#: E:\xmscore\xmscore\locale\locale.cpp:136 E:\xmscore\_package\tests\unit_tests\locale_pyt.py:33
 msgid ""
 "This message should not be modified by documentation.\n"
 "It is used for testing marked messages with no modifications.\n"
 "Modifying it will cause tests to fail.\n"
 msgstr ""
 
-#: E:\xmscore\xmscore\locale\locale.cpp:129
+#: E:\xmscore\xmscore\locale\locale.cpp:154 E:\xmscore\_package\tests\unit_tests\locale_pyt.py:46
 msgid ""
 "This message should not be modified by documentation.\n"
 "It is used for testing marked messages with a modification.\n"
@@ -37,15 +38,3 @@ msgstr ""
 "It is used for testing marked messages with a modification.\n"
 "Modifying it will cause tests to fail.\n"
 "Specifically, it will cause testMarkedTranslated to fail.\n"
-
-#: E:\xmscore\xmscore\locale\locale.cpp:164
-msgid ""
-"This message should not be modified by documentation.\n"
-"It is used for testing modification of null-marked messages.\n"
-"Modifying it will cause tests to fail.\n"
-msgstr ""
-
-#: E:\xmscore\_package\tests\unit_tests\observer_pyt.py:118
-#: E:\xmscore\_package\tests\unit_tests\observer_pyt.py:193
-msgid "21 jelly beans counted so far."
-msgstr ""
