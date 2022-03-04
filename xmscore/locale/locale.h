@@ -25,7 +25,6 @@ namespace xms
 {
 std::string stTranslate(const char* a_message, const char* a_domain);
 void stAddMessagePath(const std::string& a_messagePath);
-void stAddTextDomain(const std::string& a_domain);
 
 //------------------------------------------------------------------------------
 /// \brief Used by stFormat. Not for external use. Single parameter version.

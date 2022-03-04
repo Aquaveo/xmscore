@@ -10,6 +10,7 @@
 #include <xmscore/locale/locale.h>
 
 // 3. Standard Library Headers
+#include <set>
 #include <string>
 
 // 4. External Library Headers
@@ -23,8 +24,16 @@ namespace xms
 {
 namespace
 {
+// From https://stackoverflow.com/a/38656045/15664362
+// Allows comparing const char* in a std::set.
+struct iLess
+{
+  bool operator()(const char* a, const char* b) const { return strcmp(a, b) < 0; }
+};
+
 std::locale fg_locale;
 boost::locale::generator* fg_generator;
+std::set<const char*, iLess> fg_domains;
 
 void iInitializeGenerator()
 {
@@ -62,29 +71,21 @@ void stAddMessagePath(const std::string& a_messagePath)
 } // stAddMessagePath
 
 //------------------------------------------------------------------------------
-/// \brief Enable translation for the given domain.
-/// \param a_domain: The domain of the messages to be translated.
-/// \note This must be called for each domain before using it with stTranslate
-///       or the _() marker, or they will silently fail and return the original
-///       untranslated message.
-//------------------------------------------------------------------------------
-void stAddTextDomain(const std::string& a_domain)
-{
-  iInitializeGenerator();
-
-  fg_generator->add_messages_domain(a_domain);
-  fg_locale = fg_generator->generate("en_US");
-} // stAddTextDomain
-
-//------------------------------------------------------------------------------
 /// \brief Translate a message from developer's language to user's language.
 /// \param a_message: The message to translate.
+/// \param a_domain: The domain being translated for.
 /// \returns The translated version of the message if available, else the
 ///          same message passed in.
 //------------------------------------------------------------------------------
 std::string stTranslate(const char* a_message, const char* a_domain)
 {
   iInitializeGenerator();
+
+  if (fg_domains.count(a_domain) == 0)
+  {
+    fg_generator->add_messages_domain(a_domain);
+    fg_locale = fg_generator->generate("en_US");
+  }
 
   return boost::locale::dgettext(a_domain, a_message, fg_locale);
 } // stTranslate
@@ -108,7 +109,6 @@ using namespace xms;
 void LocaleUnitTests::setUp()
 {
   stAddMessagePath(LOCALE_ROOT);
-  stAddTextDomain(LOCALE_DOMAIN);
 } // LocaleUnitTests::testMarkedUntranslated
 
 //------------------------------------------------------------------------------
