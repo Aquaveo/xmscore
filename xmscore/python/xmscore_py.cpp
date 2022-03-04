@@ -1,7 +1,7 @@
 //------------------------------------------------------------------------------
 /// \file
 /// \brief root module for xmscore Python bindings.
-/// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
+/// \copyright (C) Copyright Aquaveo 2022. Distributed under FreeBSD License
 /// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
 //------------------------------------------------------------------------------
 
@@ -11,7 +11,7 @@
 #include <pybind11/pybind11.h>
 
 #include <xmscore/locale/locale.h>
-#include <xmscore/locale/locale_py.h>
+#include <xmscore/python/locale/locale_py.h>
 #include <xmscore/python/misc/misc_py.h>
 
 //----- Namespace declaration --------------------------------------------------
