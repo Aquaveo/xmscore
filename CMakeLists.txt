@@ -239,6 +239,7 @@ if(IS_PYTHON_BUILD)
   # Pybind11 sources
   set(xmscore_py
     xmscore/python/xmscore_py.cpp
+	xmscore/python/locale/locale_py.cpp
     # Misc
     xmscore/python/misc/misc_py.cpp
     xmscore/python/misc/PyUtils.cpp
@@ -246,6 +247,7 @@ if(IS_PYTHON_BUILD)
   )
 
   set(xmscore_py_headers
+	xmscore/python/locale/locale_py.h
     xmscore/python/misc/misc_py.h
     xmscore/python/misc/PyUtils.h
     xmscore/python/misc/PublicObserver.h
