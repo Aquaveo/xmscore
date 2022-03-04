@@ -55,7 +55,7 @@ class LocaleUnitTests(unittest.TestCase):
             "This message should not be modified by documentation.\n"
             "It is used for testing modification of unmarked messages.\n"
             "Modifying it will cause tests to fail.\n")
-        translated = _(
+        translated = translate_for_domain('xmscore')(
             "This message should not be modified by documentation.\n"
             "It is used for testing modification of unmarked messages.\n"
             "Modifying it will cause tests to fail.\n")
