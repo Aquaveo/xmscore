@@ -19,8 +19,10 @@ _ = translate_for_domain('xmscore')
 class LocaleUnitTests(unittest.TestCase):
     """Tests functions in locale module."""
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def setUp(self):
+        """Set up a locale unit test."""
+        # Ideally this should have a matching tearDown() method that undoes this.
+        # There's no way to remove the path right now though, and re-adding it doesn't hurt.
         locales_dir = os.path.join(os.path.dirname(core_path), 'locales')
         add_message_path(locales_dir)
 
