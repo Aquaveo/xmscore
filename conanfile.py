@@ -2,7 +2,6 @@
 conanfile.py for the xmscore project.
 """
 import os
-import shutil
 
 from conans import CMake, ConanFile, tools
 from conans.errors import ConanException
@@ -113,14 +112,8 @@ class XmscoreConan(ConanFile):
         """
         self.output.info("----- RUNNING PACKAGE()")
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
-        
-        src = os.path.join(self.source_folder, 'locales')
-        dst = os.path.join(self.package_folder, 'locales')
-        pkg_dst = os.path.join(self.package_folder, '_package/xms/core/locales')
-        
-        # self.copy isn't recursive.
-        shutil.copytree(src, dst, dirs_exist_ok=True)
-        shutil.copytree(src, pkg_dst, dirs_exist_ok=True)
+        self.copy("locales/*/LC_MESSAGES/*")
+        self.copy("locales/*/LC_MESSAGES/*", "_package/xms/core/locales")
 
     def package_info(self):
         """
