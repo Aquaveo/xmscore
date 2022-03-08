@@ -159,17 +159,13 @@ class XmscoreConan(ConanFile):
 
             # Run python tests.
             wd = os.getcwd()
-            while wd:
+            for _ in range(5):
                 if os.path.isdir(wd):
                     print("wd:", wd, os.listdir(wd))
                 else:
                     print("wd:", wd, [])
 
-                nextwd, _ = os.path.split(wd)
-                if len(nextwd) < len(wd):
-                    wd = nextwd
-                else:
-                    print("Terminating on nextwd:", nextwd)
+                wd, _ = os.path.split(wd)
 
             path_to_python_tests = os.path.join(self.build_folder, '_package', 'tests')
             self.run(f'python -m unittest discover -v -p *_pyt.py -s {path_to_python_tests}',
