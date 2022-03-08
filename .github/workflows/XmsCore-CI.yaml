@@ -382,7 +382,7 @@ jobs:
       # Zip Packages
       - name: Zip Conan Packages
         run: |
-          tar czf ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+          tar czf ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}
       - name: Add Artifact
         uses: actions/upload-artifact@v1
         with:
