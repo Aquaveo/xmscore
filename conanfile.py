@@ -163,7 +163,7 @@ class XmscoreConan(ConanFile):
                 for dir in dirs:
                     print(os.path.join(root, dir), end='/\n')
                 for file in files:
-                    print(os.path.join(root, file)
+                    print(os.path.join(root, file))
 
             path_to_python_tests = os.path.join(self.build_folder, '_package', 'tests')
             self.run(f'python -m unittest discover -v -p *_pyt.py -s {path_to_python_tests}',
