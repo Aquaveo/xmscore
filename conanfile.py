@@ -158,13 +158,6 @@ class XmscoreConan(ConanFile):
                 self.run(f'pip install {" ".join(packages_to_install)}')
 
             # Run python tests.
-            print("_package:")
-            for root, dirs, files in os.walk('.'):
-                for dir in dirs:
-                    print(os.path.join(root, dir), end='/\n')
-                for file in files:
-                    print(os.path.join(root, file))
-
             path_to_python_tests = os.path.join(self.build_folder, '_package', 'tests')
             try:
                 self.run(f'python -m unittest discover -v -p *_pyt.py -s {path_to_python_tests}',
