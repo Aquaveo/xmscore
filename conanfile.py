@@ -72,6 +72,9 @@ class XmscoreConan(ConanFile):
             raise ConanException('wchar_t==typedef is only supported for'
                                  'Visual Studio')
 
+        if self.options.wchar_t == 'typedef' and self.options.pybind is True:
+            raise ConanException('wchar_t==typedef is not supported for pybind=True')
+
         self.options['boost'].wchar_t = self.options.wchar_t
 
     def build(self):
