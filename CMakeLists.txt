@@ -295,6 +295,9 @@ if(IS_PYTHON_BUILD)
   install(DIRECTORY "_package/" DESTINATION "_package"
            FILES_MATCHING PATTERN "*.py"
            PATTERN "_package/tests" EXCLUDE)
+
+  install(DIRECTORY "locales/" DESTINATION "_package/xms/core/locales"
+           FILES_MATCHING PATTERN "*")
 endif()
 
 # Install recipe
