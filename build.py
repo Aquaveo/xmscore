@@ -70,7 +70,7 @@ def get_builder():
     for settings, options, env_vars, build_requires, _ in builder.items:
         # Pybind builds are built for 64-bit, non-debug MD(d) builds.
         if settings['arch'] == 'x86_64' and settings['build_type'] != 'Debug' and \
-             (settings['os'] != 'Windows' or settings['compiler.runtime'] in ['MD', 'MDd']):
+             (settings['compiler'] != 'Visual Studio' or settings['compiler.runtime'] in ['MD', 'MDd']):
             # Pybind is only built for visual studio versions greater than 12.
             if settings['compiler'] == 'Visual Studio' and int(settings['compiler.version']) <= 12:
                 continue
