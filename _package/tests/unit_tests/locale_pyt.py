@@ -5,7 +5,7 @@ import unittest
 
 # 4. Local modules
 from xms.core import __file__ as core_path
-from xms.core.locale import add_message_path, n_, translate_for_domain
+from xms.core.locale import n_, translate_for_domain
 
 # 2. Third party modules
 # 3. Aquaveo modules
@@ -18,14 +18,6 @@ _ = translate_for_domain('xmscore')
 
 class LocaleUnitTests(unittest.TestCase):
     """Tests functions in locale module."""
-
-    def setUp(self):
-        """Set up a locale unit test."""
-        # Ideally this should have a matching tearDown() method that undoes this.
-        # There's no way to remove the path right now though, and re-adding it doesn't hurt.
-        locales_dir = os.path.join(os.path.dirname(core_path), 'locales')
-        add_message_path(locales_dir)
-
     def test_marked_untranslated(self):
         """Translate a marked string with no translation."""
         expected = (
