@@ -6,10 +6,18 @@ import os
 from conans import CMake, ConanFile, tools
 from conans.errors import ConanException
 
+LIBRARY_NAME = 'xmscore'
+LIBRARY_URL = 'https://github.com/Aquaveo/xmscore'
+LIBRARY_DESCRIPTION = 'Support library for XMS products'
+XMS_DEPENDENCIES = []
 
+
+# ----------------------------------------------------------------
+# DO NOT EDIT PAST THIS POINT WITHOUT AUTHORIZATION
+# ----------------------------------------------------------------
 class XmscoreConan(ConanFile):
     """
-    XmscoreConan class used for defining the conan info.
+    XmsConan class used for defining the conan info.
     """
     license = "FreeBSD Software License"
     settings = "os", "compiler", "build_type", "arch"
@@ -18,33 +26,44 @@ class XmscoreConan(ConanFile):
         "pybind": [True, False],
         "testing": [True, False],
     }
+    generators = "cmake", "txt"
+    build_requires = "cxxtest/4.4@aquaveo/stable"
+    url = LIBRARY_URL
+    description = LIBRARY_DESCRIPTION
+    xms_dependencies = XMS_DEPENDENCIES
+
     default_options = {
         'wchar_t': 'builtin',
         'pybind': False,
         'testing': False,
     }
-    generators = "cmake", "txt"
-    build_requires = "cxxtest/4.4@aquaveo/stable"
-    url = "https://github.com/Aquaveo/xmscore"
-    description = "Support library for XMS products"
-
-    def configure_options(self):
-        """
-        Configure the options for the conan class.
-        """
-        self.output.info("----- RUNNING CONFIGURE_OPTIONS()")
-
-        if self.settings.build_type != "Release":
-            del self.options.pybind
-
-        if self.settings.compiler != 'Visual Studio':
-            del self.options.wchar_t
 
     def set_name(self):
         """
         The function that sets the name of the conan package.
         """
-        self.name = 'xmscore'
+        self.name = LIBRARY_NAME
+
+    def requirements(self):
+        """Requirements."""
+        self.requires("boost/1.74.0.3@aquaveo/stable")
+        # Pybind if not clang
+        if not self.settings.compiler == "clang" and self.options.pybind:
+            self.requires("pybind11/2.9.1@aquaveo/stable")
+
+        for dependency in self.xms_dependencies:
+            self.requires(dependency)
+
+    def configure_options(self):
+        """
+        Configure the options for the conan class.
+        """
+        # TODO: Do we want to delete the options?
+        if self.settings.build_type != "Release":
+            del self.options.pybind
+
+        if self.settings.compiler != 'Visual Studio':
+            del self.options.wchar_t
 
     def configure(self):
         """
@@ -78,7 +97,6 @@ class XmscoreConan(ConanFile):
         """
         The build method for the conan class.
         """
-        self.output.info("----- RUNNING BUILD()")
         cmake = CMake(self)
 
         # CxxTest doesn't play nice with PyBind. Also, it would be nice to not
@@ -88,11 +106,13 @@ class XmscoreConan(ConanFile):
         cmake.definitions["IS_PYTHON_BUILD"] = self.options.pybind
         cmake.definitions["BUILD_TESTING"] = self.options.testing
         cmake.definitions["XMS_TEST_PATH"] = "test_files"
-        cmake.definitions['USE_TYPEDEF_WCHAR_T'] = (self.options.wchar_t == 'typedef')
+        cmake.definitions['USE_TYPEDEF_WCHAR_T'] = (
+            self.options.wchar_t == 'typedef')
 
         # Version Info
         cmake.definitions["XMS_VERSION"] = '{}'.format(self.version)
-        cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get("PYTHON_TARGET_VERSION", "3.10")
+        cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get(
+            "PYTHON_TARGET_VERSION", "3.10")
 
         cmake.configure(source_folder=".")
         cmake.build()
@@ -110,15 +130,14 @@ class XmscoreConan(ConanFile):
         """
         The package method of the conan class.
         """
-        self.output.info("----- RUNNING PACKAGE()")
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
 
     def package_info(self):
         """
         The package_info method of the conan class.
         """
-        self.output.info("----- RUNNING PACKAGE_INFO()")
-        self.env_info.PYTHONPATH.append(os.path.join(self.package_folder, "_package"))
+        self.env_info.PYTHONPATH.append(
+            os.path.join(self.package_folder, "_package"))
         if self.settings.build_type == 'Debug':
             self.cpp_info.libs = [f'{self.name}lib_d']
         else:
@@ -128,7 +147,6 @@ class XmscoreConan(ConanFile):
         """
         A function to run the cxx_tests.
         """
-        self.output.info("----- ** RUNNING RUN_CXX_TEST()")
         try:
             cmake.test()
         except ConanException:
@@ -142,7 +160,6 @@ class XmscoreConan(ConanFile):
 
     def run_python_tests_and_upload(self):
         """A method to run the python tests, and upload if this is a release."""
-        self.output.info("----- ** RUNNING RUN_PYTHON_TESTS_AND_UPLOAD()")
         with tools.pythonpath(self):
 
             # Install required packages for python testing.
@@ -153,7 +170,8 @@ class XmscoreConan(ConanFile):
                 self.run(f'pip install {" ".join(packages_to_install)}')
 
             # Run python tests.
-            path_to_python_tests = os.path.join(self.build_folder, '_package', 'tests')
+            path_to_python_tests = os.path.join(
+                self.build_folder, '_package', 'tests')
             self.run(f'python -m unittest discover -v -p *_pyt.py -s {path_to_python_tests}',
                      cwd=os.path.join(self.package_folder, "_package"))
 
@@ -163,8 +181,10 @@ class XmscoreConan(ConanFile):
             # manylinux1 as the plat-tag
             is_release = self.env.get("RELEASE_PYTHON", 'False') == 'True'
             is_mac_os = self.settings.os == 'Macos'
-            is_gcc_6 = self.settings.os == "Linux" and float(self.settings.compiler.version.value) == 6.0
-            is_windows_md = (self.settings.os == "Windows" and str(self.settings.compiler.runtime) == "MD")
+            is_gcc_6 = self.settings.os == "Linux" and float(
+                self.settings.compiler.version.value) == 6.0
+            is_windows_md = (self.settings.os == "Windows" and str(
+                self.settings.compiler.runtime) == "MD")
             if is_release and (is_mac_os or is_gcc_6 or is_windows_md):
                 self.upload_python_package()
 
@@ -172,18 +192,19 @@ class XmscoreConan(ConanFile):
         """
         Upload the python package to AQUAPI_URL.
         """
-        self.output.info("----- ** RUNNING UPLOAD_PYTHON_PACKAGE()")
-        """A method to upload the python package."""
         devpi_url = self.env.get("AQUAPI_URL", 'NO_URL')
         devpi_username = self.env.get("AQUAPI_USERNAME", 'NO_USERNAME')
         devpi_password = self.env.get("AQUAPI_PASSWORD", 'NO_PASSWORD')
         self.run('devpi use {}'.format(devpi_url))
-        self.run('devpi login {} --password {}'.format(devpi_username, devpi_password))
-        plat_names = {'Windows': 'win_amd64', 'Linux': 'linux_x86_64', "Macos": 'macosx-10.6-intel'}
+        self.run(
+            'devpi login {} --password {}'.format(devpi_username, devpi_password))
+        plat_names = {'Windows': 'win_amd64',
+                      'Linux': 'linux_x86_64', "Macos": 'macosx-10.6-intel'}
         self.run('python setup.py bdist_wheel --plat-name={} --dist-dir {}'.format(
             plat_names[str(self.settings.os)],
             os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
-        self.run('devpi upload --from-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=".")
+        self.run(
+            'devpi upload --from-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=".")
 
     def export_sources(self):
         """
@@ -197,13 +218,5 @@ class XmscoreConan(ConanFile):
         """
         Specify files to be exported.
         """
-        self.output.info('----- RUNNING EXPORT()')
         self.copy('CMakeLists.txt')
         self.copy('LICENSE')
-
-    def requirements(self):
-        """Requirements."""
-        self.requires("boost/1.74.0.3@aquaveo/stable")
-        # Pybind if not clang
-        if not self.settings.compiler == "clang" and self.options.pybind:
-            self.requires("pybind11/2.9.1@aquaveo/stable")
