@@ -4,11 +4,12 @@ The build.py file for the xmscore project.
 import os
 
 from cpt.packager import ConanMultiPackager
+from conanfile import LIBRARY_NAME
 
-
-if __name__ == "__main__":
-    # ConanPackageTools
-    # See: https://github.com/conan-io/conan-package-tools/blob/develop/README.md
+# ----------------------------------------------------------------
+# DO NOT EDIT PAST THIS FILE WITHOUT AUTHORIZATION
+# ----------------------------------------------------------------
+def get_builder():
     builder = ConanMultiPackager()
     builder.add_common_builds()
 
@@ -20,7 +21,7 @@ if __name__ == "__main__":
     aquapi_password = os.getenv('AQUAPI_PASSWORD', None)
     aquapi_url = os.getenv('AQUAPI_URL', None)
 
-    for settings, _, env_vars, _, _ in builder.items:
+    for settings, options, env_vars, _, _ in builder.items:
         # General Options
         env_vars.update({
             'XMS_VERSION': xms_version,
@@ -46,26 +47,55 @@ if __name__ == "__main__":
         elif settings['compiler'] == 'Visual Studio':
             settings.update({'cppstd': '17'})
 
+        options.update({
+            f'{LIBRARY_NAME}:wchar_t': 'builtin',
+            f'{LIBRARY_NAME}:pybind': False,
+            f'{LIBRARY_NAME}:testing': False,
+        })
+
+    # wchar_t builders
+    wchar_t_update_builds = []
+    for settings, options, env_vars, build_requires, _ in builder.items:
+        # wchar_t builds are only built for Visual Studio builds.
+        if settings['compiler'] == 'Visual Studio':
+            # Set wchar_t options and add a build configuration
+            wchar_t_options = dict(options)
+            wchar_t_options.update({
+                f'{LIBRARY_NAME}:wchar_t': 'typedef',
+            })
+            wchar_t_update_builds.append([settings, wchar_t_options, env_vars, build_requires])
+
+    # pybind builders
     pybind_updated_builds = []
     for settings, options, env_vars, build_requires, _ in builder.items:
-        # pybind option
-        if (not settings['compiler'] == "Visual Studio" or int(settings['compiler.version']) > 12) \
-                and settings['arch'] == "x86_64" and settings['build_type'] != 'Debug':
+        # Pybind builds are built for 64-bit, non-debug MD(d) builds.
+        if settings['arch'] == 'x86_64' and settings['build_type'] != 'Debug' and \
+             settings['compiler.runtime'] in ['MD', 'MDd']:
+            # Pybind is only built for visual studio versions greater than 12.
+            if settings['compiler'] == 'Visual Studio' and int(settings['compiler.version']) <= 12:
+                continue
+            # Update conan options and add a build configuration
             pybind_options = dict(options)
-            pybind_options.update({'xmscore:pybind': True})
+            pybind_options.update({
+                f'{LIBRARY_NAME}:pybind': True,
+            })
             pybind_updated_builds.append([settings, pybind_options, env_vars, build_requires])
 
-        pybind_updated_builds.append([settings, options, env_vars, build_requires])
-    builder.builds = pybind_updated_builds
-
-    testing_updated_builds = []
+    # testing_builders
+    testing_update_builds = []
     for settings, options, env_vars, build_requires, _ in builder.items:
-        # testing option - can't do testing with xms or pybind builds
-        if not options.get('xmscore:xms', False) and not options.get('xmscore:pybind', False):
-            testing_options = dict(options)
-            testing_options.update({'xmscore:testing': True})
-            testing_updated_builds.append([settings, testing_options, env_vars, build_requires])
-        testing_updated_builds.append([settings, options, env_vars, build_requires])
-    builder.builds = testing_updated_builds
+        # Testing builds are built for each base configuration
+        testing_options = dict(options)
+        testing_options.update({
+            f'{LIBRARY_NAME}:testing': True,
+        })
+        testing_update_builds.append([settings, testing_options, env_vars, build_requires])
 
+    builder.builds = builder.builds + wchar_t_update_builds + pybind_updated_builds + testing_update_builds
+
+    return builder
+
+
+if __name__ == "__main__":
+    builder = get_builder()
     builder.run()
