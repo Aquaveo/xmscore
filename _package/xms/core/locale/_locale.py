@@ -1,5 +1,5 @@
-from .._xmscore.locale import translate
 from .. import locale
+from .._xmscore.locale import translate
 
 
 def add_domain(domain):

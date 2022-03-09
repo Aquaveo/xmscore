@@ -1,6 +1,5 @@
 """For testing the locale module."""
 # 1. Standard python modules
-import os
 import unittest
 
 # 4. Local modules
