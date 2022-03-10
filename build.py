@@ -1,8 +1,6 @@
 """
-The build.py file for the xmscore project.
+The build.py file for the xms project.
 """
-import os
-
 from xmsconan.build_helpers import get_builder
 
 from conanfile import LIBRARY_NAME
