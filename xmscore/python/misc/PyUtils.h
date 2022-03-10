@@ -10,6 +10,14 @@
 
 // 3. Standard library headers
 
+// Fix for missing ssize_t extension on windows. 
+// See https://github.com/vlm/asn1c/issues/159
+// Needs to come before importing numpy.h.
+#if defined(_MSC_VER)
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
+#endif
+
 // 4. External library headers
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>

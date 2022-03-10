@@ -20,13 +20,6 @@
 #include <xmscore/python/misc/PyUtils.h>
 
 
-// Fix for missing ssize_t extension on windows. 
-// See https://github.com/vlm/asn1c/issues/159
-#if defined(_MSC_VER)
-#include <BaseTsd.h>
-typedef SSIZE_T ssize_t;
-#endif
-
 namespace py = pybind11;
 
 /// XMS Namespace
