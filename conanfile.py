@@ -115,8 +115,7 @@ class XmscoreConan(ConanFile):
         """
         self.output.info("----- RUNNING PACKAGE()")
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
-        self.copy("res/locales/*/LC_MESSAGES/*", "res")
-        self.copy("res/locales/*/LC_MESSAGES/*", "_package/xms/core/locales")
+        self.copy("res/locales/*/LC_MESSAGES/*")
 
     def package_info(self):
         """
