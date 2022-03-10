@@ -46,6 +46,8 @@ ELSE() # If we are not using conda, we are using conan
   set(EXT_INCLUDE_DIRS ${CONAN_INCLUDE_DIRS})
   set(EXT_LIB_DIRS ${CONAN_LIB_DIRS})
   set(EXT_LIBS ${CONAN_LIBS})
+  set(RES_DIRS ${CONAN_RES_DIRS})
+  list(APPEND RES_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/res)
 ENDIF(IS_CONDA_BUILD)
 
 if (APPLE)
@@ -169,7 +171,14 @@ set(xmscore_headers
 if(BUILD_TESTING)
     add_definitions(-DXMS_TEST_PATH="${XMS_TEST_PATH}/")
     add_definitions(-DCXX_TEST -DCXXTEST4)
-	add_definitions(-DLOCALE_ROOT="${CMAKE_CURRENT_SOURCE_DIR}/locales")
+	
+	set(LOCALE_ROOTS "")
+	
+	foreach(RES_DIR ${RES_DIRS})
+	  string(APPEND LOCALE_ROOTS "\"${RES_DIR}/locales\", ")
+	endforeach()
+	
+	add_definitions(-DLOCALE_ROOTS=${LOCALE_ROOTS})
 
     list(APPEND xmscore_headers
         xmscore/dataio/daStreamIo.t.h
