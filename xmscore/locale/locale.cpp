@@ -51,8 +51,17 @@ void iInitializeGenerator()
 } // anonymous namespace
 
 //------------------------------------------------------------------------------
-/// \brief Add a path to search for messages.
+/// \brief A convenience overload for stAddMessagePaths that takes one path.
 /// \param a_messagesPath: The path to add.
+//------------------------------------------------------------------------------
+void stAddMessagePath(const std::string& a_messagePath)
+{
+  stAddMessagePaths({a_messagePath});
+} // stAddMessagePath
+
+//------------------------------------------------------------------------------
+/// \brief Add multiple paths to search for messages.
+/// \param a_messagesPaths: The paths to add.
 /// \note This must be called before any use of the _() marker, or else it will
 ///       silently fail to modify the message.
 /// \note Dictionaries will be looked for at
@@ -62,13 +71,17 @@ void iInitializeGenerator()
 ///       `c:\path\to\messages\en_US\LC_MESSAGES\xmscore.mo` will be used to
 ///       translate messages in the xmscore domain.
 //------------------------------------------------------------------------------
-void stAddMessagePath(const std::string& a_messagePath)
+void stAddMessagePaths(const std::vector<std::string>& a_messagePaths)
 {
   iInitializeGenerator();
 
-  fg_generator->add_messages_path(a_messagePath);
+  for (const auto& messagePath : a_messagePaths)
+  {
+    fg_generator->add_messages_path(messagePath);
+  }
+
   fg_locale = fg_generator->generate("en_US");
-} // stAddMessagePath
+} // stAddMessagePaths
 
 //------------------------------------------------------------------------------
 /// \brief Translate a message from developer's language to user's language.
@@ -108,7 +121,7 @@ using namespace xms;
 //------------------------------------------------------------------------------
 void LocaleUnitTests::setUp()
 {
-  stAddMessagePath(LOCALE_ROOT);
+  stAddMessagePaths({LOCALE_ROOTS});
 } // LocaleUnitTests::testMarkedUntranslated
 
 //------------------------------------------------------------------------------

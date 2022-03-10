@@ -13,6 +13,7 @@
 // 3. Standard Library Headers
 #include <locale>
 #include <string>
+#include <vector>
 
 // 4. External Library Headers
 #include <boost/locale.hpp>
@@ -25,6 +26,7 @@ namespace xms
 {
 std::string stTranslate(const char* a_message, const char* a_domain);
 void stAddMessagePath(const std::string& a_messagePath);
+void stAddMessagePaths(const std::vector<std::string>& a_messagePaths);
 
 //------------------------------------------------------------------------------
 /// \brief Used by stFormat. Not for external use. Single parameter version.
