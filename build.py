@@ -9,6 +9,5 @@ from conanfile import LIBRARY_NAME
 
 
 if __name__ == "__main__":
-    print(f'******{LIBRARY_NAME}')
     builder = get_builder(LIBRARY_NAME)
     builder.run()
