@@ -285,7 +285,7 @@ if(IS_PYTHON_BUILD)
   add_custom_command(
     TARGET _xmscore POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy_directory
-	  ${CMAKE_CURRENT_SOURCE_DIR}/locales
+	  ${CMAKE_CURRENT_SOURCE_DIR}/res/locales
       ${CMAKE_CURRENT_SOURCE_DIR}/_package/xms/core/locales
 	COMMENT "Copying locales"
 	COMMAND ${CMAKE_COMMAND} -E copy
@@ -305,7 +305,7 @@ if(IS_PYTHON_BUILD)
            FILES_MATCHING PATTERN "*.py"
            PATTERN "_package/tests" EXCLUDE)
 
-  install(DIRECTORY "locales/" DESTINATION "_package/xms/core/locales"
+  install(DIRECTORY "res/locales/" DESTINATION "_package/xms/core/locales"
            FILES_MATCHING PATTERN "*")
 endif()
 
