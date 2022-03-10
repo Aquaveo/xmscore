@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [macos-10.15]
-        python-version: ["3.10"]
+        python-version: ['3.10']
 
     steps:
       # Checkout Sources
@@ -46,7 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [macos-10.15]
-        python-version: ["3.10"]
+        python-version: ['3.10']
         build_type: [Release, Debug]
 
     env:
@@ -58,19 +58,19 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: "we_should_never_use_this_string_for_a_branch_name"
+      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
       CONAN_BUILD_TYPES: ${{ matrix.build_type }}
-      CONAN_APPLE_CLANG_VERSIONS: "11.0"
+      CONAN_APPLE_CLANG_VERSIONS: '11.0'
       # Aquapi Variables
       AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
       AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
       AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
       # Python Variables
       PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
-      RELEASE_PYTHON: "False"
+      RELEASE_PYTHON: 'False'
 
     steps:
       # Checkout Sources
@@ -91,7 +91,7 @@ jobs:
       - name: Setup XCode
         uses: sinoru/actions-setup-xcode@v1.1
         with:
-          xcode-version: "11.6"
+          xcode-version: '11.6'
       # Setup Conan
       - name: Setup Conan Directory
         run: conan user
@@ -107,10 +107,10 @@ jobs:
       - name: Set Conan Version
         uses: allenevans/set-env@v2.0.0
         with:
-          CONAN_REFERENCE: "xmscore/${{ steps.gitTag.outputs.tag }}"
+          CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
           XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
           CONAN_UPLOAD: https://conan.aquaveo.com
-          RELEASE_PYTHON: "True"
+          RELEASE_PYTHON: 'True'
         if: startsWith(github.ref, 'refs/tags/')
       # Check for release branch
       - name: Get Branch Name
@@ -164,7 +164,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [ubuntu-18.04]
-        python-version: ["3.10"]
+        python-version: ['3.10']
         compiler-version: [6, 7]
         build_type: [Release, Debug]
 
@@ -177,22 +177,22 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: "we_should_never_use_this_string_for_a_branch_name"
+      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
       CONAN_BUILD_TYPES: ${{ matrix.build_type }}
       CONAN_GCC_VERSIONS: ${{ matrix.compiler-version }}
       CONAN_DOCKER_IMAGE: docker.aquaveo.com/aquaveo/conan-docker/conan-gcc${{ matrix.compiler-version }}-py3.10:latest
-      CONAN_PIP_INSTALL: "conan-package-tools==0.35.1"
-      CONAN_PIP_PACKAGE: "conan==1.41.0"
+      CONAN_PIP_INSTALL: 'conan-package-tools==0.35.1'
+      CONAN_PIP_PACKAGE: 'conan==1.41.0'
       # Aquapi Variables
       AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
       AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
       AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
       # Python Variables
       PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
-      RELEASE_PYTHON: "False"
+      RELEASE_PYTHON: 'False'
 
     steps:
       # Checkout Sources
@@ -233,10 +233,10 @@ jobs:
       - name: Set Conan Version
         uses: allenevans/set-env@v2.0.0
         with:
-          CONAN_REFERENCE: "xmscore/${{ steps.gitTag.outputs.tag }}"
+          CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
           XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
           CONAN_UPLOAD: https://conan.aquaveo.com
-          RELEASE_PYTHON: "True"
+          RELEASE_PYTHON: 'True'
         if: startsWith(github.ref, 'refs/tags/')
       # Check for release branch
       - name: Get Branch Name
@@ -292,7 +292,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [windows-2019]
-        python-version: ["3.10"]
+        python-version: ['3.10']
         compiler-version: [16]
         build_type: [Release, Debug]
 
@@ -306,7 +306,7 @@ jobs:
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: "we_should_never_use_this_string_for_a_branch_name"
+      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
       CONAN_REMOTES: https://conan.aquaveo.com
@@ -318,7 +318,7 @@ jobs:
       AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
       # Python Variables
       PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
-      RELEASE_PYTHON: "False"
+      RELEASE_PYTHON: 'False'
 
     steps:
       # Checkout Sources
@@ -357,10 +357,10 @@ jobs:
       - name: Set Conan Version
         uses: allenevans/set-env@v2.0.0
         with:
-          CONAN_REFERENCE: "xmscore/${{ steps.gitTag.outputs.tag }}"
+          CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
           XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
           CONAN_UPLOAD: https://conan.aquaveo.com
-          RELEASE_PYTHON: "True"
+          RELEASE_PYTHON: 'True'
         if: startsWith(github.ref, 'refs/tags/')
       # Check for release branch
       - name: Get Branch Name
