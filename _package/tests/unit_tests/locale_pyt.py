@@ -3,13 +3,15 @@
 import unittest
 
 # 4. Local modules
-from xms.core.locale import n_, translate_for_domain, xmscore as _
+from xms.core.locale import n_, translate_for_domain
 
 # 2. Third party modules
 # 3. Aquaveo modules
 
 __copyright__ = "(C) Copyright Aquaveo 2019"
 __license__ = "All rights reserved"
+
+_ = translate_for_domain('xmscore')
 
 
 class LocaleUnitTests(unittest.TestCase):

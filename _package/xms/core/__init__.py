@@ -13,4 +13,3 @@ locale.add_message_path(
     os.path.join(
         os.path.abspath(os.path.dirname(__file__)),
         'locales'))
-locale.add_domain('xmscore')

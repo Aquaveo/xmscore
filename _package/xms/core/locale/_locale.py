@@ -2,19 +2,6 @@ from .. import locale
 from .._xmscore.locale import translate
 
 
-def add_domain(domain):
-    """
-    Allow importing the given domain from this module.
-
-    E.g. after calling this function with `xmscore` you can do `from xms.core.locale import xmscore` and it will
-    give you a translation function for the `xmscore` domain.
-
-    Args:
-        domain: The domain to add.
-    """
-    locale.__setattr__(domain, translate_for_domain(domain))
-
-
 def n_(message):
     """
     Mark a message as untranslatable.
