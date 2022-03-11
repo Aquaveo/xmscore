@@ -20,9 +20,9 @@
 #endif // ifdef CXX_TEST
 
 // 5. Shared code headers
-#include <xmscore/locale/locale.h>
 #include <xmscore/points/ptsfwd.h>
 #include <xmscore/stl/utility.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 namespace xms
 {

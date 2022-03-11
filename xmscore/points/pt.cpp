@@ -20,9 +20,9 @@
 
 #include <cfloat>
 
-#include <xmscore/locale/locale.h>
 #include <xmscore/stl/vector.h>
 #include <xmscore/testing/TestTools.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 //------------------------------------------------------------------------------
 /// \brief tests for points

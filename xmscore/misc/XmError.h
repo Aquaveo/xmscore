@@ -17,8 +17,8 @@
 #include <boost/preprocessor/facilities/empty.hpp>
 
 // 5. Shared Headers
-#include <xmscore/locale/locale.h>
 #include <xmscore/misc/XmLog.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 // 6. Non-shared Headers
 

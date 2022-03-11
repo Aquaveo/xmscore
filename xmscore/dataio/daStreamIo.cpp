@@ -24,10 +24,10 @@
 #include <zlib.h>
 
 // 5. Shared Headers
-#include <xmscore/locale/locale.h>
 #include <xmscore/misc/StringUtil.h>
 #include <xmscore/misc/XmError.h>
 #include <xmscore/misc/XmLog.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 //----- Forward declarations ---------------------------------------------------
 

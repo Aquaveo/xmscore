@@ -9,10 +9,10 @@
 #include <pybind11/pybind11.h>
 #include <boost/shared_ptr.hpp>
 
-#include <xmscore/locale/locale.h>
 #include <xmscore/python/misc/misc_py.h>
 #include <xmscore/python/misc/PublicObserver.h>
 #include <xmscore/python/misc/PyObserver.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 //----- Namespace declaration --------------------------------------------------
 namespace py = pybind11;

@@ -7,7 +7,7 @@
 // 1. Precompiled header
 
 // 2. My header
-#include <xmscore/locale/locale.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 // 3. Standard Library Headers
 #include <set>
@@ -110,7 +110,7 @@ std::string stTranslate(const char* a_message, const char* a_domain)
 // TESTS
 ////////////////////////////////////////////////////////////////////////////////
 
-#include <xmscore/locale/locale.t.h>
+#include <xmscore/xmlocale/xmlocale.t.h>
 
 #include <xmscore/testing/TestTools.h>
 

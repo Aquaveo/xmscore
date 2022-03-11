@@ -21,7 +21,7 @@
 #pragma warning(pop)
 
 // 5. Shared code headers
-#include <xmscore/locale/locale.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 // 6. Non-shared code headers
 

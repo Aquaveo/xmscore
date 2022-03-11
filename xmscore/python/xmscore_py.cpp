@@ -10,9 +10,9 @@
 
 #include <pybind11/pybind11.h>
 
-#include <xmscore/locale/locale.h>
 #include <xmscore/python/locale/locale_py.h>
 #include <xmscore/python/misc/misc_py.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 //----- Namespace declaration --------------------------------------------------
 namespace py = pybind11;

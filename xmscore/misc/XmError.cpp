@@ -15,7 +15,7 @@
 // 4. External Library Headers
 
 // 5. Shared Headers
-#include <xmscore/locale/locale.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 // 6. Non-shared Headers
 

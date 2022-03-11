@@ -9,7 +9,7 @@
 #include <sstream>
 #include <utility>
 
-#include <xmscore/locale/locale.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 namespace xms
 {

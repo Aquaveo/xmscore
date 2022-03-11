@@ -13,8 +13,8 @@
 #include <string>
 
 // 5. Shared code headers
-#include <xmscore/locale/locale.h>
 #include <xmscore/points/ptsfwd.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 namespace xms
 {

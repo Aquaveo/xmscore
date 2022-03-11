@@ -14,10 +14,10 @@
 #include <sstream>
 #include <iostream>
 
-#include <xmscore/locale/locale.h>
 #include <xmscore/misc/DynBitset.h>
 #include <xmscore/misc/StringUtil.h>
 #include <xmscore/python/misc/PyUtils.h>
+#include <xmscore/xmlocale/xmlocale.h>
 
 
 namespace py = pybind11;

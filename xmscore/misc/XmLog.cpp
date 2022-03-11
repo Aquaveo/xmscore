@@ -39,10 +39,10 @@
 #include <boost/log/utility/manipulators/add_value.hpp>
 
 // 5. Shared code headers
-#include <xmscore/locale/locale.h>
 #ifdef CXX_TEST
 #include <xmscore/testing/TestTools.h>
 #endif
+#include <xmscore/xmlocale/xmlocale.h>
 
 // 6. Non-shared code headers
 

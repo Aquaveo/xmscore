@@ -123,7 +123,6 @@ link_directories(${EXT_LIB_DIRS})
 # Sources
 set(xmscore_sources
   xmscore/dataio/daStreamIo.cpp
-  xmscore/locale/locale.cpp
   xmscore/math/math.cpp
   xmscore/misc/DynBitset.cpp
   xmscore/misc/HeaderCheck.cpp
@@ -136,11 +135,11 @@ set(xmscore_sources
   xmscore/points/functors.cpp
   xmscore/points/pt.cpp
   xmscore/stl/vector.cpp
+  xmscore/xmlocale/xmlocale.cpp
 )
 
 set(xmscore_headers
   xmscore/dataio/daStreamIo.h
-  xmscore/locale/locale.h
   xmscore/math/math.h
   xmscore/misc/base_macros.h
   xmscore/misc/boost_defines.h
@@ -165,6 +164,7 @@ set(xmscore_headers
   xmscore/stl/set.h
   xmscore/stl/utility.h
   xmscore/stl/vector.h
+  xmscore/xmlocale/xmlocale.h
 )
 
 # Tests
@@ -182,7 +182,6 @@ if(BUILD_TESTING)
 
     list(APPEND xmscore_headers
         xmscore/dataio/daStreamIo.t.h
-		xmscore/locale/locale.t.h
         xmscore/math/math.t.h
         xmscore/misc/Observer.t.h
         xmscore/misc/Progress.t.h
@@ -192,6 +191,7 @@ if(BUILD_TESTING)
         xmscore/points/functors.t.h
         xmscore/points/pt.t.h
         xmscore/testing/TestTools.h
+		xmscore/xmlocale/xmlocale.t.h
     )
 
     list(APPEND xmscore_sources
