@@ -1,4 +1,3 @@
-from .. import locale
 from .._xmscore.locale import translate
 
 
