@@ -25,6 +25,7 @@
 #include <sstream>
 
 // 4. External library headers
+#if !defined(__EMSCRIPTEN__)
 #include <boost/filesystem.hpp>
 #include <boost/log/attributes.hpp>
 #include <boost/log/core/core.hpp>
@@ -37,6 +38,7 @@
 #include <boost/log/support/date_time.hpp>
 #include <boost/log/utility/setup/common_attributes.hpp>
 #include <boost/log/utility/manipulators/add_value.hpp>
+#endif
 
 // 5. Shared code headers
 #ifdef CXX_TEST
@@ -46,9 +48,11 @@
 // 6. Non-shared code headers
 
 //----- Namespace declaration --------------------------------------------------
+#if !defined(__EMSCRIPTEN__)
 namespace bfs = boost::filesystem;
 namespace expr = boost::log::expressions;
 namespace sinks = boost::log::sinks;
+#endif
 
 //----- Constants / Enumerations -----------------------------------------------
 
@@ -88,6 +92,7 @@ inline std::basic_ostream<CharT, TraitsT>& operator<<(std::basic_ostream<CharT, 
 
 namespace xms
 {
+#if !defined(__EMSCRIPTEN__)
 /// Used for convenience to declare a global log object
 BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT(xms_global_log,
                                     boost::log::sources::severity_logger_mt<xmlog::MessageTypeEnum>)
@@ -102,6 +107,7 @@ BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT(xms_global_log,
 BOOST_LOG_ATTRIBUTE_KEYWORD(severity, "Severity", xmlog::MessageTypeEnum)
 // BOOST_LOG_ATTRIBUTE_KEYWORD(file_name, "FileName", const char* const)
 // BOOST_LOG_ATTRIBUTE_KEYWORD(line_num, "LineNumber", int)
+#endif
 
 /// Callback to return the name of the log file
 static XmLogFilenameCallback fg_logFilenameCallback;
@@ -140,6 +146,7 @@ XmLog::XmLog()
 : Singleton()
 , m(new Impl())
 {
+#if !defined(__EMSCRIPTEN__)
   // Setup the formatter for file sinks
   boost::log::formatter file_fmt = expr::stream << "[" << severity << "]"
                                                 << "["
@@ -173,6 +180,7 @@ XmLog::XmLog()
 
   // Add Log to BugTracker
   std::string tmp = XmLog::LogFilename();
+#endif
 } // XmLog::XmLog
 //------------------------------------------------------------------------------
 /// \brief destructor
@@ -201,16 +209,20 @@ void XmLog::Log(const char* const a_file,
 
   if (a_level == xmlog::debug)
   {
+#if !defined(__EMSCRIPTEN__)
     BOOST_LOG_SEV(xms_global_log::get(), a_level)
       << boost::log::add_value("FileName", a_file) << boost::log::add_value("LineNumber", a_line)
       << a_message;
+#endif
   }
   else
   {
     m->m_stackedMessages.push_back(std::make_pair(a_level, a_message));
+#if !defined(__EMSCRIPTEN__)
     BOOST_LOG_SEV(xms_global_log::get(), a_level)
       << boost::log::add_value("FileName", a_file) << boost::log::add_value("LineNumber", a_line)
       << a_message;
+#endif
   }
 } // XmLog::Log
 //------------------------------------------------------------------------------
@@ -268,11 +280,13 @@ std::string XmLog::LogFilename()
   else
   {
     static std::string fg_logPath;
+#if !defined(__EMSCRIPTEN__)
     if (fg_logPath.empty())
     {
       bfs::path p = bfs::temp_directory_path() / bfs::unique_path();
       fg_logPath = p.string() + "debug.log";
     }
+#endif
     return fg_logPath;
   }
 } // XmLog::LogFilename
