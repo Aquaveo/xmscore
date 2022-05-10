@@ -13,12 +13,9 @@
 #include <xmscore/misc/Observer.h>
 
 // 3. Standard library headers
+#include <chrono>
 
 // 4. External library headers
-#pragma warning(push)
-#pragma warning(disable : 4103)
-#include <boost/timer/timer.hpp>
-#pragma warning(pop)
 
 // 5. Shared code headers
 
@@ -53,9 +50,29 @@ public:
   double ElapsedTimeInSeconds();
   double EstimatedTimeRemainingInSec(double a_percentComplete, double a_elapsedTime);
 
-  boost::timer::cpu_timer m_timer; ///< timer to get elapsed time
-  double m_percentComplete;        ///< percent complete
+  std::chrono::steady_clock::time_point m_beginTime; ///< timer to get elapsed time
+  std::chrono::steady_clock::time_point m_endTime;   ///< timer to get elapsed time
+  bool m_finished = false;                           ///< operation is completed
+  double m_percentComplete;                          ///< percent complete
 };
+
+namespace
+{
+//------------------------------------------------------------------------------
+/// \brief Get the elapsed time in seconds.
+///
+/// \param a_beginTime The beginning time.
+/// \param a_endTime The ending time.
+/// \return The elapsed time in seconds.
+//------------------------------------------------------------------------------
+double iElapsedInSeconds(const std::chrono::steady_clock::time_point& a_beginTime,
+                         const std::chrono::steady_clock::time_point& a_endTime)
+{
+  using namespace std::chrono;
+  duration<double> elapsed = duration_cast<duration<double>>(a_endTime - a_beginTime);
+  return elapsed.count();
+} // iElapsedInSeconds
+}
 
 //------------------------------------------------------------------------------
 /// \brief
@@ -165,7 +182,7 @@ void Observer::OnUpdateMessage(const std::string& a_message)
 //------------------------------------------------------------------------------
 void Observer::impl::BeginOperationString()
 {
-  m_timer.start();
+  m_beginTime = std::chrono::steady_clock::now();
   m_percentComplete = 0;
 } // Observer::impl::BeginOperationString
 //------------------------------------------------------------------------------
@@ -173,7 +190,8 @@ void Observer::impl::BeginOperationString()
 //------------------------------------------------------------------------------
 void Observer::impl::EndOperation()
 {
-  m_timer.stop();
+  m_finished = true;
+  m_endTime = std::chrono::steady_clock::now();
 } // Observer::impl::EndOperation
 //------------------------------------------------------------------------------
 /// \brief Returns the elapsed time for the operation being observed.
@@ -181,11 +199,12 @@ void Observer::impl::EndOperation()
 //------------------------------------------------------------------------------
 double Observer::impl::ElapsedTimeInSeconds()
 {
-  boost::timer::cpu_times const elapsed_times(m_timer.elapsed());
-  boost::timer::nanosecond_type time = elapsed_times.wall;
-  const double NANO_PER_SEC = 1e9;
-  double seconds = time / NANO_PER_SEC;
-  return seconds;
+  using namespace std::chrono;
+  if (!m_finished)
+  {
+    m_endTime = std::chrono::steady_clock::now();
+  }
+  return iElapsedInSeconds(m_beginTime, m_endTime);
 } // Observer::impl::ElapsedTimeInSeconds
 //------------------------------------------------------------------------------
 /// \brief Returns the elapsed time for the operation being observed.
@@ -278,17 +297,19 @@ public:
   void SetObserver(BSHP<xms::Observer> a_) { m_prog = a_; }
   //------------------------------------------------------------------------------
   /// \brief wait until next tenth second passed
-  /// \param a_timer Timer to track elapsed time
+  /// \param a_beginTime The beginning time
   /// \param a_count Number of tenths of a second that should have elapsed
   //------------------------------------------------------------------------------
-  void WaitForNextTenthSecond(boost::timer::cpu_timer& a_timer, int& a_count)
+  void WaitForNextTenthSecond(std::chrono::steady_clock::time_point& a_beginTime, int& a_count)
   {
     ++a_count;
-    const long long tenth_second = 100000000LL;
-    while (a_timer.elapsed().wall < tenth_second * a_count)
+    const double tenth_second = 0.1;
+    auto currentTime = std::chrono::steady_clock::now();
+    double elapsed = xms::iElapsedInSeconds(a_beginTime, currentTime);
+    while (elapsed < tenth_second * a_count)
     {
+      elapsed = xms::iElapsedInSeconds(a_beginTime, std::chrono::steady_clock::now());
     }
-    // boost::this_thread::sleep(boost::posix_time::millisec(100));
   }
   /// mock meshing method
   //------------------------------------------------------------------------------
@@ -299,27 +320,27 @@ public:
     if (!m_prog)
       return;
 
-    boost::timer::cpu_timer timer;
+    auto startTime = std::chrono::steady_clock::now();
     int count = 0;
 
     m_prog->BeginOperationString("Generating mesh points");
     for (int i = 0; i < 4; ++i)
     {
-      WaitForNextTenthSecond(timer, count);
+      WaitForNextTenthSecond(startTime, count);
       m_prog->ProgressStatus((double)(i + 1) / 4);
     }
 
     m_prog->BeginOperationString("Triangulating");
     for (int i = 0; i < 5; ++i)
     {
-      WaitForNextTenthSecond(timer, count);
+      WaitForNextTenthSecond(startTime, count);
       m_prog->ProgressStatus((double)(i + 1) / 5);
     }
 
     m_prog->BeginOperationString("Generating unstructured grid");
     for (int i = 0; i < 3; ++i)
     {
-      WaitForNextTenthSecond(timer, count);
+      WaitForNextTenthSecond(startTime, count);
       m_prog->ProgressStatus((double)(i + 1) / 3);
     }
   }
