@@ -11,6 +11,8 @@ import unittest
 
 # 4. Local modules
 from xms.core.filesystem import filesystem
+from xms.core.filesystem.filesystem import compute_relative_path
+from xms.core.filesystem.filesystem import resolve_relative_path
 
 __copyright__ = "(C) Copyright Aquaveo 2019"
 __license__ = "All rights reserved"
@@ -79,3 +81,22 @@ class FilesystemTests(unittest.TestCase):
                     filepath_unique2 = filesystem.make_filename_unique(filepath)
                     self.assertEqual(os.path.dirname(filepath), os.path.dirname(filepath_unique2))
                     self.assertEqual('make_unique(3).html', os.path.basename(filepath_unique2))
+
+    def test_compute_relative_path(self):
+        """See name."""
+        self.assertEqual('my_file.txt', compute_relative_path('C:\\temp', 'C:\\temp\\my_file.txt'))
+        self.assertEqual("model/filename.txt", compute_relative_path('C:\\temp', "C:\\temp\\model\\filename.txt"))
+        self.assertEqual("../filename.txt", compute_relative_path('\\\\maple\\c\\temp\\model',
+                                                                  "\\\\maple\\c\\temp\\filename.txt"))
+        self.assertEqual('D:/temp/my_file.txt', compute_relative_path('C:\\temp', 'D:\\temp\\my_file.txt'))
+
+    def test_resolve_relative_path(self):
+        """See name."""
+        self.assertEqual("C:\\MP3DU\\test1\\project\\project.mfs", resolve_relative_path("C:\\MP3DU/test1/",
+                                                                                         ".\\project\\project.mfs"))
+        self.assertEqual("C:\\temp\\filename.txt", resolve_relative_path("C:\\temp", "filename.txt"))
+        self.assertEqual("C:\\temp\\model\\filename.txt", resolve_relative_path("C:\\temp", ".\\model\\filename.txt"))
+        self.assertEqual("C:\\temp\\filename.txt", resolve_relative_path("C:\\temp\\model", "..\\filename.txt"))
+        self.assertEqual("\\\\maple\\c\\temp\\filename.txt", resolve_relative_path("\\\\maple\\c\\temp\\model",
+                                                                                   "..\\filename.txt"))
+        self.assertEqual("D:\\temp\\filename.txt", resolve_relative_path("C:\\temp", "D:\\temp\\filename.txt"))
