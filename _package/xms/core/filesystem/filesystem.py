@@ -138,9 +138,11 @@ def does_file_exist(file, proj_dir):
 
 
 def compute_relative_path(path, file):
-    r"""Computes and returns the path of file relative to path.
+    """Computes and returns the path of file relative to path.
 
     Also changes all '\' to '/' so tests work on Windows and Linux.
+
+    If the paths are on different drives, the original "file" path is returned (but with '\' to '/')
 
     Args:
         path (str): A full path included in 'file'.
@@ -148,9 +150,11 @@ def compute_relative_path(path, file):
 
     Returns:
         str: A relative path.
-
     """
-    return os.path.relpath(file, path).replace('\\', '/')
+    try:
+        return os.path.relpath(file, path).replace('\\', '/')
+    except Exception:
+        return file.replace('\\', '/')
 
 
 def is_somewhere_below_system_temp(filename):
