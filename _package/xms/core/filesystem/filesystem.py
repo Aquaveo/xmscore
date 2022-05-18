@@ -138,7 +138,7 @@ def does_file_exist(file, proj_dir):
 
 
 def compute_relative_path(path, file):
-    """Computes and returns the path of file relative to path.
+    r"""Computes and returns the path of file relative to path.
 
     Also changes all '\' to '/' so tests work on Windows and Linux.
 
