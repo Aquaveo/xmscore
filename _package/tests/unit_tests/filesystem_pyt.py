@@ -1,6 +1,7 @@
 """For testing the filesystem module."""
 # 1. Standard python modules
 import os
+import platform
 import shutil
 import tempfile
 import unittest
@@ -84,19 +85,35 @@ class FilesystemTests(unittest.TestCase):
 
     def test_compute_relative_path(self):
         """See name."""
-        self.assertEqual('my_file.txt', compute_relative_path('C:\\temp', 'C:\\temp\\my_file.txt'))
-        self.assertEqual("model/filename.txt", compute_relative_path('C:\\temp', "C:\\temp\\model\\filename.txt"))
-        self.assertEqual("../filename.txt", compute_relative_path('\\\\maple\\c\\temp\\model',
-                                                                  "\\\\maple\\c\\temp\\filename.txt"))
-        self.assertEqual('D:/temp/my_file.txt', compute_relative_path('C:\\temp', 'D:\\temp\\my_file.txt'))
+        if platform.system() == 'Windows':
+            self.assertEqual('my_file.txt', compute_relative_path('C:\\temp', 'C:\\temp\\my_file.txt'))
+            self.assertEqual("model/filename.txt", compute_relative_path('C:\\temp', "C:\\temp\\model\\filename.txt"))
+            self.assertEqual("../filename.txt", compute_relative_path('\\\\maple\\c\\temp\\model',
+                                                                      "\\\\maple\\c\\temp\\filename.txt"))
+            self.assertEqual('D:/temp/my_file.txt', compute_relative_path('C:\\temp', 'D:\\temp\\my_file.txt'))
+        else:
+            self.assertEqual('my_file.txt', compute_relative_path('/temp', '/temp/my_file.txt'))
+            self.assertEqual("model/filename.txt", compute_relative_path('/temp', "/temp/model/filename.txt"))
+            self.assertEqual("../filename.txt", compute_relative_path('/maple/c/temp/model',
+                                                                      "/maple/c/temp/filename.txt"))
 
     def test_resolve_relative_path(self):
         """See name."""
-        self.assertEqual("C:\\MP3DU\\test1\\project\\project.mfs", resolve_relative_path("C:\\MP3DU/test1/",
-                                                                                         ".\\project\\project.mfs"))
-        self.assertEqual("C:\\temp\\filename.txt", resolve_relative_path("C:\\temp", "filename.txt"))
-        self.assertEqual("C:\\temp\\model\\filename.txt", resolve_relative_path("C:\\temp", ".\\model\\filename.txt"))
-        self.assertEqual("C:\\temp\\filename.txt", resolve_relative_path("C:\\temp\\model", "..\\filename.txt"))
-        self.assertEqual("\\\\maple\\c\\temp\\filename.txt", resolve_relative_path("\\\\maple\\c\\temp\\model",
-                                                                                   "..\\filename.txt"))
-        self.assertEqual("D:\\temp\\filename.txt", resolve_relative_path("C:\\temp", "D:\\temp\\filename.txt"))
+        if platform.system() == 'Windows':
+            self.assertEqual("C:\\MP3DU\\test1\\project\\project.mfs", resolve_relative_path("C:\\MP3DU/test1/",
+                                                                                             ".\\project\\project.mfs"))
+            self.assertEqual("C:\\temp\\filename.txt", resolve_relative_path("C:\\temp", "filename.txt"))
+            self.assertEqual("C:\\temp\\model\\filename.txt", resolve_relative_path("C:\\temp",
+                                                                                    ".\\model\\filename.txt"))
+            self.assertEqual("C:\\temp\\filename.txt", resolve_relative_path("C:\\temp\\model", "..\\filename.txt"))
+            self.assertEqual("\\\\maple\\c\\temp\\filename.txt", resolve_relative_path("\\\\maple\\c\\temp\\model",
+                                                                                       "..\\filename.txt"))
+            self.assertEqual("D:\\temp\\filename.txt", resolve_relative_path("C:\\temp", "D:\\temp\\filename.txt"))
+        else:
+            self.assertEqual("/MP3DU/test1/project/project.mfs", resolve_relative_path("/MP3DU/test1/",
+                                                                                       "./project/project.mfs"))
+            self.assertEqual("/temp/filename.txt", resolve_relative_path("/temp", "filename.txt"))
+            self.assertEqual("/temp/model/filename.txt", resolve_relative_path("/temp", "./model/filename.txt"))
+            self.assertEqual("/temp/filename.txt", resolve_relative_path("/temp/model", "../filename.txt"))
+            self.assertEqual("/maple/c/temp/filename.txt", resolve_relative_path("/maple/c/temp/model",
+                                                                                 "../filename.txt"))
