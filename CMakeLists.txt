@@ -11,7 +11,7 @@ set(XMS_BUILD NO CACHE BOOL "Set this if you want to use this package with XMS."
 set(PYTHON_TARGET_VERSION 3.10 CACHE STRING "Version of python to link to for python wrapping.")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Set this if you want to build the python bindings.")
 set(XMS_TEST_PATH ${PROJECT_SOURCE_DIR}/test_files/ CACHE PATH "Path to test files for testing")
-set(XMS_VERSION "\"99.99.99\"" CACHE STRING "Library Version")
+set(XMS_VERSION "99.99.99" CACHE STRING "Library Version")
 
 if (APPLE OR WIN32 OR IS_EMSCRIPTEN_BUILD)
     # Target C++17 on MacOS and Windows. If building with version of Visual Studio without
@@ -129,7 +129,7 @@ set(xmscore_sources
   xmscore/points/functors.cpp
   xmscore/points/pt.cpp
   xmscore/stl/vector.cpp
-)
+  xmscore/time/TimeConversion.cpp)
 
 set(xmscore_headers
   xmscore/dataio/daStreamIo.h
@@ -157,7 +157,7 @@ set(xmscore_headers
   xmscore/stl/set.h
   xmscore/stl/utility.h
   xmscore/stl/vector.h
-)
+  xmscore/time/TimeConversion.h)
 
 # Tests
 if(BUILD_TESTING)
@@ -174,6 +174,7 @@ if(BUILD_TESTING)
         xmscore/misc/XmLog.t.h
         xmscore/points/functors.t.h
         xmscore/points/pt.t.h
+        xmscore/time/TimeConversion.t.h
         xmscore/testing/TestTools.h
     )
 
@@ -235,6 +236,8 @@ if(IS_PYTHON_BUILD)
     xmscore/python/misc/misc_py.cpp
     xmscore/python/misc/PyUtils.cpp
     xmscore/python/misc/observer_py.cpp
+    xmscore/python/time/time_py.cpp
+    xmscore/python/time/TimeConversion_py.cpp
   )
 
   set(xmscore_py_headers
@@ -242,6 +245,7 @@ if(IS_PYTHON_BUILD)
     xmscore/python/misc/PyUtils.h
     xmscore/python/misc/PublicObserver.h
     xmscore/python/misc/PyObserver.h
+    xmscore/python/time/time_py.h
   )
 
   message(STATUS "PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
