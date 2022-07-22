@@ -17,13 +17,18 @@ __license__ = "All rights reserved"
 class TimeConversionTests(unittest.TestCase):
     """Tests functions in time_conversion.py."""
     def test_datetime_to_julian(self):
-        """Test conversions between Julian to calendar date and times."""
+        """Test datetime_to_julian."""
         date_time = datetime.datetime(year=2004, month=6, day=3, hour=2, minute=8, second=32)
         julian = datetime_to_julian(date_time)
         self.assertEqual(2453159.5892592594, julian)
 
     def test_julian_to_datetime(self):
-        """Test conversions between Julian to calendar date and times."""
+        """Test julian_to_datetime."""
         date_time = julian_to_datetime(2453159.5892592594)
         expected_date_time = datetime.datetime(year=2004, month=6, day=3, hour=2, minute=8, second=32)
         self.assertEqual(expected_date_time, date_time)
+
+    def test_julian_to_datetime_invalid(self):
+        """Test julian_to_datetime with invalid julian input."""
+        date_time = julian_to_datetime(-99999999.0)
+        self.assertIsNone(date_time)

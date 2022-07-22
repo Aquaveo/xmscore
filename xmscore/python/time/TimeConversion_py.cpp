@@ -20,19 +20,22 @@ void initTimeConversion(py::module& geometry)
   // function: tmCalendarToJulian
   // ---------------------------------------------------------------------------
   geometry.def("tmCalendarToJulian",
-               [](int a_yr, int a_mo, int a_day, int a_hr, int a_min, int a_sec) -> double {
+               [](int a_yr, int a_mo, int a_day, int a_hr, int a_min, int a_sec) -> py::object {
                  double julian = 0.0;
-                 xms::tmCalendarToJulian(xms::ERA_CE, a_yr, a_mo, a_day, a_hr, a_min, a_sec,
-                                         &julian);
-                 return julian;
+                 bool success =
+                   xms::tmCalendarToJulian(a_yr, a_mo, a_day, a_hr, a_min, a_sec, &julian);
+                 if (success)
+                   return py::cast(julian);
+                 return py::none();
                });
   // ---------------------------------------------------------------------------
   // function: tmJulianToCalendar
   // ---------------------------------------------------------------------------
-  geometry.def("tmJulianToCalendar", [](double a_julian) -> py::tuple {
+  geometry.def("tmJulianToCalendar", [](double a_julian) -> py::object {
     int year, month, day, hour, minute, second;
-    xms::TimeEra era; // ignored like in data_objects
-    xms::tmJulianToCalendar(&era, &year, &month, &day, &hour, &minute, &second, a_julian);
-    return py::make_tuple(year, month, day, hour, minute, second);
+    bool success = xms::tmJulianToCalendar(&year, &month, &day, &hour, &minute, &second, a_julian);
+    if (success)
+      return py::make_tuple(year, month, day, hour, minute, second);
+    return py::none();
   });
 }

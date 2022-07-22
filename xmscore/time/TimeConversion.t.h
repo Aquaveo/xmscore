@@ -25,6 +25,10 @@ class TimeConversionUnitTests : public CxxTest::TestSuite
 {
 public:
   void testJulianConversions();
+  void testJulianToCalendar();
+  void testJulianToCalendarInvalid();
+  void testCalendarToJulian();
+  void testCalendarToJulianInvalid();
 };
 
 #endif
