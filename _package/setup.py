@@ -22,7 +22,7 @@ setup(
     python_requires='>=3.10',
     name='xmscore',
     version=version,
-    packages=['xms.core', 'xms.core.misc', 'xms.core.filesystem'],
+    packages=['xms.core', 'xms.core.filesystem', 'xms.core.misc', 'xms.core.time'],
     include_package_data=True,
     license='BSD 2-Clause License',
     description='',
