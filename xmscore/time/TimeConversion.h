@@ -20,24 +20,18 @@
 namespace xms
 {
 
-enum TimeEra { ERA_BCE,  ///< Time era BCE (BC)
-               ERA_CE    ///< Time era CE (AD)
-};
-
-int tmCalendarToJulian(TimeEra a_bEra,
-                       int a_yr,
-                       int a_mo,
-                       int a_day,
-                       int a_hr,
-                       int a_min,
-                       int a_sec,
-                       double* a_julian);
-void tmJulianToCalendar(TimeEra* a_bEra,
-                        int* a_yr,
-                        int* a_mo,
+bool tmCalendarToJulian(int a_year,
+                        int a_month,
+                        int a_day,
+                        int a_hour,
+                        int a_minute,
+                        int a_second,
+                        double* a_julian);
+bool tmJulianToCalendar(int* a_year,
+                        int* a_month,
                         int* a_day,
-                        int* a_hr,
-                        int* a_min,
-                        int* a_sec,
+                        int* a_hour,
+                        int* a_minute,
+                        int* a_second,
                         double a_julian);
 } // namespace xms
