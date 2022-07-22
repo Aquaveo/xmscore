@@ -26,13 +26,16 @@ def julian_to_datetime(julian: float) -> Optional[datetime]:
     Returns:
         datetime.datetime: A Python datetime representing julian, or None if date is invalid.
     """
-    year, month, day, hour, minute, second = time_cpp.tmJulianToCalendar(julian)
+    result = time_cpp.tmJulianToCalendar(julian)
+    if result is None:
+        return None
+    year, month, day, hour, minute, second = result
     return datetime(year=year, month=month, day=day,
                     hour=hour, minute=minute, second=second,
                     microsecond=0)
 
 
-def datetime_to_julian(dt: datetime) -> float:
+def datetime_to_julian(dt: datetime) -> Optional[float]:
     """Convert a Python datetime to a Julian double.
 
     Args:
