@@ -16,3 +16,4 @@ namespace py = pybind11;
 void initMisc(py::module &);
 
 void initObserver(py::module &);
+void initProgressListener(py::module &);
