@@ -233,18 +233,24 @@ if(IS_PYTHON_BUILD)
   set(xmscore_py
     xmscore/python/xmscore_py.cpp
     # Misc
+    xmscore/python/misc/detail/Listener.cpp
+    xmscore/python/misc/detail/PublicProgressListener.cpp
     xmscore/python/misc/misc_py.cpp
-    xmscore/python/misc/PyUtils.cpp
     xmscore/python/misc/observer_py.cpp
+    xmscore/python/misc/PyUtils.cpp
+    xmscore/python/misc/progress_listener_py.cpp
     xmscore/python/time/time_py.cpp
     xmscore/python/time/TimeConversion_py.cpp
   )
 
   set(xmscore_py_headers
+    xmscore/python/misc/detail/Listener.h
     xmscore/python/misc/misc_py.h
     xmscore/python/misc/PyUtils.h
     xmscore/python/misc/PublicObserver.h
+    xmscore/python/misc/PublicProgressListener.h
     xmscore/python/misc/PyObserver.h
+    xmscore/python/misc/PyProgressListener.h
     xmscore/python/time/time_py.h
   )
 
