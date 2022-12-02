@@ -203,9 +203,13 @@ endif()
 
 if(IS_PYTHON_BUILD)
   list(APPEND xmscore_sources
+    xmscore/python/misc/detail/Listener.cpp
+    xmscore/python/misc/detail/PublicProgressListener.cpp
+    xmscore/python/misc/progress_listener_py.cpp
     xmscore/python/misc/PyUtils.cpp
   )
   list(APPEND xmscore_headers
+    xmscore/python/misc/misc_py.h
     xmscore/python/misc/PyUtils.h
   )
 endif()
