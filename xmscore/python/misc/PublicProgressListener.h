@@ -30,7 +30,9 @@ public:
   PublicProgressListener();
   virtual ~PublicProgressListener();
 
-  /* Virtual methods called by overrides of Observer virtual methods */
+  void set_update_delay_seconds(int a_delay);
+
+  /* Virtual methods called by overrides of ProgressListener virtual methods */
   virtual void on_progress_status(int a_stackIndex, double a_percentComplete) {}
   virtual int on_begin_operation_string(const std::string& a_operation) { return 0; }
   virtual void on_end_operation(int a_stackIndex) {}
