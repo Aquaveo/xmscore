@@ -19,6 +19,7 @@
 
 // 6. Non-shared Headers
 
+
 //----- Namespace declaration --------------------------------------------------
 namespace xms
 {
@@ -28,8 +29,10 @@ class PublicProgressListener;
 class Listener : public xms::ProgressListener
 {
 public:
-  explicit Listener(PublicProgressListener* a_parent);
+  explicit Listener(PublicProgressListener* a_parent, int a_updateDelaySeconds=3);
   virtual ~Listener();
+
+  void SetUpdateDelaySeconds(int a_delay);
 
   void OnProgressStatus(int a_stackIndex, double a_percentComplete) override;
   int OnBeginOperationString(const std::string& a_operation) override;
@@ -37,8 +40,8 @@ public:
   void OnUpdateMessage(int a_stackIndex, const std::string& a_message) override;
 
 private:
-  PublicProgressListener* m_parent;
-  int m_stackIndex;
+  class impl;
+  impl* m_p;
 };
 
 } // namespace xms

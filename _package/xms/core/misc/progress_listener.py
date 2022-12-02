@@ -28,6 +28,15 @@ class ProgressListener(Prog):
         """
         super().__init__()
 
+    def set_update_delay_seconds(self, delay):
+        """
+        Sets the time to delay messages in seconds.
+
+        Args:
+            delay (int): time to delay in seconds
+        """
+        super().set_update_delay_seconds(delay)
+
     def on_progress_status(self, stack_index, percent_complete):
         """
         Captures the progress of an operation.
