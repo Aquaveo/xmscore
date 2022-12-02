@@ -81,5 +81,12 @@ PublicProgressListener::~PublicProgressListener()
   }
   catch (...) {}
 } // PublicProgressListener::~PublicProgressListener
-
+//------------------------------------------------------------------------------
+/// \brief set the update delay in seconds
+/// \param[in] a_delay: time to delay messages in seconds
+//------------------------------------------------------------------------------
+void PublicProgressListener::set_update_delay_seconds(int a_delay)
+{
+  m_p->m_child->SetUpdateDelaySeconds(a_delay);
+} // PublicProgressListener::set_update_delay_seconds
 } // namespace xms

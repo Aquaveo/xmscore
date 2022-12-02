@@ -26,6 +26,12 @@ void initProgressListener(py::module &m) {
   listener.def(py::init());
 
   // ---------------------------------------------------------------------------
+  // function: set_update_delay_seconds
+  // ---------------------------------------------------------------------------
+  listener.def("set_update_delay_seconds", &xms::PublicProgressListener::set_update_delay_seconds,
+               py::arg("delay"));
+
+  // ---------------------------------------------------------------------------
   // function: on_progress_status
   // ---------------------------------------------------------------------------
   listener.def("on_progress_status", &xms::PublicProgressListener::on_progress_status,
