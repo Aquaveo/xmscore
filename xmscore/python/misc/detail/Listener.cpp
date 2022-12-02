@@ -13,6 +13,7 @@
 #include <xmscore/python/misc/detail/Listener.h>
 
 // 3. Standard library headers
+#include <chrono>
 
 // 4. External library headers
 
@@ -21,6 +22,7 @@
 
 // 6. Non-shared code headers
 #include <xmscore/python/misc/PublicProgressListener.h>
+#include <xmscore/stl/vector.h>
 
 //----- Forward declarations ---------------------------------------------------
 
@@ -37,6 +39,27 @@ namespace xms
 
 //----- Class / Function definitions -------------------------------------------
 
+using namespace std::chrono;
+
+////////////////////////////////////////////////////////////////////////////////
+/// \class Listener::impl
+/// \brief Implementation of the ProgressListener class. This is used in the
+/// python interface.
+////////////////////////////////////////////////////////////////////////////////
+class Listener::impl
+{
+public:
+  impl(PublicProgressListener* a_, int a_updateDelaySeconds)
+  : m_parent(a_)
+  , m_delay(a_updateDelaySeconds){}
+
+  PublicProgressListener* m_parent; ///< parent class that holds this instance
+  int m_delay;                      ///< time to delay messages in seconds
+  VecStr m_operations;              ///< vector of the "begin operation" strings
+  ///< time used for delaying messages so we are not so chatty
+  steady_clock::time_point m_lastMsgTime;
+};
+
 ////////////////////////////////////////////////////////////////////////////////
 /// \class Listener
 /// \brief Implementation of the ProgressListener class. This is used in the
@@ -45,10 +68,10 @@ namespace xms
 //------------------------------------------------------------------------------
 /// \brief Constructor
 /// \param[in] a_parent: the parent class
+/// \param[in] a_updateDelaySeconds: time for delay in updating
 //------------------------------------------------------------------------------
-Listener::Listener(PublicProgressListener *a_)
-: m_parent(a_),
-  m_stackIndex(-1)
+Listener::Listener(PublicProgressListener *a_, int a_updateDelaySeconds /*3*/)
+: m_p(new Listener::impl(a_, a_updateDelaySeconds))
 {
 } // Listener::Listener
 //------------------------------------------------------------------------------
@@ -56,7 +79,23 @@ Listener::Listener(PublicProgressListener *a_)
 //------------------------------------------------------------------------------
 Listener::~Listener()
 {
+  try
+  {
+    delete(m_p);
+    m_p = nullptr;
+  }
+  catch (...)
+  {
+  }
 } // Listener::~Listener
+//------------------------------------------------------------------------------
+/// \brief Set the update delay
+/// \param[in] a_delay: time for delay in message updating
+//------------------------------------------------------------------------------
+void Listener::SetUpdateDelaySeconds(int a_delay)
+{
+  m_p->m_delay = a_delay;
+} // Listener::SetUpdateDelaySeconds
 //------------------------------------------------------------------------------
 /// \brief Listen to progress status
 /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
@@ -64,7 +103,13 @@ Listener::~Listener()
 //------------------------------------------------------------------------------
 void Listener::OnProgressStatus(int a_stackIndex, double a_fractionComplete)
 {
-  m_parent->on_progress_status(a_stackIndex, a_fractionComplete);
+  auto t = steady_clock::now();
+  int elapsed = (int)duration_cast<seconds>(t - m_p->m_lastMsgTime).count();
+  if (elapsed >= m_p->m_delay)
+  {
+    m_p->m_parent->on_progress_status(a_stackIndex, a_fractionComplete);
+    m_p->m_lastMsgTime = t;
+  }
 } // Listener::OnProgressStatus
 //------------------------------------------------------------------------------
 /// \brief Listen to when operation begins
@@ -73,9 +118,10 @@ void Listener::OnProgressStatus(int a_stackIndex, double a_fractionComplete)
 //------------------------------------------------------------------------------
 int Listener::OnBeginOperationString(const std::string& a_operation)
 {
-  m_stackIndex++;
-  m_parent->on_begin_operation_string(a_operation);
-  return m_stackIndex;
+  m_p->m_lastMsgTime = steady_clock::now();
+  m_p->m_operations.push_back(a_operation);
+  m_p->m_parent->on_begin_operation_string(a_operation);
+  return static_cast<int>(m_p->m_operations.size());
 } // Listener::OnBeginOperationString
 //------------------------------------------------------------------------------
 /// \brief Listen to when operation ends
@@ -83,9 +129,10 @@ int Listener::OnBeginOperationString(const std::string& a_operation)
 //------------------------------------------------------------------------------
 void Listener::OnEndOperation(int a_stackIndex)
 {
-  m_parent->on_end_operation(a_stackIndex);
-  if (m_stackIndex > 0)
-    m_stackIndex--;
+  m_p->m_lastMsgTime = steady_clock::now();
+  m_p->m_parent->on_end_operation(a_stackIndex);
+  if (!m_p->m_operations.empty())
+    m_p->m_operations.pop_back();
 } // Listener::OnEndOperation
 //------------------------------------------------------------------------------
 /// \brief Listen to when operation ends
@@ -94,7 +141,13 @@ void Listener::OnEndOperation(int a_stackIndex)
 //------------------------------------------------------------------------------
 void Listener::OnUpdateMessage(int a_stackIndex, const std::string& a_message)
 {
-  m_parent->on_update_message(a_stackIndex, a_message);
+  auto t = steady_clock::now();
+  int elapsed = (int)duration_cast<seconds>(t - m_p->m_lastMsgTime).count();
+  if (elapsed >= m_p->m_delay)
+  {
+    m_p->m_parent->on_update_message(a_stackIndex, a_message);
+    m_p->m_lastMsgTime = t;
+  }
 } // Listener::OnUpdateMessage
 
 } // namespace xms
