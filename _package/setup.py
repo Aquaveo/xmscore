@@ -30,4 +30,5 @@ setup(
     install_requires=requires,
     package_data={'': ['*.pyd', '*.so']},
     test_suite="tests",
+    has_ext_modules=lambda: True,
 )
