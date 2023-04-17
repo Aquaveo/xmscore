@@ -163,7 +163,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-18.04]
+        platform: [ubuntu-latest]
         python-version: ['3.10']
         compiler-version: [7]
         build_type: [Release, Debug]
@@ -211,7 +211,7 @@ jobs:
           python -m pip install -i https://public.aquapi.aquaveo.com/aquaveo/stable/+simple/ "xmsconan>=1.0.4,<2"
       # Login to Aquaveo Docker
       - name: Login to Aquaveo Docker
-        run: sudo docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_TOKEN }} docker.aquaveo.com
+        run: sudo -E docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_TOKEN }} docker.aquaveo.com
         shell: bash
       # Setup Conan
       - name: Setup Conan Directory
