@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1.2)
+cmake_minimum_required(VERSION 3.11.0)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 set(CMAKE_DEBUG_POSTFIX _d)
 
@@ -23,6 +23,7 @@ endif()
 
 if (APPLE)
     set(CMAKE_POSITION_INDEPENDENT_CODE False)
+    add_compile_definitions(_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION)
 else()
     set(CMAKE_POSITION_INDEPENDENT_CODE True)
 endif()

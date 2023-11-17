@@ -202,7 +202,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel MarkupSafe==2.0.0
+          pip install pyYAML==5.3.1 conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel MarkupSafe==2.0.0
           python -m pip install -i https://public.aquapi.aquaveo.com/aquaveo/stable/+simple/ "xmsconan>=1.0.4,<2"
       # Login to Aquaveo Docker
       - name: Login to Aquaveo Docker
@@ -328,7 +328,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel MarkupSafe==2.0.0
+          pip install pyYAML==5.3.1 conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel MarkupSafe==2.0.0
           python -m pip install -i https://public.aquapi.aquaveo.com/aquaveo/stable/+simple/ "xmsconan>=1.0.4,<2"
       # Setup Visual Studio
       - name: Setup Visual Studio
