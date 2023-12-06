@@ -62,11 +62,11 @@ class FilesystemTests(unittest.TestCase):
         self.assertTrue(f)
 
         # With dir arg
-        d = tempfile.mkdtemp()
-        f = filesystem.temp_filename(dir=d)  # Test using str
-        self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(d))
-        f = filesystem.temp_filename(dir=Path(d))  # Test using pathlib
-        self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(d))
+        temp_dir = tempfile.mkdtemp()
+        f = filesystem.temp_filename(dir=temp_dir)  # Test using str
+        self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(temp_dir))
+        f = filesystem.temp_filename(dir=Path(temp_dir))  # Test using pathlib
+        self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(temp_dir))
 
         # With suffix arg
         f = filesystem.temp_filename(suffix='.suffix_test')
@@ -74,13 +74,13 @@ class FilesystemTests(unittest.TestCase):
         self.assertEqual('.suffix_test', extension)
 
         # With XMS_PYTHON_APP_TEMP_DIRECTORY environment variable
-        d = tempfile.mkdtemp()
-        os.environ['XMS_PYTHON_APP_TEMP_DIRECTORY'] = d
+        temp_dir = tempfile.mkdtemp()
+        os.environ['XMS_PYTHON_APP_TEMP_DIRECTORY'] = temp_dir
         f = filesystem.temp_filename()
         os.environ.pop('XMS_PYTHON_APP_TEMP_DIRECTORY')
-        self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(d))
+        self.assertEqual(os.path.normpath(os.path.dirname(f)), os.path.normpath(temp_dir))
 
-        shutil.rmtree(d)
+        shutil.rmtree(temp_dir)
 
     def test_make_filename_unique(self):
         """See name."""
@@ -164,28 +164,28 @@ class FilesystemTests(unittest.TestCase):
     def test_clear_folder(self):
         """Tests filesystem.clear_folder()."""
         # Test using str
-        path = tempfile.mkdtemp()
-        file_path = _make_bob_file(path)
+        temp_dir = tempfile.mkdtemp()
+        file_path = _make_bob_file(temp_dir)
         assert Path(file_path).is_file()
-        clear_folder(path)
+        clear_folder(temp_dir)
         assert not Path(file_path).is_file()
 
         # Test using pathlib
-        file_path = _make_bob_file(path)
+        file_path = _make_bob_file(temp_dir)
         assert Path(file_path).is_file()
-        clear_folder(Path(path))
+        clear_folder(Path(temp_dir))
         assert not Path(file_path).is_file()
 
-        shutil.rmtree(d)
+        shutil.rmtree(temp_dir)
 
     def test_make_or_clear_dir(self):
         """Tests filesystem.make_or_clear_dir()."""
-        d = tempfile.mkdtemp()
+        temp_dir = tempfile.mkdtemp()
         dir1 = str(uuid.uuid4())
         dir2 = str(uuid.uuid4())
 
         # Test using str
-        path = os.path.join(d, dir1, dir2)
+        path = os.path.join(temp_dir, dir1, dir2)
         assert not Path(path).is_dir()
         make_or_clear_dir(path)
         assert Path(path).is_dir()
@@ -197,7 +197,7 @@ class FilesystemTests(unittest.TestCase):
         shutil.rmtree(path)
 
         # Test using pathlib
-        path = Path(d) / dir1 / dir2
+        path = Path(temp_dir) / dir1 / dir2
         assert not path.is_dir()
         make_or_clear_dir(path)
         assert path.is_dir()
@@ -207,7 +207,7 @@ class FilesystemTests(unittest.TestCase):
         assert not Path(file_path).is_file()
         assert path.is_dir()
 
-        shutil.rmtree(d)
+        shutil.rmtree(temp_dir)
 
     def test_paths_are_equal(self):
         """Tests filesystem.paths_are_equal()."""
