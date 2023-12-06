@@ -147,7 +147,7 @@ def compute_relative_path(path: str | Path, file: str | Path) -> str:
     try:
         return os.path.relpath(file, path).replace('\\', '/')
     except Exception:
-        return file.replace('\\', '/')
+        return str(file).replace('\\', '/')
 
 
 def is_somewhere_below_system_temp(filename: str | Path) -> bool:
@@ -177,19 +177,19 @@ def file_prefix(filepath: str | Path) -> str:
     return os.path.splitext(basename)[0]
 
 
-def temp_filename(dir_: str | Path = None, suffix: str = '') -> str:
+def temp_filename(dir: str | Path = None, suffix: str = '') -> str:
     """Returns a temporary filename, in the XMS temp directory by default.
 
     Args:
-        dir_: If provided, filename will be in the directory. Otherwise it will be in the
+        dir: If provided, filename will be in the directory. Otherwise it will be in the
              system temp directory.
         suffix: The suffix to use for the file. You must include a '.' if you want it to be an extension.
 
     Returns:
         See description.
     """
-    if dir_:  # If we call the next line with dir_ == '', it seems to use the working directory.
-        file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, dir=dir_, delete=True)
+    if dir:  # If we call the next line with dir == '', it seems to use the working directory.
+        file = tempfile.NamedTemporaryFile(mode='wt', suffix=suffix, dir=dir, delete=True)
     else:
         xms_temp = os.environ.get('XMS_PYTHON_APP_TEMP_DIRECTORY', 'unknown')
         if xms_temp != 'unknown':
