@@ -164,17 +164,17 @@ class FilesystemTests(unittest.TestCase):
     def test_clear_folder(self):
         """Tests filesystem.clear_folder()."""
         # Test using str
-        d = tempfile.mkdtemp()
-        temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=d)
-        assert Path(temp_file.name).is_file()
-        clear_folder(d)
-        assert not Path(temp_file.name).is_file()
+        path = tempfile.mkdtemp()
+        file_path = _make_bob_file(path)
+        assert Path(file_path).is_file()
+        clear_folder(path)
+        assert not Path(file_path).is_file()
 
         # Test using pathlib
-        temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=d)
-        assert Path(temp_file.name).is_file()
-        clear_folder(Path(d))
-        assert not Path(temp_file.name).is_file()
+        file_path = _make_bob_file(path)
+        assert Path(file_path).is_file()
+        clear_folder(Path(path))
+        assert not Path(file_path).is_file()
 
         shutil.rmtree(d)
 
