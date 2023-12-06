@@ -45,9 +45,9 @@ class FilesystemTests(unittest.TestCase):
             ]
         else:
             paths = [
-                ('dummy', '/temp/dummy.txt'),
-                ('dummy.ext', '/temp/dummy.ext.txt'),
-                ('dummy', 'dummy.txt'),
+                ('/temp/dummy.txt', 'dummy'),
+                ('/temp/dummy.ext.txt', 'dummy.ext'),
+                ('dummy.txt', 'dummy'),
                 ('', ''),
             ]
         for input, result in paths:
