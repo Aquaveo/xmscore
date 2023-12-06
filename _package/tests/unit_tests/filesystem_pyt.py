@@ -157,15 +157,15 @@ class FilesystemTests(unittest.TestCase):
         # Test using str
         d = tempfile.mkdtemp()
         temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=d)
-        assert Path(temp_file).is_file()
+        assert Path(temp_file.name).is_file()
         clear_folder(d)
-        assert not Path(temp_file).is_file()
+        assert not Path(temp_file.name).is_file()
 
         # Test using pathlib
         temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=d)
-        assert Path(temp_file).is_file()
+        assert Path(temp_file.name).is_file()
         clear_folder(Path(d))
-        assert not Path(temp_file).is_file()
+        assert not Path(temp_file.name).is_file()
 
         shutil.rmtree(d)
 
@@ -181,9 +181,9 @@ class FilesystemTests(unittest.TestCase):
         make_or_clear_dir(path)
         assert Path(path).is_dir()
         temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=path)
-        assert Path(temp_file).is_file()
+        assert Path(temp_file.name).is_file()
         make_or_clear_dir(path)
-        assert not Path(temp_file).is_file()
+        assert not Path(temp_file.name).is_file()
         assert Path(path).is_dir()
         Path(path).unlink()
 
@@ -193,9 +193,9 @@ class FilesystemTests(unittest.TestCase):
         make_or_clear_dir(path)
         assert path.is_dir()
         temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=path)
-        assert Path(temp_file).is_file()
+        assert Path(temp_file.name).is_file()
         make_or_clear_dir(path)
-        assert not Path(temp_file).is_file()
+        assert not Path(temp_file.name).is_file()
         assert path.is_dir()
         path.unlink()
 
@@ -219,7 +219,7 @@ class FilesystemTests(unittest.TestCase):
         # Test using str
         d = tempfile.mkdtemp()
         temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=d)
-        with Path(temp_file).open('w') as file:
+        with Path(temp_file.name).open('w') as file:
             file.write('bob')
         temp_file_copy = os.path.join(d, 'copy')
         copyfile(temp_file, temp_file_copy)
@@ -229,10 +229,10 @@ class FilesystemTests(unittest.TestCase):
         # Test using pathlib
         d = tempfile.mkdtemp()
         temp_file = tempfile.NamedTemporaryFile(mode='wt', dir=d)
-        with Path(temp_file).open('w') as file:
+        with Path(temp_file.name).open('w') as file:
             file.write('bob')
         temp_file_copy = os.path.join(d, 'copy')
-        copyfile(Path(temp_file), Path(temp_file_copy))
+        copyfile(Path(temp_file.name), Path(temp_file_copy))
         assert filecmp.cmp(temp_file, temp_file_copy)
         shutil.rmtree(d)
 
@@ -240,19 +240,19 @@ class FilesystemTests(unittest.TestCase):
         """Tests filesystem.removefile()."""
         # Test using str
         temp_file = tempfile.NamedTemporaryFile(mode='wt')
-        assert Path(temp_file).is_file()
+        assert Path(temp_file.name).is_file()
         removefile(temp_file)
-        assert Path(temp_file).is_file()
+        assert Path(temp_file.name).is_file()
 
         # Test using pathlib
         temp_file = tempfile.NamedTemporaryFile(mode='wt')
-        assert Path(temp_file).is_file()
-        removefile(Path(temp_file))
-        assert Path(temp_file).is_file()
+        assert Path(temp_file.name).is_file()
+        removefile(Path(temp_file.name))
+        assert Path(temp_file.name).is_file()
 
     def test_is_somewhere_below_system_temp(self):
         """Tests filesystem.is_somewhere_below_system_temp()."""
         temp_file = tempfile.NamedTemporaryFile(mode='wt')
         self.assertTrue(True, is_somewhere_below_system_temp(temp_file))
-        self.assertTrue(True, is_somewhere_below_system_temp(Path(temp_file)))
-        Path(temp_file).unlink()
+        self.assertTrue(True, is_somewhere_below_system_temp(Path(temp_file.name)))
+        Path(temp_file.name).unlink()
