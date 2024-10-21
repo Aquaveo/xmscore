@@ -1,7 +1,7 @@
 """
 conanfile.py for the xmscore project.
 """
-from xmsconan.xms_conan_file import XmsConanFile
+from xms_conan_file import XmsConanFile
 
 
 class XmscoreConanFile(XmsConanFile):
