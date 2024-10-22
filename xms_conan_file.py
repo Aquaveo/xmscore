@@ -1,5 +1,5 @@
 """
-Conanfile base for the xmscore projects.
+Conanfile base for the xmscore projects compatible with Conan 2.x.
 """
 import os
 
@@ -18,8 +18,8 @@ class XmsConanFile(ConanFile):
         "pybind": [True, False],
         "testing": [True, False],
     }
-    generators = "cmake", "txt"
-    test_requires = "cxxtest/4.4@aquaveo/stable"
+    generators = "CMakeToolchain"
+    test_requires = "cxxtest/4.4"
     xms_dependencies = []
     extra_exports = []
     extra_export_sources = []
@@ -40,18 +40,13 @@ class XmsConanFile(ConanFile):
             self.requires(dependency)
 
     def configure_options(self):
-        """
-        Configure the options for the conan class.
-        """
-        # TODO: Do we want to delete the options?
+        """Configure the options for the conan class."""
         if self.settings.build_type != "Release":
             del self.options.pybind
 
     def configure(self):
-        """
-        The configure method.
-        """
-        self.version = self.env.get('XMS_VERSION', '99.99.99')
+        """The configure method."""
+        self.version = os.environ.get('XMS_VERSION', '99.99.99')
 
         # Raise ConanExceptions for Unsupported Versions
         s_os = self.settings.os
@@ -64,8 +59,7 @@ class XmsConanFile(ConanFile):
         if s_compiler == "gcc" and float(s_compiler_version.value) < 5.0:
             raise ConanException("GCC < 5.0 is not supported.")
 
-        if s_compiler == "apple-clang" and s_os == 'Macos' \
-                and float(s_compiler_version.value) < 9.0:
+        if s_compiler == "apple-clang" and s_os == 'Macos' and float(s_compiler_version.value) < 9.0:
             raise ConanException("Clang > 9.0 is required for Mac.")
 
         for dependency in self.xms_dependencies:
@@ -74,9 +68,7 @@ class XmsConanFile(ConanFile):
             self.options[dep_name].testing = self.options.testing
 
     def build(self):
-        """
-        The build method for the conan class.
-        """
+        """The build method for the conan class."""
         cmake = CMake(self)
 
         # CxxTest doesn't play nice with PyBind. Also, it would be nice to not
@@ -89,8 +81,7 @@ class XmsConanFile(ConanFile):
 
         # Version Info
         cmake.definitions["XMS_VERSION"] = '{}'.format(self.version)
-        cmake.definitions["PYTHON_TARGET_VERSION"] = self.env.get(
-            "PYTHON_TARGET_VERSION", "3.10")
+        cmake.definitions["PYTHON_TARGET_VERSION"] = os.environ.get("PYTHON_TARGET_VERSION", "3.10")
 
         cmake.configure(source_folder=".")
         cmake.build()
@@ -105,26 +96,19 @@ class XmsConanFile(ConanFile):
             self.run_python_tests_and_upload()
 
     def package(self):
-        """
-        The package method of the conan class.
-        """
+        """The package method of the conan class."""
         self.copy("license", dst="licenses", ignore_case=True, keep_path=False)
 
     def package_info(self):
-        """
-        The package_info method of the conan class.
-        """
-        self.env_info.PYTHONPATH.append(
-            os.path.join(self.package_folder, "_package"))
+        """The package_info method of the conan class."""
+        self.env_info.PYTHONPATH.append(os.path.join(self.package_folder, "_package"))
         if self.settings.build_type == 'Debug':
             self.cpp_info.libs = [f'{self.name}lib_d']
         else:
             self.cpp_info.libs = [f'{self.name}lib']
 
     def run_cxx_tests(self, cmake):
-        """
-        A function to run the cxx_tests.
-        """
+        """A function to run the cxx_tests."""
         try:
             cmake.test(output_on_failure=True)
         except ConanException:
@@ -148,8 +132,7 @@ class XmsConanFile(ConanFile):
                 self.run(f'pip install {" ".join(packages_to_install)}')
 
             # Run python tests.
-            path_to_python_tests = os.path.join(
-                self.source_folder, '_package', 'tests')
+            path_to_python_tests = os.path.join(self.source_folder, '_package', 'tests')
             self.run(f'python -m unittest discover -v -p *_pyt.py -s {path_to_python_tests}',
                      cwd=os.path.join(self.package_folder, "_package"))
 
@@ -157,34 +140,25 @@ class XmsConanFile(ConanFile):
             # We are uploading to aquapi here instead of pypi because pypi doesn't accept
             # the type of package 'linux_x86_64 that we want to upload. They only accept
             # manylinux1 as the plat-tag
-            is_release = self.env.get("RELEASE_PYTHON", 'False') == 'True'
+            is_release = os.environ.get("RELEASE_PYTHON", 'False') == 'True'
             is_mac_os = self.settings.os == 'Macos'
-            is_gcc_7 = self.settings.os == "Linux" and float(
-                self.settings.compiler.version.value) == 7.0
-            is_windows_md = (self.settings.os == "Windows" and str(
-                self.settings.compiler.runtime) == "MD")
+            is_gcc_7 = self.settings.os == "Linux" and float(self.settings.compiler.version.value) == 7.0
+            is_windows_md = (self.settings.os == "Windows" and str(self.settings.compiler.runtime) == "MD")
             if is_release and (is_mac_os or is_gcc_7 or is_windows_md):
                 self.upload_python_package()
 
     def upload_python_package(self):
-        """
-        Upload the python package to AQUAPI_URL.
-        """
-        devpi_url = self.env.get("AQUAPI_URL", 'NO_URL')
-        devpi_username = self.env.get("AQUAPI_USERNAME", 'NO_USERNAME')
-        devpi_password = self.env.get("AQUAPI_PASSWORD", 'NO_PASSWORD')
+        """Upload the python package to AQUAPI_URL."""
+        devpi_url = os.environ.get("AQUAPI_URL", 'NO_URL')
+        devpi_username = os.environ.get("AQUAPI_USERNAME", 'NO_USERNAME')
+        devpi_password = os.environ.get("AQUAPI_PASSWORD", 'NO_PASSWORD')
         self.run('devpi use {}'.format(devpi_url))
-        self.run(
-            'devpi login {} --password {}'.format(devpi_username, devpi_password))
-        self.run('python setup.py bdist_wheel --dist-dir {}'.format(
-            os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
-        self.run(
-            'devpi upload --from-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=".")
+        self.run('devpi login {} --password {}'.format(devpi_username, devpi_password))
+        self.run('python setup.py bdist_wheel --dist-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=os.path.join(self.package_folder, "_package"))
+        self.run('devpi upload --from-dir {}'.format(os.path.join(self.build_folder, "dist")), cwd=".")
 
     def export_sources(self):
-        """
-        Specify sources to be exported.
-        """
+        """Specify sources to be exported."""
         self.copy('*', src=f'{self.name}', dst=f'{self.name}')
         self.copy('*', src='_package', dst='_package')
 
@@ -195,9 +169,7 @@ class XmsConanFile(ConanFile):
                 self.copy(f'{item}')
 
     def export(self):
-        """
-        Specify files to be exported.
-        """
+        """Specify files to be exported."""
         self.copy('CMakeLists.txt')
         self.copy('LICENSE')
 

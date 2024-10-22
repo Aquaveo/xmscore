@@ -29,51 +29,50 @@ else()
 endif()
 
 if(IS_PYTHON_BUILD AND BUILD_TESTING)
-  message(FATAL_ERROR "Cannot build python module when testing is enabled")
+    message(FATAL_ERROR "Cannot build python module when testing is enabled")
 endif()
 
 add_definitions(-DXMS_VERSION=\"${XMS_VERSION}\")
 
 if(IS_CONDA_BUILD)
-  include(${CMAKE_CURRENT_LIST_DIR}/condabuildinfo.cmake)
+    include(${CMAKE_CURRENT_LIST_DIR}/condabuildinfo.cmake)
 elseif(IS_EMSCRIPTEN_BUILD)
-  include(${CMAKE_CURRENT_LIST_DIR}/emscriptenbuildinfo.cmake)
+    include(${CMAKE_CURRENT_LIST_DIR}/emscriptenbuildinfo.cmake)
 else() # If we are not using conda or emscripten, we are using conan
-  # C++11 Support
+    # C++11 Support
 
-  # Conan setup
-  include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-  conan_basic_setup(TARGETS)
-  set(EXT_INCLUDE_DIRS ${CONAN_INCLUDE_DIRS})
-  set(EXT_LIB_DIRS ${CONAN_LIB_DIRS})
-  set(EXT_LIBS ${CONAN_LIBS})
-ENDIF(IS_CONDA_BUILD)
+    # Conan 2 setup
+    find_package(Boost REQUIRED)
+    set(EXT_INCLUDE_DIRS ${Boost_INCLUDE_DIRS})
+    set(EXT_LIB_DIRS ${Boost_LIBRARY_DIRS})
+    set(EXT_LIBS ${Boost_LIBRARIES})
+endif()
 
 if(WIN32)
-  string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MT" USES_MT)
-  if(NOT USES_MT)
-    string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MTd" USES_MT)
-  endif()
+    string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MT" USES_MT)
+    if(NOT USES_MT)
+        string(COMPARE EQUAL "${CONAN_SETTINGS_COMPILER_RUNTIME}" "MTd" USES_MT)
+    endif()
 
-  if(USE_TYPEDEF_WCHAR_T)
-    add_definitions(/Zc:wchar_t-)  # Treat wchar_t as a typedef
-  endif()
+    if(USE_TYPEDEF_WCHAR_T)
+        add_definitions(/Zc:wchar_t-)  # Treat wchar_t as a typedef
+    endif()
 
-  add_definitions(/D BOOST_ALL_NO_LIB)
+    add_definitions(/D BOOST_ALL_NO_LIB)
 
-  if(USES_MT)
-    set(CompilerFlags
-        CMAKE_CXX_FLAGS
-        CMAKE_CXX_FLAGS_DEBUG
-        CMAKE_CXX_FLAGS_RELEASE
-        CMAKE_C_FLAGS
-        CMAKE_C_FLAGS_DEBUG
-        CMAKE_C_FLAGS_RELEASE
+    if(USES_MT)
+        set(CompilerFlags
+                CMAKE_CXX_FLAGS
+                CMAKE_CXX_FLAGS_DEBUG
+                CMAKE_CXX_FLAGS_RELEASE
+                CMAKE_C_FLAGS
+                CMAKE_C_FLAGS_DEBUG
+                CMAKE_C_FLAGS_RELEASE
         )
-    foreach(CompilerFlag ${CompilerFlags})
-      string(REPLACE "/MD" "/MT" ${CompilerFlag} "${${CompilerFlag}}")
-    endforeach()
-  endif()
+        foreach(CompilerFlag ${CompilerFlags})
+            string(REPLACE "/MD" "/MT" ${CompilerFlag} "${${CompilerFlag}}")
+        endforeach()
+    endif()
 endif()
 
 message(STATUS "External Include Dirs: ${EXT_INCLUDE_DIRS}")
@@ -81,33 +80,16 @@ message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
 message(STATUS "Extneral Libs: ${EXT_LIBS}")
 
 if(IS_PYTHON_BUILD)
+    list(APPEND EXT_INCLUDE_DIRS
+            ${pybind11_INCLUDE_DIR}
+    )
 
-  # Pybind11 module
-  if(IS_CONDA_BUILD)
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Targets.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/FindPythonLibsNew.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Config.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
-      include("${CONDA_PREFIX}/share/cmake/pybind11/pybind11Tools.cmake")
-  else()
-      list(APPEND CMAKE_MODULE_PATH "${CONAN_PYBIND11_ROOT}/share/cmake/pybind11")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Targets.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/FindPythonLibsNew.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Config.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11ConfigVersion.cmake")
-      include("${CONAN_PYBIND11_ROOT}/share/cmake/pybind11/pybind11Tools.cmake")
-  endif()
+    find_package(PythonLibsNew ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
 
-  list(APPEND EXT_INCLUDE_DIRS
-    ${pybind11_INCLUDE_DIR}
-  )
-
-  find_package(PythonLibsNew ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
-
-  # Have to add this after conda because it doesn't get the path for pybind if we don't.
-  list(APPEND EXT_INCLUDE_DIRS
-    ${PYTHON_INCLUDE_DIRS}
-  )
+    # Have to add this after conda because it doesn't get the path for pybind if we don't.
+    list(APPEND EXT_INCLUDE_DIRS
+            ${PYTHON_INCLUDE_DIRS}
+    )
 endif()
 
 message("External Lib Includes: ${EXT_INCLUDE_DIRS}")
@@ -117,48 +99,50 @@ link_directories(${EXT_LIB_DIRS})
 
 # Sources
 set(xmscore_sources
-  xmscore/dataio/daStreamIo.cpp
-  xmscore/math/math.cpp
-  xmscore/misc/DynBitset.cpp
-  xmscore/misc/HeaderCheck.cpp
-  xmscore/misc/Observer.cpp
-  xmscore/misc/Progress.cpp
-  xmscore/misc/Singleton.cpp
-  xmscore/misc/StringUtil.cpp
-  xmscore/misc/XmError.cpp
-  xmscore/misc/XmLog.cpp
-  xmscore/points/functors.cpp
-  xmscore/points/pt.cpp
-  xmscore/stl/vector.cpp
-  xmscore/time/TimeConversion.cpp)
+        xmscore/dataio/daStreamIo.cpp
+        xmscore/math/math.cpp
+        xmscore/misc/DynBitset.cpp
+        xmscore/misc/HeaderCheck.cpp
+        xmscore/misc/Observer.cpp
+        xmscore/misc/Progress.cpp
+        xmscore/misc/Singleton.cpp
+        xmscore/misc/StringUtil.cpp
+        xmscore/misc/XmError.cpp
+        xmscore/misc/XmLog.cpp
+        xmscore/points/functors.cpp
+        xmscore/points/pt.cpp
+        xmscore/stl/vector.cpp
+        xmscore/time/TimeConversion.cpp
+)
 
 set(xmscore_headers
-  xmscore/dataio/daStreamIo.h
-  xmscore/math/math.h
-  xmscore/misc/base_macros.h
-  xmscore/misc/boost_defines.h
-  xmscore/misc/carray.h
-  xmscore/misc/color_defines.h
-  xmscore/misc/DynBitset.h
-  xmscore/misc/environment.h
-  xmscore/misc/Observer.h
-  xmscore/misc/Progress.h
-  xmscore/misc/Singleton.h
-  xmscore/misc/StringUtil.h
-  xmscore/misc/XmConst.h
-  xmscore/misc/XmError.h
-  xmscore/misc/XmLog.h
-  xmscore/misc/xmstype.h
-  xmscore/points/functors.h
-  xmscore/points/pt.h
-  xmscore/points/ptsfwd.h
-  xmscore/stl/deque.h
-  xmscore/stl/list.h
-  xmscore/stl/map.h
-  xmscore/stl/set.h
-  xmscore/stl/utility.h
-  xmscore/stl/vector.h
-  xmscore/time/TimeConversion.h)
+        xmscore/dataio/daStreamIo.h
+        xmscore/math/math.h
+        xmscore/misc/base_macros.h
+        xmscore/misc/boost_defines.h
+        xmscore/misc/carray.h
+        xmscore/misc/color_defines.h
+        xmscore/misc/DynBitset.h
+        xmscore/misc/environment.h
+        xmscore/misc/Observer.h
+        xmscore/misc/Progress.h
+        xmscore/misc/Singleton.h
+        xmscore/misc/StringUtil.h
+        xmscore/misc/XmConst.h
+        xmscore/misc/XmError.h
+        xmscore/misc/XmLog.h
+        xmscore/misc/xmstype.h
+        xmscore/points/functors.h
+        xmscore/points/pt.h
+        xmscore/points/ptsfwd.h
+        xmscore/stl/deque.h
+        xmscore/stl/list.h
+        xmscore/stl/map.h
+        xmscore/stl/set.h
+        xmscore/stl/utility.h
+        xmscore/stl/vector.h
+        xmscore/time/TimeConversion.h
+)
 
 # Tests
 if(BUILD_TESTING)
@@ -166,136 +150,135 @@ if(BUILD_TESTING)
     add_definitions(-DCXX_TEST -DCXXTEST4)
 
     list(APPEND xmscore_headers
-        xmscore/dataio/daStreamIo.t.h
-        xmscore/math/math.t.h
-        xmscore/misc/Observer.t.h
-        xmscore/misc/Progress.t.h
-        xmscore/misc/StringUtil.t.h
-        xmscore/misc/XmError.t.h
-        xmscore/misc/XmLog.t.h
-        xmscore/points/functors.t.h
-        xmscore/points/pt.t.h
-        xmscore/time/TimeConversion.t.h
-        xmscore/testing/TestTools.h
+            xmscore/dataio/daStreamIo.t.h
+            xmscore/math/math.t.h
+            xmscore/misc/Observer.t.h
+            xmscore/misc/Progress.t.h
+            xmscore/misc/StringUtil.t.h
+            xmscore/misc/XmError.t.h
+            xmscore/misc/XmLog.t.h
+            xmscore/points/functors.t.h
+            xmscore/points/pt.t.h
+            xmscore/time/TimeConversion.t.h
+            xmscore/testing/TestTools.h
     )
 
     list(APPEND xmscore_sources
-        xmscore/testing/TestTools.cpp
+            xmscore/testing/TestTools.cpp
     )
 
     find_package(CxxTest)
     if(CXXTEST_FOUND)
-      include_directories(${CXXTEST_INCLUDE_DIRS})
-      enable_testing()
+        include_directories(${CXXTEST_INCLUDE_DIRS})
+        enable_testing()
 
-      set(CXXTEST_TESTGEN_ARGS --xunit-printer)
-      file(GLOB_RECURSE test_headers ${CMAKE_CURRENT_LIST_DIR}/xmscore/*.t.h)
-      CXXTEST_ADD_TEST(
-        runner runner.cpp ${test_headers}
-      )
-      target_link_libraries(runner ${PROJECT_NAME})
+        set(CXXTEST_TESTGEN_ARGS --xunit-printer)
+        file(GLOB_RECURSE test_headers ${CMAKE_CURRENT_LIST_DIR}/xmscore/*.t.h)
+        CXXTEST_ADD_TEST(
+                runner runner.cpp ${test_headers}
+        )
+        target_link_libraries(runner ${PROJECT_NAME})
 
-      if(WIN32)
-        set(RUNNERNAME "runner.exe")
-      else()
-        set(RUNNERNAME "runner")
-      endif()
+        if(WIN32)
+            set(RUNNERNAME "runner.exe")
+        else()
+            set(RUNNERNAME "runner")
+        endif()
     endif()
 endif()
 
 if(IS_PYTHON_BUILD)
-  list(APPEND xmscore_sources
-    xmscore/python/misc/PyUtils.cpp
-  )
-  list(APPEND xmscore_headers
-    xmscore/python/misc/PyUtils.h
-  )
+    list(APPEND xmscore_sources
+            xmscore/python/misc/PyUtils.cpp
+    )
+    list(APPEND xmscore_headers
+            xmscore/python/misc/PyUtils.h
+    )
 endif()
 
 # Static library
 add_library(${PROJECT_NAME} STATIC
-  ${xmscore_sources} ${xmscore_headers}
+        ${xmscore_sources} ${xmscore_headers}
 )
 find_package(Threads REQUIRED)
 target_link_libraries(${PROJECT_NAME}
-  ${EXT_LIBS}
+        ${EXT_LIBS}
 )
 target_link_libraries(${PROJECT_NAME}
-  ${CMAKE_THREAD_LIBS_INIT}
+        ${CMAKE_THREAD_LIBS_INIT}
 )
 if(UNIX AND NOT APPLE)
     target_link_libraries(${PROJECT_NAME} rt)
 endif()
 
-#Pybind11
+# Pybind11
 if(IS_PYTHON_BUILD)
 
-  # Pybind11 sources
-  set(xmscore_py
-    xmscore/python/xmscore_py.cpp
-    # Misc
-    xmscore/python/misc/detail/Listener.cpp
-    xmscore/python/misc/detail/PublicProgressListener.cpp
-    xmscore/python/misc/misc_py.cpp
-    xmscore/python/misc/observer_py.cpp
-    xmscore/python/misc/PyUtils.cpp
-    xmscore/python/misc/progress_listener_py.cpp
-    xmscore/python/time/time_py.cpp
-    xmscore/python/time/TimeConversion_py.cpp
-  )
+    # Pybind11 sources
+    set(xmscore_py
+            xmscore/python/xmscore_py.cpp
+            # Misc
+            xmscore/python/misc/detail/Listener.cpp
+            xmscore/python/misc/detail/PublicProgressListener.cpp
+            xmscore/python/misc/misc_py.cpp
+            xmscore/python/misc/observer_py.cpp
+            xmscore/python/misc/PyUtils.cpp
+            xmscore/python/misc/progress_listener_py.cpp
+            xmscore/python/time/time_py.cpp
+            xmscore/python/time/TimeConversion_py.cpp
+    )
 
-  set(xmscore_py_headers
-    xmscore/python/misc/detail/Listener.h
-    xmscore/python/misc/misc_py.h
-    xmscore/python/misc/PyUtils.h
-    xmscore/python/misc/PublicObserver.h
-    xmscore/python/misc/PublicProgressListener.h
-    xmscore/python/misc/PyObserver.h
-    xmscore/python/misc/PyProgressListener.h
-    xmscore/python/time/time_py.h
-  )
+    set(xmscore_py_headers
+            xmscore/python/misc/detail/Listener.h
+            xmscore/python/misc/misc_py.h
+            xmscore/python/misc/PyUtils.h
+            xmscore/python/misc/PublicObserver.h
+            xmscore/python/misc/PublicProgressListener.h
+            xmscore/python/misc/PyObserver.h
+            xmscore/python/misc/PyProgressListener.h
+            xmscore/python/time/time_py.h
+    )
 
-  message(STATUS "PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
-  message(STATUS "PYTHON_LIBS: ${PYTHON_LIBRARIES}")
+    message(STATUS "PYTHON_INCLUDE: ${PYTHON_INCLUDE_DIRS}")
+    message(STATUS "PYTHON_LIBS: ${PYTHON_LIBRARIES}")
 
-  pybind11_add_module(_xmscore
-    ${xmscore_py} ${xmscore_py_headers}
-  )
-  target_include_directories(_xmscore
-      PRIVATE
-        ${EXT_INCLUDE_DIRS}
-  )
-  target_link_libraries(_xmscore
-    PRIVATE
-      ${EXT_LIBS}
-      ${PROJECT_NAME}
-  )
-  set_target_properties(_xmscore PROPERTIES
-    LINKER_LANGUAGE CXX
-  )
+    pybind11_add_module(_xmscore
+            ${xmscore_py} ${xmscore_py_headers}
+    )
+    target_include_directories(_xmscore
+            PRIVATE
+            ${EXT_INCLUDE_DIRS}
+    )
+    target_link_libraries(_xmscore
+            PRIVATE
+            ${EXT_LIBS}
+            ${PROJECT_NAME}
+    )
+    set_target_properties(_xmscore PROPERTIES
+            LINKER_LANGUAGE CXX
+    )
 
-  # Install recipe
-  install(
-      TARGETS _xmscore
-      ARCHIVE DESTINATION "_package/xms/core"
-      LIBRARY DESTINATION "_package/xms/core"
-  )
+    install(
+            TARGETS _xmscore
+            ARCHIVE DESTINATION "_package/xms/core"
+            LIBRARY DESTINATION "_package/xms/core"
+    )
 
-  install(DIRECTORY "_package/" DESTINATION "_package"
-           FILES_MATCHING PATTERN "*.py"
-           PATTERN "_package/tests" EXCLUDE)
+    install(DIRECTORY "_package/" DESTINATION "_package"
+            FILES_MATCHING PATTERN "*.py"
+            PATTERN "_package/tests" EXCLUDE)
 endif()
 
 # Install recipe
 install(
-  TARGETS ${PROJECT_NAME}
-  ARCHIVE DESTINATION "lib"
-  LIBRARY DESTINATION "lib"
+        TARGETS ${PROJECT_NAME}
+        ARCHIVE DESTINATION "lib"
+        LIBRARY DESTINATION "lib"
 )
 foreach (header IN LISTS xmscore_headers xmscore_py_headers)
-  get_filename_component(subdir "${header}" DIRECTORY)
-  install(
-    FILES "${header}"
-    DESTINATION "include/${subdir}"
-  )
+    get_filename_component(subdir "${header}" DIRECTORY)
+    install(
+            FILES "${header}"
+            DESTINATION "include/${subdir}"
+    )
 endforeach ()
