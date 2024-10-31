@@ -39,7 +39,7 @@ jobs:
   # MAC
   # ----------------------------------------------------------------------------------------------
   mac:
-    name: Clang-14.0 (${{ matrix.build_type }}, ${{ matrix.python-version }}, Macos)
+    name: Clang-14 (${{ matrix.build_type }}, ${{ matrix.python-version }}, Macos)
     runs-on: ${{ matrix.platform }}
 
     strategy:
@@ -73,6 +73,10 @@ jobs:
       RELEASE_PYTHON: 'False'
 
     steps:
+      # Get Correct Version of Xcode
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 14.3.1
       # Checkout Sources
       - name: Checkout Source
         uses: actions/checkout@v2
