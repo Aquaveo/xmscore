@@ -3,8 +3,9 @@ Conanfile base for the xmscore projects compatible with Conan 2.x.
 """
 import os
 
+import conan
 from conan import ConanFile, tools
-from conan.tools.cmake import CMake
+from conan.tools.cmake import CMake, cmake_layout
 from conan.errors import ConanException
 
 
@@ -18,7 +19,7 @@ class XmsConanFile(ConanFile):
         "pybind": [True, False],
         "testing": [True, False],
     }
-    generators = "CMakeToolchain"
+    generators = []
     test_requires = "cxxtest/4.4"
     xms_dependencies = []
     extra_exports = []
@@ -28,6 +29,16 @@ class XmsConanFile(ConanFile):
         'pybind': False,
         'testing': False,
     }
+
+    def __init__(self, *args, **kwargs):
+        """Initialize things."""
+        super(XmsConanFile, self).__init__(*args, **kwargs)
+        self._conan_1 = conan.conan_version.major <= 1
+        self._conan_1 = False
+        if self._conan_1:
+            self.generators = ['cmake', 'txt']
+        else:
+            self.generators = ["CMakeDeps", "CMakeToolchain"]
 
     def requirements(self):
         """Requirements."""
@@ -66,6 +77,10 @@ class XmsConanFile(ConanFile):
             dep_name, _, _ = dependency.split('/')
             self.options[dep_name].pybind = self.options.pybind
             self.options[dep_name].testing = self.options.testing
+
+    def layout(self):
+        """The layout method."""
+        cmake_layout(self)
 
     def build(self):
         """The build method for the conan class."""
