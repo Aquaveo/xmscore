@@ -1,11 +1,12 @@
 """
 The build.py file for the xms project.
 """
-from xmsconan.build_helpers import get_builder
+from xmsconan.package_tools import packager
 
-from conanfile import LIBRARY_NAME
+import conanfile
 
 
 if __name__ == "__main__":
-    builder = get_builder(LIBRARY_NAME)
+    builder = packager.XmsConanPackager(conanfile.LIBRARY_NAME, conanfile.__file__)
+    builder.generate_configurations()
     builder.run()

@@ -15,6 +15,10 @@ Doxygen/sphinx_warnings.log
 Doxygen/xmscore.tag
 Doxygen/html/*
 
+build/*
+build2/*
+CMakeFiles/*
+
 # Prerequisites
 *.d
 
