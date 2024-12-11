@@ -22,6 +22,7 @@
 #include <boost/algorithm/string/trim.hpp>
 #include <boost/format.hpp>
 #include <boost/lexical_cast.hpp>
+#include <boost/numeric/conversion/cast.hpp>
 
 // 5. Shared Headers
 #include <regex>

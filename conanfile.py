@@ -1,10 +1,10 @@
 """
 conanfile.py for the xmscore project.
 """
-from xmsconan.xms_conan_file import XmsConanFile
+from xmsconan.xms_conan2_file import XmsConan2File
 
 
-class XmscoreConanFile(XmsConanFile):
+class XmscoreConanFile(XmsConan2File):
     """
     XmscoreConan class used for defining the conan info.
     """
