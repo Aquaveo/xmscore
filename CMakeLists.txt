@@ -132,6 +132,8 @@ endif()
 
 
 if(IS_PYTHON_BUILD)
+
+    find_package(pybind11 REQUIRED)
     list(APPEND EXT_INCLUDE_DIRS
             ${pybind11_INCLUDE_DIR}
     )
