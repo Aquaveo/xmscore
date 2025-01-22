@@ -1,0 +1,99 @@
+library_name = "xmscore"
+description = "Support library for XMS products"
+xms_dependencies = []
+
+library_sources = [
+    "xmscore/dataio/daStreamIo.cpp",
+    "xmscore/math/math.cpp",
+    "xmscore/misc/DynBitset.cpp",
+    "xmscore/misc/HeaderCheck.cpp",
+    "xmscore/misc/Observer.cpp",
+    "xmscore/misc/Progress.cpp",
+    "xmscore/misc/Singleton.cpp",
+    "xmscore/misc/StringUtil.cpp",
+    "xmscore/misc/XmError.cpp",
+    "xmscore/misc/XmLog.cpp",
+    "xmscore/points/functors.cpp",
+    "xmscore/points/pt.cpp",
+    "xmscore/stl/vector.cpp",
+    "xmscore/time/TimeConversion.cpp",
+]
+
+library_headers = [
+    "xmscore/dataio/daStreamIo.h",
+    "xmscore/math/math.h",
+    "xmscore/misc/base_macros.h",
+    "xmscore/misc/boost_defines.h",
+    "xmscore/misc/carray.h",
+    "xmscore/misc/color_defines.h",
+    "xmscore/misc/DynBitset.h",
+    "xmscore/misc/environment.h",
+    "xmscore/misc/Observer.h",
+    "xmscore/misc/Progress.h",
+    "xmscore/misc/Singleton.h",
+    "xmscore/misc/StringUtil.h",
+    "xmscore/misc/XmConst.h",
+    "xmscore/misc/XmError.h",
+    "xmscore/misc/XmLog.h",
+    "xmscore/misc/xmstype.h",
+    "xmscore/points/functors.h",
+    "xmscore/points/pt.h",
+    "xmscore/points/ptsfwd.h",
+    "xmscore/stl/deque.h",
+    "xmscore/stl/list.h",
+    "xmscore/stl/map.h",
+    "xmscore/stl/set.h",
+    "xmscore/stl/utility.h",
+    "xmscore/stl/vector.h",
+    "xmscore/time/TimeConversion.h",
+]
+
+testing_headers = [
+    "xmscore/dataio/daStreamIo.t.h",
+    "xmscore/math/math.t.h",
+    "xmscore/misc/Observer.t.h",
+    "xmscore/misc/Progress.t.h",
+    "xmscore/misc/StringUtil.t.h",
+    "xmscore/misc/XmError.t.h",
+    "xmscore/misc/XmLog.t.h",
+    "xmscore/points/functors.t.h",
+    "xmscore/points/pt.t.h",
+    "xmscore/time/TimeConversion.t.h",
+    "xmscore/testing/TestTools.h",
+]
+
+testing_sources = [
+    "xmscore/testing/TestTools.cpp"
+]
+
+python_library_sources = [
+    "xmscore/python/misc/PyUtils.cpp"
+]
+
+python_library_headers = [
+    "xmscore/python/misc/PyUtils.h"
+]
+
+pybind_sources = [
+    "xmscore/python/xmscore_py.cpp",
+    "# Misc",
+    "xmscore/python/misc/detail/Listener.cpp",
+    "xmscore/python/misc/detail/PublicProgressListener.cpp",
+    "xmscore/python/misc/misc_py.cpp",
+    "xmscore/python/misc/observer_py.cpp",
+    "xmscore/python/misc/PyUtils.cpp",
+    "xmscore/python/misc/progress_listener_py.cpp",
+    "xmscore/python/time/time_py.cpp",
+    "xmscore/python/time/TimeConversion_py.cpp",
+]
+
+pybind_headers = [
+    "xmscore/python/misc/detail/Listener.h",
+    "xmscore/python/misc/misc_py.h",
+    "xmscore/python/misc/PyUtils.h",
+    "xmscore/python/misc/PublicObserver.h",
+    "xmscore/python/misc/PublicProgressListener.h",
+    "xmscore/python/misc/PyObserver.h",
+    "xmscore/python/misc/PyProgressListener.h",
+    "xmscore/python/time/time_py.h",
+]
