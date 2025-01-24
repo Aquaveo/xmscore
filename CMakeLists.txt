@@ -8,7 +8,7 @@ project(xmscorelib C CXX)
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
 set(IS_EMSCRIPTEN_BUILD NO CACHE BOOL "Set this to build with emscripten using cmake.")
-set(PYTHON_TARGET_VERSION 3.10 CACHE STRING "Version of python to link to for python wrapping.")
+set(PYTHON_TARGET_VERSION 3.12 CACHE STRING "Version of python to link to for python wrapping.")
 set(CONDA_PREFIX "" CACHE PATH "Path to the conda environment used to build.")
 set(IS_PYTHON_BUILD NO CACHE BOOL "Set this if you want to build the python bindings.")
 set(XMS_TEST_PATH ${PROJECT_SOURCE_DIR}/test_files/ CACHE PATH "Path to test files for testing")
@@ -127,17 +127,18 @@ endif ()
 
 if (IS_PYTHON_BUILD)
 
+    find_package(Python3 ${PYTHON_TARGET_VERSION} REQUIRED COMPONENTS Interpreter Development)
     find_package(pybind11 REQUIRED)
     list(APPEND EXT_INCLUDE_DIRS
             ${pybind11_INCLUDE_DIR}
     )
 
-    find_package(PythonLibsNew ${PYTHON_TARGET_VERSION} EXACT REQUIRED)
-
     # Have to add this after conda because it doesn't get the path for pybind if we don't.
     list(APPEND EXT_INCLUDE_DIRS
-            ${PYTHON_INCLUDE_DIRS}
+            ${Python3_INCLUDE_DIRS}
     )
+    list(APPEND EXT_LIBS ${Python3_LIBRARIES})
+    list(APPEND LIBRARY_DIRS ${Python3_LIBRARY_DIRS})
 endif ()
 
 if (BUILD_TESTING)
