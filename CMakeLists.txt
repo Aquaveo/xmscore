@@ -1,10 +1,16 @@
+# This is a generated file.
+# To regenerate file, use generators in the aquaveo/dev_tools repository.
+# Any changes needed to be made to the file should be made in the template file.
+
 cmake_minimum_required(VERSION 3.11.0)
 cmake_policy(SET CMP0015 NEW) # Link Directory Pathing
 cmake_policy(SET CMP0091 NEW)
 set(CMAKE_DEBUG_POSTFIX _d)
+set(CMAKE_CXX_STANDARD 17)
 
 project(xmscorelib C CXX)
 
+# Cache variables
 set(BUILD_TESTING NO CACHE BOOL "Enable/Disable testing")
 set(IS_CONDA_BUILD NO CACHE BOOL "Set this if you want to make a conda package.")
 set(IS_EMSCRIPTEN_BUILD NO CACHE BOOL "Set this to build with emscripten using cmake.")
@@ -126,7 +132,6 @@ if (WIN32)
 endif ()
 
 if (IS_PYTHON_BUILD)
-
     find_package(Python3 ${PYTHON_TARGET_VERSION} REQUIRED COMPONENTS Interpreter Development)
     find_package(pybind11 REQUIRED)
     list(APPEND EXT_INCLUDE_DIRS
@@ -167,8 +172,6 @@ if (BUILD_TESTING)
 
     find_package(cxxtest REQUIRED)
     list(APPEND EXT_INCLUDE_DIRS ${cxxtest_INCLUDE_DIRS})
-    list(APPEND EXT_LIB_DIRS ${cxxtest_LIBRARY_DIRS})
-    list(APPEND EXT_LIBS ${cxxtest_LIBRARIES})
 
     if (cxxtest_FOUND)
         include("FindCxxTest")
@@ -195,7 +198,7 @@ endif ()
 
 message(STATUS "External Include Dirs: ${EXT_INCLUDE_DIRS}")
 message(STATUS "External Lib Dirs: ${EXT_LIB_DIRS}")
-message(STATUS "Extneral Libs: ${EXT_LIBS}")
+message(STATUS "External Libs: ${EXT_LIBS}")
 
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
@@ -214,7 +217,7 @@ endif ()
 
 message("External Include Dirs: ${EXT_INCLUDE_DIRS}")
 message("External Lib Dirs: ${EXT_LIB_DIRS}")
-message("Extneral Libs: ${EXT_LIBS}")
+message("External Libs: ${EXT_LIBS}")
 
 # Static library
 add_library(${PROJECT_NAME} STATIC
