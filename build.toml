@@ -2,6 +2,9 @@ library_name = "xmscore"
 description = "Support library for XMS products"
 xms_dependencies = []
 
+python_namespaced_dir = "core"
+pybind_root = true
+
 library_sources = [
     "xmscore/dataio/daStreamIo.cpp",
     "xmscore/math/math.cpp",
