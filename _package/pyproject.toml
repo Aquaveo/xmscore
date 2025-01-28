@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "xmscore"
+version = "6.2.5"
+description = "Support library for XMS products"
+license = { text = "BSD 2-Clause License" }
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = []
+
+authors = [{ name = "Aquaveo" }]
+
+# Dependencies
+dependencies = [
+    "numpy",
+]
+
+[tool.setuptools.packages.find]
+include = ["xms*"]
+
+[tool.setuptools.package-data]
+# Include additional data files
+"*" = ["*.pyd", "*.so"]
+
+[tool.pytest.ini_options]
+python_files = ["test_*.py", "*_test.py", "*_pyt.py"]
