@@ -1,3 +1,8 @@
+# Conan Files
+build.py
+CMakeLists.txt
+conanfile.py
+
 # Misc
 .*.swp
 *.DS_STORE
