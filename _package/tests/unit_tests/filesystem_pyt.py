@@ -282,5 +282,9 @@ class FilesystemTests(unittest.TestCase):
             return  # Only Windows uses 8.3 filenames, and this test needs Windows.
 
         patched_tempfile.gettempdir.return_value = 'c:\\PROGRA~1'
+
         file_path = 'C:/Program Files/somewhere'
+        self.assertTrue(is_somewhere_below_system_temp(file_path))
+
+        file_path = 'C:/PROGRA~1/somewhere'
         self.assertTrue(is_somewhere_below_system_temp(file_path))
