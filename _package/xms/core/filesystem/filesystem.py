@@ -159,7 +159,7 @@ def is_somewhere_below_system_temp(filename: str | Path) -> bool:
     Returns:
         See description.
     """
-    temp_dir = Path(tempfile.gettempdir())
+    temp_dir = Path(tempfile.gettempdir()).resolve()
     filepath = Path(filename)
     return temp_dir in filepath.parents
 

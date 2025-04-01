@@ -5,8 +5,10 @@ import os
 from pathlib import Path
 import platform
 import shutil
+import sys
 import tempfile
 import unittest
+from unittest import mock
 import uuid
 
 # 2. Third party modules
@@ -261,7 +263,24 @@ class FilesystemTests(unittest.TestCase):
         """Tests filesystem.is_somewhere_below_system_temp()."""
         temp_dir = tempfile.mkdtemp()
         file_path = _make_bob_file(temp_dir)
-        self.assertTrue(True, is_somewhere_below_system_temp(file_path))
-        self.assertTrue(True, is_somewhere_below_system_temp(Path(file_path)))
+        self.assertTrue(is_somewhere_below_system_temp(file_path))
+        self.assertTrue(is_somewhere_below_system_temp(Path(file_path)))
         Path(file_path).unlink()
         shutil.rmtree(temp_dir)
+
+    @mock.patch('xms.core.filesystem.filesystem.tempfile')
+    def test_is_somewhere_below_system_temp_8dot3_names(self, patched_tempfile):
+        """
+        Tests filesystem.is_somewhere_below_system_temp with a shortened file name on Windows.
+
+        is_somewhere_below_system_temp uses a function internally that returns 8.3 file paths on Windows, which makes
+        people with usernames like LongNameThatExtendsPastThe8Dot3Limit get paths like `c:/users/LONGNA~1/AppData...`.
+        Failure to compensate for that results in callers that pass expanded paths being told their path isn't in the
+        system temp directory, even though it is.
+        """
+        if sys.platform != 'win32':
+            return  # Only Windows uses 8.3 filenames, and this test needs Windows.
+
+        patched_tempfile.gettempdir.return_value = 'c:\\PROGRA~1'
+        file_path = 'C:/Program Files/somewhere'
+        self.assertTrue(is_somewhere_below_system_temp(file_path))
