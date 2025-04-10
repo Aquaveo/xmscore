@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 // 3. Standard Library Headers
+#include <stdint.h>
 
 // 4. External Library Headers
 
@@ -21,7 +22,7 @@
 namespace xms
 {
 #if defined(ENV64BIT)
-typedef unsigned __int64 XM_ULONG_PTR;
+typedef uint64_t XM_ULONG_PTR;
 #elif defined(ENV32BIT)
 typedef unsigned long XM_ULONG_PTR;
 #else
