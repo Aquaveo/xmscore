@@ -1,4 +1,8 @@
 """Filesystem utility methods."""
+
+__copyright__ = "(C) Copyright Aquaveo 2019"
+__license__ = "All rights reserved"
+
 # 1. Standard python modules
 import os
 from pathlib import Path
@@ -11,10 +15,6 @@ import tempfile
 # 3. Aquaveo modules
 
 # 4. Local modules
-
-
-__copyright__ = "(C) Copyright Aquaveo 2019"
-__license__ = "All rights reserved"
 
 
 def clear_folder(folder: str | Path) -> None:
