@@ -1,288 +1,288 @@
-name: XmsCore-6.0
+name: XmsCore-6.0-Conan2
 
 on:
   push:
   pull_request:
-  schedule:
-    - cron: "0 12 * * 1"
+  # schedule:
+  #   - cron: "0 12 * * 1"
 
 jobs:
-  # ----------------------------------------------------------------------------------------------
-  # FLAKE
-  # ----------------------------------------------------------------------------------------------
-  flake:
-    name: Flake Project
-    runs-on: ${{ matrix.platform }}
+  # # ----------------------------------------------------------------------------------------------
+  # # FLAKE
+  # # ----------------------------------------------------------------------------------------------
+  # flake:
+  #   name: Flake Project
+  #   runs-on: ${{ matrix.platform }}
 
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: [ubuntu-latest]
-        python-version: ['3.10']
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       platform: [ubuntu-latest]
+  #       python-version: ['3.10']
 
-    steps:
-      # Checkout Sources
-      - name: Checkout Source
-        uses: actions/checkout@v2
-      # Setup Python
-      - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      # Install Python Dependencies
-      - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install flake8 flake8-docstrings flake8-bugbear flake8-import-order pep8-naming
-      # Flake Code
-      - name: Run Flake
-        run: |
-          flake8 --exclude .tox,.git,__pycache__,_package/tests/files/*,pydocs/source/conf.py,build,dist,tests/fixtures/*,*.pyc,*.egg-info,.cache,.eggs --ignore=D200,D212 --max-line-length=120 --docstring-convention google --isolated --import-order-style=appnexus --application-import-names=xms.core --application-package-names=xms --count --statistics _package
+  #   steps:
+  #     # Checkout Sources
+  #     - name: Checkout Source
+  #       uses: actions/checkout@v2
+  #     # Setup Python
+  #     - name: Setup Python ${{ matrix.python-version }}
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: ${{ matrix.python-version }}
+  #     # Install Python Dependencies
+  #     - name: Install Python Dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         pip install flake8 flake8-docstrings flake8-bugbear flake8-import-order pep8-naming
+  #     # Flake Code
+  #     - name: Run Flake
+  #       run: |
+  #         flake8 --exclude .tox,.git,__pycache__,_package/tests/files/*,pydocs/source/conf.py,build,dist,tests/fixtures/*,*.pyc,*.egg-info,.cache,.eggs --ignore=D200,D212 --max-line-length=120 --docstring-convention google --isolated --import-order-style=appnexus --application-import-names=xms.core --application-package-names=xms --count --statistics _package
 
-  # ----------------------------------------------------------------------------------------------
-  # MAC
-  # ----------------------------------------------------------------------------------------------
-  mac:
-    name: Clang-Latest (${{ matrix.build_type }}, ${{ matrix.python-version }}, Macos)
-    runs-on: ${{ matrix.platform }}
+  # # ----------------------------------------------------------------------------------------------
+  # # MAC
+  # # ----------------------------------------------------------------------------------------------
+  # mac:
+  #   name: Clang-Latest (${{ matrix.build_type }}, ${{ matrix.python-version }}, Macos)
+  #   runs-on: ${{ matrix.platform }}
 
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: [macos-13]
-        python-version: ['3.10']
-        build_type: [Release, Debug]
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       platform: [macos-13]
+  #       python-version: ['3.10']
+  #       build_type: [Release, Debug]
 
-    env:
-      # Library Variables
-      LIBRARY_NAME: xmscore
-      XMS_VERSION: 6.0.0
-      # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
-      CONAN_ARCHS: x86_64
-      CONAN_USERNAME: aquaveo
-      CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
-      CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
-      CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
-      CONAN_REMOTES: https://conan.aquaveo.com
-      CONAN_BUILD_TYPES: ${{ matrix.build_type }}
-      CONAN_APPLE_CLANG_VERSIONS: '14.0'
-      # Aquapi Variables
-      AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
-      AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
-      AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
-      # Python Variables
-      PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
-      RELEASE_PYTHON: 'False'
+  #   env:
+  #     # Library Variables
+  #     LIBRARY_NAME: xmscore
+  #     XMS_VERSION: 6.0.0
+  #     # Conan Variables
+  #     CONAN_REFERENCE: xmscore/6.0.0
+  #     CONAN_ARCHS: x86_64
+  #     CONAN_USERNAME: aquaveo
+  #     CONAN_CHANNEL: testing
+  #     CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
+  #     CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
+  #     CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
+  #     CONAN_REMOTES: https://conan.aquaveo.com
+  #     CONAN_BUILD_TYPES: ${{ matrix.build_type }}
+  #     CONAN_APPLE_CLANG_VERSIONS: '14.0'
+  #     # Aquapi Variables
+  #     AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
+  #     AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
+  #     AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
+  #     # Python Variables
+  #     PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
+  #     RELEASE_PYTHON: 'False'
 
-    steps:
-      # Get Correct Version of Xcode
-      - uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: 14.3.1
-      # Checkout Sources
-      - name: Checkout Source
-        uses: actions/checkout@v2
-      # Setup Python
-      - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      # Install Python Dependencies
-      - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install conan==1.60.0 conan-package-tools==0.39.0 devpi-client wheel MarkupSafe==2.0.0
-          python -m pip install -i https://public.aquapi.aquaveo.com/aquaveo/stable/+simple/ "xmsconan>=1.0.4,<2"
-      # Setup Conan
-      - name: Setup Conan Directory
-        run: conan user
-      - name: Set Conan Path
-        run: |
-          echo "CONAN_PATH=$(conan config get storage.path)" >> $GITHUB_ENV
-      # Get Tag Name (ONLY RUNS ON TAGS)
-      - name: Get Tag
-        id: gitTag
-        uses: little-core-labs/get-git-tag@v3.0.2
-        if: startsWith(github.ref, 'refs/tags/')
-      # Set Conan Version (ONLY RUNS ON TAGS)
-      - name: Set Conan Version
-        uses: allenevans/set-env@v2.0.0
-        with:
-          CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
-          XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
-          CONAN_UPLOAD: https://conan.aquaveo.com
-          RELEASE_PYTHON: 'True'
-        if: startsWith(github.ref, 'refs/tags/')
-      # Check for release branch
-      - name: Get Branch Name
-        id: gitBranch
-        uses: nelonoel/branch-name@v1.0.1
-      - name: Change Channel and URL if Release Branch
-        uses: allenevans/set-env@v2.0.0
-        with:
-          CONAN_CHANNEL: stable
-          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
-        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
-      # Build the Conan Package
-      - name: Build the Conan Packages
-        run: python build.py
-      # Zip Built Conan Packages
-      - name: Zip Conan Packages
-        run: |
-          tar czf ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
-      - name: Add Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
-          path: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
-      # Get the Release Data
-      - name: Get Release
-        id: git_release
-        uses: bruceadams/get-release@v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
-      # Upload Zipped Conan Packages
-      - name: Upload Zipped Conan Packages
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.git_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
-          asset_name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
-          asset_content_type: application/zip
-        if: startsWith(github.ref, 'refs/tags/')
+  #   steps:
+  #     # Get Correct Version of Xcode
+  #     - uses: maxim-lobanov/setup-xcode@v1
+  #       with:
+  #         xcode-version: 14.3.1
+  #     # Checkout Sources
+  #     - name: Checkout Source
+  #       uses: actions/checkout@v2
+  #     # Setup Python
+  #     - name: Setup Python ${{ matrix.python-version }}
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: ${{ matrix.python-version }}
+  #     # Install Python Dependencies
+  #     - name: Install Python Dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         pip install conan devpi-client wheel MarkupSafe==2.0.0
+  #         python -m pip install --upgrade git+https://github.com/aquaveo/xmsconan.git@conan2
+  #     # Setup Conan
+  #     - name: Setup Conan Directory
+  #       run: conan user
+  #     - name: Set Conan Path
+  #       run: |
+  #         echo "CONAN_PATH=$(conan config get storage.path)" >> $GITHUB_ENV
+  #     # Get Tag Name (ONLY RUNS ON TAGS)
+  #     - name: Get Tag
+  #       id: gitTag
+  #       uses: little-core-labs/get-git-tag@v3.0.2
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #     # Set Conan Version (ONLY RUNS ON TAGS)
+  #     - name: Set Conan Version
+  #       uses: allenevans/set-env@v2.0.0
+  #       with:
+  #         CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
+  #         XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
+  #         CONAN_UPLOAD: https://conan.aquaveo.com
+  #         RELEASE_PYTHON: 'True'
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #     # Check for release branch
+  #     - name: Get Branch Name
+  #       id: gitBranch
+  #       uses: nelonoel/branch-name@v1.0.1
+  #     - name: Change Channel and URL if Release Branch
+  #       uses: allenevans/set-env@v2.0.0
+  #       with:
+  #         CONAN_CHANNEL: stable
+  #         AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
+  #       if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
+  #     # Build the Conan Package
+  #     - name: Build the Conan Packages
+  #       run: python build.py
+  #     # Zip Built Conan Packages
+  #     - name: Zip Conan Packages
+  #       run: |
+  #         tar czf ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+  #     - name: Add Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
+  #         path: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+  #     # Get the Release Data
+  #     - name: Get Release
+  #       id: git_release
+  #       uses: bruceadams/get-release@v1.3.2
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #     # Upload Zipped Conan Packages
+  #     - name: Upload Zipped Conan Packages
+  #       uses: actions/upload-release-asset@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+  #       with:
+  #         upload_url: ${{ steps.git_release.outputs.upload_url }}
+  #         asset_path: ${{ github.workspace }}/${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+  #         asset_name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+  #         asset_content_type: application/zip
+  #       if: startsWith(github.ref, 'refs/tags/')
 
-  # ----------------------------------------------------------------------------------------------
-  # LINUX
-  # ----------------------------------------------------------------------------------------------
-  linux:
-    name: GCC-${{ matrix.compiler-version }} (${{ matrix.build_type }}, ${{ matrix.python-version }}, Linux)
-    runs-on: ${{ matrix.platform }}
+  # # ----------------------------------------------------------------------------------------------
+  # # LINUX
+  # # ----------------------------------------------------------------------------------------------
+  # linux:
+  #   name: GCC-${{ matrix.compiler-version }} (${{ matrix.build_type }}, ${{ matrix.python-version }}, Linux)
+  #   runs-on: ${{ matrix.platform }}
 
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: [ubuntu-latest]
-        python-version: ['3.10']
-        compiler-version: [7]
-        build_type: [Release, Debug]
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       platform: [ubuntu-latest]
+  #       python-version: ['3.10']
+  #       compiler-version: [7]
+  #       build_type: [Release, Debug]
 
-    env:
-      # Library Variables
-      LIBRARY_NAME: xmscore
-      XMS_VERSION: 6.0.0
-      # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
-      CONAN_ARCHS: x86_64
-      CONAN_USERNAME: aquaveo
-      CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
-      CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
-      CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
-      CONAN_REMOTES: https://conan.aquaveo.com
-      CONAN_BUILD_TYPES: ${{ matrix.build_type }}
-      CONAN_GCC_VERSIONS: ${{ matrix.compiler-version }}
-      CONAN_DOCKER_IMAGE: docker.aquaveo.com/aquaveo/conan-docker/conan-gcc${{ matrix.compiler-version }}-py${{ matrix.python-version }}:latest
-      CONAN_PIP_INSTALL: 'conan-package-tools==0.35.1'
-      CONAN_PIP_PACKAGE: 'conan==1.41.0'
-      # Aquapi Variables
-      AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
-      AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
-      AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
-      # Python Variables
-      PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
-      RELEASE_PYTHON: 'False'
+  #   env:
+  #     # Library Variables
+  #     LIBRARY_NAME: xmscore
+  #     XMS_VERSION: 6.0.0
+  #     # Conan Variables
+  #     CONAN_REFERENCE: xmscore/6.0.0
+  #     CONAN_ARCHS: x86_64
+  #     CONAN_USERNAME: aquaveo
+  #     CONAN_CHANNEL: testing
+  #     CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
+  #     CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
+  #     CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
+  #     CONAN_REMOTES: https://conan.aquaveo.com
+  #     CONAN_BUILD_TYPES: ${{ matrix.build_type }}
+  #     CONAN_GCC_VERSIONS: ${{ matrix.compiler-version }}
+  #     CONAN_DOCKER_IMAGE: docker.aquaveo.com/aquaveo/conan-docker/conan-gcc${{ matrix.compiler-version }}-py${{ matrix.python-version }}:latest
+  #     CONAN_PIP_INSTALL: 'conan-package-tools==0.35.1'
+  #     CONAN_PIP_PACKAGE: 'conan==1.41.0'
+  #     # Aquapi Variables
+  #     AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
+  #     AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
+  #     AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
+  #     # Python Variables
+  #     PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
+  #     RELEASE_PYTHON: 'False'
 
-    steps:
-      # Checkout Sources
-      - name: Checkout Source
-        uses: actions/checkout@v2
-      # Setup Python
-      - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      # Install Python Dependencies
-      - name: Install Python Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pyYAML==5.3.1 conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel MarkupSafe==2.0.0
-          python -m pip install -i https://public.aquapi.aquaveo.com/aquaveo/stable/+simple/ "xmsconan>=1.0.4,<2"
-      # Login to Aquaveo Docker
-      - name: Login to Aquaveo Docker
-        run: sudo -E docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_TOKEN }} docker.aquaveo.com
-        shell: bash
-      # Setup Conan
-      - name: Setup Conan Directory
-        run: conan user
-      - name: Set Conan Path
-        run: |
-          echo "CONAN_PATH=$(conan config get storage.path)" >> $GITHUB_ENV
-          mkdir -p $(conan config get storage.path)
-      - name: Set Conan Docker Options
-        uses: allenevans/set-env@v2.0.0
-        with:
-          CONAN_DOCKER_RUN_OPTIONS: "-v '${{ env.CONAN_PATH }}:/home/conan/.conan/data'"
-      # Get Tag Name
-      - name: Get Tag
-        id: gitTag
-        uses: little-core-labs/get-git-tag@v3.0.2
-        if: startsWith(github.ref, 'refs/tags/')
-      # Set Conan Version
-      - name: Set Conan Version
-        uses: allenevans/set-env@v2.0.0
-        with:
-          CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
-          XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
-          CONAN_UPLOAD: https://conan.aquaveo.com
-          RELEASE_PYTHON: 'True'
-        if: startsWith(github.ref, 'refs/tags/')
-      # Check for release branch
-      - name: Get Branch Name
-        id: gitBranch
-        uses: nelonoel/branch-name@v1.0.1
-      - name: Change Channel and URL if Release Branch
-        uses: allenevans/set-env@v2.0.0
-        with:
-          CONAN_CHANNEL: stable
-          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
-        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
-      # Build the Conan Package
-      - name: Build the Conan Packages
-        run: |
-          chmod -R 777 ${{ env.CONAN_PATH }}
-          python build.py
-      # Zip Conan Package
-      - name: Zip Conan Packages
-        run: |
-          tar czf ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
-      - name: Add Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
-          path: ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
-      # Get the Release Data
-      - name: Get Release
-        id: git_release
-        uses: bruceadams/get-release@v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
-      # Upload Zipped Conan Packages
-      - name: Upload Zipped Conan Packages
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.git_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
-          asset_name: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
-          asset_content_type: application/zip
-        if: startsWith(github.ref, 'refs/tags/')
+  #   steps:
+  #     # Checkout Sources
+  #     - name: Checkout Source
+  #       uses: actions/checkout@v2
+  #     # Setup Python
+  #     - name: Setup Python ${{ matrix.python-version }}
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: ${{ matrix.python-version }}
+  #     # Install Python Dependencies
+  #     - name: Install Python Dependencies
+  #       run: |
+  #         python -m pip install --upgrade pip
+  #         pip install pyYAML==5.3.1 conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel MarkupSafe==2.0.0
+  #         python -m pip install -i https://public.aquapi.aquaveo.com/aquaveo/stable/+simple/ "xmsconan>=1.0.4,<2"
+  #     # Login to Aquaveo Docker
+  #     - name: Login to Aquaveo Docker
+  #       run: sudo -E docker login -u ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }} -p ${{ secrets.AQUAVEO_DOCKER_TOKEN }} docker.aquaveo.com
+  #       shell: bash
+  #     # Setup Conan
+  #     - name: Setup Conan Directory
+  #       run: conan user
+  #     - name: Set Conan Path
+  #       run: |
+  #         echo "CONAN_PATH=$(conan config get storage.path)" >> $GITHUB_ENV
+  #         mkdir -p $(conan config get storage.path)
+  #     - name: Set Conan Docker Options
+  #       uses: allenevans/set-env@v2.0.0
+  #       with:
+  #         CONAN_DOCKER_RUN_OPTIONS: "-v '${{ env.CONAN_PATH }}:/home/conan/.conan/data'"
+  #     # Get Tag Name
+  #     - name: Get Tag
+  #       id: gitTag
+  #       uses: little-core-labs/get-git-tag@v3.0.2
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #     # Set Conan Version
+  #     - name: Set Conan Version
+  #       uses: allenevans/set-env@v2.0.0
+  #       with:
+  #         CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
+  #         XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
+  #         CONAN_UPLOAD: https://conan.aquaveo.com
+  #         RELEASE_PYTHON: 'True'
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #     # Check for release branch
+  #     - name: Get Branch Name
+  #       id: gitBranch
+  #       uses: nelonoel/branch-name@v1.0.1
+  #     - name: Change Channel and URL if Release Branch
+  #       uses: allenevans/set-env@v2.0.0
+  #       with:
+  #         CONAN_CHANNEL: stable
+  #         AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
+  #       if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
+  #     # Build the Conan Package
+  #     - name: Build the Conan Packages
+  #       run: |
+  #         chmod -R 777 ${{ env.CONAN_PATH }}
+  #         python build.py
+  #     # Zip Conan Package
+  #     - name: Zip Conan Packages
+  #       run: |
+  #         tar czf ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+  #     - name: Add Artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
+  #         path: ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+  #     # Get the Release Data
+  #     - name: Get Release
+  #       id: git_release
+  #       uses: bruceadams/get-release@v1.3.2
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+  #       if: startsWith(github.ref, 'refs/tags/')
+  #     # Upload Zipped Conan Packages
+  #     - name: Upload Zipped Conan Packages
+  #       uses: actions/upload-release-asset@v1
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+  #       with:
+  #         upload_url: ${{ steps.git_release.outputs.upload_url }}
+  #         asset_path: ${{ github.workspace }}/${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+  #         asset_name: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}.tar.gz
+  #         asset_content_type: application/zip
+  #       if: startsWith(github.ref, 'refs/tags/')
 
   # ----------------------------------------------------------------------------------------------
   # WINDOWS
@@ -294,9 +294,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [windows-2019]
-        python-version: ['3.10']
-        compiler-version: [16]
+        platform: [windows-2022]
+        python-version: ['3.12']
+        compiler-version: [17]
         build_type: [Release, Debug]
 
     env:
@@ -304,24 +304,24 @@ jobs:
       # Library Variables
       LIBRARY_NAME: xmscore
       XMS_VERSION: 6.0.0
-      # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
-      CONAN_ARCHS: x86_64
-      CONAN_USERNAME: aquaveo
-      CONAN_CHANNEL: testing
-      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
-      CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
-      CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
-      CONAN_REMOTES: https://conan.aquaveo.com
-      CONAN_BUILD_TYPES: ${{ matrix.build_type }}
-      CONAN_VISUAL_VERSIONS: ${{ matrix.compiler-version }}
-      # Aquapi Variables
-      AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
-      AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
-      AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
-      # Python Variables
-      PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
-      RELEASE_PYTHON: 'False'
+    #   # Conan Variables
+    #   CONAN_REFERENCE: xmscore/6.0.0
+    #   CONAN_ARCHS: x86_64
+    #   CONAN_USERNAME: aquaveo
+    #   CONAN_CHANNEL: testing
+    #   CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
+    #   CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
+    #   CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
+    #   CONAN_REMOTES: https://conan.aquaveo.com
+    #   CONAN_BUILD_TYPES: ${{ matrix.build_type }}
+    #   CONAN_VISUAL_VERSIONS: ${{ matrix.compiler-version }}
+    #   # Aquapi Variables
+    #   AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
+    #   AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
+    #   AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
+    #   # Python Variables
+    #   PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
+    #   RELEASE_PYTHON: 'False'
 
     steps:
       # Checkout Sources
@@ -330,79 +330,86 @@ jobs:
       # Setup Python
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
+      # Setup Dev Command Prompt env for MSVC
+      - name: Setup MSVC env
+        uses: ilammy/msvc-dev-cmd@v1
         with:
-          python-version: ${{ matrix.python-version }}
-      # Install Python Dependencies
-      - name: Install Python Dependencies
+          arch: x64
+      # Show Compiler Version
+      - name: Show cl.exe version
         run: |
-          python -m pip install --upgrade pip
-          pip install pyYAML==5.3.1 conan==1.41.0 conan-package-tools==0.35.1 devpi-client wheel MarkupSafe==2.0.0
-          python -m pip install -i https://public.aquapi.aquaveo.com/aquaveo/stable/+simple/ "xmsconan>=1.0.4,<2"
-      # Setup Visual Studio
-      - name: Setup Visual Studio
-        uses: microsoft/setup-msbuild@v1.0.2
-        with:
-          vs-version: ${{ matrix.compiler-version }}
-      # Setup Conan
-      - name: Setup Conan Directory
-        run: conan user
-        shell: cmd
-      - name: Set Conan Path
-        run: |
-          echo "CONAN_PATH=$(conan config get storage.path)" >> $env:GITHUB_ENV
-        shell: powershell
-      # Get Tag Name
-      - name: Get Tag
-        id: gitTag
-        uses: little-core-labs/get-git-tag@v3.0.2
-        if: startsWith(github.ref, 'refs/tags/')
-      # Set Conan Version
-      - name: Set Conan Version
-        uses: allenevans/set-env@v2.0.0
-        with:
-          CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
-          XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
-          CONAN_UPLOAD: https://conan.aquaveo.com
-          RELEASE_PYTHON: 'True'
-        if: startsWith(github.ref, 'refs/tags/')
-      # Check for release branch
-      - name: Get Branch Name
-        id: gitBranch
-        uses: nelonoel/branch-name@v1.0.1
-      - name: Change Channel and URL if Release Branch
-        uses: allenevans/set-env@v2.0.0
-        with:
-          CONAN_CHANNEL: stable
-          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
-        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
-      # Build the Conan Package
-      - name: Build the Conan Packages
-        run: python build.py
-        shell: cmd
-      # Zip Packages
-      - name: Zip Conan Packages
-        run: |
-          tar czf ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
-      - name: Add Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.MATRIX_NAME }}
-          path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
-      # Get the Release Data
-      - name: Get Release
-        id: git_release
-        uses: bruceadams/get-release@v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
-      # Upload Zipped Conan Packages
-      - name: Upload Zipped Conan Packages
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.git_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
-          asset_name: ${{ env.MATRIX_NAME }}.tar.gz
-          asset_content_type: application/zip
-        if: startsWith(github.ref, 'refs/tags/')
+          cl /Bv
+      # # Install Python Dependencies
+      # - name: Install Python Dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install conan devpi-client wheel
+      #     python -m pip install git+https://github.com/aquaveo/xmsconan.git@conan2
+      # # Setup Visual Studio
+      # - name: Setup Visual Studio
+      #   uses: microsoft/setup-msbuild@v2
+      #   with:
+      #     vs-version: ${{ matrix.compiler-version }}
+      # # Setup Conan
+      # - name: Setup Conan Directory
+      #   run: conan user
+      #   shell: cmd
+      # - name: Set Conan Path
+      #   run: |
+      #     echo "CONAN_PATH=$(conan config get storage.path)" >> $env:GITHUB_ENV
+      #   shell: powershell
+      # # Get Tag Name
+      # - name: Get Tag
+      #   id: gitTag
+      #   uses: little-core-labs/get-git-tag@v3.0.2
+      #   if: startsWith(github.ref, 'refs/tags/')
+      # # Set Conan Version
+      # - name: Set Conan Version
+      #   uses: allenevans/set-env@v2.0.0
+      #   with:
+      #     CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
+      #     XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
+      #     CONAN_UPLOAD: https://conan.aquaveo.com
+      #     RELEASE_PYTHON: 'True'
+      #   if: startsWith(github.ref, 'refs/tags/')
+      # # Check for release branch
+      # - name: Get Branch Name
+      #   id: gitBranch
+      #   uses: nelonoel/branch-name@v1.0.1
+      # - name: Change Channel and URL if Release Branch
+      #   uses: allenevans/set-env@v2.0.0
+      #   with:
+      #     CONAN_CHANNEL: stable
+      #     AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
+      #   if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
+      # # Build the Conan Package
+      # - name: Build the Conan Packages
+      #   run: python build.py
+      #   shell: cmd
+      # # Zip Packages
+      # - name: Zip Conan Packages
+      #   run: |
+      #     tar czf ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz ${{ env.CONAN_PATH }}/${{ env.LIBRARY_NAME }}/${{ env.XMS_VERSION }}/aquaveo/${{ env.CONAN_CHANNEL}}/package
+      # - name: Add Artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ${{ env.MATRIX_NAME }}
+      #     path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
+      # # Get the Release Data
+      # - name: Get Release
+      #   id: git_release
+      #   uses: bruceadams/get-release@v1.3.2
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+      #   if: startsWith(github.ref, 'refs/tags/')
+      # # Upload Zipped Conan Packages
+      # - name: Upload Zipped Conan Packages
+      #   uses: actions/upload-release-asset@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+      #   with:
+      #     upload_url: ${{ steps.git_release.outputs.upload_url }}
+      #     asset_path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
+      #     asset_name: ${{ env.MATRIX_NAME }}.tar.gz
+      #     asset_content_type: application/zip
+      #   if: startsWith(github.ref, 'refs/tags/')
