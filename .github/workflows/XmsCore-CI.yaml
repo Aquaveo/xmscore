@@ -328,8 +328,10 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v2
       # Setup Python
-      - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       # Setup Dev Command Prompt env for MSVC
       - name: Setup MSVC env
         uses: ilammy/msvc-dev-cmd@v1
@@ -381,7 +383,7 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: python build.py --preview
+        run: python build.py
         shell: cmd
       # # Zip Packages
       # - name: Zip Conan Packages
