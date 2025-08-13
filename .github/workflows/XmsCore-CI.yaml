@@ -335,21 +335,15 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
-      # Show Compiler Version
-      - name: Show cl.exe version
+      # Install Python Dependencies
+      - name: Install Python Dependencies
         run: |
-          cl /Bv
-      # # Install Python Dependencies
-      # - name: Install Python Dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     pip install conan devpi-client wheel
-      #     python -m pip install git+https://github.com/aquaveo/xmsconan.git@conan2
-      # # Setup Visual Studio
-      # - name: Setup Visual Studio
-      #   uses: microsoft/setup-msbuild@v2
-      #   with:
-      #     vs-version: ${{ matrix.compiler-version }}
+          python -m pip install --upgrade pip
+          pip install conan devpi-client wheel
+          python -m pip install git+https://github.com/aquaveo/xmsconan.git@conan2
+      # Setup Visual Studio
+      - name: Setup Visual Studio
+        uses: microsoft/setup-msbuild@v2
       # # Setup Conan
       # - name: Setup Conan Directory
       #   run: conan user
