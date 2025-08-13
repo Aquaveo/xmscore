@@ -304,24 +304,24 @@ jobs:
       # Library Variables
       LIBRARY_NAME: xmscore
       XMS_VERSION: 6.0.0
-    #   # Conan Variables
-    #   CONAN_REFERENCE: xmscore/6.0.0
-    #   CONAN_ARCHS: x86_64
-    #   CONAN_USERNAME: aquaveo
-    #   CONAN_CHANNEL: testing
-    #   CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
-    #   CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
-    #   CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
-    #   CONAN_REMOTES: https://conan.aquaveo.com
-    #   CONAN_BUILD_TYPES: ${{ matrix.build_type }}
-    #   CONAN_VISUAL_VERSIONS: ${{ matrix.compiler-version }}
-    #   # Aquapi Variables
-    #   AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
-    #   AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
-    #   AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
-    #   # Python Variables
-    #   PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
-    #   RELEASE_PYTHON: 'False'
+      # Conan Variables
+      CONAN_REFERENCE: xmscore/6.0.0
+      CONAN_ARCHS: x86_64
+      CONAN_USERNAME: aquaveo
+      CONAN_CHANNEL: testing
+      CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
+      CONAN_LOGIN_USERNAME: ${{ secrets.CONAN_USER_SECRET }}
+      CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD_SECRET }}
+      CONAN_REMOTES: https://conan.aquaveo.com
+      CONAN_BUILD_TYPES: ${{ matrix.build_type }}
+      CONAN_VISUAL_VERSIONS: ${{ matrix.compiler-version }}
+      # Aquapi Variables
+      AQUAPI_USERNAME: ${{ secrets.AQUAPI_USERNAME_SECRET }}
+      AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
+      AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
+      # Python Variables
+      PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
+      RELEASE_PYTHON: 'False'
 
     steps:
       # Checkout Sources
@@ -352,34 +352,37 @@ jobs:
       #   run: |
       #     echo "CONAN_PATH=$(conan config get storage.path)" >> $env:GITHUB_ENV
       #   shell: powershell
-      # # Get Tag Name
-      # - name: Get Tag
-      #   id: gitTag
-      #   uses: little-core-labs/get-git-tag@v3.0.2
-      #   if: startsWith(github.ref, 'refs/tags/')
-      # # Set Conan Version
-      # - name: Set Conan Version
-      #   uses: allenevans/set-env@v2.0.0
-      #   with:
-      #     CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
-      #     XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
-      #     CONAN_UPLOAD: https://conan.aquaveo.com
-      #     RELEASE_PYTHON: 'True'
-      #   if: startsWith(github.ref, 'refs/tags/')
-      # # Check for release branch
-      # - name: Get Branch Name
-      #   id: gitBranch
-      #   uses: nelonoel/branch-name@v1.0.1
-      # - name: Change Channel and URL if Release Branch
-      #   uses: allenevans/set-env@v2.0.0
-      #   with:
-      #     CONAN_CHANNEL: stable
-      #     AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
-      #   if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
-      # # Build the Conan Package
-      # - name: Build the Conan Packages
-      #   run: python build.py
-      #   shell: cmd
+      # Get Tag Name
+      - name: Get Tag
+        id: gitTag
+        uses: little-core-labs/get-git-tag@v3.0.2
+        if: startsWith(github.ref, 'refs/tags/')
+      # Set Conan Version
+      - name: Set Conan Version
+        uses: allenevans/set-env@v2.0.0
+        with:
+          CONAN_REFERENCE: 'xmscore/${{ steps.gitTag.outputs.tag }}'
+          XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
+          CONAN_UPLOAD: https://conan.aquaveo.com
+          RELEASE_PYTHON: 'True'
+        if: startsWith(github.ref, 'refs/tags/')
+      # Check for release branch
+      - name: Get Branch Name
+        id: gitBranch
+        uses: nelonoel/branch-name@v1.0.1
+      - name: Change Channel and URL if Release Branch
+        uses: allenevans/set-env@v2.0.0
+        with:
+          CONAN_CHANNEL: stable
+          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
+        if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
+      # Generate XMS Conan
+      - name: Generate XMS Conan
+        run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
+      # Build the Conan Package
+      - name: Build the Conan Packages
+        run: python build.py --preview
+        shell: cmd
       # # Zip Packages
       # - name: Zip Conan Packages
       #   run: |
