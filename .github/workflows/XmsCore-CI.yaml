@@ -98,7 +98,7 @@ jobs:
           conan remote add aquaveo ${{ env.CONAN_REMOTE_URL }} --force --index 0
           conan remote login aquaveo
           conan remote list
-        shell: cmd
+        shell: bash
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -129,7 +129,7 @@ jobs:
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
-        shell: cmd
+        shell: bash
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -140,7 +140,7 @@ jobs:
       - name: Archive Conan Packages
         run: |
           conan cache save --file ${{ env.MATRIX_NAME }}.tar.gz xmscore/${{ env.XMS_VERSION }}:*
-        shell: cmd
+        shell: bash
         if: startsWith(github.ref, 'refs/tags/')
       # Upload Zipped Conan Packages
       - name: Upload Zipped Conan Packages
@@ -215,7 +215,7 @@ jobs:
           conan remote add aquaveo ${{ env.CONAN_REMOTE_URL }} --force --index 0
           conan remote login aquaveo
           conan remote list
-        shell: cmd
+        shell: bash
       # Get Tag Name
       - name: Get Tag
         id: gitTag
@@ -246,7 +246,7 @@ jobs:
       # Build the Conan Package
       - name: Build the Conan Packages
         run: python build.py
-        shell: cmd
+        shell: bash
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -257,7 +257,7 @@ jobs:
       - name: Archive Conan Packages
         run: |
           conan cache save --file ${{ env.MATRIX_NAME }}.tar.gz xmscore/${{ env.XMS_VERSION }}:*
-        shell: cmd
+        shell: bash
         if: startsWith(github.ref, 'refs/tags/')
       # Upload Zipped Conan Packages
       - name: Upload Zipped Conan Packages
