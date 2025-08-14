@@ -312,7 +312,7 @@ jobs:
       CONAN_STABLE_BRANCH_PATTERN: 'we_should_never_use_this_string_for_a_branch_name'
       CONAN_LOGIN_USERNAME: ${{ secrets.CONAN2_USER_SECRET }}
       CONAN_PASSWORD: ${{ secrets.CONAN2_PASSWORD_SECRET }}
-      CONAN_REMOTE_URL: https://conan2.aquaveo.com
+      CONAN_REMOTE_URL: https://conan2.aquaveo.com/artifactory/api/conan/aquaveo-stable
       CONAN_BUILD_TYPES: ${{ matrix.build_type }}
       CONAN_VISUAL_VERSIONS: ${{ matrix.compiler-version }}
       # Aquapi Variables
