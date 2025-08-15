@@ -79,6 +79,8 @@ jobs:
       # Setup Clang
       - name: Setup Clang
         run: |
+          brew install llvm@17
+          echo "PATH=$(brew --prefix llvm@17)/bin:$PATH" >> $GITHUB_ENV
           clang --version
       # Checkout Sources
       - name: Checkout Source
