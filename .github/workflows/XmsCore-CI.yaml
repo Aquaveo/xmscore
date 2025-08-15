@@ -378,7 +378,7 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: python build.py --filter=\"{\\\"build_type\\": \\\"${{ matrix.build_type }}\\"}\"
+        run: "python build.py --filter=\"{\\\"build_type\\": \\\"${{ matrix.build_type }}\\"}\""
         shell: cmd
       # Get the Release Data
       - name: Get Release
