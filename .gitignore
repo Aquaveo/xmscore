@@ -11,6 +11,7 @@ _package/pyproject.toml
 *.pyc
 .idea/
 build/
+build_testing/
 cmake-build-debug/
 cmake-build-release/
 test_package/build/
