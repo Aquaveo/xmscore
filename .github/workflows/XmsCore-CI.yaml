@@ -49,7 +49,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest]
+        platform: [macos-15]
         python-version: ['3.13']
         build_type: [Release, Debug]
 
@@ -76,12 +76,10 @@ jobs:
       RELEASE_PYTHON: 'False'
 
     steps:
-      # Setup Clang
-      - name: Setup Clang
-        run: |
-          brew install llvm@17
-          echo "PATH=$(brew --prefix llvm@17)/bin:$PATH" >> $GITHUB_ENV
-          clang --version
+      # Get Correct Version of Xcode
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 16.4
       - name: Setup Clang
         run: |
           clang --version
@@ -105,6 +103,7 @@ jobs:
           conan --version
           conan profile detect
           conan remote add aquaveo ${{ env.CONAN_REMOTE_URL }} --force --index 0
+          conan remove conancenter
           conan remote login aquaveo
           conan remote list
         shell: bash
