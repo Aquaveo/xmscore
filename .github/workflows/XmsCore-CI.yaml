@@ -103,6 +103,7 @@ jobs:
           conan --version
           conan profile detect
           conan remote add aquaveo ${{ env.CONAN_REMOTE_URL }} --force --index 0
+          conan remote remove conancenter
           conan remote login aquaveo
           conan remote list
         shell: bash
