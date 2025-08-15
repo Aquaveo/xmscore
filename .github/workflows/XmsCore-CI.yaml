@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [ubuntu-latest]
-        python-version: ['3.12']
+        python-version: ['3.13']
 
     steps:
       # Checkout Sources
@@ -50,7 +50,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [macos-latest]
-        python-version: ['3.12']
+        python-version: ['3.13']
         build_type: [Release, Debug]
 
     env:
@@ -89,10 +89,10 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v2
       # Setup Python
-      - name: Set up Python 3.12
+      - name: Set up Python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13'
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
@@ -174,7 +174,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [ubuntu-latest]
-        python-version: ['3.12']
+        python-version: ['3.13']
         compiler-version: [15]
         build_type: [Release, Debug]
 
@@ -205,10 +205,10 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v2
       # Setup Python
-      - name: Set up Python 3.12
+      - name: Set up Python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13'
       # Setup GCC G++
       # Install Python Dependencies
       - name: Install Python Dependencies
@@ -291,7 +291,7 @@ jobs:
       fail-fast: false
       matrix:
         platform: [windows-2022]
-        python-version: ['3.12']
+        python-version: ['3.13']
         compiler-version: [17]
         build_type: [Release, Debug]
 
@@ -322,10 +322,10 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v2
       # Setup Python
-      - name: Set up Python 3.12
+      - name: Set up Python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.13'
       # Setup Dev Command Prompt env for MSVC
       - name: Setup MSVC env
         uses: ilammy/msvc-dev-cmd@v1
