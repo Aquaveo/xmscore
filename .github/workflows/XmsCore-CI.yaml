@@ -78,10 +78,8 @@ jobs:
     steps:
       # Setup Clang
       - name: Setup Clang
-        uses: egor-tensin/setup-clang@v1
-        with:
-          version: 17 # Specify the desired Clang version
-          platform: x64 # Specify the platform architecture (x64 or x86)
+        run: |
+          clang --version
       # Checkout Sources
       - name: Checkout Source
         uses: actions/checkout@v2
