@@ -129,11 +129,11 @@ jobs:
         uses: allenevans/set-env@v2.0.0
         with:
           CONAN_CHANNEL: stable
-          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
+          AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV}}
         if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
       # Generate XMS Conan
       - name: Generate XMS Conan
-        run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
+        run: xmsconan_gen --version ${{ env.XMS_VERSION }} --pyproject _package/pyproject.toml build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
@@ -251,11 +251,11 @@ jobs:
         uses: allenevans/set-env@v2.0.0
         with:
           CONAN_CHANNEL: stable
-          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
+          AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
         if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
       # Generate XMS Conan
       - name: Generate XMS Conan
-        run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
+        run: xmsconan_gen --version ${{ env.XMS_VERSION }} --pyproject _package/pyproject.toml build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
@@ -380,11 +380,11 @@ jobs:
         uses: allenevans/set-env@v2.0.0
         with:
           CONAN_CHANNEL: stable
-          AQUAPI_URL: ${{ secrets.AQUAPI_URL_STABLE }}
+          AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
         if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
       # Generate XMS Conan
       - name: Generate XMS Conan
-        run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
+        run: xmsconan_gen --version ${{ env.XMS_VERSION }} --pyproject _package/pyproject.toml build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
