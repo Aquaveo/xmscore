@@ -138,6 +138,11 @@ jobs:
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
         shell: bash
+      # Upload Release to Conan
+      - name: Upload Releases to Conan
+        run: "python build.py --skip-build --upload --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
+        shell: bash
+        if: startsWith(github.ref, 'refs/tags/')
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -255,6 +260,11 @@ jobs:
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
         shell: bash
+      # Upload Release to Conan
+      - name: Upload Releases to Conan
+        run: "python build.py --skip-build --upload --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
+        shell: bash
+        if: startsWith(github.ref, 'refs/tags/')
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -379,6 +389,11 @@ jobs:
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
         shell: cmd
+      # Upload Release to Conan
+      - name: Upload Releases to Conan
+        run: "python build.py --skip-build --upload --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
+        shell: cmd
+        if: startsWith(github.ref, 'refs/tags/')
       # Get the Release Data
       - name: Get Release
         id: git_release
@@ -402,3 +417,4 @@ jobs:
           asset_name: ${{ env.MATRIX_NAME }}.tar.gz
           asset_content_type: application/zip
         if: startsWith(github.ref, 'refs/tags/')
+
