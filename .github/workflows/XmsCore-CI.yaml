@@ -57,9 +57,9 @@ jobs:
       MATRIX_NAME: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 6.0.0
+      XMS_VERSION: 7.0.0
       # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
+      CONAN_REFERENCE: xmscore/7.0.0
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
@@ -186,9 +186,9 @@ jobs:
       MATRIX_NAME: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 6.0.0
+      XMS_VERSION: 7.0.0
       # Conan Variables
-      CONAN_REFERENCE: xmscore/6.0.0
+      CONAN_REFERENCE: xmscore/7.0.0
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
