@@ -256,6 +256,15 @@ jobs:
       # Generate XMS Conan
       - name: Generate XMS Conan
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
+      # Upload Generated Conan Files
+      - name: Upload Generated Conan Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: conan-generated-files-${{ env.MATRIX_NAME }}
+          path: |
+            conanfile.py
+            CMakeLists.txt
+            _package/pyproject.toml
       # Build the Conan Package
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
