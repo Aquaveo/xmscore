@@ -387,7 +387,7 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Upload Generated Conan Files
       - name: Upload Generated Conan Files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: conan-generated-files-${{ env.MATRIX_NAME }}
           path: |
