@@ -382,9 +382,19 @@ jobs:
           CONAN_CHANNEL: stable
           AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
         if: startsWith(github.ref, 'refs/tags/') && startsWith(env.BRANCH_NAME, ${{ env.XMS_VERSION }})
+        retention_days: 1
       # Generate XMS Conan
       - name: Generate XMS Conan
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
+      # Upload Generated Conan Files
+      - name: Upload Generated Conan Files
+        uses: actions/upload-artifact@v3
+        with:
+          name: conan-generated-files-${{ env.MATRIX_NAME }}
+          path: |
+            conanfile.py
+            CMakeLists.txt
+            _package/pyproject.toml
       # Build the Conan Package
       - name: Build the Conan Packages
         run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
