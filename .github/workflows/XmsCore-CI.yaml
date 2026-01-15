@@ -96,7 +96,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install conan devpi-client wheel cibuildwheel
-          python -m pip install git+https://github.com/aquaveo/xmsconan.git@conan2
+          python -m pip install xmsconan>=2.0.0 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: |
@@ -219,7 +219,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install conan devpi-client wheel cibuildwheel
-          python -m pip install git+https://github.com/aquaveo/xmsconan.git@conan2
+          python -m pip install xmsconan>=2.0.0 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: |
@@ -345,7 +345,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install conan devpi-client wheel cibuildwheel
-          python -m pip install git+https://github.com/aquaveo/xmsconan.git@conan2
+          python -m pip install xmsconan>=2.0.0 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Visual Studio
       - name: Setup Visual Studio
         uses: microsoft/setup-msbuild@v2
