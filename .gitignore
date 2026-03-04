@@ -64,3 +64,26 @@ CMakeFiles/*
 build/*
 pybuild/*
 build_py/*
+
+# AI assistant configuration (local only)
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.envrc
+
+# CMake presets (local configuration)
+CMakePresets.json
+CMakeUserPresets.json
+**/CMakeUserPresets.json
+
+# Conan profiles (local configuration)
+conan_profiles/
+
+# Coverage artifacts
+coverage_report/
+*.profraw
+*.profdata
+
+# clangd
+compile_commands.json
+.cache/
