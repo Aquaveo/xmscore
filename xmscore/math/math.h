@@ -139,11 +139,11 @@ double Mdist(X1 x1, Y1 y1, Z1 z1, X2 x2, Y2 y2, Z2 z2)
   return sqrt((double)(sqr(x1 - x2) + sqr(y1 - y2) + sqr(z1 - z2)));
 } ///< macro
 //------------------------------------------------------------------------------
-/// \brief Magnituded squared (x*x + y*y + z*z + w*w)
+/// \brief Magnitude squared (x*x + y*y + z*z + w*w)
 /// \param x: Value in x.
 /// \param y: Value in y.
 /// \param z: Value in z.
-/// \param w: Value in x.
+/// \param w: Value in w.
 /// \return Magnitude squared.
 //------------------------------------------------------------------------------
 template <typename _T>
@@ -152,11 +152,11 @@ double MagSquared(_T const x, _T const y, _T const z = 0, _T const w = 0)
   return (double)(x * x + y * y + z * z + w * w);
 } ///< macro
 //------------------------------------------------------------------------------
-/// \brief Magnituded sqrt(x*x + y*y + z*z + w*w)
+/// \brief Magnitude sqrt(x*x + y*y + z*z + w*w)
 /// \param x: Value in x.
 /// \param y: Value in y.
 /// \param z: Value in z.
-/// \param w: Value in x.
+/// \param w: Value in w.
 /// \return Magnitude.
 //------------------------------------------------------------------------------
 template <typename _T>

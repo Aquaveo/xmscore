@@ -89,7 +89,7 @@ int iCalendarToJulian(TimeEra a_era,
     // There is no year 0 in the Julian system!
     return -1;
   }
-  if (a_year == 1582 && a_month == 10 && a_day > 4 && a_day < 15 && a_era == ERA_BCE)
+  if (a_year == 1582 && a_month == 10 && a_day > 4 && a_day < 15 && a_era == ERA_CE)
   {
     // The dates 5 through 14 October, 1582
     // do not exist in the Gregorian system!
@@ -277,7 +277,8 @@ bool tmCalendarToJulian(int a_year,
                         int a_second,
                         double* a_julian)
 {
-  int result = iCalendarToJulian(ERA_CE, a_year, a_month, a_day, a_hour, a_minute, a_second, a_julian);
+  int result =
+    iCalendarToJulian(ERA_CE, a_year, a_month, a_day, a_hour, a_minute, a_second, a_julian);
   if (result <= 0)
     return false;
   return true;
@@ -426,12 +427,13 @@ void TimeConversionUnitTests::testCalendarToJulianInvalid()
 {
   double julian;
   TS_ASSERT(!tmCalendarToJulian(0, 7, 20, 1, 2, 3, &julian));
-  TS_ASSERT_EQUALS(1, iCalendarToJulian(ERA_BCE, 1582, 10, 4, 0, 0, 0, &julian));
-  TS_ASSERT_EQUALS(-1, iCalendarToJulian(ERA_BCE, 1582, 10, 5, 0, 0, 0, &julian));
-  TS_ASSERT_EQUALS(-1, iCalendarToJulian(ERA_BCE, 1582, 10, 14, 0, 0, 0, &julian));
-  TS_ASSERT_EQUALS(1, iCalendarToJulian(ERA_BCE, 1582, 10, 15, 0, 0, 0, &julian));
-  // seems like this should also be true but it wasn't like this in XMDF code
-  // TS_ASSERT_EQUALS(-1, iCalendarToJulian(ERA_CE, 1582, 10, 5, 0, 0, 0, &julian));
+  // The Gregorian calendar reform skipped Oct 5-14, 1582 CE (not BCE)
+  TS_ASSERT_EQUALS(1, iCalendarToJulian(ERA_CE, 1582, 10, 4, 0, 0, 0, &julian));
+  TS_ASSERT_EQUALS(-1, iCalendarToJulian(ERA_CE, 1582, 10, 5, 0, 0, 0, &julian));
+  TS_ASSERT_EQUALS(-1, iCalendarToJulian(ERA_CE, 1582, 10, 14, 0, 0, 0, &julian));
+  TS_ASSERT_EQUALS(1, iCalendarToJulian(ERA_CE, 1582, 10, 15, 0, 0, 0, &julian));
+  // BCE 1582 is unrelated to the Gregorian reform — all dates valid
+  TS_ASSERT_EQUALS(1, iCalendarToJulian(ERA_BCE, 1582, 10, 5, 0, 0, 0, &julian));
 } // TimeConversionUnitTests::testCalendarToJulianInvalid
 
 #endif

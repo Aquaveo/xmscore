@@ -73,7 +73,7 @@ class DaStreamWriter::Impl
 {
 public:
   /// Constructor
-  /// \param a_outStream The input stream.
+  /// \param a_outStream The output stream.
   /// \param a_binaryArrays Should binary arrays be written?
   Impl(std::ostream& a_outStream, bool a_binaryArrays)
   : m_outStream(a_outStream)
@@ -111,7 +111,12 @@ int32_t iCompress(const char* a_source, int32_t a_sourceLength, char* a_dest, in
   return static_cast<int32_t>(compressedLength);
 } // iCompress
 //------------------------------------------------------------------------------
-/// \brief
+/// \brief Uncompresses bytes of given length using zlib uncompress.
+/// \param a_source The bytes to uncompress.
+/// \param a_sourceLength The number of bytes to uncompress.
+/// \param a_dest The destination for the uncompressed bytes.
+/// \param a_destLength The expected uncompressed length.
+/// \return True on success.
 //------------------------------------------------------------------------------
 bool iUncompress(const char* a_source, int32_t a_sourceLength, char* a_dest, int32_t a_destLength)
 {
@@ -127,9 +132,11 @@ bool iUncompress(const char* a_source, int32_t a_sourceLength, char* a_dest, int
   }
 
   return true;
-} // iCompress
+} // iUncompress
 //------------------------------------------------------------------------------
-/// \brief
+/// \brief Calculate the size needed for base64 encoding.
+/// \param a_sourceLength The number of bytes to encode.
+/// \return The base64 encoded size.
 //------------------------------------------------------------------------------
 int32_t iBase64EncodeSize(int32_t a_sourceLength)
 {
@@ -137,7 +144,11 @@ int32_t iBase64EncodeSize(int32_t a_sourceLength)
   return static_cast<int32_t>(length);
 } // iBase64EncodeSize
 //------------------------------------------------------------------------------
-/// \brief
+/// \brief Base64 encode bytes.
+/// \param a_source The bytes to encode.
+/// \param a_sourceLength The number of bytes to encode.
+/// \param a_dest The destination for the encoded bytes.
+/// \return The length of the encoded output.
 //------------------------------------------------------------------------------
 int32_t iBase64Encode(const char* a_source, int32_t a_sourceLength, char* a_dest)
 {
@@ -156,7 +167,11 @@ int32_t iBase64Encode(const char* a_source, int32_t a_sourceLength, char* a_dest
   return encodedLength;
 } // iBase64Encode
 //------------------------------------------------------------------------------
-/// \brief
+/// \brief Base64 decode bytes.
+/// \param a_source The base64 encoded bytes to decode.
+/// \param a_sourceLength The number of bytes to decode.
+/// \param a_dest The destination for the decoded bytes.
+/// \return The length of the decoded output.
 //------------------------------------------------------------------------------
 int32_t iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest)
 {
