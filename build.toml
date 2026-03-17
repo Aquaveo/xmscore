@@ -1,5 +1,6 @@
 library_name = "xmscore"
 description = "Support library for XMS products"
+ci_type = "github"
 xms_dependencies = []
 
 python_namespaced_dir = "core"
