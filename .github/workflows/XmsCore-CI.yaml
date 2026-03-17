@@ -1,10 +1,8 @@
-name: XmsCore-6.0-Conan2
+name: XmsCore-CI
 
 on:
   push:
   pull_request:
-  # schedule:
-  #   - cron: "0 12 * * 1"
 
 jobs:
   # ----------------------------------------------------------------------------------------------
@@ -57,9 +55,9 @@ jobs:
       MATRIX_NAME: ${{ matrix.platform }}-Clang${{ matrix.compiler-version }}-${{ matrix.build_type }}
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 7.0.0
+      XMS_VERSION: '0.0.0'
       # Conan Variables
-      CONAN_REFERENCE: xmscore/7.0.0
+      CONAN_REFERENCE: xmscore/0.0.0
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
@@ -95,7 +93,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan devpi-client wheel cibuildwheel
+          pip install conan devpi-client wheel
           python -m pip install xmsconan>=2.2.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
@@ -136,8 +134,23 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: "python build.py --enable-macos-pybind --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
+        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse"
         shell: bash
+      # Repair wheel (Release only)
+      - name: Repair wheel
+        run: |
+          pip install delocate
+          DYLD_LIBRARY_PATH=wheelhouse/libs delocate-wheel -w wheelhouse_repaired -v wheelhouse/*.whl
+          rm -rf wheelhouse
+          mv wheelhouse_repaired wheelhouse
+        shell: bash
+        if: matrix.build_type == 'Release'
+      - name: Upload wheel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel-${{ runner.os }}
+          path: wheelhouse/*.whl
+        if: matrix.build_type == 'Release'
       # Upload Release to Conan
       - name: Upload Releases to Conan
         run: "python build.py --skip-build --upload --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
@@ -171,24 +184,27 @@ jobs:
   # LINUX
   # ----------------------------------------------------------------------------------------------
   linux:
-    name: GCC-${{ matrix.compiler-version }} (${{ matrix.build_type }}, ${{ matrix.python-version }}, Linux)
-    runs-on: ${{ matrix.platform }}
+    name: GCC-13 (${{ matrix.build_type }}, Linux)
+    runs-on: ubuntu-latest
+
+    container:
+      image: docker.aquaveo.com/aquaveo/conan-docker/conan-gcc13-py3.13
+      credentials:
+        username: ${{ secrets.AQUAVEO_DOCKER_USERNAME_SECRET }}
+        password: ${{ secrets.AQUAVEO_DOCKER_TOKEN }}
 
     strategy:
       fail-fast: false
       matrix:
-        platform: [ubuntu-latest]
-        python-version: ['3.13']
-        compiler-version: [15]
         build_type: [Release, Debug]
 
     env:
-      MATRIX_NAME: ${{ matrix.platform }}-GCC${{ matrix.compiler-version }}-${{ matrix.build_type }}
+      MATRIX_NAME: linux-GCC13-${{ matrix.build_type }}
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 7.0.0
+      XMS_VERSION: '0.0.0'
       # Conan Variables
-      CONAN_REFERENCE: xmscore/7.0.0
+      CONAN_REFERENCE: xmscore/0.0.0
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
@@ -201,25 +217,18 @@ jobs:
       AQUAPI_PASSWORD: ${{ secrets.AQUAPI_PASSWORD_SECRET }}
       AQUAPI_URL: ${{ secrets.AQUAPI_URL_DEV }}
       # Python Variables
-      PYTHON_TARGET_VERSION: ${{ matrix.python-version }}
+      PYTHON_TARGET_VERSION: '3.13'
       RELEASE_PYTHON: 'False'
 
     steps:
       # Checkout Sources
       - name: Checkout Source
         uses: actions/checkout@v2
-      # Setup Python
-      - name: Set up Python 3.13
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.13'
-      # Setup GCC G++
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install conan devpi-client wheel cibuildwheel
-          python -m pip install xmsconan>=2.2.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install conan devpi-client wheel
+          pip install xmsconan>=2.2.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: |
@@ -242,7 +251,7 @@ jobs:
           XMS_VERSION: ${{ steps.gitTag.outputs.tag }}
           CONAN_UPLOAD: https://conan.aquaveo.com
           RELEASE_PYTHON: 'True'
-        if: startsWith(github.ref, 'refs/tags/')      
+        if: startsWith(github.ref, 'refs/tags/')
       # Check for release branch
       - name: Get Branch Name
         id: gitBranch
@@ -258,8 +267,23 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
+        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse"
         shell: bash
+      # Repair wheel (Release only)
+      - name: Repair wheel
+        run: |
+          pip install auditwheel patchelf
+          LD_LIBRARY_PATH=wheelhouse/libs auditwheel repair wheelhouse/*.whl -w wheelhouse_repaired
+          rm -rf wheelhouse
+          mv wheelhouse_repaired wheelhouse
+        shell: bash
+        if: matrix.build_type == 'Release'
+      - name: Upload wheel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel-${{ runner.os }}
+          path: wheelhouse/*.whl
+        if: matrix.build_type == 'Release'
       # Upload Release to Conan
       - name: Upload Releases to Conan
         run: "python build.py --skip-build --upload --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
@@ -308,9 +332,9 @@ jobs:
       MATRIX_NAME: ${{ matrix.platform }}-VS${{ matrix.compiler-version }}-${{ matrix.build_type }}
       # Library Variables
       LIBRARY_NAME: xmscore
-      XMS_VERSION: 7.0.0
+      XMS_VERSION: '0.0.0'
       # Conan Variables
-      CONAN_REFERENCE: xmscore/7.0.0
+      CONAN_REFERENCE: xmscore/0.0.0
       CONAN_ARCHS: x86_64
       CONAN_USERNAME: aquaveo
       CONAN_CHANNEL: testing
@@ -344,7 +368,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan devpi-client wheel cibuildwheel
+          pip install conan devpi-client wheel
           python -m pip install xmsconan>=2.2.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Visual Studio
       - name: Setup Visual Studio
@@ -387,8 +411,23 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
+        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse"
         shell: cmd
+      # Repair wheel (Release only)
+      - name: Repair wheel
+        run: |
+          pip install delvewheel
+          delvewheel repair wheelhouse/*.whl --add-path wheelhouse/libs -w wheelhouse_repaired
+          rm -rf wheelhouse
+          mv wheelhouse_repaired wheelhouse
+        shell: bash
+        if: matrix.build_type == 'Release'
+      - name: Upload wheel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheel-${{ runner.os }}
+          path: wheelhouse/*.whl
+        if: matrix.build_type == 'Release'
       # Upload Release to Conan
       - name: Upload Releases to Conan
         run: "python build.py --skip-build --upload --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\""
@@ -417,4 +456,3 @@ jobs:
           asset_name: ${{ env.MATRIX_NAME }}.tar.gz
           asset_content_type: application/zip
         if: startsWith(github.ref, 'refs/tags/')
-
