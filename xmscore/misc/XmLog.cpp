@@ -25,19 +25,12 @@
 #include <sstream>
 
 // 4. External library headers
+#include <chrono>
+#include <ctime>
+#include <iomanip>
+#include <mutex>
 #if !defined(__EMSCRIPTEN__)
 #include <boost/filesystem.hpp>
-#include <boost/log/attributes.hpp>
-#include <boost/log/core/core.hpp>
-#include <boost/log/expressions.hpp>
-#include <boost/log/sources/global_logger_storage.hpp>
-#include <boost/log/sinks/sync_frontend.hpp>
-#include <boost/log/sinks/text_ostream_backend.hpp>
-#include <boost/log/sources/record_ostream.hpp>
-#include <boost/log/sources/severity_logger.hpp>
-#include <boost/log/support/date_time.hpp>
-#include <boost/log/utility/setup/common_attributes.hpp>
-#include <boost/log/utility/manipulators/add_value.hpp>
 #endif
 
 // 5. Shared code headers
@@ -50,8 +43,6 @@
 //----- Namespace declaration --------------------------------------------------
 #if !defined(__EMSCRIPTEN__)
 namespace bfs = boost::filesystem;
-namespace expr = boost::log::expressions;
-namespace sinks = boost::log::sinks;
 #endif
 
 //----- Constants / Enumerations -----------------------------------------------
@@ -92,22 +83,45 @@ inline std::basic_ostream<CharT, TraitsT>& operator<<(std::basic_ostream<CharT, 
 
 namespace xms
 {
-#if !defined(__EMSCRIPTEN__)
-/// Used for convenience to declare a global log object
-BOOST_LOG_INLINE_GLOBAL_LOGGER_INIT(xms_global_log,
-                                    boost::log::sources::severity_logger_mt<xmlog::MessageTypeEnum>)
+//------------------------------------------------------------------------------
+/// \brief Return the current process name.
+//------------------------------------------------------------------------------
+static std::string iProcessName()
 {
-  boost::log::sources::severity_logger_mt<xmlog::MessageTypeEnum> lg;
-  // Configure the logger here
-  lg.add_attribute("TimeStamp", boost::log::attributes::local_clock());
-  lg.add_attribute("Process", boost::log::attributes::current_process_name());
-  lg.add_attribute("Scope", boost::log::attributes::named_scope());
-  return lg;
-}
-BOOST_LOG_ATTRIBUTE_KEYWORD(severity, "Severity", xmlog::MessageTypeEnum)
-// BOOST_LOG_ATTRIBUTE_KEYWORD(file_name, "FileName", const char* const)
-// BOOST_LOG_ATTRIBUTE_KEYWORD(line_num, "LineNumber", int)
+#if defined(_WIN32) || defined(_WIN64)
+  char buf[MAX_PATH];
+  DWORD len = GetModuleFileNameA(NULL, buf, MAX_PATH);
+  if (len > 0)
+    return bfs::path(buf).filename().string();
+  return "unknown";
+#elif defined(__APPLE__)
+  const char* name = getprogname();
+  return name ? name : "unknown";
+#else
+  std::ifstream comm("/proc/self/comm");
+  std::string name;
+  if (comm && std::getline(comm, name))
+    return name;
+  return "unknown";
 #endif
+} // iProcessName
+//------------------------------------------------------------------------------
+/// \brief Return current local time as a formatted string.
+//------------------------------------------------------------------------------
+static std::string iTimestamp()
+{
+  auto now = std::chrono::system_clock::now();
+  auto time = std::chrono::system_clock::to_time_t(now);
+  struct tm buf;
+#if defined(_WIN32) || defined(_WIN64)
+  localtime_s(&buf, &time);
+#else
+  localtime_r(&time, &buf);
+#endif
+  std::ostringstream ss;
+  ss << std::put_time(&buf, "%Y-%m-%d %H:%M:%S");
+  return ss.str();
+} // iTimestamp
 
 /// Callback to return the name of the log file
 static XmLogFilenameCallback fg_logFilenameCallback;
@@ -127,6 +141,10 @@ struct XmLog::Impl
   MessageStack m_stackedMessages;
   /// Used to setup log file first time something is logged
   bool m_firstRun;
+  /// Mutex for thread-safe file writes
+  std::mutex m_mutex;
+  /// Log file stream
+  std::ofstream m_logFile;
 
   void StackedErrToStream(std::ostream& a_os);
 };
@@ -146,41 +164,11 @@ XmLog::XmLog()
 : Singleton()
 , m(new Impl())
 {
-#if !defined(__EMSCRIPTEN__)
-  // Setup the formatter for file sinks
-  boost::log::formatter file_fmt = expr::stream << "[" << severity << "]"
-                                                << "["
-                                                << expr::format_date_time<boost::posix_time::ptime>(
-                                                     "TimeStamp", "%Y-%m-%d %H:%M:%S")
-                                                << "]"
-                                                << "[" << expr::attr<std::string>("Process") << ":"
-                                                << expr::attr<std::string>("FileName") << ":"
-                                                << expr::attr<int>("LineNumber") << "]"
-                                                << ": " << expr::smessage;
-
-  // Initialize sinks
-  // Create a backend and attach a couple of streams to it
-  boost::shared_ptr<sinks::text_ostream_backend> backend =
-    boost::make_shared<sinks::text_ostream_backend>();
-  // backend->add_stream(boost::shared_ptr< std::ostream >(&std::clog, boost::empty_deleter()));
-  backend->add_stream(boost::shared_ptr<std::ostream>(new std::ofstream(XmLog::LogFilename())));
-
-  // Enable auto-flushing after each log record written
-  backend->auto_flush(true);
-
-  // Wrap it into the frontend and register in the core.
-  // The backend requires synchronization in the frontend.
-  typedef sinks::synchronous_sink<sinks::text_ostream_backend> sink_t;
-  boost::shared_ptr<sink_t> sink(new sink_t(backend));
-  sink->set_formatter(file_fmt);
-  boost::log::core::get()->add_sink(sink);
-
-  // Add attributes
-  boost::log::add_common_attributes();
-
-  // Add Log to BugTracker
-  std::string tmp = XmLog::LogFilename();
-#endif
+  std::string filename = XmLog::LogFilename();
+  if (!filename.empty())
+  {
+    m->m_logFile.open(filename);
+  }
 } // XmLog::XmLog
 //------------------------------------------------------------------------------
 /// \brief destructor
@@ -207,22 +195,21 @@ void XmLog::Log(const char* const a_file,
     XM_LOG(xmlog::debug, "Start Log");
   }
 
-  if (a_level == xmlog::debug)
-  {
-#if !defined(__EMSCRIPTEN__)
-    BOOST_LOG_SEV(xms_global_log::get(), a_level)
-      << boost::log::add_value("FileName", a_file) << boost::log::add_value("LineNumber", a_line)
-      << a_message;
-#endif
-  }
-  else
+  if (a_level != xmlog::debug)
   {
     m->m_stackedMessages.push_back(std::make_pair(a_level, a_message));
-#if !defined(__EMSCRIPTEN__)
-    BOOST_LOG_SEV(xms_global_log::get(), a_level)
-      << boost::log::add_value("FileName", a_file) << boost::log::add_value("LineNumber", a_line)
-      << a_message;
-#endif
+  }
+
+  {
+    std::lock_guard<std::mutex> lock(m->m_mutex);
+    if (m->m_logFile.is_open())
+    {
+      m->m_logFile << "[" << a_level << "]"
+                   << "[" << iTimestamp() << "]"
+                   << "[" << iProcessName() << ":" << a_file << ":" << a_line << "]"
+                   << ": " << a_message << "\n";
+      m->m_logFile.flush();
+    }
   }
 } // XmLog::Log
 //------------------------------------------------------------------------------
@@ -383,11 +370,6 @@ void XmLogUnitTests::testAll()
   // xms::iTest_XM_LOG_debug();
   // xms::iTest_XM_LOG_stackable();
   // xms::iTest_XM_LOG_gui();
-
-  // BOOST_LOG_FUNCTION();
-  // std::string s = BOOST_CURRENT_FUNCTION;
-  // std::string s2 = s;
-  // TS_ASSERT_EQUALS(s2, s);
 }
 #endif
 
