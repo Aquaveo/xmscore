@@ -21,13 +21,13 @@
 #include <xmscore/misc/XmLog.h>
 
 // 3. Standard library headers
+#include <cstdio>
+#include <ctime>
 #include <fstream>
 #include <sstream>
 
 // 4. External library headers
 #include <chrono>
-#include <ctime>
-#include <iomanip>
 #include <mutex>
 #if defined(_WIN32) || defined(_WIN64)
 #include <windows.h>
@@ -65,21 +65,16 @@ std::string g_xmUtil;
 namespace xmlog
 {
 //------------------------------------------------------------------------------
-/// \brief Formatting Logic for Severity
-/// \param strm: ostream
+/// \brief Return severity level as a string.
 /// \param lvl: message type enum.
-/// \return ostream.
+/// \return severity string.
 //------------------------------------------------------------------------------
-template <typename CharT, typename TraitsT>
-inline std::basic_ostream<CharT, TraitsT>& operator<<(std::basic_ostream<CharT, TraitsT>& strm,
-                                                      xmlog::MessageTypeEnum lvl)
+static const char* iSeverityStr(xmlog::MessageTypeEnum lvl)
 {
   static const char* const str[] = {"   info", "warning", "  error", "  debug"};
   if (static_cast<std::size_t>(lvl) < (sizeof(str) / sizeof(*str)))
-    strm << str[lvl];
-  else
-    strm << static_cast<int>(lvl);
-  return strm;
+    return str[lvl];
+  return "unknown";
 }
 
 } // namespace xmlog
@@ -121,9 +116,9 @@ static std::string iTimestamp()
 #else
   localtime_r(&time, &buf);
 #endif
-  std::ostringstream ss;
-  ss << std::put_time(&buf, "%Y-%m-%d %H:%M:%S");
-  return ss.str();
+  char timeBuf[32];
+  std::strftime(timeBuf, sizeof(timeBuf), "%Y-%m-%d %H:%M:%S", &buf);
+  return timeBuf;
 } // iTimestamp
 
 /// Callback to return the name of the log file
@@ -146,8 +141,8 @@ struct XmLog::Impl
   bool m_firstRun;
   /// Mutex for thread-safe file writes
   std::mutex m_mutex;
-  /// Log file stream
-  std::ofstream m_logFile;
+  /// Log file handle (using FILE* to avoid std::ostream locale issues in shared libraries)
+  FILE* m_logFile = nullptr;
 
   void StackedErrToStream(std::ostream& a_os);
 };
@@ -170,7 +165,7 @@ XmLog::XmLog()
   std::string filename = XmLog::LogFilename();
   if (!filename.empty())
   {
-    m->m_logFile.open(filename);
+    m->m_logFile = std::fopen(filename.c_str(), "a");
   }
 } // XmLog::XmLog
 //------------------------------------------------------------------------------
@@ -178,6 +173,11 @@ XmLog::XmLog()
 //------------------------------------------------------------------------------
 XmLog::~XmLog()
 {
+  if (m->m_logFile)
+  {
+    std::fclose(m->m_logFile);
+    m->m_logFile = nullptr;
+  }
 }
 //------------------------------------------------------------------------------
 /// \brief    Logs
@@ -205,13 +205,14 @@ void XmLog::Log(const char* const a_file,
 
   {
     std::lock_guard<std::mutex> lock(m->m_mutex);
-    if (m->m_logFile.is_open())
+    if (m->m_logFile)
     {
-      m->m_logFile << "[" << a_level << "]"
-                   << "[" << iTimestamp() << "]"
-                   << "[" << iProcessName() << ":" << a_file << ":" << a_line << "]"
-                   << ": " << a_message << "\n";
-      m->m_logFile.flush();
+      std::string ts = iTimestamp();
+      std::string proc = iProcessName();
+      std::fprintf(m->m_logFile, "[%s][%s][%s:%s:%d]: %s\n",
+                   xmlog::iSeverityStr(a_level), ts.c_str(), proc.c_str(),
+                   a_file, a_line, a_message.c_str());
+      std::fflush(m->m_logFile);
     }
   }
 } // XmLog::Log
