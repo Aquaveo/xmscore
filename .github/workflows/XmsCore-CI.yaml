@@ -104,7 +104,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install conan devpi-client wheel
-          python -m pip install xmsconan>=2.6.2 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install xmsconan>=2.8.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login --remove-conancenter
@@ -138,8 +138,15 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse"
+        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse --artifacts-dir test_artifacts"
         shell: bash
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts-${{ env.MATRIX_NAME }}
+          path: test_artifacts/
+          if-no-files-found: ignore
+        if: always()
       # Repair wheel (Release only)
       - name: Repair wheel
         run: xmsconan_wheel_repair --wheel-dir wheelhouse --platform macos
@@ -230,7 +237,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           pip install conan devpi-client wheel
-          pip install xmsconan>=2.6.2 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install xmsconan>=2.8.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login
@@ -264,8 +271,15 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse"
+        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse --artifacts-dir test_artifacts"
         shell: bash
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts-${{ env.MATRIX_NAME }}
+          path: test_artifacts/
+          if-no-files-found: ignore
+        if: always()
       # Repair wheel (Release only)
       - name: Repair wheel
         run: xmsconan_wheel_repair --wheel-dir wheelhouse --platform linux
@@ -367,7 +381,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install conan devpi-client wheel
-          python -m pip install xmsconan>=2.6.2 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install xmsconan>=2.8.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Visual Studio
       - name: Setup Visual Studio
         uses: microsoft/setup-msbuild@v2
@@ -404,8 +418,15 @@ jobs:
         run: xmsconan_gen --version ${{ env.XMS_VERSION }} build.toml
       # Build the Conan Package
       - name: Build the Conan Packages
-        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse"
+        run: "python build.py --filter=\"{\\\"build_type\\\": \\\"${{ matrix.build_type }}\\\"}\" --wheel-dir wheelhouse --artifacts-dir test_artifacts"
         shell: cmd
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts-${{ env.MATRIX_NAME }}
+          path: test_artifacts/
+          if-no-files-found: ignore
+        if: always()
       # Repair wheel (Release only)
       - name: Repair wheel
         run: xmsconan_wheel_repair --wheel-dir wheelhouse --platform windows
