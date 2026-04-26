@@ -69,8 +69,8 @@ coverage_report/
 *.gcno
 
 # ── Local configuration ───────────────────────
-.claude/
-CLAUDE.md
+.claude/settings.local.json
+.claude/agent-memory/
 CLAUDE.local.md
 .envrc
 CMakePresets.json
