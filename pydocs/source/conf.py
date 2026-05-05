@@ -44,8 +44,11 @@ copyright = '2018, aquaveo'
 author = 'aquaveo'
 
 # The short X.Y version
-from xms import core
-version = core.__version__
+try:
+    from xms import core
+    version = getattr(core, '__version__', '0.0.0')
+except Exception:
+    version = '0.0.0'
 # The full version, including alpha/beta/rc tags
 release = ''
 
@@ -64,7 +67,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.githubpages',
     'sphinx.ext.intersphinx',
-    'sphinxcontrib.napoleon',
+    'sphinx.ext.napoleon',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
