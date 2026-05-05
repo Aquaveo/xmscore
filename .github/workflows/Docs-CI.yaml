@@ -1,0 +1,55 @@
+# Docs CI — verifies that the Doxygen and Sphinx documentation builds.
+# Independent of the generated XmsCore-CI.yaml so it survives xmsconan_ci
+# regeneration.
+#
+# Note: WARN_AS_ERROR / Sphinx -W are not enabled yet because there is a
+# baseline of pre-existing Doxygen warnings (template-parameter HTML-tag
+# parsing in xmscore/points/pt.h, missing param docs, etc.). Once those
+# are cleaned up, flip the gates on so future broken \ref / \param /
+# \brief regressions fail CI.
+
+name: Docs-CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  doxygen:
+    name: Doxygen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+      - name: Build Doxygen docs
+        working-directory: Doxygen
+        run: doxygen Doxyfile
+      - name: Upload Doxygen warning log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doxygen-warnings
+          path: Doxygen/doxy_warn.log
+          if-no-files-found: ignore
+
+  sphinx:
+    name: Sphinx
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install Sphinx requirements
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r pydocs/source/doc_requirements.txt
+      - name: Build Sphinx docs
+        working-directory: pydocs
+        run: make html

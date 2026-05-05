@@ -5,7 +5,7 @@ Guidance for AI agents (and humans) working in this repository.
 ## Project
 
 `xmscore` is a C++ support library for the XMS family of products
-(xmsgrid, xmsinterp, xmsmesher, xmsextractor) plus pybind11 bindings
+(xmsgrid, xmsinterp, xmsmesher, xmsextractor, xmsstamper) plus pybind11 bindings
 exposed as the `xms.core` Python package. See `README.md` for the source
 layout and local doc-build commands.
 

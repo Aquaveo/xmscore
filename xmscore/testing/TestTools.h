@@ -210,13 +210,13 @@ public:
   /// \brief Clear any default response previously set.
   void ClearDefault();
   /// \brief Return the currently set default response, or 0 if none has been set.
-  int GetDefault();
+  int GetDefault() const;
   /// \brief Enable or disable message-skipping.
   void SetSkipping(bool a_);
   /// \brief Returns true if message-skipping is currently enabled.
-  bool GetSkipping();
+  bool GetSkipping() const;
   /// \brief Returns true if a default response has been set.
-  bool DefaultValWasSet();
+  bool DefaultValWasSet() const;
 
 private:
   bool m_skippingMessages; ///< Are messages being skipped?

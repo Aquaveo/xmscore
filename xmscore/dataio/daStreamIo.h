@@ -39,6 +39,9 @@ namespace xms
 /// Each Read* call expects the next non-blank line to begin with the supplied
 /// name token. Vector reads can use either a textual or binary block depending
 /// on the flag passed at construction.
+///
+/// \note The reader holds the bound `std::istream&` by reference; the caller
+///       must keep it alive for at least as long as the reader.
 class DaStreamReader
 {
 public:
@@ -49,7 +52,9 @@ public:
   /// \brief Returns true if vector payloads are read as binary blocks rather than text.
   bool IsBinary() const;
 
-  /// \brief Advance past a header line consisting only of the given name token.
+  /// \brief Advance past a header line whose first whitespace-separated
+  ///        token equals a_name. Any trailing content on the line is
+  ///        consumed but not validated.
   bool ReadNamedLine(const char* a_name);
   /// \brief Read the next line of the stream into a_line.
   bool ReadLine(std::string& a_line);
@@ -110,6 +115,9 @@ private:
 /// Mirrors the readers in DaStreamReader: each Write* method emits a single
 /// "name value(s)" line. Array payloads are written either as text or as a
 /// binary block depending on the flag passed at construction.
+///
+/// \note The writer holds the bound `std::ostream&` by reference; the caller
+///       must keep it alive for at least as long as the writer.
 class DaStreamWriter
 {
 public:
@@ -173,39 +181,34 @@ private:
 
 //----- Function prototypes ----------------------------------------------------
 
-/// \brief Free-function form of DaStreamReader::ReadNamedLine.
+/// \name Free-function reader forms
+/// Thin wrappers: each constructs a `DaStreamReader` on `a_inStream` and
+/// delegates to the matching member. See `DaStreamReader` for the per-call
+/// contract.
+/// @{
 bool daReadNamedLine(std::istream& a_inStream, const char* a_name);
-/// \brief Free-function form of DaStreamReader::ReadLine.
 bool daReadLine(std::istream& a_inStream, std::string& a_line);
-/// \brief Free-function form of DaStreamReader::ReadIntLine.
 bool daReadIntLine(std::istream& a_inStream, const char* a_name, int& a_val);
-/// \brief Free-function form of DaStreamReader::ReadDoubleLine.
 bool daReadDoubleLine(std::istream& a_inStream, const char* a_name, double& a_val);
-/// \brief Free-function form of DaStreamReader::ReadStringLine.
 bool daReadStringLine(std::istream& a_inStream, const char* a_name, std::string& a_val);
-/// \brief Free-function form of DaStreamReader::ReadVecInt (text format only).
 bool daReadVecInt(std::istream& a_inStream, const char* a_name, VecInt& a_vec);
-/// \brief Free-function form of DaStreamReader::ReadVecDbl (text format only).
 bool daReadVecDbl(std::istream& a_inStream, const char* a_name, VecDbl& a_vec);
-/// \brief Free-function form of DaStreamReader::ReadVecPt3d (text format only).
 bool daReadVecPt3d(std::istream& a_inStream, const char* a_name, VecPt3d& a_vec);
-/// \brief Free-function form of DaStreamReader::Read2StringLine.
 bool daRead2StringLine(std::istream& a_inStream,
                        const char* a_name,
                        std::string& a_val1,
                        std::string& a_val2);
-/// \brief Free-function form of DaStreamReader::Read3StringLine.
 bool daRead3StringLine(std::istream& a_inStream,
                        const char* a_name,
                        std::string& a_val1,
                        std::string& a_val2,
                        std::string& a_val3);
-/// \brief Free-function form of DaStreamReader::Read3DoubleLine.
 bool daRead3DoubleLine(std::istream& a_inStream,
                        const char* a_name,
                        double& a_val1,
                        double& a_val2,
                        double& a_val3);
+/// @}
 
 /// \brief Pop the leading token from a_line and parse it as an int.
 bool daReadIntFromLine(std::string& a_line, int& a_val);
@@ -217,39 +220,34 @@ bool daReadDoubleFromLine(std::string& a_line, double& a_val);
 /// \brief Returns true if the next non-blank line in a_inStream begins with a_text.
 bool daLineBeginsWith(std::istream& a_inStream, const std::string& a_text);
 
-/// \brief Free-function form of DaStreamWriter::WriteVecInt (text format only).
+/// \name Free-function writer forms
+/// Thin wrappers: each constructs a `DaStreamWriter` on `a_outStream` and
+/// delegates to the matching member. See `DaStreamWriter` for the per-call
+/// contract.
+/// @{
 void daWriteVecInt(std::ostream& a_outStream, const char* a_name, const VecInt& a_vec);
-/// \brief Free-function form of DaStreamWriter::WriteVecDbl (text format only).
 void daWriteVecDbl(std::ostream& a_outStream, const char* a_name, const VecDbl& a_vec);
-/// \brief Free-function form of DaStreamWriter::WriteVecPt3d (text format only).
 void daWriteVecPt3d(std::ostream& a_outStream, const char* a_name, const VecPt3d& a_points);
 
-/// \brief Free-function form of DaStreamWriter::WriteIntLine.
 void daWriteIntLine(std::ostream& a_outStream, const char* a_name, int a_val);
-
-/// \brief Free-function form of DaStreamWriter::WriteDoubleLine.
 void daWriteDoubleLine(std::ostream& a_outStream, const char* a_name, double a_val);
-/// \brief Free-function form of DaStreamWriter::Write3DoubleLine.
 void daWrite3DoubleLine(std::ostream& a_outStream,
                         const char* a_name,
                         const double& a_val1,
                         const double& a_val2,
                         const double& a_val3);
 
-/// \brief Free-function form of DaStreamWriter::WriteLine.
 void daWriteLine(std::ostream& a_outStream, const std::string& a_line);
-/// \brief Free-function form of DaStreamWriter::WriteStringLine.
 void daWriteStringLine(std::ostream& a_outStream, const char* a_name, const std::string& a_val);
-/// \brief Free-function form of DaStreamWriter::Write2StringLine.
 void daWrite2StringLine(std::ostream& a_outStream,
                         const char* a_name,
                         const std::string& a_val1,
                         const std::string& a_val2);
-/// \brief Free-function form of DaStreamWriter::Write3StringLine.
 void daWrite3StringLine(std::ostream& a_outStream,
                         const char* a_name,
                         const std::string& a_val1,
                         const std::string& a_val2,
                         const std::string& a_val3);
+/// @}
 
 } // namespace xms
