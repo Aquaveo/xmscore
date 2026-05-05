@@ -106,6 +106,6 @@ doc updates in review.
 ## Verification before declaring work complete
 
 - C++: build via the CI workflow or locally with the Conan toolchain.
-- Python: `python -m unittest discover _package/tests`.
+- Python: `python -m unittest discover -s _package/tests -p "*_pyt.py"`.
 - Docs: `doxygen Doxygen/Doxyfile` and `cd pydocs && make html` should
   both build without new warnings.
