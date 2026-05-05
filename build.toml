@@ -6,9 +6,6 @@ xms_dependencies = []
 python_namespaced_dir = "core"
 pybind_root = true
 
-[ci]
-python_versions = ["3.10", "3.13"]
-
 library_sources = [
     "xmscore/dataio/daStreamIo.cpp",
     "xmscore/math/math.cpp",
@@ -104,3 +101,6 @@ pybind_headers = [
     "xmscore/python/misc/PyProgressListener.h",
     "xmscore/python/time/time_py.h",
 ]
+
+[ci]
+python_versions = ["3.10", "3.13"]
