@@ -9,7 +9,7 @@ Introduction {#XmscoreIntroduction}
 ------------
 
 `xmscore` is a support library for the XMS family of C++ libraries
-(xmsinterp, xmsmesh, xmsgrid, xmsstamper, ...). It collects the small,
+(xmsinterp, xmsmesher, xmsextractor, xmsgrid, xmsstamper, ...). It collects the small,
 general-purpose pieces those libraries all need so they don't each grow
 their own copy: error handling and logging, an observer/progress
 reporting interface, lightweight numeric and point types, STL helpers

@@ -220,7 +220,7 @@ void XmLog::Log(const char* const a_file,
 /// \brief Returns the current count of the error stack
 /// \return Current count of the error stack.
 //------------------------------------------------------------------------------
-int XmLog::ErrCount()
+int XmLog::ErrCount() const
 {
   return (int)m->m_stackedMessages.size();
 } // XmLog::ErrCount

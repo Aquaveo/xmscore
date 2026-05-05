@@ -4,8 +4,8 @@ XMSCore
 ========
 Support library for XMS products. `xmscore` provides the shared C++ utilities
 (error handling, logging, math, points, STL helpers, time, and IO) used by the
-rest of the XMS family of libraries (xmsinterp, xmsmesh, xmsgrid, xmsstamper,
-…) along with Python bindings for the subset that is useful from Python tools
+rest of the XMS family of libraries (xmsinterp, xmsmesher, xmsextractor,
+xmsgrid, xmsstamper, …) along with Python bindings for the subset that is useful from Python tools
 and tests.
 
 Prerequisites
