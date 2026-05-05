@@ -32,12 +32,18 @@ public:
   Observer();
   virtual ~Observer();
 
-  /// \brief Publish a percent-complete update.
-  /// \param a_percentComplete Current progress in [0.0, 1.0].
-  /// \return true if the underlying observer was actually notified — i.e.
-  ///         the value advanced more than ~0.02 since the last call —
-  ///         false when the call was throttled. Note: a false return is
-  ///         **not** a cancel/stop signal; callers must not abort on it.
+  // Polymorphic base — disable copy/move to prevent slicing.
+  Observer(const Observer&) = delete;
+  Observer& operator=(const Observer&) = delete;
+  Observer(Observer&&) = delete;
+  Observer& operator=(Observer&&) = delete;
+
+  /// \brief Publish a percent-complete update (a_percentComplete in
+  ///        [0.0, 1.0]). Returns true if the underlying observer was
+  ///        actually notified — i.e. the value advanced more than ~0.02
+  ///        since the last call — false when the call was throttled.
+  ///        Note: a false return is **not** a cancel/stop signal;
+  ///        callers must not abort on it.
   bool ProgressStatus(double a_percentComplete);
   /// \brief Notify the listener that a new named operation is starting.
   void BeginOperationString(const std::string& a_operation);

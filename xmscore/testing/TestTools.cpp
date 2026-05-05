@@ -160,7 +160,7 @@ void ETestMessagingState::ClearDefault()
 /// \brief Get default value.
 /// \return Default value.
 //------------------------------------------------------------------------------
-int ETestMessagingState::GetDefault()
+int ETestMessagingState::GetDefault() const
 {
   return m_defaultRetValue;
 } // ETestMessagingState::GetDefault
@@ -176,15 +176,15 @@ void ETestMessagingState::SetSkipping(bool a_)
 /// \brief Get if skipping messages.
 /// \return true if skipping messages.
 //------------------------------------------------------------------------------
-bool ETestMessagingState::GetSkipping()
+bool ETestMessagingState::GetSkipping() const
 {
   return m_skippingMessages;
-} // ETestMessagingState::GetSkippin
+} // ETestMessagingState::GetSkipping
 //------------------------------------------------------------------------------
 /// \brief Was default value set (true) or has it been cleared?
 /// \return true if default value was set.
 //------------------------------------------------------------------------------
-bool ETestMessagingState::DefaultValWasSet()
+bool ETestMessagingState::DefaultValWasSet() const
 {
   return m_defaultSet;
 } // ETestMessagingState::DefaultValWasSet

@@ -56,7 +56,7 @@ private:
   int m_oldOutputFormat; ///< Saved output format to restore to orignal value
 };
 
-static const char* ST_WHITESPACE = " \t\n\f\r\v"; ///< Whitespace characters
+inline constexpr const char ST_WHITESPACE[] = " \t\n\f\r\v"; ///< Whitespace characters
 
 // Convenience functions
 
@@ -137,7 +137,11 @@ bool stNumeric(const std::string& str);
 bool stScientificNotation(const std::string& str, bool check_numeric = true);
 /// \brief Convert str between extended-ASCII and the platform's narrow encoding in place.
 void stChangeExtendedAscii(std::string& str, bool to_extended);
-/// \brief If str is already in set_str, append a numeric suffix to make it unique. Returns true if the string was modified.
+/// \brief If str is already in set_str, append or increment a ` (N)` suffix
+///        until the result is not in set_str. The suffix shape is
+///        space-paren-integer-paren (e.g. `foo` → `foo (2)`, `foo (2)` →
+///        `foo (3)`); callers may parse it back out. Returns true if the
+///        string was modified.
 bool stMakeUnique(const std::set<std::string>& set_str, std::string& str);
 /// \brief Parse a string as an int. Returns false on failure.
 bool stStringToInt(const std::string&, int& i, int base = 0);
