@@ -109,7 +109,10 @@ public:
            int a_line,
            xmlog::MessageTypeEnum a_level,
            std::string a_message);
-  /// \brief Number of error-level entries currently on the stackable error stack.
+  /// \brief Number of stacked messages (info, warning, and error) currently
+  ///        held on the message stack. Debug entries are not stacked. Note
+  ///        that a non-zero count therefore does not imply that an error
+  ///        was logged.
   int ErrCount();
   /// \brief Return and clear the stackable error stack as a vector of (level, message) pairs.
   MessageStack GetAndClearStack();

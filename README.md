@@ -20,24 +20,19 @@ See xmscore build [instructions](https://github.com/Aquaveo/xmscore/wiki/Buildin
 
 Source Layout
 -------------
-All public C++ code lives under `xmscore/`. Each subdirectory is a small,
-focused module:
+All public C++ code lives under `xmscore/`, split into a handful of small
+focused modules (`dataio`, `math`, `misc`, `points`, `stl`, `testing`,
+`time`). The per-module breakdown — what each directory contains and the
+matching Doxygen group — is maintained in
+[`Doxygen/DoxygenMainpage.md`](Doxygen/DoxygenMainpage.md#XmscoreModules)
+(also rendered on the [generated docs site](https://aquaveo.github.io/xmscore/)).
 
-| Directory | What's there |
-| --- | --- |
-| `xmscore/dataio/` | Stream IO helpers (`daStreamIo`). |
-| `xmscore/math/` | Numeric helpers used across XMS. |
-| `xmscore/misc/` | The bulk of the library: `XmError`/`XmLog` (assertions and logging), `Observer`/`Progress` (progress reporting), `Singleton`, `StringUtil`, `DynBitset`, plus shared typedefs and macros. |
-| `xmscore/points/` | 2D/3D point types and functors. |
-| `xmscore/stl/` | Thin wrappers around STL containers used to keep ABI/serialization stable across the suite. |
-| `xmscore/testing/` | `TestTools` shared by CxxTest unit tests in this and dependent libraries. |
-| `xmscore/time/` | Calendar / Julian date conversions (`TimeConversion`). |
-| `xmscore/python/` | pybind11 bindings that expose a subset of the above as `xms.core`. |
+`xmscore/python/` holds the pybind11 bindings; it is not part of the C++
+API surface.
 
 Convention: header files paired with `.t.h` files contain the CxxTest unit-test
 suites for that header; the test bodies live in `#if CXX_TEST` blocks at the
-bottom of the corresponding `.cpp` file. See `Doxygen/DoxygenMainpage.md` for
-more detail.
+bottom of the corresponding `.cpp` file.
 
 The Python package source lives in `_package/xms/core/` and is installed as
 `xms.core`. The native module is built from `xmscore/python/` and exposed as
@@ -49,8 +44,11 @@ C++ tests run through CxxTest. Python tests live under `_package/tests/` and
 are run with the standard `unittest` runner, e.g.:
 
 ```
-python -m unittest discover _package/tests
+python -m unittest discover -s _package/tests -p "*_pyt.py"
 ```
+
+The full CI invocation (build + test orchestration) is `python build.py …`
+in `.github/workflows/XmsCore-CI.yaml`.
 
 Documentation
 -------------
