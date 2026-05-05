@@ -55,7 +55,8 @@ wheelhouse/
 cmake-build-*/
 
 # ── Documentation ──────────────────────────────
-Doxygen/
+Doxygen/html/*
+!Doxygen/html/images/
 doc/_build/
 doxy_warn.log
 pydocs/build/
@@ -70,7 +71,6 @@ coverage_report/
 
 # ── Local configuration ───────────────────────
 .claude/
-CLAUDE.md
 CLAUDE.local.md
 .envrc
 CMakePresets.json
