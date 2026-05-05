@@ -81,18 +81,6 @@ enum MessageTypeEnum {
   error,   ///< Critical error message for the user
   debug    ///< Details of internal operation
 };
-/*
-//------------------------------------------------------------------------------
-/// \brief Get MessageTypeEnum as a string
-//------------------------------------------------------------------------------
-static std::string MessageTypeStr(MessageTypeEnum a_level) {
-  if (a_level == info) return "INFO";
-  if (a_level == warning) return "WARNING";
-  if (a_level == error) return "ERROR";
-  if (a_level == debug) return "DEBUG";
-  return "";
-} // MessageTypeStr
-*/
 }
 
 namespace xms
@@ -116,14 +104,20 @@ class XmLog : public xms::Singleton<XmLog>
 
 public:
   ~XmLog();
+  /// \brief Append a message at the given log level. a_file/a_line identify the call site (use __FILE__/__LINE__ via XM_LOG).
   void Log(const char* const a_file,
            int a_line,
            xmlog::MessageTypeEnum a_level,
            std::string a_message);
+  /// \brief Number of error-level entries currently on the stackable error stack.
   int ErrCount();
+  /// \brief Return and clear the stackable error stack as a vector of (level, message) pairs.
   MessageStack GetAndClearStack();
+  /// \brief Return and clear the stackable error stack as a single newline-separated string.
   std::string GetAndClearStackStr();
+  /// \brief Access the callback that produces the on-disk log file name; assignable to override.
   static XmLogFilenameCallback& LogFilenameCallback();
+  /// \brief Return the resolved on-disk log file name.
   static std::string LogFilename();
 
 private:

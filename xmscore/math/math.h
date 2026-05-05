@@ -1,6 +1,7 @@
 #pragma once
 //------------------------------------------------------------------------------
 /// \file
+/// \brief Numeric helpers (rounding, comparison, simple geometry math) used across the XMS suite.
 /// \ingroup math
 /// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
 /// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)

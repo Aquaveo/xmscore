@@ -1,6 +1,7 @@
 #pragma once
 //------------------------------------------------------------------------------
 /// \file
+/// \brief Macros and helpers for CxxTest-based unit tests across the XMS suite.
 /// \ingroup core_testing
 /// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
 /// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
@@ -198,15 +199,23 @@ namespace xms
 
 ////////////////////////////////////////////////////////////////////////////////
 /// \class ETestMessagingState
+/// \brief Process-wide state used by tests to bypass interactive XMS message dialogs.
 class ETestMessagingState
 {
 public:
+  /// \brief Construct with no default response and messages not being skipped.
   ETestMessagingState();
+  /// \brief Set the default response value returned in place of an interactive dialog.
   void SetDefault(int a_);
+  /// \brief Clear any default response previously set.
   void ClearDefault();
+  /// \brief Return the currently set default response, or 0 if none has been set.
   int GetDefault();
+  /// \brief Enable or disable message-skipping.
   void SetSkipping(bool a_);
+  /// \brief Returns true if message-skipping is currently enabled.
   bool GetSkipping();
+  /// \brief Returns true if a default response has been set.
   bool DefaultValWasSet();
 
 private:
@@ -217,12 +226,19 @@ private:
 
 //----- Function prototypes ----------------------------------------------------
 
+/// \brief Enable message-skipping and set the default response returned to the caller.
 void ttByPassMessages(int a_defaultChoice);
+/// \brief Returns true if the test framework is currently skipping interactive messages.
 bool ttSkippingMessages();
+/// \brief Returns the default response previously installed by ttByPassMessages.
 int ttByPassDefault();
+/// \brief Disable message-skipping and clear any default response.
 void ttClearSkippingMessages();
+/// \brief Access the singleton test messaging state.
 ETestMessagingState& ttTestMessagingState();
+/// \brief Enable or disable the per-test XmLog check.
 void ttCheckXmLogForEachTest(bool a_check);
+/// \brief Returns true if the per-test XmLog check is enabled.
 bool ttCheckXmLogForEachTest();
 //------------------------------------------------------------------------------
 /// \brief Tolerance function to match CxxTest::delta for older CxxTest. Could
@@ -239,25 +255,32 @@ bool ttEqualWithinTolerance(_T A, _U B, _V tolerance)
   return (fabs((A) - (B)) <= (tolerance));
 } // ttEqualWithinTolerance
 //#ifdef CXX_TEST
+/// \brief Assert that the XmLog stackable error log matches a_expected; fails the test at the given source location otherwise.
 void ttAssertStackedErrors(const char* a_file, int a_line, const std::string& a_expected);
+/// \brief Build conventional baseline (a_baseFilePath) and output (a_outFilePath) paths for a test fixture.
 void ttGetTestFilePaths(const std::string& a_path,
                         const std::string& a_fileBase,
                         const std::string& a_extension,
                         std::string& a_baseFilePath,
                         std::string& a_outFilePath);
+/// \brief Assert that two text files have identical contents; fails the test at the given source location otherwise.
 void ttTextFilesEqual(const std::string& a_srcFile,
                       unsigned line,
                       const std::string& a_file1,
                       const std::string& a_file2);
 
+/// \brief Returns true if two text files have identical contents; populates a_message with a diff summary on mismatch.
 bool ttTextFilesEqual(const std::string& a_file1,
                       const std::string& a_file2,
                       std::string& a_message);
+/// \brief Assert that two streams have identical contents; fails the test at the given source location otherwise.
 void ttStreamsEqual(const std::string& a_src,
                     unsigned int a_line,
                     std::istream& a_strm1,
                     std::istream& a_strm2);
+/// \brief Returns true if two 3D points are equal within a_tolerance on every component.
 bool ttEqualPointsXYZ(const Pt3d& a_pt1, const Pt3d& a_pt2, double a_tolerance);
+/// \brief Returns true if two 3D points (given as raw components) are equal within a_tolerance.
 bool ttEqualPointsXYZ(double a_x1,
                       double a_y1,
                       double a_z1,
@@ -265,8 +288,11 @@ bool ttEqualPointsXYZ(double a_x1,
                       double a_y2,
                       double a_z2,
                       double a_tolerance);
+/// \brief Returns true if two 2D points are equal within a_tolerance.
 bool ttEqualPointsXY(const Pt2d& a_pt1, const Pt2d& a_pt2, double a_tolerance);
+/// \brief Returns true if the X and Y components of two 3D points are equal within a_tolerance.
 bool ttEqualPointsXY(const Pt3d& a_pt1, const Pt3d& a_pt2, double a_tolerance);
+/// \brief Returns true if two 2D points (given as raw components) are equal within a_tolerance.
 bool ttEqualPointsXY(double a_x1, double a_y1, double a_x2, double a_y2, double a_tolerance);
 //------------------------------------------------------------------------------
 /// \brief Template function returning true or false to help debug tests.
