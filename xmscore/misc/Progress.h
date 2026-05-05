@@ -1,6 +1,7 @@
 #pragma once
 //------------------------------------------------------------------------------
 /// \file
+/// \brief RAII Progress class and the ProgressListener interface.
 /// \ingroup misc
 /// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
 /// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
@@ -20,17 +21,25 @@
 //----- Structs / Classes ------------------------------------------------------
 namespace xms
 {
+/// \class Progress
+/// \brief RAII helper that reports progress for a single named operation to the active ProgressListener.
 class Progress
 {
 public:
+  /// \brief Push a new operation with the given message onto the progress stack.
   Progress(const std::string& a_message);
+  /// \brief Pop this operation from the progress stack.
   ~Progress();
 
+  /// \brief Update the message for the current operation.
   void UpdateMessage(const std::string& a_message);
 
+  /// \brief Set the total number of items to be processed in the current operation.
   void SetItemCount(long long a_count);
+  /// \brief Report the current item index; combined with SetItemCount drives the percent-complete value.
   void CurrentItem(long long a_item);
 
+  /// \brief Report the percent complete (0.0..1.0) for the current operation directly.
   void ProgressStatus(double a_percentComplete);
 
 private:
@@ -64,7 +73,9 @@ public:
   /// \param[in] a_message: the new message for an operation
   virtual void OnUpdateMessage(int a_stackIndex, const std::string& a_message) = 0;
 
+  /// \brief Install the process-wide ProgressListener; pass null to clear.
   static void SetListener(BSHP<ProgressListener> a_listener);
+  /// \brief Return the currently installed ProgressListener (may be null).
   static BSHP<ProgressListener> GetListener();
 };
 

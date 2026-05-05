@@ -1,6 +1,7 @@
 #pragma once
 //------------------------------------------------------------------------------
 /// \file
+/// \brief 2D, 3D, and 4D point/vector templates and their operators.
 /// \ingroup points
 /// \copyright (C) Copyright Aquaveo 2018. Distributed under FreeBSD License
 /// (See accompanying file LICENSE or https://aqaveo.com/bsd/license.txt)
@@ -785,7 +786,7 @@ public:
 }; // Pt2
 
 ////////////////////////////////////////////////////////////////////////////////
-/// 3d point template class
+/// \brief 3D Point template class
 ////////////////////////////////////////////////////////////////////////////////
 template <class T>
 class Pt3
@@ -1570,7 +1571,7 @@ inline Pt3<T> operator*(double a, const Pt3<T>& pt)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-/// 4D point template class
+/// \brief 4D Point template class
 ////////////////////////////////////////////////////////////////////////////////
 template <class T>
 class Pt4
