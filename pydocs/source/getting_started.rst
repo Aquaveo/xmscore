@@ -80,9 +80,11 @@ report progress. Subclass it and pass an instance to the consumer:
 For applications that need to receive progress messages from nested operations,
 use :class:`ProgressListener <xms.core.misc.ProgressListener>`. It exposes a
 ``stack_index`` for each in-flight operation so that a UI can show a stack of
-progress bars. The :func:`set_listener_callback
-<xms.core.misc.progress_listener.set_listener_callback>` helper builds a
-listener that forwards every event to a single callable:
+progress bars. Constructing a ``ProgressListener`` registers it as the active
+process-wide listener, so subsequent XMS operations route their events through
+its callback. The :func:`set_listener_callback
+<xms.core.misc.progress_listener.set_listener_callback>` helper builds and
+returns one wired to a single callable:
 
 .. code-block:: python
 
@@ -92,6 +94,7 @@ listener that forwards every event to a single callable:
         msg_type, stack_index, message = msg
         print(f'[{stack_index}] {msg_type}: {message}')
 
+    # Keep `listener` alive — when it goes out of scope no further events fire.
     listener = set_listener_callback(on_event)
 
 Filesystem Helpers

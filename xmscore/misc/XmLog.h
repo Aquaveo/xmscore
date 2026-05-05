@@ -11,11 +11,11 @@
 // 1. Standard library headers
 
 // 3. Standard Library Headers
+#include <memory>
 #include <vector>
 
 // 4. External Library Headers
 #include <boost/function.hpp>
-#include <boost/scoped_ptr.hpp>
 
 // 5. Shared Headers
 #include <xmscore/misc/Singleton.h>
@@ -113,7 +113,7 @@ public:
   ///        held on the message stack. Debug entries are not stacked. Note
   ///        that a non-zero count therefore does not imply that an error
   ///        was logged.
-  int ErrCount();
+  int ErrCount() const;
   /// \brief Return and clear the stackable error stack as a vector of (level, message) pairs.
   MessageStack GetAndClearStack();
   /// \brief Return and clear the stackable error stack as a single newline-separated string.
@@ -128,7 +128,7 @@ private:
   XmLog();
   struct Impl;
   /// Implementation pointer
-  boost::scoped_ptr<Impl> m;
+  std::unique_ptr<Impl> m;
 }; // class XmLog
 
 //----- Global functions -------------------------------------------------------
