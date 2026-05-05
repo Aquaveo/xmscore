@@ -17,7 +17,9 @@ import sys
 from unittest import mock
 
 MOCK_MODULES = [
-    'xms.core._xmscore', 'xms.core._xmscore.misc',
+    'xms.core._xmscore',
+    'xms.core._xmscore.misc',
+    'xms.core._xmscore.time',
 ]
 
 
