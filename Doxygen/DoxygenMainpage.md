@@ -115,6 +115,3 @@ Each group is also reachable from the navigation tree.
 
 \defgroup core_testing testing
 \brief Test utilities shared with dependent libraries.
-
-\defgroup xmscore_misc xmscore_misc
-\brief Internal companion group used by some `misc` headers; see \ref misc for the public surface.
