@@ -68,6 +68,13 @@ coverage_report/
 *.profdata
 *.gcda
 *.gcno
+# `xmsconan_coverage` output (written into the workspace when run locally)
+cov-cpp.xml
+cov-py.xml
+cov-cpp-summary.json
+cov-py-summary.json
+coverage-html-cpp/
+coverage-html-py/
 
 # ── Local configuration ───────────────────────
 .claude/
