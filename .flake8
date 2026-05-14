@@ -1,0 +1,26 @@
+[flake8]
+exclude =
+    .venv,
+    .tox,
+    .git,
+    __pycache__,
+    _package/tests/files/*,
+    docs/source/conf.py,
+    build,
+    dist,
+    tests/files/*,
+    tests/fixtures/*,
+    *.pyc,
+    *.egg-info,
+    .cache,
+    .eggs
+ignore = D200, D212, B028, W503
+max-line-length = 120
+docstring-convention = google
+isolated = true
+import-order-style = appnexus
+application-import-names = xms.core
+application-package-names = xms
+count = true
+statistics = true
+banned-modules = osgeo.*=Use the xmsgdal library instead.

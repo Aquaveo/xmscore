@@ -104,3 +104,8 @@ pybind_headers = [
 
 [ci]
 python_versions = ["3.10", "3.13"]
+coverage = true
+
+[coverage]
+cpp_threshold = 0
+python_threshold = 0
