@@ -33,7 +33,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           pip install conan wheel "gcovr>=7,<9"
-          pip install xmsconan>=2.14.0 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install xmsconan>=2.15.1 -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
 
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login
