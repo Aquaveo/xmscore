@@ -1,6 +1,16 @@
 """
 Test InterpLinear_py.cpp.
 """
+# NOTE on the deliberately-uncovered lines in xms/core/misc/observer.py:
+#
+#   Observer.on_progress_status, on_begin_operation_string, on_end_operation,
+#   on_update_message, time_remaining_in_seconds, and time_elapsed_in_seconds
+#   each have a single-line body that calls the *same* method on ``self`` --
+#   e.g. ``self.on_progress_status(percent_complete)`` inside
+#   ``on_progress_status``.  Invoking any of them directly would recurse
+#   forever, so they cannot be covered by a test.  The tests below sidestep
+#   the issue by overriding every callback in MockObserver.  The recursive
+#   bodies look like a production-code bug and have been flagged for review.
 import time
 import unittest
 

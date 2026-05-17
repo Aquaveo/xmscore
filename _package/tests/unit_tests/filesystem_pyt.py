@@ -367,7 +367,8 @@ class FilesystemTests(unittest.TestCase):
 
     def test_compute_relative_path_swallows_errors(self):
         """compute_relative_path falls back to str(file) when relpath raises."""
-        # None breaks os.path.relpath with TypeError, exercising the except branch.
-        # The fallback returns str(file) with backslashes flipped to forward slashes.
-        result = compute_relative_path(None, 'D:\\some\\path')
-        self.assertEqual('D:/some/path', result)
+        # Passing a non-path-like 'file' argument forces os.path.relpath to raise
+        # (it calls os.fspath on it), exercising the except branch.  The fallback
+        # is ``str(file).replace('\\', '/')`` -- here ``str(12345)`` -> ``'12345'``.
+        result = compute_relative_path('/some/base', 12345)
+        self.assertEqual('12345', result)
