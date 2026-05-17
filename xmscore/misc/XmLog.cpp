@@ -375,6 +375,59 @@ void XmLogUnitTests::testAll()
   // xms::iTest_XM_LOG_stackable();
   // xms::iTest_XM_LOG_gui();
 }
+//------------------------------------------------------------------------------
+/// \brief Exercises the XmLog::Log path end-to-end and the message-stack
+///        accessors that previously had no direct test coverage.
+///
+/// We intentionally do not override the LogFilenameCallback or call
+/// XmLog::Delete() here.  Singleton::LogFilename is consulted only once
+/// (during XmLog construction), so changing the callback at runtime would
+/// have no effect; and Singleton<T>::Delete() does not compile today
+/// (its body calls Instance(true, boost::shared_ptr<T>()) but Instance's
+/// second parameter is T*).  That defect is flagged for developer review.
+//------------------------------------------------------------------------------
+void XmLogUnitTests::testLogStackAndDiskOutput()
+{
+  // The singleton may or may not have been instantiated by an earlier test
+  // (XM_ENSURE_TRUE etc. can log through XmLog).  Drain whatever is sitting
+  // on the stack so our assertions below are deterministic.
+  (void)xms::XmLog::Instance().GetAndClearStack();
+
+  XM_LOG(xmlog::info, "info-coverage");
+  XM_LOG(xmlog::warning, "warn-coverage");
+  XM_LOG(xmlog::error, "err-coverage");
+  XM_LOG(xmlog::debug, "debug-coverage"); // debug entries are NOT stacked
+
+  // ErrCount reflects only the three stackable messages.
+  TS_ASSERT_EQUALS(3, xms::XmLog::Instance().ErrCount());
+
+  // GetAndClearStackStr formats the stack into a single string and empties it.
+  std::string stack_str = xms::XmLog::Instance().GetAndClearStackStr();
+  TS_ASSERT(stack_str.find("info-coverage") != std::string::npos);
+  TS_ASSERT(stack_str.find("warn-coverage") != std::string::npos);
+  TS_ASSERT(stack_str.find("err-coverage") != std::string::npos);
+  TS_ASSERT_EQUALS(0, xms::XmLog::Instance().ErrCount());
+
+  // GetAndClearStack returns a (now-empty) MessageStack -- exercises the
+  // alternate accessor.
+  XM_LOG(xmlog::info, "stack-accessor");
+  xms::MessageStack drained = xms::XmLog::Instance().GetAndClearStack();
+  TS_ASSERT_EQUALS(1u, drained.size());
+  TS_ASSERT_EQUALS(xmlog::info, drained[0].first);
+  TS_ASSERT_EQUALS(std::string("stack-accessor"), drained[0].second);
+
+  // Read the resolved log file back and confirm at least one of our messages
+  // made it through the on-disk path.  Timestamp and process-name vary, so
+  // we look for the message body only.
+  std::ifstream in(xms::XmLog::LogFilename());
+  std::stringstream buf;
+  buf << in.rdbuf();
+  std::string contents = buf.str();
+  TS_ASSERT(contents.find("info-coverage") != std::string::npos);
+
+  // Drain the stack one final time to keep state tidy for downstream tests.
+  (void)xms::XmLog::Instance().GetAndClearStack();
+} // XmLogUnitTests::testLogStackAndDiskOutput
 #endif
 
 #pragma warning(pop)

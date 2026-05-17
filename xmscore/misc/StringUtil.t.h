@@ -43,6 +43,16 @@ public:
   void test_STRstd();
   void testPrec();
   void testSTR();
+  // Targeted coverage additions:
+  void testReplaceSameSrcDest();
+  void testToLower();
+  void testLeftWithNpos();
+  void testFindNoCase();
+  void testStringToDouble();
+  void testMakeUniqueParenFallback();
+  void testSTRstdOverloads();
+  void testSTRstdSpecialValues();
+  void testStPrecisionNonFinite();
 }; // StringUtilUnitTests
 
 #endif

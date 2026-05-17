@@ -1203,6 +1203,8 @@ std::string StCommaNumpunct::do_grouping() const {
 //#if 0
 #ifdef CXX_TEST
 
+#include <limits>
+
 #include <xmscore/misc/StringUtil.t.h>
 
 #include <xmscore/stl/vector.h>
@@ -1850,5 +1852,125 @@ void StringUtilUnitTests::testSTR() {
   }
 
 } // StringUtilUnitTests::testSTR
+//------------------------------------------------------------------------------
+/// \brief Verify both stReplace overloads short-circuit when source == dest.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testReplaceSameSrcDest() {
+  // Char overload: source == dest returns str unmodified without touching it.
+  std::string a("abc");
+  std::string& ref_a = xms::stReplace(a, 'b', 'b');
+  TS_ASSERT_EQUALS("abc", a);
+  TS_ASSERT_EQUALS(&a, &ref_a); // returns the original reference
+
+  // String overload: same identity short-circuit.
+  std::string b("hello world");
+  std::string& ref_b = xms::stReplace(b, std::string("world"), std::string("world"));
+  TS_ASSERT_EQUALS("hello world", b);
+  TS_ASSERT_EQUALS(&b, &ref_b);
+
+  // stReplaceCopy on a string with no occurrences (covers the copy-return path
+  // of the (string, string, string) overload, which only ran when stReplace
+  // actually replaced something).
+  std::string copied = xms::stReplaceCopy(std::string("abc"),
+                                          std::string("xyz"),
+                                          std::string("123"));
+  TS_ASSERT_EQUALS("abc", copied);
+} // StringUtilUnitTests::testReplaceSameSrcDest
+//------------------------------------------------------------------------------
+/// \brief Cover stToLower and stToLowerCopy. The existing testToUpper exercises
+///        only the upper-case helpers.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testToLower() {
+  std::string str("aBcD");
+  TS_ASSERT_EQUALS("abcd", xms::stToLower(str));
+  TS_ASSERT_EQUALS("abcd", str); // in-place modification
+
+  const std::string str_const("HeLLo World");
+  TS_ASSERT_EQUALS("hello world", xms::stToLowerCopy(str_const));
+  TS_ASSERT_EQUALS("HeLLo World", str_const); // original unchanged
+} // StringUtilUnitTests::testToLower
+//------------------------------------------------------------------------------
+/// \brief Cover stLeft when called with std::string::npos -- clears the source.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testLeftWithNpos() {
+  std::string s("abcdefg");
+  xms::stLeft(s, std::string::npos);
+  TS_ASSERT_EQUALS("", s);
+} // StringUtilUnitTests::testLeftWithNpos
+//------------------------------------------------------------------------------
+/// \brief Cover stFindNoCase (case-insensitive substring search).
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testFindNoCase() {
+  TS_ASSERT(xms::stFindNoCase("Hello World", "WORLD"));
+  TS_ASSERT(xms::stFindNoCase("HELLO world", "hello"));
+  TS_ASSERT(!xms::stFindNoCase("abc", "xyz"));
+} // StringUtilUnitTests::testFindNoCase
+//------------------------------------------------------------------------------
+/// \brief Cover stStringToDouble success and failure branches.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testStringToDouble() {
+  double d = -1.0;
+  // Valid input: success path returns true and sets d.
+  TS_ASSERT(xms::stStringToDouble("3.14", d));
+  TS_ASSERT_DELTA(3.14, d, 1e-12);
+
+  // Trailing garbage: stod consumes the prefix but the helper rejects.
+  d = -1.0;
+  TS_ASSERT(!xms::stStringToDouble("3.14abc", d));
+  // d is still set to the parsed prefix (3.14) before the helper bails.
+
+  // Wholly non-numeric input: stod throws, the catch returns false.
+  d = -1.0;
+  TS_ASSERT(!xms::stStringToDouble("not-a-number", d));
+
+  // Empty input: stod throws as well.
+  d = -1.0;
+  TS_ASSERT(!xms::stStringToDouble("", d));
+} // StringUtilUnitTests::testStringToDouble
+//------------------------------------------------------------------------------
+/// \brief Cover the " (2)" fall-through inside stMakeUnique when parentheses
+///        are present but their contents are not a parseable integer.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testMakeUniqueParenFallback() {
+  std::set<std::string> taken{"item (foo)"};
+  std::string name = "item (foo)";
+  TS_ASSERT(xms::stMakeUnique(taken, name));
+  // The parens contained "foo" -- not a number, so the helper falls through
+  // to appending " (2)" instead of incrementing.
+  TS_ASSERT_EQUALS("item (foo) (2)", name);
+} // StringUtilUnitTests::testMakeUniqueParenFallback
+//------------------------------------------------------------------------------
+/// \brief Cover STRstd's float and std::string overloads.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testSTRstdOverloads() {
+  // Float overload delegates to the double overload.
+  TS_ASSERT_EQUALS(xms::STRstd(0.0f), xms::STRstd(0.0));
+
+  // std::string overload is the identity function.
+  TS_ASSERT_EQUALS("verbatim", xms::STRstd(std::string("verbatim")));
+} // StringUtilUnitTests::testSTRstdOverloads
+//------------------------------------------------------------------------------
+/// \brief Cover the NaN / +INF / -INF branches of STRstd(double, ...).
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testSTRstdSpecialValues() {
+  TS_ASSERT_EQUALS("NaN", xms::STRstd(std::numeric_limits<double>::quiet_NaN()));
+  TS_ASSERT_EQUALS("+INF", xms::STRstd(std::numeric_limits<double>::infinity()));
+  TS_ASSERT_EQUALS("-INF", xms::STRstd(-std::numeric_limits<double>::infinity()));
+} // StringUtilUnitTests::testSTRstdSpecialValues
+//------------------------------------------------------------------------------
+/// \brief Cover stPrecision's non-finite early-return-0 branch.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testStPrecisionNonFinite() {
+  int flags = 0;
+  TS_ASSERT_EQUALS(0, xms::stPrecision(std::numeric_limits<double>::quiet_NaN(),
+                                       flags));
+  flags = 0;
+  TS_ASSERT_EQUALS(0, xms::stPrecision(std::numeric_limits<double>::infinity(),
+                                       flags));
+} // StringUtilUnitTests::testStPrecisionNonFinite
+
+// NOTE: stPrecision contains a switch on a hardcoded ``int myvar = 3;`` with
+// cases 1 and 2 (lines ~764-809). Those cases are dead code -- the only
+// reachable case is 3. Flagged for developer review; not covered here.
 #endif
 //#endif

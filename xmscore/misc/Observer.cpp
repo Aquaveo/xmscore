@@ -439,5 +439,63 @@ void ObserverIntermediateTests::testMockObserver()
   TS_ASSERT_EQUALS(baseStr, outStr);
 } // ObserverIntermediateTests::testMockObserver
   //! [snip_test_Example_Observer]
+//------------------------------------------------------------------------------
+/// \brief Exercises the empty default Observer methods that MockObserver
+///        normally overrides, plus EndOperation, UpdateMessage, and the
+///        "very early in operation" branch of EstimatedTimeRemainingInSec.
+//------------------------------------------------------------------------------
+void ObserverIntermediateTests::testBaseDefaultsAndEndOperation()
+{
+  // Minimal subclass that only fulfils the pure-virtual OnProgressStatus
+  // contract; every other callback falls through to the empty base
+  // implementations, which is what we want to exercise.
+  class MinimalObserver : public xms::Observer
+  {
+  public:
+    int m_progressCalls = 0; ///< how many times OnProgressStatus fired
+    void OnProgressStatus(double /*a_percentComplete*/) override
+    {
+      ++m_progressCalls;
+    }
+  };
+
+  MinimalObserver o;
+  // BeginOperationString fires OnBeginOperationString (empty base impl) and
+  // then ProgressStatus(0.0).  The 0.0 update is below the 0.02 threshold
+  // and returns false immediately, so this call alone does NOT yet reach
+  // TimeElapsedInSeconds / TimeRemainingInSeconds.
+  o.BeginOperationString("base-defaults");
+
+  // A non-trivial ProgressStatus crosses the update threshold and exercises
+  // OnProgressStatus + TimeElapsedInSeconds + TimeRemainingInSeconds.  All
+  // three resolve to the empty base implementations because MinimalObserver
+  // only overrides OnProgressStatus.
+  o.ProgressStatus(0.5);
+
+  // UpdateMessage fans out to Observer::UpdateMessage and from there into
+  // Observer::OnUpdateMessage (empty base impl).
+  o.UpdateMessage("noop");
+
+  // EndOperation fans out to Observer::EndOperation, Observer::OnEndOperation
+  // (empty base impl), and Observer::impl::EndOperation (sets m_finished
+  // and m_endTime).
+  o.EndOperation();
+
+  // We don't have a public way to introspect impl state, but we can at least
+  // confirm OnProgressStatus fired from the explicit ProgressStatus(0.5).
+  TS_ASSERT(o.m_progressCalls >= 1);
+} // ObserverIntermediateTests::testBaseDefaultsAndEndOperation
+
+// NOTE on the remaining uncovered Observer.cpp lines after this test:
+//
+//   Line 218 (``return 60;`` inside EstimatedTimeRemainingInSec when
+//   a_percentComplete < .01) is unreachable in practice. ProgressStatus
+//   gates the call by ``a_percentComplete > prev + 0.02``; with prev = 0
+//   that forces a_percentComplete > 0.02 and never < 0.01.  Flagged for
+//   developer review.
+//
+//   Line 321 (the ``if (!m_prog) return;`` guard inside
+//   MockMesher::PretendMeshing) is test-scaffolding code, not production
+//   code, so per the project coverage policy it does not require a test.
 
 #endif

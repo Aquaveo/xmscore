@@ -24,5 +24,6 @@ public:
 #endif
   void testTimeRemaining();
   void testMockObserver();
+  void testBaseDefaultsAndEndOperation();
 };
 #endif
