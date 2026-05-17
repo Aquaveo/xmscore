@@ -9,10 +9,16 @@ on:
 jobs:
   coverage:
     name: Coverage (Linux)
+    # The Coverage workflow runs directly on ubuntu-latest — no docker
+    # container. The Aquaveo conan-gcc13-py3.13 image previously used
+    # here baked xmsconan into the image; ``pip install xmsconan>=X.Y.Z``
+    # then silently no-op'd because the in-image version already
+    # satisfied the floor, locking every Coverage run to whatever
+    # xmsconan the image happened to carry. Going containerless means
+    # the canary always exercises the latest xmsconan on devpi.
+    # ubuntu-latest currently ships gcc 13.3, matching the conan profile's
+    # ``compiler.version=13``.
     runs-on: ubuntu-latest
-
-    container:
-      image: ghcr.io/aquaveo/conan-gcc13-py3.13:latest
 
     env:
       LIBRARY_NAME: xmscore
@@ -30,11 +36,16 @@ jobs:
       - name: Checkout Source
         uses: actions/checkout@v2
 
+      - name: Setup Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+
       - name: Install Python Dependencies
         run: |
           pip install conan wheel "gcovr>=7,<9"
-          pip install --upgrade "xmsconan>=2.15.1" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
-          pip show xmsconan
+          pip install --upgrade "xmsconan>=2.15.2" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
 
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login
