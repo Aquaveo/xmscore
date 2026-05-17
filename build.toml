@@ -55,6 +55,7 @@ library_headers = [
 testing_headers = [
     "xmscore/dataio/daStreamIo.t.h",
     "xmscore/math/math.t.h",
+    "xmscore/misc/DynBitset.t.h",
     "xmscore/misc/Observer.t.h",
     "xmscore/misc/Progress.t.h",
     "xmscore/misc/StringUtil.t.h",
