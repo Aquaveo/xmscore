@@ -1972,5 +1972,22 @@ void StringUtilUnitTests::testStPrecisionNonFinite() {
 // NOTE: stPrecision contains a switch on a hardcoded ``int myvar = 3;`` with
 // cases 1 and 2 (lines ~764-809). Those cases are dead code -- the only
 // reachable case is 3. Flagged for developer review; not covered here.
+//------------------------------------------------------------------------------
+/// \brief Cover STRstd's STR_WITHCOMMAS branch and the -0.0 -> 0.0 sign
+///        scrub on the way out.
+//------------------------------------------------------------------------------
+void StringUtilUnitTests::testSTRstdWithCommasAndNegZero() {
+  // STR_WITHCOMMAS pushes formatting through std::locale("") -- we don't
+  // pin an exact string (the runner's locale may differ), only that the
+  // formatter ran and produced something non-empty containing a digit.
+  std::string commas = xms::STRstd(12345.0, -1, 15, xms::STR_WITHCOMMAS);
+  TS_ASSERT(!commas.empty());
+  TS_ASSERT(commas.find('1') != std::string::npos);
+
+  // The "-0.0 -> 0.0" sign-scrub fires at the very tail of STRstd.  We get
+  // there by formatting a tiny negative value with auto precision that
+  // rounds to "-0.0" before the scrub.
+  TS_ASSERT_EQUALS("0.0", xms::STRstd(-0.0));
+} // StringUtilUnitTests::testSTRstdWithCommasAndNegZero
 #endif
 //#endif

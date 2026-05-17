@@ -428,6 +428,39 @@ void XmLogUnitTests::testLogStackAndDiskOutput()
   // Drain the stack one final time to keep state tidy for downstream tests.
   (void)xms::XmLog::Instance().GetAndClearStack();
 } // XmLogUnitTests::testLogStackAndDiskOutput
+//------------------------------------------------------------------------------
+/// \brief Cover the LogFilename() branch that consults LogFilenameCallback.
+///
+/// LogFilename() is static and is consulted by XmLog's constructor at
+/// most once, but it can be invoked directly to verify the callback path.
+//------------------------------------------------------------------------------
+void XmLogUnitTests::testLogFilenameCallback()
+{
+  auto saved = xms::XmLog::LogFilenameCallback();
+  xms::XmLog::LogFilenameCallback() = []() { return std::string("from-callback.log"); };
+  TS_ASSERT_EQUALS(std::string("from-callback.log"), xms::XmLog::LogFilename());
+  xms::XmLog::LogFilenameCallback() = saved;
+} // XmLogUnitTests::testLogFilenameCallback
+//------------------------------------------------------------------------------
+/// \brief Cover the "unknown" severity-string fallback inside iSeverityStr.
+///
+/// The fallback fires when MessageTypeEnum holds a value outside the
+/// four-element string table -- something that can only happen via an
+/// explicit cast, which simulates a forward-compatibility scenario.
+//------------------------------------------------------------------------------
+void XmLogUnitTests::testLogUnknownSeverity()
+{
+  // Make sure the stack is empty so our one push is the only thing we count.
+  (void)xms::XmLog::Instance().GetAndClearStack();
+  // Cast an out-of-range value into the enum.  The level is non-debug so it
+  // lands on the stack; the on-disk write path also runs and exercises the
+  // "unknown" fallback in iSeverityStr.
+  auto bogus = static_cast<xmlog::MessageTypeEnum>(99);
+  xms::XmLog::Instance().Log("XmLog.cpp", __LINE__, bogus, "unknown-severity");
+  xms::MessageStack drained = xms::XmLog::Instance().GetAndClearStack();
+  TS_ASSERT_EQUALS(1u, drained.size());
+  TS_ASSERT_EQUALS(std::string("unknown-severity"), drained[0].second);
+} // XmLogUnitTests::testLogUnknownSeverity
 #endif
 
 #pragma warning(pop)

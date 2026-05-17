@@ -21,5 +21,7 @@ class XmLogUnitTests : public CxxTest::TestSuite
 public:
   void testAll();
   void testLogStackAndDiskOutput();
+  void testLogFilenameCallback();
+  void testLogUnknownSeverity();
 };
 #endif

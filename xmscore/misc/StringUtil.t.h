@@ -53,6 +53,7 @@ public:
   void testSTRstdOverloads();
   void testSTRstdSpecialValues();
   void testStPrecisionNonFinite();
+  void testSTRstdWithCommasAndNegZero();
 }; // StringUtilUnitTests
 
 #endif
