@@ -1,4 +1,8 @@
 """Time conversion methods."""
+
+__copyright__ = "(C) Copyright Aquaveo 2022"
+__license__ = "All rights reserved"
+
 # 1. Standard python modules
 from datetime import datetime
 from typing import Optional
@@ -9,10 +13,6 @@ from typing import Optional
 
 # 4. Local modules
 from .. import _xmscore
-
-__copyright__ = "(C) Copyright Aquaveo 2022"
-__license__ = "All rights reserved"
-
 
 time_cpp = _xmscore.time
 
