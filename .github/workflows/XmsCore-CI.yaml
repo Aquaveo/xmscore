@@ -42,10 +42,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install flake8 flake8-docstrings flake8-bugbear flake8-import-order pep8-naming
+          pip install "xmsconan==2.15.3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+      # Generate .flake8 so CI lints with the same config developers use locally.
+      # Do not inline the flake8 settings here: that duplicates .flake8.jinja and
+      # the two copies drift apart silently.
+      - name: Generate Build Files
+        run: xmsconan_gen build.toml
       # Flake Code
       - name: Run Flake
-        run: |
-          flake8 --exclude .tox,.git,__pycache__,_package/tests/files/*,pydocs/source/conf.py,build,dist,tests/fixtures/*,*.pyc,*.egg-info,.cache,.eggs --ignore=D200,D212 --max-line-length=120 --docstring-convention google --isolated --import-order-style=appnexus --application-import-names=xms.core --application-package-names=xms --count --statistics _package
+        run: flake8 _package
 
   # ----------------------------------------------------------------------------------------------
   # MAC
@@ -104,8 +109,11 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan devpi-client wheel
-          python -m pip install --upgrade "xmsconan>=2.15.2" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          # conan is pinned to a patch series on purpose: a minor bump can change
+          # package_id computation and silently detach builds from the binaries
+          # already published to the remote. Bump this deliberately.
+          pip install "conan~=2.31.0" devpi-client wheel
+          python -m pip install --upgrade "xmsconan==2.15.3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login --remove-conancenter
@@ -238,8 +246,11 @@ jobs:
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          pip install conan devpi-client wheel
-          pip install --upgrade "xmsconan>=2.15.2" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          # conan is pinned to a patch series on purpose: a minor bump can change
+          # package_id computation and silently detach builds from the binaries
+          # already published to the remote. Bump this deliberately.
+          pip install "conan~=2.31.0" devpi-client wheel
+          pip install --upgrade "xmsconan==2.15.3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login
@@ -383,8 +394,11 @@ jobs:
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install conan devpi-client wheel
-          python -m pip install --upgrade "xmsconan>=2.15.2" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          # conan is pinned to a patch series on purpose: a minor bump can change
+          # package_id computation and silently detach builds from the binaries
+          # already published to the remote. Bump this deliberately.
+          pip install "conan~=2.31.0" devpi-client wheel
+          python -m pip install --upgrade "xmsconan==2.15.3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Visual Studio
       - name: Setup Visual Studio
         uses: microsoft/setup-msbuild@v2
