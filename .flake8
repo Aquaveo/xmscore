@@ -6,6 +6,7 @@ exclude =
     __pycache__,
     _package/tests/files/*,
     docs/source/conf.py,
+    pydocs/source/conf.py,
     build,
     dist,
     tests/files/*,
@@ -17,7 +18,6 @@ exclude =
 ignore = D200, D212, B028, W503
 max-line-length = 120
 docstring-convention = google
-isolated = true
 import-order-style = appnexus
 application-import-names = xms.core
 application-package-names = xms
