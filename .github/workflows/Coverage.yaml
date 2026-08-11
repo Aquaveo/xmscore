@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout Source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Python 3.13
         uses: actions/setup-python@v5
@@ -45,7 +45,7 @@ jobs:
       - name: Install Python Dependencies
         run: |
           pip install conan wheel "gcovr>=7,<9"
-          pip install --upgrade "xmsconan>=2.15.3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan>=2.15.5" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
 
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login
