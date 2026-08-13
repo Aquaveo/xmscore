@@ -42,7 +42,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install flake8 flake8-docstrings flake8-bugbear flake8-import-order pep8-naming
-          pip install "xmsconan==2.16.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan>=2.18.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Generate .flake8 so CI lints with the same config developers use locally.
       # Do not inline the flake8 settings here: that duplicates .flake8.jinja and
       # the two copies drift apart silently.
@@ -113,7 +113,7 @@ jobs:
           # package_id computation and silently detach builds from the binaries
           # already published to the remote. Bump this deliberately.
           pip install "conan~=2.31.0" devpi-client wheel
-          python -m pip install --upgrade "xmsconan==2.16.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install --upgrade "xmsconan>=2.18.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login --remove-conancenter
@@ -250,7 +250,7 @@ jobs:
           # package_id computation and silently detach builds from the binaries
           # already published to the remote. Bump this deliberately.
           pip install "conan~=2.31.0" devpi-client wheel
-          pip install --upgrade "xmsconan==2.16.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan>=2.18.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Conan
       - name: Setup Conan
         run: xmsconan_conan_setup --remote-url ${{ env.CONAN_REMOTE_URL }} --login
@@ -398,7 +398,7 @@ jobs:
           # package_id computation and silently detach builds from the binaries
           # already published to the remote. Bump this deliberately.
           pip install "conan~=2.31.0" devpi-client wheel
-          python -m pip install --upgrade "xmsconan==2.16.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install --upgrade "xmsconan>=2.18.0" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Visual Studio
       - name: Setup Visual Studio
         uses: microsoft/setup-msbuild@v2
