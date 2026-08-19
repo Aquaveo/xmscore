@@ -1,0 +1,23 @@
+# Gitignored files a fresh worktree needs, copied from the main checkout.
+# .gitignore syntax. Claude Code applies this to worktrees it creates;
+# `bin/xms-task` applies it to script-created worktrees under .tasks/.
+#
+# NOTE: the generated build files (CMakeLists.txt, conanfile.py, build.py,
+# xms_conan2_file.py, _package/pyproject.toml, .flake8) are deliberately NOT
+# listed here. They are derived from build.toml by `xmsconan_gen build.toml`
+# and must be regenerated in the worktree — copying them goes stale the moment
+# a task branch edits build.toml.
+
+# Local Conan / CMake configuration.
+# conan_profiles/ is NOT listed: it is generated from build.toml by
+# `xmsconan_gen` (see xmsconan_profiles), so copying it would ship a stale
+# copy into the worktree instead of regenerating it.
+CMakePresets.json
+CMakeUserPresets.json
+**/CMakeUserPresets.json
+.envrc
+
+# Local Claude config. Scoped to the single file on purpose — listing
+# `.claude/` wholesale would drag in .claude/worktrees/ recursively.
+.claude/settings.json
+CLAUDE.local.md
