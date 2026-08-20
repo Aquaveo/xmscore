@@ -103,9 +103,16 @@ pybind_headers = [
 ]
 
 [ci]
-python_versions = ["3.10", "3.13"]
+python_versions = ["3.10", "3.13", "3.14"]
+mac_python_versions = ["3.13", "3.14"]
+linux_python_versions = ["3.13", "3.14"]
 coverage = true
 
 [coverage]
+# Pinned so adding 3.14 to the build matrix does not also move the coverage
+# gate. Coverage otherwise follows the highest [ci].linux_python_versions
+# entry, which would have shifted it 3.13 -> 3.14 as a side effect of this
+# change. Revisit once 3.14 is proven across the suite.
+python_version = "3.13"
 cpp_threshold = 0
 python_threshold = 0
