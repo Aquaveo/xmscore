@@ -77,7 +77,8 @@ coverage-html-cpp/
 coverage-html-py/
 
 # ── Local configuration ───────────────────────
-.claude/
+.claude/worktrees/
+.claude/settings.local.json
 CLAUDE.local.md
 .envrc
 CMakePresets.json
