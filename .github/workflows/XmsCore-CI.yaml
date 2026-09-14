@@ -51,9 +51,9 @@
 #
 # Third-party actions are pinned to a commit SHA with the tag in a trailing
 # comment. A tag is a movable ref in someone else's repository: whoever owns
-# it can retarget it at new code, which then runs here on a runner that has
-# already logged in to Conan and can write GITHUB_ENV for every later step.
-# Update a pin by resolving the new tag
+# it can retarget it at new code, which then runs here in a job whose steps
+# hold the Conan login and the deploy secrets, and can write GITHUB_ENV for
+# every step after it. Update a pin by resolving the new tag
 # (`gh api repos/<owner>/<repo>/commits/<tag> --jq .sha`) and editing the
 # template -- not the generated file.
 #
@@ -111,10 +111,10 @@ jobs:
     steps:
       # Checkout Sources
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       # Setup Python
       - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       # Install Python Dependencies
@@ -122,7 +122,7 @@ jobs:
         run: |
           # The plugins the generated .flake8 relies on ride in on the [ci]
           # extra; xmsconan's pyproject.toml says which, and why each one.
-          pip install --upgrade "xmsconan[ci]>=2.30.2,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Generates .flake8 first, so CI lints with the same config developers
       # use locally. Do not inline the flake8 settings here: that duplicates
       # .flake8.jinja and the two copies drift apart silently. Which package
@@ -165,16 +165,16 @@ jobs:
           clang --version
       # Checkout Sources
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       # Setup Python
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade "xmsconan[ci]>=2.30.2,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Build the Conan Package
       - name: Build the Conan Packages
         run: xmsconan job build
@@ -183,7 +183,7 @@ jobs:
           CONAN_LOGIN_USERNAME: ${{ secrets.CONAN2_USER_SECRET }}
           CONAN_PASSWORD: ${{ secrets.CONAN2_PASSWORD_SECRET }}
       - name: Upload test artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-artifacts-${{ env.MATRIX_NAME }}
           path: test_artifacts/
@@ -195,7 +195,7 @@ jobs:
         shell: bash
         if: matrix.build_type == 'Release'
       - name: Upload wheel artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: wheel-${{ runner.os }}-py${{ matrix.python-version }}
           path: wheelhouse/*.whl
@@ -220,23 +220,39 @@ jobs:
           CONAN_LOGIN_USERNAME: ${{ secrets.CONAN2_USER_SECRET }}
           CONAN_PASSWORD: ${{ secrets.CONAN2_PASSWORD_SECRET }}
         if: startsWith(github.ref, 'refs/tags/')
-      # Get the Release Data
-      - name: Get Release
-        id: git_release
-        uses: bruceadams/get-release@74c3d60f5a28f358ccf241a00c9021ea16f0569f  # v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
-      # Upload Zipped Conan Packages
+      # Attach the archive `Upload Releases to Conan` just wrote to this tag's
+      # GitHub Release. A tag with no published Release fails here, and so
+      # does an asset of the same name already on it: nothing is replaced.
       - name: Upload Zipped Conan Packages
-        uses: actions/upload-release-asset@v1
+        uses: actions/github-script@v9
         env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+          RELEASE_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.git_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
-          asset_name: ${{ env.MATRIX_NAME }}.tar.gz
-          asset_content_type: application/zip
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const tag = process.env.GITHUB_REF_NAME;
+            const name = `${process.env.MATRIX_NAME}.tar.gz`;
+            const client = getOctokit(process.env.RELEASE_TOKEN);
+            const {owner, repo} = context.repo;
+            let release;
+            try {
+              release = (await client.rest.repos.getReleaseByTag({owner, repo, tag})).data;
+            } catch (error) {
+              if (error.status !== 404) {
+                throw error;
+              }
+              core.setFailed(`Tag ${tag} has no published GitHub Release to attach ${name} to. Create the Release, then re-run the failed jobs.`);
+              return;
+            }
+            await client.rest.repos.uploadReleaseAsset({
+              owner,
+              repo,
+              release_id: release.id,
+              name,
+              data: fs.readFileSync(path.join(process.env.GITHUB_WORKSPACE, name)),
+              headers: {'content-type': 'application/zip'},
+            });
         if: startsWith(github.ref, 'refs/tags/')
 
   # ----------------------------------------------------------------------------------------------
@@ -269,11 +285,11 @@ jobs:
     steps:
       # Checkout Sources
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          pip install --upgrade "xmsconan[ci]>=2.30.2,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Build the Conan Package
       - name: Build the Conan Packages
         run: xmsconan job build
@@ -282,7 +298,7 @@ jobs:
           CONAN_LOGIN_USERNAME: ${{ secrets.CONAN2_USER_SECRET }}
           CONAN_PASSWORD: ${{ secrets.CONAN2_PASSWORD_SECRET }}
       - name: Upload test artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-artifacts-${{ env.MATRIX_NAME }}
           path: test_artifacts/
@@ -294,7 +310,7 @@ jobs:
         shell: bash
         if: matrix.build_type == 'Release'
       - name: Upload wheel artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: wheel-${{ runner.os }}-py${{ matrix.python-version }}
           path: wheelhouse/*.whl
@@ -319,23 +335,39 @@ jobs:
           CONAN_LOGIN_USERNAME: ${{ secrets.CONAN2_USER_SECRET }}
           CONAN_PASSWORD: ${{ secrets.CONAN2_PASSWORD_SECRET }}
         if: startsWith(github.ref, 'refs/tags/')
-      # Get the Release Data
-      - name: Get Release
-        id: git_release
-        uses: bruceadams/get-release@74c3d60f5a28f358ccf241a00c9021ea16f0569f  # v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
-      # Upload Zipped Conan Packages
+      # Attach the archive `Upload Releases to Conan` just wrote to this tag's
+      # GitHub Release. A tag with no published Release fails here, and so
+      # does an asset of the same name already on it: nothing is replaced.
       - name: Upload Zipped Conan Packages
-        uses: actions/upload-release-asset@v1
+        uses: actions/github-script@v9
         env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+          RELEASE_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.git_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
-          asset_name: ${{ env.MATRIX_NAME }}.tar.gz
-          asset_content_type: application/zip
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const tag = process.env.GITHUB_REF_NAME;
+            const name = `${process.env.MATRIX_NAME}.tar.gz`;
+            const client = getOctokit(process.env.RELEASE_TOKEN);
+            const {owner, repo} = context.repo;
+            let release;
+            try {
+              release = (await client.rest.repos.getReleaseByTag({owner, repo, tag})).data;
+            } catch (error) {
+              if (error.status !== 404) {
+                throw error;
+              }
+              core.setFailed(`Tag ${tag} has no published GitHub Release to attach ${name} to. Create the Release, then re-run the failed jobs.`);
+              return;
+            }
+            await client.rest.repos.uploadReleaseAsset({
+              owner,
+              repo,
+              release_id: release.id,
+              name,
+              data: fs.readFileSync(path.join(process.env.GITHUB_WORKSPACE, name)),
+              headers: {'content-type': 'application/zip'},
+            });
         if: startsWith(github.ref, 'refs/tags/')
 
   # ----------------------------------------------------------------------------------------------
@@ -367,24 +399,27 @@ jobs:
     steps:
       # Checkout Sources
       - name: Checkout Source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       # Setup Python
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
-      # Setup Dev Command Prompt env for MSVC
+      # Setup Dev Command Prompt env for MSVC. v1.13.0, pinned here, is the
+      # newest release and still targets Node 20, which GitHub runs on Node
+      # 24 with a deprecation warning. Move the pin once a release targets
+      # Node 24.
       - name: Setup MSVC env
-        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756  # v1
+        uses: ilammy/msvc-dev-cmd@0b201ec74fa43914dc39ae48a89fd1d8cb592756  # v1.13.0
         with:
           arch: x64
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade "xmsconan[ci]>=2.30.2,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Visual Studio
       - name: Setup Visual Studio
-        uses: microsoft/setup-msbuild@6fb02220983dee41ce7ae257b6f4d8f9bf5ed4ce  # v2
+        uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57  # v3
       # Build the Conan Package
       - name: Build the Conan Packages
         run: xmsconan job build
@@ -393,14 +428,14 @@ jobs:
           CONAN_LOGIN_USERNAME: ${{ secrets.CONAN2_USER_SECRET }}
           CONAN_PASSWORD: ${{ secrets.CONAN2_PASSWORD_SECRET }}
       - name: Upload test artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: test-artifacts-${{ env.MATRIX_NAME }}
           path: test_artifacts/
           if-no-files-found: ignore
         if: always()
       - name: Upload wheel artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: wheel-${{ runner.os }}-py${{ matrix.python-version }}
           path: wheelhouse/*.whl
@@ -425,21 +460,37 @@ jobs:
           CONAN_LOGIN_USERNAME: ${{ secrets.CONAN2_USER_SECRET }}
           CONAN_PASSWORD: ${{ secrets.CONAN2_PASSWORD_SECRET }}
         if: startsWith(github.ref, 'refs/tags/')
-      # Get the Release Data
-      - name: Get Release
-        id: git_release
-        uses: bruceadams/get-release@74c3d60f5a28f358ccf241a00c9021ea16f0569f  # v1.3.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
-        if: startsWith(github.ref, 'refs/tags/')
-      # Upload Zipped Conan Packages
+      # Attach the archive `Upload Releases to Conan` just wrote to this tag's
+      # GitHub Release. A tag with no published Release fails here, and so
+      # does an asset of the same name already on it: nothing is replaced.
       - name: Upload Zipped Conan Packages
-        uses: actions/upload-release-asset@v1
+        uses: actions/github-script@v9
         env:
-          GITHUB_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
+          RELEASE_TOKEN: ${{ secrets.AQUAVEO_GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.git_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/${{ env.MATRIX_NAME }}.tar.gz
-          asset_name: ${{ env.MATRIX_NAME }}.tar.gz
-          asset_content_type: application/zip
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const tag = process.env.GITHUB_REF_NAME;
+            const name = `${process.env.MATRIX_NAME}.tar.gz`;
+            const client = getOctokit(process.env.RELEASE_TOKEN);
+            const {owner, repo} = context.repo;
+            let release;
+            try {
+              release = (await client.rest.repos.getReleaseByTag({owner, repo, tag})).data;
+            } catch (error) {
+              if (error.status !== 404) {
+                throw error;
+              }
+              core.setFailed(`Tag ${tag} has no published GitHub Release to attach ${name} to. Create the Release, then re-run the failed jobs.`);
+              return;
+            }
+            await client.rest.repos.uploadReleaseAsset({
+              owner,
+              repo,
+              release_id: release.id,
+              name,
+              data: fs.readFileSync(path.join(process.env.GITHUB_WORKSPACE, name)),
+              headers: {'content-type': 'application/zip'},
+            });
         if: startsWith(github.ref, 'refs/tags/')
