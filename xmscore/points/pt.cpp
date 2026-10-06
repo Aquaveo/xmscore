@@ -160,6 +160,14 @@ void PtUnitTests::testIt()
     xms::Pt3d pt(1, 1, 3);
     TS_ASSERT_EQUALS(pt < xms::Pt4d(1, 2, 3, 4), true);
   }
+  {
+    // a larger z decides the order before w is compared
+    xms::Pt4d pt(1, 1, 5, 0);
+    TS_ASSERT_EQUALS(pt < xms::Pt4d(1, 1, 3, 9), false);
+    TS_ASSERT_EQUALS(xms::Pt4d(1, 1, 3, 9) < pt, true);
+    TS_ASSERT_EQUALS(pt < 1.0, false);
+    TS_ASSERT_EQUALS(xms::Pt4d(1, 1, 1, 0) < 1.0, true);
+  }
 
   // Test operator+
   {

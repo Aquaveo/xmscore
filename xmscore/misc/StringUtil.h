@@ -65,7 +65,9 @@ bool stEqualNoCase(const std::string&, const std::string&);
 /// \brief Returns true if the second string occurs anywhere in the first, ignoring case.
 bool stFindNoCase(const std::string&, const std::string&);
 
-/// \brief Split source on any character in a_delimiterList; runs of delimiters are coalesced when a_delimiterCompressOn is true.
+/// \brief Split source on any character in a_delimiterList. When a_delimiterCompressOn is true,
+/// leading and trailing delimiters are dropped and runs of delimiters are coalesced; when false,
+/// n delimiters give n + 1 fields, empty ones included. An empty source gives one empty field.
 VecStr stSplit(const std::string& source,
                const std::string& a_delimiterList = ST_WHITESPACE,
                bool a_delimiterCompressOn = true);

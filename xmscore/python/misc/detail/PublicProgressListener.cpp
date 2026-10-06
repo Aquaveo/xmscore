@@ -51,8 +51,15 @@ public:
   {
     ProgressListener::SetListener(m_child);
   }
+  ~impl()
+  {
+    // m_child points back at the parent being destroyed, so it must not stay
+    // installed. Leave a listener installed by someone else alone.
+    if (ProgressListener::GetListener() == m_child)
+      ProgressListener::SetListener(BSHP<ProgressListener>());
+  }
 
-  BSHP<Listener> m_child;
+  BSHP<Listener> m_child; ///< listener installed globally, forwards to parent
 };
 
 ////////////////////////////////////////////////////////////////////////////////

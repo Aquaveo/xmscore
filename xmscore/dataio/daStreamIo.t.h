@@ -64,6 +64,8 @@ public:
   void testReadWriteBinaryVecPt3d();
   void testReadWriteLineParts();
   void testReadWriteBinaryArrays();
+  void testReadBinaryBytesRejectsBadBlocks();
+  void testSetBinaryBlockSizeRejectsNonPositive();
   void testLineBeginsWith();
 };
 

@@ -1795,7 +1795,7 @@ public:
       {
         if (z < a)
           return 1;
-        else if (z < a)
+        else if (z > a)
           return 0;
         else
         {
@@ -1870,7 +1870,7 @@ public:
       {
         if (z < a.z)
           return 1;
-        else if (z < a.z)
+        else if (z > a.z)
           return 0;
         else
         {
