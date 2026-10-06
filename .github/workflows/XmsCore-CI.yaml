@@ -122,7 +122,7 @@ jobs:
         run: |
           # The plugins the generated .flake8 relies on ride in on the [ci]
           # extra; xmsconan's pyproject.toml says which, and why each one.
-          pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan[ci]>=2.32.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Generates .flake8 first, so CI lints with the same config developers
       # use locally. Do not inline the flake8 settings here: that duplicates
       # .flake8.jinja and the two copies drift apart silently. Which package
@@ -174,7 +174,7 @@ jobs:
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install --upgrade "xmsconan[ci]>=2.32.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Build the Conan Package
       - name: Build the Conan Packages
         run: xmsconan job build
@@ -289,7 +289,7 @@ jobs:
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan[ci]>=2.32.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Build the Conan Package
       - name: Build the Conan Packages
         run: xmsconan job build
@@ -416,7 +416,7 @@ jobs:
       # Install Python Dependencies
       - name: Install Python Dependencies
         run: |
-          python -m pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          python -m pip install --upgrade "xmsconan[ci]>=2.32.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
       # Setup Visual Studio
       - name: Setup Visual Studio
         uses: microsoft/setup-msbuild@30375c66a4eea26614e0d39710365f22f8b0af57  # v3

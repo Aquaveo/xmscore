@@ -49,7 +49,7 @@ jobs:
 
       - name: Install Python Dependencies
         run: |
-          pip install --upgrade "xmsconan[ci]>=2.31.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
+          pip install --upgrade "xmsconan[ci]>=2.32.0,<3" -i https://public.aquapi.aquaveo.com/aquaveo/dev/+simple
 
       # No --remote-url: the value this passed was the tool's own default
       # spelled out again, so a change to the remote had to be made in two
