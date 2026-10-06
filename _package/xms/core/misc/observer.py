@@ -21,7 +21,7 @@ class Observer(Obs):
         Args:
             percent_complete (float):  The percent complete
         """
-        super().on_progress_status(percent_complete)
+        pass
 
     def on_begin_operation_string(self, operation):
         """
@@ -30,13 +30,13 @@ class Observer(Obs):
         Args:
             operation: Name of the operation being monitored.
         """
-        super().on_begin_operation_string(operation)
+        pass
 
     def on_end_operation(self):
         """
         The end operation event.
         """
-        super().on_end_operation()
+        pass
 
     def on_update_message(self, message):
         """
@@ -45,7 +45,7 @@ class Observer(Obs):
         Args:
             message: The new message
         """
-        super().on_update_message(message)
+        pass
 
     def time_remaining_in_seconds(self, remaining_seconds):
         """
@@ -54,7 +54,7 @@ class Observer(Obs):
         Args:
             remaining_seconds (Float): The time remaining for the current operation that the class is observing.
         """
-        super().time_remaining_in_seconds(remaining_seconds)
+        pass
 
     def time_elapsed_in_seconds(self, elapsed_seconds):
         """
@@ -63,4 +63,4 @@ class Observer(Obs):
         Args:
             elapsed_seconds (Float): The elapsed time since the operation began.
         """
-        super().time_elapsed_in_seconds(elapsed_seconds)
+        pass

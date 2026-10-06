@@ -496,7 +496,7 @@ bool DaStreamReader::ReadVecInt(const char* a_name, VecInt& a_vec)
 
     a_vec.resize(size);
     if (size != 0)
-      ReadBinaryBytes(reinterpret_cast<char*>(&a_vec[0]), size * sizeof(VecInt::value_type));
+      return ReadBinaryBytes(reinterpret_cast<char*>(&a_vec[0]), size * sizeof(VecInt::value_type));
     return true;
   }
 
@@ -518,7 +518,7 @@ bool DaStreamReader::ReadVecDbl(const char* a_name, VecDbl& a_vec)
 
     a_vec.resize(size);
     if (size != 0)
-      ReadBinaryBytes(reinterpret_cast<char*>(&a_vec[0]), size * sizeof(VecDbl::value_type));
+      return ReadBinaryBytes(reinterpret_cast<char*>(&a_vec[0]), size * sizeof(VecDbl::value_type));
     return true;
   }
 
@@ -540,7 +540,8 @@ bool DaStreamReader::ReadVecPt3d(const char* a_name, VecPt3d& a_vec)
   {
     a_vec.resize(size);
     if (size != 0)
-      ReadBinaryBytes(reinterpret_cast<char*>(&a_vec[0]), size * sizeof(VecPt3d::value_type));
+      return ReadBinaryBytes(reinterpret_cast<char*>(&a_vec[0]),
+                             size * sizeof(VecPt3d::value_type));
   }
   else
   {
@@ -702,9 +703,10 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
     std::string blockString;
     int32_t encodedLength = 0;
     int32_t blockLength = 0;
-    if (!ReadString(blockString) || !ReadInt(encodedLength) || !ReadInt(blockLength) ||
-        !NextLine())
+    if (!ReadString(blockString) || blockString != "BINARY_BLOCK" || !ReadInt(encodedLength) ||
+        !ReadInt(blockLength) || !NextLine())
     {
+      XM_LOG(xmlog::error, "Unable to read file. Invalid binary block header.")
       return false;
     }
 
@@ -712,14 +714,17 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
     if (encodedLength < 0 || encodedLength > maxEncodeLength || blockLength <= 0 ||
         blockLength > a_destLength)
     {
-      XM_LOG(xmlog::error, "Unable to read file. Invalid binary block length.");
+      XM_LOG(xmlog::error, "Unable to read file. Invalid binary block length.")
       return false;
     }
 
     // read and decode
     m_impl->m_inStream.read(encoded.get(), encodedLength);
     if (m_impl->m_inStream.gcount() != encodedLength || !NextLine())
+    {
+      XM_LOG(xmlog::error, "Unable to read file. Binary block data is truncated.")
       return false;
+    }
 
     auto compressedLength = iBase64Decode(encoded.get(), encodedLength, compressed.get());
     if (compressedLength < 0)
@@ -2326,29 +2331,37 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryArrays()
 //------------------------------------------------------------------------------
 void DaReaderWriterIoUnitTests::testReadBinaryBytesRejectsBadBlocks()
 {
+  // The first block written by testReadWriteBinaryArrays: 74 base64 characters
+  // holding 120 bytes.
+  const std::string goodHeader = "BINARY_BLOCK 74 120\n";
   const std::string goodData =
     "eAENw4UNwDAAAKDO3d3+f3OQEEIIkbGJqZm5haWVtY2tnb2Do5Ozi6ubu4enl7ePr58/RrQBtA\n";
   int32_t maxEncodeLength =
     iBase64EncodeSize(static_cast<int32_t>(compressBound(MAX_BLOCK_SIZE)));
+  const std::string badHeader = "Invalid binary block header.";
   const std::string badLength = "Invalid binary block length.";
+  const std::string truncated = "Binary block data is truncated.";
   const std::string badBase64Length = "Invalid base64 data length.";
   const std::string badBase64Char = "Invalid base64 character.";
   const std::string badCompressed = "Unable to uncompress data.";
   // Each bad input and the error logged by the check that should reject it.
-  // An empty error means the input is rejected without logging.
+  // A header with one bad field is written out because it is the input under
+  // test.
   const std::vector<std::pair<std::string, std::string>> badInputs = {
-    {"", ""},                                                  // no header
-    {"BINARY_BLOCK\n", ""},                                    // truncated header
-    {"BINARY_BLOCK 74\n", ""},                                 // no block length
-    {"BINARY_BLOCK 999999 120\n" + goodData, badLength},       // encoded length too big
-    {"BINARY_BLOCK -1 120\n" + goodData, badLength},           // negative encoded length
-    {"BINARY_BLOCK 74 0\n" + goodData, badLength},             // zero block length
-    {"BINARY_BLOCK 74 -5\n" + goodData, badLength},            // negative block length
-    {"BINARY_BLOCK 74 121\n" + goodData, badLength},           // bigger than destination
-    {"BINARY_BLOCK 74 120\neAENw4UNwDAAAKDO\n", ""},           // truncated data
+    {"", badHeader},                                            // no header
+    {"BINARY_BLOCK\n", badHeader},                              // truncated header
+    {"BINARY_BLOCK 74\n", badHeader},                           // no block length
+    {"BINARY_BLOCK 74 120", badHeader},                         // header ends the file
+    {"BLOCK 74 120\n" + goodData, badHeader},                   // wrong block name
+    {"BINARY_BLOCK 999999 120\n" + goodData, badLength},        // encoded length too big
+    {"BINARY_BLOCK -1 120\n" + goodData, badLength},            // negative encoded length
+    {"BINARY_BLOCK 74 0\n" + goodData, badLength},              // zero block length
+    {"BINARY_BLOCK 74 -5\n" + goodData, badLength},             // negative block length
+    {"BINARY_BLOCK 74 121\n" + goodData, badLength},            // bigger than destination
+    {goodHeader + "eAENw4UNwDAAAKDO\n", truncated},             // truncated data
     {"BINARY_BLOCK 75 120\n" + goodData + "\n", badBase64Char}, // newline in the data
-    {"BINARY_BLOCK 5 120\nAAAAA\n", badBase64Length},          // not a base64 length
-    {"BINARY_BLOCK 3 120\nA==\n", badBase64Length},            // not a base64 length
+    {"BINARY_BLOCK 5 120\nAAAAA\n", badBase64Length},           // not a base64 length
+    {"BINARY_BLOCK 3 120\nA==\n", badBase64Length},             // not a base64 length
     // longest allowed block without base64 padding decodes past the
     // compressed length; must fail to uncompress without overflowing
     {"BINARY_BLOCK " + std::to_string(maxEncodeLength) + " 120\n" +
@@ -2369,24 +2382,73 @@ void DaReaderWriterIoUnitTests::testReadBinaryBytesRejectsBadBlocks()
   }
 
   // a good block that is bigger than the destination
-  {
-    std::istringstream inputStream("BINARY_BLOCK 74 120\n" + goodData);
-    DaStreamReader reader(inputStream);
-    std::vector<char> dest(120);
-    TS_ASSERT(!reader.ReadBinaryBytes(&dest[0], 60));
-  }
-
-  // the good block still reads
-  std::istringstream inputStream("BINARY_BLOCK 74 120\n" + goodData);
+  std::istringstream inputStream(goodHeader + goodData);
   DaStreamReader reader(inputStream);
-  VecInt values(30);
-  TS_ASSERT(reader.ReadBinaryBytes((char*)&values[0], 120));
+  std::vector<char> dest(120);
+  TS_ASSERT(!reader.ReadBinaryBytes(&dest[0], 60));
+  std::string errors = XmLog::Instance().GetAndClearStackStr();
+  TSM_ASSERT("logged: " + errors, errors.find(badLength) != std::string::npos);
+} // DaReaderWriterIoUnitTests::testReadBinaryBytesRejectsBadBlocks
+//------------------------------------------------------------------------------
+/// \brief Test that DaStreamReader::ReadBinaryBytes reads a good block whether
+///        or not its data ends with a line ending.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadBinaryBytesReadsGoodBlock()
+{
+  // The first block written by testReadWriteBinaryArrays: the ints 0 to 29.
+  const std::string goodBlock =
+    "BINARY_BLOCK 74 120\n"
+    "eAENw4UNwDAAAKDO3d3+f3OQEEIIkbGJqZm5haWVtY2tnb2Do5Ozi6ubu4enl7ePr58/RrQBtA";
   VecInt expected(30);
   std::iota(expected.begin(), expected.end(), 0);
-  TS_ASSERT_EQUALS(expected, values);
-
+  const std::vector<std::pair<std::string, std::string>> inputs = {
+    {"with line ending", goodBlock + "\n"},
+    {"at end of file", goodBlock},
+  };
+  for (const auto& [label, input] : inputs)
+  {
+    std::istringstream inputStream(input);
+    DaStreamReader reader(inputStream);
+    VecInt values(30);
+    TSM_ASSERT(label, reader.ReadBinaryBytes((char*)&values[0], 120));
+    TSM_ASSERT_EQUALS(label, expected, values);
+  }
+} // DaReaderWriterIoUnitTests::testReadBinaryBytesReadsGoodBlock
+//------------------------------------------------------------------------------
+/// \brief Test that DaStreamReader::ReadVecInt, ReadVecDbl, and ReadVecPt3d
+///        return false when their binary block is malformed.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadBinaryVecRejectsBadBlock()
+{
+  // 120 bytes, which is 30 ints, 15 doubles, or 5 points, with a '*' in the
+  // base64 data
+  const std::string badBlock =
+    "BINARY_BLOCK 74 120\n"
+    "eAENw4UNwDAAAKDO3d3+f3OQEEIIkbGJqZm5haWVtY2tnb2Do5Ozi6ubu4enl7ePr58/RrQB*A\n";
+  const char* name = "VECTOR_NAME";
+  const bool useBinaryArrays = true;
   XmLog::Instance().GetAndClearStackStr();
-} // DaReaderWriterIoUnitTests::testReadBinaryBytesRejectsBadBlocks
+  {
+    std::istringstream inputStream(std::string(name) + " 30\n" + badBlock);
+    DaStreamReader reader(inputStream, useBinaryArrays);
+    VecInt values;
+    TS_ASSERT(!reader.ReadVecInt(name, values));
+  }
+  {
+    std::istringstream inputStream(std::string(name) + " 15\n" + badBlock);
+    DaStreamReader reader(inputStream, useBinaryArrays);
+    VecDbl values;
+    TS_ASSERT(!reader.ReadVecDbl(name, values));
+  }
+  {
+    std::istringstream inputStream(std::string(name) + " 5\n" + badBlock);
+    DaStreamReader reader(inputStream, useBinaryArrays);
+    VecPt3d values;
+    TS_ASSERT(!reader.ReadVecPt3d(name, values));
+  }
+  std::string errors = XmLog::Instance().GetAndClearStackStr();
+  TSM_ASSERT("logged: " + errors, errors.find("Invalid base64 character.") != std::string::npos);
+} // DaReaderWriterIoUnitTests::testReadBinaryVecRejectsBadBlock
 //------------------------------------------------------------------------------
 /// \brief Test that DaStreamWriter::SetBinaryBlockSize ignores a non-positive
 ///        size instead of making WriteBinaryBytes loop forever.

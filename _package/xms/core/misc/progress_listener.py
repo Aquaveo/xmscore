@@ -27,6 +27,9 @@ class ProgressListener(Prog):
         The __init__ function for the Observer class.
         """
         super().__init__()
+        # The C++ listener numbers operations by how many are in flight, but only
+        # passes that number to the later events, so the depth is tracked here.
+        self._stack_depth = 0
 
     def set_update_delay_seconds(self, delay):
         """
@@ -56,17 +59,21 @@ class ProgressListener(Prog):
             operation: Name of the operation being monitored.
 
         Returns:
-            (int): stack index for the operation
+            (int): stack index for the operation, 1 for the outermost operation
         """
-        stack_index = super().on_begin_operation_string(operation)
-        self.call_back(('begin_operation', stack_index, operation))
-        return stack_index
+        self._stack_depth += 1
+        self.call_back(('begin_operation', self._stack_depth, operation))
+        return self._stack_depth
 
     def on_end_operation(self, stack_index):
         """
         The end operation event.
+
+        Args:
+            stack_index (int): stack index for the operation that ended
         """
         self.call_back(('end_operation', stack_index, ''))
+        self._stack_depth = max(0, self._stack_depth - 1)
 
     def on_update_message(self, stack_index, message):
         """

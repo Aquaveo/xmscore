@@ -219,7 +219,8 @@ class TestObserverDefaultHandlers(unittest.TestCase):
         """
         observer = Observer()
         observer.begin_operation_string('count-jelly-beans')
-        observer.progress_status(0.5)
+        # progress_status reaches the progress and timing handlers only when it reports
+        self.assertTrue(observer.progress_status(0.5))
         observer.update_message('21 jelly beans counted so far.')
         observer.end_operation()
 
@@ -230,7 +231,7 @@ class TestObserverDefaultHandlers(unittest.TestCase):
         observer = PartialObserver()
         observer.begin_operation_string('count-jelly-beans')
         observer.progress_status(0.5)
-        self.assertEqual(0.5, observer.progress[-1])
+        self.assertEqual([0.5], observer.progress)
         observer.update_message('21 jelly beans counted so far.')
         observer.end_operation()
 
