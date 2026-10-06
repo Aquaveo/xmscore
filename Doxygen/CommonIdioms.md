@@ -175,6 +175,45 @@ Companion typedefs in the same header:
 Use `BSHP` for any object that crosses an XMS library boundary; the rest of
 the typedefs are convenience for internal implementation work.
 
+Passing vectors to and from Python {#IdiomPyVectors}
+----------------------------------
+
+Bindings convert between Python objects and XMS vectors with the helpers in
+`xmscore/python/misc/PyUtils.h`.
+
+**Inputs.** When the argument is a numpy array of the matching dtype, the
+`*FromPyIter` converters below read it directly instead of converting element by
+element. Any memory order or slicing is accepted. Anything else, including lists
+of tuples, goes through the original per-item conversion.
+
+| Function            | numpy fast path                                  |
+| ------------------- | ------------------------------------------------ |
+| `VecPt3dFromPyIter` | float64, shape (N, 3) or (N, 2) (z set to 0)     |
+| `VecPt2dFromPyIter` | float64, shape (N, 2)                            |
+| `VecDblFromPyIter`  | float64, 1D                                      |
+| `VecFltFromPyIter`  | float32, 1D                                      |
+| `VecIntFromPyIter`  | int32 or int64, 1D                               |
+
+An int64 value outside the 32 bit range raises `RuntimeError`, the same error
+the per-item path gives. The C++ APIs take `const VecX&`, so one copy into a
+`std::vector` remains; passing numpy arrays avoids the much more expensive
+per-element Python conversion.
+
+**Outputs.** `PyIterFrom*` copies. When a binding has a vector it no longer
+needs (a local or a return value), move it into numpy instead:
+
+~~~~{.cpp}
+xms::VecInt cellstream;
+self.GetCellCellstream(cell_idx, cellstream);
+return xms::PyArrayFromVec(std::move(cellstream));  // no element copy
+~~~~
+
+`PyArrayFromVec` (numeric element types only), `PyArrayFromVecPt3d` and
+`PyArrayFromVecPt2d` give the vector's buffer to a capsule that numpy frees with
+the array. Getters that return a reference to a vector stored in an object
+should keep copying with `PyIterFrom*`: a view into that storage would dangle as
+soon as the object resized it.
+
 Asserting in tests {#IdiomTestTools}
 ------------------
 
