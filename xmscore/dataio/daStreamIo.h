@@ -170,7 +170,9 @@ public:
 
   /// \brief Write a_sourceLength raw bytes into the binary section of the stream.
   bool WriteBinaryBytes(const char* a_source, long long a_sourceLength);
-  /// \brief Set the maximum number of bytes per binary block.
+  /// \brief Set the maximum number of bytes per binary block. Must be
+  ///        positive; a non-positive value is rejected and the current size
+  ///        is kept.
   void SetBinaryBlockSize(int a_blockSize);
 
 private:

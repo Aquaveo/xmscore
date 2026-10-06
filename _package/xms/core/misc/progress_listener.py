@@ -58,7 +58,7 @@ class ProgressListener(Prog):
         Returns:
             (int): stack index for the operation
         """
-        stack_index = self.on_begin_operation_string(operation)
+        stack_index = super().on_begin_operation_string(operation)
         self.call_back(('begin_operation', stack_index, operation))
         return stack_index
 

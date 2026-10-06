@@ -538,7 +538,7 @@ std::pair<int, int> IntPairFromPyIter(const py::iterable& intpair)
   if (py::len(pr) != 2) {
       throw py::type_error("arg must be an 2-tuple");
   } else {
-      std::pair<int, int> ret(1, 1);//ret(pr[0].cast<int>, pr[1].cast<int>);
+      std::pair<int, int> ret(pr[0].cast<int>(), pr[1].cast<int>());
       return ret;
   }
 } // IntPairFromPyIter

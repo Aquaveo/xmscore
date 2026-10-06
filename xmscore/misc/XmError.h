@@ -427,7 +427,7 @@ inline unsigned int XM_FAILED_impl(xmresult _xmresult)
 /// \param[in] msg: Log message (\c std::string).
 /// \param[in] ast: Asserts if true (\c bool).
 //------------------------------------------------------------------------------
-#define XM_ENSURE_FALSE_T_5(x, ret, lvl, msg, ast) XM_ENSURE_TRUE_T(!(x), ret, lvl, msg, ast)
+#define XM_ENSURE_FALSE_T_5(x, ret, lvl, msg, ast) XM_ENSURE_TRUE_T_5(!(x), ret, lvl, msg, ast)
 //------------------------------------------------------------------------------
 /// \brief Throws \a ret if \a x evaluates to \c true, logs, and optionally
 ///        asserts.

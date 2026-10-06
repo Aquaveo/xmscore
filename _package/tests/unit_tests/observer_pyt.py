@@ -190,5 +190,50 @@ class TestObserver(unittest.TestCase):
         self.assertEqual(message, self.observer.status['message'])
 
 
+class PartialObserver(Observer):
+    """Observer that overrides only on_progress_status and inherits the other handlers."""
+
+    def __init__(self):
+        """
+        The __init__ function for the PartialObserver class.
+        """
+        super().__init__()
+        self.progress = []
+
+    def on_progress_status(self, percent_complete):
+        """
+        Record percent complete.
+
+        Args:
+            percent_complete: The percent complete.
+        """
+        self.progress.append(percent_complete)
+
+
+class TestObserverDefaultHandlers(unittest.TestCase):
+    """Test the handlers Observer provides when a subclass does not override them."""
+
+    def test_observer_without_overrides(self):
+        """
+        Test that an Observer with no overrides accepts every event without recursing.
+        """
+        observer = Observer()
+        observer.begin_operation_string('count-jelly-beans')
+        observer.progress_status(0.5)
+        observer.update_message('21 jelly beans counted so far.')
+        observer.end_operation()
+
+    def test_observer_with_partial_overrides(self):
+        """
+        Test that a subclass overriding one handler still gets events while the rest use the defaults.
+        """
+        observer = PartialObserver()
+        observer.begin_operation_string('count-jelly-beans')
+        observer.progress_status(0.5)
+        self.assertEqual(0.5, observer.progress[-1])
+        observer.update_message('21 jelly beans counted so far.')
+        observer.end_operation()
+
+
 if __name__ == '__main__':
     unittest.main()

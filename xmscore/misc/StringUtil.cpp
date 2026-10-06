@@ -175,9 +175,12 @@ VecStr stExplode(const std::string &source, const std::string &a_delimiter) {
 /// \brief Breaks string into vector of strings based on one or more delimiters.
 /// \param[in] a_source:        The string to be split.
 /// \param[in] a_delimiterList: String where each character is a delimeter.
-/// \param[in] a_delimiterCompressOn: If true, consecutive delimeters are
-///                                   treated as one.
-/// \return A vector of strings.
+/// \param[in] a_delimiterCompressOn: If true, leading and trailing delimeters
+///                                   are dropped and consecutive delimeters
+///                                   are treated as one. If false, n
+///                                   delimeters give n + 1 strings, empty
+///                                   ones included.
+/// \return A vector of strings. An empty source gives one empty string.
 /// \see http://stackoverflow.com/questions/236129/split-a-string-in-c
 //------------------------------------------------------------------------------
 VecStr stSplit(const std::string &a_source,
@@ -190,21 +193,18 @@ VecStr stSplit(const std::string &a_source,
                  boost::token_compress_on);
   } else {
     // Unfortunately, boost::token_compress_off doesn't do the trick because
-    // it still compresses the leading and trailing delimiters. The following
-    // code works. I don't know how fast it is.
-    std::vector<char> temp(a_source.size());
-    int end = 0;
-    for (size_t i = 0; i < a_source.size(); ++i) {
-      if (a_delimiterList.find(a_source[i]) != std::string::npos) {
-        elems.push_back(std::string(&temp[0], end));
-        end = 0;
+    // it still compresses the leading and trailing delimiters. Split by hand
+    // so that n delimiters always give n + 1 tokens.
+    std::string token;
+    for (char c : a_source) {
+      if (a_delimiterList.find(c) != std::string::npos) {
+        elems.push_back(token);
+        token.clear();
       } else {
-        temp[end++] = a_source[i];
+        token += c;
       }
     }
-    if (a_delimiterList.find(a_source.back()) != std::string::npos) {
-      elems.push_back("");
-    }
+    elems.push_back(token);
   }
   return elems;
 } // stSplit
@@ -1390,6 +1390,21 @@ void StringUtilUnitTests::testSplit() {
 
   r = xms::stSplit(",,A,B,,C,,,", ",", false);
   expected = {"", "", "A", "B", "", "C", "", "", ""};
+  TS_ASSERT_EQUALS_VEC(expected, r);
+
+  r = xms::stSplit("A,B", ",", false);
+  expected = {"A", "B"};
+  TS_ASSERT_EQUALS_VEC(expected, r);
+
+  r = xms::stSplit("A", ",", false);
+  expected = {"A"};
+  TS_ASSERT_EQUALS_VEC(expected, r);
+
+  // empty input gives one empty token with or without compression
+  expected = {""};
+  r = xms::stSplit("", ",", false);
+  TS_ASSERT_EQUALS_VEC(expected, r);
+  r = xms::stSplit("", ",");
   TS_ASSERT_EQUALS_VEC(expected, r);
 } // StringUtilUnitTests::testSplit
 //------------------------------------------------------------------------------

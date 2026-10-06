@@ -19,6 +19,7 @@
 // 4. External Library Headers
 #include <boost/archive/iterators/base64_from_binary.hpp>
 #include <boost/archive/iterators/binary_from_base64.hpp>
+#include <boost/archive/iterators/dataflow_exception.hpp>
 #include <boost/archive/iterators/transform_width.hpp>
 #include <boost/unordered_map.hpp>
 #include <zlib.h>
@@ -156,7 +157,14 @@ int32_t iBase64Encode(const char* a_source, int32_t a_sourceLength, char* a_dest
   return encodedLength;
 } // iBase64Encode
 //------------------------------------------------------------------------------
-/// \brief
+/// \brief Decodes base64 text.
+/// \param a_source The base64 text to decode.
+/// \param a_sourceLength The number of characters to decode.
+/// \param a_dest The destination for the decoded bytes. Must hold at least
+///        a_sourceLength * 3 / 4 bytes.
+/// \return The length of the decoded bytes, or -1 if the text holds a
+///         character outside the base64 alphabet or its length without
+///         padding leaves a single character over.
 //------------------------------------------------------------------------------
 int32_t iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest)
 {
@@ -171,14 +179,30 @@ int32_t iBase64Decode(const char* a_source, int32_t a_sourceLength, char* a_dest
       --size;
   }
 
+  // A single trailing character holds less than a byte, and the decoder steps
+  // past the end of the source looking for the rest of it.
+  if (size % 4 == 1)
+  {
+    XM_LOG(xmlog::error, "Unable to read file. Invalid base64 data length.")
+    return -1;
+  }
+
   if (size != 0)
   {
     char* destBegin = a_dest;
     char* destIterator = a_dest;
     auto base64Begin = base64_dec(a_source);
     auto base64End = base64_dec(a_source + size);
-    for (auto it = base64Begin; it != base64End; ++it)
-      *destIterator++ = *it;
+    try
+    {
+      for (auto it = base64Begin; it != base64End; ++it)
+        *destIterator++ = *it;
+    }
+    catch (const dataflow_exception&)
+    {
+      XM_LOG(xmlog::error, "Unable to read file. Invalid base64 character.")
+      return -1;
+    }
 
     auto decodedLength = int32_t(destIterator - destBegin);
     return decodedLength;
@@ -666,25 +690,40 @@ bool DaStreamReader::ReadBinaryBytes(char* a_dest, long long a_destLength)
 {
   auto maxCompressedLength = static_cast<int32_t>(compressBound(MAX_BLOCK_SIZE));
   int32_t maxEncodeLength = iBase64EncodeSize(maxCompressedLength);
-  std::unique_ptr<char[]> compressed(new char[maxCompressedLength]);
+  // Every 4 base64 characters decode to 3 bytes, so a block of maxEncodeLength
+  // characters can decode to a few bytes more than maxCompressedLength.
+  int32_t maxDecodeLength = maxEncodeLength * 3 / 4;
+  std::unique_ptr<char[]> compressed(new char[maxDecodeLength]);
   std::unique_ptr<char[]> encoded(new char[maxEncodeLength + 1]);
 
   while (a_destLength > 0)
   {
     // read block info
     std::string blockString;
-    int32_t encodedLength;
-    int32_t blockLength;
-    ReadString(blockString);
-    ReadInt(encodedLength);
-    ReadInt(blockLength);
-    NextLine();
+    int32_t encodedLength = 0;
+    int32_t blockLength = 0;
+    if (!ReadString(blockString) || !ReadInt(encodedLength) || !ReadInt(blockLength) ||
+        !NextLine())
+    {
+      return false;
+    }
+
+    // the lengths come from the file so they must fit the buffers
+    if (encodedLength < 0 || encodedLength > maxEncodeLength || blockLength <= 0 ||
+        blockLength > a_destLength)
+    {
+      XM_LOG(xmlog::error, "Unable to read file. Invalid binary block length.");
+      return false;
+    }
 
     // read and decode
     m_impl->m_inStream.read(encoded.get(), encodedLength);
-    NextLine();
+    if (m_impl->m_inStream.gcount() != encodedLength || !NextLine())
+      return false;
 
     auto compressedLength = iBase64Decode(encoded.get(), encodedLength, compressed.get());
+    if (compressedLength < 0)
+      return false;
 
     // decompress data
     if (!iUncompress(compressed.get(), compressedLength, a_dest, blockLength))
@@ -950,10 +989,13 @@ bool DaStreamWriter::WriteBinaryBytes(const char* a_source, long long a_sourceLe
 } // DaStreamWriter::WriteBinaryBytes
 //------------------------------------------------------------------------------
 /// \brief Set the block size to use when writing binary arrays.
-/// \param a_blockSize The block size.
+/// \param a_blockSize The block size. Must be positive; larger values are
+///        clamped to the maximum block size. A non-positive value is
+///        rejected and the current block size is kept.
 //------------------------------------------------------------------------------
 void DaStreamWriter::SetBinaryBlockSize(int a_blockSize)
 {
+  XM_ENSURE_TRUE_VOID(a_blockSize > 0);
   m_impl->m_blockSize = a_blockSize > MAX_BLOCK_SIZE ? MAX_BLOCK_SIZE : a_blockSize;
 } // DaStreamWriter::SetBinaryBlockSize
 
@@ -2278,6 +2320,101 @@ void DaReaderWriterIoUnitTests::testReadWriteBinaryArrays()
   TS_ASSERT(reader.ReadBinaryBytes((char*)&inValues[0], lengthInBytes));
   TS_ASSERT_EQUALS(outValues, inValues);
 } // DaReaderWriterIoUnitTests::testReadWriteBinaryArrays
+//------------------------------------------------------------------------------
+/// \brief Test that DaStreamReader::ReadBinaryBytes returns false instead of
+///        overrunning its buffers when a binary block is malformed.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testReadBinaryBytesRejectsBadBlocks()
+{
+  const std::string goodData =
+    "eAENw4UNwDAAAKDO3d3+f3OQEEIIkbGJqZm5haWVtY2tnb2Do5Ozi6ubu4enl7ePr58/RrQBtA\n";
+  int32_t maxEncodeLength =
+    iBase64EncodeSize(static_cast<int32_t>(compressBound(MAX_BLOCK_SIZE)));
+  const std::string badLength = "Invalid binary block length.";
+  const std::string badBase64Length = "Invalid base64 data length.";
+  const std::string badBase64Char = "Invalid base64 character.";
+  const std::string badCompressed = "Unable to uncompress data.";
+  // Each bad input and the error logged by the check that should reject it.
+  // An empty error means the input is rejected without logging.
+  const std::vector<std::pair<std::string, std::string>> badInputs = {
+    {"", ""},                                                  // no header
+    {"BINARY_BLOCK\n", ""},                                    // truncated header
+    {"BINARY_BLOCK 74\n", ""},                                 // no block length
+    {"BINARY_BLOCK 999999 120\n" + goodData, badLength},       // encoded length too big
+    {"BINARY_BLOCK -1 120\n" + goodData, badLength},           // negative encoded length
+    {"BINARY_BLOCK 74 0\n" + goodData, badLength},             // zero block length
+    {"BINARY_BLOCK 74 -5\n" + goodData, badLength},            // negative block length
+    {"BINARY_BLOCK 74 121\n" + goodData, badLength},           // bigger than destination
+    {"BINARY_BLOCK 74 120\neAENw4UNwDAAAKDO\n", ""},           // truncated data
+    {"BINARY_BLOCK 75 120\n" + goodData + "\n", badBase64Char}, // newline in the data
+    {"BINARY_BLOCK 5 120\nAAAAA\n", badBase64Length},          // not a base64 length
+    {"BINARY_BLOCK 3 120\nA==\n", badBase64Length},            // not a base64 length
+    // longest allowed block without base64 padding decodes past the
+    // compressed length; must fail to uncompress without overflowing
+    {"BINARY_BLOCK " + std::to_string(maxEncodeLength) + " 120\n" +
+       std::string(maxEncodeLength, 'A') + "\n",
+     badCompressed},
+  };
+
+  XmLog::Instance().GetAndClearStackStr();
+  for (const auto& [input, error] : badInputs)
+  {
+    std::istringstream inputStream(input);
+    DaStreamReader reader(inputStream);
+    std::vector<char> dest(120);
+    std::string label = input.substr(0, 30);
+    TSM_ASSERT(label, !reader.ReadBinaryBytes(&dest[0], (long long)dest.size()));
+    std::string errors = XmLog::Instance().GetAndClearStackStr();
+    TSM_ASSERT(label + " logged: " + errors, errors.find(error) != std::string::npos);
+  }
+
+  // a good block that is bigger than the destination
+  {
+    std::istringstream inputStream("BINARY_BLOCK 74 120\n" + goodData);
+    DaStreamReader reader(inputStream);
+    std::vector<char> dest(120);
+    TS_ASSERT(!reader.ReadBinaryBytes(&dest[0], 60));
+  }
+
+  // the good block still reads
+  std::istringstream inputStream("BINARY_BLOCK 74 120\n" + goodData);
+  DaStreamReader reader(inputStream);
+  VecInt values(30);
+  TS_ASSERT(reader.ReadBinaryBytes((char*)&values[0], 120));
+  VecInt expected(30);
+  std::iota(expected.begin(), expected.end(), 0);
+  TS_ASSERT_EQUALS(expected, values);
+
+  XmLog::Instance().GetAndClearStackStr();
+} // DaReaderWriterIoUnitTests::testReadBinaryBytesRejectsBadBlocks
+//------------------------------------------------------------------------------
+/// \brief Test that DaStreamWriter::SetBinaryBlockSize ignores a non-positive
+///        size instead of making WriteBinaryBytes loop forever.
+//------------------------------------------------------------------------------
+void DaReaderWriterIoUnitTests::testSetBinaryBlockSizeRejectsNonPositive()
+{
+  VecInt values(100);
+  std::iota(values.begin(), values.end(), 0);
+  long long lengthInBytes = (long long)values.size() * sizeof(VecInt::value_type);
+
+  std::ostringstream expected;
+  DaStreamWriter expectedWriter(expected);
+  expectedWriter.SetBinaryBlockSize(120);
+  expectedWriter.WriteBinaryBytes((char*)&values[0], lengthInBytes);
+
+  bool asserting = xmAsserting();
+  xmAsserting() = false;
+  for (int blockSize : {0, -1})
+  {
+    std::ostringstream output;
+    DaStreamWriter writer(output);
+    writer.SetBinaryBlockSize(120);
+    writer.SetBinaryBlockSize(blockSize); // rejected, keeps 120
+    TS_ASSERT(writer.WriteBinaryBytes((char*)&values[0], lengthInBytes));
+    TS_ASSERT_EQUALS(expected.str(), output.str());
+  }
+  xmAsserting() = asserting;
+} // DaReaderWriterIoUnitTests::testSetBinaryBlockSizeRejectsNonPositive
 //------------------------------------------------------------------------------
 /// \brief Test DaStreamReader::LineBeginsWith
 //------------------------------------------------------------------------------

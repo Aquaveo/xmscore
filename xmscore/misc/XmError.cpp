@@ -250,6 +250,37 @@ xmresult iTest_XM_ENSURE_SUCCESS_T(bool a_assert)
 //------------------------------------------------------------------------------
 /// \brief
 //------------------------------------------------------------------------------
+xmresult iTest_XM_ENSURE_FALSE_T(bool a_assert)
+{
+  try
+  {
+    bool foo = false;
+    XM_ENSURE_FALSE_T(foo, XR_FAILURE);           // should pass
+    XM_ENSURE_FALSE_T_NO_ASSERT(foo, XR_FAILURE); // should pass
+
+    foo = true;
+    if (a_assert)
+    {
+      XmAssertScopedDisable disable;
+      XM_ENSURE_FALSE_T(foo, XR_FAILURE); // should throw
+    }
+    else
+    {
+      XM_ENSURE_FALSE_T_NO_ASSERT(foo, XR_FAILURE); // should throw
+    }
+
+    TS_FAIL("iTest_XM_ENSURE_FALSE_T"); // shouldn't get here
+  }
+  catch (xmresult& e)
+  {
+    TS_ASSERT_EQUALS(e, XR_FAILURE);
+    return XR_SUCCESS;
+  }
+  return XR_FAILURE;
+} // iTest_XM_ENSURE_FALSE_T
+//------------------------------------------------------------------------------
+/// \brief
+//------------------------------------------------------------------------------
 xmresult iTest_XM_RETURN_XMRESULT_bool(bool a)
 {
   XM_RETURN_XMRESULT(a);
@@ -313,6 +344,13 @@ void XmErrorUnitTests::test1()
 
   xms::iTest_XM_ENSURE_SUCCESS_T(false);
   xms::iTest_XM_ENSURE_SUCCESS_T(true);
+
+  // XM_ENSURE_FALSE_T
+
+  rv = xms::iTest_XM_ENSURE_FALSE_T(false);
+  TS_ASSERT_EQUALS(rv, xms::XR_SUCCESS);
+  rv = xms::iTest_XM_ENSURE_FALSE_T(true);
+  TS_ASSERT_EQUALS(rv, xms::XR_SUCCESS);
 
   // XM_RETURN_RESULT
 
