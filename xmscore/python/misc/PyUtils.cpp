@@ -10,9 +10,14 @@
 
 // 2. My own header
 #include <pybind11/pybind11.h>
+#include <pybind11/gil_safe_call_once.h>
 
+#include <cstdint>
+#include <limits>
+#include <memory>
 #include <sstream>
 #include <iostream>
+#include <type_traits>
 
 #include <xmscore/misc/DynBitset.h>
 #include <xmscore/misc/StringUtil.h>
@@ -31,6 +36,121 @@ namespace py = pybind11;
 /// XMS Namespace
 namespace xms
 {
+
+// PyArrayFromVecPt3d/Pt2d expose a VecPt3d/VecPt2d buffer to numpy as a packed
+// (N, 3)/(N, 2) array of doubles, the same layout Pt3::operator[] relies on.
+static_assert(std::is_standard_layout<Pt3d>::value && sizeof(Pt3d) == 3 * sizeof(double),
+              "Pt3d must be three packed doubles");
+static_assert(std::is_standard_layout<Pt2d>::value && sizeof(Pt2d) == 2 * sizeof(double),
+              "Pt2d must be two packed doubles");
+
+namespace
+{
+//------------------------------------------------------------------------------
+/// \brief Check that an object is a numpy.ndarray itself, not a subclass.
+///
+/// Subclasses such as numpy.ma.MaskedArray give the buffer a meaning (a mask)
+/// that a direct read would drop, so they keep the per-item conversion.
+/// numpy.ndarray is looked up once and kept, since an import per call would
+/// double the cost of converting a small array.
+/// \param[in] a_obj: Python object to check. Must already be an ndarray.
+/// \return true if a_obj's type is exactly numpy.ndarray.
+//------------------------------------------------------------------------------
+bool IsExactNdarray(const py::handle& a_obj)
+{
+  PYBIND11_CONSTINIT static py::gil_safe_call_once_and_store<py::object> s_ndarray;
+  const py::object& ndarray =
+    s_ndarray
+      .call_once_and_store_result(
+        []() -> py::object { return py::module_::import("numpy").attr("ndarray"); })
+      .get_stored();
+  return py::type::handle_of(a_obj).is(ndarray);
+} // IsExactNdarray
+//------------------------------------------------------------------------------
+/// \brief Copy a 1D numpy array whose dtype is exactly Src into a vector.
+///
+/// Reads through the array's strides, so C order, Fortran order and sliced
+/// arrays all take this path. Values outside Dst's range raise the same
+/// py::cast_error (Python RuntimeError) as the per-item path.
+/// \tparam Src: numpy element type to match.
+/// \tparam Dst: vector element type.
+/// \param[in] a_obj: Python object to read.
+/// \param[out] a_vec: Filled when a_obj is a 1D numpy.ndarray (not a subclass)
+///                    of Src.
+/// \return true if a_obj was a 1D numpy.ndarray (not a subclass) of Src, false
+///         otherwise.
+//------------------------------------------------------------------------------
+template <typename Src, typename Dst>
+bool VecFromNumpy(const py::handle& a_obj, std::vector<Dst>& a_vec)
+{
+  if (!py::isinstance<py::array_t<Src>>(a_obj) || !IsExactNdarray(a_obj))
+    return false;
+  auto arr = py::reinterpret_borrow<py::array_t<Src>>(a_obj);
+  if (arr.ndim() != 1)
+    return false;
+  auto src = arr.template unchecked<1>();
+  a_vec.resize(static_cast<size_t>(src.shape(0)));
+  for (py::ssize_t i = 0; i < src.shape(0); ++i)
+  {
+    const Src value = src(i);
+    if constexpr (!std::is_same<Src, Dst>::value)
+    {
+      if (value < std::numeric_limits<Dst>::lowest() || value > std::numeric_limits<Dst>::max())
+        throw py::cast_error("Value out of range for the C++ element type");
+    }
+    a_vec[i] = static_cast<Dst>(value);
+  }
+  return true;
+} // VecFromNumpy
+//------------------------------------------------------------------------------
+/// \brief Copy an (N, 2) or (N, dims) float64 numpy array of points.
+///
+/// Reads through the array's strides, so C order, Fortran order and sliced
+/// arrays all take this path.
+/// \tparam PointT: Pt2d or Pt3d.
+/// \tparam dims: number of coordinates in PointT (2 or 3).
+/// \param[in] a_obj: Python object to read.
+/// \param[out] a_pts: Filled when a_obj is such an array. A missing z is left at
+///                    zero.
+/// \return true if a_obj was a float64 numpy.ndarray (not a subclass) of shape
+///         (N, 2) or (N, dims).
+//------------------------------------------------------------------------------
+template <typename PointT, int dims>
+bool PointsFromNumpy(const py::handle& a_obj, std::vector<PointT>& a_pts)
+{
+  if (!py::isinstance<py::array_t<double>>(a_obj) || !IsExactNdarray(a_obj))
+    return false;
+  auto arr = py::reinterpret_borrow<py::array_t<double>>(a_obj);
+  if (arr.ndim() != 2 || arr.shape(1) < 2 || arr.shape(1) > dims)
+    return false;
+  auto src = arr.unchecked<2>();
+  const py::ssize_t n = src.shape(0);
+  a_pts.assign(static_cast<size_t>(n), PointT());
+  for (py::ssize_t i = 0; i < n; ++i)
+  {
+    for (py::ssize_t j = 0; j < src.shape(1); ++j)
+      a_pts[i][static_cast<unsigned int>(j)] = src(i, j);
+  }
+  return true;
+} // PointsFromNumpy
+//------------------------------------------------------------------------------
+/// \brief Hand a vector of points to numpy as an (N, dims) array without
+///        copying.
+/// \tparam PointT: Pt2d or Pt3d.
+/// \tparam dims: number of coordinates in PointT (2 or 3).
+/// \param[in] a_pts: Points to give away. Left empty.
+/// \return A writeable (N, dims) float64 array that owns the points' memory.
+//------------------------------------------------------------------------------
+template <typename PointT, int dims>
+py::array_t<double> PyArrayFromPoints(std::vector<PointT>&& a_pts)
+{
+  std::unique_ptr<std::vector<PointT>> owned(new std::vector<PointT>(std::move(a_pts)));
+  py::capsule base(owned.get(), [](void* p) { delete static_cast<std::vector<PointT>*>(p); });
+  std::vector<PointT>* pts = owned.release();
+  return py::array_t<double>({static_cast<py::ssize_t>(pts->size()), py::ssize_t(dims)},
+                             reinterpret_cast<const double*>(pts->data()), base);
+} // PyArrayFromPoints
+} // namespace
 
 //------------------------------------------------------------------------------
 /// \brief Create Pt3d from py::iterable
@@ -109,6 +229,8 @@ py::tuple PyIterFromPt2d(const Pt2d& pt)
 boost::shared_ptr<VecPt3d> VecPt3dFromPyIter(const py::iterable& pts)
 {
   boost::shared_ptr<xms::VecPt3d> vec_pts(new xms::VecPt3d());
+  if (PointsFromNumpy<Pt3d, 3>(pts, *vec_pts))
+    return vec_pts;
   for (auto item : pts) {
     if(!py::isinstance<py::iterable>(item)) {
       throw py::type_error("First arg must be an iterable object");
@@ -145,6 +267,8 @@ py::iterable PyIterFromVecPt3d(const VecPt3d& pts)
 boost::shared_ptr<VecPt2d> VecPt2dFromPyIter(const py::iterable& pts)
 {
   boost::shared_ptr<xms::VecPt2d> vec_pts(new xms::VecPt2d());
+  if (PointsFromNumpy<Pt2d, 2>(pts, *vec_pts))
+    return vec_pts;
   for (auto item : pts) {
     if(!py::isinstance<py::iterable>(item)) {
       throw py::type_error("First arg must be an iterable object");
@@ -185,9 +309,7 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pt3d2d)
       if (!py::isinstance<py::iterable>(pts)) {
           throw py::type_error("Second arg must be an iterable");
       }
-      py::tuple tuple = pts.cast<py::iterable>();
-      xms::VecPt3d vec_pt3d = *xms::VecPt3dFromPyIter(tuple);
-      vec_pt3d2d->at(i) = vec_pt3d;
+      vec_pt3d2d->at(i) = std::move(*xms::VecPt3dFromPyIter(pts.cast<py::iterable>()));
       i++;
   }
   return vec_pt3d2d;
@@ -264,6 +386,9 @@ py::iterable PyIterFromVecInt2d(const VecInt2d& int2d)
 boost::shared_ptr<VecInt> VecIntFromPyIter(const py::iterable& ints)
 {
   boost::shared_ptr<VecInt> vec_ints(new VecInt());
+  // numpy's default integer type is 64 bit on most platforms.
+  if (VecFromNumpy<int>(ints, *vec_ints) || VecFromNumpy<int64_t>(ints, *vec_ints))
+    return vec_ints;
   vec_ints->resize(py::len(ints));
   int i = 0;
   for (auto item : ints) {
@@ -298,6 +423,8 @@ py::iterable PyIterFromVecInt(const VecInt& ints, bool numpy)
 boost::shared_ptr<VecDbl> VecDblFromPyIter(const py::iterable& dbls)
 {
   boost::shared_ptr<VecDbl> vec_dbls(new VecDbl());
+  if (VecFromNumpy<double>(dbls, *vec_dbls))
+    return vec_dbls;
   vec_dbls->resize(py::len(dbls));
   int i = 0;
   for (auto item : dbls) {
@@ -332,6 +459,8 @@ py::iterable PyIterFromVecDbl(const VecDbl& dbls, bool numpy)
 boost::shared_ptr<VecFlt> VecFltFromPyIter(const py::iterable& flts)
 {
   boost::shared_ptr<VecFlt> vec_flts(new VecFlt());
+  if (VecFromNumpy<float>(flts, *vec_flts))
+    return vec_flts;
   vec_flts->resize(py::len(flts));
   int i = 0;
   for (auto item : flts) {
@@ -453,6 +582,24 @@ py::iterable PyIterFromVecIntPair(const std::vector<std::pair<int, int>>& intpai
   }
   return tuple_ret;
 } // PyIterFromVecIntPair
+//------------------------------------------------------------------------------
+/// \brief Hand a VecPt3d to numpy as an (N, 3) array without copying.
+/// \param[in] a_pts: Points to give away. Left empty.
+/// \return A writeable (N, 3) float64 array that owns the points' memory.
+//------------------------------------------------------------------------------
+py::array_t<double> PyArrayFromVecPt3d(VecPt3d&& a_pts)
+{
+  return PyArrayFromPoints<Pt3d, 3>(std::move(a_pts));
+} // PyArrayFromVecPt3d
+//------------------------------------------------------------------------------
+/// \brief Hand a VecPt2d to numpy as an (N, 2) array without copying.
+/// \param[in] a_pts: Points to give away. Left empty.
+/// \return A writeable (N, 2) float64 array that owns the points' memory.
+//------------------------------------------------------------------------------
+py::array_t<double> PyArrayFromVecPt2d(VecPt2d&& a_pts)
+{
+  return PyArrayFromPoints<Pt2d, 2>(std::move(a_pts));
+} // PyArrayFromVecPt2d
 //------------------------------------------------------------------------------
 /// \brief Create a __repr__ string from a VecPt3d
 /// \param[in] a_pts: vector of points.

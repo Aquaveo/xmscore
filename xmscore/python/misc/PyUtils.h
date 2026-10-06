@@ -9,6 +9,10 @@
 //----- Included files ---------------------------------------------------------
 
 // 3. Standard library headers
+#include <memory>
+#include <type_traits>
+#include <utility>
+#include <vector>
 
 // 4. External library headers
 #include <pybind11/pybind11.h>
@@ -82,5 +86,30 @@ std::string StringFromVecInt(const VecInt& a_);
 std::string StringFromVecInt2d(const VecInt2d& a_);
 std::string StringFromDynBitset(const DynBitset& a_);
 std::string StringFromVecFlt(const VecFlt& a_);
+
+// Zero-copy numpy output. See the "Passing vectors to and from Python" section
+// of Doxygen/CommonIdioms.md.
+
+//------------------------------------------------------------------------------
+/// \brief Hand a vector to numpy without copying its elements.
+///
+/// The vector is moved onto the heap and owned by a capsule that becomes the
+/// array's base object, so the returned array stays valid for as long as Python
+/// holds a reference to it and the memory is freed when the array is collected.
+/// \param[in] a_vec: Vector to give away. It is left empty.
+/// \return A writeable 1D numpy array that shares the vector's memory.
+//------------------------------------------------------------------------------
+template <typename T>
+py::array_t<T> PyArrayFromVec(std::vector<T>&& a_vec)
+{
+  static_assert(std::is_arithmetic<T>::value && !std::is_same<T, bool>::value,
+                "PyArrayFromVec needs a numeric element type");
+  std::unique_ptr<std::vector<T>> owned(new std::vector<T>(std::move(a_vec)));
+  py::capsule base(owned.get(), [](void* p) { delete static_cast<std::vector<T>*>(p); });
+  std::vector<T>* vec = owned.release();
+  return py::array_t<T>(static_cast<py::ssize_t>(vec->size()), vec->data(), base);
+} // PyArrayFromVec
+py::array_t<double> PyArrayFromVecPt3d(VecPt3d&& a_pts);
+py::array_t<double> PyArrayFromVecPt2d(VecPt2d&& a_pts);
 
 }
