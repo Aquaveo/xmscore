@@ -98,7 +98,7 @@ void Listener::SetUpdateDelaySeconds(int a_delay)
 } // Listener::SetUpdateDelaySeconds
 //------------------------------------------------------------------------------
 /// \brief Listen to progress status
-/// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+/// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
 /// \param[in] a_fractionComplete: amount complete from 0.0 to 1.0
 //------------------------------------------------------------------------------
 void Listener::OnProgressStatus(int a_stackIndex, double a_fractionComplete)
@@ -114,7 +114,7 @@ void Listener::OnProgressStatus(int a_stackIndex, double a_fractionComplete)
 //------------------------------------------------------------------------------
 /// \brief Listen to when operation begins
 /// \param[in] a_operation: the name of the operation
-/// \return the ID for progress stack (0 for first)
+/// \return the ID for progress stack (1 for the outermost)
 //------------------------------------------------------------------------------
 int Listener::OnBeginOperationString(const std::string& a_operation)
 {
@@ -125,7 +125,7 @@ int Listener::OnBeginOperationString(const std::string& a_operation)
 } // Listener::OnBeginOperationString
 //------------------------------------------------------------------------------
 /// \brief Listen to when operation ends
-/// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+/// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
 //------------------------------------------------------------------------------
 void Listener::OnEndOperation(int a_stackIndex)
 {
@@ -136,7 +136,7 @@ void Listener::OnEndOperation(int a_stackIndex)
 } // Listener::OnEndOperation
 //------------------------------------------------------------------------------
 /// \brief Listen to when operation ends
-/// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+/// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
 /// \param[in] a_message: the new message for an operation
 //------------------------------------------------------------------------------
 void Listener::OnUpdateMessage(int a_stackIndex, const std::string& a_message)

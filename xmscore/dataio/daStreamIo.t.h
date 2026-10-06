@@ -65,6 +65,8 @@ public:
   void testReadWriteLineParts();
   void testReadWriteBinaryArrays();
   void testReadBinaryBytesRejectsBadBlocks();
+  void testReadBinaryBytesReadsGoodBlock();
+  void testReadBinaryVecRejectsBadBlock();
   void testSetBinaryBlockSizeRejectsNonPositive();
   void testLineBeginsWith();
 };

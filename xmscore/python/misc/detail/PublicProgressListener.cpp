@@ -58,6 +58,8 @@ public:
     if (ProgressListener::GetListener() == m_child)
       ProgressListener::SetListener(BSHP<ProgressListener>());
   }
+  impl(const impl&) = delete;
+  impl& operator=(const impl&) = delete;
 
   BSHP<Listener> m_child; ///< listener installed globally, forwards to parent
 };
