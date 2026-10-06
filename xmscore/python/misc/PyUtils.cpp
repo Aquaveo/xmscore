@@ -10,6 +10,7 @@
 
 // 2. My own header
 #include <pybind11/pybind11.h>
+#include <pybind11/gil_safe_call_once.h>
 
 #include <cstdint>
 #include <limits>
@@ -46,6 +47,26 @@ static_assert(std::is_standard_layout<Pt2d>::value && sizeof(Pt2d) == 2 * sizeof
 namespace
 {
 //------------------------------------------------------------------------------
+/// \brief Check that an object is a numpy.ndarray itself, not a subclass.
+///
+/// Subclasses such as numpy.ma.MaskedArray give the buffer a meaning (a mask)
+/// that a direct read would drop, so they keep the per-item conversion.
+/// numpy.ndarray is looked up once and kept, since an import per call would
+/// double the cost of converting a small array.
+/// \param[in] a_obj: Python object to check. Must already be an ndarray.
+/// \return true if a_obj's type is exactly numpy.ndarray.
+//------------------------------------------------------------------------------
+bool IsExactNdarray(const py::handle& a_obj)
+{
+  PYBIND11_CONSTINIT static py::gil_safe_call_once_and_store<py::object> s_ndarray;
+  const py::object& ndarray =
+    s_ndarray
+      .call_once_and_store_result(
+        []() -> py::object { return py::module_::import("numpy").attr("ndarray"); })
+      .get_stored();
+  return py::type::handle_of(a_obj).is(ndarray);
+} // IsExactNdarray
+//------------------------------------------------------------------------------
 /// \brief Copy a 1D numpy array whose dtype is exactly Src into a vector.
 ///
 /// Reads through the array's strides, so C order, Fortran order and sliced
@@ -54,13 +75,15 @@ namespace
 /// \tparam Src: numpy element type to match.
 /// \tparam Dst: vector element type.
 /// \param[in] a_obj: Python object to read.
-/// \param[out] a_vec: Filled when a_obj is a 1D array of Src.
-/// \return true if a_obj was a 1D array of Src, false otherwise.
+/// \param[out] a_vec: Filled when a_obj is a 1D numpy.ndarray (not a subclass)
+///                    of Src.
+/// \return true if a_obj was a 1D numpy.ndarray (not a subclass) of Src, false
+///         otherwise.
 //------------------------------------------------------------------------------
 template <typename Src, typename Dst>
 bool VecFromNumpy(const py::handle& a_obj, std::vector<Dst>& a_vec)
 {
-  if (!py::isinstance<py::array_t<Src>>(a_obj))
+  if (!py::isinstance<py::array_t<Src>>(a_obj) || !IsExactNdarray(a_obj))
     return false;
   auto arr = py::reinterpret_borrow<py::array_t<Src>>(a_obj);
   if (arr.ndim() != 1)
@@ -89,12 +112,13 @@ bool VecFromNumpy(const py::handle& a_obj, std::vector<Dst>& a_vec)
 /// \param[in] a_obj: Python object to read.
 /// \param[out] a_pts: Filled when a_obj is such an array. A missing z is left at
 ///                    zero.
-/// \return true if a_obj was a float64 array of shape (N, 2) or (N, dims).
+/// \return true if a_obj was a float64 numpy.ndarray (not a subclass) of shape
+///         (N, 2) or (N, dims).
 //------------------------------------------------------------------------------
 template <typename PointT, int dims>
 bool PointsFromNumpy(const py::handle& a_obj, std::vector<PointT>& a_pts)
 {
-  if (!py::isinstance<py::array_t<double>>(a_obj))
+  if (!py::isinstance<py::array_t<double>>(a_obj) || !IsExactNdarray(a_obj))
     return false;
   auto arr = py::reinterpret_borrow<py::array_t<double>>(a_obj);
   if (arr.ndim() != 2 || arr.shape(1) < 2 || arr.shape(1) > dims)
@@ -105,7 +129,7 @@ bool PointsFromNumpy(const py::handle& a_obj, std::vector<PointT>& a_pts)
   for (py::ssize_t i = 0; i < n; ++i)
   {
     for (py::ssize_t j = 0; j < src.shape(1); ++j)
-      (&a_pts[i].x)[j] = src(i, j);
+      a_pts[i][static_cast<unsigned int>(j)] = src(i, j);
   }
   return true;
 } // PointsFromNumpy
@@ -285,9 +309,7 @@ boost::shared_ptr<VecPt3d2d> VecPt3d2dFromPyIter(const py::iterable& pt3d2d)
       if (!py::isinstance<py::iterable>(pts)) {
           throw py::type_error("Second arg must be an iterable");
       }
-      py::tuple tuple = pts.cast<py::iterable>();
-      xms::VecPt3d vec_pt3d = *xms::VecPt3dFromPyIter(tuple);
-      vec_pt3d2d->at(i) = vec_pt3d;
+      vec_pt3d2d->at(i) = std::move(*xms::VecPt3dFromPyIter(pts.cast<py::iterable>()));
       i++;
   }
   return vec_pt3d2d;
