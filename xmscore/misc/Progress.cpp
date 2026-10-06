@@ -165,7 +165,7 @@ public:
 
   //------------------------------------------------------------------------------
   /// \brief Listen to progress status
-  /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+  /// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
   /// \param[in] a_fractionComplete: amount complete from 0.0 to 1.0
   //------------------------------------------------------------------------------
   void OnProgressStatus(int a_stackIndex, double a_fractionComplete) override
@@ -177,7 +177,7 @@ public:
   //------------------------------------------------------------------------------
   /// \brief Listen to when operation begins
   /// \param[in] a_operation: the name of the operation
-  /// \return the ID for progress stack (0 for first)
+  /// \return the ID for progress stack (1 for the outermost)
   //------------------------------------------------------------------------------
   int OnBeginOperationString(const std::string& a_operation) override
   {
@@ -190,7 +190,7 @@ public:
 
   //------------------------------------------------------------------------------
   /// \brief Listen to when operation ends
-  /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+  /// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
   //------------------------------------------------------------------------------
   void OnEndOperation(int a_stackIndex) override
   {
@@ -201,8 +201,8 @@ public:
   }
 
   //------------------------------------------------------------------------------
-  /// \brief Listen to when operation ends
-  /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+  /// \brief Listen to a new message for an operation
+  /// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
   /// \param[in] a_message: the new message for an operation
   //------------------------------------------------------------------------------
   void OnUpdateMessage(int a_stackIndex, const std::string& a_message) override

@@ -49,27 +49,31 @@ private:
 
 /// \class ProgressListener
 /// \brief Listen to progress reported from Progress class
+///
+/// A stack index is the value OnBeginOperationString returned for an operation,
+/// 1 for the outermost. An operation that began before a listener was installed
+/// reports stack index 0.
 class ProgressListener
 {
 public:
   virtual ~ProgressListener();
 
   /// \brief Listen to progress status
-  /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+  /// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
   /// \param[in] a_fractionComplete: amount complete from 0.0 to 1.0
   virtual void OnProgressStatus(int a_stackIndex, double a_fractionComplete) = 0;
 
   /// \brief Listen to when operation begins
   /// \param[in] a_operation: the name of the operation
-  /// \return the ID for progress stack (0 for first)
+  /// \return the ID for progress stack (1 for the outermost)
   virtual int OnBeginOperationString(const std::string& a_operation) = 0;
 
   /// \brief Listen to when operation ends
-  /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+  /// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
   virtual void OnEndOperation(int a_stackIndex) = 0;
 
-  /// \brief Listen to when operation ends
-  /// \param[in] a_stackIndex: the ID for progress stack (0 for first)
+  /// \brief Listen to a new message for an operation
+  /// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
   /// \param[in] a_message: the new message for an operation
   virtual void OnUpdateMessage(int a_stackIndex, const std::string& a_message) = 0;
 

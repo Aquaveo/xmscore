@@ -55,11 +55,14 @@ class ProgressListener(Prog):
         """
         The operation string.
 
+        An override must call super() so the stack index stays right.
+
         Args:
             operation: Name of the operation being monitored.
 
         Returns:
-            (int): stack index for the operation, 1 for the outermost operation
+            (int): stack index for the operation, 1 for the outermost operation. The C++
+            listener keeps its own count and ignores this value.
         """
         self._stack_depth += 1
         self.call_back(('begin_operation', self._stack_depth, operation))
@@ -68,6 +71,8 @@ class ProgressListener(Prog):
     def on_end_operation(self, stack_index):
         """
         The end operation event.
+
+        An override must call super() so the next operation gets the right stack index.
 
         Args:
             stack_index (int): stack index for the operation that ended

@@ -135,7 +135,7 @@ void Listener::OnEndOperation(int a_stackIndex)
     m_p->m_operations.pop_back();
 } // Listener::OnEndOperation
 //------------------------------------------------------------------------------
-/// \brief Listen to when operation ends
+/// \brief Listen to a new message for an operation
 /// \param[in] a_stackIndex: the ID for progress stack (1 for the outermost)
 /// \param[in] a_message: the new message for an operation
 //------------------------------------------------------------------------------
