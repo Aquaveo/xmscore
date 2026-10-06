@@ -13,6 +13,7 @@
 // 3. Standard Library Headers
 
 // 4. External Library Headers
+#include <xmscore/misc/base_macros.h>
 #include <xmscore/misc/Progress.h>
 
 // 5. Shared Headers
@@ -40,6 +41,7 @@ public:
   void OnUpdateMessage(int a_stackIndex, const std::string& a_message) override;
 
 private:
+  XM_DISALLOW_COPY_AND_ASSIGN(Listener)
   class impl;
   impl* m_p;
 };

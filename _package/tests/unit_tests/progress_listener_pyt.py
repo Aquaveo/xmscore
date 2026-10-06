@@ -36,6 +36,15 @@ class TestProgressListener(unittest.TestCase):
         ]
         self.assertEqual(expected, messages)
 
+    def test_unmatched_end_operation(self):
+        """
+        Test that ending an operation that never began leaves the next operation at stack index 1.
+        """
+        # A Progress made before the listener was installed ends with stack index 0.
+        listener = set_listener_callback(lambda msg: None)
+        listener.on_end_operation(0)
+        self.assertEqual(1, listener.on_begin_operation_string('count-jelly-beans'))
+
 
 if __name__ == '__main__':
     unittest.main()

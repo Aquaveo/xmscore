@@ -2427,27 +2427,32 @@ void DaReaderWriterIoUnitTests::testReadBinaryVecRejectsBadBlock()
     "eAENw4UNwDAAAKDO3d3+f3OQEEIIkbGJqZm5haWVtY2tnb2Do5Ozi6ubu4enl7ePr58/RrQB*A\n";
   const char* name = "VECTOR_NAME";
   const bool useBinaryArrays = true;
+  const std::string badBase64Char = "Invalid base64 character.";
   XmLog::Instance().GetAndClearStackStr();
   {
     std::istringstream inputStream(std::string(name) + " 30\n" + badBlock);
     DaStreamReader reader(inputStream, useBinaryArrays);
     VecInt values;
     TS_ASSERT(!reader.ReadVecInt(name, values));
+    std::string errors = XmLog::Instance().GetAndClearStackStr();
+    TSM_ASSERT("ReadVecInt logged: " + errors, errors.find(badBase64Char) != std::string::npos);
   }
   {
     std::istringstream inputStream(std::string(name) + " 15\n" + badBlock);
     DaStreamReader reader(inputStream, useBinaryArrays);
     VecDbl values;
     TS_ASSERT(!reader.ReadVecDbl(name, values));
+    std::string errors = XmLog::Instance().GetAndClearStackStr();
+    TSM_ASSERT("ReadVecDbl logged: " + errors, errors.find(badBase64Char) != std::string::npos);
   }
   {
     std::istringstream inputStream(std::string(name) + " 5\n" + badBlock);
     DaStreamReader reader(inputStream, useBinaryArrays);
     VecPt3d values;
     TS_ASSERT(!reader.ReadVecPt3d(name, values));
+    std::string errors = XmLog::Instance().GetAndClearStackStr();
+    TSM_ASSERT("ReadVecPt3d logged: " + errors, errors.find(badBase64Char) != std::string::npos);
   }
-  std::string errors = XmLog::Instance().GetAndClearStackStr();
-  TSM_ASSERT("logged: " + errors, errors.find("Invalid base64 character.") != std::string::npos);
 } // DaReaderWriterIoUnitTests::testReadBinaryVecRejectsBadBlock
 //------------------------------------------------------------------------------
 /// \brief Test that DaStreamWriter::SetBinaryBlockSize ignores a non-positive

@@ -81,9 +81,9 @@ For applications that need to receive progress messages from nested operations,
 use :class:`ProgressListener <xms.core.misc.ProgressListener>`. It exposes a
 ``stack_index`` for each in-flight operation so that a UI can show a stack of
 progress bars. The outermost operation has stack index 1, and each operation
-nested inside it adds one. Constructing a ``ProgressListener`` registers it as the active
-process-wide listener, so subsequent XMS operations route their events through
-its callback. The :func:`set_listener_callback
+nested inside it adds one. Constructing a ``ProgressListener`` registers it as
+the active process-wide listener, so subsequent XMS operations route their
+events through its callback. The :func:`set_listener_callback
 <xms.core.misc.progress_listener.set_listener_callback>` helper builds and
 returns one wired to a single callable:
 

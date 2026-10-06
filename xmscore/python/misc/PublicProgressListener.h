@@ -13,6 +13,7 @@
 // 3. Standard Library Headers
 
 // 4. External Library Headers
+#include <xmscore/misc/base_macros.h>
 #include <xmscore/misc/boost_defines.h>
 #include <xmscore/misc/Progress.h>
 
@@ -39,6 +40,7 @@ public:
   virtual void on_update_message(int a_stackIndex, const std::string& a_message) {}
 
 private:
+  XM_DISALLOW_COPY_AND_ASSIGN(PublicProgressListener)
   class impl;
   impl *m_p;
 };
