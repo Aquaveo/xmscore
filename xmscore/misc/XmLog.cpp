@@ -137,13 +137,16 @@ struct XmLog::Impl
 
   /// Stack of messages that can be shown at a later time
   MessageStack m_stackedMessages;
-  /// Used to setup log file first time something is logged
+  /// Used to write "Start Log" the first time something is logged
   bool m_firstRun;
   /// Mutex for thread-safe file writes
   std::mutex m_mutex;
   /// Log file handle (using FILE* to avoid std::ostream locale issues in shared libraries)
   FILE* m_logFile = nullptr;
+  /// Set once OpenLogFile has run, so a failed open is not retried per message
+  bool m_openAttempted = false;
 
+  void OpenLogFile();
   void StackedErrToStream(std::ostream& a_os);
 };
 
@@ -157,16 +160,14 @@ struct XmLog::Impl
 ////////////////////////////////////////////////////////////////////////////////
 //------------------------------------------------------------------------------
 /// \brief constructor
+///
+/// Does not open the log file: Log opens it on the first message, so a
+/// process that only queries the error stack leaves no empty file behind.
 //------------------------------------------------------------------------------
 XmLog::XmLog()
 : Singleton()
 , m(new Impl())
 {
-  std::string filename = XmLog::LogFilename();
-  if (!filename.empty())
-  {
-    m->m_logFile = std::fopen(filename.c_str(), "a");
-  }
 } // XmLog::XmLog
 //------------------------------------------------------------------------------
 /// \brief destructor
@@ -194,7 +195,7 @@ void XmLog::Log(const char* const a_file,
   if (m->m_firstRun)
   {
     m->m_firstRun = false;
-    // Make sure the log file is created
+    // Mark where this instance's messages begin in the log
     XM_LOG(xmlog::debug, "Start Log");
   }
 
@@ -205,6 +206,7 @@ void XmLog::Log(const char* const a_file,
 
   {
     std::lock_guard<std::mutex> lock(m->m_mutex);
+    m->OpenLogFile();
     if (m->m_logFile)
     {
       std::string ts = iTimestamp();
@@ -247,8 +249,9 @@ MessageStack XmLog::GetAndClearStack()
 //------------------------------------------------------------------------------
 /// \brief Set the callback that returns the log filename.
 ///
-/// Static because the XmLog constructor needs it, so we must set it BEFORE
-/// we construct the XmLog singleton.
+/// Static so it can be set before the singleton exists and survives
+/// Instance(true). An instance calls it once, when it logs its first message,
+/// so set it BEFORE anything is logged.
 /// \return The callback.
 //------------------------------------------------------------------------------
 XmLogFilenameCallback& XmLog::LogFilenameCallback()
@@ -258,8 +261,9 @@ XmLogFilenameCallback& XmLog::LogFilenameCallback()
 //------------------------------------------------------------------------------
 /// \brief Return the name of the log file.
 ///
-/// Static because the XmLog constructor needs it, so we must set
-/// LogFilenameCallback BEFORE we construct the XmLog singleton.
+/// Static so it can be called without an instance. Returns what
+/// LogFilenameCallback returns, if one is set; otherwise a unique name in the
+/// temp folder, fixed for the life of the process.
 /// \return The name of the log file.
 //------------------------------------------------------------------------------
 std::string XmLog::LogFilename()
@@ -281,6 +285,25 @@ std::string XmLog::LogFilename()
     return fg_logPath;
   }
 } // XmLog::LogFilename
+//------------------------------------------------------------------------------
+/// \brief Open the log file the first time it is needed. Call with m_mutex
+///        held.
+///
+/// Opening on the first message rather than in the constructor means a
+/// process that never logs (it only calls ErrCount or GetAndClearStack)
+/// creates no file.
+//------------------------------------------------------------------------------
+void XmLog::Impl::OpenLogFile()
+{
+  if (m_openAttempted)
+    return;
+  m_openAttempted = true;
+  std::string filename = XmLog::LogFilename();
+  if (!filename.empty())
+  {
+    m_logFile = std::fopen(filename.c_str(), "a");
+  }
+} // XmLog::Impl::OpenLogFile
 //------------------------------------------------------------------------------
 /// \brief Sends error stack to passed stream. Formats for dialog box
 /// \param a_os: The stream.
@@ -375,6 +398,41 @@ void XmLogUnitTests::testAll()
   // xms::iTest_XM_LOG_stackable();
   // xms::iTest_XM_LOG_gui();
 }
+//------------------------------------------------------------------------------
+/// \brief Querying the log does not create its file; the first message does.
+//------------------------------------------------------------------------------
+void XmLogUnitTests::testFileOpenedOnFirstMessage()
+{
+#if !defined(__EMSCRIPTEN__)
+  using namespace xms;
+  const bfs::path path = bfs::temp_directory_path() / bfs::unique_path("xmlog-%%%%-%%%%-test.log");
+  const XmLogFilenameCallback previousCallback = XmLog::LogFilenameCallback();
+  XmLog::LogFilenameCallback() = [path]() { return path.string(); };
+  // Drop the current instance, which may already have opened the default
+  // log, so the next one logs to the callback's path. The reference
+  // Instance(true) returns is invalid and must not be used.
+  XmLog::Instance(true);
+
+  XmLog::Instance().ErrCount();
+  XmLog::Instance().GetAndClearStackStr();
+  TS_ASSERT(!bfs::exists(path));
+
+  XM_LOG(xmlog::debug, "First message");
+  TS_ASSERT(bfs::exists(path));
+  {
+    std::ifstream in(path.string());
+    std::string contents((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());
+    TS_ASSERT(contents.find("Start Log") != std::string::npos);
+    TS_ASSERT(contents.find("First message") != std::string::npos);
+  }
+
+  // Close the file and restore the previous log for the tests that follow.
+  XmLog::Instance(true);
+  XmLog::LogFilenameCallback() = previousCallback;
+  boost::system::error_code ignored;
+  bfs::remove(path, ignored); // a leftover temp file is not a test failure
+#endif
+} // XmLogUnitTests::testFileOpenedOnFirstMessage
 #endif
 
 #pragma warning(pop)

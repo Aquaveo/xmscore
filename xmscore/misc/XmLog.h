@@ -119,8 +119,13 @@ public:
   /// \brief Return and clear the stackable error stack as a single newline-separated string.
   std::string GetAndClearStackStr();
   /// \brief Access the callback that produces the on-disk log file name; assignable to override.
+  ///        Each instance calls it once, when it logs its first message, and
+  ///        then creates or opens the file; a process that never logs opens
+  ///        no file. Set it before anything is logged. It runs with the log's
+  ///        lock held, on whichever thread logs first, so it must not log.
   static XmLogFilenameCallback& LogFilenameCallback();
-  /// \brief Return the resolved on-disk log file name.
+  /// \brief Return the resolved on-disk log file name. XmLog does not create
+  ///        the file until a message is logged.
   static std::string LogFilename();
 
 private:

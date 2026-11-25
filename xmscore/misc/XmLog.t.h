@@ -20,5 +20,6 @@ class XmLogUnitTests : public CxxTest::TestSuite
 {
 public:
   void testAll();
+  void testFileOpenedOnFirstMessage();
 };
 #endif

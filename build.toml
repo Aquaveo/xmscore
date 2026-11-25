@@ -107,6 +107,11 @@ python_versions = ["3.10", "3.13", "3.14"]
 mac_python_versions = ["3.13", "3.14"]
 linux_python_versions = ["3.13", "3.14"]
 coverage = true
+# Required from xmsconan 2.33.0, which dropped the default that followed
+# ci_type (true on github). true keeps running delvewheel on the Windows
+# wheels, as this pipeline did before, so a wheel installed into a plain venv
+# carries the DLLs its module imports. See xmsconan docs/USAGE.md section 12.1.
+windows_wheel_repair = true
 
 [coverage]
 # Pinned so adding 3.14 to the build matrix does not also move the coverage
